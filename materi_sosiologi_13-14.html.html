@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📘 Materi Sosiologi Kelas X - Pertemuan 13 & 14</title>
+  <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg: #fff;
+      --header-color: #004080;
+      --video-bg: #eef5ff;
+      --border-color: #aaa;
+      --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .dark-mode {
+      --bg-color: #1e1e2e;
+      --text-color: #e0e0e0;
+      --card-bg: #2d2d3d;
+      --header-color: #6da5ff;
+      --video-bg: #252d40;
+      --border-color: #555;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3 {
+      color: var(--header-color);
+      transition: color 0.3s;
+    }
+
+    .materi {
+      background: var(--card-bg);
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    ul {
+      line-height: 1.7;
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      overflow-x: auto;
+      display: block;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: left;
+      transition: border-color 0.3s;
+    }
+
+    th {
+      background: var(--header-color);
+      color: white;
+    }
+
+    .video {
+      margin-top: 25px;
+      padding: 20px;
+      background: var(--video-bg);
+      border-left: 5px solid var(--header-color);
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .video a {
+      color: var(--header-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .video a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tombol Cetak & Mode */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn-print {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-print:hover {
+      background: #218838;
+    }
+
+    .btn-toggle {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-toggle:hover {
+      background: #5a6268;
+    }
+
+    /* Daftar Isi (Navigasi Cepat) */
+    .toc {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h3 {
+      margin-top: 0;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc li {
+      margin-bottom: 8px;
+    }
+
+    .toc a {
+      color: var(--header-color);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .toc a:hover {
+      background: rgba(0,64,128,0.1);
+      text-decoration: underline;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .controls, .toc, .btn-toggle, .video {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+        padding: 10px;
+      }
+
+      .materi {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Tombol Kontrol -->
+<div class="controls">
+  <button class="btn btn-print" onclick="window.print()">📄 Cetak Materi</button>
+  <button class="btn btn-toggle" id="darkModeToggle">🌙 Mode Gelap</button>
+</div>
+
+<!-- Daftar Isi / Navigasi Cepat -->
+<div class="toc">
+  <h3>🔍 Navigasi Cepat</h3>
+  <ul>
+    <li><a href="#pertemuan13">Pertemuan 13 – Sosiologi sebagai Ilmu Pengetahuan</a></li>
+    <li><a href="#pertemuan14">Pertemuan 14 – Penerapan Paradigma Sosiologi</a></li>
+    <li><a href="#tabel">📊 Tabel Perbandingan</a></li>
+    <li><a href="#video">▶️ Video Pembelajaran</a></li>
+  </ul>
+</div>
+
+<h1>📘 Materi Sosiologi – Kelas X</h1>
+
+<div class="materi" id="pertemuan13">
+  <h2>Pertemuan 13 – Sosiologi sebagai Ilmu Pengetahuan</h2>
+  <h3>Ciri-ciri Ilmu Pengetahuan dalam Sosiologi</h3>
+  <ul>
+    <li><b>Empiris</b> → Berdasarkan fakta nyata, dapat dibuktikan melalui observasi.<br><i>Contoh: Data kepadatan penduduk, angka kemiskinan.</i></li>
+    <li><b>Teoretis</b> → Disusun secara logis, sistematis, dan memiliki kerangka teori.<br><i>Contoh: Teori perubahan sosial untuk menjelaskan modernisasi.</i></li>
+    <li><b>Kumulatif</b> → Teori berkembang dari teori sebelumnya, dapat diperbaiki atau disempurnakan.<br><i>Contoh: Teori konflik Karl Marx dikembangkan oleh Ralf Dahrendorf.</i></li>
+    <li><b>Non-etis</b> → Tidak menilai baik atau buruk, hanya menjelaskan fenomena apa adanya.<br><i>Contoh: Penelitian kriminalitas menjelaskan penyebab, bukan menghakimi.</i></li>
+    <li><b>Objektif</b> → Hasil kajian sesuai data, bebas dari kepentingan pribadi.<br><i>Contoh: Data BPS tentang urbanisasi tanpa opini peneliti.</i></li>
+  </ul>
+</div>
+
+<div class="materi" id="pertemuan14">
+  <h2>Pertemuan 14 – Penerapan Paradigma Sosiologi dalam Kehidupan Sosial</h2>
+  <h3>Tiga Paradigma Sosiologi</h3>
+  <ul>
+    <li><b>Paradigma Fungsionalisme</b> → Masyarakat sebagai sistem harmonis.<br><i>Contoh: Sekolah menyiapkan generasi muda; keluarga mendidik anak.</i></li>
+    <li><b>Paradigma Konflik</b> → Masyarakat sebagai arena pertentangan kepentingan.<br><i>Contoh: Konflik buruh dan pengusaha tentang upah.</i></li>
+    <li><b>Paradigma Interaksionisme Simbolik</b> → Menekankan makna & simbol dalam interaksi.<br><i>Contoh: Jabat tangan sebagai salam; tanda like 👍 sebagai apresiasi.</i></li>
+  </ul>
+</div>
+
+<div class="materi" id="tabel">
+  <h2>📊 Tabel Perbandingan</h2>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Ciri-ciri Ilmu Pengetahuan</th>
+      <th>Paradigma Sosiologi</th>
+      <th>Contoh Kasus</th>
+    </tr>
+    <tr>
+      <td><b>Empiris</b></td>
+      <td>Berdasarkan fakta nyata / observasi</td>
+      <td>Fungsionalisme & Konflik: data sosial nyata</td>
+      <td>Data pendapatan rumah tangga → analisis kemiskinan</td>
+    </tr>
+    <tr>
+      <td><b>Teoretis</b></td>
+      <td>Logis & sistematis, ada kerangka teori</td>
+      <td>Fungsionalisme & Konflik menjelaskan peran & konflik</td>
+      <td>Peran sekolah vs konflik ekonomi</td>
+    </tr>
+    <tr>
+      <td><b>Kumulatif</b></td>
+      <td>Teori berkembang & saling melengkapi</td>
+      <td>Paradigma saling mengkritik & memperbarui</td>
+      <td>Marx → Dahrendorf (konflik kelas modern)</td>
+    </tr>
+    <tr>
+      <td><b>Non-etis</b></td>
+      <td>Tidak menilai baik/buruk</td>
+      <td>Interaksionisme menafsirkan makna tanpa menghakimi</td>
+      <td>Penjelasan kriminalitas tanpa moral judgment</td>
+    </tr>
+    <tr>
+      <td><b>Objektif</b></td>
+      <td>Berdasarkan data, bebas subjektivitas</td>
+      <td>Fungsionalisme & Konflik analisis struktur & kekuasaan</td>
+      <td>Survey layanan kesehatan dipublikasikan tanpa bias</td>
+    </tr>
+  </table>
+</div>
+
+<div class="video" id="video">
+  <h2>▶️ Video YouTube yang Relevan</h2>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=owogScOY-08" target="_blank" rel="noopener noreferrer">Ciri-ciri Sosiologi sebagai Ilmu Pengetahuan</a></li>
+    <li><a href="https://www.youtube.com/watch?v=UxRrLPz72PQ" target="_blank" rel="noopener noreferrer">Penjelasan tentang Paradigma Sosiologi</a></li>
+    <li><a href="https://www.youtube.com/watch?v=xwO2facOtns" target="_blank" rel="noopener noreferrer">Tiga Paradigma Utama dalam Sosiologi | Skolla</a></li>
+  </ul>
+</div>
+
+<script>
+  // Toggle Dark Mode
+  const toggleButton = document.getElementById('darkModeToggle');
+  const body = document.body;
+
+  // Cek preferensi pengguna di localStorage
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    toggleButton.textContent = '☀️ Mode Terang';
+  }
+
+  toggleButton.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      toggleButton.textContent = '☀️ Mode Terang';
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      toggleButton.textContent = '🌙 Mode Gelap';
+    }
+  });
+
+  // Smooth scroll untuk navigasi
+  document.querySelectorAll('.toc a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      window.scrollTo({
+        top: targetElement.offsetTop - 20,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Dampak Kebijakan Transfer ke Bank Himbara</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-panel {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .results-panel {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .panel-title {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+            color: var(--primary);
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input[type="number"], select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        input[type="number"]:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #bdc3c7;
+        }
+        
+        .btn-reset {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #c0392b;
+        }
+        
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chart-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        
+        .kpi-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .kpi-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        .kpi-title {
+            font-size: 1rem;
+            color: var(--dark);
+        }
+        
+        .kpi-growth {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .positive {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+        }
+        
+        .negative {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+        }
+        
+        .scenario-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .scenario-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .scenario-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+        
+        .scenario-optimistic {
+            border-left-color: var(--success);
+            background: rgba(39, 174, 96, 0.05);
+        }
+        
+        .scenario-baseline {
+            border-left-color: var(--secondary);
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        .scenario-pessimistic {
+            border-left-color: var(--danger);
+            background: rgba(231, 76, 60, 0.05);
+        }
+        
+        .sectoral-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .sectoral-table th, .sectoral-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sectoral-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        .sectoral-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--secondary);
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .assumption-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .assumption-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            color: var(--secondary);
+            cursor: help;
+        }
+        
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulasi Dampak Kebijakan Transfer ke Bank Himbara</h1>
+            <p class="subtitle">Analisis dampak kebijakan fiskal terhadap pertumbuhan PDB melalui saluran perbankan</p>
+        </header>
+        
+        <div class="dashboard">
+            <div class="input-panel">
+                <h2 class="panel-title">Parameter Simulasi</h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="basic">Dasar</div>
+                    <div class="tab" data-tab="advanced">Lanjutan</div>
+                    <div class="tab" data-tab="assumptions">Asumsi</div>
+                </div>
+                
+                <div class="tab-content active" id="basic-tab">
+                    <div class="input-group">
+                        <label for="danaTransfer">
+                            Dana Transfer (Triliun Rupiah)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Jumlah dana yang ditransfer pemerintah ke bank Himbara</span>
+                            </span>
+                        </label>
+                        <input type="number" id="danaTransfer" value="200" min="0" step="10">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="ldrAwal">
+                            LDR Awal Perbankan (%)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Loan-to-Deposit Ratio awal sebelum kebijakan</span>
+                            </span>
+                        </label>
+                        <input type="number" id="ldrAwal" value="75" min="0" max="100" step="1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="pdbAwal">
+                            PDB Awal (Triliun Rupiah)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Produk Domestik Bruto Indonesia sebelum kebijakan</span>
+                            </span>
+                        </label>
+                        <input type="number" id="pdbAwal" value="18000" min="0" step="1000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="periodeSimulasi">
+                            Periode Simulasi (tahun)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Jangka waktu analisis dampak kebijakan</span>
+                            </span>
+                        </label>
+                        <input type="number" id="periodeSimulasi" value="3" min="1" max="5" step="1">
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="advanced-tab">
+                    <div class="input-group">
+                        <label for="efisiensiPenyaluran">
+                            Efisiensi Penyaluran Kredit (%)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Persentase dana yang berhasil disalurkan sebagai kredit</span>
+                            </span>
+                        </label>
+                        <input type="number" id="efisiensiPenyaluran" value="80" min="0" max="100" step="5">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="alokasiInvestasi">
+                            Alokasi Kredit Investasi (%)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Persentase kredit yang dialokasikan untuk investasi</span>
+                            </span>
+                        </label>
+                        <input type="number" id="alokasiInvestasi" value="60" min="0" max="100" step="5">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="elastisitasInvestasi">
+                            Elastisitas Kredit-Investasi
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Responsivitas investasi terhadap pertumbuhan kredit</span>
+                            </span>
+                        </label>
+                        <input type="number" id="elastisitasInvestasi" value="0.7" min="0" max="1" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="elastisitasKonsumsi">
+                            Elastisitas Kredit-Konsumsi
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Responsivitas konsumsi terhadap pertumbuhan kredit</span>
+                            </span>
+                        </label>
+                        <input type="number" id="elastisitasKonsumsi" value="0.5" min="0" max="1" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="multiplierEffect">
+                            Multiplier Effect
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Efek pengganda dari aktivitas ekonomi yang ditimbulkan</span>
+                            </span>
+                        </label>
+                        <input type="number" id="multiplierEffect" value="1.8" min="1" max="3" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="timeLag">
+                            Time Lag (bulan)
+                            <span class="tooltip">?
+                                <span class="tooltip-text">Waktu yang dibutuhkan sejak kebijakan hingga dampak terasa</span>
+                            </span>
+                        </label>
+                        <input type="number" id="timeLag" value="6" min="1" max="12" step="1">
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="assumptions-tab">
+                    <div class="assumption-item">
+                        <h4>Alokasi Kredit</h4>
+                        <p>Kredit dialokasikan 60% untuk investasi dan 40% untuk konsumsi berdasarkan pola historis.</p>
+                    </div>
+                    
+                    <div class="assumption-item">
+                        <h4>Efisiensi Penyaluran</h4>
+                        <p>80% dana transfer berhasil disalurkan sebagai kredit, memperhitungkan faktor operasional dan regulasi.</p>
+                    </div>
+                    
+                    <div class="assumption-item">
+                        <h4>Elastisitas</h4>
+                        <p>Elastisitas kredit-investasi (0.7) lebih tinggi daripada kredit-konsumsi (0.5) berdasarkan data empiris.</p>
+                    </div>
+                    
+                    <div class="assumption-item">
+                        <h4>Multiplier Effect</h4>
+                        <p>Multiplier effect sebesar 1.8 memperhitungkan dampak tidak langsung melalui rantai pasok dan penciptaan lapangan kerja.</p>
+                    </div>
+                    
+                    <div class="assumption-item">
+                        <h4>Time Lag</h4>
+                        <p>Diasumsikan time lag 6 bulan sejak kebijakan hingga dampak ekonomi terlihat signifikan.</p>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="runSimulation()">Jalankan Simulasi</button>
+                    <button class="btn-reset" onclick="resetToDefaults()">Reset</button>
+                </div>
+            </div>
+            
+            <div class="results-panel">
+                <h2 class="panel-title">Hasil Simulasi</h2>
+                
+                <div class="kpi-cards">
+                    <div class="kpi-card">
+                        <div class="kpi-title">Dampak Total PDB</div>
+                        <div class="kpi-value" id="kpiDampakTotal">Rp 0 T</div>
+                        <div class="kpi-growth positive" id="kpiPertumbuhan">+0.0%</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-title">Kredit Tersalurkan</div>
+                        <div class="kpi-value" id="kpiKredit">Rp 0 T</div>
+                        <div class="kpi-title">Efisiensi: <span id="kpiEfisiensi">0%</span></div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-title">Penurunan Suku Bunga</div>
+                        <div class="kpi-value" id="kpiSukuBunga">0%</div>
+                        <div class="kpi-title">Estimasi</div>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Dampak pada Komponen PDB</h3>
+                        <div class="chart-container">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Perkembangan PDB</h3>
+                        <div class="chart-container">
+                            <canvas id="timelineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3>Dampak per Sektor Ekonomi</h3>
+                    <div class="chart-container">
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scenario-section">
+            <h2 class="panel-title">Analisis Skenario</h2>
+            
+            <div class="scenario-cards">
+                <div class="scenario-card scenario-optimistic">
+                    <h3>Skenario Optimis</h3>
+                    <p>Efisiensi penyaluran 90%, multiplier effect 2.2</p>
+                    <div class="kpi-value" id="scenarioOptimistic">Rp 0 T</div>
+                    <button class="btn-secondary" onclick="applyOptimisticScenario()">Terapkan</button>
+                </div>
+                
+                <div class="scenario-card scenario-baseline">
+                    <h3>Skenario Baseline</h3>
+                    <p>Parameter standar simulasi</p>
+                    <div class="kpi-value" id="scenarioBaseline">Rp 0 T</div>
+                    <button class="btn-secondary" onclick="applyBaselineScenario()">Terapkan</button>
+                </div>
+                
+                <div class="scenario-card scenario-pessimistic">
+                    <h3>Skenario Pesimis</h3>
+                    <p>Efisiensi penyaluran 70%, multiplier effect 1.5</p>
+                    <div class="kpi-value" id="scenarioPessimistic">Rp 0 T</div>
+                    <button class="btn-secondary" onclick="applyPessimisticScenario()">Terapkan</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Simulasi Kebijakan Fiskal &copy; 2025 - Analisis Dampak Ekonomi Berbasis PDB</p>
+            <p>Disclaimer: Hasil simulasi merupakan estimasi berdasarkan model ekonomi dan asumsi tertentu</p>
+        </footer>
+    </div>
+
+    <script>
+        // Variabel global untuk chart instances
+        let impactChart, timelineChart, sectorChart;
+        
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup tabs
+            setupTabs();
+            
+            // Jalankan simulasi pertama kali
+            runSimulation();
+        });
+        
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+        }
+        
+        function runSimulation() {
+            // Ambil nilai input
+            const danaTransfer = parseFloat(document.getElementById('danaTransfer').value);
+            const ldrAwal = parseFloat(document.getElementById('ldrAwal').value);
+            const pdbAwal = parseFloat(document.getElementById('pdbAwal').value);
+            const efisiensiPenyaluran = parseFloat(document.getElementById('efisiensiPenyaluran').value);
+            const alokasiInvestasi = parseFloat(document.getElementById('alokasiInvestasi').value);
+            const elastisitasInvestasi = parseFloat(document.getElementById('elastisitasInvestasi').value);
+            const elastisitasKonsumsi = parseFloat(document.getElementById('elastisitasKonsumsi').value);
+            const multiplierEffect = parseFloat(document.getElementById('multiplierEffect').value);
+            const timeLag = parseInt(document.getElementById('timeLag').value);
+            const periodeSimulasi = parseInt(document.getElementById('periodeSimulasi').value);
+            
+            // Hitung kredit yang dapat disalurkan
+            const ruangKredit = (100 - ldrAwal) / 100;
+            const kreditTersalurkan = danaTransfer * ruangKredit * (efisiensiPenyaluran / 100);
+            
+            // Hitung penurunan suku bunga (estimasi sederhana)
+            const penurunanBunga = (danaTransfer / 100) * 0.25;
+            
+            // Breakdown kredit
+            const kreditInvestasi = kreditTersalurkan * (alokasiInvestasi / 100);
+            const kreditKonsumsi = kreditTersalurkan * ((100 - alokasiInvestasi) / 100);
+            
+            // Hitung dampak pada komponen PDB
+            const dampakInvestasi = kreditInvestasi * elastisitasInvestasi;
+            const dampakKonsumsi = kreditKonsumsi * elastisitasKonsumsi;
+            
+            // Dampak langsung sebelum multiplier
+            const dampakLangsung = dampakInvestasi + dampakKonsumsi;
+            
+            // Dampak total dengan multiplier effect
+            const dampakTotal = dampakLangsung * multiplierEffect;
+            
+            // Hitung pertumbuhan PDB
+            const pertumbuhanPDB = (dampakTotal / pdbAwal) * 100;
+            
+            // Update KPI cards
+            document.getElementById('kpiDampakTotal').textContent = `Rp ${formatNumber(dampakTotal)} T`;
+            document.getElementById('kpiPertumbuhan').textContent = `+${pertumbuhanPDB.toFixed(2)}%`;
+            document.getElementById('kpiKredit').textContent = `Rp ${formatNumber(kreditTersalurkan)} T`;
+            document.getElementById('kpiEfisiensi').textContent = `${efisiensiPenyaluran}%`;
+            document.getElementById('kpiSukuBunga').textContent = `${penurunanBunga.toFixed(2)}%`;
+            
+            // Update scenario cards
+            document.getElementById('scenarioBaseline').textContent = `Rp ${formatNumber(dampakTotal)} T`;
+            
+            // Hitung skenario optimis dan pesimis
+            const optimisticDampak = calculateScenarioImpact(danaTransfer, ldrAwal, 90, 2.2, alokasiInvestasi, elastisitasInvestasi, elastisitasKonsumsi);
+            const pessimisticDampak = calculateScenarioImpact(danaTransfer, ldrAwal, 70, 1.5, alokasiInvestasi, elastisitasInvestasi, elastisitasKonsumsi);
+            
+            document.getElementById('scenarioOptimistic').textContent = `Rp ${formatNumber(optimisticDampak)} T`;
+            document.getElementById('scenarioPessimistic').textContent = `Rp ${formatNumber(pessimisticDampak)} T`;
+            
+            // Buat chart
+            createImpactChart(dampakInvestasi, dampakKonsumsi, dampakLangsung, dampakTotal);
+            createTimelineChart(pdbAwal, dampakTotal, periodeSimulasi, timeLag);
+            createSectorChart(kreditInvestasi);
+        }
+        
+        function calculateScenarioImpact(danaTransfer, ldrAwal, efisiensi, multiplier, alokasiInvestasi, elastisitasInvestasi, elastisitasKonsumsi) {
+            const ruangKredit = (100 - ldrAwal) / 100;
+            const kreditTersalurkan = danaTransfer * ruangKredit * (efisiensi / 100);
+            
+            const kreditInvestasi = kreditTersalurkan * (alokasiInvestasi / 100);
+            const kreditKonsumsi = kreditTersalurkan * ((100 - alokasiInvestasi) / 100);
+            
+            const dampakInvestasi = kreditInvestasi * elastisitasInvestasi;
+            const dampakKonsumsi = kreditKonsumsi * elastisitasKonsumsi;
+            
+            const dampakLangsung = dampakInvestasi + dampakKonsumsi;
+            return dampakLangsung * multiplier;
+        }
+        
+        function createImpactChart(dampakInvestasi, dampakKonsumsi, dampakLangsung, dampakTotal) {
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            
+            if (impactChart) {
+                impactChart.destroy();
+            }
+            
+            impactChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Dampak Investasi', 'Dampak Konsumsi', 'Dampak Langsung', 'Dampak Total (dengan Multiplier)'],
+                    datasets: [{
+                        label: 'Nilai (Triliun Rupiah)',
+                        data: [dampakInvestasi, dampakKonsumsi, dampakLangsung, dampakTotal],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Triliun Rupiah'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Rp ${formatNumber(context.raw)} T`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createTimelineChart(pdbAwal, dampakTotal, periodeSimulasi, timeLag) {
+            const ctx = document.getElementById('timelineChart').getContext('2d');
+            
+            // Generate data timeline
+            const labels = [];
+            const dataBaseline = [];
+            const dataWithPolicy = [];
+            
+            let baseline = pdbAwal;
+            let withPolicy = pdbAwal;
+            const annualGrowth = 0.05; // 5% growth per tahun
+            
+            for (let year = 0; year <= periodeSimulasi; year++) {
+                for (let quarter = 1; quarter <= 4; quarter++) {
+                    const period = year * 4 + quarter;
+                    const quarterLabel = `T${year} Q${quarter}`;
+                    labels.push(quarterLabel);
+                    
+                    // Baseline growth
+                    baseline *= (1 + annualGrowth/4);
+                    dataBaseline.push(baseline);
+                    
+                    // With policy - apply effect after time lag
+                    withPolicy *= (1 + annualGrowth/4);
+                    
+                    if (period * 3 >= timeLag) {
+                        const effectProportion = Math.min(1, (period * 3 - timeLag) / 12);
+                        withPolicy += (dampakTotal / (periodeSimulasi * 4)) * effectProportion;
+                    }
+                    
+                    dataWithPolicy.push(withPolicy);
+                }
+            }
+            
+            if (timelineChart) {
+                timelineChart.destroy();
+            }
+            
+            timelineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'PDB Tanpa Kebijakan',
+                            data: dataBaseline,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'PDB Dengan Kebijakan',
+                            data: dataWithPolicy,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Triliun Rupiah'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: Rp ${formatNumber(context.raw)} T`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createSectorChart(kreditInvestasi) {
+            const ctx = document.getElementById('sectorChart').getContext('2d');
+            
+            const sectorData = calculateSectoralImpact(kreditInvestasi);
+            
+            if (sectorChart) {
+                sectorChart.destroy();
+            }
+            
+            sectorChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: sectorData.map(d => d.sector),
+                    datasets: [{
+                        data: sectorData.map(d => d.dampakSector),
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const value = context.raw;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${context.label}: Rp ${formatNumber(value)}T (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function calculateSectoralImpact(kreditInvestasi) {
+            const sectorAllocation = {
+                'Konstruksi': 25,
+                'Manufaktur': 20,
+                'Pertambangan': 15,
+                'Perdagangan': 15,
+                'Pertanian': 10,
+                'Lainnya': 15
+            };
+            
+            const sectorMultipliers = {
+                'Konstruksi': 2.1,
+                'Manufaktur': 1.8,
+                'Pertambangan': 1.5,
+                'Perdagangan': 1.6,
+                'Pertanian': 1.9,
+                'Lainnya': 1.4
+            };
+            
+            return Object.keys(sectorAllocation).map(sector => {
+                const allocation = sectorAllocation[sector] / 100;
+                const multiplier = sectorMultipliers[sector];
+                const kreditSector = kreditInvestasi * allocation;
+                const dampakSector = kreditSector * multiplier;
+                
+                return { sector, kreditSector, dampakSector };
+            });
+        }
+        
+        function applyOptimisticScenario() {
+            document.getElementById('efisiensiPenyaluran').value = 90;
+            document.getElementById('multiplierEffect').value = 2.2;
+            runSimulation();
+        }
+        
+        function applyBaselineScenario() {
+            document.getElementById('efisiensiPenyaluran').value = 80;
+            document.getElementById('multiplierEffect').value = 1.8;
+            document.getElementById('alokasiInvestasi').value = 60;
+            document.getElementById('elastisitasInvestasi').value = 0.7;
+            document.getElementById('elastisitasKonsumsi').value = 0.5;
+            runSimulation();
+        }
+        
+        function applyPessimisticScenario() {
+            document.getElementById('efisiensiPenyaluran').value = 70;
+            document.getElementById('multiplierEffect').value = 1.5;
+            runSimulation();
+        }
+        
+        function resetToDefaults() {
+            document.getElementById('danaTransfer').value = 200;
+            document.getElementById('ldrAwal').value = 75;
+            document.getElementById('pdbAwal').value = 18000;
+            document.getElementById('efisiensiPenyaluran').value = 80;
+            document.getElementById('alokasiInvestasi').value = 60;
+            document.getElementById('elastisitasInvestasi').value = 0.7;
+            document.getElementById('elastisitasKonsumsi').value = 0.5;
+            document.getElementById('multiplierEffect').value = 1.8;
+            document.getElementById('timeLag').value = 6;
+            document.getElementById('periodeSimulasi').value = 3;
+            runSimulation();
+        }
+        
+        function formatNumber(num) {
+            return new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Sosiologi Kelas XI - Teori Interaksionisme Simbolik & Paradigma</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tab-button {
+            padding: 1rem 1.5rem;
+            background: white;
+            border: none;
+            cursor: pointer;
+            flex-grow: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button:hover {
+            background: #f0f0f0;
+        }
+        
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 1rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 400px;
+            object-fit: cover;
+        }
+        
+        .caption {
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+        
+        .video-placeholder {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px dashed #ccc;
+        }
+        
+        .video-placeholder h3 {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .video-placeholder p {
+            color: #888;
+        }
+        
+        .lkpd-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1a252f;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📘 Materi Sosiologi – Kelas XI</h1>
+        <p>Topik: Teori Interaksionisme Simbolik & Paradigma dalam Sosiologi</p>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="pertemuan9">Pertemuan 9</button>
+            <button class="tab-button" data-tab="pertemuan10">Pertemuan 10</button>
+            <button class="tab-button" data-tab="pertemuan11">Pertemuan 11</button>
+            <button class="tab-button" data-tab="pertemuan12">Pertemuan 12</button>
+            <button class="tab-button" data-tab="tabel">Tabel Perbandingan</button>
+            <button class="tab-button" data-tab="lkpd">LKPD Online</button>
+        </div>
+        
+        <div id="pertemuan9" class="tab-content active">
+            <h2>Pertemuan 9 – Teori Interaksionisme Simbolik (1)</h2>
+            <h3>Materi: Perbandingan Teori Sosiologi</h3>
+            
+            <div class="material-card">
+                <h3>1. Teori Fungsionalisme</h3>
+                <ul>
+                    <li>Masyarakat dipandang sebagai suatu sistem yang stabil dan harmonis.</li>
+                    <li>Tiap lembaga sosial (keluarga, pendidikan, agama, ekonomi, politik) berfungsi menjaga keseimbangan sosial.</li>
+                    <li>Jika salah satu bagian tidak berfungsi, sistem akan terganggu.</li>
+                    <li><span class="highlight">Tokoh:</span> Émile Durkheim, Talcott Parsons, Robert K. Merton.</li>
+                    <li><span class="highlight">Contoh:</span> sekolah berfungsi menanamkan nilai disiplin dan keterampilan; agama berfungsi menjaga moral dan solidaritas sosial.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>2. Teori Konflik</h3>
+                <ul>
+                    <li>Menjelaskan masyarakat melalui sudut pandang pertentangan dan perebutan sumber daya.</li>
+                    <li>Struktur sosial mencerminkan ketimpangan antara kelompok berkuasa dan yang dikuasai.</li>
+                    <li>Perubahan sosial terjadi karena adanya konflik kepentingan.</li>
+                    <li><span class="highlight">Tokoh:</span> Karl Marx, Ralf Dahrendorf, Lewis Coser.</li>
+                    <li><span class="highlight">Contoh:</span> konflik antara buruh dan pengusaha terkait upah; konflik agraria antara masyarakat adat dan perusahaan.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>3. Teori Interaksionisme Simbolik</h3>
+                <ul>
+                    <li>Fokus pada interaksi sehari-hari yang sarat makna dan simbol.</li>
+                    <li>Simbol adalah kunci dalam memahami perilaku sosial.</li>
+                    <li>Realitas sosial tidak statis, tetapi dibentuk dan dinegosiasikan melalui interaksi.</li>
+                    <li><span class="highlight">Tokoh:</span> George Herbert Mead, Herbert Blumer, Erving Goffman.</li>
+                    <li><span class="highlight">Contoh:</span> jabat tangan sebagai simbol pertemuan; pakaian seragam sebagai simbol identitas kelompok; emotikon 😊 sebagai simbol emosi ramah.</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Ilustrasi Teori Sosiologi">
+                <p class="caption">Gambar 1: Ilustrasi tentang interaksi sosial dalam masyarakat</p>
+            </div>
+        </div>
+        
+        <div id="pertemuan10" class="tab-content">
+            <h2>Pertemuan 10 – Teori Interaksionisme Simbolik (2)</h2>
+            <h3>Materi: Simbol Sosial dalam Kehidupan Sehari-hari</h3>
+            
+            <div class="material-card">
+                <h3>1. Pengertian Simbol Sosial</h3>
+                <ul>
+                    <li>Simbol adalah tanda, isyarat, benda, atau tindakan yang mewakili sesuatu dan dipahami maknanya oleh kelompok sosial.</li>
+                    <li>Simbol bersifat relatif: makna bisa berbeda di setiap budaya.</li>
+                    <li>Tanpa simbol, komunikasi sosial akan sulit dilakukan.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>2. Fungsi Simbol Sosial</h3>
+                <ul>
+                    <li><span class="highlight">Komunikasi:</span> mempermudah penyampaian pesan (bahasa, gestur, tanda).</li>
+                    <li><span class="highlight">Identitas:</span> membedakan satu kelompok dengan kelompok lain (seragam, logo, bendera).</li>
+                    <li><span class="highlight">Kontrol sosial:</span> mengatur perilaku agar sesuai norma (rambu lalu lintas, tanda larangan).</li>
+                    <li><span class="highlight">Solidaritas:</span> memperkuat rasa kebersamaan (lagu kebangsaan, lambang negara).</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>3. Contoh Simbol Sosial di Lingkungan Sekitar</h3>
+                <ul>
+                    <li><span class="highlight">Sekolah:</span> seragam → disiplin, identitas siswa; logo OSIS → kepemimpinan pelajar.</li>
+                    <li><span class="highlight">Masyarakat:</span> bendera merah putih → nasionalisme; pakaian adat → jati diri budaya.</li>
+                    <li><span class="highlight">Media Sosial:</span> tanda like 👍 → apresiasi; tanda hati ❤️ → kasih sayang/kedekatan.</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Contoh Simbol Sosial">
+                <p class="caption">Gambar 2: Berbagai contoh simbol sosial dalam kehidupan sehari-hari</p>
+            </div>
+        </div>
+        
+        <div id="pertemuan11" class="tab-content">
+            <h2>Pertemuan 11 – Teori Interaksionisme Simbolik (3)</h2>
+            <h3>Materi: Simbol, Makna, dan Interaksi Sosial</h3>
+            
+            <div class="material-card">
+                <h3>1. Hubungan Simbol dengan Makna Sosial</h3>
+                <ul>
+                    <li>Simbol hanya bermakna jika ditafsirkan.</li>
+                    <li>Proses interpretasi ini dilakukan dalam interaksi sosial.</li>
+                    <li>Makna dapat berubah sesuai konteks ruang, waktu, dan budaya.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>2. Contoh Hubungan Simbol dan Makna</h3>
+                <ul>
+                    <li>Senyum → makna ramah → interaksi menjadi lebih hangat.</li>
+                    <li>Seragam sekolah → makna identitas dan kesetaraan → interaksi menciptakan solidaritas.</li>
+                    <li>Tanda hati ❤️ di media sosial → makna suka atau cinta → interaksi berupa kedekatan emosional.</li>
+                    <li>Topi toga → makna kelulusan dan prestasi → interaksi berupa perayaan keberhasilan.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>3. Interaksionisme Simbolik dalam Kehidupan Sehari-hari</h3>
+                <ul>
+                    <li>Kehidupan sosial penuh dengan simbol: bahasa, isyarat tubuh, pakaian, ritual.</li>
+                    <li>Identitas diri juga dibentuk melalui interaksi simbolik (misalnya gaya berpakaian mencerminkan kepribadian).</li>
+                    <li>Interaksi simbolik menjadi dasar terbentuknya norma, budaya, bahkan institusi sosial.</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Interaksi Simbolik">
+                <p class="caption">Gambar 3: Ilustrasi interaksi simbolik dalam komunikasi</p>
+            </div>
+            
+            <div class="video-placeholder">
+                <h3>Video Pembelajaran</h3>
+                <p>Video tentang interaksionisme simbolik akan ditambahkan di sini</p>
+            </div>
+        </div>
+        
+        <div id="pertemuan12" class="tab-content">
+            <h2>Pertemuan 12 – Paradigma Ganda dalam Sosiologi</h2>
+            <h3>Materi: Tiga Paradigma Sosiologi</h3>
+            
+            <div class="material-card">
+                <h3>1. Paradigma Fakta Sosial</h3>
+                <ul>
+                    <li>Masyarakat dilihat sebagai kenyataan objektif di luar individu.</li>
+                    <li>Fakta sosial memaksa individu untuk bertindak sesuai aturan.</li>
+                    <li>Fokus pada struktur, norma, hukum, lembaga.</li>
+                    <li><span class="highlight">Tokoh:</span> Émile Durkheim, Talcott Parsons.</li>
+                    <li><span class="highlight">Contoh:</span> aturan sekolah, hukum lalu lintas, norma agama yang membatasi perilaku.</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>2. Paradigma Definisi Sosial</h3>
+                <ul>
+                    <li>Menekankan peran individu dalam memberi makna pada tindakan sosial.</li>
+                    <li>Realitas sosial dipahami melalui interpretasi, motivasi, dan subjektivitas.</li>
+                    <li><span class="highlight">Tokoh:</span> Max Weber (verstehen), George Herbert Mead, Erving Goffman.</li>
+                    <li><span class="highlight">Contoh:</span> makna salam dalam budaya Jawa (ungkapan hormat), pemakaian cincin kawin (simbol komitmen).</li>
+                </ul>
+            </div>
+            
+            <div class="material-card">
+                <h3>3. Paradigma Perilaku Sosial</h3>
+                <ul>
+                    <li>Masyarakat dipahami melalui pola perilaku yang dapat diamati.</li>
+                    <li>Perilaku manusia dipengaruhi oleh stimulus, hadiah (reward), atau hukuman (punishment).</li>
+                    <li><span class="highlight">Tokoh:</span> B.F. Skinner, George C. Homans.</li>
+                    <li><span class="highlight">Contoh:</span> siswa belajar rajin karena ingin nilai bagus; anak patuh karena takut hukuman.</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Paradigma dalam Sosiologi">
+                <p class="caption">Gambar 4: Ilustrasi tentang paradigma dalam sosiologi</p>
+            </div>
+        </div>
+        
+        <div id="tabel" class="tab-content">
+            <h2>Tabel Perbandingan Teori dan Paradigma Sosiologi</h2>
+            
+            <h3>Tabel Perbandingan Teori Sosiologi</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Teori</th>
+                            <th>Fungsi / Pandangan</th>
+                            <th>Fokus Kajian</th>
+                            <th>Tokoh Utama</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fungsionalisme</td>
+                            <td>Masyarakat = sistem stabil & harmonis</td>
+                            <td>Keseimbangan sosial melalui lembaga</td>
+                            <td>Émile Durkheim, Talcott Parsons, Robert K. Merton</td>
+                            <td>Sekolah → menanamkan disiplin; agama → menjaga moral & solidaritas</td>
+                        </tr>
+                        <tr>
+                            <td>Konflik</td>
+                            <td>Masyarakat = arena pertentangan & perebutan sumber daya</td>
+                            <td>Ketimpangan, konflik kepentingan, perubahan sosial</td>
+                            <td>Karl Marx, Ralf Dahrendorf, Lewis Coser</td>
+                            <td>Konflik buruh–pengusaha soal upah; konflik agraria</td>
+                        </tr>
+                        <tr>
+                            <td>Interaksionisme Simbolik</td>
+                            <td>Realitas sosial dibentuk lewat interaksi simbol</td>
+                            <td>Makna, simbol, komunikasi sehari-hari</td>
+                            <td>George H. Mead, Herbert Blumer, Erving Goffman</td>
+                            <td>Jabat tangan → pertemuan; seragam → identitas; emotikon 😊 → ramah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Tabel Paradigma dalam Sosiologi</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paradigma</th>
+                            <th>Fungsi / Pandangan</th>
+                            <th>Fokus Kajian</th>
+                            <th>Tokoh Utama</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fakta Sosial</td>
+                            <td>Masyarakat = kenyataan objektif, memaksa individu</td>
+                            <td>Struktur, norma, hukum, lembaga</td>
+                            <td>Émile Durkheim, Talcott Parsons</td>
+                            <td>Aturan sekolah; hukum lalu lintas; norma agama</td>
+                        </tr>
+                        <tr>
+                            <td>Definisi Sosial</td>
+                            <td>Individu memberi makna pada tindakan sosial</td>
+                            <td>Interpretasi, motivasi, subjektivitas</td>
+                            <td>Max Weber, George H. Mead, Erving Goffman</td>
+                            <td>Salam Jawa → hormat; cincin kawin → komitmen</td>
+                        </tr>
+                        <tr>
+                            <td>Perilaku Sosial</td>
+                            <td>Perilaku = hasil stimulus, reward, punishment</td>
+                            <td>Pola perilaku yang dapat diamati</td>
+                            <td>B.F. Skinner, George C. Homans</td>
+                            <td>Siswa belajar rajin → nilai bagus; anak patuh → takut hukuman</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Perbandingan Teori Sosiologi">
+                <p class="caption">Gambar 5: Ilustrasi perbandingan berbagai teori sosiologi</p>
+            </div>
+        </div>
+        
+        <div id="lkpd" class="tab-content">
+            <h2>LKPD Online - Teori Interaksionisme Simbolik</h2>
+            <p>Isilah Lembar Kerja Peserta Didik (LKPD) berikut dengan jawaban yang tepat berdasarkan pemahaman Anda tentang materi yang telah dipelajari.</p>
+            
+            <div class="lkpd-container">
+                <form id="lkpd-form">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap:</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kelas">Kelas:</label>
+                        <input type="text" id="kelas" name="kelas" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal:</label>
+                        <input type="text" id="tanggal" name="tanggal" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="soal1">1. Jelaskan perbedaan utama antara teori fungsionalisme dan teori konflik dalam sosiologi!</label>
+                        <textarea id="soal1" name="soal1" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="soal2">2. Berikan 3 contoh simbol sosial dalam kehidupan sehari-hari dan jelaskan maknanya!</label>
+                        <textarea id="soal2" name="soal2" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="soal3">3. Bagaimana menurut Anda, teori interaksionisme simbolik dapat menjelaskan fenomena media sosial saat ini?</label>
+                        <textarea id="soal3" name="soal3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="soal4">4. Bandingkan paradigma fakta sosial dengan paradigma definisi sosial dalam memahami masyarakat!</label>
+                        <textarea id="soal4" name="soal4" required></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" id="reset-btn" class="btn-secondary">Reset Jawaban</button>
+                        <button type="button" id="download-btn" class="btn-success">Download Hasil LKPD</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Materi Sosiologi Kelas XI - Teori Interaksionisme Simbolik & Paradigma</p>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Set current date in LKPD form
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('tanggal').value = formattedDate;
+            
+            // Reset form functionality
+            document.getElementById('reset-btn').addEventListener('click', function() {
+                document.getElementById('lkpd-form').reset();
+                document.getElementById('tanggal').value = formattedDate;
+            });
+            
+            // Download functionality
+            document.getElementById('download-btn').addEventListener('click', function() {
+                const nama = document.getElementById('nama').value;
+                const kelas = document.getElementById('kelas').value;
+                const tanggal = document.getElementById('tanggal').value;
+                const soal1 = document.getElementById('soal1').value;
+                const soal2 = document.getElementById('soal2').value;
+                const soal3 = document.getElementById('soal3').value;
+                const soal4 = document.getElementById('soal4').value;
+                
+                if (!nama || !kelas || !soal1 || !soal2 || !soal3 || !soal4) {
+                    alert('Harap lengkapi semua field sebelum mendownload!');
+                    return;
+                }
+                
+                const content = `
+LEMBAR KERJA PESERTA DIDIK (LKPD)
+Mata Pelajaran: Sosiologi
+Topik: Teori Interaksionisme Simbolik & Paradigma dalam Sosiologi
+
+Nama: ${nama}
+Kelas: ${kelas}
+Tanggal: ${tanggal}
+
+1. Jelaskan perbedaan utama antara teori fungsionalisme dan teori konflik dalam sosiologi!
+Jawaban: ${soal1}
+
+2. Berikan 3 contoh simbol sosial dalam kehidupan sehari-hari dan jelaskan maknanya!
+Jawaban: ${soal2}
+
+3. Bagaimana menurut Anda, teori interaksionisme simbolik dapat menjelaskan fenomena media sosial saat ini?
+Jawaban: ${soal3}
+
+4. Bandingkan paradigma fakta sosial dengan paradigma definisi sosial dalam memahami masyarakat!
+Jawaban: ${soal4}
+                `;
+                
+                const blob = new Blob([content], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `LKPD_Sosiologi_${nama.replace(/\s+/g, '_')}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+</body>
+</html>

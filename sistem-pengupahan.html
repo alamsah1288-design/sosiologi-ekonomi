@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Upah Indonesia - Materi Lengkap</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            background-color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--secondary);
+        }
+        
+        .card {
+            background-color: var(--light);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .example-box {
+            background-color: #e8f4fc;
+            border: 1px solid #b8daff;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .example-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--warning);
+        }
+        
+        .calculation {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+        }
+        
+        .calculation h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .comparison-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .accordion {
+            margin: 1.5rem 0;
+        }
+        
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: var(--light);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Tombol Latihan */
+        .practice-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success), #2ecc71);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px 5px;
+        }
+        
+        .practice-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+            background: linear-gradient(135deg, #229954, var(--success));
+        }
+        
+        .practice-btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* Panel Latihan */
+        .practice-panel {
+            background: linear-gradient(135deg, #f0fff4, #e8f5e9);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid var(--success);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .practice-panel h3 {
+            color: var(--success);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .practice-panel h3:before {
+            content: "✍️";
+            font-size: 1.5rem;
+        }
+        
+        .practice-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .practice-feature {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .practice-feature:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--dark);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .practice-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">💰</div>
+                    <div>
+                        <h1>Sistem Upah Indonesia</h1>
+                        <p class="subtitle">Berdasarkan PP RI No. 36 Tahun 2021 tentang Pengupahan</p>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <p>Materi Lengkap untuk Pemahaman Komprehensif</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="#pengertian" class="active">Pengertian</a></li>
+                <li><a href="#kebijakan">Kebijakan</a></li>
+                <li><a href="#faktor">Faktor Pengaruh</a></li>
+                <li><a href="#sistem">Sistem Upah</a></li>
+                <li><a href="#upah-minimum">Upah Minimum</a></li>
+                <li><a href="#studi-kasus">Studi Kasus</a></li>
+                <li><a href="#latihan">Latihan</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="pengertian" class="section">
+            <h2 class="section-title"><i>📚</i> A. Pengertian Upah dan Dasar Hukum</h2>
+            
+            <div class="card">
+                <h3>1. Definisi Upah</h3>
+                <p>Upah adalah hak pekerja/buruh yang diterima dan dinyatakan dalam bentuk uang sebagai imbalan dari pengusaha atau pemberi kerja yang ditetapkan dan dibayarkan menurut suatu perjanjian kerja, kesepakatan, atau peraturan perundang-undangan.</p>
+                
+                <div class="example-box">
+                    <p class="example-title">Contoh Perhitungan Upah:</p>
+                    <p>Seorang karyawan dengan gaji Rp 5.000.000 per bulan plus:</p>
+                    <ul>
+                        <li>Tunjangan transportasi: Rp 500.000</li>
+                        <li>Tunjangan keluarga: Rp 300.000</li>
+                    </ul>
+                    <p><strong>Total upah yang diterima: Rp 5.800.000</strong></p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>2. Dasar Hukum</h3>
+                <ul>
+                    <li><strong>UU RI No. 13 Tahun 2003</strong> tentang Ketenagakerjaan</li>
+                    <li><strong>PP RI No. 36 Tahun 2021</strong> tentang Pengupahan</li>
+                    <li><strong>Keputusan Presiden RI No. 107 Tahun 2004</strong> tentang Dewan Pengupahan</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="kebijakan" class="section">
+            <h2 class="section-title"><i>⚖️</i> B. Kebijakan Pengupahan Menurut PP RI No. 36 Tahun 2021</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>1. Upah Minimum</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Penetapan upah minimum sebagai batas bawah pembayaran upah.</p>
+                        <div class="example-box">
+                            <p class="example-title">Contoh Upah Minimum 2024:</p>
+                            <ul>
+                                <li>UMP DKI Jakarta: Rp 5.067.000</li>
+                                <li>UMK Bandung: Rp 3.950.000</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>2. Struktur dan Skala Upah</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Pengelompokan upah berdasarkan jenjang jabatan, masa kerja, dan kompetensi.</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Jabatan</th>
+                                    <th>Masa Kerja &lt;1 th</th>
+                                    <th>1-3 th</th>
+                                    <th>3-5 th</th>
+                                    <th>&gt;5 th</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Staff</td>
+                                    <td>Rp 4.500.000</td>
+                                    <td>Rp 5.000.000</td>
+                                    <td>Rp 5.500.000</td>
+                                    <td>Rp 6.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Supervisor</td>
+                                    <td>Rp 6.500.000</td>
+                                    <td>Rp 7.200.000</td>
+                                    <td>Rp 7.800.000</td>
+                                    <td>Rp 8.500.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Manager</td>
+                                    <td>Rp 9.000.000</td>
+                                    <td>Rp 10.000.000</td>
+                                    <td>Rp 11.000.000</td>
+                                    <td>Rp 12.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>3. Upah Kerja Lembur</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Tambahan upah untuk kerja di luar jam normal.</p>
+                        <div class="calculation">
+                            <h4>Contoh Perhitungan Lembur:</h4>
+                            <ul>
+                                <li>Jam pertama: 1,5 x upah per jam</li>
+                                <li>Jam berikutnya: 2 x upah per jam</li>
+                                <li>Upah per jam: Rp 30.000</li>
+                            </ul>
+                            <p class="formula">Lembur 3 jam = (1,5 × 30.000) + (2 × 30.000 × 2) = 45.000 + 120.000 = Rp 165.000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faktor" class="section">
+            <h2 class="section-title"><i>📊</i> C. Faktor yang Mempengaruhi Sistem Upah</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h4>1. Permintaan dan Penawaran</h4>
+                    <p><span class="highlight">Penawaran > Permintaan:</span> Banyak lulusan SMA, lowongan terbatas → upah rendah</p>
+                    <p><span class="highlight">Permintaan > Penawaran:</span> Sedikit ahli IT, banyak lowongan → upah tinggi</p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>2. Keterampilan dan Keahlian</h4>
+                    <ul>
+                        <li>Operator produksi: Rp 3.5 - 4.5 juta</li>
+                        <li>Programmer: Rp 8 - 15 juta</li>
+                        <li>Data Scientist: Rp 12 - 25 juta</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>3. Kebijakan Pemerintah</h4>
+                    <ul>
+                        <li>Upah minimum</li>
+                        <li>Insentif pajak</li>
+                        <li>Program pelatihan</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sistem" class="section">
+            <h2 class="section-title"><i>💼</i> D. Sistem dan Jenis Upah</h2>
+            
+            <div class="card">
+                <h3>1. Sistem Berdasarkan Waktu</h3>
+                
+                <div class="calculation">
+                    <h4>a. Upah per Jam</h4>
+                    <p class="formula">Upah per Jam = Upah Sebulan ÷ Total Jam Kerja Bulanan</p>
+                    <p><strong>Contoh:</strong></p>
+                    <ul>
+                        <li>Upah bulanan: Rp 4.500.000</li>
+                        <li>Jam kerja: 8 jam/hari × 21 hari = 168 jam/bulan</li>
+                        <li>Upah per jam: 4.500.000 ÷ 168 = <strong>Rp 26.785 per jam</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="calculation">
+                    <h4>b. Upah Harian</h4>
+                    <p><strong>Perhitungan:</strong></p>
+                    <ul>
+                        <li>6 hari kerja/minggu: Upah bulanan ÷ 25</li>
+                        <li>5 hari kerja/minggu: Upah bulanan ÷ 21</li>
+                    </ul>
+                    <p><strong>Contoh:</strong></p>
+                    <ul>
+                        <li>Upah bulanan: Rp 4.200.000</li>
+                        <li>Sistem 5 hari: 4.200.000 ÷ 21 = <strong>Rp 200.000 per hari</strong></li>
+                        <li>Sistem 6 hari: 4.200.000 ÷ 25 = <strong>Rp 168.000 per hari</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="calculation">
+                    <h4>c. Upah Bulanan</h4>
+                    <p>Dibayar tetap tiap bulan dengan tanggal pembayaran konsisten</p>
+                    <p><strong>Contoh:</strong> Gaji pokok Rp 5.000.000 dibayar tiap tanggal 25</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>2. Sistem Berdasarkan Hasil (Output)</h3>
+                <div class="example-box">
+                    <p class="example-title">Contoh:</p>
+                    <ul>
+                        <li>Penjahit: Rp 5.000 per potong</li>
+                        <li>Penyortir dokumen: Rp 100 per lembar</li>
+                        <li>Pemetik teh: Rp 2.000 per kg</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>3. Upah Borongan</h3>
+                <div class="example-box">
+                    <p class="example-title">Contoh Proyek Perbaikan Rumah:</p>
+                    <ul>
+                        <li>Nilai kontrak: Rp 15.000.000 untuk 2 bulan</li>
+                        <li>Target: Renovasi 3 kamar</li>
+                        <li>Pembayaran: 40% di awal, 30% progres, 30% akhir</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="upah-minimum" class="section">
+            <h2 class="section-title"><i>🏛️</i> E. Mekanisme Penetapan Upah Minimum</h2>
+            
+            <div class="card">
+                <h3>1. Dewan Pengupahan</h3>
+                <p>Struktur tripartit (pemerintah, pengusaha, pekerja):</p>
+                <ul>
+                    <li><strong>Depenas</strong> (Dewan Pengupahan Nasional)</li>
+                    <li><strong>Depeprov</strong> (Dewan Pengupahan Provinsi)</li>
+                    <li><strong>Depekab/Depeko</strong> (Dewan Pengupahan Kabupaten/Kota)</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>2. Upah Minimum Provinsi (UMP)</h3>
+                <p><strong>Faktor Penentu:</strong></p>
+                <ul>
+                    <li>Daya beli masyarakat</li>
+                    <li>Penyerapan tenaga kerja</li>
+                    <li>Median upah</li>
+                    <li>Pertumbuhan ekonomi</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>3. Upah Minimum Kabupaten/Kota (UMK)</h3>
+                <p><strong>Karakteristik:</strong></p>
+                <ul>
+                    <li>Nilai ≥ UMP</li>
+                    <li>Mempertimbangkan kondisi spesifik daerah</li>
+                    <li>Ditentukan setelah UMP</li>
+                </ul>
+                
+                <div class="example-box">
+                    <p class="example-title">Contoh Perbandingan 2024:</p>
+                    <ul>
+                        <li>UMP Jawa Barat: Rp 1.950.000</li>
+                        <li>UMK Bandung: Rp 3.950.000</li>
+                        <li>UMK Bekasi: Rp 4.650.000</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="studi-kasus" class="section">
+            <h2 class="section-title"><i>📋</i> F. Studi Kasus Penerapan Sistem Upah</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h4>Kasus 1: Perusahaan Manufaktur</h4>
+                    <p><strong>Sistem:</strong> Waktu + Prestasi</p>
+                    <ul>
+                        <li>Gaji pokok: Rp 4.500.000</li>
+                        <li>Tunjangan: Rp 1.200.000</li>
+                        <li>Bonus produksi: Rp 500.000 - 2.000.000</li>
+                    </ul>
+                    <p><strong>Total: Rp 6.200.000 - 7.700.000</strong></p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>Kasus 2: Perusahaan IT</h4>
+                    <p><strong>Sistem:</strong> Projek Based</p>
+                    <ul>
+                        <li>Gaji tetap: Rp 8.000.000</li>
+                        <li>Bonus proyek: 10-20% nilai kontrak</li>
+                        <li>Tunjangan sertifikasi</li>
+                    </ul>
+                    <p><strong>Total: Rp 10.000.000 - 15.000.000</strong></p>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>Kasus 3: Usaha Kecil</h4>
+                    <p><strong>Sistem:</strong> Harian + Insentif</p>
+                    <ul>
+                        <li>Upah harian: Rp 75.000</li>
+                        <li>Uang makan: Rp 15.000</li>
+                        <li>Insentif target: Rp 25.000</li>
+                    </ul>
+                    <p><strong>Total: Rp 115.000 per hari</strong></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bagian Latihan Baru -->
+        <section id="latihan" class="section">
+            <h2 class="section-title"><i>✍️</i> G. Latihan Sistem Pengupahan</h2>
+            
+            <div class="practice-panel">
+                <h3>Uji Pemahaman Anda tentang Sistem Pengupahan</h3>
+                <p>Latih pengetahuan Anda dengan berbagai jenis soal dan studi kasus untuk menguasai materi sistem pengupahan secara menyeluruh.</p>
+                
+                <div class="practice-features">
+                    <div class="practice-feature">Soal pilihan ganda tentang peraturan pengupahan</div>
+                    <div class="practice-feature">Studi kasus perhitungan upah dan lembur</div>
+                    <div class="practice-feature">Analisis penetapan upah minimum</div>
+                    <div class="practice-feature">Simulasi sistem pengupahan di perusahaan</div>
+                    <div class="practice-feature">Evaluasi hak dan kewajiban pekerja</div>
+                    <div class="practice-feature">Kuis interaktif dengan skor real-time</div>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <button class="practice-btn" onclick="startPractice()">Mulai Latihan Pilihan Ganda</button>
+                    <button class="practice-btn" onclick="startCaseStudy()">Kerjakan Studi Kasus</button>
+                    <button class="practice-btn" onclick="startQuiz()">Ikuti Kuis Interaktif</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Contoh Soal Latihan</h3>
+                
+                <div class="example-box">
+                    <p class="example-title">Soal 1:</p>
+                    <p>Berdasarkan PP RI No. 36 Tahun 2021, upah minimum provinsi (UMP) ditetapkan oleh:</p>
+                    <ul>
+                        <li>A. Menteri Ketenagakerjaan</li>
+                        <li>B. Dewan Pengupahan Nasional</li>
+                        <li>C. Gubernur</li>
+                        <li>D. Bupati/Walikota</li>
+                    </ul>
+                    <p><strong>Jawaban: C. Gubernur</strong></p>
+                </div>
+                
+                <div class="example-box">
+                    <p class="example-title">Soal 2:</p>
+                    <p>Seorang pekerja dengan upah bulanan Rp 4.800.000 bekerja dalam sistem 5 hari seminggu. Berapakah upah hariannya?</p>
+                    <p><strong>Perhitungan:</strong> Rp 4.800.000 ÷ 21 = <strong>Rp 228.571 per hari</strong></p>
+                </div>
+                
+                <div class="example-box">
+                    <p class="example-title">Soal 3:</p>
+                    <p>Jelaskan perbedaan antara Upah Minimum Provinsi (UMP) dan Upah Minimum Kabupaten/Kota (UMK)!</p>
+                    <p><strong>Jawaban:</strong> UMP ditetapkan untuk seluruh provinsi dengan mempertimbangkan kondisi ekonomi provinsi, sedangkan UMK ditetapkan untuk kabupaten/kota tertentu dengan nilai lebih tinggi dari UMP dan mempertimbangkan kondisi spesifik daerah tersebut.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="practice-btn" onclick="downloadPracticeMaterials()">📥 Download Materi Latihan</button>
+                <button class="practice-btn" onclick="showAnswerKey()">🔑 Lihat Kunci Jawaban</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sumber Referensi</h3>
+                    <ul>
+                        <li>PP RI No. 36 Tahun 2021 tentang Pengupahan</li>
+                        <li>UU RI No. 13 Tahun 2003 tentang Ketenagakerjaan</li>
+                        <li>Kepmenaker No. 102 Tahun 2004</li>
+                        <li>Buku "Ekonomi untuk SMA/MA Kelas XI - Merdeka"</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Navigasi Cepat</h3>
+                    <ul>
+                        <li><a href="#pengertian">Pengertian Upah</a></li>
+                        <li><a href="#kebijakan">Kebijakan Pengupahan</a></li>
+                        <li><a href="#sistem">Sistem Upah</a></li>
+                        <li><a href="#upah-minimum">Upah Minimum</a></li>
+                        <li><a href="#latihan">Latihan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Informasi Kontak</h3>
+                    <p>Email: info@sistemupah.go.id</p>
+                    <p>Telepon: (021) 1234-5678</p>
+                    <p>Alamat: Kementerian Ketenagakerjaan RI</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Materi Sistem Upah Indonesia. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isActive = content.classList.contains('active');
+                
+                // Close all accordion items
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.accordion-header span:last-child').forEach(icon => {
+                    icon.textContent = '+';
+                });
+                
+                // If clicked item was not active, open it
+                if (!isActive) {
+                    content.classList.add('active');
+                    this.querySelector('span:last-child').textContent = '-';
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+        
+        // Fungsi untuk tombol latihan
+        function startPractice() {
+            alert("Latihan pilihan ganda akan dimulai! Siapkan diri Anda.");
+            // Di sini bisa diarahkan ke halaman latihan atau membuka modal
+        }
+        
+        function startCaseStudy() {
+            alert("Studi kasus sistem pengupahan akan dimulai. Anda akan menganalisis beberapa skenario nyata.");
+            // Di sini bisa diarahkan ke halaman studi kasus atau membuka modal
+        }
+        
+        function startQuiz() {
+            alert("Kuis interaktif sedang dimuat. Jawab pertanyaan dengan cepat dan tepat untuk mendapatkan skor tinggi!");
+            // Di sini bisa diarahkan ke halaman kuis atau membuka modal
+        }
+        
+        function downloadPracticeMaterials() {
+            alert("Materi latihan dalam format PDF akan diunduh. Periksa folder unduhan Anda.");
+            // Di sini bisa menambahkan logika unduhan file
+        }
+        
+        function showAnswerKey() {
+            alert("Kunci jawaban untuk semua latihan akan ditampilkan. Gunakan untuk memeriksa pemahaman Anda.");
+            // Di sini bisa menampilkan modal dengan kunci jawaban
+        }
+        
+        // Animasi untuk fitur latihan
+        document.addEventListener('DOMContentLoaded', function() {
+            const practiceFeatures = document.querySelectorAll('.practice-feature');
+            practiceFeatures.forEach((feature, index) => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    feature.style.transition = 'all 0.5s ease';
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>

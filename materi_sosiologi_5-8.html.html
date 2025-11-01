@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Pembelajaran: Teori dan Identifikasi Konflik Sosial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern & Gaul Color Palette */
+        :root {
+            --primary: hsl(210, 75%, 50%); /* Vibrant Blue */
+            --primary-dark: hsl(210, 75%, 40%);
+            --secondary: hsl(220, 20%, 25%); /* Darker Blue-Gray */
+            --accent: hsl(350, 80%, 60%); /* Dynamic Red-Pink */
+            --light: hsl(0, 0%, 97%); /* Off-White */
+            --dark: hsl(220, 20%, 15%);
+            --success: hsl(140, 70%, 45%); /* Fresh Green */
+            --warning: hsl(40, 95%, 55%); /* Energetic Orange */
+            --card-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7; /* Slightly more relaxed line height */
+            color: var(--secondary);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Fresh, modern gradient */
+            background-attachment: fixed;
+            display: flex; /* Centering for overall layout */
+            justify-content: center;
+            align-items: flex-start; /* Align to top to allow scrolling */
+            min-height: 100vh;
+            padding: 30px 20px; /* Padding for mobile view */
+        }
+        /* Glassmorphism Container */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            backdrop-filter: blur(15px); /* Stronger blur effect */
+            border-radius: 25px; /* More rounded corners */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Softer, larger shadow */
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out; /* Smooth entrance */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px; /* Thicker accent line */
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 10;
+            border-radius: 25px 25px 0 0; /* Match container border radius */
+        }
+        h1, h2, h3 {
+            color: var(--secondary);
+            font-weight: 800; /* Bolder headings */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
+        }
+        h1 {
+            border-bottom: 4px solid var(--primary); /* Thicker border */
+            padding-bottom: 20px;
+            text-align: center;
+            font-size: 2.8rem; /* Larger title */
+            margin-top: 15px;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+            color: var(--dark); /* Make title stand out */
+        }
+        h1::after {
+            content: "⚖️"; /* Keep emoji */
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 2.5rem;
+            opacity: 0.8;
+        }
+        h2 {
+            border-bottom: 2px solid var(--light); /* Lighter border */
+            padding-bottom: 10px;
+            margin-top: 35px;
+            font-size: 2rem; /* Larger sub-headings */
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--primary-dark);
+        }
+        h3 {
+            color: var(--dark);
+            margin-top: 30px;
+            font-size: 1.6rem; /* Slightly larger */
+            position: relative;
+            padding-left: 30px; /* More space for bullet */
+        }
+        h3::before {
+            content: "◆"; /* Diamond bullet */
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px; /* Larger bullet */
+            height: 20px;
+            background-color: var(--accent); /* Accent color for bullets */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; /* White diamond */
+            font-size: 0.8rem;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: var(--light); /* Use light variable */
+            border-left: 8px solid var(--primary); /* Thicker border */
+            border-radius: 15px; /* More rounded */
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section:hover {
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: var(--card-shadow);
+            border-left-color: var(--accent); /* Accent on hover */
+        }
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(var(--primary-rgb), 0.08) 0%, rgba(var(--accent-rgb), 0.08) 100%);
+            z-index: -1;
+            opacity: 0.5; /* More subtle pattern */
+        }
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+            background-color: var(--light); /* Consistent background */
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Stronger image container shadow */
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 600px; /* Ensure images don't stretch too wide */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: block; /* Remove extra space below image */
+            margin: 0 auto 15px auto; /* Center image and add bottom margin */
+        }
+        .image-container small {
+            color: #666;
+            font-style: italic;
+        }
+        ul, ol {
+            padding-left: 30px; /* More padding */
+        }
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px; /* Align with custom bullet */
+        }
+        li::before {
+            content: "✔️"; /* Checkmark bullet */
+            color: var(--success); /* Green for positive feel */
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        /* Adjust li::before for ordered lists */
+        ol li::before {
+            content: counter(item) "."; /* Use default numbering for ol */
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+            margin-top: 2px; /* Adjust vertical alignment */
+            background: none;
+            border-radius: 0;
+        }
+        .bullet-point {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .highlight {
+            background: linear-gradient(120deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(var(--success-rgb), 0.15) 100%);
+            padding: 20px;
+            border-radius: 15px; /* More rounded */
+            margin-top: 25px;
+            border-left: 6px solid var(--success); /* Thicker border */
+            animation: pulse 2s infinite ease-in-out; /* Smoother pulse */
+            color: var(--dark);
+            font-weight: 500;
+        }
+        .highlight i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 15px; /* More rounded */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Larger shadow */
+            background-color: white; /* Ensure table background is clean */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0; /* Remove top margin from table itself */
+            border-radius: 15px;
+            overflow: hidden; /* Ensure rounded corners clip content */
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 18px; /* More padding */
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            font-weight: 700; /* Bolder header text */
+            position: sticky;
+            top: 0;
+            white-space: nowrap; /* Prevent wrapping in headers */
+        }
+        tr:nth-child(even) {
+            background-color: #f8faff; /* Lighter alternating row */
+        }
+        tr:hover {
+            background-color: #e8f4ff; /* Brighter hover state */
+            transition: background-color 0.3s ease;
+        }
+        .activity {
+            border: 2px dashed var(--primary); /* Primary color dashed border */
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 15px; /* More rounded */
+            background: linear-gradient(120deg, rgba(var(--primary-rgb), 0.05) 0%, rgba(var(--accent-rgb), 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .activity::before {
+            content: "💡"; /* Lightbulb emoji for activity */
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            font-size: 2.5rem;
+            opacity: 0.15;
+        }
+        .activity h4 {
+            margin-top: 0;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+        }
+        .activity li::before {
+            content: "⭐"; /* Star bullet for activity list */
+            color: var(--warning); /* Gold star */
+            font-size: 1.1rem;
+        }
+        .card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px; /* More rounded */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Softer shadow */
+            margin-top: 30px;
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px); /* Lift higher on hover */
+            box-shadow: var(--card-shadow);
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px; /* Thicker left border */
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        .card-header {
+            font-weight: 700; /* Bolder */
+            color: var(--primary-dark);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem; /* Larger */
+        }
+        /* Tab Styles */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background-color: var(--light); /* Use light variable */
+            border-radius: 50px; /* Pill shape */
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 2;
+        }
+        .tab-button {
+            padding: 16px 28px; /* Adjusted padding */
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: var(--secondary);
+            font-weight: 600;
+            flex-grow: 1;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.05rem; /* Slightly smaller for better fit */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-button:hover {
+            background-color: #e0e7ee; /* Lighter hover */
+            color: var(--primary-dark);
+        }
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.4);
+            transform: translateY(-2px); /* Slight lift for active */
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.7s ease forwards;
+            position: relative;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .progress-container {
+            width: 100%;
+            height: 10px; /* Thicker progress bar */
+            background-color: #e0e7ee; /* Lighter background */
+            border-radius: 5px;
+            margin: 25px 0 35px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow */
+        }
+        .progress-bar {
+            height: 100%;
+            width: 25%; /* Initial width */
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 5px;
+            transition: width 0.6s ease-out; /* Smoother transition */
+        }
+        /* Floating Actions */
+        .floating-icons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px; /* More space */
+            z-index: 100;
+        }
+        .floating-btn {
+            width: 55px; /* Larger buttons */
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem; /* Larger icons */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .floating-btn:hover {
+            transform: translateY(-7px) scale(1.15); /* More pronounced hover */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%); /* Color change on hover */
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(var(--success-rgb), 0); }
+            100% { box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0); }
+        }
+        /* Subtle Floating Highlights */
+        .floating-highlight {
+            position: absolute;
+            width: 120px; /* Larger */
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0) 70%);
+            z-index: -1;
+            animation: float 8s infinite ease-in-out; /* Slower, smoother float */
+            opacity: 0.6;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(25px, 25px); }
+            50% { transform: translate(0, 50px); }
+            75% { transform: translate(-25px, 25px); }
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container {
+                padding: 25px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 2.2rem;
+                padding-bottom: 15px;
+            }
+            h1::after {
+                font-size: 1.8rem;
+                right: 10px;
+            }
+            h2 {
+                font-size: 1.6rem;
+                gap: 10px;
+                margin-top: 25px;
+            }
+            h3 {
+                font-size: 1.3rem;
+                padding-left: 25px;
+            }
+            h3::before {
+                width: 15px;
+                height: 15px;
+                font-size: 0.7rem;
+            }
+            .section, .card, .activity {
+                padding: 20px;
+                border-radius: 10px;
+            }
+            .tab-menu {
+                flex-direction: column;
+                border-radius: 15px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+            .tab-button {
+                padding: 14px 20px;
+                font-size: 1rem;
+                gap: 5px;
+                border-bottom: 1px solid #e0e7ee; /* Separator for stacked tabs */
+            }
+            .tab-button:last-child {
+                border-bottom: none;
+            }
+            .tab-button.active {
+                transform: none; /* No lift for active button when stacked */
+                border-radius: 0;
+            }
+            .tab-button:first-child.active {
+                border-radius: 15px 15px 0 0;
+            }
+            .tab-button:last-child.active {
+                border-radius: 0 0 15px 15px;
+            }
+            .floating-icons {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <div class="floating-btn" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="floating-btn" onclick="toggleDarkMode()">
+            <i class="fas fa-moon"></i>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Floating highlight elements for dynamic background effect -->
+        <div class="floating-highlight" style="top: 8%; left: 5%;"></div>
+        <div class="floating-highlight" style="top: 35%; right: 8%; animation-delay: 2s;"></div>
+        <div class="floating-highlight" style="top: 65%; left: 12%; animation-delay: 4s;"></div>
+        <div class="floating-highlight" style="bottom: 10%; right: 15%; animation-delay: 6s;"></div>
+        <h1><i class="fas fa-handshake"></i> Modul Pembelajaran Sosiologi: Konflik Sosial</h1>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="tab-menu">
+            <button class="tab-button active" onclick="showTab('pertemuan5')">
+                <i class="fas fa-book"></i> Pertemuan 5
+            </button>
+            <button class="tab-button" onclick="showTab('pertemuan6')">
+                <i class="fas fa-search"></i> Pertemuan 6
+            </button>
+            <button class="tab-button" onclick="showTab('pertemuan7')">
+                <i class="fas fa-lightbulb"></i> Pertemuan 7
+            </button>
+            <button class="tab-button" onclick="showTab('pertemuan8')">
+                <i class="fas fa-comments"></i> Pertemuan 8
+            </button>
+        </div>
+        <div id="pertemuan5" class="tab-content active">
+            <div class="section">
+                <h2><i class="fas fa-book-open"></i> Pertemuan 5 – Teori dan Penyebab Konflik Sosial</h2>
+                <p>✅ <strong>Tujuan Pembelajaran:</strong> Peserta didik diharapkan mampu:</p>
+                <ul>
+                    <li>Menjelaskan pengertian konflik sosial dari sudut pandang sosiologi</li>
+                    <li>Menguraikan teori-teori konflik sosial dari tokoh-tokoh sosiologi klasik dan modern</li>
+                    <li>Menganalisis penyebab konflik sosial berdasarkan kasus nyata</li>
+                    <li>Mengidentifikasi berbagai jenis konflik sosial dalam masyarakat</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>📖 Materi Pokok yang Dikembangkan</h3>
+                <h3>1️⃣ Pengertian Konflik Sosial</h3>
+                <p>Konflik sosial adalah proses sosial yang terjadi ketika dua pihak atau lebih memiliki perbedaan kepentingan, nilai, tujuan, atau harapan yang berlawanan, sehingga menimbulkan pertentangan secara terbuka atau terselubung.</p>
+                <div class="image-container">
+                    <img src="https://placehold.co/600x300/F44336/FFFFFF?text=Dinamika%20Konflik%20Antarindividu" alt="Ilustrasi Konflik Sosial" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/666666?text=Gambar%20Gagal%20Dimuat'">
+                    <p>Ilustrasi: Interaksi sosial yang tegang dan dinamis</p>
+                </div>
+                <p><strong>Ciri-ciri konflik sosial:</strong></p>
+                <ul>
+                    <li>Ada perbedaan mencolok antara pihak-pihak yang terlibat</li>
+                    <li>Terjadi interaksi yang bersifat negatif (konfrontatif)</li>
+                    <li>Dapat bersifat laten (tersembunyi) atau manifes (nyata)</li>
+                </ul>
+                <h3>2️⃣ Teori-Teori Konflik Sosial</h3>
+                <p>Berikut adalah beberapa teori konflik dari para tokoh sosiologi:</p>
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-brain"></i> Karl Marx – Teori Konflik Kelas</div>
+                    <ul>
+                        <li>Konflik terjadi akibat ketimpangan dalam kepemilikan alat produksi</li>
+                        <li>Dua kelas utama: <strong>Borjuis</strong> (pemilik modal) vs <strong>Proletar</strong> (pekerja)</li>
+                        <li>Tujuan akhir: revolusi kelas pekerja untuk mencapai keadilan sosial</li>
+                    </ul>
+                    <p class="highlight"><i class="fas fa-lightbulb"></i> Contoh kasus: Pemogokan buruh akibat upah tidak seimbang</p>
+                </div>
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-brain"></i> Lewis Coser – Konflik Fungsional</div>
+                    <ul>
+                        <li>Konflik tidak selalu negatif; bisa memperkuat solidaritas internal kelompok</li>
+                        <li>Konflik dapat memunculkan inovasi sosial</li>
+                        <li>Konflik adalah bagian alami dari struktur sosial yang dinamis</li>
+                    </ul>
+                    <p class="highlight"><i class="fas fa-lightbulb"></i> Contoh kasus: Persaingan antarorganisasi yang memicu perbaikan mutu layanan</p>
+                </div>
+                <div class="card">
+                    <div class="card-header"><i class="fas fa-brain"></i> Ralf Dahrendorf – Konflik dan Otoritas</div>
+                    <ul>
+                        <li>Masyarakat terdiri atas mereka yang memiliki otoritas dan yang tidak</li>
+                        <li>Konflik muncul dari upaya pihak yang tidak memiliki kekuasaan untuk mengubah struktur yang tidak adil</li>
+                        <li>Otoritas bukan hanya ekonomi, tetapi juga politik dan sosial</li>
+                    </ul>
+                    <p class="highlight"><i class="fas fa-lightbulb"></i> Contoh kasus: Konflik antara mahasiswa dan pemerintah soal kebijakan pendidikan</p>
+                </div>
+                <h3>3️⃣ Penyebab Konflik Sosial</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Penyebab Konflik</th>
+                                <th>Contoh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Perbedaan budaya, nilai, norma</td>
+                                <td>Konflik adat antar suku</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Ketimpangan ekonomi dan sosial</td>
+                                <td>Demonstrasi buruh menuntut kenaikan upah</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Diskriminasi (ras/suku/agama)</td>
+                                <td>Penolakan pembangunan tempat ibadah</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Persaingan sumber daya</td>
+                                <td>Sengketa air antardesa</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Politik identitas</td>
+                                <td>Pemilu yang memecah masyarakat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="highlight"><i class="fas fa-exclamation-triangle"></i> Studi Kasus: Konflik antarwarga karena batas tanah desa tidak jelas</p>
+                <h3>4️⃣ Jenis-Jenis Konflik Sosial</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jenis Konflik</th>
+                                <th>Penjelasan</th>
+                                <th>Contoh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a. Konflik Individu</td>
+                                <td>Pertikaian antarindividu karena masalah pribadi</td>
+                                <td>Pertengkaran antar siswa</td>
+                            </tr>
+                            <tr>
+                                <td>b. Konflik Antarkelompok</td>
+                                <td>Persaingan atau pertentangan antara dua kelompok sosial</td>
+                                <td>Konflik antar suporter sepak bola</td>
+                            </tr>
+                            <tr>
+                                <td>c. Konflik Antarkelas Sosial</td>
+                                <td>Ketegangan antara kelompok ekonomi atas (elit) dan bawah (buruh)</td>
+                                <td>Demonstrasi menuntut upah layak</td>
+                            </tr>
+                            <tr>
+                                <td>d. Konflik Antarwilayah</td>
+                                <td>Konflik karena perbedaan kebijakan atau kepentingan antar daerah</td>
+                                <td>Perebutan akses air antarkabupaten</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="activity">
+                    <h4><i class="fas fa-tasks"></i> Aktivitas Pembelajaran yang Direkomendasikan:</h4>
+                    <ul>
+                        <li><strong><i class="fas fa-users"></i> Diskusi Kelompok:</strong> Menganalisis konflik aktual dengan teori dan menyusun <em>mindmap</em></li>
+                        <li><strong><i class="fas fa-newspaper"></i> Studi Kasus:</strong> Menganalisis potongan berita untuk mengidentifikasi jenis, penyebab, dan teori konflik yang relevan</li>
+                        <li><strong><i class="fas fa-user-edit"></i> Refleksi Individu:</strong> Menjawab pertanyaan reflektif tentang pengalaman konflik</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="pertemuan6" class="tab-content">
+            <div class="section">
+                <h2><i class="fas fa-search"></i> Pertemuan 6 – Identifikasi Konflik Sosial di Lingkungan Sekitar</h2>
+                <p>✅ <strong>Tujuan Pembelajaran:</strong> Peserta didik diharapkan mampu:</p>
+                <ul>
+                    <li>Mengidentifikasi bentuk-bentuk konflik sosial yang terjadi di lingkungan sekitar</li>
+                    <li>Menggunakan teknik observasi dan studi literatur sederhana untuk mengumpulkan data konflik</li>
+                    <li>Menganalisis unsur-unsur konflik sosial (aktor, penyebab, proses, dampak) secara sistematis</li>
+                    <li>Menunjukkan sikap etis dalam melakukan observasi sosial</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>🔍 Materi Pokok yang Dikembangkan</h3>
+                <div class="image-container">
+                    <img src="https://placehold.co/600x300/2196F3/FFFFFF?text=Pengamatan%20Masyarakat%20&%20Data" alt="Observasi Konflik Sosial" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/666666?text=Gambar%20Gagal%20Dimuat'">
+                    <p>Ilustrasi: Penelitian lapangan dan pengumpulan data konflik</p>
+                </div>
+                <h3>1️⃣ Langkah-Langkah Identifikasi Konflik Sosial</h3>
+                <ol>
+                    <li><strong>Mengamati Fenomena Sosial:</strong> Mengamati interaksi yang mengandung ketegangan di lingkungan sekitar</li>
+                    <li><strong>Mengumpulkan Informasi:</strong> Menggunakan sumber data primer (observasi, wawancara) dan sekunder (berita, media sosial)</li>
+                    <li><strong>Panduan Analisis Konflik:</strong> Menggunakan panduan pertanyaan untuk menggali informasi lebih dalam (siapa, apa, bagaimana, apa akibatnya, adakah solusi)</li>
+                    <li><strong>Contoh Format Pengamatan:</strong> Menggunakan tabel untuk mencatat elemen-elemen konflik seperti lokasi, aktor, pemicu, proses, dampak, dan solusi</li>
+                </ol>
+                <h3>2️⃣ Contoh Konflik Sosial Lokal</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenis Konflik</th>
+                                <th>Contoh Realistis</th>
+                                <th>Tingkat Keparahan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Tawuran Pelajar</td>
+                                <td>Dua sekolah saling serang karena saling ejek di media sosial</td>
+                                <td><div class="severity-bar" style="width: 70%; background-color: var(--warning); height: 10px; border-radius: 5px;"></div></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Konflik Lahan atau Rumah Ibadah</td>
+                                <td>Warga mempermasalahkan izin bangunan tempat ibadah</td>
+                                <td><div class="severity-bar" style="width: 85%; background-color: var(--accent); height: 10px; border-radius: 5px;"></div></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Diskriminasi Sosial</td>
+                                <td>Kelompok minoritas tidak diizinkan menggunakan fasilitas umum</td>
+                                <td><div class="severity-bar" style="width: 90%; background-color: var(--accent); height: 10px; border-radius: 5px;"></div></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Perebutan Wilayah Parkir</td>
+                                <td>Dua warga bertengkar karena klaim lahan parkir di depan rumah</td>
+                                <td><div class="severity-bar" style="width: 40%; background-color: var(--success); height: 10px; border-radius: 5px;"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="highlight"><i class="fas fa-exclamation-circle"></i> <strong>Catatan:</strong> Siswa tidak ditugaskan untuk ikut campur, cukup mengamati atau mengumpulkan informasi dari sumber yang etis dan aman</p>
+                <h3>3️⃣ Etika dalam Observasi Sosial</h3>
+                <p>Beberapa prinsip yang harus dipegang peserta didik:</p>
+                <ul>
+                    <li>✅ <strong>Menghargai Privasi:</strong> Tidak mengambil foto/video tanpa izin dan tidak menyebut nama asli pelaku</li>
+                    <li>✅ <strong>Tidak Memprovokasi:</strong> Tidak ikut menyebarkan gosip atau memihak salah satu pihak</li>
+                    <li>✅ <strong>Bersikap Objektif dan Netral:</strong> Menyampaikan informasi apa adanya tanpa opini pribadi</li>
+                    <li>✅ <strong>Menjaga Keamanan Diri:</strong> Melakukan observasi dari jarak aman</li>
+                </ul>
+                <div class="activity">
+                    <h4><i class="fas fa-tasks"></i> Aktivitas Pembelajaran yang Direkomendasikan:</h4>
+                    <ul>
+                        <li><strong><i class="fas fa-user"></i> Tugas Individu:</strong> Observasi ringan konflik di sekitar dan mengisi format pengamatan</li>
+                        <li><strong><i class="fas fa-newspaper"></i> Studi Berita:</strong> Menganalisis berita konflik sosial dari media lokal</li>
+                        <li><strong><i class="fas fa-users"></i> Diskusi Kelompok:</strong> Membandingkan hasil observasi dan mendiskusikan jenis serta penyebab konflik</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="pertemuan7" class="tab-content">
+            <div class="section">
+                <h2><i class="fas fa-lightbulb"></i> Pertemuan 7 – Mengolah Data Konflik Sosial ke Dalam Peta Pikiran</h2>
+                <p>✅ <strong>Tujuan Pembelajaran:</strong> Peserta didik diharapkan mampu:</p>
+                <ul>
+                    <li>Mengolah data hasil observasi konflik sosial dengan sistematis</li>
+                    <li>Menyajikan informasi konflik secara visual, logis, dan menarik melalui peta pikiran</li>
+                    <li>Mengembangkan kemampuan berpikir kritis dan kreatif</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>🔍 Materi Pokok yang Dikembangkan</h3>
+                <div class="image-container">
+                    <img src="https://placehold.co/600x300/4CAF50/FFFFFF?text=Organisasi%20Data%20Visual" alt="Peta Pikiran Konflik Sosial" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/666666?text=Gambar%20Gagal%20Dimuat'">
+                    <p>Ilustrasi: Contoh visualisasi data konflik menggunakan peta pikiran</p>
+                </div>
+                <h3>1️⃣ Pengertian dan Fungsi Peta Pikiran (<em>Mind Map</em>)</h3>
+                <p>Peta pikiran adalah representasi visual dari suatu informasi yang disusun secara bercabang dari pusat gagasan utama menuju subtopik-subtopik yang saling berhubungan. Fungsinya dalam sosiologi adalah untuk mengorganisasi data konflik secara jelas dan mempermudah diskusi.</p>
+                <h3>2️⃣ Langkah-Langkah Membuat Peta Pikiran Konflik Sosial</h3>
+                <ol>
+                    <li><strong>Tentukan Tema Utama:</strong> Misalnya, "Konflik Lahan di Desa X"</li>
+                    <li><strong>Buat Cabang Utama:</strong> Tambahkan cabang utama seperti Aktor, Penyebab, Kronologi, Dampak, dan Solusi</li>
+                    <li><strong>Tambahkan Cabang Turunan:</strong> Uraikan setiap unsur secara spesifik</li>
+                    <li><strong>Gunakan Warna dan Simbol:</strong> Gunakan warna berbeda untuk setiap cabang dan simbol tematik</li>
+                    <li><strong>Gunakan Kata Kunci atau Frasa Singkat:</strong> Hindari paragraf, gunakan istilah sosiologis</li>
+                    <li><strong>Gunakan Media Visual:</strong> Bisa digambar tangan atau menggunakan aplikasi digital</li>
+                </ol>
+                <div class="activity">
+                    <h4><i class="fas fa-tasks"></i> Aktivitas Pembelajaran yang Direkomendasikan:</h4>
+                    <ul>
+                        <li><strong><i class="fas fa-users"></i> Kerja Kelompok:</strong> Menyusun peta pikiran dari data observasi yang dikumpulkan pada pertemuan sebelumnya</li>
+                        <li><strong><i class="fas fa-images"></i> Galeri Karya:</strong> Menempelkan hasil peta pikiran di kelas untuk mendapatkan umpan balik</li>
+                        <li><strong><i class="fas fa-presentation"></i> Presentasi:</strong> Mempresentasikan peta pikiran dan hasil analisisnya</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="pertemuan8" class="tab-content">
+            <div class="section">
+                <h2><i class="fas fa-comments"></i> Pertemuan 8 – Diskusi dan Solusi Konflik Sosial</h2>
+                <p>✅ <strong>Tujuan Pembelajaran:</strong> Peserta didik diharapkan mampu:</p>
+                <ul>
+                    <li>Mendiskusikan potensi solusi untuk berbagai jenis konflik sosial</li>
+                    <li>Membangun kemampuan berpikir kolaboratif dan mencari titik temu</li>
+                    <li>Mengembangkan empati dan perspektif dalam menyikapi konflik</li>
+                    <li>Merumuskan rekomendasi praktis untuk mitigasi konflik di lingkungan sekitar</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>🗣️ Materi Pokok yang Dikembangkan</h3>
+                <div class="image-container">
+                    <img src="https://placehold.co/600x300/673AB7/FFFFFF?text=Dialog%20dan%20Penyelesaian%20Masalah" alt="Diskusi Solusi Konflik" onerror="this.onerror=null;this.src='https://placehold.co/600x300/CCCCCC/666666?text=Gambar%20Gagal%20Dimuat'">
+                    <p>Ilustrasi: Kelompok orang berdiskusi untuk mencari solusi</p>
+                </div>
+                <h3>1️⃣ Strategi Resolusi Konflik</h3>
+                <ul>
+                    <li><strong>Negosiasi:</strong> Komunikasi langsung antarpihak untuk mencapai kesepakatan.</li>
+                    <li><strong>Mediasi:</strong> Melibatkan pihak ketiga netral untuk memfasilitasi dialog.</li>
+                    <li><strong>Arbitrasi:</strong> Pihak ketiga membuat keputusan yang mengikat bagi semua pihak.</li>
+                    <li><strong>Konsiliasi:</strong> Upaya mempertemukan keinginan pihak-pihak yang bertikai untuk mencapai persetujuan.</li>
+                </ul>
+                <h3>2️⃣ Peran Individu dan Komunitas dalam Resolusi Konflik</h3>
+                <ul>
+                    <li>Membangun komunikasi efektif dan empati.</li>
+                    <li>Mengedukasi tentang perbedaan dan toleransi.</li>
+                    <li>Menciptakan forum dialog dan musyawarah.</li>
+                    <li>Melibatkan tokoh masyarakat atau pemuka agama.</li>
+                </ul>
+                <div class="activity">
+                    <h4><i class="fas fa-tasks"></i> Aktivitas Pembelajaran yang Direkomendasikan:</h4>
+                    <ul>
+                        <li><strong><i class="fas fa-comments"></i> Simulasi Diskusi Kelompok:</strong> Bermain peran sebagai pihak-pihak yang berkonflik dan mencari solusi.</li>
+                        <li><strong><i class="fas fa-clipboard-list"></i> Proyek Akhir:</strong> Merumuskan rekomendasi kebijakan atau program kecil untuk mengatasi konflik di sekolah/komunitas.</li>
+                        <li><strong><i class="fas fa-lightbulb"></i> Sesi Refleksi:</strong> Mengidentifikasi pelajaran yang didapat dari modul ini dan bagaimana menerapkannya dalam kehidupan sehari-hari.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Set CSS variables for RGB values to use in rgba() for gradients
+        document.documentElement.style.setProperty('--primary-rgb', '52, 152, 219');
+        document.documentElement.style.setProperty('--accent-rgb', '231, 76, 60');
+        document.documentElement.style.setProperty('--success-rgb', '46, 204, 113');
+        // Function to show selected tab content
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+            // Update progress bar based on tab
+            const tabNames = ['pertemuan5', 'pertemuan6', 'pertemuan7', 'pertemuan8'];
+            const currentIndex = tabNames.indexOf(tabId);
+            const progress = ((currentIndex + 1) / tabNames.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Function to toggle dark mode (simplified example)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                // Example of changing variable values for dark mode
+                document.documentElement.style.setProperty('--primary', 'hsl(210, 75%, 60%)');
+                document.documentElement.style.setProperty('--primary-dark', 'hsl(210, 75%, 50%)');
+                document.documentElement.style.setProperty('--secondary', 'hsl(0, 0%, 85%)');
+                document.documentElement.style.setProperty('--accent', 'hsl(350, 80%, 70%)');
+                document.documentElement.style.setProperty('--light', 'hsl(220, 15%, 20%)');
+                document.documentElement.style.setProperty('--dark', 'hsl(0, 0%, 95%)');
+                document.documentElement.style.setProperty('--success', 'hsl(140, 70%, 55%)');
+                document.documentElement.style.setProperty('--warning', 'hsl(40, 95%, 65%)');
+                document.body.style.background = 'linear-gradient(135deg, #1f1c2c 0%, #000000 100%)';
+                document.querySelector('.container').style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                document.querySelector('.container').style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            } else {
+                // Reset to light mode values
+                document.documentElement.style.setProperty('--primary', 'hsl(210, 75%, 50%)');
+                document.documentElement.style.setProperty('--primary-dark', 'hsl(210, 75%, 40%)');
+                document.documentElement.style.setProperty('--secondary', 'hsl(220, 20%, 25%)');
+                document.documentElement.style.setProperty('--accent', 'hsl(350, 80%, 60%)');
+                document.documentElement.style.setProperty('--light', 'hsl(0, 0%, 97%)');
+                document.documentElement.style.setProperty('--dark', 'hsl(220, 20%, 15%)');
+                document.documentElement.style.setProperty('--success', 'hsl(140, 70%, 45%)');
+                document.documentElement.style.setProperty('--warning', 'hsl(40, 95%, 55%)');
+                document.body.style.background = 'linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%)';
+                document.querySelector('.container').style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                document.querySelector('.container').style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }
+        }
+        // Initialize first tab and progress bar on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('pertemuan5');
+        });
+    </script>
+</body>
+</html>

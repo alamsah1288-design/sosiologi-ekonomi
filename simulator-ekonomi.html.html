@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator Ekonomi Nasional & Regional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --tab-active: #3498db;
+            --tab-inactive: #7f8c8d;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2c3e50);
+            color: var(--light);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(44, 62, 80, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 8px;
+        }
+        
+        .tab {
+            background: var(--tab-inactive);
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        
+        .tab:hover {
+            background: #3498db;
+        }
+        
+        .tab.active {
+            background: var(--tab-active);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .tab i {
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+        
+        .input-error {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3);
+        }
+        
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-calculate-all {
+            background: var(--success);
+            margin: 20px 0;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-calculate-all:hover {
+            background: #219653;
+        }
+        
+        .result-container {
+            background: rgba(44, 62, 80, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--success);
+            text-align: center;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .formula {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .note {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .info {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        th {
+            background: rgba(52, 152, 219, 0.3);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            background: rgba(39, 174, 96, 0.3);
+            font-weight: 700;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .explanation {
+            margin: 20px 0;
+            line-height: 1.6;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--secondary);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .component-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .component-table th, .component-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .component-table th {
+            background: rgba(52, 152, 219, 0.3);
+        }
+        
+        .component-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .component-input {
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .chart-container {
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .summary-card .value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--success);
+        }
+        
+        .comparison-table {
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Simulator Ekonomi Nasional & Regional</h1>
+            <p class="subtitle">Hitung indikator ekonomi secara dinamis dengan langkah-langkah perhitungan yang jelas</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="gdp">
+                <i class="fas fa-globe-asia"></i> PDB
+            </div>
+            <div class="tab" data-tab="gnp">
+                <i class="fas fa-flag"></i> PNB
+            </div>
+            <div class="tab" data-tab="nnp">
+                <i class="fas fa-calculator"></i> PNN
+            </div>
+            <div class="tab" data-tab="nni">
+                <i class="fas fa-money-bill-wave"></i> NNI
+            </div>
+            <div class="tab" data-tab="pi">
+                <i class="fas fa-user"></i> PI
+            </div>
+            <div class="tab" data-tab="di">
+                <i class="fas fa-wallet"></i> Disposable
+            </div>
+            <div class="tab" data-tab="pdrb">
+                <i class="fas fa-map-marked-alt"></i> PDRB
+            </div>
+            <div class="tab" data-tab="detail-di">
+                <i class="fas fa-calculator"></i> Detail Disposabel
+            </div>
+            <div class="tab" data-tab="summary">
+                <i class="fas fa-chart-pie"></i> Ringkasan
+            </div>
+        </div>
+        
+        <button class="btn btn-calculate-all" onclick="calculateAll()">
+            <i class="fas fa-calculator"></i> Hitung Semua Indikator
+        </button>
+        
+        <!-- PDB Content -->
+        <div class="content active" id="gdp-content">
+            <div class="card-title">
+                <i class="fas fa-globe-asia"></i>
+                <h2>PDB (Produk Domestik Bruto)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di dalam batas wilayah suatu negara dalam 1 tahun, tanpa memperhatikan siapa pemiliknya (asing/lokal).</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="c">Konsumsi Rumah Tangga (C)</label>
+                <input type="number" id="c" value="1000" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="c-error">Nilai konsumsi tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="i">Investasi (I)</label>
+                <input type="number" id="i" value="500" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="i-error">Nilai investasi tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="g">Pengeluaran Pemerintah (G)</label>
+                <input type="number" id="g" value="700" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="g-error">Nilai pengeluaran pemerintah tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="x">Ekspor (X)</label>
+                <input type="number" id="x" value="300" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="x-error">Nilai ekspor tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="m">Impor (M)</label>
+                <input type="number" id="m" value="200" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="m-error">Nilai impor tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculateGDP()">Hitung PDB</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PDB = C + I + G + (X - M)</div>
+                <div class="result-value" id="gdp-result">Rp2.300 T</div>
+                
+                <div class="chart-container">
+                    <canvas id="gdp-chart"></canvas>
+                </div>
+                
+                <div class="note">
+                    <strong>Catatan:</strong> PDB menghitung semua produksi di dalam negeri, termasuk perusahaan asing yang beroperasi di Indonesia.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PNB Content -->
+        <div class="content" id="gnp-content">
+            <div class="card-title">
+                <i class="fas fa-flag"></i>
+                <h2>PNB (Produk Nasional Bruto)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai barang dan jasa yang dihasilkan oleh warga negara, baik di dalam maupun di luar negeri.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="wni-income">Pendapatan WNI di Luar Negeri</label>
+                <input type="number" id="wni-income" value="50" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="wni-income-error">Nilai pendapatan WNI tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="wna-income">Pendapatan WNA di Dalam Negeri</label>
+                <input type="number" id="wna-income" value="30" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="wna-income-error">Nilai pendapatan WNA tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculateGNP()">Hitung PNB</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PNB = PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</div>
+                <div class="result-value" id="gnp-result">Rp2.320 T</div>
+                
+                <div class="info">
+                    <strong>Perhitungan:</strong> PDB (Rp2.300 T) + (Rp50 T - Rp30 T) = Rp2.320 T
+                </div>
+                
+                <div class="note">
+                    <strong>Perbedaan PNB dan PDB:</strong> PNB berdasarkan kepemilikan produksi (nasionalitas), sedangkan PDB berdasarkan lokasi produksi.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PNN Content -->
+        <div class="content" id="nnp-content">
+            <div class="card-title">
+                <i class="fas fa-calculator"></i>
+                <h2>PNN (Produk Nasional Neto)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai bersih dari PNB setelah dikurangi penyusutan alat produksi.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="depreciation">Penyusutan Aset</label>
+                <input type="number" id="depreciation" value="120" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="depreciation-error">Nilai penyusutan tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculateNNP()">Hitung PNN</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PNN = PNB - Penyusutan</div>
+                <div class="result-value" id="nnp-result">Rp2.200 T</div>
+                
+                <div class="info">
+                    <strong>Perhitungan:</strong> PNB (Rp2.320 T) - Penyusutan (Rp120 T) = Rp2.200 T
+                </div>
+                
+                <div class="note">
+                    <strong>Penyusutan:</strong> Penurunan nilai alat produksi karena dipakai terus-menerus dalam proses produksi.
+                </div>
+            </div>
+        </div>
+        
+        <!-- NNI Content -->
+        <div class="content" id="nni-content">
+            <div class="card-title">
+                <i class="fas fa-money-bill-wave"></i>
+                <h2>NNI (Pendapatan Nasional Neto)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan nasional bersih yang dapat dinikmati masyarakat, setelah pajak tidak langsung dan subsidi pemerintah.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="indirect-tax">Pajak Tidak Langsung</label>
+                <input type="number" id="indirect-tax" value="100" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="indirect-tax-error">Nilai pajak tidak langsung tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="subsidy">Subsidi</label>
+                <input type="number" id="subsidy" value="50" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="subsidy-error">Nilai subsidi tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculateNNI()">Hitung NNI</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">NNI = PNN - Pajak Tidak Langsung + Subsidi</div>
+                <div class="result-value" id="nni-result">Rp2.150 T</div>
+                
+                <div class="info">
+                    <strong>Perhitungan:</strong> PNN (Rp2.200 T) - Pajak Tidak Langsung (Rp100 T) + Subsidi (Rp50 T) = Rp2.150 T
+                </div>
+                
+                <div class="note">
+                    <strong>Pajak tidak langsung:</strong> Pajak yang tidak dibayar langsung oleh individu (PPN, cukai, bea masuk). 
+                    <strong>Subsidi:</strong> Bantuan pemerintah yang meningkatkan daya beli masyarakat.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PI Content -->
+        <div class="content" id="pi-content">
+            <div class="card-title">
+                <i class="fas fa-user"></i>
+                <h2>PI (Pendapatan Perseorangan)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan yang benar-benar diterima langsung oleh masyarakat, baik dari kerja, bunga, sewa, maupun bantuan pemerintah.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="transfer">Transfer Payment</label>
+                <input type="number" id="transfer" value="100" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="transfer-error">Nilai transfer payment tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="retained">Laba Ditahan</label>
+                <input type="number" id="retained" value="80" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="retained-error">Nilai laba ditahan tidak valid</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="social">Iuran Jaminan Sosial & Pajak Perseroan</label>
+                <input type="number" id="social" value="120" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="social-error">Nilai iuran tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculatePI()">Hitung PI</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PI = NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</div>
+                <div class="result-value" id="pi-result">Rp2.050 T</div>
+                
+                <div class="info">
+                    <strong>Perhitungan:</strong> NNI (Rp2.150 T) + Transfer Payment (Rp100 T) - (Laba Ditahan (Rp80 T) + Iuran (Rp120 T)) = Rp2.050 T
+                </div>
+                
+                <div class="note">
+                    <strong>Laba ditahan:</strong> Keuntungan perusahaan yang tidak dibagikan. 
+                    <strong>Transfer payment:</strong> Bantuan sosial (BLT), pensiun, beasiswa.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Disposable Income Content -->
+        <div class="content" id="di-content">
+            <div class="card-title">
+                <i class="fas fa-wallet"></i>
+                <h2>Disposable Income</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan yang benar-benar dapat digunakan masyarakat untuk konsumsi atau ditabung, setelah dikurangi pajak langsung.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="direct-tax">Pajak Langsung</label>
+                <input type="number" id="direct-tax" value="150" placeholder="Dalam triliun" min="0">
+                <div class="error-message" id="direct-tax-error">Nilai pajak langsung tidak valid</div>
+            </div>
+            
+            <button class="btn" onclick="calculateDI()">Hitung Disposable Income</button>
+            
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">Disposable Income = PI - Pajak Langsung</div>
+                <div class="result-value" id="di-result">Rp1.900 T</div>
+                
+                <div class="info">
+                    <strong>Perhitungan:</strong> PI (Rp2.050 T) - Pajak Langsung (Rp150 T) = Rp1.900 T
+                </div>
+                
+                <div class="note">
+                    <strong>Pajak langsung:</strong> Pajak Penghasilan (PPh), pajak kekayaan, dan pajak warisan. Pendapatan ini sudah bersih dari kewajiban pajak langsung.
+                </div>
+            </div>
+        </div>
+        
+        <!-- PDRB Content -->
+        <div class="content" id="pdrb-content">
+            <div class="card-title">
+                <i class="fas fa-map-marked-alt"></i>
+                <h2>PDRB (Produk Domestik Regional Bruto)</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di suatu wilayah (provinsi/kota) dalam 1 tahun.</p>
+                <p><strong>Fungsi:</strong> Mengetahui kekuatan ekonomi dan pembangunan daerah.</p>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provinsi</th>
+                            <th>Pertanian</th>
+                            <th>Industri</th>
+                            <th>Jasa</th>
+                            <th>PDRB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jawa Timur</td>
+                            <td>150</td>
+                            <td>500</td>
+                            <td>400</td>
+                            <td class="highlight">1.050</td>
+                        </tr>
+                        <tr>
+                            <td>Kalimantan Timur</td>
+                            <td>80</td>
+                            <td>600</td>
+                            <td>200</td>
+                            <td class="highlight">880</td>
+                        </tr>
+                        <tr>
+                            <td>Jawa Barat</td>
+                            <td>120</td>
+                            <td>450</td>
+                            <td>350</td>
+                            <td class="highlight">920</td>
+                        </tr>
+                        <tr>
+                            <td>Sumatera Utara</td>
+                            <td>200</td>
+                            <td>300</td>
+                            <td>250</td>
+                            <td class="highlight">750</td>
+                        </tr>
+                        <tr>
+                            <td>Bali</td>
+                            <td>50</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td class="highlight">650</td>
+                        </tr>
+                        <tr>
+                            <td>Papua</td>
+                            <td>120</td>
+                            <td>350</td>
+                            <td>180</td>
+                            <td class="highlight">650</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="pdrb-chart"></canvas>
+            </div>
+            
+            <div class="result-container">
+                <div class="formula">PDRB = Pertanian + Industri + Jasa</div>
+                <div class="note">
+                    <strong>Analisis:</strong> Jawa Timur memiliki ekonomi yang seimbang dengan kontribusi signifikan dari industri dan jasa. 
+                    Kalimantan Timur sangat bergantung pada industri, sementara Bali memiliki kontribusi jasa yang dominan.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detail Disposable Income Content -->
+        <div class="content" id="detail-di-content">
+            <div class="card-title">
+                <i class="fas fa-calculator"></i>
+                <h2>Perhitungan Detail Pendapatan Disposabel</h2>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Pendapatan Disposabel</strong> adalah pendapatan yang siap dibelanjakan oleh rumah tangga setelah dikurangi pajak langsung dan iuran wajib.</p>
+                <p>Berikut adalah komponen-komponen yang digunakan dalam perhitungan:</p>
+            </div>
+            
+            <table class="component-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Komponen</th>
+                        <th>Nilai (Rp miliar)</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Produk Domestik Bruto (PDB)</td>
+                        <td><input type="number" id="pdb" value="50000" class="component-input" min="0"></td>
+                        <td>Gross Domestic Product (GDP)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Pendapatan Neto terhadap LN</td>
+                        <td><input type="number" id="pendapatan-neto" value="2000" class="component-input" min="0"></td>
+                        <td>Pendapatan dari luar negeri dikurangi pembayaran ke LN</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Penyusutan Barang Modal</td>
+                        <td><input type="number" id="penyusutan" value="5000" class="component-input" min="0"></td>
+                        <td>Depresiasi</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Pajak Tidak Langsung</td>
+                        <td><input type="number" id="pajak-tidak-langsung" value="4000" class="component-input" min="0"></td>
+                        <td>Pajak yang dibebankan ke konsumen (e.g., PPN)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Transfer Payment</td>
+                        <td><input type="number" id="transfer-payment" value="2000" class="component-input" min="0"></td>
+                        <td>Subsidi, bantuan sosial, dll.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Pajak Perseroan</td>
+                        <td><input type="number" id="pajak-perseroan" value="2500" class="component-input" min="0"></td>
+                        <td>Pajak atas laba perusahaan</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Laba Ditahan</td>
+                        <td><input type="number" id="laba-ditahan" value="1200" class="component-input" min="0"></td>
+                        <td>Laba perusahaan yang tidak dibagikan</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Iuran Asuransi</td>
+                        <td><input type="number" id="iuran-asuransi" value="1300" class="component-input" min="0"></td>
+                        <td>Kontribusi wajib (e.g., BPJS)</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Pajak Langsung</td>
+                        <td><input type="number" id="pajak-langsung" value="1000" class="component-input" min="0"></td>
+                        <td>Pajak penghasilan (PPh)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button class="btn" onclick="calculateDetailDisposabel()">Hitung Pendapatan Disposabel</button>
+            
+            <div class="result-container">
+                <h3>Langkah-langkah Perhitungan</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>Produk Nasional Bruto (PNB)</strong>
+                    <div class="formula">PNB = PDB + Pendapatan Neto terhadap LN</div>
+                    <div class="result-value" id="pnb-result">Rp52.000 miliar</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>Pendapatan Nasional (PN)</strong>
+                    <div class="formula">PN = PNB - Penyusutan Barang Modal</div>
+                    <div class="result-value" id="pn-result">Rp47.000 miliar</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>Pendapatan Perseorangan (PP)</strong>
+                    <div class="formula">PP = PN - Pajak Tidak Langsung - Pajak Perseroan - Laba Ditahan + Transfer Payment</div>
+                    <div class="result-value" id="pp-result">Rp41.300 miliar</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <strong>Pendapatan Disposabel (PD)</strong>
+                    <div class="formula">PD = PP - Pajak Langsung - Iuran Asuransi</div>
+                    <div class="result-value" id="pd-result">Rp39.000 miliar</div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="detail-di-chart"></canvas>
+                </div>
+                
+                <div class="note">
+                    <strong>Kesimpulan:</strong> Berdasarkan perhitungan, nilai Pendapatan Disposabel adalah Rp39.000 miliar. 
+                    Nilai ini menunjukkan jumlah uang yang benar-benar tersedia bagi rumah tangga untuk dibelanjakan atau ditabung.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary Content -->
+        <div class="content" id="summary-content">
+            <div class="card-title">
+                <i class="fas fa-chart-pie"></i>
+                <h2>Ringkasan Indikator Ekonomi</h2>
+            </div>
+            
+            <div class="explanation">
+                <p>Berikut adalah ringkasan dari semua indikator ekonomi yang telah dihitung. Gunakan tab di atas untuk melihat detail masing-masing indikator.</p>
+            </div>
+            
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>PDB</h3>
+                    <div class="value" id="summary-gdp">Rp2.300 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PNB</h3>
+                    <div class="value" id="summary-gnp">Rp2.320 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PNN</h3>
+                    <div class="value" id="summary-nnp">Rp2.200 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>NNI</h3>
+                    <div class="value" id="summary-nni">Rp2.150 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PI</h3>
+                    <div class="value" id="summary-pi">Rp2.050 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Disposable Income</h3>
+                    <div class="value" id="summary-di">Rp1.900 T</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="summary-chart"></canvas>
+            </div>
+            
+            <div class="comparison-table">
+                <h3>Perbandingan Indikator Ekonomi</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Indikator</th>
+                                <th>Rumus</th>
+                                <th>Nilai (Rp Triliun)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PDB</td>
+                                <td>C + I + G + (X - M)</td>
+                                <td id="comparison-gdp">2.300</td>
+                            </tr>
+                            <tr>
+                                <td>PNB</td>
+                                <td>PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</td>
+                                <td id="comparison-gnp">2.320</td>
+                            </tr>
+                            <tr>
+                                <td>PNN</td>
+                                <td>PNB - Penyusutan</td>
+                                <td id="comparison-nnp">2.200</td>
+                            </tr>
+                            <tr>
+                                <td>NNI</td>
+                                <td>PNN - Pajak Tidak Langsung + Subsidi</td>
+                                <td id="comparison-nni">2.150</td>
+                            </tr>
+                            <tr>
+                                <td>PI</td>
+                                <td>NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</td>
+                                <td id="comparison-pi">2.050</td>
+                            </tr>
+                            <tr>
+                                <td>Disposable Income</td>
+                                <td>PI - Pajak Langsung</td>
+                                <td id="comparison-di">1.900</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Simulator Ekonomi Nasional & Regional © 2023 | Alat Pembelajaran untuk Peserta Didik</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Data global untuk menyimpan nilai semua indikator
+        const economicData = {
+            gdp: 2300,
+            gnp: 2320,
+            nnp: 2200,
+            nni: 2150,
+            pi: 2050,
+            di: 1900
+        };
+
+        // Fungsi untuk mengaktifkan tab
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Hapus kelas aktif dari semua tab dan konten
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+                
+                // Tambahkan kelas aktif ke tab yang diklik
+                this.classList.add('active');
+                
+                // Tampilkan konten yang sesuai
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+                
+                // Jika tab summary dipilih, update summary
+                if (tabId === 'summary') {
+                    updateSummary();
+                }
+                
+                // Jika tab PDRB dipilih, buat chart PDRB
+                if (tabId === 'pdrb') {
+                    createPDRBChart();
+                }
+                
+                // Jika tab detail-di dipilih, buat chart detail disposable income
+                if (tabId === 'detail-di') {
+                    createDetailDIChart();
+                }
+            });
+        });
+        
+        // Fungsi untuk validasi input
+        function validateInput(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            const value = parseFloat(input.value);
+            
+            if (isNaN(value) || value < 0) {
+                input.classList.add('input-error');
+                error.style.display = 'block';
+                return false;
+            } else {
+                input.classList.remove('input-error');
+                error.style.display = 'none';
+                return true;
+            }
+        }
+        
+        // Fungsi untuk menghitung PDB
+        function calculateGDP() {
+            // Validasi input
+            const inputsValid = [
+                validateInput('c', 'c-error'),
+                validateInput('i', 'i-error'),
+                validateInput('g', 'g-error'),
+                validateInput('x', 'x-error'),
+                validateInput('m', 'm-error')
+            ].every(valid => valid);
+            
+            if (!inputsValid) return;
+            
+            const c = parseFloat(document.getElementById('c').value) || 0;
+            const i = parseFloat(document.getElementById('i').value) || 0;
+            const g = parseFloat(document.getElementById('g').value) || 0;
+            const x = parseFloat(document.getElementById('x').value) || 0;
+            const m = parseFloat(document.getElementById('m').value) || 0;
+            
+            const gdp = c + i + g + (x - m);
+            economicData.gdp = gdp;
+            
+            document.getElementById('gdp-result').textContent = `Rp${gdp.toLocaleString('id-ID')} T`;
+            createGDPChart(c, i, g, x, m);
+        }
+        
+        // Fungsi untuk menghitung PNB
+        function calculateGNP() {
+            // Validasi input
+            const inputsValid = [
+                validateInput('wni-income', 'wni-income-error'),
+                validateInput('wna-income', 'wna-income-error')
+            ].every(valid => valid);
+            
+            if (!inputsValid) return;
+            
+            const wniIncome = parseFloat(document.getElementById('wni-income').value) || 0;
+            const wnaIncome = parseFloat(document.getElementById('wna-income').value) || 0;
+            
+            const gnp = economicData.gdp + (wniIncome - wnaIncome);
+            economicData.gnp = gnp;
+            
+            document.getElementById('gnp-result').textContent = `Rp${gnp.toLocaleString('id-ID')} T`;
+            
+            // Update info box
+            document.querySelector('#gnp-content .info').innerHTML = `
+                <strong>Perhitungan:</strong> PDB (Rp${economicData.gdp.toLocaleString('id-ID')} T) + 
+                (Rp${wniIncome.toLocaleString('id-ID')} T - Rp${wnaIncome.toLocaleString('id-ID')} T) = 
+                Rp${gnp.toLocaleString('id-ID')} T
+            `;
+        }
+        
+        // Fungsi untuk menghitung PNN
+        function calculateNNP() {
+            // Validasi input
+            if (!validateInput('depreciation', 'depreciation-error')) return;
+            
+            const depreciation = parseFloat(document.getElementById('depreciation').value) || 0;
+            
+            const nnp = economicData.gnp - depreciation;
+            economicData.nnp = nnp;
+            
+            document.getElementById('nnp-result').textContent = `Rp${nnp.toLocaleString('id-ID')} T`;
+            
+            // Update info box
+            document.querySelector('#nnp-content .info').innerHTML = `
+                <strong>Perhitungan:</strong> PNB (Rp${economicData.gnp.toLocaleString('id-ID')} T) - 
+                Penyusutan (Rp${depreciation.toLocaleString('id-ID')} T) = 
+                Rp${nnp.toLocaleString('id-ID')} T
+            `;
+        }
+        
+        // Fungsi untuk menghitung NNI
+        function calculateNNI() {
+            // Validasi input
+            const inputsValid = [
+                validateInput('indirect-tax', 'indirect-tax-error'),
+                validateInput('subsidy', 'subsidy-error')
+            ].every(valid => valid);
+            
+            if (!inputsValid) return;
+            
+            const indirectTax = parseFloat(document.getElementById('indirect-tax').value) || 0;
+            const subsidy = parseFloat(document.getElementById('subsidy').value) || 0;
+            
+            const nni = economicData.nnp - indirectTax + subsidy;
+            economicData.nni = nni;
+            
+            document.getElementById('nni-result').textContent = `Rp${nni.toLocaleString('id-ID')} T`;
+            
+            // Update info box
+            document.querySelector('#nni-content .info').innerHTML = `
+                <strong>Perhitungan:</strong> PNN (Rp${economicData.nnp.toLocaleString('id-ID')} T) - 
+                Pajak Tidak Langsung (Rp${indirectTax.toLocaleString('id-ID')} T) + 
+                Subsidi (Rp${subsidy.toLocaleString('id-ID')} T) = 
+                Rp${nni.toLocaleString('id-ID')} T
+            `;
+        }
+        
+        // Fungsi untuk menghitung PI
+        function calculatePI() {
+            // Validasi input
+            const inputsValid = [
+                validateInput('transfer', 'transfer-error'),
+                validateInput('retained', 'retained-error'),
+                validateInput('social', 'social-error')
+            ].every(valid => valid);
+            
+            if (!inputsValid) return;
+            
+            const transfer = parseFloat(document.getElementById('transfer').value) || 0;
+            const retained = parseFloat(document.getElementById('retained').value) || 0;
+            const social = parseFloat(document.getElementById('social').value) || 0;
+            
+            const pi = economicData.nni + transfer - (retained + social);
+            economicData.pi = pi;
+            
+            document.getElementById('pi-result').textContent = `Rp${pi.toLocaleString('id-ID')} T`;
+            
+            // Update info box
+            document.querySelector('#pi-content .info').innerHTML = `
+                <strong>Perhitungan:</strong> NNI (Rp${economicData.nni.toLocaleString('id-ID')} T) + 
+                Transfer Payment (Rp${transfer.toLocaleString('id-ID')} T) - 
+                (Laba Ditahan (Rp${retained.toLocaleString('id-ID')} T) + Iuran (Rp${social.toLocaleString('id-ID')} T)) = 
+                Rp${pi.toLocaleString('id-ID')} T
+            `;
+        }
+        
+        // Fungsi untuk menghitung Disposable Income
+        function calculateDI() {
+            // Validasi input
+            if (!validateInput('direct-tax', 'direct-tax-error')) return;
+            
+            const directTax = parseFloat(document.getElementById('direct-tax').value) || 0;
+            
+            const di = economicData.pi - directTax;
+            economicData.di = di;
+            
+            document.getElementById('di-result').textContent = `Rp${di.toLocaleString('id-ID')} T`;
+            
+            // Update info box
+            document.querySelector('#di-content .info').innerHTML = `
+                <strong>Perhitungan:</strong> PI (Rp${economicData.pi.toLocaleString('id-ID')} T) - 
+                Pajak Langsung (Rp${directTax.toLocaleString('id-ID')} T) = 
+                Rp${di.toLocaleString('id-ID')} T
+            `;
+        }
+        
+        // Fungsi untuk menghitung Detail Disposable Income
+        function calculateDetailDisposabel() {
+            // Ambil nilai input
+            const pdb = parseFloat(document.getElementById('pdb').value) || 0;
+            const pendapatanNeto = parseFloat(document.getElementById('pendapatan-neto').value) || 0;
+            const penyusutan = parseFloat(document.getElementById('penyusutan').value) || 0;
+            const pajakTidakLangsung = parseFloat(document.getElementById('pajak-tidak-langsung').value) || 0;
+            const transferPayment = parseFloat(document.getElementById('transfer-payment').value) || 0;
+            const pajakPerseroan = parseFloat(document.getElementById('pajak-perseroan').value) || 0;
+            const labaDitahan = parseFloat(document.getElementById('laba-ditahan').value) || 0;
+            const iuranAsuransi = parseFloat(document.getElementById('iuran-asuransi').value) || 0;
+            const pajakLangsung = parseFloat(document.getElementById('pajak-langsung').value) || 0;
+
+            // Langkah 1: PNB
+            const pnb = pdb + pendapatanNeto;
+            
+            // Langkah 2: PN
+            const pn = pnb - penyusutan;
+            
+            // Langkah 3: PP
+            const pp = pn - pajakTidakLangsung - pajakPerseroan - labaDitahan + transferPayment;
+            
+            // Langkah 4: PD
+            const pd = pp - pajakLangsung - iuranAsuransi;
+            
+            // Format angka untuk ditampilkan
+            const format = (num) => num.toLocaleString('id-ID');
+            
+            // Update hasil perhitungan
+            document.getElementById('pnb-result').textContent = `Rp${format(pnb)} miliar`;
+            document.getElementById('pn-result').textContent = `Rp${format(pn)} miliar`;
+            document.getElementById('pp-result').textContent = `Rp${format(pp)} miliar`;
+            document.getElementById('pd-result').textContent = `Rp${format(pd)} miliar`;
+            
+            // Buat chart
+            createDetailDIChart(pnb, pn, pp, pd);
+        }
+        
+        // Fungsi untuk membuat chart PDB
+        function createGDPChart(c, i, g, x, m) {
+            const ctx = document.getElementById('gdp-chart').getContext('2d');
+            
+            // Hapus chart lama jika ada
+            if (window.gdpChart) {
+                window.gdpChart.destroy();
+            }
+            
+            window.gdpChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Konsumsi (C)', 'Investasi (I)', 'Pemerintah (G)', 'Ekspor Neto (X-M)'],
+                    datasets: [{
+                        data: [c, i, g, (x - m)],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#e74c3c',
+                            '#f39c12'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Komposisi PDB',
+                            color: '#fff'
+                        },
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Fungsi untuk membuat chart PDRB
+        function createPDRBChart() {
+            const ctx = document.getElementById('pdrb-chart').getContext('2d');
+            
+            // Hapus chart lama jika ada
+            if (window.pdrbChart) {
+                window.pdrbChart.destroy();
+            }
+            
+            window.pdrbChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jawa Timur', 'Kalimantan Timur', 'Jawa Barat', 'Sumatera Utara', 'Bali', 'Papua'],
+                    datasets: [
+                        {
+                            label: 'Pertanian',
+                            data: [150, 80, 120, 200, 50, 120],
+                            backgroundColor: '#2ecc71'
+                        },
+                        {
+                            label: 'Industri',
+                            data: [500, 600, 450, 300, 100, 350],
+                            backgroundColor: '#3498db'
+                        },
+                        {
+                            label: 'Jasa',
+                            data: [400, 200, 350, 250, 500, 180],
+                            backgroundColor: '#f39c12'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'PDRB per Provinsi',
+                            color: '#fff'
+                        },
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Fungsi untuk membuat chart Detail Disposable Income
+        function createDetailDIChart(pnb = 52000, pn = 47000, pp = 41300, pd = 39000) {
+            const ctx = document.getElementById('detail-di-chart').getContext('2d');
+            
+            // Hapus chart lama jika ada
+            if (window.detailDIChart) {
+                window.detailDIChart.destroy();
+            }
+            
+            window.detailDIChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['PNB', 'PN', 'PP', 'PD'],
+                    datasets: [{
+                        label: 'Nilai (Rp Miliar)',
+                        data: [pnb, pn, pp, pd],
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Alur Perhitungan Pendapatan Disposabel',
+                            color: '#fff'
+                        },
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Fungsi untuk update summary
+        function updateSummary() {
+            document.getElementById('summary-gdp').textContent = `Rp${economicData.gdp.toLocaleString('id-ID')} T`;
+            document.getElementById('summary-gnp').textContent = `Rp${economicData.gnp.toLocaleString('id-ID')} T`;
+            document.getElementById('summary-nnp').textContent = `Rp${economicData.nnp.toLocaleString('id-ID')} T`;
+            document.getElementById('summary-nni').textContent = `Rp${economicData.nni.toLocaleString('id-ID')} T`;
+            document.getElementById('summary-pi').textContent = `Rp${economicData.pi.toLocaleString('id-ID')} T`;
+            document.getElementById('summary-di').textContent = `Rp${economicData.di.toLocaleString('id-ID')} T`;
+            
+            document.getElementById('comparison-gdp').textContent = economicData.gdp.toLocaleString('id-ID');
+            document.getElementById('comparison-gnp').textContent = economicData.gnp.toLocaleString('id-ID');
+            document.getElementById('comparison-nnp').textContent = economicData.nnp.toLocaleString('id-ID');
+            document.getElementById('comparison-nni').textContent = economicData.nni.toLocaleString('id-ID');
+            document.getElementById('comparison-pi').textContent = economicData.pi.toLocaleString('id-ID');
+            document.getElementById('comparison-di').textContent = economicData.di.toLocaleString('id-ID');
+            
+            createSummaryChart();
+        }
+        
+        // Fungsi untuk membuat chart summary
+        function createSummaryChart() {
+            const ctx = document.getElementById('summary-chart').getContext('2d');
+            
+            // Hapus chart lama jika ada
+            if (window.summaryChart) {
+                window.summaryChart.destroy();
+            }
+            
+            window.summaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['PDB', 'PNB', 'PNN', 'NNI', 'PI', 'Disposable'],
+                    datasets: [{
+                        label: 'Nilai (Rp Triliun)',
+                        data: [
+                            economicData.gdp,
+                            economicData.gnp,
+                            economicData.nnp,
+                            economicData.nni,
+                            economicData.pi,
+                            economicData.di
+                        ],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#e74c3c',
+                            '#f39c12',
+                            '#9b59b6',
+                            '#1abc9c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Perbandingan Indikator Ekonomi',
+                            color: '#fff'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Fungsi untuk menghitung semua indikator
+        function calculateAll() {
+            calculateGDP();
+            calculateGNP();
+            calculateNNP();
+            calculateNNI();
+            calculatePI();
+            calculateDI();
+            calculateDetailDisposabel();
+            
+            // Tampilkan notifikasi
+            alert('Semua indikator telah dihitung!');
+        }
+        
+        // Inisialisasi perhitungan saat halaman dimuat
+        window.onload = function() {
+            calculateGDP();
+            calculateGNP();
+            calculateNNP();
+            calculateNNI();
+            calculatePI();
+            calculateDI();
+            calculateDetailDisposabel();
+            
+            // Buat chart PDB
+            const c = parseFloat(document.getElementById('c').value) || 0;
+            const i = parseFloat(document.getElementById('i').value) || 0;
+            const g = parseFloat(document.getElementById('g').value) || 0;
+            const x = parseFloat(document.getElementById('x').value) || 0;
+            const m = parseFloat(document.getElementById('m').value) || 0;
+            createGDPChart(c, i, g, x, m);
+        };
+    </script>
+</body>
+</html>

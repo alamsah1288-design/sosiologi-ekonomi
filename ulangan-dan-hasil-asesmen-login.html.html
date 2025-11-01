@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="theme-color" content="#667eea" />
+  <title>Login - Ulangan & Hasil Asesmen</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      --hover-shadow: 0 12px 32px rgba(0,0,0,0.18);
+      --transition: all 0.3s ease;
+      --ekonomi-color: #3498db;
+      --sosiologi-color: #9b59b6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--primary-gradient);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: #333;
+    }
+
+    /* Login Page */
+    .login-container {
+      background: white;
+      padding: clamp(24px, 5vw, 40px);
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      width: 100%;
+      max-width: min(400px, 90vw);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .login-container h2 {
+      color: #555;
+      margin-bottom: clamp(20px, 4vw, 24px);
+      font-size: clamp(1.4rem, 4vw, 1.6rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .login-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .login-option {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #e1e1e1;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .login-option.active {
+      border-color: var(--ekonomi-color);
+      background-color: rgba(52, 152, 219, 0.1);
+    }
+
+    .login-option.sosiologi.active {
+      border-color: var(--sosiologi-color);
+      background-color: rgba(155, 89, 182, 0.1);
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: clamp(12px, 3vw, 14px);
+      margin: 10px 0;
+      border: 2px solid #e1e1e1;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .login-container input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: clamp(12px, 3vw, 14px);
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .login-container button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .login-container button:active {
+      transform: translateY(0);
+    }
+
+    .error {
+      color: #e74c3c;
+      margin-top: 16px;
+      font-weight: 500;
+      min-height: 24px;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    /* Main App */
+    #main-app {
+      display: none;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 20px;
+    }
+
+    .header {
+      text-align: center;
+      padding: clamp(16px, 4vw, 24px);
+      background: rgba(255,255,255,0.98);
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .user-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(52, 152, 219, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--ekonomi-color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .user-badge.sosiologi {
+      background: rgba(155, 89, 182, 0.1);
+      color: var(--sosiologi-color);
+    }
+
+    .header h1 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      color: #333;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .header p {
+      color: #666;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .logout-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(102, 126, 234, 0.1);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .logout-btn:hover {
+      background: rgba(102, 126, 234, 0.2);
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 24px);
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #495057;
+      transition: var(--transition);
+      white-space: nowrap;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+    }
+
+    .tab-btn:hover {
+      background: #e9ecef;
+    }
+
+    .tab-btn.active {
+      background: var(--primary-gradient);
+      color: white;
+      border-color: transparent;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .subject-card {
+      background: white;
+      border-radius: 16px;
+      padding: clamp(30px, 5vw, 40px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .subject-card h2 {
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #333;
+      flex-wrap: wrap;
+    }
+
+    .subject-card.ekonomi {
+      border-top: 4px solid var(--ekonomi-color);
+    }
+
+    .subject-card.sosiologi {
+      border-top: 4px solid var(--sosiologi-color);
+    }
+
+    /* Tombol Akses Form */
+    .access-button {
+      display: inline-block;
+      padding: 16px 32px;
+      background: var(--primary-gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: clamp(1.1rem, 3vw, 1.2rem);
+      margin-top: 16px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .access-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .access-button:active {
+      transform: translateY(-1px);
+    }
+
+    .access-button.ekonomi {
+      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    }
+
+    .access-button.sosiologi {
+      background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    }
+
+    /* IFrame Container untuk Hasil */
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      min-height: 300px;
+      border-radius: 12px;
+      margin-top: 16px;
+      background: #f8f9fa;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.03);
+    }
+
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    .loading-text {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .iframe-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      text-align: center;
+      background: #fff;
+      border-radius: 12px;
+      height: 100%;
+    }
+
+    .iframe-fallback a {
+      margin-top: 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    footer {
+      margin-top: 32px;
+      padding: 16px;
+      color: rgba(255,255,255,0.85);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+      .card-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Mobile kecil */
+    @media (max-width: 480px) {
+      .subject-card {
+        padding: 24px 20px;
+      }
+      .access-button {
+        padding: 14px 24px;
+        font-size: 1.05rem;
+      }
+      .iframe-container {
+        height: 70vh;
+        min-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div id="login-page" class="login-container">
+    <h2><i class="fas fa-user-lock"></i> Login Siswa</h2>
+    
+    <div class="login-options">
+      <div class="login-option active" onclick="selectLoginOption('ekonomi')">
+        <i class="fas fa-chart-line"></i> Ekonomi
+      </div>
+      <div class="login-option sosiologi" onclick="selectLoginOption('sosiologi')">
+        <i class="fas fa-users"></i> Sosiologi
+      </div>
+    </div>
+    
+    <input type="text" id="username" placeholder="Username" autocomplete="username" autofocus>
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+    <button id="login-btn" onclick="login()">Login</button>
+    <p id="error-msg" class="error"></p>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="main-app">
+    <div class="header">
+      <div id="user-badge" class="user-badge">
+        <i class="fas fa-user"></i> <span id="user-type">Ekonomi</span>
+      </div>
+      <h1><i class="fas fa-graduation-cap"></i> Ulangan & Hasil Asesmen</h1>
+      <p id="class-description">Kelas XI Ekonomi</p>
+      <button class="logout-btn" onclick="logout()" aria-label="Logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab('ulangan', this)">📝 Ulangan Harian</button>
+      <button class="tab-btn" onclick="openTab('hasil', this)">📊 Hasil Asesmen</button>
+    </div>
+
+    <!-- ULANGAN SECTION (HANYA LINK) -->
+    <div id="ulangan" class="tab-content active">
+      <div class="card-container">
+        <div class="subject-card ekonomi">
+          <h2><i class="fas fa-chart-line"></i> Kelas XI - Ekonomi</h2>
+          <a href="https://forms.gle/3FbVonqv2fBzeF7e8" target="_blank" class="access-button ekonomi">
+            <i class="fas fa-external-link-alt"></i> Buka Formulir Ulangan Ekonomi
+          </a>
+        </div>
+
+        <div id="sosiologi-ulangan-card" class="subject-card sosiologi">
+          <h2><i class="fas fa-users"></i> Kelas X - Sosiologi</h2>
+          <a href="https://forms.gle/aSjCxfbh42bZWggL6" target="_blank" class="access-button sosiologi">
+            <i class="fas fa-external-link-alt"></i> Buka Formulir Ulangan Sosiologi
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HASIL SECTION (IFRAME DIPERTAHANKAN) -->
+    <div id="hasil" class="tab-content">
+      <div class="card-container">
+        <div class="subject-card ekonomi">
+          <h2><i class="fas fa-chart-bar"></i> Hasil Asesmen - Ekonomi</h2>
+          <div class="iframe-container">
+            <div class="loading-overlay" id="loading-hasil-ekonomi">
+              <div class="spinner"></div>
+              <div class="loading-text">Memuat hasil...</div>
+            </div>
+            <iframe 
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT4EPWuQLfg0LsiiE6wD_Bhu8fYurtP6LY1uSIs92JtCUBtDnqbRzQK-wMbMlb9CpxuF_Kqmx6tOrMO/pubhtml?gid=574153378&single=true" 
+              title="Hasil Ekonomi"
+              onload="hideLoading('loading-hasil-ekonomi')"
+              onerror="showFallback(this, 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT4EPWuQLfg0LsiiE6wD_Bhu8fYurtP6LY1uSIs92JtCUBtDnqbRzQK-wMbMlb9CpxuF_Kqmx6tOrMO/pubhtml?gid=574153378&single=true')">
+            </iframe>
+          </div>
+        </div>
+
+        <div id="sosiologi-hasil-card" class="subject-card sosiologi">
+          <h2><i class="fas fa-chart-pie"></i> Hasil Asesmen - Sosiologi</h2>
+          <div class="iframe-container">
+            <div class="loading-overlay" id="loading-hasil-sosiologi">
+              <div class="spinner"></div>
+              <div class="loading-text">Memuat hasil...</div>
+            </div>
+            <iframe 
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT4EPWuQLfg0LsiiE6wD_Bhu8fYurtP6LY1uSIs92JtCUBtDnqbRzQK-wMbMlb9CpxuF_Kqmx6tOrMO/pubhtml?gid=1220360708&single=true" 
+              title="Hasil Sosiologi"
+              onload="hideLoading('loading-hasil-sosiologi')"
+              onerror="showFallback(this, 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT4EPWuQLfg0LsiiE6wD_Bhu8fYurtP6LY1uSIs92JtCUBtDnqbRzQK-wMbMlb9CpxuF_Kqmx6tOrMO/pubhtml?gid=1220360708&single=true')">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 - SMAN 1 Cluring | Sistem Asesmen Digital
+    </footer>
+  </div>
+
+  <script>
+    let selectedUserType = 'ekonomi';
+    const userCredentials = {
+      'ekonomi': { username: 'ekonomi', password: '456' },
+      'sosiologi': { username: 'sosiologi', password: '789' },
+      'admin': { username: 'smaring', password: '123' }
+    };
+
+    function selectLoginOption(type) {
+      selectedUserType = type;
+      document.querySelectorAll('.login-option').forEach(opt => {
+        opt.classList.remove('active');
+      });
+      document.querySelector(`.login-option${type === 'sosiologi' ? '.sosiologi' : ''}`).classList.add('active');
+    }
+
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error-msg');
+      const loginBtn = document.getElementById('login-btn');
+
+      if (!username || !password) {
+        errorMsg.textContent = 'Username dan password harus diisi!';
+        return;
+      }
+
+      loginBtn.classList.add('loading');
+      loginBtn.disabled = true;
+
+      setTimeout(() => {
+        let isValid = false;
+        let userType = '';
+        
+        for (const [type, creds] of Object.entries(userCredentials)) {
+          if (username === creds.username && password === creds.password) {
+            isValid = true;
+            userType = type;
+            break;
+          }
+        }
+
+        if (isValid) {
+          document.getElementById('login-page').style.display = 'none';
+          document.getElementById('main-app').style.display = 'block';
+          sessionStorage.setItem('isLoggedIn', 'true');
+          sessionStorage.setItem('userType', userType);
+          adjustUIForUserType(userType);
+        } else {
+          errorMsg.textContent = 'Username atau password salah!';
+          loginBtn.classList.remove('loading');
+          loginBtn.disabled = false;
+          setTimeout(() => {
+            errorMsg.textContent = '';
+          }, 3000);
+        }
+      }, 800);
+    }
+
+    function adjustUIForUserType(userType) {
+      const userBadge = document.getElementById('user-badge');
+      const userTypeSpan = document.getElementById('user-type');
+      const classDescription = document.getElementById('class-description');
+      
+      if (userType === 'ekonomi') {
+        userTypeSpan.textContent = 'Ekonomi';
+        userBadge.className = 'user-badge';
+        classDescription.textContent = 'Kelas XI Ekonomi';
+        document.getElementById('sosiologi-ulangan-card').style.display = 'none';
+        document.getElementById('sosiologi-hasil-card').style.display = 'none';
+      } 
+      else if (userType === 'sosiologi') {
+        userTypeSpan.textContent = 'Sosiologi';
+        userBadge.className = 'user-badge sosiologi';
+        classDescription.textContent = 'Kelas X Sosiologi';
+        document.querySelectorAll('.ekonomi').forEach(card => {
+          card.style.display = 'none';
+        });
+      }
+      else if (userType === 'admin') {
+        userTypeSpan.textContent = 'Administrator';
+        userBadge.className = 'user-badge';
+        classDescription.textContent = 'Kelas XI Ekonomi & X Sosiologi';
+        document.querySelectorAll('.subject-card').forEach(card => {
+          card.style.display = 'block';
+        });
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('isLoggedIn');
+      sessionStorage.removeItem('userType');
+      document.getElementById('login-page').style.display = 'flex';
+      document.getElementById('main-app').style.display = 'none';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    function openTab(tabName, btn) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(button => {
+        button.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function hideLoading(elementId) {
+      const el = document.getElementById(elementId);
+      if (el) el.style.display = 'none';
+    }
+
+    function showFallback(iframeElement, fallbackUrl) {
+      const container = iframeElement.parentElement;
+      container.innerHTML = `
+        <div class="iframe-fallback">
+          <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #e74c3c; margin-bottom: 16px;"></i>
+          <h3>Gagal Memuat Hasil</h3>
+          <p>Silakan buka di browser Anda.</p>
+          <a href="${fallbackUrl}" target="_blank" class="access-button" style="padding: 12px 24px; font-size: 1rem;">
+            <i class="fas fa-external-link-alt"></i> Lihat Hasil
+          </a>
+        </div>
+      `;
+    }
+
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        const userType = sessionStorage.getItem('userType') || 'ekonomi';
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('main-app').style.display = 'block';
+        adjustUIForUserType(userType);
+      }
+    });
+  </script>
+
+</body>
+</html>

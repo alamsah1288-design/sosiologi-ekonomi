@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sosiologi Kelas X | SMA Negeri 1 Cluring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #1abc9c;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --gray: #95a5a6;
+      --success: #2ecc71;
+      --warning: #f39c12;
+      --neon-blue: #00f0ff;
+      --neon-pink: #ff00c8;
+      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+      --breaking-news: #e74c3c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(120deg, var(--primary), var(--secondary), var(--neon-blue));
+      background-size: 300% 300%;
+      animation: gradientBG 8s ease infinite;
+      color: white;
+      padding: 2rem 2rem;
+      text-align: center;
+      position: relative;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header h1 {
+      font-weight: 800;
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-weight: 400;
+      opacity: 0.95;
+      font-size: 1.1rem;
+    }
+
+    .back-home {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .back-home:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin: 2.8rem 0 1.6rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--neon-pink);
+      border-radius: 2px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      padding: 1.8rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--secondary);
+    }
+
+    .card.absensi-card::before { background: var(--secondary); }
+    .card.tugas-card::before { background: var(--success); }
+    .card.ulangan-card::before { background: var(--warning); }
+
+    .card:hover {
+      transform: translateY(-10px) rotate(0.5deg);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--primary);
+    }
+
+    .card h3 i {
+      font-size: 1.3rem;
+      color: var(--secondary);
+    }
+
+    .card.absensi-card h3 i { color: var(--secondary); }
+    .card.tugas-card h3 i { color: var(--success); }
+    .card.ulangan-card h3 i { color: var(--warning); }
+
+    .card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    /* Gaya Portal Berita */
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .news-image {
+      height: 180px;
+      width: 100%;
+      background: linear-gradient(120deg, var(--secondary), var(--neon-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .news-content {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+
+    .news-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: auto;
+    }
+
+    .breaking-news {
+      background: var(--breaking-news);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+    }
+
+    .breaking-news i {
+      font-size: 1.2rem;
+    }
+
+    /* Footer modern */
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 1.5rem 2rem;
+      margin-top: 4rem;
+      border-radius: 30px 30px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.2rem;
+      color: var(--neon-blue);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--neon-pink);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-section a {
+      color: #d6eaf8;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-section a:hover {
+      color: var(--neon-blue);
+      transform: translateX(4px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .contact-info i {
+      color: var(--neon-blue);
+      min-width: 20px;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    /* Animasi masuk saat scroll (sederhana) */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card, .section-title, .news-card {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+
+    .news-card:nth-child(1) { animation-delay: 0.1s; }
+    .news-card:nth-child(2) { animation-delay: 0.2s; }
+    .news-card:nth-child(3) { animation-delay: 0.3s; }
+    .news-card:nth-child(4) { animation-delay: 0.4s; }
+    .news-card:nth-child(5) { animation-delay: 0.5s; }
+    .news-card:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Responsif - Tablet */
+    @media (max-width: 1024px) {
+      header {
+        padding: 1.8rem 1.5rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .back-home {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+    }
+
+    /* Responsif - Handphone */
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem 1.5rem;
+        text-align: center;
+      }
+      
+      .back-home {
+        position: relative;
+        top: auto;
+        left: auto;
+        display: inline-flex;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.3);
+      }
+      
+      header h1 {
+        font-size: 1.7rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      header p {
+        font-size: 0.95rem;
+      }
+      
+      main {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+        margin: 2.2rem 0 1.2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .card {
+        padding: 1.4rem;
+      }
+      
+      .news-container {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .news-image {
+        height: 150px;
+      }
+      
+      .breaking-news {
+        padding: 0.7rem 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      
+      .breaking-news span {
+        font-size: 0.9rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    /* Responsif - Handphone Kecil */
+    @media (max-width: 480px) {
+      header {
+        padding: 3.5rem 0.8rem 1.2rem;
+      }
+      
+      header h1 {
+        font-size: 1.5rem;
+      }
+      
+      header p {
+        font-size: 0.9rem;
+      }
+      
+      .back-home {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
+      }
+      
+      .card h3 {
+        font-size: 1.1rem;
+      }
+      
+      .news-title {
+        font-size: 1.1rem;
+      }
+      
+      footer {
+        padding: 2rem 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-home">
+      <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+    </a>
+    <h1>📚 Sosiologi Kelas X</h1>
+    <p>SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
+  </header>
+
+  <main>
+    <!-- Materi Pokok -->
+    <h2 class="section-title">Materi Pokok</h2>
+    <div class="card-grid">
+      <a href="bab-1-Fungsi-Sosiologi-dalam-Menganalisis-Masyarakat.html" class="card">
+        <h3><i class="fas fa-book-open"></i> Bab 1: Fungsi Sosiologi dalam Menganalisis Masyarakat</h3>
+        <p>Memahami peran sosiologi sebagai ilmu yang membantu mengurai dinamika sosial di masyarakat.</p>
+      </a>
+      <a href="bab-2-Individu-Kelompok-dan-Hubungan-Sosial.html" class="card">
+        <h3><i class="fas fa-users"></i> Bab 2: Individu, Kelompok, dan Hubungan Sosial</h3>
+        <p>Menjelajahi interaksi antar individu dan kelompok dalam konteks struktur sosial.</p>
+      </a>
+      <a href="bab-3-Nilai-Norma-Sosialisasi-dan-Ragam-Gejala-Sosial.html" class="card">
+        <h3><i class="fas fa-balance-scale"></i> Bab 3: Nilai, Norma, Sosialisasi, dan Ragam Gejala Sosial</h3>
+        <p>Mempelajari nilai-nilai sosial, norma, proses sosialisasi, dan berbagai gejala sosial dalam masyarakat.</p>
+      </a>
+      <a href="bab-4-Metode-Penelitian-Sosial.html" class="card">
+        <h3><i class="fas fa-search"></i> Bab 4: Metode Penelitian Sosial</h3>
+        <p>Memahami berbagai metode dan teknik penelitian yang digunakan dalam studi sosial.</p>
+      </a>
+    </div>
+
+    <!-- Materi Pertemuan -->
+    <h2 class="section-title">📰 Materi Pertemuan</h2>
+    
+    <div class="breaking-news">
+      <i class="fas fa-bullhorn"></i>
+      <span><strong>UPDATE TERBARU:</strong> Materi Sosiologi Kelas X telah diperbarui dengan format portal berita!</span>
+    </div>
+    
+    <div class="news-container">
+      <a href="materi_sosiologi_1-4.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 1-4</span>
+          <h3 class="news-title">Dasar-Dasar Sosiologi: Mengenal Ilmu Masyarakat</h3>
+          <p>Pengantar lengkap tentang konsep dasar sosiologi dan peranannya dalam memahami dinamika sosial.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 4 Pertemuan</span>
+            <span><i class="far fa-file"></i> 15 Halaman</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="materi_sosiologi_5-8.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 5-8</span>
+          <h3 class="news-title">Interaksi Sosial dan Struktur Masyarakat</h3>
+          <p>Eksplorasi mendalam tentang pola interaksi sosial dan struktur yang membentuk masyarakat.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 4 Pertemuan</span>
+            <span><i class="far fa-file"></i> 18 Halaman</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="materi_sosiologi_9-12.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-balance-scale"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 9-12</span>
+          <h3 class="news-title">Nilai, Norma, dan Pengendalian Sosial</h3>
+          <p>Analisis tentang sistem nilai, norma sosial, dan mekanisme pengendalian dalam masyarakat.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 4 Pertemuan</span>
+            <span><i class="far fa-file"></i> 22 Halaman</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="materi_sosiologi_13-14.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 13-14</span>
+          <h3 class="news-title">Kelompok Sosial dan Masyarakat Multikultural</h3>
+          <p>Memahami berbagai bentuk kelompok sosial dan dinamika masyarakat multikultural.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 2 Pertemuan</span>
+            <span><i class="far fa-file"></i> 12 Halaman</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="materi_sosiologi_15-16.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 15-16</span>
+          <h3 class="news-title">Perubahan Sosial dan Globalisasi</h3>
+          <p>Mengkaji faktor-faktor perubahan sosial dan dampak globalisasi terhadap masyarakat.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 2 Pertemuan</span>
+            <span><i class="far fa-file"></i> 14 Halaman</span>
+          </div>
+        </div>
+      </a>
+      
+      <a href="materi_sosiologi_17-19.html.html" class="news-card">
+        <div class="news-image">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="news-content">
+          <span class="news-tag">Pertemuan 17-19</span>
+          <h3 class="news-title">Sosiologi Terapan dan Penelitian Sosial</h3>
+          <p>Penerapan ilmu sosiologi dalam memecahkan masalah sosial dan teknik penelitian sosial.</p>
+          <div class="news-meta">
+            <span><i class="far fa-clock"></i> 3 Pertemuan</span>
+            <span><i class="far fa-file"></i> 20 Halaman</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Materi Aktual & Analisis Kebijakan -->
+    <h2 class="section-title">🔥 Materi Aktual & Analisis Kebijakan</h2>
+    <div class="card-grid">
+      <a href="Dampak-Rp200T-Sosiologi-Ekonomi.html" class="card">
+        <h3><i class="fas fa-chart-line"></i> Dampak Rp200T: Perspektif Sosiologi-Ekonomi</h3>
+        <p>Analisis kritis terhadap kebijakan ekonomi besar dan dampaknya terhadap struktur sosial masyarakat.</p>
+      </a>
+    </div>
+
+    <!-- Absensi -->
+    <h2 class="section-title">✅ Absensi Harian</h2>
+    <div class="card-grid">
+      <a href="https://docs.google.com/forms/d/1wSz-DFGxiKSckvVEAJx6WOVn8LTiuCXkldNX5gibag4/edit" target="_blank" class="card absensi-card">
+        <h3><i class="fas fa-clipboard-list"></i> Isi Absensi Hari Ini</h3>
+        <p>Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!</p>
+      </a>
+    </div>
+
+    <!-- Pengumpulan Tugas -->
+    <h2 class="section-title">📤 Pengumpulan Tugas</h2>
+    <div class="card-grid">
+      <a href="https://docs.google.com/forms/d/1M4eOIBMi04LdpW73Etee8aifP0vAHuo4l7F8SDU0PcA/edit" target="_blank" class="card tugas-card">
+        <h3><i class="fas fa-file-upload"></i> Kirim Tugas Anda</h3>
+        <p>Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!</p>
+      </a>
+    </div>
+
+    <!-- Ulangan & Hasil Asesmen -->
+    <h2 class="section-title">🎓 Ulangan & Hasil Asesmen</h2>
+    <div class="card-grid">
+      <a href="ulangan-dan-hasil-asesmen-login.html" class="card ulangan-card">
+        <h3><i class="fas fa-graduation-cap"></i> Akses Ulangan & Nilai</h3>
+        <p>Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>Menu Navigasi</h3>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+          <li><a href="#"><i class="fas fa-book"></i> Materi</a></li>
+          <li><a href="ulangan-dan-hasil-asesmen-login.html.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+          <li><a href="galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>🔗 Link Penting</h3>
+        <ul>
+          <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
+          <li><a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
+          <li><a href="https://www.bps.go.id/" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+          <li><a href="https://islam.nu.or.id/" target="_blank"><i class="fas fa-quran"></i> Al-Qur'an NU Online</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>📱 Hubungi Kami</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-phone"></i> 0822-2385-7426</p>
+          <p><i class="fas fa-map-marker-alt"></i> Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 SMA Negeri 1 Cluring | Sosiologi Kelas X • Stay Curious, Stay Critical!
+    </div>
+  </footer>
+
+</body>
+</html>

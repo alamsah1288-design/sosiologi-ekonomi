@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Pilihan Ganda Sistem Pengupahan</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .exam-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .info-item {
+            text-align: center;
+            margin: 5px 15px;
+        }
+        
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .security-notice {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #c0392b;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .instructions {
+            background: #e8f4fc;
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+        
+        .question-container:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .options {
+            margin-left: 50px;
+        }
+        
+        .option {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #f0f7ff;
+            border-color: var(--secondary);
+        }
+        
+        .option.selected {
+            background: #d4edda;
+            border-color: var(--success);
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-prev {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-next {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-submit {
+            background: var(--success);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            width: 5%;
+            transition: width 0.5s ease;
+        }
+        
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-btn.answered {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+        
+        .nav-btn.current {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .result-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--success);
+            margin: 20px 0;
+        }
+        
+        .fullscreen-warning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .fullscreen-warning h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .fullscreen-warning p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+        
+        @media (max-width: 768px) {
+            .exam-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-item {
+                margin: 10px 0;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .options {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Peringatan Anti Contek -->
+    <div id="fullscreenWarning" class="fullscreen-warning">
+        <h2>⛔ PERINGATAN ANTI CONTEK</h2>
+        <p>Ujian ini dilengkapi dengan sistem pengawasan otomatis.</p>
+        <p>Dilarang meninggalkan halaman ini selama ujian berlangsung.</p>
+        <p>Dilarang membuka tab atau aplikasi lain.</p>
+        <p>Pelanggaran akan mengakibatkan diskualifikasi.</p>
+        <br>
+        <button id="startExam" style="padding: 15px 30px; background: #e74c3c; color: white; border: none; border-radius: 10px; font-size: 1.2rem; cursor: pointer;">
+            MULAI UJIAN - SIAPKAN DIRI ANDA
+        </button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Latihan Pilihan Ganda Sistem Pengupahan</h1>
+            <p>Uji Pemahaman Anda tentang Regulasi dan Implementasi Sistem Pengupahan di Indonesia</p>
+            
+            <div class="exam-info">
+                <div class="info-item">
+                    <div>Jumlah Soal</div>
+                    <div class="info-value">20</div>
+                </div>
+                <div class="info-item">
+                    <div>Skor Maksimal</div>
+                    <div class="info-value">100</div>
+                </div>
+                <div class="info-item">
+                    <div>Level Kognitif</div>
+                    <div class="info-value">C4 - C6</div>
+                </div>
+                <div class="info-item">
+                    <div>Waktu Pengerjaan</div>
+                    <div class="info-value">40 Menit</div>
+                </div>
+            </div>
+            
+            <div class="timer" id="timer">40:00</div>
+        </header>
+        
+        <div class="security-notice">
+            ⚠️ SISTEM ANTI CONTEK AKTIF - DILARANG KELUAR DARI HALAMAN INI
+        </div>
+        
+        <div class="content">
+            <div class="instructions">
+                <h3>Petunjuk Pengerjaan:</h3>
+                <ul>
+                    <li>Pilihlah satu jawaban yang paling tepat dengan mengklik pilihan yang tersedia</li>
+                    <li>Setiap soal memiliki bobot nilai 5 poin</li>
+                    <li>Waktu pengerjaan adalah 40 menit</li>
+                    <li>Soal mencakup level kognitif C4 (Analisis), C5 (Evaluasi), dan C6 (Mencipta)</li>
+                    <li>Dilarang keras meninggalkan halaman ini selama ujian berlangsung</li>
+                    <li>Jawaban akan terkunci otomatis setelah waktu habis</li>
+                </ul>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="question-nav" id="questionNav">
+                <!-- Tombol navigasi soal akan di-generate oleh JavaScript -->
+            </div>
+            
+            <div id="questionsContainer">
+                <!-- Soal-soal akan di-generate oleh JavaScript -->
+            </div>
+            
+            <div class="controls">
+                <button class="btn-prev" id="prevBtn">Soal Sebelumnya</button>
+                <button class="btn-next" id="nextBtn">Soal Berikutnya</button>
+                <button class="btn-submit" id="submitBtn">Kumpulkan Jawaban</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Hasil -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <h2>Hasil Evaluasi</h2>
+            <p>Anda telah menyelesaikan latihan sistem pengupahan</p>
+            <div class="result-score" id="finalScore">0</div>
+            <p id="resultMessage"></p>
+            <button id="reviewBtn" style="background: var(--secondary); color: white; padding: 12px 25px; margin: 10px; border: none; border-radius: 5px; cursor: pointer;">Tinjau Jawaban</button>
+            <button id="closeBtn" style="background: #95a5a6; color: white; padding: 12px 25px; margin: 10px; border: none; border-radius: 5px; cursor: pointer;">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Data soal dengan level kognitif C4-C6
+        const questions = [
+            {
+                id: 1,
+                question: "Berdasarkan PP No. 36 Tahun 2021, jika terjadi ketidaksesuaian antara perjanjian kerja dan peraturan pengupahan, manakah yang harus diutamakan?",
+                options: [
+                    "Perjanjian kerja selama tidak merugikan pekerja",
+                    "Peraturan pengupahan yang lebih menguntungkan pekerja",
+                    "Kesepakatan antara pengusaha dan serikat pekerja",
+                    "Kebijakan internal perusahaan"
+                ],
+                correct: 1,
+                level: "C4"
+            },
+            {
+                id: 2,
+                question: "Seorang pekerja dengan upah bulanan Rp 5.000.000 melakukan lembur selama 4 jam pada hari libur resmi. Berapakah upah lembur yang berhak diterima? (Asumsi 1 jam kerja = 1/173 x upah sebulan)",
+                options: [
+                    "Rp 230.000",
+                    "Rp 346.000", 
+                    "Rp 462.000",
+                    "Rp 578.000"
+                ],
+                correct: 2,
+                level: "C4"
+            },
+            {
+                id: 3,
+                question: "Analisislah mengapa Upah Minimum Kabupaten/Kota (UMK) harus lebih tinggi dari Upah Minimum Provinsi (UMP) berdasarkan perspektif ekonomi ketenagakerjaan!",
+                options: [
+                    "Karena biaya hidup di perkotaan lebih tinggi daripada rata-rata provinsi",
+                    "Karena produktivitas pekerja di kabupaten/kota lebih tinggi",
+                    "Kebijakan desentralisasi fiskal memungkinkan penetapan upah yang berbeda",
+                    "Untuk menarik investasi ke daerah tertentu"
+                ],
+                correct: 0,
+                level: "C5"
+            },
+            {
+                id: 4,
+                question: "Evaluasilah efektivitas sistem pengupahan berdasarkan satuan hasil dalam meningkatkan produktivitas pekerja di sektor industri kreatif!",
+                options: [
+                    "Sangat efektif karena langsung menghubungkan upah dengan output",
+                    "Efektif tetapi berisiko menimbulkan ketidakpastian pendapatan",
+                    "Kurang efektif karena mengabaikan faktor kualitas hasil kerja",
+                    "Tidak efektif karena tidak mempertimbangkan waktu penyelesaian"
+                ],
+                correct: 1,
+                level: "C5"
+            },
+            {
+                id: 5,
+                question: "Rancanglah strategi penetapan upah yang ideal untuk perusahaan rintisan (startup) dengan mempertimbangkan PP No. 36 Tahun 2021 dan sustainability bisnis!",
+                options: [
+                    "Sistem upah tetap dengan bonus berdasarkan kinerja perusahaan",
+                    "Sistem upah berdasarkan satuan waktu dengan tunjangan kinerja",
+                    "Kombinasi upah pokok minimum dan bagi hasil keuntungan",
+                    "Sistem upah borongan dengan target progresif"
+                ],
+                correct: 2,
+                level: "C6"
+            },
+            {
+                id: 6,
+                question: "Bandingkan mekanisme penetapan Upah Minimum Provinsi (UMP) sebelum dan sesudah PP No. 36 Tahun 2021!",
+                options: [
+                    "Sebelumnya berdasarkan kebutuhan hidup layak, sekarang berdasarkan formula tertentu",
+                    "Sebelumnya ditetapkan menteri, sekarang ditetapkan gubernur",
+                    "Sebelumnya tanpa melibatkan dewan pengupahan, sekarang wajib melibatkan",
+                    "Sebelumnya tahunan, sekarang bisa multi-tahun"
+                ],
+                correct: 0,
+                level: "C4"
+            },
+            {
+                id: 7,
+                question: "Hitung upah per jam seorang pekerja dengan gaji Rp 6.000.000 per bulan yang bekerja 8 jam/hari selama 20 hari kerja!",
+                options: [
+                    "Rp 37.500",
+                    "Rp 42.500",
+                    "Rp 47.500",
+                    "Rp 52.500"
+                ],
+                correct: 0,
+                level: "C4"
+            },
+            {
+                id: 8,
+                question: "Kritik sistem upah borongan dalam proyek konstruksi dari perspektif perlindungan pekerja!",
+                options: [
+                    "Tidak menjamin pendapatan tetap saat tidak ada proyek",
+                    "Berpotensi memicu kerja berlebihan untuk mengejar target",
+                    "Mengabaikan aspek keselamatan dan kesehatan kerja",
+                    "Semua jawaban benar"
+                ],
+                correct: 3,
+                level: "C5"
+            },
+            {
+                id: 9,
+                question: "Buatlah formula perhitungan upah lembur yang adil dengan mempertimbangkan jam kerja, hari libur, dan produktivitas!",
+                options: [
+                    "1,5x upah jam pertama, 2x jam berikutnya pada hari kerja biasa",
+                    "2x upah untuk semua jam lembur di hari libur",
+                    "1,5x untuk 2 jam pertama, 2x untuk jam berikutnya di hari kerja",
+                    "Sistem proporsional berdasarkan kontribusi terhadap target"
+                ],
+                correct: 0,
+                level: "C6"
+            },
+            {
+                id: 10,
+                question: "Analisislah dampak kenaikan upah minimum terhadap penyerapan tenaga kerja di sektor formal dan informal!",
+                options: [
+                    "Meningkatkan penyerapan di sektor formal, menurunkan di informal",
+                    "Menurunkan penyerapan di sektor formal, meningkatkan di informal", 
+                    "Tidak berpengaruh signifikan terhadap penyerapan tenaga kerja",
+                    "Berpengaruh positif di kedua sektor dengan syarat tertentu"
+                ],
+                correct: 1,
+                level: "C4"
+            },
+            {
+                id: 11,
+                question: "Evaluasilah peran Dewan Pengupahan dalam menetapkan upah minimum dari perspektif tripartit!",
+                options: [
+                    "Hanya sebagai fasilitator tanpa kewenangan penetapan",
+                    "Memiliki kewenangan penuh dalam menetapkan upah minimum",
+                    "Memberikan rekomendasi berdasarkan kajian komprehensif",
+                    "Menjadi mediator dalam proses negosiasi upah"
+                ],
+                correct: 2,
+                level: "C5"
+            },
+            {
+                id: 12,
+                question: "Rancang mekanisme pengupahan yang sesuai untuk pekerja remote dengan mempertimbangkan PP No. 36 Tahun 2021!",
+                options: [
+                    "Sistem upah berdasarkan output dengan monitoring digital",
+                    "Upah tetap dengan tunjangan infrastktur kerja remote",
+                    "Kombinasi upah pokok dan insentif berdasarkan produktivitas",
+                    "Sistem upah borongan dengan tenggat waktu fleksibel"
+                ],
+                correct: 2,
+                level: "C6"
+            },
+            {
+                id: 13,
+                question: "Bandingkan kelebihan dan kekurangan sistem upah berdasarkan waktu dan sistem upah berdasarkan hasil!",
+                options: [
+                    "Waktu: predictable income, Hasil: tied to productivity",
+                    "Waktu: no quality incentive, Hasil: income uncertainty",
+                    "Keduanya memiliki kelebihan dan kekurangan tergantung konteks",
+                    "Semua jawaban benar"
+                ],
+                correct: 3,
+                level: "C4"
+            },
+            {
+                id: 14,
+                question: "Hitung upah yang harus dibayarkan kepada pekerja yang tidak masuk karena sakit dengan surat dokter selama 5 hari, dengan upah harian Rp 200.000!",
+                options: [
+                    "Rp 600.000 (3 hari pertama dibayar 100%, 2 hari berikutnya 75%)",
+                    "Rp 800.000 (4 hari pertama dibayar 100%)",
+                    "Rp 1.000.000 (semua hari dibayar 100%)",
+                    "Tidak ada ketentuan pasti dalam peraturan"
+                ],
+                correct: 0,
+                level: "C4"
+            },
+            {
+                id: 15,
+                question: "Kritik implementasi upah minimum di Indonesia dari perspektif kesenjangan upah antar daerah!",
+                options: [
+                    "Memperlebar kesenjangan karena perbedaan daya beli daerah",
+                    "Tidak efektif mengurangi kemiskinan di daerah tertinggal",
+                    "Perlu formula yang mempertimbangkan karakteristik daerah",
+                    "Semua jawaban benar"
+                ],
+                correct: 3,
+                level: "C5"
+            },
+            {
+                id: 16,
+                question: "Buatlah skema tunjangan kinerja yang ideal untuk meningkatkan produktivitas tanpa melanggar prinsip keadilan!",
+                options: [
+                    "Tunjangan tetap berdasarkan jabatan dan masa kerja",
+                    "Bonus variabel berdasarkan pencapaian target individu dan tim",
+                    "Sistem poin yang dapat ditukar dengan benefit tertentu",
+                    "Kombinasi tunjangan tetap dan bonus kinerja terukur"
+                ],
+                correct: 3,
+                level: "C6"
+            },
+            {
+                id: 17,
+                question: "Analisislah hubungan antara upah minimum dan inflasi dalam perekonomian Indonesia!",
+                options: [
+                    "Kenaikan upah minimum dapat memicu inflasi melalui cost-push",
+                    "Tidak ada hubungan langsung antara upah minimum dan inflasi",
+                    "Upah minimum justru dapat menekan inflasi melalui peningkatan daya beli",
+                    "Hubungannya kompleks dan dipengaruhi banyak faktor lain"
+                ],
+                correct: 3,
+                level: "C4"
+            },
+            {
+                id: 18,
+                question: "Evaluasilah efektivitas sanksi dalam PP No. 36 Tahun 2021 untuk menegakkan kepatuhan pengupahan!",
+                options: [
+                    "Sangat efektif karena sanksi administratif dan pidana",
+                    "Cukup efektif tetapi implementasinya masih lemah",
+                    "Kurang efektif karena sanksi tidak proporsional",
+                    "Tidak efektif karena tidak ada mekanisme pengawasan"
+                ],
+                correct: 1,
+                level: "C5"
+            },
+            {
+                id: 19,
+                question: "Rancang sistem pengupahan yang responsif terhadap fluktuasi ekonomi untuk melindungi pekerja dan pengusaha!",
+                options: [
+                    "Sistem upah tetap dengan penyesuaian tahunan berdasarkan inflasi",
+                    "Upah pokok minimum ditambah komponen variabel berdasarkan kinerja perusahaan",
+                    "Skema bagi hasil yang menyesuaikan dengan kondisi ekonomi",
+                    "Kombinasi upah pokok, tunjangan tetap, dan bonus fleksibel"
+                ],
+                correct: 1,
+                level: "C6"
+            },
+            {
+                id: 20,
+                question: "Analisislah dampak digitalisasi terhadap sistem pengupahan konvensional di era ekonomi digital!",
+                options: [
+                    "Memunculkan bentuk-bentuk pengupahan baru seperti gig economy",
+                    "Mengaburkan batas antara pekerja dan mitra independen",
+                    "Memerlukan penyesuaian regulasi pengupahan",
+                    "Semua jawaban benar"
+                ],
+                correct: 3,
+                level: "C4"
+            }
+        ];
+
+        // Variabel state ujian
+        let currentQuestion = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+        let timeLeft = 40 * 60; // 40 menit dalam detik
+        let timerInterval;
+        let violations = 0;
+        let examStarted = false;
+
+        // Elemen DOM
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionNav = document.getElementById('questionNav');
+        const progressBar = document.getElementById('progressBar');
+        const timerElement = document.getElementById('timer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultModal = document.getElementById('resultModal');
+        const finalScoreElement = document.getElementById('finalScore');
+        const resultMessageElement = document.getElementById('resultMessage');
+        const reviewBtn = document.getElementById('reviewBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const fullscreenWarning = document.getElementById('fullscreenWarning');
+        const startExamBtn = document.getElementById('startExam');
+
+        // Fungsi untuk memulai ujian
+        function startExam() {
+            examStarted = true;
+            fullscreenWarning.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Mulai timer
+            startTimer();
+            
+            // Setup event listener untuk mendeteksi upaya contek
+            setupAntiCheatSystem();
+            
+            // Render soal pertama
+            renderQuestions();
+            renderQuestionNav();
+            updateProgressBar();
+        }
+
+        // Fungsi untuk render semua soal
+        function renderQuestions() {
+            questionsContainer.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question-container';
+                questionElement.style.display = index === currentQuestion ? 'block' : 'none';
+                questionElement.id = `question-${index}`;
+                
+                let optionsHTML = '';
+                q.options.forEach((option, optIndex) => {
+                    const isSelected = userAnswers[index] === optIndex;
+                    optionsHTML += `
+                        <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index}, ${optIndex})">
+                            <input type="radio" name="question-${index}" ${isSelected ? 'checked' : ''}>
+                            ${String.fromCharCode(65 + optIndex)}. ${option}
+                        </div>
+                    `;
+                });
+                
+                questionElement.innerHTML = `
+                    <div>
+                        <span class="question-number">${index + 1}</span>
+                        <span class="question-text">${q.question}</span>
+                    </div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: #7f8c8d;">
+                        Level Kognitif: ${q.level}
+                    </div>
+                `;
+                
+                questionsContainer.appendChild(questionElement);
+            });
+            
+            updateNavigationButtons();
+        }
+
+        // Fungsi untuk render navigasi soal
+        function renderQuestionNav() {
+            questionNav.innerHTML = '';
+            
+            questions.forEach((_, index) => {
+                const navBtn = document.createElement('div');
+                navBtn.className = `nav-btn ${index === currentQuestion ? 'current' : ''} ${userAnswers[index] !== null ? 'answered' : ''}`;
+                navBtn.textContent = index + 1;
+                navBtn.onclick = () => navigateToQuestion(index);
+                questionNav.appendChild(navBtn);
+            });
+        }
+
+        // Fungsi untuk navigasi ke soal tertentu
+        function navigateToQuestion(index) {
+            document.getElementById(`question-${currentQuestion}`).style.display = 'none';
+            currentQuestion = index;
+            document.getElementById(`question-${currentQuestion}`).style.display = 'block';
+            renderQuestionNav();
+            updateNavigationButtons();
+        }
+
+        // Fungsi untuk memilih opsi jawaban
+        function selectOption(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+            renderQuestions();
+            renderQuestionNav();
+            updateProgressBar();
+        }
+
+        // Fungsi untuk update tombol navigasi
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === questions.length - 1;
+        }
+
+        // Fungsi untuk update progress bar
+        function updateProgressBar() {
+            const answeredCount = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answeredCount / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Fungsi untuk timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Ubah warna menjadi merah saat waktu hampir habis
+            if (timeLeft < 300) { // 5 menit
+                timerElement.style.color = '#e74c3c';
+                timerElement.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        // Fungsi untuk sistem anti contek
+        function setupAntiCheatSystem() {
+            // Deteksi perubahan visibilitas halaman
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && examStarted) {
+                    violations++;
+                    alert(`PERINGATAN! Anda telah meninggalkan halaman ujian. Pelanggaran: ${violations}/3. Jika mencapai 3, ujian akan diakhiri.`);
+                    
+                    if (violations >= 3) {
+                        alert('ANDA DIDISKUALIFIKASI! Terlalu banyak pelanggaran.');
+                        submitExam();
+                    }
+                }
+            });
+            
+            // Deteksi upaya membuka developer tools
+            let devToolsOpen = false;
+            setInterval(() => {
+                const widthThreshold = window.outerWidth - window.innerWidth > 160;
+                const heightThreshold = window.outerHeight - window.innerHeight > 160;
+                
+                if ((widthThreshold || heightThreshold) && !devToolsOpen && examStarted) {
+                    devToolsOpen = true;
+                    violations++;
+                    alert(`PERINGATAN! Penggunaan developer tools terdeteksi. Pelanggaran: ${violations}/3.`);
+                    
+                    if (violations >= 3) {
+                        alert('ANDA DIDISKUALIFIKASI! Terlalu banyak pelanggaran.');
+                        submitExam();
+                    }
+                }
+            }, 1000);
+            
+            // Blokir klik kanan
+            document.addEventListener('contextmenu', (e) => {
+                if (examStarted) {
+                    e.preventDefault();
+                    violations++;
+                    alert(`PERINGATAN! Klik kanan diblokir. Pelanggaran: ${violations}/3.`);
+                    
+                    if (violations >= 3) {
+                        alert('ANDA DIDISKUALIFIKASI! Terlalu banyak pelanggaran.');
+                        submitExam();
+                    }
+                }
+            });
+            
+            // Blokir pintasan keyboard tertentu
+            document.addEventListener('keydown', (e) => {
+                if (examStarted && (
+                    e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'Shift' || e.key === 'I') ||
+                    e.key === 'F12'
+                )) {
+                    e.preventDefault();
+                    violations++;
+                    alert(`PERINGATAN! Pintasan keyboard diblokir. Pelanggaran: ${violations}/3.`);
+                    
+                    if (violations >= 3) {
+                        alert('ANDA DIDISKUALIFIKASI! Terlalu banyak pelanggaran.');
+                        submitExam();
+                    }
+                }
+            });
+        }
+
+        // Fungsi untuk mengumpulkan jawaban
+        function submitExam() {
+            clearInterval(timerInterval);
+            examStarted = false;
+            
+            // Hitung skor
+            let score = 0;
+            questions.forEach((q, index) => {
+                if (userAnswers[index] === q.correct) {
+                    score += 5; // Setiap soal bernilai 5 poin
+                }
+            });
+            
+            // Tampilkan hasil
+            finalScoreElement.textContent = score;
+            
+            // Berikan pesan berdasarkan skor
+            if (score >= 90) {
+                resultMessageElement.textContent = "Sangat Memuaskan! Anda menguasai materi sistem pengupahan dengan sangat baik.";
+            } else if (score >= 80) {
+                resultMessageElement.textContent = "Memuaskan! Pemahaman Anda tentang sistem pengupahan sudah baik.";
+            } else if (score >= 70) {
+                resultMessageElement.textContent = "Cukup! Anda perlu memperdalam pemahaman tentang beberapa aspek sistem pengupahan.";
+            } else {
+                resultMessageElement.textContent = "Perlu Perbaikan! Disarankan untuk mempelajari kembali materi sistem pengupahan.";
+            }
+            
+            resultModal.style.display = 'flex';
+        }
+
+        // Event Listeners
+        startExamBtn.addEventListener('click', startExam);
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                navigateToQuestion(currentQuestion - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                navigateToQuestion(currentQuestion + 1);
+            }
+        });
+        
+        submitBtn.addEventListener('click', () => {
+            if (confirm('Apakah Anda yakin ingin mengumpulkan jawaban? Setelah dikumpulkan, Anda tidak dapat mengubah jawaban.')) {
+                submitExam();
+            }
+        });
+        
+        reviewBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+            // Di sini bisa ditambahkan fungsi untuk meninjau jawaban
+            alert('Fitur tinjau jawaban akan ditampilkan di sini.');
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+        });
+
+        // Inisialisasi
+        document.body.style.overflow = 'hidden'; // Mencegah scroll sebelum ujian dimulai
+    </script>
+</body>
+</html>

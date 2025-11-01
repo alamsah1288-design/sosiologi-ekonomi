@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketenagakerjaan dan Uang - Materi Ekonomi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #4a6491;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .definition-box {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .key-term {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .video-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .video-container iframe {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Tombol Sistem Pengupahan */
+        .system-wage-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .system-wage-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            background: linear-gradient(135deg, #c0392b, #a93226);
+        }
+        
+        .system-wage-btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* Panel Sistem Pengupahan */
+        .wage-system-panel {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .wage-system-panel h3 {
+            color: #e74c3c;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .wage-system-panel h3:before {
+            content: "💰";
+            font-size: 1.5rem;
+        }
+        
+        .wage-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .wage-feature {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .wage-feature:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .video-container iframe {
+                width: 100%;
+                height: auto;
+                min-height: 250px;
+            }
+            
+            .wage-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ketenagakerjaan dan Uang</h1>
+            <p class="subtitle">Materi Pembelajaran Ekonomi - Konsep Ketenagakerjaan, Pengangguran, Fungsi & Jenis Uang</p>
+            
+            <!-- Tombol untuk membuka halaman Sistem Pengupahan -->
+            <a href="sistem-pengupahan.html" class="system-wage-btn">
+                📊 Pelajari Sistem Pengupahan
+            </a>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Konsep Ketenagakerjaan</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" alt="Ilustrasi Ketenagakerjaan">
+                    <p class="image-caption">Gambar 1: Ilustrasi dunia kerja dan ketenagakerjaan</p>
+                </div>
+                
+                <div class="definition-box">
+                    <p><span class="key-term">Ketenagakerjaan</span> adalah segala hal yang berhubungan dengan tenaga kerja pada waktu sebelum, selama, dan setelah masa kerja.</p>
+                </div>
+                
+                <p>Dalam ekonomi, ketenagakerjaan berkaitan dengan penggunaan faktor produksi tenaga kerja dalam proses produksi. Tenaga kerja merupakan salah satu faktor produksi yang penting dalam kegiatan ekonomi.</p>
+                
+                <h3>Komponen Penduduk dalam Ketenagakerjaan</h3>
+                <ul>
+                    <li><strong>Tenaga Kerja</strong>: Penduduk yang sudah memasuki usia kerja (biasanya 15 tahun ke atas)</li>
+                    <li><strong>Bukan Tenaga Kerja</strong>: Penduduk yang belum atau sudah tidak masuk usia kerja (anak-anak dan lansia)</li>
+                </ul>
+                
+                <h3>Klasifikasi Tenaga Kerja</h3>
+                <div class="flex-container">
+                    <div class="card">
+                        <h3>Berdasarkan Status</h3>
+                        <ul>
+                            <li>Pekerja upahan</li>
+                            <li>Pekerja mandiri</li>
+                            <li>Pekerja tidak dibayar</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Berdasarkan Jenis Pekerjaan</h3>
+                        <ul>
+                            <li>Pekerja penuh</li>
+                            <li>Pekerja paruh waktu</li>
+                            <li>Pekerja musiman</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel Sistem Pengupahan -->
+            <div class="wage-system-panel">
+                <h3>Sistem Pengupahan di Indonesia</h3>
+                <p>Pahami secara mendalam tentang sistem pengupahan yang berlaku di Indonesia berdasarkan PP RI No. 36 Tahun 2021 tentang Pengupahan. Materi ini mencakup:</p>
+                
+                <div class="wage-features">
+                    <div class="wage-feature">Kebijakan pengupahan dan upah minimum</div>
+                    <div class="wage-feature">Sistem upah berdasarkan waktu dan hasil</div>
+                    <div class="wage-feature">Perhitungan upah lembur dan tunjangan</div>
+                    <div class="wage-feature">Mekanisme penetapan UMP dan UMK</div>
+                    <div class="wage-feature">Studi kasus penerapan sistem upah</div>
+                    <div class="wage-feature">Hak dan kewajiban pekerja & pemberi kerja</div>
+                </div>
+                
+                <a href="sistem-pengupahan.html" class="system-wage-btn">
+                    📖 Buka Materi Sistem Pengupahan
+                </a>
+            </div>
+            
+            <div class="section">
+                <h2>Analisis Pengangguran</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" alt="Ilustrasi Pengangguran">
+                    <p class="image-caption">Gambar 2: Pengangguran menjadi masalah sosial ekonomi yang kompleks</p>
+                </div>
+                
+                <div class="definition-box">
+                    <p><span class="key-term">Pengangguran</span> adalah situasi ketika seseorang yang termasuk dalam kategori angkatan kerja tidak memiliki pekerjaan dan sedang aktif mencari pekerjaan.</p>
+                </div>
+                
+                <h3>Jenis-Jenis Pengangguran</h3>
+                <div class="flex-container">
+                    <div class="card">
+                        <h3>Berdasarkan Penyebab</h3>
+                        <ul>
+                            <li><strong>Pengangguran Friksional</strong>: Pengangguran sementara karena proses pencarian kerja</li>
+                            <li><strong>Pengangguran Struktural</strong>: Pengangguran karena ketidaksesuaian keahlian</li>
+                            <li><strong>Pengangguran Musiman</strong>: Pengangguran karena perubahan musim</li>
+                            <li><strong>Pengangguran Siklikal</strong>: Pengangguran karena resesi ekonomi</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Berdasarkan Sifat</h3>
+                        <ul>
+                            <li><strong>Pengangguran Terbuka</strong>: Tidak bekerja sama sekali</li>
+                            <li><strong>Pengangguran Terselubung</strong>: Bekerja tetapi tidak optimal</li>
+                            <li><strong>Setengah Menganggur</strong>: Bekerja kurang dari jam normal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Dampak Pengangguran</h3>
+                <ul>
+                    <li>Menurunnya pendapatan per kapita</li>
+                    <li>Meningkatnya kemiskinan dan masalah sosial</li>
+                    <li>Hilangnya keterampilan kerja</li>
+                    <li>Beban psikologis bagi penganggur</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p>Kebijakan untuk mengatasi pengangguran meliputi peningkatan investasi, pelatihan keterampilan, pengembangan UMKM, dan kebijakan fiskal yang ekspansif.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Fungsi dan Jenis Uang</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" alt="Jenis-jenis Uang">
+                    <p class="image-caption">Gambar 3: Uang memiliki berbagai bentuk dan fungsi dalam perekonomian</p>
+                </div>
+                
+                <h3>Fungsi Uang</h3>
+                <div class="flex-container">
+                    <div class="card">
+                        <h3>Fungsi Asli</h3>
+                        <ul>
+                            <li><strong>Alat Tukar</strong>: Mempermudah pertukaran barang/jasa</li>
+                            <li><strong>Satuan Hitung</strong>: Mengukur nilai barang/jasa</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Fungsi Turunan</h3>
+                        <ul>
+                            <li>Alat pembayaran</li>
+                            <li>Alat penyimpan kekayaan</li>
+                            <li>Alat pembentuk modal</li>
+                            <li>Alat pemindah kekayaan</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Jenis-Jenis Uang</h3>
+                <div class="flex-container">
+                    <div class="card">
+                        <h3>Berdasarkan Bahan</h3>
+                        <ul>
+                            <li><strong>Uang Logam</strong>: Terbuat dari emas, perak, atau logam lainnya</li>
+                            <li><strong>Uang Kertas</strong>: Terbuat dari kertas khusus dengan pengaman</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Berdasarkan Lembaga</h3>
+                        <ul>
+                            <li><strong>Uang Kartal</strong>: Uang yang dikeluarkan bank sentral</li>
+                            <li><strong>Uang Giral</strong>: Uang dalam bentuk simpanan di bank</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <p>Nilai uang dapat dibedakan menjadi nilai intrinsik (nilai bahan pembuat uang) dan nilai nominal (nilai yang tercantum pada uang).</p>
+                </div>
+                
+                <h3>Syarat-Syarat Uang</h3>
+                <ul>
+                    <li>Diterima secara umum (acceptability)</li>
+                    <li>Tahan lama (durability)</li>
+                    <li>Mudah dibawa (portability)</li>
+                    <li>Dapat dibagi tanpa mengurangi nilai (divisibility)</li>
+                    <li>Stabil nilainya (stability of value)</li>
+                </ul>
+                
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qXqaxd03Zfs?si=A8DqoYRLWh5QCnKF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="video-caption">Video: Penjelasan tentang konsep uang dan perkembangannya dalam perekonomian</p>
+                </div>
+                
+                <!-- Tombol tambahan di bagian bawah halaman -->
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="sistem-pengupahan.html" class="system-wage-btn">
+                        📊 Pelajari Sistem Pengupahan Lengkap
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Materi Pembelajaran Ekonomi - Ketenagakerjaan dan Uang</p>
+            <p>&copy; 2025 - Disusun untuk Tujuan Edukasi</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tambahan JavaScript untuk interaktivitas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efek scroll halus untuk semua link
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animasi untuk tombol sistem pengupahan
+            const wageButtons = document.querySelectorAll('.system-wage-btn');
+            wageButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Menambahkan kelas animasi untuk kartu fitur sistem pengupahan
+            const wageFeatures = document.querySelectorAll('.wage-feature');
+            wageFeatures.forEach((feature, index) => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    feature.style.transition = 'all 0.5s ease';
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>

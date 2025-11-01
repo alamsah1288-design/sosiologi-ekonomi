@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Sosiologi Kelas X - Pengembangan Mendalam</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tab-button {
+            padding: 1rem 1.5rem;
+            background: white;
+            border: none;
+            cursor: pointer;
+            flex-grow: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button:hover {
+            background: #f0f0f0;
+        }
+        
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary);
+            padding-left: 1rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .theory-card {
+            background: #e8f4fc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+        
+        .case-study {
+            background: #fff8e1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #ffb300;
+        }
+        
+        .activity-card {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .assessment-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #95a5a6;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 400px;
+            object-fit: cover;
+        }
+        
+        .caption {
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+        
+        .quote {
+            background: #f5f5f5;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+        
+        .interactive-element {
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px dashed #3498db;
+        }
+        
+        .interactive-element h4 {
+            color: #2980b9;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0.5rem 0;
+        }
+        
+        .button:hover {
+            background-color: #2980b9;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📘 Materi Sosiologi – Kelas X (Pengembangan Mendalam)</h1>
+        <p>Tindakan Sosial & Interaksi Sosial | Keragaman Identitas Sosial</p>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="pertemuan5">Pertemuan 5</button>
+            <button class="tab-button" data-tab="pertemuan16">Pertemuan 16</button>
+            <button class="tab-button" data-tab="tabel">Tabel Perbandingan</button>
+            <button class="tab-button" data-tab="evaluasi">Evaluasi</button>
+        </div>
+        
+        <div id="pertemuan5" class="tab-content active">
+            <h2>Pertemuan 5 – Tindakan Sosial dan Interaksi Sosial (Pengembangan Mendalam)</h2>
+            
+            <div class="theory-card">
+                <h3>Teori Dasar: Max Weber tentang Tindakan Sosial</h3>
+                <p>Menurut Max Weber, tindakan sosial adalah perilaku manusia yang memiliki makna subjektif dan diorientasikan kepada perilaku orang lain. Weber membedakan empat jenis tindakan sosial berdasarkan rasionalitasnya:</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tindakan Sosial">
+                    <p class="caption">Gambar 1: Ilustrasi tindakan sosial dalam interaksi sehari-hari</p>
+                </div>
+                
+                <h4>1. Tindakan Rasional Instrumental (Zweckrational)</h4>
+                <p>Tindakan yang dilakukan dengan pertimbangan rasional tentang tujuan dan cara mencapainya. Contoh: Seorang siswa belajar dengan teknis tertentu untuk mencapai nilai tinggi.</p>
+                
+                <h4>2. Tindakan Rasional Berorientasi Nilai (Wertrational)</h4>
+                <p>Tindakan yang didasarkan pada keyakinan terhadap nilai-nilai tertentu, tanpa mempertimbangkan konsekuensinya. Contoh: Seorang aktivis lingkungan yang konsisten menjaga kebersihan.</p>
+                
+                <h4>3. Tindakan Afektif</h4>
+                <p>Tindakan yang didominasi oleh perasaan atau emosi. Contoh: Menangis saat sedih, tertawa saat bahagia.</p>
+                
+                <h4>4. Tindakan Tradisional</h4>
+                <p>Tindakan yang dilakukan karena kebiasaan yang sudah mengakar. Contoh: Melakukan upacara adat tertentu.</p>
+            </div>
+            
+            <div class="case-study">
+                <h3>Studi Kasus: Tindakan Sosial dalam Kehidupan Remaja</h3>
+                <p><strong>Kasus:</strong> Andi adalah siswa SMA yang aktif di organisasi sekolah. Ia memiliki berbagai jenis tindakan sosial dalam kesehariannya:</p>
+                
+                <ul>
+                    <li><strong>Rasional Instrumental:</strong> Andi membuat jadwal belajar yang ketat untuk persiapan ujian.</li>
+                    <li><strong>Rasional Berorientasi Nilai:</strong> Andi selalu membuang sampah pada tempatnya karena percaya pada pentingnya lingkungan bersih.</li>
+                    <li><strong>Afektif:</strong> Andi marah ketika melihat temannya di-bully.</li>
+                    <li><strong>Tradisional:</strong> Andi selalu bersalaman dengan orang yang lebih tua saat bertemu.</li>
+                </ul>
+                
+                <div class="interactive-element">
+                    <h4>Diskusi Kelas:</h4>
+                    <p>Berdasarkan studi kasus di atas, identifikasi tindakan sosial mana yang paling sering kalian lakukan? Jelaskan alasannya!</p>
+                    <textarea placeholder="Tulis jawabanmu di sini..." style="width:100%; min-height:100px; padding:10px; border-radius:4px; border:1px solid #ddd;"></textarea>
+                    <button class="button" onclick="alert('Jawaban telah disimpan!')">Simpan Jawaban</button>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Aktivitas Pembelajaran Mendalam</h3>
+                
+                <h4>1. Analisis Video Kehidupan Sehari-hari</h4>
+                <p>Simak video tentang interaksi sosial di lingkungan sekolah, kemudian identifikasi jenis-jenis tindakan sosial yang terlihat.</p>
+                
+                <h4>2. Role Play Tindakan Sosial</h4>
+                <p>Buat kelompok dan peragakan skenario yang menunjukkan berbagai jenis tindakan sosial. Kelompok lain menebak jenis tindakan sosial yang diperagakan.</p>
+                
+                <h4>3. Jurnal Reflektif</h4>
+                <p>Buat jurnal pribadi tentang tindakan sosial yang kamu lakukan selama seminggu. Klasifikasikan tindakan-tindakan tersebut menurut teori Weber.</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1524178239889-8cf4d46cf0ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Kegiatan Pembelajaran">
+                    <p class="caption">Gambar 2: Kegiatan diskusi dan simulasi dalam pembelajaran</p>
+                </div>
+            </div>
+            
+            <div class="assessment-card">
+                <h3>Penilaian Mendalam</h3>
+                
+                <h4>1. Penilaian Kognitif</h4>
+                <ul>
+                    <li>Tes tertulis tentang konsep dan jenis-jenis tindakan sosial</li>
+                    <li>Analisis studi kasus tentang tindakan sosial dalam kehidupan nyata</li>
+                </ul>
+                
+                <h4>2. Penilaian Afektif</h4>
+                <ul>
+                    <li>Observasi partisipasi dalam diskusi dan simulasi</li>
+                    <li>Penilaian jurnal reflektif tentang penerapan konsep dalam kehidupan</li>
+                </ul>
+                
+                <h4>3. Penilaian Psikomotorik</h4>
+                <ul>
+                    <li>Kemampuan mempresentasikan hasil analisis video</li>
+                    <li>Keterampilan dalam role play tindakan sosial</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="pertemuan16" class="tab-content">
+            <h2>Pertemuan 16 – Keragaman Identitas Sosial (Pengembangan Mendalam)</h2>
+            
+            <div class="theory-card">
+                <h3>Konsep Identitas Sosial dalam Perspektif Sosiologi</h3>
+                <p>Identitas sosial adalah bagian dari konsep diri individu yang berasal dari keanggotaannya dalam kelompok sosial tertentu. Identitas ini terbentuk melalui proses sosialisasi dan interaksi dengan orang lain.</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Identitas Sosial">
+                    <p class="caption">Gambar 3: Keragaman identitas sosial dalam masyarakat</p>
+                </div>
+                
+                <h4>Teori Identitas Sosial (Henri Tajfel)</h4>
+                <p>Menurut Tajfel, identitas sosial terdiri dari tiga komponen:</p>
+                <ol>
+                    <li><strong>Kategorisasi:</strong> Mengelompokkan diri dan orang lain ke dalam kategori sosial</li>
+                    <li><strong>Identifikasi:</strong> Mengasosiasikan diri dengan kelompok tertentu</li>
+                    <li><strong>Perbandingan:</strong> Membandingkan kelompok sendiri dengan kelompok lain</li>
+                </ol>
+                
+                <h4>Faktor Pembentuk Identitas Sosial</h4>
+                <ul>
+                    <li><strong>Primer:</strong> Keluarga, jenis kelamin, etnis</li>
+                    <li><strong>Sekunder:</strong> Pendidikan, pekerjaan, agama</li>
+                    <li><strong>Tersier:</strong> Hobi, minat, afiliasi politik</li>
+                </ul>
+            </div>
+            
+            <div class="case-study">
+                <h3>Studi Kasus: Keragaman Identitas di Indonesia</h3>
+                <p><strong>Kasus:</strong> Indonesia sebagai negara dengan keragaman identitas sosial yang sangat kompleks.</p>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspek Identitas</th>
+                                <th>Contoh Keragaman di Indonesia</th>
+                                <th>Implikasi Sosial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Etnis</td>
+                                <td>Lebih dari 1.300 suku bangsa</td>
+                                <td>Kekayaan budaya, potensi konflik etnis</td>
+                            </tr>
+                            <tr>
+                                <td>Agama</td>
+                                <td>6 agama resmi + kepercayaan lokal</td>
+                                <td>Toleransi beragama, dialog antaragama</td>
+                            </tr>
+                            <tr>
+                                <td>Bahasa</td>
+                                <td>700+ bahasa daerah</td>
+                                <td>Pelestarian bahasa, komunikasi antardaerah</td>
+                            </tr>
+                            <tr>
+                                <td>Budaya</td>
+                                <td>Ragam adat, tradisi, kesenian</td>
+                                <td>Wisata budaya, pertukaran budaya</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="interactive-element">
+                    <h4>Aktivitas: Peta Identitas Diri</h4>
+                    <p>Buat diagram yang menunjukkan berbagai identitas sosial yang kamu miliki. Kelompokkan identitas tersebut berdasarkan tingkat pentingnya bagi dirimu.</p>
+                    <button class="button" onclick="alert('Aktivitas akan dimulai!')">Mulai Aktivitas</button>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Aktivitas Pembelajaran Mendalam</h3>
+                
+                <h4>1. Proyek Etnografi Mini</h4>
+                <p>Lakukan observasi dan wawancara tentang keragaman identitas sosial di lingkungan sekitar. Buat laporan etnografi sederhana.</p>
+                
+                <h4>2. Simulasi Konferensi Budaya</h4>
+                <p>Setiap kelompok mewakili satu suku/kelompok budaya di Indonesia. Presentasikan kekhasan identitas kelompok tersebut.</p>
+                
+                <h4>3. Analisis Media</h4>
+                <p>Analisis bagaimana media massa merepresentasikan berbagai identitas sosial. Identifikasi stereotip atau bias yang mungkin ada.</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Observasi Lingkungan">
+                    <p class="caption">Gambar 4: Kegiatan observasi lingkungan sekitar</p>
+                </div>
+            </div>
+            
+            <div class="assessment-card">
+                <h3>Penilaian Mendalam</h3>
+                
+                <h4>1. Penilaian Produk</h4>
+                <ul>
+                    <li>Laporan etnografi tentang keragaman identitas sosial</li>
+                    <li>Presentasi tentang identitas budaya tertentu</li>
+                    <li>Analisis media tentang representasi identitas sosial</li>
+                </ul>
+                
+                <h4>2. Penilaian Proses</h4>
+                <ul>
+                    <li>Keterampilan observasi dan wawancara</li>
+                    <li>Kemampuan bekerja dalam kelompok</li>
+                    <li>Partisipasi dalam diskusi dan simulasi</li>
+                </ul>
+                
+                <h4>3. Penilaian Portofolio</h4>
+                <ul>
+                    <li>Kumpulan refleksi tentang identitas sosial sendiri</li>
+                    <li>Dokumentasi proses pembelajaran</li>
+                    <li>Evaluasi diri tentang perkembangan pemahaman</li>
+                </ul>
+            </div>
+            
+            <div class="quote">
+                <p>"Bhineka Tunggal Ika bukan sekadar semboyan, tetapi prinsip hidup yang harus kita praktikkan dalam menghadapi keragaman identitas sosial di Indonesia."</p>
+            </div>
+        </div>
+        
+        <div id="tabel" class="tab-content">
+            <h2>Tabel Perbandingan Mendalam</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Tindakan Sosial & Interaksi Sosial</th>
+                            <th>Keragaman Identitas Sosial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Teori Utama</strong></td>
+                            <td>Max Weber (Tindakan Sosial), George H. Mead (Interaksionisme Simbolik)</td>
+                            <td>Henri Tajfel (Identitas Sosial), Erving Goffman (Dramaturgi)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Konsep Kunci</strong></td>
+                            <td>Rasionalitas, makna subjektif, orientasi pada orang lain</td>
+                            <td>Kategorisasi, identifikasi, perbandingan sosial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Metode Penelitian</strong></td>
+                            <td>Observasi partisipan, studi kasus, analisis interaksi</td>
+                            <td>Etnografi, wawancara mendalam, analisis diskursus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aplikasi dalam Kehidupan</strong></td>
+                            <td>Memahami motif tindakan, meningkatkan komunikasi interpersonal</td>
+                            <td>Mengelola keragaman, mengurangi prasangka, membangun toleransi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tantangan Kontemporer</strong></td>
+                            <td>Dampak media digital pada interaksi sosial</td>
+                            <td>Globalisasi vs lokalitas, identitas hybrid</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Perbandingan Materi">
+                <p class="caption">Gambar 5: Ilustrasi perbandingan materi pembelajaran sosiologi</p>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Integrasi Konsep: Hubungan Tindakan Sosial dan Identitas Sosial</h3>
+                <p>Tindakan sosial dan identitas sosial saling berkaitan erat. Identitas sosial mempengaruhi bagaimana seseorang bertindak, sementara tindakan sosial yang berulang dapat memperkuat atau mengubah identitas sosial.</p>
+                
+                <p><strong>Contoh:</strong> Seorang yang mengidentifikasi diri sebagai "aktivis lingkungan" akan cenderung melakukan tindakan sosial yang konsisten dengan identitas tersebut, seperti mengikuti aksi protes atau kampanye lingkungan. Tindakan-tindakan ini kemudian memperkuat identitasnya sebagai aktivis lingkungan.</p>
+            </div>
+        </div>
+        
+        <div id="evaluasi" class="tab-content">
+            <h2>Evaluasi Pembelajaran</h2>
+            
+            <div class="assessment-card">
+                <h3>Kuis Pemahaman Konsep</h3>
+                
+                <div class="interactive-element">
+                    <h4>Soal 1: Jenis Tindakan Sosial</h4>
+                    <p>Seorang siswa belajar dengan tekun menggunakan metode tertentu untuk mendapatkan nilai terbaik dalam ujian. Tindakan ini termasuk jenis apa menurut Max Weber?</p>
+                    <input type="radio" id="q1a" name="q1" value="a">
+                    <label for="q1a">a) Tindakan Tradisional</label><br>
+                    <input type="radio" id="q1b" name="q1" value="b">
+                    <label for="q1b">b) Tindakan Afektif</label><br>
+                    <input type="radio" id="q1c" name="q1" value="c">
+                    <label for="q1c">c) Tindakan Rasional Instrumental</label><br>
+                    <input type="radio" id="q1d" name="q1" value="d">
+                    <label for="q1d">d) Tindakan Rasional Berorientasi Nilai</label>
+                </div>
+                
+                <div class="interactive-element">
+                    <h4>Soal 2: Identitas Sosial</h4>
+                    <p>Menurut teori identitas sosial Henri Tajfel, proses mengelompokkan diri dan orang lain ke dalam kategori sosial disebut:</p>
+                    <input type="radio" id="q2a" name="q2" value="a">
+                    <label for="q2a">a) Identifikasi</label><br>
+                    <input type="radio" id="q2b" name="q2" value="b">
+                    <label for="q2b">b) Kategorisasi</label><br>
+                    <input type="radio" id="q2c" name="q2" value="c">
+                    <label for="q2c">c) Perbandingan</label><br>
+                    <input type="radio" id="q2d" name="q2" value="d">
+                    <label for="q2d">d) Asimilasi</label>
+                </div>
+                
+                <button class="button" onclick="checkAnswers()">Periksa Jawaban</button>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Tugas Proyek: Analisis Tindakan dan Identitas Sosial</h3>
+                <p><strong>Instruksi:</strong> Pilih satu fenomena sosial di lingkungan sekitar (sekolah, keluarga, atau komunitas). Analisis fenomena tersebut dengan menggunakan konsep tindakan sosial dan identitas sosial yang telah dipelajari.</p>
+                
+                <h4>Langkah-langkah:</h4>
+                <ol>
+                    <li>Identifikasi fenomena sosial yang menarik</li>
+                    <li>Observasi dan kumpulkan data tentang fenomena tersebut</li>
+                    <li>Analisis menggunakan konsep tindakan sosial (jenis, motif, dll.)</li>
+                    <li>Analisis menggunakan konsep identitas sosial (identitas yang terlibat, dll.)</li>
+                    <li>Buat kesimpulan dan rekomendasi</li>
+                </ol>
+                
+                <div class="interactive-element">
+                    <h4>Upload Tugas</h4>
+                    <input type="file" id="tugasUpload" accept=".pdf,.doc,.docx">
+                    <button class="button" onclick="alert('Tugas telah diupload!')">Upload Tugas</button>
+                </div>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Refleksi Pembelajaran</h3>
+                <p>Setelah mempelajari materi tindakan sosial dan keragaman identitas sosial, renungkan pertanyaan-pertanyaan berikut:</p>
+                
+                <ul>
+                    <li>Bagaimana pemahaman tentang tindakan sosial membantu kamu dalam berinteraksi dengan orang lain?</li>
+                    <li>Apa tantangan terbesar dalam menghadapi keragaman identitas sosial di Indonesia?</li>
+                    <li>Bagaimana kamu dapat menerapkan pengetahuan ini dalam kehidupan sehari-hari?</li>
+                </ul>
+                
+                <textarea placeholder="Tulis refleksimu di sini..." style="width:100%; min-height:150px; padding:10px; border-radius:4px; border:1px solid #ddd; margin-top:1rem;"></textarea>
+                <button class="button" onclick="alert('Refleksi telah disimpan!')">Simpan Refleksi</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Materi Sosiologi Kelas X - Pengembangan Materi Mendalam</p>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+        
+        // Function to check quiz answers
+        function checkAnswers() {
+            let score = 0;
+            
+            // Check question 1
+            const q1Answer = document.querySelector('input[name="q1"]:checked');
+            if (q1Answer && q1Answer.value === 'c') {
+                score++;
+                alert('Soal 1: Benar! Tindakan belajar dengan metode tertentu untuk mencapai nilai terbaik adalah contoh Tindakan Rasional Instrumental.');
+            } else {
+                alert('Soal 1: Salah. Jawaban yang benar adalah c) Tindakan Rasional Instrumental.');
+            }
+            
+            // Check question 2
+            const q2Answer = document.querySelector('input[name="q2"]:checked');
+            if (q2Answer && q2Answer.value === 'b') {
+                score++;
+                alert('Soal 2: Benar! Proses mengelompokkan diri dan orang lain ke dalam kategori sosial disebut Kategorisasi.');
+            } else {
+                alert('Soal 2: Salah. Jawaban yang benar adalah b) Kategorisasi.');
+            }
+            
+            alert(`Skor Anda: ${score} dari 2 soal`);
+        }
+    </script>
+</body>
+</html>

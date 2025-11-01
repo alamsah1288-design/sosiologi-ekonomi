@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Ekonomi: Fiskal & Moneter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h2 i {
+            margin-right: 10px;
+        }
+        
+        .card h3 {
+            color: #3498db;
+            margin: 20px 0 12px;
+        }
+        
+        .card p, .card ul, .card ol {
+            margin-bottom: 15px;
+        }
+        
+        .card ul, .card ol {
+            padding-left: 20px;
+        }
+        
+        .card li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f7fb;
+            color: #2c3e50;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .fiscal {
+            border-top: 4px solid #3498db;
+        }
+        
+        .monetary {
+            border-top: 4px solid #2ecc71;
+        }
+        
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .policy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .policy-card.fiscal {
+            border-top: 4px solid #3498db;
+        }
+        
+        .policy-card.monetary {
+            border-top: 4px solid #2ecc71;
+        }
+        
+        .policy-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .policy-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .impact-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .impact-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .impact-list li:before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Simulasi Styles */
+        .simulation {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .simulation h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .control-group {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .control-group h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .control-group h3 i {
+            margin-right: 10px;
+        }
+        
+        .slider-container {
+            margin-bottom: 15px;
+        }
+        
+        .slider-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .slider-value {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .slider-value span {
+            font-weight: 600;
+            color: #3498db;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .result-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .result-card h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .result-change {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .positive {
+            color: #2ecc71;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .simulation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #e9ecef;
+            color: #2c3e50;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            color: #666;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .results {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-landmark"></i> Kebijakan Ekonomi: Fiskal & Moneter</h1>
+            <p>Memahami instrumen, perbedaan, dan dampak kebijakan fiskal dan moneter dalam perekonomian</p>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="card">
+                    <h2><i class="fas fa-info-circle"></i> Pengertian Kebijakan Ekonomi</h2>
+                    <p>Kebijakan ekonomi adalah langkah-langkah yang diambil oleh pemerintah dan bank sentral untuk memengaruhi perekonomian suatu negara. Dua kebijakan utama adalah <strong>kebijakan fiskal</strong> (melalui anggaran pemerintah) dan <strong>kebijakan moneter</strong> (melalui pengaturan jumlah uang beredar).</p>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ilustrasi Kebijakan Ekonomi" width="700">
+                        <div class="caption">Ilustrasi kebijakan ekonomi dan dampaknya</div>
+                    </div>
+                    
+                    <p>Kedua kebijakan ini saling melengkapi dan bertujuan untuk mencapai stabilitas ekonomi, pertumbuhan yang berkelanjutan, dan kesejahteraan masyarakat.</p>
+                </div>
+                
+                <!-- Simulasi Interaktif -->
+                <div class="simulation">
+                    <h2><i class="fas fa-sliders-h"></i> Simulasi Dampak Kebijakan Ekonomi</h2>
+                    <p>Ubah parameter kebijakan di bawah ini untuk melihat dampaknya terhadap indikator ekonomi:</p>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <h3><i class="fas fa-money-bill-wave"></i> Kebijakan Fiskal</h3>
+                            
+                            <div class="slider-container">
+                                <label>Pajak (%)</label>
+                                <div class="slider-value">
+                                    <span>Rendah</span>
+                                    <span id="tax-value">20%</span>
+                                    <span>Tinggi</span>
+                                </div>
+                                <input type="range" min="10" max="40" value="20" id="tax-slider">
+                            </div>
+                            
+                            <div class="slider-container">
+                                <label>Belanja Pemerintah</label>
+                                <div class="slider-value">
+                                    <span>Rendah</span>
+                                    <span id="spending-value">50</span>
+                                    <span>Tinggi</span>
+                                </div>
+                                <input type="range" min="10" max="100" value="50" id="spending-slider">
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <h3><i class="fas fa-chart-line"></i> Kebijakan Moneter</h3>
+                            
+                            <div class="slider-container">
+                                <label>Suku Bunga (%)</label>
+                                <div class="slider-value">
+                                    <span>Rendah</span>
+                                    <span id="interest-value">5%</span>
+                                    <span>Tinggi</span>
+                                </div>
+                                <input type="range" min="1" max="15" value="5" id="interest-slider">
+                            </div>
+                            
+                            <div class="slider-container">
+                                <label>Jumlah Uang Beredar</label>
+                                <div class="slider-value">
+                                    <span>Rendah</span>
+                                    <span id="money-value">50</span>
+                                    <span>Tinggi</span>
+                                </div>
+                                <input type="range" min="10" max="100" value="50" id="money-slider">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results">
+                        <div class="result-card">
+                            <h4>Pertumbuhan Ekonomi</h4>
+                            <div class="result-value" id="growth-value">5.2%</div>
+                            <div class="result-change positive" id="growth-change">+0.0%</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Inflasi</h4>
+                            <div class="result-value" id="inflation-value">3.5%</div>
+                            <div class="result-change positive" id="inflation-change">+0.0%</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Pengangguran</h4>
+                            <div class="result-value" id="unemployment-value">5.8%</div>
+                            <div class="result-change negative" id="unemployment-change">+0.0%</div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Neraca Perdagangan</h4>
+                            <div class="result-value" id="trade-value">-2.1%</div>
+                            <div class="result-change negative" id="trade-change">+0.0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="simulation-buttons">
+                        <button class="btn btn-primary" onclick="resetSimulation()">
+                            <i class="fas fa-redo"></i> Reset Simulasi
+                        </button>
+                        <button class="btn btn-secondary" onclick="applyRandomPolicy()">
+                            <i class="fas fa-random"></i> Kebijakan Acak
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-money-bill-wave"></i> Kebijakan Fiskal</h2>
+                    <p>Kebijakan fiskal adalah kebijakan ekonomi yang dilakukan pemerintah melalui pengelolaan pendapatan dan belanja negara untuk memengaruhi perekonomian.</p>
+                    
+                    <h3>Instrumen Kebijakan Fiskal</h3>
+                    <div class="policy-grid">
+                        <div class="policy-card fiscal">
+                            <h3><i class="fas fa-taxi"></i> Pajak</h3>
+                            <p>Pemerintah dapat mengubah tarif pajak untuk memengaruhi daya beli masyarakat dan kegiatan ekonomi.</p>
+                        </div>
+                        <div class="policy-card fiscal">
+                            <h3><i class="fas fa-hand-holding-usd"></i> Anggaran Belanja</h3>
+                            <p>Peningkatan atau penurunan belanja pemerintah dapat merangsang atau menahan pertumbuhan ekonomi.</p>
+                        </div>
+                        <div class="policy-card fiscal">
+                            <h3><i class="fas fa-money-check-alt"></i> Subsidi</h3>
+                            <p>Bantuan pemerintah kepada masyarakat atau sektor tertentu untuk menjaga stabilitas harga.</p>
+                        </div>
+                        <div class="policy-card fiscal">
+                            <h3><i class="fas fa-hard-hat"></i> Proyek Publik</h3>
+                            <p>Investasi pemerintah dalam infrastruktur untuk menciptakan lapangan kerja dan merangsang ekonomi.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Jenis Kebijakan Fiskal</h3>
+                    <ul>
+                        <li><strong>Kebijakan Fiskal Ekspansif</strong>: Meningkatkan belanja pemerintah dan/atau menurunkan pajak untuk merangsang ekonomi selama resesi</li>
+                        <li><strong>Kebijakan Fiskal Kontraktif</strong>: Mengurangi belanja pemerintah dan/atau menaikkan pajak untuk menahan inflasi selama ekonomi overheating</li>
+                    </ul>
+                    
+                    <h3>Dampak Kebijakan Fiskal</h3>
+                    <ul class="impact-list">
+                        <li>Mempengaruhi pertumbuhan ekonomi dan produk domestik bruto (PDB)</li>
+                        <li>Mengubah distribusi pendapatan dalam masyarakat</li>
+                        <li>Mempengaruhi tingkat pengangguran</li>
+                        <li>Dapat menyebabkan defisit atau surplus anggaran</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-chart-line"></i> Kebijakan Moneter</h2>
+                    <p>Kebijakan moneter adalah kebijakan ekonomi yang dilakukan bank sentral untuk mengatur jumlah uang beredar dan suku bunga untuk memengaruhi perekonomian.</p>
+                    
+                    <h3>Instrumen Kebijakan Moneter</h3>
+                    <div class="policy-grid">
+                        <div class="policy-card monetary">
+                            <h3><i class="fas fa-percentage"></i> Suku Bunga</h3>
+                            <p>Bank sentral menaikkan atau menurunkan suku bunga untuk memengaruhi permintaan kredit.</p>
+                        </div>
+                        <div class="policy-card monetary">
+                            <h3><i class="fas fa-coins"></i> Giro Wajib Minimum</h3>
+                            <p>Mengatur persentase simpanan bank yang harus disimpan di bank sentral.</p>
+                        </div>
+                        <div class="policy-card monetary">
+                            <h3><i class="fas fa-exchange-alt"></i> Operasi Pasar Terbuka</h3>
+                            <p>Bank sentral membeli atau menjual surat berharga untuk memengaruhi jumlah uang beredar.</p>
+                        </div>
+                        <div class="policy-card monetary">
+                            <h3><i class="fas fa-hand-holding-usd"></i> Fasilitas Diskonto</h3>
+                            <p>Bank sentral memberikan pinjaman kepada bank umum dengan tingkat bunga tertentu.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Jenis Kebijakan Moneter</h3>
+                    <ul>
+                        <li><strong>Kebijakan Moneter Ekspansif</strong>: Meningkatkan jumlah uang beredar dan menurunkan suku bunga untuk merangsang ekonomi</li>
+                        <li><strong>Kebijakan Moneter Kontraktif</strong>: Mengurangi jumlah uang beredar dan menaikkan suku bunga untuk mengendalikan inflasi</li>
+                    </ul>
+                    
+                    <h3>Dampak Kebijakan Moneter</h3>
+                    <ul class="impact-list">
+                        <li>Mempengaruhi tingkat inflasi dalam perekonomian</li>
+                        <li>Mengubah nilai tukar mata uang</li>
+                        <li>Mempengaruhi investasi dan konsumsi masyarakat</li>
+                        <li>Dapat memengaruhi stabilitas sistem keuangan</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-balance-scale"></i> Perbandingan Kebijakan Fiskal dan Moneter</h2>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspek</th>
+                                <th>Kebijakan Fiskal</th>
+                                <th>Kebijakan Moneter</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pelaksana</strong></td>
+                                <td>Pemerintah</td>
+                                <td>Bank Sentral</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instrumen</strong></td>
+                                <td>Pajak, belanja pemerintah, subsidi</td>
+                                <td>Suku bunga, GWM, operasi pasar terbuka</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tujuan Utama</strong></td>
+                                <td>Pertumbuhan ekonomi, pemerataan pendapatan</td>
+                                <td>Stabilitas harga, nilai tukar</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Waktu Respons</strong></td>
+                                <td>Relatif lambat (perlu persetujuan legislatif)</td>
+                                <td>Relatif cepat (dapat diputuskan sewaktu-waktu)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dampak Langsung</strong></td>
+                                <td>Pada pendapatan dan pengeluaran masyarakat</td>
+                                <td>Pada jumlah uang beredar dan kredit</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Efek Samping</strong></td>
+                                <td>Defisit anggaran, utang pemerintah</td>
+                                <td>Gelembung aset, ketidakstabilan finansial</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> Evaluasi Kebijakan Ekonomi</h2>
+                    <p>Evaluasi kebijakan ekonomi penting untuk mengetahui efektivitas kebijakan yang telah diterapkan dan membuat penyesuaian yang diperlukan.</p>
+                    
+                    <h3>Indikator Keberhasilan Kebijakan Ekonomi</h3>
+                    <ul class="impact-list">
+                        <li><strong>Pertumbuhan Ekonomi</strong>: Peningkatan PDB dari waktu ke waktu</li>
+                        <li><strong>Stabilitas Harga</strong>: Tingkat inflasi yang terkendali</li>
+                        <li><strong>Kesempatan Kerja</strong>: Tingkat pengangguran yang rendah</li>
+                        <li><strong>Neraca Pembayaran</strong>: Keseimbangan antara ekspor dan impor</li>
+                        <li><strong>Distribusi Pendapatan</strong>: Pemerataan kesejahteraan masyarakat</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Evaluasi Kebijakan Ekonomi" width="700">
+                        <div class="caption">Indikator keberhasilan kebijakan ekonomi</div>
+                    </div>
+                    
+                    <h3>Koordinasi Kebijakan Fiskal dan Moneter</h3>
+                    <p>Agar kebijakan ekonomi efektif, diperlukan koordinasi yang baik antara kebijakan fiskal (pemerintah) dan kebijakan moneter (bank sentral). Ketidakselarasan antara kedua kebijakan ini dapat menimbulkan ketidakstabilan ekonomi.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="card">
+                    <h2><i class="fas fa-lightbulb"></i> Fakta Menarik</h2>
+                    <p><strong>Kebijakan Fiskal</strong> pertama kali dikemukakan oleh John Maynard Keynes dalam bukunya "The General Theory of Employment, Interest and Money" (1936).</p>
+                    <p><strong>Bank Indonesia</strong> sebagai bank sentral memiliki tujuan utama mencapai dan memelihara kestabilan nilai rupiah.</p>
+                    <p>Di Indonesia, <strong>APBN</strong> (Anggaran Pendapatan dan Belanja Negara) adalah instrumen utama kebijakan fiskal.</p>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-history"></i> Studi Kasus</h2>
+                    <h3>Krisis Finansial 2008</h3>
+                    <p>Pemerintah AS menerapkan kebijakan fiskal ekspansif (paket stimulus) sementara Fed menerapkan kebijakan moneter ekspansif (penurunan suku bunga dan quantitative easing).</p>
+                    
+                    <h3>Pandemi COVID-19</h3>
+                    <p>Indonesia menerapkan kebijakan fiskal melalui PEN (Pemulihan Ekonomi Nasional) dan BI menerapkan kebijakan moneter ekspansif dengan menurunkan suku bunga.</p>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-book"></i> Istilah Penting</h2>
+                    <p><strong>APBN</strong>: Anggaran Pendapatan dan Belanja Negara</p>
+                    <p><strong>BI Rate</strong>: Suku bunga kebijakan Bank Indonesia</p>
+                    <p><strong>Quantitative Easing</strong>: Pelonggaran kuantitatif, kebijakan moneter tidak konvensional</p>
+                    <p><strong>Multiplier Effect</strong>: Efek pengganda dari kebijakan fiskal terhadap perekonomian</p>
+                </div>
+                
+                <div class="card">
+                    <h2><i class="fas fa-globe"></i> Contoh Implementasi</h2>
+                    <h3>Kebijakan Fiskal di Indonesia</h3>
+                    <p>• Subsidi BBM dan listrik<br>• Pembebasan PPN atas barang kebutuhan pokok<br>• Insentif pajak untuk UMKM</p>
+                    
+                    <h3>Kebijakan Moneter di Indonesia</h3>
+                    <p>• Penetapan BI Rate<br>• Penyesuaian Giro Wajib Minimum<br>• Operasi pasar terbuka</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Materi Pembelajaran Ekonomi - Kebijakan Fiskal dan Moneter</p>
+            <p>Digunakan untuk tujuan edukasi</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simulasi Interaktif
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi slider
+            const taxSlider = document.getElementById('tax-slider');
+            const spendingSlider = document.getElementById('spending-slider');
+            const interestSlider = document.getElementById('interest-slider');
+            const moneySlider = document.getElementById('money-slider');
+            
+            // Inisialisasi nilai tampilan
+            document.getElementById('tax-value').textContent = taxSlider.value + '%';
+            document.getElementById('spending-value').textContent = spendingSlider.value;
+            document.getElementById('interest-value').textContent = interestSlider.value + '%';
+            document.getElementById('money-value').textContent = moneySlider.value;
+            
+            // Event listener untuk slider
+            taxSlider.addEventListener('input', updateSimulation);
+            spendingSlider.addEventListener('input', updateSimulation);
+            interestSlider.addEventListener('input', updateSimulation);
+            moneySlider.addEventListener('input', updateSimulation);
+            
+            // Inisialisasi simulasi
+            updateSimulation();
+        });
+        
+        function updateSimulation() {
+            // Dapatkan nilai slider
+            const tax = parseInt(document.getElementById('tax-slider').value);
+            const spending = parseInt(document.getElementById('spending-slider').value);
+            const interest = parseInt(document.getElementById('interest-slider').value);
+            const money = parseInt(document.getElementById('money-slider').value);
+            
+            // Update nilai tampilan slider
+            document.getElementById('tax-value').textContent = tax + '%';
+            document.getElementById('spending-value').textContent = spending;
+            document.getElementById('interest-value').textContent = interest + '%';
+            document.getElementById('money-value').textContent = money;
+            
+            // Hitung dampak kebijakan (simulasi sederhana)
+            const growthBase = 5.2;
+            const inflationBase = 3.5;
+            const unemploymentBase = 5.8;
+            const tradeBase = -2.1;
+            
+            // Faktor pengaruh (disederhanakan untuk simulasi)
+            const growthImpact = ((50 - tax) * 0.05) + ((spending - 50) * 0.04) + ((50 - interest) * 0.03) + ((money - 50) * 0.02);
+            const inflationImpact = ((tax - 20) * 0.02) + ((spending - 50) * 0.03) + ((interest - 5) * 0.01) + ((money - 50) * 0.04);
+            const unemploymentImpact = ((tax - 20) * 0.03) + ((50 - spending) * 0.04) + ((interest - 5) * 0.02) + ((50 - money) * 0.01);
+            const tradeImpact = ((tax - 20) * 0.01) + ((50 - spending) * 0.02) + ((interest - 5) * 0.03) + ((50 - money) * 0.02);
+            
+            // Hitung nilai akhir
+            const growthValue = growthBase + growthImpact;
+            const inflationValue = inflationBase + inflationImpact;
+            const unemploymentValue = unemploymentBase + unemploymentImpact;
+            const tradeValue = tradeBase + tradeImpact;
+            
+            // Update nilai tampilan
+            document.getElementById('growth-value').textContent = growthValue.toFixed(1) + '%';
+            document.getElementById('inflation-value').textContent = inflationValue.toFixed(1) + '%';
+            document.getElementById('unemployment-value').textContent = unemploymentValue.toFixed(1) + '%';
+            document.getElementById('trade-value').textContent = tradeValue.toFixed(1) + '%';
+            
+            // Update perubahan
+            document.getElementById('growth-change').textContent = (growthImpact >= 0 ? '+' : '') + growthImpact.toFixed(1) + '%';
+            document.getElementById('growth-change').className = 'result-change ' + (growthImpact >= 0 ? 'positive' : 'negative');
+            
+            document.getElementById('inflation-change').textContent = (inflationImpact >= 0 ? '+' : '') + inflationImpact.toFixed(1) + '%';
+            document.getElementById('inflation-change').className = 'result-change ' + (inflationImpact >= 0 ? 'positive' : 'negative');
+            
+            document.getElementById('unemployment-change').textContent = (unemploymentImpact >= 0 ? '+' : '') + unemploymentImpact.toFixed(1) + '%';
+            document.getElementById('unemployment-change').className = 'result-change ' + (unemploymentImpact >= 0 ? 'positive' : 'negative');
+            
+            document.getElementById('trade-change').textContent = (tradeImpact >= 0 ? '+' : '') + tradeImpact.toFixed(1) + '%';
+            document.getElementById('trade-change').className = 'result-change ' + (tradeImpact >= 0 ? 'positive' : 'negative');
+        }
+        
+        function resetSimulation() {
+            document.getElementById('tax-slider').value = 20;
+            document.getElementById('spending-slider').value = 50;
+            document.getElementById('interest-slider').value = 5;
+            document.getElementById('money-slider').value = 50;
+            updateSimulation();
+        }
+        
+        function applyRandomPolicy() {
+            // Kebijakan ekspansif acak
+            if (Math.random() > 0.5) {
+                document.getElementById('tax-slider').value = 10 + Math.floor(Math.random() * 10);
+                document.getElementById('spending-slider').value = 70 + Math.floor(Math.random() * 30);
+                document.getElementById('interest-slider').value = 1 + Math.floor(Math.random() * 4);
+                document.getElementById('money-slider').value = 70 + Math.floor(Math.random() * 30);
+            } 
+            // Kebijakan kontraktif acak
+            else {
+                document.getElementById('tax-slider').value = 30 + Math.floor(Math.random() * 10);
+                document.getElementById('spending-slider').value = 10 + Math.floor(Math.random() * 30);
+                document.getElementById('interest-slider').value = 10 + Math.floor(Math.random() * 5);
+                document.getElementById('money-slider').value = 10 + Math.floor(Math.random() * 30);
+            }
+            updateSimulation();
+        }
+    </script>
+</body>
+</html>

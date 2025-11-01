@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Strategi Fiskal Purbaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(120deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tabs:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            background: linear-gradient(120deg, #1a237e 0%, #283593 100%);
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tab-btn {
+            padding: 15px 20px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+        
+        .tab-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-bottom: 3px solid #FFD700;
+        }
+        
+        .tab-content {
+            padding: 30px;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-pane h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-left: 5px solid #1a237e;
+            padding-left: 15px;
+        }
+        
+        .tab-pane h3 {
+            color: #283593;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        .tab-pane p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .tab-pane ul {
+            margin-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .tab-pane li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .tab-pane li::before {
+            content: '•';
+            color: #1a237e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .visualization {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #1a237e;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #1a237e, #283593);
+            border-radius: 3px;
+        }
+        
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 5px solid #e9ecef;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .profile-info {
+            text-align: center;
+        }
+        
+        .profile-info h3 {
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .simulator {
+            margin-top: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1a237e;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: #1a237e;
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.2);
+            outline: none;
+        }
+        
+        .input-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            padding: 8px 12px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            border-left: 3px solid #1a237e;
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            background: linear-gradient(120deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(26, 35, 126, 0.3);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(120deg, #283593 0%, #1a237e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.4);
+        }
+        
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border-left: 5px solid #1a237e;
+        }
+        
+        .results h3 {
+            margin-bottom: 20px;
+            color: #1a237e;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .result-item {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .result-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .result-item h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .result-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a237e;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 30px;
+        }
+        
+        .income-chain {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .chain-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #1a237e;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .chain-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .chain-item h4 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .chain-arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a237e;
+            margin: 10px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(120deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(26, 35, 126, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .info-bubble:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                min-width: 100%;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analisis Strategi Fiskal Purbaya</h1>
+            <p>Simulasi Dampak Injeksi Rp 200 Triliun terhadap Perekonomian Indonesia</p>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab('tab1')"><i class="fas fa-info-circle"></i> Latar Belakang</button>
+                    <button class="tab-btn" onclick="openTab('tab2')"><i class="fas fa-chess"></i> Strategi</button>
+                    <button class="tab-btn" onclick="openTab('tab3')"><i class="fas fa-link"></i> Rantai Pendapatan</button>
+                    <button class="tab-btn" onclick="openTab('tab4')"><i class="fas fa-calculator"></i> Simulasi</button>
+                    <button class="tab-btn" onclick="openTab('tab5')"><i class="fas fa-exclamation-triangle"></i> Risiko</button>
+                    <button class="tab-btn" onclick="openTab('tab6')"><i class="fas fa-check-circle"></i> Kesimpulan</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="tab1" class="tab-pane active">
+                        <h2>Latar Belakang Kebijakan</h2>
+                        <p>Menteri Keuangan Purbaya mengumumkan strategi kontroversial untuk mencapai target pertumbuhan ekonomi 6% pada 2025 melalui injeksi Rp 200 triliun dari saldo cadangan negara ke sistem perbankan.</p>
+                        
+                        <h3>Kondisi Awal 2024</h3>
+                        <ul>
+                            <li>PDB Indonesia 2024: Rp 22.139 triliun</li>
+                            <li>PDB per kapita 2024: Rp 78,6 juta</li>
+                            <li>Target PDB per kapita 2025: Rp 89,9 juta</li>
+                        </ul>
+                        
+                        <h3>Tantangan yang Dihadapi</h3>
+                        <p>Perekonomian Indonesia membutuhkan dorongan kuat untuk mencapai pertumbuhan 6% di tengah ketidakpastian global dan perlambatan ekonomi dunia. Strategi ini hadir sebagai terobosan yang berani namun mengandung risiko.</p>
+                    </div>
+                    
+                    <div id="tab2" class="tab-pane">
+                        <h2>Strategi Purbaya</h2>
+                        <p>Strategi ini bertujuan memacu pertumbuhan dengan mendorong siklus ekonomi melalui penyaluran kredit ke sektor produktif.</p>
+                        
+                        <h3>Mekanisme Implementasi</h3>
+                        <ul>
+                            <li>Injeksi Rp 200 triliun dari saldo cadangan negara di BI</li>
+                            <li>Penyaluran melalui sistem perbankan dengan multiplier effect</li>
+                            <li>Target penyaluran ke sektor produktif (70%) vs konsumtif (30%)</li>
+                            <li>Dukungan program pemerintah seperti PNM Mekaar dan MBG</li>
+                        </ul>
+                        
+                        <h3>Tujuan yang Ingin Dicapai</h3>
+                        <ul>
+                            <li>Meningkatkan konsumsi rumah tangga (C)</li>
+                            <li>Mendorong investasi swasta (I)</li>
+                            <li>Memperkuat penyerapan anggaran pemerintah (G)</li>
+                            <li>Menciptakan lapangan kerja dan meningkatkan daya beli</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tab3" class="tab-pane">
+                        <h2>Rantai Pendapatan Nasional</h2>
+                        <p>Berikut adalah penjelasan tentang rantai pendapatan nasional dari PDB hingga Disposable Income:</p>
+                        
+                        <div class="income-chain">
+                            <div class="chain-item">
+                                <h4>PDB (Produk Domestik Bruto)</h4>
+                                <p>Total nilai semua barang dan jasa yang diproduksi di dalam negeri selama satu tahun, tanpa memandang kepemilikan faktor produksi.</p>
+                                <p><strong>Rumus:</strong> PDB = C + I + G + (X - M)</p>
+                            </div>
+                            
+                            <div class="chain-arrow"><i class="fas fa-arrow-down"></i></div>
+                            
+                            <div class="chain-item">
+                                <h4>GNP/PNB (Produk Nasional Bruto)</h4>
+                                <p>PDB ditambah pendapatan faktor produksi warga negara di luar negeri dikurangi pendapatan faktor produksi asing di dalam negeri.</p>
+                                <p><strong>Rumus:</strong> PNB = PDB + Pendapatan WNI LN - Pendapatan Asing DN</p>
+                            </div>
+                            
+                            <div class="chain-arrow"><i class="fas fa-arrow-down"></i></div>
+                            
+                            <div class="chain-item">
+                                <h4>NNP/PNN (Produk Nasional Neto)</h4>
+                                <p>PNB dikurangi penyusutan (depresiasi) barang modal.</p>
+                                <p><strong>Rumus:</strong> PNN = PNB - Penyusutan</p>
+                            </div>
+                            
+                            <div class="chain-arrow"><i class="fas fa-arrow-down"></i></div>
+                            
+                            <div class="chain-item">
+                                <h4>NNI (Pendapatan Nasional Neto)</h4>
+                                <p>PNN dikurangi pajak tidak langsung dan ditambah subsidi.</p>
+                                <p><strong>Rumus:</strong> NNI = PNN - Pajak Tidak Langsung + Subsidi</p>
+                            </div>
+                            
+                            <div class="chain-arrow"><i class="fas fa-arrow-down"></i></div>
+                            
+                            <div class="chain-item">
+                                <h4>PI (Pendapatan Perseorangan)</h4>
+                                <p>NNI dikurangi laba ditahan, iuran jaminan sosial, dan pajak perusahaan, ditambah transfer payment.</p>
+                                <p><strong>Rumus:</strong> PI = NNI - (Laba Ditahan + Iuran + Pajak Perusahaan) + Transfer Payment</p>
+                            </div>
+                            
+                            <div class="chain-arrow"><i class="fas fa-arrow-down"></i></div>
+                            
+                            <div class="chain-item">
+                                <h4>DI (Disposable Income)</h4>
+                                <p>PI dikurangi pajak langsung. Ini adalah pendapatan yang siap dibelanjakan atau ditabung oleh masyarakat.</p>
+                                <p><strong>Rumus:</strong> DI = PI - Pajak Langsung</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="tab4" class="tab-pane">
+                        <h2>Simulasi Dampak Ekonomi</h2>
+                        <p>Gunakan simulator berikut untuk melihat dampak potensial dari strategi injeksi Rp 200 triliun terhadap perekonomian Indonesia.</p>
+                        
+                        <div class="simulator">
+                            <div class="input-group">
+                                <label for="injection">Jumlah Injeksi (Triliun Rupiah)</label>
+                                <input type="number" id="injection" value="200" placeholder="Masukkan jumlah injeksi">
+                                <div class="input-hint">
+                                    <strong>Contoh:</strong> Rp 200 triliun (nilai yang diusulkan Purbaya)
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="multiplier">Multiplier Effect (x)</label>
+                                <input type="number" id="multiplier" value="10" placeholder="Masukkan multiplier effect" step="0.1" min="1" max="20">
+                                <div class="input-hint">
+                                    <strong>Contoh nilai:</strong><br>
+                                    - Konservatif: 3-5x (ekonomi lesu)<br>
+                                    - Sedang: 5-10x (ekonomi normal)<br>
+                                    - Tinggi: 10-15x (ekonomi ekspansif)<br>
+                                    Nilai 10x berarti setiap Rp1 yang diinjeksi menjadi Rp10 dalam perekonomian
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="productive">Alokasi Kredit Produktif (%)</label>
+                                <input type="number" id="productive" value="70" placeholder="Masukkan persentase kredit produktif" min="0" max="100">
+                                <div class="input-hint">
+                                    <strong>Contoh alokasi:</strong><br>
+                                    - 70% produktif (usaha, investasi, modal kerja)<br>
+                                    - 30% konsumtif (konsumsi rumah tangga)<br>
+                                    Semakin tinggi alokasi produktif, dampaknya lebih berkelanjutan
+                                </div>
+                            </div>
+                            
+                            <button class="btn" onclick="calculateImpact()"><i class="fas fa-calculator"></i> Hitung Dampak</button>
+                            
+                            <div id="simulationResults" class="results">
+                                <h3>Hasil Simulasi</h3>
+                                <div class="result-grid">
+                                    <div class="result-item">
+                                        <h4>Total Money Supply</h4>
+                                        <p class="result-value" id="moneySupply">Rp 0 T</p>
+                                    </div>
+                                    <div class="result-item">
+                                        <h4>PDB 2025 (Simulasi)</h4>
+                                        <p class="result-value" id="pdb2025">Rp 0 T</p>
+                                    </div>
+                                    <div class="result-item">
+                                        <h4>Pertumbuhan Ekonomi</h4>
+                                        <p class="result-value" id="growth">0%</p>
+                                    </div>
+                                    <div class="result-item">
+                                        <h4>Disposable Income</h4>
+                                        <p class="result-value" id="disposableIncome">Rp 0 T</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="impactChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="tab5" class="tab-pane">
+                        <h2>Risiko dan Tantangan</h2>
+                        <p>Strategi ini mengandung beberapa risiko yang perlu diwaspadai dan dikelola dengan baik.</p>
+                        
+                        <h3>Risiko Inflasi</h3>
+                        <ul>
+                            <li>Terlalu banyak uang beredar mengejar terlalu sedikit barang</li>
+                            <li>Kapasitas produksi dalam negeri yang terbatas</li>
+                            <li>Kenaikan harga-harga kebutuhan pokok</li>
+                        </ul>
+                        
+                        <h3>Risiko Lainnya</h3>
+                        <ul>
+                            <li>Penyaluran kredit tidak optimal ke sektor produktif</li>
+                            <li>Peningkatan impor yang menekan nilai tukar rupiah</li>
+                            <li>Ketidakefektifan penyerapan anggaran pemerintah</li>
+                            <li>Dampak pada stabilitas sistem keuangan</li>
+                        </ul>
+                        
+                        <h3>Strategi Mitigasi</h3>
+                        <ul>
+                            <li>Koordinasi dengan Bank Indonesia untuk pengendalian inflasi</li>
+                            <li>Monitoring ketat penyaluran kredit</li>
+                            <li>Kebijakan fiskal dan moneter yang terkoordinasi</li>
+                            <li>Penguatan supply side economy</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tab6" class="tab-pane">
+                        <h2>Kesimpulan dan Rekomendasi</h2>
+                        <p>Berdasarkan analisis, berikut adalah kesimpulan dan rekomendasi untuk implementasi strategi ini.</p>
+                        
+                        <h3>Kesimpulan</h3>
+                        <ul>
+                            <li>Strategi berpotensi mendorong pertumbuhan ekonomi hingga 9%</li>
+                            <li>Disposable Income masyarakat dapat meningkat signifikan</li>
+                            <li>Risiko inflasi merupakan ancaman terbesar yang perlu diwaspadai</li>
+                            <li>Keberhasilan bergantung pada efektivitas penyaluran kredit</li>
+                        </ul>
+                        
+                        <h3>Rekomendasi</h3>
+                        <ul>
+                            <li>Perkuat koordinasi antara fiskal dan moneter</li>
+                            <li>Tingkatkan monitoring penyaluran kredit ke sektor produktif</li>
+                            <li>Siapkan skenario mitigasi inflasi</li>
+                            <li>Perkuat kapasitas produksi dalam negeri</li>
+                            <li>Lakukan evaluasi berkala dan penyesuaian strategi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visualization">
+                <div class="card">
+                    <h2>Profil Menteri Keuangan</h2>
+                    <div class="profile">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Purbaya_Yudhi_Sadewa%2C_Menteri_Keuangan_%282025%29.jpg" alt="Purbaya Yudhi Sadewa" class="profile-img">
+                        <div class="profile-info">
+                            <h3>Purbaya Yudhi Sadewa</h3>
+                            <p>Menteri Keuangan Indonesia</p>
+                            <p>Almamater: S1 Teknik Elektro ITB</p>
+                            <p>Latar belakang: Ekonom dan Analis Pasar</p>
+                        </div>
+                    </div>
+                    <p>Purbaya dikenal sebagai ekonom yang berpengalaman dalam analisis pasar dan kebijakan ekonomi. Strategi kontroversialnya menuai pro dan kontra dari berbagai kalangan.</p>
+                </div>
+                
+                <div class="card">
+                    <h2>Video Analisis Strategi</h2>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5dEZZuQCasc?si=Lxgz-YAs36PPmCg8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p>Video ini menganalisis strategi berani Menteri Keuangan Purbaya dalam mengejar pertumbuhan ekonomi 6% pada 2025.</p>
+                </div>
+                
+                <div class="card">
+                    <h2>Visualisasi Data</h2>
+                    <div class="chart-container">
+                        <canvas id="dataChart"></canvas>
+                    </div>
+                    <p>Grafik menunjukkan perbandingan antara kondisi dasar 2024 dan proyeksi 2025 setelah implementasi strategi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Simulasi Kebijakan Fiskal - Analisis Strategi Purbaya | Data simulasi berdasarkan asumsi dan proyeksi</p>
+        </footer>
+    </div>
+
+    <div class="info-bubble" onclick="openTab('tab4')">
+        <i class="fas fa-calculator"></i>
+    </div>
+
+    <script>
+        // Fungsi untuk mengubah tab
+        function openTab(tabId) {
+            // Sembunyikan semua tab
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update tombol tab aktif
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Data untuk chart
+        const data = {
+            labels: ['PDB', 'Konsumsi (C)', 'Investasi (I)', 'Belanja Govt (G)', 'DI'],
+            datasets: [
+                {
+                    label: '2024 (Triliun Rupiah)',
+                    data: [22.139, 14.5, 6.2, 2.8, 14.2],
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2
+                },
+                {
+                    label: '2025 Proyeksi (Triliun Rupiah)',
+                    data: [24.139, 16.5, 7.2, 3.3, 16.9],
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2
+                }
+            ]
+        };
+        
+        // Konfigurasi chart
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Perbandingan Indikator Ekonomi 2024 vs 2025',
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Triliun Rupiah',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        };
+        
+        // Render chart
+        window.onload = function() {
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            new Chart(ctx, config);
+        };
+        
+        // Fungsi untuk menghitung dampak ekonomi
+        function calculateImpact() {
+            const injection = parseFloat(document.getElementById('injection').value);
+            const multiplier = parseFloat(document.getElementById('multiplier').value);
+            const productive = parseFloat(document.getElementById('productive').value);
+            
+            // Validasi input
+            if (isNaN(injection) || isNaN(multiplier) || isNaN(productive)) {
+                alert("Harap masukkan angka yang valid di semua field");
+                return;
+            }
+            
+            if (productive < 0 || productive > 100) {
+                alert("Alokasi kredit produktif harus antara 0 dan 100");
+                return;
+            }
+            
+            // Hitung dampak
+            const moneySupply = injection * multiplier;
+            const pdbBase = 22139; // PDB 2024 dalam triliun
+            const pdb2025 = pdbBase + (moneySupply * (productive/100) * 0.8); // Asumsi efektivitas 80%
+            const growth = ((pdb2025 / pdbBase) - 1) * 100;
+            const disposableIncome = 14200 + (moneySupply * (productive/100) * 0.6); // DI dasar 14.200 T
+            
+            // Tampilkan hasil
+            document.getElementById('moneySupply').textContent = `Rp ${moneySupply.toLocaleString('id-ID')} T`;
+            document.getElementById('pdb2025').textContent = `Rp ${pdb2025.toLocaleString('id-ID')} T`;
+            document.getElementById('growth').textContent = `${growth.toFixed(2)}%`;
+            document.getElementById('disposableIncome').textContent = `Rp ${disposableIncome.toLocaleString('id-ID')} T`;
+            
+            // Tampilkan hasil
+            document.getElementById('simulationResults').style.display = 'block';
+            
+            // Update chart
+            updateImpactChart(injection, multiplier, productive, pdb2025, growth, disposableIncome);
+        }
+        
+        // Fungsi untuk memperbarui chart hasil simulasi
+        function updateImpactChart(injection, multiplier, productive, pdb2025, growth, disposableIncome) {
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            
+            // Hancurkan chart sebelumnya jika ada
+            if (window.impactChartInstance) {
+                window.impactChartInstance.destroy();
+            }
+            
+            // Buat chart baru
+            window.impactChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Injeksi', 'Money Supply', 'PDB 2025', 'Pertumbuhan', 'DI'],
+                    datasets: [{
+                        label: 'Nilai (Triliun Rupiah)',
+                        data: [injection, injection * multiplier, pdb2025, growth * 100, disposableIncome],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Hasil Simulasi Dampak Kebijakan',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Triliun Rupiah',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
