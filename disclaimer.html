@@ -1,19 +1,667 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer - SMAN 1 Cluring</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi & Legal - SMAN 1 Cluring</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
+        .dark-mode {
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark);
+            line-height: 1.8;
+            padding-bottom: 60px;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: var(--dark);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand img {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+
+        .nav-container { display: flex; align-items: center; gap: 15px; }
+
+        .theme-toggle {
+            background: none; border: none; color: white;
+            font-size: 1.2rem; cursor: pointer;
+            transition: transform 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .back-home-btn {
+            background: rgba(255,255,255,0.2);
+            color: white; border: none;
+            padding: 8px 16px; border-radius: 50px;
+            cursor: pointer; font-weight: 500;
+            display: flex; align-items: center; gap: 6px;
+            transition: var(--transition);
+            text-decoration: none; font-size: 0.95rem;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: var(--header-height);
+        }
+
+        header::before {
+            content: ""; position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite; z-index: 1;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        header h1 {
+            font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;
+            z-index: 2; position: relative;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+        }
+
+        header .subtitle {
+            font-weight: 300; opacity: 0.9;
+            z-index: 2; position: relative; font-size: 1rem;
+        }
+
+        /* SECTION NAVIGATION */
+        .section-nav {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: var(--header-height);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .section-nav {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .section-nav a {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .section-nav a { color: #cbd5e1; }
+
+        /* CONTENT */
+        .container {
+            max-width: 900px;
+            margin: 20px auto 40px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            scroll-margin-top: 150px;
+        }
+
+        body.dark-mode .info-card {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .info-card h2 {
+            font-size: 1.5rem;
+            margin: 0 0 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        body.dark-mode .info-card h2 { color: #f8f9fa; }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.dark-mode .info-card h3 { color: #f8f9fa; }
+
+        .info-card p {
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        body.dark-mode .info-card p { color: #cbd5e1; }
+
+        .info-card ul {
+            margin: 15px 0 15px 25px;
+            color: var(--gray);
+        }
+
+        body.dark-mode .info-card ul { color: #cbd5e1; }
+
+        .info-card li { margin-bottom: 8px; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67,97,238,0.1), rgba(76,201,240,0.1));
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .highlight-box {
+            background: linear-gradient(135deg, rgba(67,97,238,0.2), rgba(76,201,240,0.15));
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .info-item { background: #3a3a3a; }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .info-item h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        body.dark-mode .info-item h4 { color: #f8f9fa; }
+
+        .info-item p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--gray);
+        }
+
+        /* WARNING BOX */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(248,113,113,0.15), rgba(251,191,36,0.15));
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .warning-box {
+            background: linear-gradient(135deg, rgba(248,113,113,0.25), rgba(251,191,36,0.2));
+        }
+
+        /* BACK BUTTON */
+        .back-btn-container {
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 40px 20px 25px;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: #4361ee; }
+        .footer-links .separator { color: rgba(255,255,255,0.2); }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 3rem 1rem 2.5rem; }
+            header h1 { font-size: 1.6rem; }
+            .section-nav { 
+                position: static; 
+                flex-direction: column; 
+                align-items: center; 
+                padding: 10px;
+            }
+            .section-nav a { width: 100%; justify-content: center; }
+            .info-card { padding: 30px 20px; }
+            .info-card h2 { font-size: 1.3rem; }
+            .back-btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0.8rem 1rem; }
+            .navbar-brand { font-size: 1rem; }
+            .navbar-brand img { width: 35px; height: 35px; }
+            header h1 { font-size: 1.4rem; }
+            .info-card { padding: 25px 15px; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+            <a href="index.html" class="back-home-btn">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+        </div>
+    </nav>
 
-<h1>Disclaimer</h1>
+    <!-- HEADER -->
+    <header>
+        <h1><i class="fas fa-file-alt"></i> Informasi & Legal</h1>
+        <p class="subtitle">Transparansi dan kepercayaan dalam setiap langkah pembelajaran</p>
+    </header>
 
-<p>Seluruh materi di website ini disusun untuk keperluan pembelajaran siswa.</p>
+    <!-- SECTION NAVIGATION -->
+    <nav class="section-nav">
+        <a href="#about" class="active" onclick="setActive(this)"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+        <a href="#disclaimer" onclick="setActive(this)"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a>
+        <a href="#terms" onclick="setActive(this)"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</a>
+    </nav>
 
-<p>Kami berusaha menyajikan informasi yang akurat dan terbaru, namun tidak menjamin kelengkapan atau ketepatan informasi secara mutlak.</p>
+    <!-- CONTENT -->
+    <div class="container">
+        
+        <!-- ABOUT SECTION -->
+        <section id="about" class="info-card">
+            <h2><i class="fas fa-school"></i> Tentang Kami</h2>
+            
+            <div class="highlight-box">
+                <i class="fas fa-quote-left"></i>
+                <strong>SMAN 1 Cluring</strong> berkomitmen menyediakan platform pembelajaran digital yang inovatif, inklusif, dan berorientasi pada pembentukan karakter siswa.
+            </div>
 
-<p>Penggunaan informasi dari website ini menjadi tanggung jawab masing-masing pengguna.</p>
+            <h3><i class="fas fa-bullseye"></i> Visi & Misi</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-eye"></i>
+                    <h4>Visi</h4>
+                    <p>Menjadi sekolah unggul yang menghasilkan generasi berkarakter, kompetitif, dan berwawasan global.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-bullseye"></i>
+                    <h4>Misi</h4>
+                    <p>Menyelenggarakan pendidikan berkualitas dengan pendekatan kontekstual dan berbasis proyek.</p>
+                </div>
+            </div>
 
+            <h3><i class="fas fa-chalkboard-teacher"></i> Platform Pembelajaran</h3>
+            <p>Website ini dikembangkan sebagai pendukung pembelajaran untuk mata pelajaran:</p>
+            <ul>
+                <li><strong>Sosiologi Kelas X</strong> — Materi, tugas, absensi digital, dan analisis kebijakan sosial</li>
+                <li><strong>Ekonomi Kelas XI</strong> — Simulator ekonomi, studi kasus, dan pemahaman kebijakan terkini</li>
+            </ul>
+
+            <h3><i class="fas fa-users"></i> Tim Pengembang</h3>
+            <p>Platform ini dikelola oleh guru SMAN 1 Cluring dengan dukungan tim teknologi pendidikan. Untuk kolaborasi atau pertanyaan teknis, silakan hubungi kami melalui halaman <a href="contact.html" style="color: var(--primary); text-decoration: none;">Kontak</a>.</p>
+        </section>
+
+        <!-- DISCLAIMER SECTION -->
+        <section id="disclaimer" class="info-card">
+            <h2><i class="fas fa-exclamation-triangle"></i> Disclaimer (Penyangkalan)</h2>
+            
+            <div class="warning-box">
+                <i class="fas fa-info-circle"></i> 
+                <strong>Penting:</strong> Informasi dalam platform ini disusun untuk tujuan pendidikan. Selalu verifikasi sumber eksternal sebelum mengambil keputusan penting.
+            </div>
+
+            <h3><i class="fas fa-book"></i> Konten Edukasi</h3>
+            <p>Materi pembelajaran disusun berdasarkan kurikulum resmi dan referensi terpercaya. Namun:</p>
+            <ul>
+                <li>Konten dapat diperbarui sewaktu-waktu tanpa pemberitahuan sebelumnya</li>
+                <li>Contoh kasus dan data statistik mungkin berubah seiring waktu</li>
+                <li>Pengguna disarankan merujuk ke sumber primer untuk penelitian akademis</li>
+            </ul>
+
+            <h3><i class="fas fa-link"></i> Tautan Eksternal</h3>
+            <p>Website ini mungkin berisi tautan ke situs pihak ketiga (BPS, World Bank, ASEAN Stats, dll). Kami tidak bertanggung jawab atas:</p>
+            <ul>
+                <li>Konten, kebijakan privasi, atau praktik situs eksternal</li>
+                <li>Ketersediaan atau akurasi informasi di situs tersebut</li>
+                <li>Kerusakan yang timbul dari penggunaan situs eksternal</li>
+            </ul>
+
+            <h3><i class="fas fa-brain"></i> Penggunaan Informasi</h3>
+            <p>Pengguna bertanggung jawab penuh atas:</p>
+            <ul>
+                <li>Pemahaman dan interpretasi materi pembelajaran</li>
+                <li>Penggunaan informasi untuk tugas, ujian, atau keputusan pribadi</li>
+                <li>Kepatuhan terhadap aturan akademik sekolah</li>
+            </ul>
+
+            <h3><i class="fas fa-bug"></i> Keterbatasan Teknis</h3>
+            <p>Kami berupaya menjaga ketersediaan platform 24/7, namun tidak menjamin:</p>
+            <ul>
+                <li>Akses tanpa gangguan akibat pemeliharaan server atau jaringan</li>
+                <li>Kompatibilitas sempurna di semua perangkat dan browser</li>
+                <li>Keamanan absolut terhadap serangan siber (meski telah menerapkan protokol keamanan standar)</li>
+            </ul>
+        </section>
+
+        <!-- TERMS SECTION -->
+        <section id="terms" class="info-card">
+            <h2><i class="fas fa-file-contract"></i> Syarat & Ketentuan</h2>
+            
+            <p><strong>Berlaku sejak:</strong> <span id="effectiveDate"></span></p>
+            
+            <div class="highlight-box">
+                <i class="fas fa-handshake"></i> 
+                Dengan mengakses dan menggunakan platform ini, Anda menyetujui seluruh syarat dan ketentuan berikut.
+            </div>
+
+            <h3><i class="fas fa-user-check"></i> 1. Eligibilitas Pengguna</h3>
+            <ul>
+                <li>Platform ini ditujukan untuk siswa, guru, dan staf SMAN 1 Cluring</li>
+                <li>Pengguna di bawah 18 tahun memerlukan persetujuan orang tua/wali</li>
+                <li>Dilarang menggunakan akun orang lain atau membuat akun palsu</li>
+            </ul>
+
+            <h3><i class="fas fa-lock"></i> 2. Akun & Keamanan</h3>
+            <ul>
+                <li>Pengguna bertanggung jawab menjaga kerahasiaan kredensial login</li>
+                <li>Segera laporkan aktivitas mencurigakan kepada administrator</li>
+                <li>Kami berhak menonaktifkan akun yang melanggar ketentuan</li>
+            </ul>
+
+            <h3><i class="fas fa-copyright"></i> 3. Hak Kekayaan Intelektual</h3>
+            <ul>
+                <li>Seluruh konten (materi, logo, desain) adalah milik SMAN 1 Cluring atau pemberi lisensi</li>
+                <li>Dilarang menyalin, mendistribusikan, atau memodifikasi konten untuk tujuan komersial tanpa izin tertulis</li>
+                <li>Penggunaan pribadi untuk pembelajaran diperbolehkan</li>
+            </ul>
+
+            <h3><i class="fas fa-user-edit"></i> 4. Perilaku Pengguna</h3>
+            <p>Pengguna dilarang:</p>
+            <ul>
+                <li>Menyebarkan konten SARA, kekerasan, atau hoaks</li>
+                <li>Melakukan peretasan, spam, atau penyalahgunaan sistem</li>
+                <li>Mengunggah materi yang melanggar hak cipta pihak lain</li>
+                <li>Menggunakan platform untuk aktivitas ilegal</li>
+            </ul>
+
+            <h3><i class="fas fa-sync-alt"></i> 5. Perubahan Ketentuan</h3>
+            <p>Kami dapat memperbarui syarat ini sewaktu-waktu. Perubahan akan diumumkan di halaman ini. Penggunaan berkelanjutan setelah pembaruan berarti penerimaan terhadap ketentuan baru.</p>
+
+            <h3><i class="fas fa-gavel"></i> 6. Hukum yang Berlaku</h3>
+            <p>Syarat ini diatur menurut hukum Republik Indonesia. Sengketa akan diselesaikan secara musyawarah, dan jika tidak tercapai, melalui pengadilan negeri yang berwenang di Banyuwangi.</p>
+
+            <h3><i class="fas fa-headset"></i> 7. Kontak Hukum</h3>
+            <p>Untuk pertanyaan terkait ketentuan ini, hubungi:</p>
+            <div class="info-item" style="margin-top: 15px; text-align: left;">
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> zuliastutik24@guru.sma.belajar.id</p>
+                <p><i class="fas fa-phone"></i> <strong>Telepon:</strong> 0333-713297</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat:</strong> SMAN 1 Cluring, Banyuwangi, Jawa Timur</p>
+            </div>
+        </section>
+
+        <!-- BACK BUTTON -->
+        <div class="back-btn-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <div class="footer-links">
+            <a href="about.html">Tentang</a>
+            <span class="separator">•</span>
+            <a href="contact.html">Kontak</a>
+            <span class="separator">•</span>
+            <a href="privacy-policy.html">Privasi</a>
+            <span class="separator">•</span>
+            <a href="disclaimer.html">Disclaimer</a>
+            <span class="separator">•</span>
+            <a href="terms.html">Syarat</a>
+        </div>
+        <p class="copyright">Platform pembelajaran digital untuk siswa dan guru.</p>
+    </footer>
+
+    <script>
+        // Set effective date for Terms
+        document.getElementById('effectiveDate').textContent = new Date().toLocaleDateString('id-ID', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Active Section Navigation
+        function setActive(element) {
+            document.querySelectorAll('.section-nav a').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Highlight active section on scroll
+        const sections = document.querySelectorAll('.info-card');
+        const navLinks = document.querySelectorAll('.section-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
