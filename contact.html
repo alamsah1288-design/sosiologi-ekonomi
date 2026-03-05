@@ -1,19 +1,722 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - SMAN 1 Cluring</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - SMAN 1 Cluring</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
+        .dark-mode {
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark);
+            line-height: 1.8;
+            padding-bottom: 60px;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: var(--dark);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .back-home-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: var(--header-height);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        header .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        /* CONTENT */
+        .container {
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* CONTACT INFO CARD */
+        .contact-info {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        body.dark-mode .contact-info {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .contact-item {
+            background: #3a3a3a;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+
+        body.dark-mode .contact-details h4 {
+            color: #f8f9fa;
+        }
+
+        .contact-details p,
+        .contact-details a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--primary);
+        }
+
+        body.dark-mode .contact-details p,
+        body.dark-mode .contact-details a {
+            color: #cbd5e1;
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .contact-form {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .contact-form h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        body.dark-mode .contact-form h3 {
+            color: #f8f9fa;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .form-group label {
+            color: #f8f9fa;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background: #3a3a3a;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* MAP PLACEHOLDER */
+        .map-container {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .map-container {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        body.dark-mode .map-placeholder {
+            background: linear-gradient(135deg, #3a3a3a, #4a4a4a);
+            color: #94a3b8;
+        }
+
+        .map-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary);
+        }
+
+        /* SUCCESS MESSAGE */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* BACK BUTTON */
+        .back-btn-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 40px 20px 25px;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4361ee;
+        }
+
+        .footer-links .separator {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 3rem 1rem 2.5rem; }
+            header h1 { font-size: 1.6rem; }
+            .container { grid-template-columns: 1fr; padding: 15px; }
+            .contact-info, .contact-form { padding: 25px 20px; }
+            .back-btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0.8rem 1rem; }
+            .navbar-brand { font-size: 1rem; }
+            .navbar-brand img { width: 35px; height: 35px; }
+            header h1 { font-size: 1.4rem; }
+            .contact-item { flex-direction: column; text-align: center; }
+            .contact-icon { margin: 0 auto; }
+        }
+    </style>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+            <a href="index.html" class="back-home-btn">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+        </div>
+    </nav>
 
-<h1>Contact</h1>
+    <!-- HEADER -->
+    <header>
+        <h1><i class="fas fa-headset"></i> Hubungi Kami</h1>
+        <p class="subtitle">Kami siap membantu pertanyaan dan masukan Anda</p>
+    </header>
 
-<p>Jika ada pertanyaan atau masukan terkait materi pembelajaran, silakan hubungi:</p>
+    <!-- CONTENT -->
+    <div class="container">
+        <!-- CONTACT INFO -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Email</h4>
+                    <a href="mailto:zuliastutik24@guru.sma.belajar.id">zuliastutik24@guru.sma.belajar.id</a>
+                </div>
+            </div>
 
-<p>Email: admin@alamsah.com</p>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Telepon Sekolah</h4>
+                    <p>0333-713297</p>
+                </div>
+            </div>
 
-<p>Alamat: SMAN 1 Cluring</p>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Alamat</h4>
+                    <p>Jalan Bhayangkara No. 67, Kebondalem,<br>Bangorejo, Banyuwangi,<br>Jawa Timur, Indonesia</p>
+                </div>
+            </div>
 
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Jam Operasional</h4>
+                    <p>Senin - Jumat: 07.00 - 15.00 WIB<br>Sabtu - Minggu: Tutup</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form">
+            <h3><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Pesan berhasil dikirim! Kami akan segera membalas.
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Nama Lengkap</label>
+                    <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" required placeholder="contoh@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject"><i class="fas fa-tag"></i> Subjek</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Topik pesan">
+                </div>
+                <div class="form-group">
+                    <label for="message"><i class="fas fa-comment"></i> Pesan</label>
+                    <textarea id="message" name="message" required placeholder="Tulis pesan Anda di sini..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Kirim Pesan
+                </button>
+            </form>
+        </div>
+
+        <!-- MAP PLACEHOLDER -->
+        <div class="map-container">
+            <div class="map-placeholder">
+                <div>
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p><strong>SMAN 1 Cluring</strong><br>Jl. Huzaini, Benculuk, Cluring<br>Banyuwangi, Jawa Timur</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">
+                        <i class="fas fa-external-link-alt"></i> 
+                        <a href="https://maps.google.com/?q=SMAN+1+Cluring" target="_blank" style="color: var(--primary); text-decoration: none;">Buka di Google Maps</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK BUTTON -->
+        <div class="back-btn-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <div class="footer-links">
+            <a href="about.html">Tentang</a>
+            <span class="separator">•</span>
+            <a href="contact.html">Kontak</a>
+            <span class="separator">•</span>
+            <a href="privacy-policy.html">Privasi</a>
+            <span class="separator">•</span>
+            <a href="disclaimer.html">Disclaimer</a>
+            <span class="separator">•</span>
+            <a href="terms.html">Syarat</a>
+        </div>
+        <p class="copyright">Platform pembelajaran digital untuk siswa dan guru.</p>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Form Submission Handler
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Show success message (simulasi)
+            successMessage.style.display = 'block';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+
+            // Catatan: Untuk produksi, tambahkan kode untuk mengirim data ke server
+            // Contoh: fetch('/api/contact', { method: 'POST', body: JSON.stringify({name, email, subject, message}) })
+            console.log('Form submitted:', { name, email, subject, message });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
