@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script Utama Google AdSense (Wajib dimuat sekali di head) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-123435569676048" crossorigin="anonymous"></script>
     <style>
         * {
             margin: 0;
@@ -435,10 +437,24 @@
             100% { opacity: 0.7; }
         }
         
+        /* Styling untuk area iklan bawah artikel */
+        .ad-below-article {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px dashed #ccc;
+        }
+        
+        .ad-below-article ins.adsbygoogle {
+            margin: 0 auto;
+        }
+        
         footer {
             text-align: center;
             padding: 30px;
-            margin-top: 50px;
+            margin-top: 20px;
             color: #6c757d;
             font-size: 0.9rem;
             background: white;
@@ -756,6 +772,19 @@
             </div>
         </div>
         
+        <!-- 📢 IKLAN BAWAH ARTIKEL -->
+        <div class="ad-below-article">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-123435569676048"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
         <footer>
             <p>© 2025 Simulasi Kebijakan Fiskal - Analisis Strategi Purbaya | Data simulasi berdasarkan asumsi dan proyeksi</p>
         </footer>
@@ -783,7 +812,9 @@
                 button.classList.remove('active');
             });
             
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
         
         // Data untuk chart
