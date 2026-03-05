@@ -1,29 +1,489 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy - SMAN 1 Cluring</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi - SMAN 1 Cluring</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
+        .dark-mode {
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark);
+            line-height: 1.8;
+            padding-bottom: 60px;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: var(--dark);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .back-home-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: var(--header-height);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        header .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        /* CONTENT */
+        .container {
+            max-width: 800px;
+            margin: -30px auto 40px;
+            padding: 20px;
+        }
+
+        .policy-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .policy-card {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .policy-card h2 {
+            font-size: 1.4rem;
+            margin: 25px 0 12px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        body.dark-mode .policy-card h2 {
+            color: #f8f9fa;
+        }
+
+        .policy-card h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-card p {
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        body.dark-mode .policy-card p {
+            color: #cbd5e1;
+        }
+
+        .policy-card ul {
+            margin: 15px 0 15px 25px;
+            color: var(--gray);
+        }
+
+        body.dark-mode .policy-card ul {
+            color: #cbd5e1;
+        }
+
+        .policy-card li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67,97,238,0.1), rgba(76,201,240,0.1));
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .highlight-box {
+            background: linear-gradient(135deg, rgba(67,97,238,0.2), rgba(76,201,240,0.15));
+        }
+
+        /* BACK BUTTON */
+        .back-btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 40px 20px 25px;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4361ee;
+        }
+
+        .footer-links .separator {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 3rem 1rem 2.5rem; }
+            header h1 { font-size: 1.6rem; }
+            .policy-card { padding: 30px 20px; }
+            .policy-card h2 { font-size: 1.3rem; }
+            .back-btn { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0.8rem 1rem; }
+            .navbar-brand { font-size: 1rem; }
+            .navbar-brand img { width: 35px; height: 35px; }
+            header h1 { font-size: 1.4rem; }
+            .policy-card { padding: 25px 15px; }
+        }
+    </style>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+            <a href="index.html" class="back-home-btn">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+        </div>
+    </nav>
 
-<h1>Privacy Policy</h1>
+    <!-- HEADER -->
+    <header>
+        <h1><i class="fas fa-shield-alt"></i> Kebijakan Privasi</h1>
+        <p class="subtitle">Transparansi dalam melindungi data Anda</p>
+    </header>
 
-<p>Website alamsah.com menghargai privasi pengunjung.</p>
+    <!-- CONTENT -->
+    <div class="container">
+        <div class="policy-card">
+            <p><strong>Terakhir diperbarui:</strong> <span id="lastUpdated"></span></p>
+            
+            <div class="highlight-box">
+                <i class="fas fa-info-circle"></i> 
+                <strong>SMAN 1 Cluring</strong> berkomitmen untuk melindungi privasi seluruh pengguna platform pembelajaran digital kami. Dokumen ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda.
+            </div>
 
-<h2>Informasi yang Dikumpulkan</h2>
-<p>Kami dapat mengumpulkan informasi non-pribadi seperti jenis browser, perangkat, dan waktu akses untuk meningkatkan kualitas layanan.</p>
+            <h2><i class="fas fa-database"></i> Informasi yang Dikumpulkan</h2>
+            <p>Kami dapat mengumpulkan informasi non-pribadi secara otomatis untuk meningkatkan kualitas layanan, antara lain:</p>
+            <ul>
+                <li>Jenis browser dan perangkat yang digunakan</li>
+                <li>Waktu dan durasi akses ke website</li>
+                <li>Halaman yang dikunjungi dan interaksi pengguna</li>
+                <li>Alamat IP (untuk keamanan dan analitik)</li>
+            </ul>
+            <p><strong>Catatan:</strong> Kami tidak mengumpulkan data pribadi sensitif seperti nama lengkap, alamat rumah, atau informasi finansial tanpa persetujuan eksplisit.</p>
 
-<h2>Cookie</h2>
-<p>Website ini menggunakan cookie untuk meningkatkan pengalaman pengguna.</p>
+            <h2><i class="fas fa-cookie-bite"></i> Penggunaan Cookie</h2>
+            <p>Website ini menggunakan cookie untuk:</p>
+            <ul>
+                <li>Menyimpan preferensi tema (gelap/terang)</li>
+                <li>Meningkatkan pengalaman navigasi pengguna</li>
+                <li>Menganalisis traffic website secara anonim</li>
+            </ul>
+            <p>Pengguna dapat menonaktifkan cookie melalui pengaturan browser masing-masing, namun beberapa fitur website mungkin tidak berfungsi optimal.</p>
 
-<h2>Google AdSense</h2>
-<p>Kami menggunakan layanan periklanan dari Google AdSense. Google dapat menggunakan cookie untuk menampilkan iklan yang relevan berdasarkan kunjungan pengguna ke situs ini dan situs lainnya.</p>
+            <h2><i class="fas fa-ad"></i> Google AdSense</h2>
+            <p>Kami menggunakan layanan periklanan dari <strong>Google AdSense</strong>. Sebagai mitra iklan, Google dapat:</p>
+            <ul>
+                <li>Menggunakan cookie untuk menampilkan iklan yang relevan</li>
+                <li>Mencatat riwayat kunjungan ke situs ini dan situs lainnya</li>
+                <li>Menyajikan iklan berdasarkan minat pengguna</li>
+            </ul>
+            <div class="highlight-box">
+                <i class="fas fa-link"></i> 
+                Informasi lebih lanjut tentang praktik Google: 
+                <a href="https://policies.google.com/technologies/ads" target="_blank" style="color: var(--primary); text-decoration: none;">Kebijakan Iklan Google</a>
+            </div>
 
-<p>Pengguna dapat menonaktifkan penggunaan cookie melalui pengaturan browser masing-masing.</p>
+            <h2><i class="fas fa-user-shield"></i> Keamanan Data</h2>
+            <p>Kami menerapkan langkah-langkah keamanan teknis dan organisasional untuk melindungi informasi dari akses tidak sah, perubahan, atau pengungkapan. Namun, tidak ada metode transmisi data melalui internet yang 100% aman.</p>
 
-<h2>Persetujuan</h2>
-<p>Dengan menggunakan website ini, Anda menyetujui kebijakan privasi ini.</p>
+            <h2><i class="fas fa-child"></i> Perlindungan Anak Didik</h2>
+            <p>Platform ini ditujukan untuk siswa SMA. Kami tidak secara sengaja mengumpulkan data pribadi dari anak di bawah umur tanpa persetujuan orang tua/wali. Jika Anda merasa ada data yang tidak sesuai, silakan hubungi kami.</p>
 
+            <h2><i class="fas fa-sync-alt"></i> Perubahan Kebijakan</h2>
+            <p>Kami dapat memperbarui kebijakan privasi ini sewaktu-waktu. Perubahan akan diumumkan melalui halaman ini dengan tanggal pembaruan yang jelas. Kami menyarankan Anda untuk meninjau kebijakan ini secara berkala.</p>
+
+            <h2><i class="fas fa-handshake"></i> Persetujuan</h2>
+            <p>Dengan mengakses dan menggunakan website <strong>SMAN 1 Cluring</strong>, Anda menyetujui praktik pengumpulan dan penggunaan informasi sebagaimana dijelaskan dalam kebijakan ini.</p>
+
+            <!-- BACK BUTTON -->
+            <div class="back-btn-container">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <div class="footer-links">
+            <a href="about.html">Tentang</a>
+            <span class="separator">•</span>
+            <a href="contact.html">Kontak</a>
+            <span class="separator">•</span>
+            <a href="privacy-policy.html">Privasi</a>
+            <span class="separator">•</span>
+            <a href="disclaimer.html">Disclaimer</a>
+            <span class="separator">•</span>
+            <a href="terms.html">Syarat</a>
+        </div>
+        <p class="copyright">Platform pembelajaran digital untuk siswa dan guru.</p>
+    </footer>
+
+    <script>
+        // Set last updated date
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('id-ID', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
