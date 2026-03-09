@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kebijakan Privasi www.alamsah.com - Komitmen kami dalam melindungi data dan privasi Anda">
     <title>Kebijakan Privasi - www.alamsah.com</title>
+    
+    <!-- Google Fonts & Font Awesome -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* ===== CSS VARIABLES & THEME ===== */
         :root {
             --primary: #4361ee;
             --secondary: #3f37c9;
@@ -27,15 +32,9 @@
             --shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -51,7 +50,7 @@
             color: var(--dark);
         }
 
-        /* NAVBAR */
+        /* ===== NAVBAR ===== */
         .navbar {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -131,7 +130,7 @@
             transform: translateY(-2px);
         }
 
-        /* HEADER */
+        /* ===== HEADER ===== */
         header {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -180,10 +179,10 @@
             font-size: 1rem;
         }
 
-        /* CONTENT */
+        /* ===== CONTENT ===== */
         .container {
-            max-width: 800px;
-            margin: -30px auto 40px;
+            max-width: 900px;
+            margin: 20px auto 40px;
             padding: 20px;
         }
 
@@ -193,6 +192,7 @@
             padding: 40px 30px;
             box-shadow: var(--shadow);
             border: 1px solid rgba(0,0,0,0.05);
+            scroll-margin-top: 150px;
         }
 
         body.dark-mode .policy-card {
@@ -212,13 +212,8 @@
             border-bottom: 2px solid var(--primary);
         }
 
-        body.dark-mode .policy-card h2 {
-            color: #f8f9fa;
-        }
-
-        .policy-card h2:first-child {
-            margin-top: 0;
-        }
+        body.dark-mode .policy-card h2 { color: #f8f9fa; }
+        .policy-card h2:first-child { margin-top: 0; }
 
         .policy-card p {
             margin-bottom: 15px;
@@ -226,22 +221,15 @@
             font-size: 1rem;
         }
 
-        body.dark-mode .policy-card p {
-            color: #cbd5e1;
-        }
+        body.dark-mode .policy-card p { color: #cbd5e1; }
 
         .policy-card ul {
             margin: 15px 0 15px 25px;
             color: var(--gray);
         }
 
-        body.dark-mode .policy-card ul {
-            color: #cbd5e1;
-        }
-
-        .policy-card li {
-            margin-bottom: 8px;
-        }
+        body.dark-mode .policy-card ul { color: #cbd5e1; }
+        .policy-card li { margin-bottom: 8px; }
 
         .highlight-box {
             background: linear-gradient(135deg, rgba(67,97,238,0.1), rgba(76,201,240,0.1));
@@ -256,10 +244,10 @@
             background: linear-gradient(135deg, rgba(67,97,238,0.2), rgba(76,201,240,0.15));
         }
 
-        /* BACK BUTTON */
+        /* ===== BACK BUTTON ===== */
         .back-btn-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 40px 0 20px;
         }
 
         .back-btn {
@@ -284,7 +272,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* FOOTER */
+        /* ===== FOOTER (SINKRON 100% DENGAN REFERENSI) ===== */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
             color: white;
@@ -311,14 +299,30 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
+            position: relative;
         }
 
-        .footer-links a:hover {
+        .footer-links a:hover,
+        .footer-links a.active {
             color: #4361ee;
+            font-weight: 500;
+        }
+
+        .footer-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
         .footer-links .separator {
             color: rgba(255,255,255,0.2);
+            user-select: none;
         }
 
         .copyright {
@@ -328,13 +332,14 @@
             color: #94a3b8;
         }
 
-        /* RESPONSIVE */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             header { padding: 3rem 1rem 2.5rem; }
             header h1 { font-size: 1.6rem; }
             .policy-card { padding: 30px 20px; }
             .policy-card h2 { font-size: 1.3rem; }
             .back-btn { width: 100%; justify-content: center; }
+            .footer-links { gap: 10px 12px; }
         }
 
         @media (max-width: 480px) {
@@ -343,33 +348,37 @@
             .navbar-brand img { width: 35px; height: 35px; }
             header h1 { font-size: 1.4rem; }
             .policy-card { padding: 25px 15px; }
+            .footer-links { flex-direction: column; align-items: center; }
+            .footer-links .separator { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
-            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring">
             <span>www.alamsah.com</span>
         </a>
         <div class="nav-container">
-            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode" aria-label="Ubah tema">
+                <i class="fas fa-moon"></i>
+            </button>
             <a href="index.html" class="back-home-btn">
                 <i class="fas fa-home"></i> Beranda
             </a>
         </div>
     </nav>
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <header>
         <h1><i class="fas fa-shield-alt"></i> Kebijakan Privasi</h1>
         <p class="subtitle">Komitmen kami dalam melindungi data dan privasi Anda</p>
     </header>
 
-    <!-- CONTENT -->
+    <!-- ===== CONTENT ===== -->
     <div class="container">
-        <div class="policy-card">
+        <article class="policy-card">
             <p><strong>Terakhir diperbarui:</strong> <span id="lastUpdated"></span></p>
             
             <div class="highlight-box">
@@ -377,68 +386,77 @@
                 <strong>www.alamsah.com</strong> berkomitmen untuk melindungi privasi seluruh pengunjung. Dokumen ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda saat mengakses situs ini.
             </div>
 
-            <h2><i class="fas fa-database"></i> Informasi yang Dikumpulkan</h2>
+            <h2><i class="fas fa-database"></i> 1. Informasi yang Dikumpulkan</h2>
             <p>Kami dapat mengumpulkan informasi non-pribadi secara otomatis untuk meningkatkan kualitas layanan, antara lain:</p>
             <ul>
-                <li>Jenis browser dan perangkat yang digunakan</li>
-                <li>Waktu dan durasi akses ke website</li>
-                <li>Halaman yang dikunjungi dan interaksi pengguna</li>
-                <li>Alamat IP (untuk keamanan dan analitik)</li>
+                <li>Jenis browser, sistem operasi, dan perangkat yang digunakan</li>
+                <li>Waktu, durasi, dan frekuensi akses ke website</li>
+                <li>Halaman yang dikunjungi dan pola interaksi pengguna</li>
+                <li>Alamat IP (untuk keamanan, analitik, dan pencegahan penyalahgunaan)</li>
             </ul>
-            <p><strong>Catatan:</strong> Situs ini tidak mengumpulkan data pribadi sensitif seperti nama lengkap, alamat rumah, atau informasi finansial tanpa persetujuan eksplisit dari pengguna.</p>
+            <p><strong>Catatan Penting:</strong> Situs ini <em>tidak</em> mengumpulkan data pribadi sensitif seperti nama lengkap, alamat rumah, nomor telepon, atau informasi finansial tanpa persetujuan eksplisit dan sadar dari pengguna.</p>
 
-            <h2><i class="fas fa-cookie-bite"></i> Penggunaan Cookie</h2>
-            <p>Website ini menggunakan cookie untuk:</p>
+            <h2><i class="fas fa-cookie-bite"></i> 2. Penggunaan Cookie & Teknologi Serupa</h2>
+            <p>Website ini menggunakan cookie dan teknologi penyimpanan lokal untuk:</p>
             <ul>
-                <li>Menyimpan preferensi tema (gelap/terang)</li>
-                <li>Meningkatkan pengalaman navigasi pengguna</li>
-                <li>Menganalisis traffic website secara anonim</li>
+                <li>Menyimpan preferensi pengguna (tema gelap/terang, bahasa)</li>
+                <li>Meningkatkan pengalaman navigasi dan performa website</li>
+                <li>Menganalisis traffic website secara anonim melalui Google Analytics</li>
             </ul>
-            <p>Pengguna dapat menonaktifkan cookie melalui pengaturan browser masing-masing, namun beberapa fitur website mungkin tidak berfungsi optimal.</p>
+            <p>Pengguna dapat mengelola atau menonaktifkan cookie melalui pengaturan browser masing-masing. Namun, beberapa fitur website mungkin tidak berfungsi optimal jika cookie dinonaktifkan.</p>
 
-            <h2><i class="fas fa-ad"></i> Google AdSense</h2>
+            <h2><i class="fas fa-ad"></i> 3. Iklan Pihak Ketiga (Google AdSense)</h2>
             <p>Kami menggunakan layanan periklanan dari <strong>Google AdSense</strong>. Sebagai mitra iklan, Google dapat:</p>
             <ul>
-                <li>Menggunakan cookie untuk menampilkan iklan yang relevan</li>
-                <li>Mencatat riwayat kunjungan ke situs ini dan situs lainnya</li>
-                <li>Menyajikan iklan berdasarkan minat pengguna</li>
+                <li>Menggunakan cookie DART untuk menampilkan iklan yang relevan berdasarkan kunjungan sebelumnya</li>
+                <li>Mencatat riwayat kunjungan ke situs ini dan situs lainnya dalam jaringan Google</li>
+                <li>Menyajikan iklan berdasarkan minat, lokasi, dan demografi pengguna</li>
             </ul>
             <div class="highlight-box">
                 <i class="fas fa-link"></i> 
-                Informasi lebih lanjut tentang praktik Google: 
-                <a href="https://policies.google.com/technologies/ads" target="_blank" style="color: var(--primary); text-decoration: none;">Kebijakan Iklan Google</a>
+                Pelajari lebih lanjut: 
+                <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 500;">Kebijakan Iklan Google</a> | 
+                <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 500;">Kelola Preferensi Iklan</a>
             </div>
 
-            <h2><i class="fas fa-user-shield"></i> Keamanan Data</h2>
-            <p>Kami menerapkan langkah-langkah keamanan teknis dan organisasional untuk melindungi informasi dari akses tidak sah, perubahan, atau pengungkapan. Namun, tidak ada metode transmisi data melalui internet yang 100% aman.</p>
+            <h2><i class="fas fa-user-shield"></i> 4. Keamanan Data</h2>
+            <p>Kami menerapkan langkah-langkah keamanan teknis dan organisasional yang wajar untuk melindungi informasi dari akses tidak sah, perubahan, pengungkapan, atau penghancuran. Namun, perlu dipahami bahwa tidak ada metode transmisi data melalui internet atau penyimpanan elektronik yang 100% aman.</p>
 
-            <h2><i class="fas fa-child"></i> Privasi Pengguna</h2>
-            <p>Kami menghormati privasi semua pengunjung, termasuk pelajar. Situs ini tidak secara sengaja mengumpulkan data pribadi dari anak di bawah umur tanpa persetujuan orang tua/wali. Jika Anda merasa ada data yang tidak sesuai, silakan hubungi kami.</p>
+            <h2><i class="fas fa-child"></i> 5. Privasi Pengguna di Bawah Umur</h2>
+            <p>Kami menghormati privasi semua pengunjung, termasuk pelajar. Situs ini tidak secara sengaja mengumpulkan data pribadi dari anak di bawah umur (di bawah 18 tahun) tanpa persetujuan orang tua/wali. Jika Anda adalah orang tua/wali dan merasa anak Anda telah memberikan informasi pribadi, silakan hubungi kami untuk segera kami hapus.</p>
 
-            <h2><i class="fas fa-sync-alt"></i> Perubahan Kebijakan</h2>
-            <p>Kami dapat memperbarui kebijakan privasi ini sewaktu-waktu. Perubahan akan diumumkan melalui halaman ini dengan tanggal pembaruan yang jelas. Kami menyarankan Anda untuk meninjau kebijakan ini secara berkala.</p>
+            <h2><i class="fas fa-sync-alt"></i> 6. Perubahan Kebijakan Privasi</h2>
+            <p>Kami dapat memperbarui kebijakan privasi ini sewaktu-waktu untuk menyesuaikan dengan perkembangan regulasi atau layanan. Perubahan akan diumumkan melalui halaman ini dengan tanggal pembaruan yang jelas. Kami menyarankan Anda untuk meninjau kebijakan ini secara berkala.</p>
 
-            <h2><i class="fas fa-handshake"></i> Persetujuan</h2>
-            <p>Dengan mengakses dan menggunakan website <strong>www.alamsah.com</strong>, Anda menyetujui praktik pengumpulan dan penggunaan informasi sebagaimana dijelaskan dalam kebijakan ini.</p>
+            <h2><i class="fas fa-handshake"></i> 7. Persetujuan Penggunaan</h2>
+            <p>Dengan mengakses dan menggunakan website <strong>www.alamsah.com</strong>, Anda menyatakan telah membaca, memahami, dan menyetujui praktik pengumpulan, penggunaan, dan perlindungan informasi sebagaimana dijelaskan dalam kebijakan ini.</p>
 
-            <!-- BACK BUTTON -->
+            <h2><i class="fas fa-headset"></i> 8. Kontak Privasi</h2>
+            <p>Untuk pertanyaan, permintaan akses data, koreksi, penghapusan, atau keluhan terkait kebijakan privasi ini, silakan hubungi:</p>
+            <div style="background: var(--light); padding: 15px 20px; border-radius: 8px; margin: 15px 0;" class="dark-mode" data-dark-bg="#3a3a3a">
+                <p style="margin: 5px 0;"><i class="fas fa-envelope" style="color: var(--primary); width: 20px;"></i> <strong>Email:</strong> 4l4m79@gmail.com</p>
+                <p style="margin: 5px 0;"><i class="fas fa-phone" style="color: var(--primary); width: 20px;"></i> <strong>Telepon/WA:</strong> +62 8xx-xxxx-xxxx</p>
+                <p style="margin: 5px 0;"><i class="fas fa-map-marker-alt" style="color: var(--primary); width: 20px;"></i> <strong>Alamat:</strong> Jalan Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+            </div>
+
+            <!-- ===== BACK BUTTON ===== -->
             <div class="back-btn-container">
                 <a href="index.html" class="back-btn">
                     <i class="fas fa-arrow-left"></i> Kembali ke Beranda
                 </a>
             </div>
-        </div>
+        </article>
     </div>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER (SINKRON SEMPURNA DENGAN REFERENSI) ===== -->
     <footer>
-        <p>© 2025 <strong>www.alamsah.com</strong></p>
+        <p>© <span id="currentYear"></span> <strong>www.alamsah.com</strong></p>
         <div class="footer-links">
             <a href="about.html">Tentang</a>
             <span class="separator">•</span>
             <a href="contact.html">Kontak</a>
             <span class="separator">•</span>
-            <a href="privacy-policy.html">Privasi</a>
+            <a href="privacy-policy.html" class="active">Privasi</a>
             <span class="separator">•</span>
             <a href="disclaimer.html">Disclaimer</a>
             <span class="separator">•</span>
@@ -447,41 +465,76 @@
         <p class="copyright">Platform dokumentasi dan berbagi wawasan.</p>
     </footer>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Set last updated date
+        // Set tanggal terakhir diperbarui
         document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('id-ID', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            weekday: 'long'
         });
 
-        // Dark Mode Toggle
+        // Set tahun copyright otomatis
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ===== DARK MODE TOGGLE =====
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
+        const icon = themeToggle.querySelector('i');
 
+        // Cek preferensi tema tersimpan
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
-            themeToggle.textContent = '☀️';
+            icon.classList.replace('fa-moon', 'fa-sun');
         }
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('darkMode', 'disabled');
-            }
+            const isDark = body.classList.contains('dark-mode');
+            
+            // Update icon & simpan preferensi
+            icon.classList.toggle('fa-moon', !isDark);
+            icon.classList.toggle('fa-sun', isDark);
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            
+            // Aksesibilitas: announce change
+            themeToggle.setAttribute('aria-label', isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
         });
 
-        // Smooth scroll for anchor links
+        // ===== SMOOTH SCROLL UNTUK ANCHOR LINKS =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }
+                }
+            });
+        });
+
+        // ===== HIGHLIGHT LINK FOOTER AKTIF =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.footer-links a').forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== PREVENT DEFAULT UNTUK LINK YANG TIDAK ADA =====
+        document.querySelectorAll('a[href="#"], a[href=""]').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                console.warn('Link belum tersedia:', link.href);
             });
         });
     </script>
