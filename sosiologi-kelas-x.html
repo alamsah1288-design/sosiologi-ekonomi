@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
   <!-- ✅ SEO Meta Tags -->
-  <meta name="description" content="Portal Pembelajaran Sosiologi Kelas X SMA - Materi Bab, Modul Ajar, Studi Kasus, dan Asesmen Interaktif">
-  <meta name="keywords" content="sosiologi SMA, kelas X, materi sosiologi, interaksi sosial, perubahan sosial, modul ajar">
+  <meta name="description" content="Portal Pembelajaran Sosiologi Kelas X SMA - Materi Bab, Modul Ajar, Lensa Sosiologis, dan Asesmen Interaktif">
+  <meta name="keywords" content="sosiologi SMA, kelas X, materi sosiologi, interaksi sosial, perubahan sosial, modul ajar, lensa sosiologis">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.alamsah.com/sosiologi-kelas-x.html">
   
@@ -116,6 +116,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .logo h1 {
@@ -135,6 +143,30 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+    }
+
+    /* Back to Home Button */
+    .btn-home {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 0.9rem;
+    }
+
+    .btn-home:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
 
     .theme-toggle {
@@ -716,6 +748,10 @@
         gap: 1rem;
       }
 
+      .logo {
+        flex-direction: column;
+      }
+
       .nav-buttons {
         grid-template-columns: 1fr;
       }
@@ -743,11 +779,16 @@
       .progress-stats {
         text-align: left;
       }
+
+      .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     /* PRINT STYLES */
     @media print {
-      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn {
+      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .btn-home {
         display: none !important;
       }
 
@@ -855,6 +896,11 @@
         <p>SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
       </div>
       <div class="header-actions">
+        <!-- ✅ Tombol Kembali ke Beranda -->
+        <a href="index.html" class="btn-home">
+          <i class="fas fa-home"></i> Kembali ke Beranda
+        </a>
+        <!-- Toggle Dark Mode -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
           <i class="fas fa-moon"></i>
         </button>
@@ -862,7 +908,7 @@
     </div>
   </header>
 
-  <!-- Main Navigation Buttons - 4 Tombol Sesuai Permintaan -->
+  <!-- Main Navigation Buttons - 4 Tombol -->
   <nav class="main-nav">
     <div class="nav-container">
       <div class="nav-buttons">
@@ -1200,7 +1246,7 @@
     </div>
   </section>
 
-    <!-- SECTION 3: LENSA SOSIOLOGIS - ANALISIS ISU SOSIAL -->
+  <!-- SECTION 3: LENSA SOSIOLOGIS - ANALISIS ISU SOSIAL -->
   <section id="analisis" class="content-section">
     <div class="section-header">
       <h2><i class="fas fa-microscope"></i> 🔬 Lensa Sosiologis: Analisis Isu Sosial</h2>
@@ -1261,7 +1307,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- SECTION 4: TUGAS & ASESMEN -->
   <section id="aktivitas" class="content-section">
     <div class="section-header">
