@@ -265,11 +265,36 @@
       font-size: 0.95rem;
     }
 
-    /* hilangkan semua cursor:pointer pada teks biasa, hanya button & header accordion yg pointer */
+    /* tombol index (navigasi kembali) */
+    .index-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .index-button {
+      background: #13294b;
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 12px 20px -14px #0b2b50;
+      transition: 0.2s;
+      border: 2px solid transparent;
+    }
+    .index-button:hover {
+      background: #1e3f7a;
+      box-shadow: 0 16px 24px -10px #13294b;
+      border-color: white;
+    }
+
+    /* hilangkan semua cursor:pointer pada teks biasa */
     p, li, td, .stat-block, .intro-card, h1, h2, h3 {
       cursor: default;
     }
-    .accordion-header, .button-soft, .toc a {
+    .accordion-header, .button-soft, .toc a, .index-button {
       cursor: pointer;
     }
 
@@ -297,6 +322,13 @@
 
 <div class="progress-bar" id="progressBar"></div>
 
+<!-- Navigasi kembali ke Index (muncul di atas dan bawah) -->
+<div class="container" style="margin-bottom: -1rem;">
+  <div class="index-nav">
+    <a href="index.html" class="index-button">🏠 Kembali ke Index Utama</a>
+  </div>
+</div>
+
 <div class="container">
   <article>
     <!-- breadcrumb halus -->
@@ -305,7 +337,7 @@
     <h1>Hubungan Kebijakan Fiskal dan Moneter<br>dalam Menjaga Stabilitas Rupiah 2026</h1>
     
     <div class="intro-card">
-      <span style="font-weight:700;">Ringkasan eksekutif</span> — Stabilitas nilai tukar adalah prasyarat pertumbuhan berkelanjutan. Artikel ini menyajikan analisis mendalam koordinasi Kementerian Keuangan dan Bank Indonesia, dilengkapi data grafik interaktif serta indikator ekonomi makro terkini.
+      <span style="font-weight:700;">Ringkasan eksekutif</span> — Stabilitas nilai tukar adalah prasyarat pertumbuhan berkelanjutan. Artikel ini menyajikan analisis mendalam koordinasi Kementerian Keuangan dan Bank Indonesia, dilengkapi data grafik interaktif serta indikator ekonomi makro terkini. Dengan pendekatan integratif, kita memahami bagaimana instrumen fiskal dan moneter bahu-membahu meredam gejolak eksternal.
     </div>
 
     <!-- daftar isi minimalis -->
@@ -318,10 +350,9 @@
       <a href="#tantangan">🎯 Tantangan 2026</a>
     </div>
 
-    <!-- GRAFIK (sepenuhnya fungsional, tanpa onclick mengganggu) -->
+    <!-- GRAFIK -->
     <h2 id="grafik">📈 Pergerakan Nilai Tukar & Indikator</h2>
     <div class="chart-grid">
-      <!-- chart 1: Nilai tukar -->
       <div class="chart-panel">
         <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
           <span style="font-weight:700;">USD/IDR (2022–2026)</span>
@@ -331,7 +362,6 @@
           <canvas id="exchangeChart"></canvas>
         </div>
       </div>
-      <!-- chart 2: BI rate & inflasi -->
       <div class="chart-panel">
         <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
           <span style="font-weight:700;">BI Rate vs Inflasi (%)</span>
@@ -341,7 +371,6 @@
           <canvas id="policyChart"></canvas>
         </div>
       </div>
-      <!-- chart 3: inflasi series -->
       <div class="chart-panel">
         <div style="margin-bottom:1rem; font-weight:700;">Tren Inflasi Indonesia</div>
         <div class="chart-container">
@@ -358,20 +387,22 @@
       <div class="stat-block"><span class="stat-number">5,2%</span><span class="stat-label">PDB target</span></div>
     </div>
 
-    <!-- Pengertian (tanpa klik aneh) -->
+    <!-- PENGERTIAN DIPERLUAS (substansial) -->
     <h2 id="pengertian">📚 Definisi Kebijakan Fiskal & Moneter</h2>
-    <p><strong>Kebijakan fiskal</strong> dikelola Kementerian Keuangan melalui APBN, perpajakan, belanja negara, dan subsidi. <strong>Kebijakan moneter</strong> menjadi otoritas Bank Indonesia dengan instrumen suku bunga acuan, operasi pasar terbuka, giro wajib minimum, dan intervensi valuta asing. Keduanya bertemu pada tujuan stabilitas makroekonomi dan nilai tukar.</p>
+    <p><strong>Kebijakan fiskal</strong> adalah strategi pemerintah yang diwujudkan melalui Anggaran Pendapatan dan Belanja Negara (APBN). Instrumentasi utamanya meliputi penerimaan perpajakan (PPh, PPN, bea cukai), belanja negara (belanja barang, belanja modal, belanja sosial seperti subsidi dan bansos), serta pembiayaan defisit melalui penerbitan Surat Berharga Negara (SBN). Kementerian Keuangan selaku fiskal otoritas bertugas menjaga agar APBN sehat, kredibel, dan kontrasiklikal terhadap siklus ekonomi. Ketika ekonomi melambat, stimulus fiskal berupa peningkatan belanja atau pemotongan pajak dapat menggerakkan permintaan agregat. Namun ekspansi fiskal yang tidak hati‑hati dapat melebarkan defisit dan menekan nilai tukar karena meningkatnya kebutuhan utang luar negeri atau persepsi risiko fiskal.</p>
+    <p style="margin-top:1.5rem;"><strong>Kebijakan moneter</strong> sepenuhnya berada di tangan Bank Indonesia sebagai otoritas independen. Tujuan utamanya adalah mencapai dan memelihara stabilitas nilai rupiah — baik terhadap barang dan jasa (inflasi) maupun terhadap mata uang asing. Untuk itu BI menggunakan kerangka <em>inflation targeting framework</em> dengan suku bunga acuan (BI-Rate) sebagai sinyal utama. Instrumen lain meliputi operasi pasar terbuka (jual/beli SBN di pasar sekunder), giro wajib minimum (GWM) bank umum, dan intervensi valuta asing baik secara spot maupun <em>forward</em>. Kebijakan moneter yang ketat (BI-Rate tinggi) dapat menarik aliran modal asing dan menopang rupiah, namun berpotensi memperlambat pertumbuhan kredit. Sebaliknya, pelonggaran moneter mendorong ekspansi tetapi bisa memicu inflasi dan pelemahan kurs. Karena itulah koordinasi dengan kebijakan fiskal mutlak diperlukan: fiskal menjaga fondasi ekonomi riil, moneter menjaga stabilitas nominal dan eksternal.</p>
 
-    <!-- Hubungan (accordion interaktif, tapi hanya header bisa diklik) -->
-    <h2 id="hubungan">🔗 Hubungan Fiskal-Moneter</h2>
+    <!-- HUBUNGAN FISKAL-MONETER (dengan teks penjelas panjang) -->
+    <h2 id="hubungan">🔗 Hubungan Fiskal-Moneter dalam Menjaga Rupiah</h2>
+    <p>Keterkaitan keduanya bersifat dinamis dan saling melengkapi. Di bawah ini tiga pilar sinergi yang dijabarkan lebih lengkap.</p>
     
     <div class="accordion-modern" id="accord1">
       <div class="accordion-header" onclick="toggleAccordion(this)">
-        <span>1. Mengendalikan inflasi secara terpadu</span>
+        <span>1. Pengendalian inflasi secara terpadu</span>
         <span class="chevron">⌄</span>
       </div>
       <div class="accordion-content">
-        Inflasi diredam melalui kenaikan suku bunga (moneter) dan pengurangan subsidi energi (fiskal) sehingga tekanan permintaan berkurang.
+        <p>Inflasi yang tinggi menggerus daya beli dan mendorong depresiasi rupiah. Bank Indonesia merespons dengan menaikkan BI Rate sehingga biaya pinjaman naik dan permintaan agregat terkoreksi. Namun jika kenaikan inflasi berasal dari <em>cost push</em> (kenaikan harga energi/pangan), kebijakan moneter saja tidak cukup. Di sinilah peran fiskal: pemerintah dapat mengalokasikan subsidi tepat sasaran, memperlancar distribusi logistik, atau menurunkan pajak impor bahan pangan. Contoh 2022 – 2023 saat inflasi pangan melonjak, Kementerian Keuangan menambah anggaran Cadangan Beras Pemerintah dan menyerap biaya transportasi, sementara BI menahan kenaikan rate tidak terlalu agresif sehingga pemulihan tetap terjaga.</p>
       </div>
     </div>
 
@@ -381,7 +412,7 @@
         <span class="chevron">⌄</span>
       </div>
       <div class="accordion-content">
-        Defisit APBN yang terkendali (fiskal) dipadu dengan suku bunga kompetitif (moneter) menarik modal asing dan memperkuat Rupiah.
+        <p>Investor asing memarkir dananya di portofolio SUN (Surat Utang Negara) dan saham jika imbal hasil menarik dan risiko dianggap rendah. BI Rate yang kompetitif (misal 6,25% pada 2026) memberikan imbal hasil riil positif. Namun itu saja tidak cukup: persepsi terhadap risiko fiskal — defisit APBN, rasio utang terhadap PDB, kredibilitas fiskal — turut mempengaruhi minat investasi. Jika defisit membengkak dan utang meningkat cepat, premi risiko Indonesia naik, rupiah terdepresiasi meskipun BI Rate tinggi. Oleh sebab itu Kementerian Keuangan menjaga defisit di bawah 3% PDB dan menerbitkan SBN dengan tenor panjang, yang juga dimanfaatkan BI sebagai instrumen moneter (operasi pasar). Kolaborasi ini menciptakan <em>virtuous cycle</em> : pasar yakin, rupiah stabil, imbal hasil SBN wajar.</p>
       </div>
     </div>
 
@@ -391,54 +422,66 @@
         <span class="chevron">⌄</span>
       </div>
       <div class="accordion-content">
-        Koordinasi penerbitan SBN (fiskal) dan intervensi valas (moneter) menjaga cadangan devisa di level aman > USD 130 miliar.
+        <p>Cadangan devisa Indonesia saat ini sekitar USD 145 miliar, cukup untuk membiayai 6,5 bulan impor. Angka ini ditopang oleh dua sisi: neraca pembayaran yang sehat (moneter) dan aliran modal jangka panjang (fiskal). Di sisi fiskal, penerbitan SBN global (<em>global bonds</em>) menambah pasokan valas. Di sisi moneter, BI melakukan <em>term deposit</em> valas dan swap lindung nilai. Intervensi valas dilakukan BI untuk memperlancar volatilitas berlebih, namun intervensi hanya efektif jika fundamental fiskal kuat. Contoh kasus 2024 ketika tekanan The Fed mereda, BI bersama Kemenkeu menerbitkan SBN berdenominasi valas yang diserap perbankan dan investor asing, sehingga cadangan devisa aman dan Rupiah terjaga di kisaran 15.800.</p>
       </div>
     </div>
 
-    <!-- Tabel instrumen elegan -->
-    <h2 id="instrumen">🛠️ Instrumen Kunci</h2>
+    <!-- TABEL INSTRUMEN dengan tambahan penjelasan -->
+    <h2 id="instrumen">🛠️ Instrumen Kunci dan Kontribusinya</h2>
     <table class="table-elegant">
       <thead><tr><th>Instrumen</th><th>Pelaksana</th><th>Efek ke Nilai Tukar</th></tr></thead>
       <tbody>
-        <tr><td>Suku bunga acuan (BI Rate)</td><td>Bank Indonesia</td><td>Meningkatkan imbal hasil, tarik modal asing</td></tr>
-        <tr><td>Intervensi pasar valas</td><td>Bank Indonesia</td><td>Stabilisasi jangka pendek</td></tr>
-        <tr><td>Subsidi & belanja negara</td><td>Pemerintah</td><td>Mengurangi defisit, perkuat fundamental</td></tr>
-        <tr><td>Penerbitan SBN</td><td>Kemenkeu & BI</td><td>Pembiayaan defisit & instrumen moneter</td></tr>
+        <tr><td>Suku bunga acuan (BI Rate)</td><td>Bank Indonesia</td><td>Meningkatkan imbal hasil, tarik modal asing (capital inflow)</td></tr>
+        <tr><td>Intervensi pasar valas (spot & DNDF)</td><td>Bank Indonesia</td><td>Stabilisasi jangka pendek, meredam gejolak harian</td></tr>
+        <tr><td>Subsidi & belanja negara (fiskal)</td><td>Kementerian Keuangan</td><td>Mengurangi defisit, memperkuat fundamental makro</td></tr>
+        <tr><td>Penerbitan SBN (ritel & global)</td><td>Kemenkeu & BI (koordinasi)</td><td>Pembiayaan defisit dan instrumen moneter (OMT, SRBI)</td></tr>
+        <tr><td>Giro Wajib Minimum (GWM)</td><td>Bank Indonesia</td><td>Mengatur likuiditas perbankan, mempengaruhi kredit dan kurs</td></tr>
       </tbody>
     </table>
+    <p style="margin-top:1rem;">Setiap instrumen di atas bekerja dalam satu kerangka <strong>policy mix</strong>. Contohnya, SRBI (Sekuritas Rupiah Bank Indonesia) yang diluncurkan 2024 merupakan instrumen moneter baru untuk menarik valas asing, sementara di saat sama pemerintah menerbitkan SBN ritel bagi investor domestik. Kolaborasi ini memperdalam pasar keuangan dan mengurangi ketergantungan pada utang luar negeri jangka pendek.</p>
 
-    <!-- Contoh nyata Indonesia ( tanpa onclick berlebih, hanya list rapi) -->
-    <h2 id="contoh">🇮🇩 Contoh Nyata di Indonesia</h2>
+    <!-- CONTOH NYATA INDONESIA (diperluas) -->
+    <h2 id="contoh">🇮🇩 Studi Kasus: Koordinasi Kebijakan 2022–2026</h2>
     <div style="background:#f2f7ff; border-radius:2rem; padding:2rem; margin:2rem 0;">
       <ul style="list-style-type: none;">
-        <li style="margin-bottom:1.5rem;"><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2022-2023</span> Stimulus fiskal (subsidi BBM, bansos) + kenaikan BI Rate 3,5% → 5,5%.</li>
-        <li style="margin-bottom:1.5rem;"><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2024-2025</span> Respon atas kenaikan Fed Fund Rate: BI menaikkan rate ke 6,25%, triple intervensi.</li>
-        <li><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2026</span> Koordinasi KSSK diperkuat, Rupiah digital mulai diuji coba.</li>
+        <li style="margin-bottom:1.5rem;"><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2022-2023</span> Pasca pandemi, tekanan inflasi global memicu kenaikan harga energi. Pemerintah menggelontorkan subsidi BBM dan listrik Rp 500 triliun (fiskal ekspansif) untuk menjaga daya beli, sementara BI menaikkan BI Rate dari 3,5% menjadi 5,5% secara graduali. Hasilnya: inflasi terkendali di 4,2%, rupiah masih tertekan namun tidak sedalam negara lain.</li>
+        <li style="margin-bottom:1.5rem;"><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2024-2025</span> The Fed agresif menaikkan Fed Fund Rate. BI merespon front-loaded dengan menaikkan rate ke 6,25% dan melakukan triple intervensi (spot, DNDF, pembelian SBN). Dari sisi fiskal, pemerintah mempercepat hilirisasi nikel dan mengekspor produk bernilai tambah, mendorong current account surplus tipis. Cadangan devisa naik, rupiah stabil di 15.500–15.800.</li>
+        <li><span style="background:#13294b; color:white; padding:0.3rem 1rem; border-radius:2rem; font-weight:600; margin-right:1rem;">2026</span> Koordinasi KSSK (Komite Stabilitas Sektor Keuangan) semakin solid. Bank Indonesia meluncurkan purwarupa rupiah digital untuk efisiensi sistem pembayaran, dan Kemenkeu mendukung dengan insentif pajak bagi pengguna digital. Ekspor jasa digital mulai tumbuh, mengurangi tekanan di neraca transaksi berjalan.</li>
       </ul>
     </div>
 
-    <!-- Tantangan & Kesimpulan -->
+    <!-- TANTANGAN DAN KESIMPULAN DIPERLUAS -->
     <h2 id="tantangan">🎯 Tantangan dan Strategi 2026</h2>
     <div class="insight-badge">
       🔥 Volatilitas komoditas, normalisasi kebijakan The Fed, tensi geopolitik, dan kebutuhan transformasi digital. Strategi: penguatan cadangan devisa, hilirisasi industri, dan pengembangan rupiah digital.
     </div>
+    <p style="margin: 1.5rem 0;">Memasuki 2026, ekonomi global masih dihadapkan pada fragmentasi geopolitik (konflik Rusia‑Ukraina, ketegangan Taiwan) yang berimbas pada rantai pasok dan harga komoditas. Bank sentral AS kemungkinan masih mempertahankan suku bunga tinggi hingga inflasi AS turun ke 2%. Hal ini berpotensi memicu arus modal keluar dari negara berkembang, termasuk Indonesia. Untuk itu, strategi bauran ditempuh: (1) <strong>Penguatan cadangan devisa</strong> melalui instrumen term deposit valas dan promosi ekspor jasa; (2) <strong>Hilirisasi berkelanjutan</strong> tidak hanya nikel tetapi tembaga dan bauksit sehingga ekspor bernilai tambah memperbaiki current account; (3) <strong>Rupiah digital</strong> (CBDC) akan diujicoba terbatas untuk meningkatkan efisiensi dan ketahanan sistem pembayaran dari gejolak eksternal. (4) Disiplin fiskal tetap dijaga dengan defisit APBN di bawah 2,8% PDB, dan penerbitan SBN hijau untuk menarik minat investor global.</p>
 
     <h2>✅ Kesimpulan</h2>
     <p style="font-size:1.2rem; background: #e2eafc; padding: 2rem; border-radius: 2rem;">
-      Koordinasi kebijakan fiskal (prudent) dan moneter (responsif) merupakan kunci stabilitas Rupiah. Sinergi yang solid membuat Indonesia lebih tangguh menghadapi guncangan eksternal.
+      Koordinasi kebijakan fiskal yang prudent dan moneter yang responsif terbukti menjadi kunci stabilitas Rupiah sepanjang 2022–2026. Tidak ada satu pun kebijakan yang dapat berdiri sendiri: fiskal memberikan fondasi pertumbuhan dan kepercayaan, moneter menjaga keseimbangan eksternal dan inflasi. Sinergi yang solid dalam kerangka KSSK membuat Indonesia lebih tangguh menghadapi guncangan eksternal. Ke depan, inovasi instrumen dan kedisiplinan bersama akan terus memperkuat perekonomian nasional.
     </p>
 
-    <!-- mini FAQ dengan accordion -->
+    <!-- mini FAQ -->
     <div class="faq-modern">
       <h3 style="margin-bottom: 1rem;">❓ Pertanyaan umum</h3>
       <div class="accordion-modern">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>Apa itu kebijakan fiskal?</span><span class="chevron">⌄</span></div>
-        <div class="accordion-content">Kebijakan pemerintah dalam pendapatan (pajak) dan belanja negara, diatur dalam APBN.</div>
+        <div class="accordion-content">Kebijakan pemerintah dalam pendapatan (pajak) dan belanja negara, diatur dalam APBN. Mencakup subsidi, belanja infrastruktur, dan insentif pajak.</div>
       </div>
       <div class="accordion-modern">
         <div class="accordion-header" onclick="toggleAccordion(this)"><span>Apa itu kebijakan moneter?</span><span class="chevron">⌄</span></div>
-        <div class="accordion-content">Kebijakan bank sentral mengatur jumlah uang beredar dan suku bunga untuk stabilitas nilai tukar & inflasi.</div>
+        <div class="accordion-content">Kebijakan bank sentral mengatur jumlah uang beredar dan suku bunga untuk stabilitas nilai tukar & inflasi. Instrumen: BI rate, operasi pasar, giro wajib minimum.</div>
       </div>
+      <div class="accordion-modern">
+        <div class="accordion-header" onclick="toggleAccordion(this)"><span>Mengapa koordinasi fiskal-moneter penting bagi Rupiah?</span><span class="chevron">⌄</span></div>
+        <div class="accordion-content">Karena nilai tukar dipengaruhi oleh fundamental domestik (fiskal) dan daya tarik aset keuangan (moneter). Keduanya harus bergerak seirama agar investor percaya dan rupiah stabil.</div>
+      </div>
+    </div>
+
+    <!-- navigasi kembali ke Index (kedua) -->
+    <div class="index-nav" style="margin-top: 2.5rem;">
+      <a href="index.html" class="index-button">🏠 Kembali ke Index Utama</a>
     </div>
 
     <div class="footer-note">
@@ -457,7 +500,7 @@
     document.getElementById("progressBar").style.width = scrolled + "%";
   };
 
-  // toggle accordion (tanpa event bubbling gangguan)
+  // toggle accordion
   window.toggleAccordion = function(header) {
     const accordion = header.closest('.accordion-modern');
     accordion.classList.toggle('active');
@@ -517,19 +560,18 @@
     });
   });
 
-  // tombol smooth scroll (daftar isi)
+  // smooth scroll daftar isi
   document.querySelectorAll('.toc a').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1); // hapus #
+      const targetId = this.getAttribute('href').substring(1);
       const targetEl = document.getElementById(targetId);
       if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
     });
   });
-
 </script>
 
-<!-- schema.org sederhana -->
+<!-- schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
