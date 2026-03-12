@@ -4,12 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel, Simulator, dan Asesmen Interaktif">
-  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi">
+  <!-- SEO Meta Tags - Optimized for Google Search Console -->
+  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel Kebijakan Rupiah, Simulator, dan Asesmen Interaktif">
+  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi, kebijakan rupiah, inflasi, fiskal moneter">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="Zuli Astutik, S.Pd - SMAN 1 Cluring">
+  <meta name="theme-color" content="#2563eb">
   
-  <!-- Preconnect & Preload -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
+  <meta property="og:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
+  <meta name="twitter:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  
+  <!-- Structured Data for Google (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Portal Ekonomi Kelas XI SMA",
+    "description": "Portal pembelajaran ekonomi interaktif untuk siswa SMA Kelas XI",
+    "url": "https://ekonomi-sma11.sch.id",
+    "hasCourse": [
+      {
+        "@type": "Course",
+        "name": "Ekonomi Kelas XI",
+        "description": "Materi lengkap ekonomi: Badan Usaha, Pendapatan Nasional, Ketenagakerjaan, Inflasi, Kebijakan Fiskal & Moneter",
+        "provider": {
+          "@type": "Organization",
+          "name": "SMAN 1 Cluring",
+          "sameAs": "https://sman1cluring.sch.id"
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Preconnect & Preload for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
@@ -36,17 +72,15 @@
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f9fafb;
       color: var(--dark);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body.dark-mode {
@@ -65,6 +99,9 @@
       color: white;
       padding: 1.5rem 2rem;
       box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 200;
     }
 
     .header-content {
@@ -75,15 +112,8 @@
       align-items: center;
     }
 
-    .logo h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .logo small {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
+    .logo h1 { font-size: 1.8rem; font-weight: 700; }
+    .logo small { font-size: 0.9rem; opacity: 0.9; }
 
     .header-actions {
       display: flex;
@@ -114,18 +144,13 @@
       padding: 2rem;
       box-shadow: var(--shadow);
       position: sticky;
-      top: 0;
-      z-index: 100;
+      top: 76px;
+      z-index: 150;
     }
 
-    body.dark-mode .main-nav {
-      background: #1f2937;
-    }
+    body.dark-mode .main-nav { background: #1f2937; }
 
-    .nav-container {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
+    .nav-container { max-width: 1280px; margin: 0 auto; }
 
     .nav-buttons {
       display: grid;
@@ -176,9 +201,7 @@
       border-radius: 10px;
     }
 
-    .nav-btn.active i {
-      background: rgba(255, 255, 255, 0.2);
-    }
+    .nav-btn.active i { background: rgba(255, 255, 255, 0.2); }
 
     /* Content Sections */
     .content-section {
@@ -189,19 +212,11 @@
       animation: fadeIn 0.5s ease;
     }
 
-    .content-section.active {
-      display: block;
-    }
+    .content-section.active { display: block; }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .section-header {
@@ -260,15 +275,15 @@
       box-shadow: var(--shadow);
     }
 
-    body.dark-mode .progress-container {
-      background: #1f2937;
-    }
+    body.dark-mode .progress-container { background: #1f2937; }
 
     .progress-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .progress-bar {
@@ -278,9 +293,7 @@
       overflow: hidden;
     }
 
-    body.dark-mode .progress-bar {
-      background: #374151;
-    }
+    body.dark-mode .progress-bar { background: #374151; }
 
     .progress-fill {
       height: 100%;
@@ -307,6 +320,8 @@
       color: inherit;
       border: 1px solid #e5e7eb;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     body.dark-mode .card {
@@ -345,6 +360,9 @@
 
     .card-content {
       padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .card h3 {
@@ -353,14 +371,13 @@
       color: var(--dark);
     }
 
-    body.dark-mode .card h3 {
-      color: white;
-    }
+    body.dark-mode .card h3 { color: white; }
 
     .card p {
       color: var(--gray);
       font-size: 0.95rem;
       margin-bottom: 1rem;
+      flex-grow: 1;
     }
 
     .card-meta {
@@ -391,19 +408,12 @@
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s;
+      margin-top: auto;
     }
 
-    body.dark-mode .progress-tracker {
-      background: #374151;
-    }
-
-    .progress-tracker:hover {
-      background: #e5e7eb;
-    }
-
-    body.dark-mode .progress-tracker:hover {
-      background: #4b5563;
-    }
+    body.dark-mode .progress-tracker { background: #374151; }
+    .progress-tracker:hover { background: #e5e7eb; }
+    body.dark-mode .progress-tracker:hover { background: #4b5563; }
 
     .progress-checkbox {
       width: 24px;
@@ -441,10 +451,7 @@
       color: var(--dark);
     }
 
-    body.dark-mode .progress-label {
-      color: white;
-    }
-
+    body.dark-mode .progress-label { color: white; }
     .card.completed .progress-label {
       color: var(--success);
       text-decoration: line-through;
@@ -472,9 +479,7 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .action-btn.secondary {
-      background: var(--gradient-accent);
-    }
+    .action-btn.secondary { background: var(--gradient-accent); }
 
     /* Reset Progress Button */
     .reset-progress {
@@ -504,117 +509,83 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .nav-buttons {
-        grid-template-columns: 1fr;
-      }
-      
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-header h2 {
-        font-size: 1.5rem;
-      }
-
+      .nav-buttons { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 1.5rem; }
       .print-btn {
         position: static;
         transform: none;
         margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
       }
+      .progress-header { flex-direction: column; align-items: flex-start; }
     }
 
     /* PRINT STYLES */
     @media print {
-      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn {
+      header, .main-nav, footer, .print-btn, .reset-progress, 
+      .progress-tracker, .theme-toggle, .nav-btn {
         display: none !important;
       }
-
       body {
         background: white;
         color: black;
         font-size: 12pt;
       }
-
       .content-section {
         display: block !important;
         page-break-after: always;
         margin: 0;
         padding: 0;
       }
-
-      .content-section.active {
-        display: block !important;
-      }
-
+      .content-section.active { display: block !important; }
       .card {
         break-inside: avoid;
         border: 1px solid #000;
         box-shadow: none;
         margin-bottom: 1rem;
       }
-
       .card-image {
         height: 150px;
         filter: grayscale(100%);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
-
       .section-header {
         text-align: left;
         border-bottom: 2px solid #000;
         padding-bottom: 0.5rem;
         margin-bottom: 1rem;
       }
-
-      .section-header h2 {
-        color: black;
-        font-size: 18pt;
-      }
-
-      .section-header p {
-        color: #333;
-      }
-
+      .section-header h2 { color: black; font-size: 18pt; }
+      .section-header p { color: #333; }
       .card-badge {
         background: #000;
         color: white;
+        -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-
-      a {
-        text-decoration: none;
-        color: black;
-      }
-
-      .card-content {
-        padding: 0.5rem;
-      }
-
-      .card h3 {
-        font-size: 14pt;
-        margin-bottom: 0.5rem;
-      }
-
-      .card p {
-        font-size: 11pt;
-        color: #333;
-      }
-
+      a { text-decoration: none; color: black; }
+      .card-content { padding: 0.5rem; }
+      .card h3 { font-size: 14pt; margin-bottom: 0.5rem; }
+      .card p { font-size: 11pt; color: #333; }
       .card-meta {
         font-size: 9pt;
         border-top: 1px solid #ccc;
         padding-top: 0.5rem;
         margin-top: 0.5rem;
       }
-
-      /* Show only active section when printing, or all if specific print */
-      .content-section {
-        display: none;
-      }
-      
-      .content-section.active {
-        display: block;
-      }
+      .content-section { display: none; }
+      .content-section.active { display: block; }
     }
+
+    /* Performance: Reduce layout shifts */
+    .card-image {
+      aspect-ratio: 16/9;
+      background: #e5e7eb;
+    }
+    body.dark-mode .card-image { background: #374151; }
   </style>
 </head>
 <body>
@@ -637,19 +608,19 @@
   <nav class="main-nav">
     <div class="nav-container">
       <div class="nav-buttons">
-        <button class="nav-btn active" onclick="showSection('materi')">
+        <button class="nav-btn active" onclick="showSection('materi')" aria-controls="materi">
           <i class="fas fa-book"></i>
           <span>📚 Materi Pembelajaran</span>
         </button>
-        <button class="nav-btn" onclick="showSection('artikel')">
+        <button class="nav-btn" onclick="showSection('artikel')" aria-controls="artikel">
           <i class="fas fa-newspaper"></i>
           <span>📰 Artikel & Wawasan</span>
         </button>
-        <button class="nav-btn" onclick="showSection('simulator')">
+        <button class="nav-btn" onclick="showSection('simulator')" aria-controls="simulator">
           <i class="fas fa-flask"></i>
           <span>🧪 Simulator & Praktik</span>
         </button>
-        <button class="nav-btn" onclick="showSection('aktivitas')">
+        <button class="nav-btn" onclick="showSection('aktivitas')" aria-controls="aktivitas">
           <i class="fas fa-tasks"></i>
           <span>📝 Tugas & Asesmen</span>
         </button>
@@ -658,11 +629,11 @@
   </nav>
 
   <!-- SECTION 1: MATERI PEMBELAJARAN -->
-  <section id="materi" class="content-section active">
+  <section id="materi" class="content-section active" aria-labelledby="materi-title">
     <div class="section-header">
-      <h2><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
+      <h2 id="materi-title"><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
       <p>Pelajari konsep-konsep ekonomi fundamental secara komprehensif</p>
-      <button class="print-btn" onclick="printSection('materi')">
+      <button class="print-btn" onclick="printSection('materi')" aria-label="Cetak materi pembelajaran">
         <i class="fas fa-print"></i> Cetak Materi
       </button>
     </div>
@@ -674,11 +645,11 @@
           <h3><i class="fas fa-chart-line" style="color: var(--primary);"></i> Progress Belajar Materi</h3>
           <p style="font-size: 0.9rem; color: var(--gray);">Tandai materi yang sudah dipelajari</p>
         </div>
-        <button class="reset-progress" onclick="resetProgress('materi')">
+        <button class="reset-progress" onclick="resetProgress('materi')" aria-label="Reset progress materi">
           <i class="fas fa-redo"></i> Reset Progress
         </button>
       </div>
-      <div class="progress-bar">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-fill" id="materi-progress" style="width: 0%;"></div>
       </div>
       <p style="text-align: right; margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray);">
@@ -688,9 +659,9 @@
 
     <div class="cards-grid">
       <!-- Card 1: Materi Lengkap PDF -->
-      <div class="card" data-id="materi-1">
+      <article class="card" data-id="materi-1">
         <span class="card-badge">PDF</span>
-        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500" alt="Materi Lengkap" class="card-image">
+        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500" alt="Materi Lengkap Ekonomi" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Materi Ekonomi Lengkap</h3>
           <p>Download materi ekonomi kelas XI lengkap dalam format PDF. All-in-one resource untuk belajar!</p>
@@ -698,21 +669,21 @@
             <span><i class="fas fa-file-pdf"></i> PDF Document</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="https://drive.google.com/file/d/1e0ajPBwIed-ORadvmuX-PVnUFgXyoig1/view" class="action-btn" target="_blank">
+          <a href="https://drive.google.com/file/d/1e0ajPBwIed-ORadvmuX-PVnUFgXyoig1/view" class="action-btn" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-download"></i> Download PDF
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 2: Badan Usaha -->
-      <div class="card" data-id="materi-2">
-        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Badan Usaha" class="card-image">
+      <article class="card" data-id="materi-2">
+        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Badan Usaha di Indonesia" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Badan Usaha</h3>
           <p>Pelajari bentuk dan jenis badan usaha di Indonesia. Let's start your business journey!</p>
@@ -723,18 +694,18 @@
           <a href="badan-usaha.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 3: Pendapatan Nasional -->
-      <div class="card" data-id="materi-3">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Pendapatan Nasional" class="card-image">
+      <article class="card" data-id="materi-3">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Pendapatan Nasional dan GDP" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Pendapatan Nasional</h3>
           <p>Konsep, perhitungan, dan peran dalam perekonomian. GDP goals! 📈</p>
@@ -745,18 +716,18 @@
           <a href="pendapatan-nasional.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 4: Ketenagakerjaan -->
-      <div class="card" data-id="materi-4">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500" alt="Ketenagakerjaan" class="card-image">
+      <article class="card" data-id="materi-4">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500" alt="Ketenagakerjaan dan Pasar Tenaga Kerja" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Ketenagakerjaan</h3>
           <p>Struktur angkatan kerja, pengangguran, dan kebijakan ketenagakerjaan. Future career unlocked!</p>
@@ -767,18 +738,18 @@
           <a href="ketenagakerjaan.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 5: Inflasi -->
-      <div class="card" data-id="materi-5">
-        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Inflasi" class="card-image">
+      <article class="card" data-id="materi-5">
+        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Inflasi dan Dampak Ekonomi" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Inflasi</h3>
           <p>Jenis, penyebab, dan dampak inflasi terhadap perekonomian. Money value matters!</p>
@@ -789,18 +760,18 @@
           <a href="inflasi.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 6: Kebijakan Fiskal & Moneter -->
-      <div class="card" data-id="materi-6">
-        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Kebijakan Fiskal" class="card-image">
+      <article class="card" data-id="materi-6">
+        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Kebijakan Fiskal dan Moneter" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Kebijakan Fiskal & Moneter</h3>
           <p>Peran APBN, APBD, dan kebijakan moneter dalam stabilitas ekonomi. Government finance vibes!</p>
@@ -811,23 +782,23 @@
           <a href="Fiskal-Moneter.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
   <!-- SECTION 2: ARTIKEL & WAWASAN -->
-  <section id="artikel" class="content-section">
+  <section id="artikel" class="content-section" aria-labelledby="artikel-title">
     <div class="section-header">
-      <h2><i class="fas fa-lightbulb"></i> Artikel & Wawasan</h2>
+      <h2 id="artikel-title"><i class="fas fa-lightbulb"></i> Artikel & Wawasan</h2>
       <p>Eksplorasi isu-isu ekonomi terkini dan perspektif baru</p>
-      <button class="print-btn" onclick="printSection('artikel')">
+      <button class="print-btn" onclick="printSection('artikel')" aria-label="Cetak artikel">
         <i class="fas fa-print"></i> Cetak Artikel
       </button>
     </div>
@@ -839,23 +810,23 @@
           <h3><i class="fas fa-chart-line" style="color: var(--primary);"></i> Progress Baca Artikel</h3>
           <p style="font-size: 0.9rem; color: var(--gray);">Tandai artikel yang sudah dibaca</p>
         </div>
-        <button class="reset-progress" onclick="resetProgress('artikel')">
+        <button class="reset-progress" onclick="resetProgress('artikel')" aria-label="Reset progress artikel">
           <i class="fas fa-redo"></i> Reset Progress
         </button>
       </div>
-      <div class="progress-bar">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-fill" id="artikel-progress" style="width: 0%;"></div>
       </div>
       <p style="text-align: right; margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray);">
-        <span id="artikel-count">0</span>/2 Artikel Selesai
+        <span id="artikel-count">0</span>/3 Artikel Selesai
       </p>
     </div>
 
     <div class="cards-grid">
       <!-- Card 1: Strategi Menkeu Purbaya -->
-      <div class="card" data-id="artikel-1">
+      <article class="card" data-id="artikel-1">
         <span class="card-badge">HOT TOPIC</span>
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500" alt="Strategi Menkeu" class="card-image">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500" alt="Strategi Menteri Keuangan Purbaya" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Strategi Menkeu Purbaya</h3>
           <p>Analisis mendalam strategi fiskal, efisiensi anggaran, dan stimulus pertumbuhan ekonomi era baru. Policy in action! 🇮🇩</p>
@@ -866,18 +837,18 @@
           <a href="Strategi-Menkeu-Purbaya.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Baca Artikel
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 2: Gaji dan Kebahagiaan -->
-      <div class="card" data-id="artikel-2">
-        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500" alt="Gaji dan Kebahagiaan" class="card-image">
+      <article class="card" data-id="artikel-2">
+        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500" alt="Hubungan Gaji dan Kebahagiaan" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Gaji Besar, Namun Tak Selaras Kebahagiaan</h3>
           <p>Refleksi kritis tentang hubungan antara pendapatan dan kebahagiaan. Is money everything? 💭</p>
@@ -888,23 +859,46 @@
           <a href="gaji-dan-kebahagiaan.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Baca Artikel
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
+
+      <!-- ✅ Card 3: Kebijakan Rupiah (BARU) -->
+      <article class="card" data-id="artikel-3">
+        <span class="card-badge">EKONOMI MONETER</span>
+        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Kebijakan Ekonomi dan Stabilisasi Rupiah" class="card-image" loading="lazy">
+        <div class="card-content">
+          <h3>Kebijakan Ekonomi & Stabilisasi Rupiah</h3>
+          <p>Analisis komprehensif strategi Bank Indonesia dan pemerintah dalam menjaga stabilitas nilai tukar Rupiah di tengah dinamika global. 💱🇮🇩</p>
+          <div class="card-meta">
+            <span><i class="fas fa-chart-line"></i> Analisis Kebijakan</span>
+            <span class="card-type">Artikel</span>
+          </div>
+          <a href="artikel-ekonomi-kebijakan-rupiah.html" class="action-btn" title="Baca artikel Kebijakan Ekonomi dan Stabilisasi Rupiah">
+            <i class="fas fa-external-link-alt"></i> Baca Artikel
+          </a>
+          <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
+              <i class="fas fa-check"></i>
+            </div>
+            <span class="progress-label">Tandai sebagai selesai</span>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
   <!-- SECTION 3: SIMULATOR & PRAKTIK -->
-  <section id="simulator" class="content-section">
+  <section id="simulator" class="content-section" aria-labelledby="simulator-title">
     <div class="section-header">
-      <h2><i class="fas fa-flask"></i> Simulator & Praktik</h2>
+      <h2 id="simulator-title"><i class="fas fa-flask"></i> Simulator & Praktik</h2>
       <p>Terapkan teori ekonomi melalui simulasi interaktif</p>
-      <button class="print-btn" onclick="printSection('simulator')">
+      <button class="print-btn" onclick="printSection('simulator')" aria-label="Cetak panduan simulator">
         <i class="fas fa-print"></i> Cetak Panduan
       </button>
     </div>
@@ -916,11 +910,11 @@
           <h3><i class="fas fa-chart-line" style="color: var(--primary);"></i> Progress Simulasi</h3>
           <p style="font-size: 0.9rem; color: var(--gray);">Tandai simulasi yang sudah dikerjakan</p>
         </div>
-        <button class="reset-progress" onclick="resetProgress('simulator')">
+        <button class="reset-progress" onclick="resetProgress('simulator')" aria-label="Reset progress simulator">
           <i class="fas fa-redo"></i> Reset Progress
         </button>
       </div>
-      <div class="progress-bar">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-fill" id="simulator-progress" style="width: 0%;"></div>
       </div>
       <p style="text-align: right; margin-top: 0.5rem; font-size: 0.85rem; color: var(--gray);">
@@ -930,136 +924,145 @@
 
     <div class="cards-grid">
       <!-- Card 1: Simulator Ekonomi Makro Mikro -->
-      <div class="card" data-id="simulator-1">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="Simulator Ekonomi" class="card-image">
+      <article class="card" data-id="simulator-1">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="Simulator Ekonomi Makro dan Mikro" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Simulator Ekonomi Makro & Mikro</h3>
           <p>Latihan interaktif konsep ekonomi makro & mikro. Let's play and learn! 🎮</p>
           <a href="simulator-ekonomi.html" class="action-btn">
             <i class="fas fa-play"></i> Mulai Simulasi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 2: Simulator Fiskal Moneter APBN 2026 -->
-      <div class="card" data-id="simulator-2">
-        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Simulator APBN" class="card-image">
+      <article class="card" data-id="simulator-2">
+        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Simulator Kebijakan Fiskal Moneter APBN 2026" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Simulator Fiskal Moneter APBN 2026</h3>
           <p>Simulasikan kebijakan APBN 2026 dengan instrumen fiskal & moneter. Kelola defisit, inflasi, dan pertumbuhan! 📊</p>
           <a href="simulator_fiskal_moneterapbn_2026.html" class="action-btn">
             <i class="fas fa-play"></i> Jalankan Simulator
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- Card 3: Simulasi Kebijakan Bank Himbara -->
-      <div class="card" data-id="simulator-3">
+      <article class="card" data-id="simulator-3">
         <span class="card-badge">200T</span>
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Kebijakan Bank Himbara" class="card-image">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Simulasi Kebijakan Bank Himbara" class="card-image" loading="lazy">
         <div class="card-content">
           <h3>Simulasi Kebijakan Bank Himbara</h3>
           <p>Analisis dampak kebijakan fiskal Menkeu Purbaya terkait program 200T untuk Bank Himbara. Let's simulate! 📈</p>
           <a href="Simulasi-Analisis-dampak-kebijakan-fiskal.html" class="action-btn">
             <i class="fas fa-play"></i> Jalankan Simulasi
           </a>
-          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')">
-            <div class="progress-checkbox">
+          <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
+            <div class="progress-checkbox" aria-hidden="true">
               <i class="fas fa-check"></i>
             </div>
             <span class="progress-label">Tandai sebagai selesai</span>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
   <!-- SECTION 4: TUGAS & ASESMEN -->
-  <section id="aktivitas" class="content-section">
+  <section id="aktivitas" class="content-section" aria-labelledby="aktivitas-title">
     <div class="section-header">
-      <h2><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
+      <h2 id="aktivitas-title"><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
       <p>Kelola aktivitas pembelajaran dan evaluasi Anda</p>
-      <button class="print-btn" onclick="printSection('aktivitas')">
+      <button class="print-btn" onclick="printSection('aktivitas')" aria-label="Cetak instruksi tugas">
         <i class="fas fa-print"></i> Cetak Instruksi
       </button>
     </div>
 
     <div class="cards-grid">
       <!-- Card 1: Absensi -->
-      <div class="card">
+      <article class="card">
         <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
-          <i class="fas fa-clipboard-check fa-4x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+          <i class="fas fa-clipboard-check fa-4x" style="color: var(--primary); margin-bottom: 1rem;" aria-hidden="true"></i>
           <h3>Absensi Harian</h3>
           <p>Jangan lupa absen setiap hari! Kehadiran penting untuk proses belajar. 📅</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhINoihWRi60jw0ivUe5_N1pJYT4b3wgDejaMnNi5uWnFzuw/viewform" class="action-btn" target="_blank">Isi Absensi</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhINoihWRi60jw0ivUe5_N1pJYT4b3wgDejaMnNi5uWnFzuw/viewform" class="action-btn" target="_blank" rel="noopener noreferrer">Isi Absensi</a>
         </div>
-      </div>
+      </article>
 
       <!-- Card 2: Kirim Tugas -->
-      <div class="card">
+      <article class="card">
         <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
-          <i class="fas fa-file-upload fa-4x" style="color: var(--accent); margin-bottom: 1rem;"></i>
+          <i class="fas fa-file-upload fa-4x" style="color: var(--accent); margin-bottom: 1rem;" aria-hidden="true"></i>
           <h3>Kirim Tugas</h3>
           <p>Submit tugasmu di sini! No more excuses! Deadline waits for no one. 📤</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSclUWSbatHzbavWqSEhZ63_Y2rVok5M1q5rr_sY4QOWOV9knw/viewform" class="action-btn secondary" target="_blank">Kirim Sekarang</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSclUWSbatHzbavWqSEhZ63_Y2rVok5M1q5rr_sY4QOWOV9knw/viewform" class="action-btn secondary" target="_blank" rel="noopener noreferrer">Kirim Sekarang</a>
         </div>
-      </div>
+      </article>
 
       <!-- Card 3: Ulangan dan Hasil Asesmen -->
-      <div class="card">
+      <article class="card">
         <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
-          <i class="fas fa-graduation-cap fa-4x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
+          <i class="fas fa-graduation-cap fa-4x" style="color: var(--secondary); margin-bottom: 1rem;" aria-hidden="true"></i>
           <h3>Ulangan & Hasil Asesmen</h3>
           <p>Akses soal ulangan dan lihat hasil penilaian Anda. Check your scores! 📊</p>
           <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">Masuk</a>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
   <footer>
     <p>&copy; 2025 Mata Pelajaran Ekonomi Kelas XI. All rights reserved.</p>
-    <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for education</p>
+    <p>Made with <i class="fas fa-heart" style="color: var(--accent);" aria-hidden="true"></i> for education</p>
   </footer>
 
   <script>
-    // Tab Navigation
+    // Tab Navigation with Accessibility
     function showSection(sectionId) {
       // Hide all sections
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(section => {
         section.classList.remove('active');
+        section.setAttribute('aria-hidden', 'true');
       });
 
       // Remove active class from all buttons
       const buttons = document.querySelectorAll('.nav-btn');
       buttons.forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
       });
 
       // Show selected section
-      document.getElementById(sectionId).classList.add('active');
+      const activeSection = document.getElementById(sectionId);
+      activeSection.classList.add('active');
+      activeSection.setAttribute('aria-hidden', 'false');
 
       // Add active class to clicked button
-      event.currentTarget.classList.add('active');
+      const activeBtn = event.currentTarget;
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
 
       // Update progress display
       updateProgressDisplay(sectionId);
+      
+      // Update URL hash for bookmarking (SEO friendly)
+      history.replaceState(null, null, `#${sectionId}`);
     }
 
-    // Progress Tracker Functions
+    // Progress Tracker Functions with localStorage
     function toggleProgress(element, section) {
       const card = element.closest('.card');
       const cardId = card.getAttribute('data-id');
@@ -1067,40 +1070,63 @@
       // Toggle completed class
       card.classList.toggle('completed');
       
-      // Update label text
+      // Update label text and ARIA state
       const label = element.querySelector('.progress-label');
+      const checkbox = element.querySelector('.progress-checkbox');
+      
       if (card.classList.contains('completed')) {
         label.textContent = '✓ Selesai dipelajari';
+        element.setAttribute('aria-pressed', 'true');
         saveProgress(section, cardId, true);
       } else {
         label.textContent = 'Tandai sebagai selesai';
+        element.setAttribute('aria-pressed', 'false');
         saveProgress(section, cardId, false);
       }
       
-      // Update progress bar
+      // Update progress bar with animation
       updateProgressBar(section);
     }
 
     function saveProgress(section, cardId, completed) {
-      let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
-      progress[cardId] = completed;
-      localStorage.setItem('progress_' + section, JSON.stringify(progress));
+      try {
+        let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
+        progress[cardId] = completed;
+        localStorage.setItem('progress_' + section, JSON.stringify(progress));
+        
+        // Track event for analytics (optional - Google Analytics compatible)
+        if (typeof gtag === 'function') {
+          gtag('event', 'progress_update', {
+            'event_category': 'learning',
+            'event_label': section + '_' + cardId,
+            'value': completed ? 1 : 0
+          });
+        }
+      } catch (e) {
+        console.warn('LocalStorage not available:', e);
+      }
     }
 
     function loadProgress(section) {
-      let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
-      const cards = document.querySelectorAll(`#${section} .card`);
-      
-      cards.forEach(card => {
-        const cardId = card.getAttribute('data-id');
-        if (progress[cardId]) {
-          card.classList.add('completed');
-          const label = card.querySelector('.progress-label');
-          if (label) label.textContent = '✓ Selesai dipelajari';
-        }
-      });
-      
-      updateProgressBar(section);
+      try {
+        let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
+        const cards = document.querySelectorAll(`#${section} .card`);
+        
+        cards.forEach(card => {
+          const cardId = card.getAttribute('data-id');
+          if (progress[cardId]) {
+            card.classList.add('completed');
+            const label = card.querySelector('.progress-label');
+            const tracker = card.querySelector('.progress-tracker');
+            if (label) label.textContent = '✓ Selesai dipelajari';
+            if (tracker) tracker.setAttribute('aria-pressed', 'true');
+          }
+        });
+        
+        updateProgressBar(section);
+      } catch (e) {
+        console.warn('LocalStorage not available:', e);
+      }
     }
 
     function updateProgressBar(section) {
@@ -1112,8 +1138,13 @@
       
       const progressBar = document.getElementById(section + '-progress');
       const countDisplay = document.getElementById(section + '-count');
+      const progressContainer = progressBar?.closest('.progress-bar');
       
-      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressBar) {
+        progressBar.style.width = percentage + '%';
+        // Update ARIA attributes for accessibility
+        progressBar.closest('[role="progressbar"]')?.setAttribute('aria-valuenow', Math.round(percentage));
+      }
       if (countDisplay) countDisplay.textContent = completed;
     }
 
@@ -1123,70 +1154,139 @@
 
     function resetProgress(section) {
       if (confirm('Apakah Anda yakin ingin mereset progress belajar di bagian ini?')) {
-        localStorage.removeItem('progress_' + section);
-        const cards = document.querySelectorAll(`#${section} .card`);
-        cards.forEach(card => {
-          card.classList.remove('completed');
-          const label = card.querySelector('.progress-label');
-          if (label) label.textContent = 'Tandai sebagai selesai';
-        });
-        updateProgressBar(section);
+        try {
+          localStorage.removeItem('progress_' + section);
+          const cards = document.querySelectorAll(`#${section} .card`);
+          cards.forEach(card => {
+            card.classList.remove('completed');
+            const label = card.querySelector('.progress-label');
+            const tracker = card.querySelector('.progress-tracker');
+            if (label) label.textContent = 'Tandai sebagai selesai';
+            if (tracker) tracker.setAttribute('aria-pressed', 'false');
+          });
+          updateProgressBar(section);
+          
+          // Track reset event
+          if (typeof gtag === 'function') {
+            gtag('event', 'progress_reset', {
+              'event_category': 'learning',
+              'event_label': section
+            });
+          }
+        } catch (e) {
+          console.warn('LocalStorage not available:', e);
+        }
       }
     }
 
-    // Print Function
+    // Print Function - SEO & Performance Optimized
     function printSection(sectionId) {
       // Hide all sections except the active one
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(section => {
         if (section.id !== sectionId) {
           section.style.display = 'none';
+          section.setAttribute('aria-hidden', 'true');
         }
       });
       
-      // Print
-      window.print();
-      
-      // Restore display
+      // Print with delay for rendering
       setTimeout(() => {
-        sections.forEach(section => {
-          section.style.display = '';
-        });
-      }, 1000);
+        window.print();
+        
+        // Restore display
+        setTimeout(() => {
+          sections.forEach(section => {
+            section.style.display = '';
+            if (!section.classList.contains('active')) {
+              section.setAttribute('aria-hidden', 'true');
+            }
+          });
+        }, 500);
+      }, 300);
     }
 
-    // Dark Mode Toggle
+    // Dark Mode Toggle with Preference Save
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const icon = themeToggle.querySelector('i');
 
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
+    function setTheme(isDark) {
+      if (isDark) {
+        body.classList.add('dark-mode');
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
         localStorage.setItem('theme', 'dark');
+        // Update theme-color meta tag
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#1f2937');
       } else {
+        body.classList.remove('dark-mode');
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
         localStorage.setItem('theme', 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#2563eb');
       }
-    });
-
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      body.classList.add('dark-mode');
-      icon.classList.remove('fa-moon');
-      icon.classList.add('fa-sun');
     }
 
-    // Initialize progress on page load
+    themeToggle.addEventListener('click', () => {
+      const isDark = !body.classList.contains('dark-mode');
+      setTheme(isDark);
+    });
+
+    // Check for saved theme preference on load
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      setTheme(true);
+    }
+
+    // Handle keyboard navigation for progress trackers
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize progress on page load
       loadProgress('materi');
       loadProgress('artikel');
       loadProgress('simulator');
+      
+      // Handle URL hash for direct section access
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) {
+        showSection(hash);
+      }
+      
+      // Add keyboard support for progress trackers
+      document.querySelectorAll('.progress-tracker').forEach(tracker => {
+        tracker.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            tracker.click();
+          }
+        });
+      });
+      
+      // Add keyboard support for nav buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      });
     });
+
+    // Performance: Lazy load images already handled via loading="lazy"
+    // Additional: Preconnect hints already in head
+    
+    // Service Worker Registration (Optional - for PWA/Offline support)
+    if ('serviceWorker' in navigator) {
+      // Uncomment below to enable offline support
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js').catch(err => {
+      //     console.log('SW registration failed:', err);
+      //   });
+      // });
+    }
   </script>
 
 </body>
