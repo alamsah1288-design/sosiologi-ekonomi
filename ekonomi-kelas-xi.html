@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
   <!-- SEO Meta Tags - Optimized for Google Search Console -->
-  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel Kebijakan Rupiah, Simulator, dan Asesmen Interaktif">
-  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi, kebijakan rupiah, inflasi, fiskal moneter">
+  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel Kebijakan Rupiah, Simulator, Forum Diskusi, dan Asesmen Interaktif">
+  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi, kebijakan rupiah, inflasi, fiskal moneter, forum diskusi">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Alamsah, - SMAN 1 Cluring">
+  <meta name="author" content="Zuli Astutik, S.Pd - SMAN 1 Cluring">
   <meta name="theme-color" content="#2563eb">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
-  <meta property="og:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  <meta property="og:description" content="Materi, artikel, simulator, forum diskusi, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
   <meta property="og:image" content="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
-  <meta name="twitter:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  <meta name="twitter:description" content="Materi, artikel, simulator, forum diskusi, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
   
   <!-- Structured Data for Google (JSON-LD) -->
   <script type="application/ld+json">
@@ -136,6 +136,32 @@
     .theme-toggle:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: scale(1.1);
+    }
+
+    /* Forum Button in Header */
+    .forum-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .forum-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .forum-btn i {
+      font-size: 1.1rem;
     }
 
     /* Main Navigation Buttons */
@@ -507,6 +533,27 @@
       margin-top: 4rem;
     }
 
+    /* Forum Cards */
+    .forum-card {
+      border-left: 4px solid var(--primary);
+    }
+
+    .forum-badge {
+      background: var(--secondary);
+    }
+
+    .forum-stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .forum-stats i {
+      margin-right: 0.3rem;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-buttons { grid-template-columns: 1fr; }
@@ -520,12 +567,18 @@
         justify-content: center;
       }
       .progress-header { flex-direction: column; align-items: flex-start; }
+      .forum-btn span {
+        display: none;
+      }
+      .forum-btn {
+        padding: 0.5rem;
+      }
     }
 
     /* PRINT STYLES */
     @media print {
       header, .main-nav, footer, .print-btn, .reset-progress, 
-      .progress-tracker, .theme-toggle, .nav-btn {
+      .progress-tracker, .theme-toggle, .nav-btn, .forum-btn {
         display: none !important;
       }
       body {
@@ -597,6 +650,11 @@
         <small>Portal Pembelajaran Interaktif</small>
       </div>
       <div class="header-actions">
+        <!-- ADDED: Forum Diskusi Button in Header -->
+        <a href="forum-diskusi.html" class="forum-btn" aria-label="Buka Forum Diskusi">
+          <i class="fas fa-comments"></i>
+          <span>Forum Diskusi</span>
+        </a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
           <i class="fas fa-moon"></i>
         </button>
@@ -627,6 +685,67 @@
       </div>
     </div>
   </nav>
+
+  <!-- ADDED: Forum Section in Main Content (optional) -->
+  <section id="forum" class="content-section" aria-labelledby="forum-title">
+    <div class="section-header">
+      <h2 id="forum-title"><i class="fas fa-comments"></i> Forum Diskusi</h2>
+      <p>Diskusikan materi ekonomi dengan teman dan guru</p>
+      <button class="print-btn" onclick="printSection('forum')" aria-label="Cetak forum diskusi">
+        <i class="fas fa-print"></i> Cetak Forum
+      </button>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Forum Card 1: Diskusi Umum -->
+      <article class="card forum-card">
+        <div class="card-content">
+          <span class="card-badge forum-badge">UMUM</span>
+          <h3>Diskusi Umum Ekonomi Kelas XI</h3>
+          <p>Diskusikan berbagai topik ekonomi secara umum. Tanya jawab, sharing materi, dan berbagi wawasan.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 28 partisipan</span>
+            <span><i class="fas fa-comment"></i> 15 diskusi aktif</span>
+          </div>
+          <a href="forum-diskusi.html?topic=umum" class="action-btn">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+        </div>
+      </article>
+
+      <!-- Forum Card 2: Tugas & Asesmen -->
+      <article class="card forum-card">
+        <div class="card-content">
+          <span class="card-badge forum-badge">TUGAS</span>
+          <h3>Diskusi Tugas & Asesmen</h3>
+          <p>Diskusikan tugas-tugas, ulangan, dan asesmen dengan teman sekelas.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 18 partisipan</span>
+            <span><i class="fas fa-comment"></i> 8 diskusi aktif</span>
+          </div>
+          <a href="forum-diskusi.html?topic=tugas" class="action-btn">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+        </div>
+      </article>
+
+      <!-- Forum Card 3: Simulator & Praktik -->
+      <article class="card forum-card">
+        <div class="card-content">
+          <span class="card-badge forum-badge">PRAKTIK</span>
+          <h3>Diskusi Simulator & Praktik</h3>
+          <p>Tempat berdiskusi tentang hasil simulasi, praktik ekonomi, dan analisis kebijakan.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 12 partisipan</span>
+            <span><i class="fas fa-comment"></i> 5 diskusi aktif</span>
+          </div>
+          <a href="forum-diskusi.html?topic=simulator" class="action-btn">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- SECTION 1: MATERI PEMBELAJARAN -->
   <section id="materi" class="content-section active" aria-labelledby="materi-title">
@@ -1023,8 +1142,17 @@
     </div>
   </section>
 
+  <!-- ADDED: Forum Link in Footer -->
   <footer>
     <p>&copy; 2025 Mata Pelajaran Ekonomi Kelas XI. All rights reserved.</p>
+    <p style="margin: 1rem 0;">
+      <a href="forum-diskusi.html" style="color: white; text-decoration: underline; margin: 0 1rem;">
+        <i class="fas fa-comments"></i> Forum Diskusi
+      </a>
+      <a href="tentang.html" style="color: white; text-decoration: underline; margin: 0 1rem;">
+        <i class="fas fa-info-circle"></i> Tentang
+      </a>
+    </p>
     <p>Made with <i class="fas fa-heart" style="color: var(--accent);" aria-hidden="true"></i> for education</p>
   </footer>
 
