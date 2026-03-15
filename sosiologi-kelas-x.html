@@ -2,17 +2,17 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
   
   <!-- ✅ SEO Meta Tags -->
-  <meta name="description" content="Portal Pembelajaran Sosiologi Kelas X SMA - Materi Bab, Modul Ajar, Lensa Sosiologis, dan Asesmen Interaktif">
-  <meta name="keywords" content="sosiologi SMA, kelas X, materi sosiologi, interaksi sosial, perubahan sosial, modul ajar, lensa sosiologis">
+  <meta name="description" content="Portal Pembelajaran Sosiologi Kelas X SMA - Materi Bab, Modul Ajar, Lensa Sosiologis, Forum Diskusi, dan Asesmen Interaktif">
+  <meta name="keywords" content="sosiologi SMA, kelas X, materi sosiologi, interaksi sosial, perubahan sosial, modul ajar, lensa sosiologis, forum diskusi">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.alamsah.com/sosiologi-kelas-x.html">
   
   <!-- ✅ Open Graph / Social Media Meta Tags -->
   <meta property="og:title" content="Sosiologi Kelas X | Portal Pembelajaran">
-  <meta property="og:description" content="Materi sosiologi lengkap untuk siswa SMA kelas X dengan fitur interaktif.">
+  <meta property="og:description" content="Materi sosiologi lengkap untuk siswa SMA kelas X dengan fitur interaktif dan forum diskusi.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.alamsah.com/sosiologi-kelas-x.html">
   <meta property="og:site_name" content="Alamsah Education">
@@ -21,7 +21,7 @@
   <!-- ✅ Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sosiologi Kelas X | Portal Pembelajaran">
-  <meta name="twitter:description" content="Materi sosiologi lengkap untuk siswa SMA kelas X dengan fitur interaktif.">
+  <meta name="twitter:description" content="Materi sosiologi lengkap untuk siswa SMA kelas X dengan fitur interaktif dan forum diskusi.">
   
   <!-- ✅ Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -76,6 +76,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background 0.3s, color 0.3s;
+      padding-bottom: 80px; /* Space for bottom navigation on mobile */
     }
 
     body.dark-mode {
@@ -90,6 +91,12 @@
 
     body.dark-mode .card p {
       color: #9ca3af;
+    }
+
+    body.dark-mode .main-nav,
+    body.dark-mode .mobile-bottom-nav {
+      background: #1f2937;
+      border-color: #374151;
     }
 
     /* Header */
@@ -169,6 +176,28 @@
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
 
+    /* Forum Button in Header */
+    .forum-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .forum-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+    }
+
     .theme-toggle {
       background: rgba(255, 255, 255, 0.2);
       border: none;
@@ -179,6 +208,9 @@
       cursor: pointer;
       font-size: 1.2rem;
       transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .theme-toggle:hover {
@@ -186,8 +218,8 @@
       transform: scale(1.1);
     }
 
-    /* Main Navigation Buttons */
-    .main-nav {
+    /* Desktop Navigation - Hidden on Mobile */
+    .desktop-nav {
       background: white;
       padding: 1.5rem 2rem;
       box-shadow: var(--shadow);
@@ -196,7 +228,7 @@
       z-index: 100;
     }
 
-    body.dark-mode .main-nav {
+    body.dark-mode .desktop-nav {
       background: #1f2937;
     }
 
@@ -207,7 +239,7 @@
 
     .nav-buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
 
@@ -220,8 +252,9 @@
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      font-size: 0.95rem;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--dark);
     }
@@ -246,19 +279,66 @@
 
     .nav-btn i {
       font-size: 1.3rem;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(52, 152, 219, 0.15);
-      border-radius: 10px;
-      color: var(--secondary);
     }
 
     .nav-btn.active i {
-      background: rgba(255, 255, 255, 0.25);
-      color: white;
+      background: transparent;
+    }
+
+    /* Mobile Bottom Navigation */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 0.5rem 0.25rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .mobile-nav-items {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 items including forum */
+      gap: 0.25rem;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.25rem;
+      border: none;
+      background: transparent;
+      color: var(--gray);
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .mobile-nav-item i {
+      font-size: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .mobile-nav-item.active {
+      color: var(--secondary);
+      background: rgba(52, 152, 219, 0.1);
+    }
+
+    body.dark-mode .mobile-nav-item.active {
+      background: rgba(52, 152, 219, 0.2);
+    }
+
+    .mobile-nav-item span {
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
     }
 
     /* Content Sections */
@@ -493,6 +573,10 @@
       background: linear-gradient(120deg, #9b59b6, #3498db);
     }
 
+    .card-badge.forum {
+      background: linear-gradient(120deg, #1abc9c, #3498db);
+    }
+
     .card-image {
       width: 100%;
       height: 160px;
@@ -535,6 +619,10 @@
       font-size: 0.9rem;
       margin-bottom: 1rem;
       flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .card-meta {
@@ -553,6 +641,19 @@
       border-radius: 9999px;
       font-size: 0.65rem;
       font-weight: 600;
+    }
+
+    /* Forum Stats */
+    .forum-stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+
+    .forum-stats i {
+      margin-right: 0.3rem;
     }
 
     /* Progress Tracker Checkbox */
@@ -748,8 +849,20 @@
       font-size: 0.85rem;
     }
 
-    /* Responsive */
+    /* Responsive Breakpoints */
     @media (max-width: 768px) {
+      .desktop-nav {
+        display: none; /* Hide desktop navigation on mobile */
+      }
+      
+      .mobile-bottom-nav {
+        display: block; /* Show mobile bottom navigation */
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
       .header-content {
         flex-direction: column;
         text-align: center;
@@ -759,26 +872,63 @@
       .logo {
         flex-direction: column;
       }
-
-      .nav-buttons {
-        grid-template-columns: 1fr;
+      
+      .logo h1 {
+        font-size: 1.4rem;
       }
       
-      .cards-grid {
-        grid-template-columns: 1fr;
+      .logo p {
+        font-size: 0.8rem;
       }
-
+      
+      .btn-home span,
+      .forum-btn span {
+        display: none; /* Hide text on mobile, show only icon */
+      }
+      
+      .btn-home,
+      .forum-btn {
+        padding: 0.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .btn-home i,
+      .forum-btn i {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      
+      .section-header {
+        text-align: left;
+        padding-right: 70px; /* Space for print button */
+      }
+      
       .section-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
       }
-
+      
+      .section-header p {
+        font-size: 0.8rem;
+      }
+      
       .print-btn {
         position: static;
         transform: none;
         margin-top: 1rem;
-        justify-content: center;
+        width: fit-content;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
       }
-
+      
+      .cards-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+      }
+      
       .progress-header {
         flex-direction: column;
         align-items: flex-start;
@@ -794,9 +944,21 @@
       }
     }
 
+    /* Tablet adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .nav-buttons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* PRINT STYLES */
     @media print {
-      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .btn-home {
+      header, .desktop-nav, .mobile-bottom-nav, footer, .print-btn, .reset-progress, 
+      .progress-tracker, .theme-toggle, .nav-btn, .btn-home, .forum-btn {
         display: none !important;
       }
 
@@ -804,13 +966,14 @@
         background: white;
         color: black;
         font-size: 11pt;
+        padding-bottom: 0;
       }
 
       .content-section {
         display: block !important;
         page-break-after: always;
         margin: 0;
-        padding: 0;
+        padding: 0.5in;
       }
 
       .content-section.active {
@@ -821,12 +984,12 @@
         break-inside: avoid;
         border: 1px solid #000;
         box-shadow: none;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5in;
         page-break-inside: avoid;
       }
 
       .card-image {
-        height: 120px;
+        height: 2in;
         filter: grayscale(100%);
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
@@ -835,8 +998,8 @@
       .section-header {
         text-align: left;
         border-bottom: 2px solid #000;
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
+        padding-bottom: 0.2in;
+        margin-bottom: 0.3in;
       }
 
       .section-header h2 {
@@ -884,14 +1047,6 @@
         padding-top: 0.4rem;
         margin-top: 0.4rem;
       }
-
-      .content-section {
-        display: none;
-      }
-      
-      .content-section.active {
-        display: block;
-      }
     }
   </style>
 </head>
@@ -904,9 +1059,15 @@
         <p>SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
       </div>
       <div class="header-actions">
-        <!-- ✅ Tombol Kembali ke Beranda -->
+        <!-- Tombol Kembali ke Beranda -->
         <a href="index.html" class="btn-home">
-          <i class="fas fa-home"></i> Kembali ke Beranda
+          <i class="fas fa-home"></i>
+          <span>Beranda</span>
+        </a>
+        <!-- Tombol Forum Diskusi -->
+        <a href="forum-diskusi.html" class="forum-btn">
+          <i class="fas fa-comments"></i>
+          <span>Forum</span>
         </a>
         <!-- Toggle Dark Mode -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -916,35 +1077,210 @@
     </div>
   </header>
 
-  <!-- Main Navigation Buttons - 4 Tombol -->
-  <nav class="main-nav">
+  <!-- Desktop Navigation - 5 Tombol (including Forum) -->
+  <nav class="desktop-nav">
     <div class="nav-container">
       <div class="nav-buttons">
         <!-- Tombol 1: Materi -->
         <button class="nav-btn active" onclick="showSection('materi')">
           <i class="fas fa-book"></i>
-          <span>📚 Materi (Bab 1-4)</span>
+          <span>Materi</span>
         </button>
         <!-- Tombol 2: Modul Ajar -->
         <button class="nav-btn" onclick="showSection('modul')">
           <i class="fas fa-chalkboard-teacher"></i>
-          <span>📖 Modul Ajar</span>
+          <span>Modul</span>
         </button>
         <!-- Tombol 3: Lensa Sosiologis -->
         <button class="nav-btn" onclick="showSection('analisis')">
           <i class="fas fa-microscope"></i>
-          <span>🔬 Lensa Sosiologis</span>
+          <span>Lensa</span>
         </button>
-        <!-- Tombol 4: Tugas & Asesmen -->
+        <!-- Tombol 4: Forum Diskusi -->
+        <button class="nav-btn" onclick="showSection('forum')">
+          <i class="fas fa-comments"></i>
+          <span>Forum</span>
+        </button>
+        <!-- Tombol 5: Tugas & Asesmen -->
         <button class="nav-btn" onclick="showSection('aktivitas')">
           <i class="fas fa-tasks"></i>
-          <span>📝 Tugas & Asesmen</span>
+          <span>Tugas</span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- SECTION 1: MATERI (Bab 1-4) -->
+  <!-- Mobile Bottom Navigation - 5 Items -->
+  <nav class="mobile-bottom-nav">
+    <div class="mobile-nav-items">
+      <button class="mobile-nav-item active" onclick="showSection('materi')">
+        <i class="fas fa-book"></i>
+        <span>Materi</span>
+      </button>
+      <button class="mobile-nav-item" onclick="showSection('modul')">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span>Modul</span>
+      </button>
+      <button class="mobile-nav-item" onclick="showSection('analisis')">
+        <i class="fas fa-microscope"></i>
+        <span>Lensa</span>
+      </button>
+      <button class="mobile-nav-item" onclick="showSection('forum')">
+        <i class="fas fa-comments"></i>
+        <span>Forum</span>
+      </button>
+      <button class="mobile-nav-item" onclick="showSection('aktivitas')">
+        <i class="fas fa-tasks"></i>
+        <span>Tugas</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SECTION FORUM DISKUSI (NEW) -->
+  <section id="forum" class="content-section">
+    <div class="section-header">
+      <h2><i class="fas fa-comments"></i> Forum Diskusi Sosiologi</h2>
+      <p>Diskusikan materi sosiologi dengan teman dan guru</p>
+      <button class="print-btn" onclick="printSection('forum')">
+        <i class="fas fa-print"></i> Cetak Forum
+      </button>
+    </div>
+
+    <!-- Progress Tracker Global -->
+    <div class="progress-container">
+      <div class="progress-header">
+        <div class="progress-title">
+          <i class="fas fa-chart-line"></i>
+          <span>Partisipasi Forum</span>
+        </div>
+        <button class="reset-progress" onclick="resetProgress('forum')">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="forum-progress" style="width: 0%;"></div>
+      </div>
+      <p class="progress-stats">
+        <span id="forum-count">0</span>/3 Forum Aktif
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Forum Card 1: Diskusi Umum -->
+      <div class="card" data-id="forum-1">
+        <span class="card-badge forum">UMUM</span>
+        <div class="card-image">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-globe"></i> Diskusi Umum Sosiologi</h3>
+          <p>Tempat diskusi umum tentang materi sosiologi, tanya jawab, dan berbagi wawasan dengan teman sekelas.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 32 partisipan</span>
+            <span><i class="fas fa-comment"></i> 18 diskusi aktif</span>
+          </div>
+          <div class="card-meta">
+            <span><i class="fas fa-clock"></i> Online 24/7</span>
+            <span class="card-type">Forum</span>
+          </div>
+          <a href="forum-diskusi.html?topic=umum" class="action-btn secondary">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+          <div class="progress-tracker" onclick="toggleProgress(this, 'forum')">
+            <div class="progress-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <span class="progress-label">Tandai aktif</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forum Card 2: Diskusi Tugas -->
+      <div class="card" data-id="forum-2">
+        <span class="card-badge forum">TUGAS</span>
+        <div class="card-image">
+          <i class="fas fa-tasks"></i>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-clipboard-list"></i> Diskusi Tugas & Asesmen</h3>
+          <p>Diskusikan tugas, ulangan, dan asesmen sosiologi dengan teman sekelas. Sharing jawaban dan tips mengerjakan.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 24 partisipan</span>
+            <span><i class="fas fa-comment"></i> 12 diskusi aktif</span>
+          </div>
+          <div class="card-meta">
+            <span><i class="fas fa-clock"></i> Online 24/7</span>
+            <span class="card-type">Forum</span>
+          </div>
+          <a href="forum-diskusi.html?topic=tugas" class="action-btn secondary">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+          <div class="progress-tracker" onclick="toggleProgress(this, 'forum')">
+            <div class="progress-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <span class="progress-label">Tandai aktif</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forum Card 3: Diskusi Analisis -->
+      <div class="card" data-id="forum-3">
+        <span class="card-badge forum">ANALISIS</span>
+        <div class="card-image">
+          <i class="fas fa-microscope"></i>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-search"></i> Diskusi Analisis Isu Sosial</h3>
+          <p>Tempat membahas analisis isu sosial terkini dari perspektif sosiologi. Diskusikan artikel dan temuan menarik.</p>
+          <div class="forum-stats">
+            <span><i class="fas fa-users"></i> 18 partisipan</span>
+            <span><i class="fas fa-comment"></i> 9 diskusi aktif</span>
+          </div>
+          <div class="card-meta">
+            <span><i class="fas fa-clock"></i> Online 24/7</span>
+            <span class="card-type">Forum</span>
+          </div>
+          <a href="forum-diskusi.html?topic=analisis" class="action-btn secondary">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+          <div class="progress-tracker" onclick="toggleProgress(this, 'forum')">
+            <div class="progress-checkbox">
+              <i class="fas fa-check"></i>
+            </div>
+            <span class="progress-label">Tandai aktif</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forum Guidelines -->
+    <div class="progress-container" style="margin-top: 2rem;">
+      <h3 style="color: var(--primary); margin-bottom: 1rem;">
+        <i class="fas fa-info-circle"></i> Panduan Forum Diskusi
+      </h3>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
+          <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>
+          Bersikap sopan dan menghargai pendapat orang lain
+        </li>
+        <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
+          <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>
+          Gunakan bahasa yang baik dan mudah dipahami
+        </li>
+        <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
+          <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>
+          Hindari spam dan konten yang tidak relevan
+        </li>
+        <li style="padding: 0.8rem 0;">
+          <i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>
+          Aktif bertanya dan membantu teman yang kesulitan
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 1: MATERI (Bab 1-4) - Existing content -->
   <section id="materi" class="content-section active">
     <div class="section-header">
       <h2><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
@@ -1072,7 +1408,7 @@
     </div>
   </section>
 
-  <!-- SECTION 2: MODUL AJAR -->
+  <!-- SECTION 2: MODUL AJAR - Existing content (simplified for brevity) -->
   <section id="modul" class="content-section">
     <div class="section-header">
       <h2><i class="fas fa-chalkboard-teacher"></i> Modul Ajar</h2>
@@ -1254,10 +1590,10 @@
     </div>
   </section>
 
-  <!-- SECTION 3: LENSA SOSIOLOGIS - ANALISIS ISU SOSIAL (2 ANALISIS) -->
+  <!-- SECTION 3: LENSA SOSIOLOGIS - Existing content -->
   <section id="analisis" class="content-section">
     <div class="section-header">
-      <h2><i class="fas fa-microscope"></i> 🔬 Lensa Sosiologis: Analisis Isu Sosial</h2>
+      <h2><i class="fas fa-microscope"></i> 🔬 Lensa Sosiologis</h2>
       <p>Gunakan perspektif sosiologi untuk membedah fenomena dan kebijakan sosial terkini</p>
       <button class="print-btn" onclick="printSection('analisis')">
         <i class="fas fa-print"></i> Cetak Panduan
@@ -1314,14 +1650,14 @@
         </div>
       </div>
 
-      <!-- Card 2: Generasi Z & Transformasi Nilai Sosial (BARU!) -->
+      <!-- Card 2: Generasi Z & Transformasi Nilai Sosial -->
       <div class="card" data-id="analisis-2">
         <span class="card-badge generation">GENERASI Z</span>
         <div class="card-image">
           <i class="fas fa-mobile-alt"></i>
         </div>
         <div class="card-content">
-          <h3><i class="fas fa-users-cog"></i> 🎭 Generasi Z & Transformasi Nilai Sosial: Dari Tradisi ke Digital</h3>
+          <h3><i class="fas fa-users-cog"></i> Generasi Z & Transformasi Nilai Sosial</h3>
           <p>Bagaimana Gen Z mengubah nilai, norma, dan interaksi sosial di era digital? Analisis mendalam tentang transformasi budaya dan identitas generasi muda Indonesia.</p>
           <div class="card-meta">
             <span><i class="fas fa-clock"></i> 15 Menit Baca</span>
@@ -1366,7 +1702,7 @@
     </div>
   </section>
 
-  <!-- SECTION 4: TUGAS & ASESMEN -->
+  <!-- SECTION 4: TUGAS & ASESMEN - Existing content -->
   <section id="aktivitas" class="content-section">
     <div class="section-header">
       <h2><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
@@ -1421,7 +1757,8 @@
         <h3>Menu Navigasi</h3>
         <ul>
           <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
-          <li><a href="#"><i class="fas fa-book"></i> Materi</a></li>
+          <li><a href="#materi"><i class="fas fa-book"></i> Materi</a></li>
+          <li><a href="forum-diskusi.html"><i class="fas fa-comments"></i> Forum</a></li>
           <li><a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-tasks"></i> Tugas</a></li>
           <li><a href="galery.html"><i class="fas fa-images"></i> Galeri</a></li>
         </ul>
@@ -1457,9 +1794,8 @@
         section.classList.remove('active');
       });
 
-      // Remove active class from all buttons
-      const buttons = document.querySelectorAll('.nav-btn');
-      buttons.forEach(btn => {
+      // Remove active class from all buttons (both desktop and mobile)
+      document.querySelectorAll('.nav-btn, .mobile-nav-item').forEach(btn => {
         btn.classList.remove('active');
       });
 
@@ -1467,10 +1803,20 @@
       document.getElementById(sectionId).classList.add('active');
 
       // Add active class to clicked button
-      event.currentTarget.classList.add('active');
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      } else {
+        // Handle direct calls
+        document.querySelectorAll(`[onclick*="'${sectionId}'"]`).forEach(btn => {
+          btn.classList.add('active');
+        });
+      }
 
       // Update progress display
       updateProgressDisplay(sectionId);
+      
+      // Update URL hash for bookmarking
+      history.replaceState(null, null, `#${sectionId}`);
     }
 
     // Progress Tracker Functions
@@ -1484,10 +1830,10 @@
       // Update label text
       const label = element.querySelector('.progress-label');
       if (card.classList.contains('completed')) {
-        label.textContent = '✓ Selesai dipelajari';
+        label.textContent = '✓ Selesai';
         saveProgress(section, cardId, true);
       } else {
-        label.textContent = 'Tandai sebagai selesai';
+        label.textContent = 'Tandai selesai';
         saveProgress(section, cardId, false);
       }
       
@@ -1510,7 +1856,7 @@
         if (progress[cardId]) {
           card.classList.add('completed');
           const label = card.querySelector('.progress-label');
-          if (label) label.textContent = '✓ Selesai dipelajari';
+          if (label) label.textContent = '✓ Selesai';
         }
       });
       
@@ -1536,13 +1882,13 @@
     }
 
     function resetProgress(section) {
-      if (confirm('Apakah Anda yakin ingin mereset progress belajar di bagian ini?')) {
+      if (confirm('Apakah Anda yakin ingin mereset progress?')) {
         localStorage.removeItem('progress_' + section);
         const cards = document.querySelectorAll(`#${section} .card`);
         cards.forEach(card => {
           card.classList.remove('completed');
           const label = card.querySelector('.progress-label');
-          if (label) label.textContent = 'Tandai sebagai selesai';
+          if (label) label.textContent = 'Tandai selesai';
         });
         updateProgressBar(section);
       }
@@ -1559,14 +1905,16 @@
       });
       
       // Print
-      window.print();
-      
-      // Restore display
       setTimeout(() => {
-        sections.forEach(section => {
-          section.style.display = '';
-        });
-      }, 1000);
+        window.print();
+        
+        // Restore display
+        setTimeout(() => {
+          sections.forEach(section => {
+            section.style.display = '';
+          });
+        }, 500);
+      }, 300);
     }
 
     // Dark Mode Toggle
@@ -1589,7 +1937,9 @@
 
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       body.classList.add('dark-mode');
       icon.classList.remove('fa-moon');
       icon.classList.add('fa-sun');
@@ -1600,6 +1950,13 @@
       loadProgress('materi');
       loadProgress('modul');
       loadProgress('analisis');
+      loadProgress('forum');
+      
+      // Handle URL hash for direct section access
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) {
+        showSection(hash);
+      }
     });
   </script>
 
