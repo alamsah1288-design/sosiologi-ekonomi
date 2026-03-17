@@ -237,6 +237,44 @@
         .skip-link:focus {
             top: 0;
         }
+
+        /* Language Toggle Button */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: white;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .lang-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .lang-btn:first-child {
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: #f3f4f6;
+        }
         
         /* Navigasi Breadcrumb */
         .breadcrumb {
@@ -1040,52 +1078,58 @@
     <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
     
     <div class="main-container">
+        <!-- Language Toggle Button -->
+        <div class="language-toggle">
+            <button class="lang-btn active" onclick="switchLanguage('id')" id="lang-id">🇮🇩 Indonesia</button>
+            <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">🇬🇧 English</button>
+        </div>
+
         <!-- Breadcrumb Navigasi -->
         <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+            <a href="index.html" data-translate="home">🏠 Beranda</a>
             <i class="fas fa-chevron-right"></i>
-            <a href="ekonomi-kelas-xi.html">Ekonomi Kelas XI</a>
+            <a href="ekonomi-kelas-xi.html" data-translate="economicsClass">Ekonomi Kelas XI</a>
             <i class="fas fa-chevron-right"></i>
-            <span class="current">Kebijakan Fiskal & Moneter</span>
+            <span class="current" data-translate="currentPage">Kebijakan Fiskal & Moneter</span>
         </nav>
         
         <!-- Tombol Kembali ke Halaman Utama Ekonomi -->
         <a href="ekonomi-kelas-xi.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Kembali ke Materi Ekonomi
+            <i class="fas fa-arrow-left"></i> <span data-translate="backToEconomics">Kembali ke Materi Ekonomi</span>
         </a>
         
         <!-- Learning Path Indicator - Menghubungkan dengan materi sebelumnya -->
         <div class="learning-path-indicator">
             <div class="path-title">
                 <i class="fas fa-route" style="color: var(--primary);"></i>
-                <span>Learning Path Ekonomi Kelas XI</span>
+                <span data-translate="learningPath">Learning Path Ekonomi Kelas XI</span>
             </div>
             <div class="path-steps">
-                <a href="badan-usaha.html" class="path-step">1. Badan Usaha</a>
+                <a href="badan-usaha.html" class="path-step" data-translate="businessEntities">1. Badan Usaha</a>
                 <i class="fas fa-chevron-right path-arrow"></i>
-                <a href="pendapatan-nasional.html" class="path-step">2. Pendapatan Nasional</a>
+                <a href="pendapatan-nasional.html" class="path-step" data-translate="nationalIncome">2. Pendapatan Nasional</a>
                 <i class="fas fa-chevron-right path-arrow"></i>
-                <a href="ketenagakerjaan.html" class="path-step">3. Ketenagakerjaan</a>
+                <a href="ketenagakerjaan.html" class="path-step" data-translate="employment">3. Ketenagakerjaan</a>
                 <i class="fas fa-chevron-right path-arrow"></i>
-                <a href="inflasi.html" class="path-step">4. Inflasi</a>
+                <a href="inflasi.html" class="path-step" data-translate="inflation">4. Inflasi</a>
                 <i class="fas fa-chevron-right path-arrow"></i>
-                <span class="path-step active">5. Kebijakan Fiskal & Moneter 🎯</span>
+                <span class="path-step active" data-translate="fiscalMonetary">5. Kebijakan Fiskal & Moneter 🎯</span>
             </div>
             <div style="margin-top: 1rem; font-size: 0.9rem; background: #f0f4ff; padding: 0.75rem; border-radius: 12px;">
                 <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
-                Materi ini merupakan sintesis dari topik sebelumnya. Memahami pendapatan nasional dan inflasi akan membantu Anda mengerti dampak kebijakan ini.
+                <span data-translate="synthesisNote">Materi ini merupakan sintesis dari topik sebelumnya. Memahami pendapatan nasional dan inflasi akan membantu Anda mengerti dampak kebijakan ini.</span>
             </div>
         </div>
         
         <!-- Header Hero -->
         <header class="hero-header">
             <div class="hero-content">
-                <h1><i class="fas fa-landmark"></i> Kebijakan Fiskal & Moneter</h1>
-                <p>Memahami instrumen, perbedaan, dan dampak kebijakan pemerintah dan bank sentral dalam menjaga stabilitas perekonomian Indonesia.</p>
+                <h1><i class="fas fa-landmark"></i> <span data-translate="heroTitle">Kebijakan Fiskal & Moneter</span></h1>
+                <p data-translate="heroDescription">Memahami instrumen, perbedaan, dan dampak kebijakan pemerintah dan bank sentral dalam menjaga stabilitas perekonomian Indonesia.</p>
                 <div class="badge-container">
-                    <span class="badge"><i class="fas fa-clock"></i> 90 Menit</span>
-                    <span class="badge"><i class="fas fa-chart-line"></i> Level: Mahir</span>
-                    <span class="badge"><i class="fas fa-calculator"></i> Simulasi Interaktif</span>
+                    <span class="badge"><i class="fas fa-clock"></i> <span data-translate="duration">90 Menit</span></span>
+                    <span class="badge"><i class="fas fa-chart-line"></i> <span data-translate="level">Level: Mahir</span></span>
+                    <span class="badge"><i class="fas fa-calculator"></i> <span data-translate="simulation">Simulasi Interaktif</span></span>
                 </div>
             </div>
         </header>
@@ -1096,18 +1140,19 @@
             <div class="main-content">
                 <!-- Card: Pengertian -->
                 <section class="card">
-                    <h2><i class="fas fa-info-circle fiscal-color"></i> Apa Itu Kebijakan Ekonomi?</h2>
+                    <h2><i class="fas fa-info-circle fiscal-color"></i> <span data-translate="whatIsEconomicPolicy">Apa Itu Kebijakan Ekonomi?</span></h2>
                     <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                          alt="Ilustrasi kebijakan ekonomi" 
                          class="featured-image"
                          loading="lazy">
-                    <p class="image-caption">Ilustrasi kebijakan ekonomi dan dampaknya terhadap sektor riil dan keuangan</p>
+                    <p class="image-caption" data-translate="imageCaption">Ilustrasi kebijakan ekonomi dan dampaknya terhadap sektor riil dan keuangan</p>
                     
-                    <p><strong>Kebijakan ekonomi</strong> adalah serangkaian tindakan yang diambil oleh pemerintah dan bank sentral untuk mengarahkan perekonomian menuju kondisi yang diinginkan, seperti pertumbuhan ekonomi tinggi, inflasi rendah, dan pemerataan pendapatan. Dua instrumen utama dalam kebijakan ekonomi makro adalah <span class="fiscal-color fw-bold">kebijakan fiskal</span> dan <span class="monetary-color fw-bold">kebijakan moneter</span>.</p>
+                    <p data-translate="economicPolicyDef1"><strong>Kebijakan ekonomi</strong> adalah serangkaian tindakan yang diambil oleh pemerintah dan bank sentral untuk mengarahkan perekonomian menuju kondisi yang diinginkan, seperti pertumbuhan ekonomi tinggi, inflasi rendah, dan pemerataan pendapatan.</p>
+                    <p data-translate="economicPolicyDef2">Dua instrumen utama dalam kebijakan ekonomi makro adalah <span class="fiscal-color fw-bold">kebijakan fiskal</span> dan <span class="monetary-color fw-bold">kebijakan moneter</span>.</p>
                     
                     <div class="highlight-box">
                         <i class="fas fa-lightbulb" style="color: var(--primary);"></i>
-                        <strong>Catatan Penting:</strong> Kebijakan fiskal dan moneter harus berjalan beriringan. Koordinasi yang baik antara pemerintah (Kementerian Keuangan) dan Bank Indonesia sangat penting untuk mencapai stabilitas ekonomi.
+                        <strong data-translate="importantNote">Catatan Penting:</strong> <span data-translate="coordinationNote">Kebijakan fiskal dan moneter harus berjalan beriringan. Koordinasi yang baik antara pemerintah (Kementerian Keuangan) dan Bank Indonesia sangat penting untuk mencapai stabilitas ekonomi.</span>
                     </div>
                 </section>
                 
@@ -1115,29 +1160,29 @@
                 <section class="simulation-section">
                     <div class="simulation-title">
                         <i class="fas fa-sliders-h"></i>
-                        <span>Simulasi Dampak Kebijakan Ekonomi</span>
+                        <span data-translate="simulationTitle">Simulasi Dampak Kebijakan Ekonomi</span>
                     </div>
-                    <p style="margin-bottom: 1.5rem;">Ubah parameter kebijakan di bawah untuk melihat dampaknya terhadap indikator ekonomi makro (simulasi sederhana).</p>
+                    <p style="margin-bottom: 1.5rem;" data-translate="simulationDescription">Ubah parameter kebijakan di bawah untuk melihat dampaknya terhadap indikator ekonomi makro (simulasi sederhana).</p>
                     
                     <div class="simulation-grid">
                         <!-- Kebijakan Fiskal -->
                         <div class="simulation-card">
-                            <h3><i class="fas fa-landmark fiscal-color"></i> Kebijakan Fiskal</h3>
+                            <h3><i class="fas fa-landmark fiscal-color"></i> <span data-translate="fiscalPolicy">Kebijakan Fiskal</span></h3>
                             <div class="slider-group">
-                                <label>Pajak (%)</label>
+                                <label data-translate="tax">Pajak (%)</label>
                                 <div class="slider-value">
-                                    <span>Lebih Rendah</span>
+                                    <span data-translate="lower">Lebih Rendah</span>
                                     <span id="tax-value">20%</span>
-                                    <span>Lebih Tinggi</span>
+                                    <span data-translate="higher">Lebih Tinggi</span>
                                 </div>
                                 <input type="range" min="10" max="40" value="20" id="tax-slider" step="1">
                             </div>
                             <div class="slider-group">
-                                <label>Belanja Pemerintah</label>
+                                <label data-translate="governmentSpending">Belanja Pemerintah</label>
                                 <div class="slider-value">
-                                    <span>Kontraktif</span>
+                                    <span data-translate="contractionary">Kontraktif</span>
                                     <span id="spending-value">50</span>
-                                    <span>Ekspansif</span>
+                                    <span data-translate="expansionary">Ekspansif</span>
                                 </div>
                                 <input type="range" min="10" max="100" value="50" id="spending-slider" step="1">
                             </div>
@@ -1145,22 +1190,22 @@
                         
                         <!-- Kebijakan Moneter -->
                         <div class="simulation-card">
-                            <h3><i class="fas fa-university monetary-color"></i> Kebijakan Moneter</h3>
+                            <h3><i class="fas fa-university monetary-color"></i> <span data-translate="monetaryPolicy">Kebijakan Moneter</span></h3>
                             <div class="slider-group">
-                                <label>Suku Bunga (%)</label>
+                                <label data-translate="interestRate">Suku Bunga (%)</label>
                                 <div class="slider-value">
-                                    <span>Rendah</span>
+                                    <span data-translate="low">Rendah</span>
                                     <span id="interest-value">5%</span>
-                                    <span>Tinggi</span>
+                                    <span data-translate="high">Tinggi</span>
                                 </div>
                                 <input type="range" min="1" max="15" value="5" id="interest-slider" step="0.5">
                             </div>
                             <div class="slider-group">
-                                <label>Jumlah Uang Beredar</label>
+                                <label data-translate="moneySupply">Jumlah Uang Beredar</label>
                                 <div class="slider-value">
-                                    <span>Ketat</span>
+                                    <span data-translate="tight">Ketat</span>
                                     <span id="money-value">50</span>
-                                    <span>Longgar</span>
+                                    <span data-translate="loose">Longgar</span>
                                 </div>
                                 <input type="range" min="10" max="100" value="50" id="money-slider" step="1">
                             </div>
@@ -1170,233 +1215,292 @@
                     <!-- Hasil Simulasi -->
                     <div class="result-grid">
                         <div class="result-card">
-                            <h4>Pertumbuhan Ekonomi</h4>
+                            <h4 data-translate="economicGrowth">Pertumbuhan Ekonomi</h4>
                             <div class="result-value" id="growth-value">5.2%</div>
                             <div class="result-change positive" id="growth-change">+0.0%</div>
                         </div>
                         <div class="result-card">
-                            <h4>Inflasi</h4>
+                            <h4 data-translate="inflation">Inflasi</h4>
                             <div class="result-value" id="inflation-value">3.5%</div>
                             <div class="result-change positive" id="inflation-change">+0.0%</div>
                         </div>
                         <div class="result-card">
-                            <h4>Pengangguran</h4>
+                            <h4 data-translate="unemployment">Pengangguran</h4>
                             <div class="result-value" id="unemployment-value">5.8%</div>
                             <div class="result-change negative" id="unemployment-change">+0.0%</div>
                         </div>
                         <div class="result-card">
-                            <h4>Nilai Tukar (kurs)</h4>
+                            <h4 data-translate="exchangeRate">Nilai Tukar</h4>
                             <div class="result-value" id="exchange-value">0%</div>
-                            <div class="result-change" id="exchange-change">Stabil</div>
+                            <div class="result-change" id="exchange-change" data-translate="stable">Stabil</div>
                         </div>
                     </div>
                     
                     <div class="simulation-actions">
                         <button class="btn btn-primary" onclick="resetSimulation()">
-                            <i class="fas fa-undo-alt"></i> Reset ke Nilai Dasar
+                            <i class="fas fa-undo-alt"></i> <span data-translate="reset">Reset</span>
                         </button>
                         <button class="btn btn-secondary" onclick="applyExpansionary()">
-                            <i class="fas fa-arrow-up"></i> Kebijakan Ekspansif
+                            <i class="fas fa-arrow-up"></i> <span data-translate="expansionaryBtn">Kebijakan Ekspansif</span>
                         </button>
                         <button class="btn btn-secondary" onclick="applyContractionary()">
-                            <i class="fas fa-arrow-down"></i> Kebijakan Kontraktif
+                            <i class="fas fa-arrow-down"></i> <span data-translate="contractionaryBtn">Kebijakan Kontraktif</span>
                         </button>
                     </div>
                     
-                    <p style="font-size:0.9rem; margin-top:1.5rem; background: rgba(255,255,255,0.5); padding:1rem; border-radius:12px;">
+                    <p style="font-size:0.9rem; margin-top:1.5rem; background: rgba(255,255,255,0.5); padding:1rem; border-radius:12px;" data-translate="simulationNote">
                         <i class="fas fa-info-circle"></i> Simulasi ini adalah penyederhanaan untuk tujuan pembelajaran. Dampak kebijakan di dunia nyata dipengaruhi banyak faktor lain.
                     </p>
                 </section>
                 
                 <!-- Card: Kebijakan Fiskal -->
                 <section class="card fiscal-border">
-                    <h2><i class="fas fa-money-bill-wave fiscal-color"></i> Kebijakan Fiskal</h2>
+                    <h2><i class="fas fa-money-bill-wave fiscal-color"></i> <span data-translate="fiscalPolicyTitle">Kebijakan Fiskal</span></h2>
                     
-                    <p><strong>Kebijakan fiskal</strong> adalah kebijakan yang dilakukan pemerintah melalui instrumen Anggaran Pendapatan dan Belanja Negara (APBN) untuk memengaruhi jalannya perekonomian. Kebijakan ini menyangkut pengaturan pendapatan dan belanja negara.</p>
+                    <p data-translate="fiscalPolicyDef"><strong>Kebijakan fiskal</strong> adalah kebijakan yang dilakukan pemerintah melalui instrumen Anggaran Pendapatan dan Belanja Negara (APBN) untuk memengaruhi jalannya perekonomian. Kebijakan ini menyangkut pengaturan pendapatan dan belanja negara.</p>
                     
-                    <h3><i class="fas fa-tools"></i> Instrumen Kebijakan Fiskal</h3>
+                    <h3><i class="fas fa-tools"></i> <span data-translate="fiscalInstruments">Instrumen Kebijakan Fiskal</span></h3>
                     <div class="policy-grid">
                         <div class="policy-card fiscal-card">
-                            <h4><i class="fas fa-taxi"></i> Pajak</h4>
-                            <p>Pemerintah dapat menaikkan atau menurunkan tarif pajak untuk mengatur daya beli masyarakat. Penurunan pajak meningkatkan disposable income dan konsumsi.</p>
+                            <h4><i class="fas fa-taxi"></i> <span data-translate="tax">Pajak</span></h4>
+                            <p data-translate="taxDesc">Pemerintah dapat menaikkan atau menurunkan tarif pajak untuk mengatur daya beli masyarakat. Penurunan pajak meningkatkan disposable income dan konsumsi.</p>
                         </div>
                         <div class="policy-card fiscal-card">
-                            <h4><i class="fas fa-chart-pie"></i> Belanja Negara</h4>
-                            <p>Pengeluaran pemerintah untuk infrastruktur, gaji PNS, subsidi, dan bantuan sosial dapat merangsang atau menahan aktivitas ekonomi.</p>
+                            <h4><i class="fas fa-chart-pie"></i> <span data-translate="governmentSpending">Belanja Negara</span></h4>
+                            <p data-translate="spendingDesc">Pengeluaran pemerintah untuk infrastruktur, gaji PNS, subsidi, dan bantuan sosial dapat merangsang atau menahan aktivitas ekonomi.</p>
                         </div>
                         <div class="policy-card fiscal-card">
-                            <h4><i class="fas fa-file-invoice"></i> Anggaran (APBN)</h4>
-                            <p>Keputusan defisit, surplus, atau berimbang dalam APBN mencerminkan arah kebijakan fiskal.</p>
+                            <h4><i class="fas fa-file-invoice"></i> <span data-translate="budget">Anggaran (APBN)</span></h4>
+                            <p data-translate="budgetDesc">Keputusan defisit, surplus, atau berimbang dalam APBN mencerminkan arah kebijakan fiskal.</p>
                         </div>
                         <div class="policy-card fiscal-card">
-                            <h4><i class="fas fa-hand-holding-heart"></i> Subsidi & Transfer</h4>
-                            <p>Pemberian subsidi (BBM, listrik) dan bantuan sosial (PKH, BLT) mempengaruhi distribusi pendapatan.</p>
+                            <h4><i class="fas fa-hand-holding-heart"></i> <span data-translate="subsidies">Subsidi & Transfer</span></h4>
+                            <p data-translate="subsidiesDesc">Pemberian subsidi (BBM, listrik) dan bantuan sosial (PKH, BLT) mempengaruhi distribusi pendapatan.</p>
                         </div>
                     </div>
                     
-                    <h3><i class="fas fa-balance-scale-left"></i> Jenis Kebijakan Fiskal</h3>
+                    <h3><i class="fas fa-balance-scale-left"></i> <span data-translate="fiscalTypes">Jenis Kebijakan Fiskal</span></h3>
                     <div style="display: flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;">
                         <div style="flex:1; min-width:200px; background:#f0f4ff; padding:1rem; border-radius:12px;">
-                            <strong style="color:var(--primary);">📈 Ekspansif</strong>
-                            <p style="margin-top:0.5rem; font-size:0.95rem;">Menurunkan pajak, meningkatkan belanja → untuk mengatasi resesi dan pengangguran.</p>
+                            <strong style="color:var(--primary);">📈 <span data-translate="expansionary">Ekspansif</span></strong>
+                            <p style="margin-top:0.5rem; font-size:0.95rem;" data-translate="expansionaryDesc">Menurunkan pajak, meningkatkan belanja → untuk mengatasi resesi dan pengangguran.</p>
                         </div>
                         <div style="flex:1; min-width:200px; background:#fef2f2; padding:1rem; border-radius:12px;">
-                            <strong style="color:var(--danger);">📉 Kontraktif</strong>
-                            <p style="margin-top:0.5rem; font-size:0.95rem;">Menaikkan pajak, mengurangi belanja → untuk mengendalikan inflasi.</p>
+                            <strong style="color:var(--danger);">📉 <span data-translate="contractionary">Kontraktif</span></strong>
+                            <p style="margin-top:0.5rem; font-size:0.95rem;" data-translate="contractionaryDesc">Menaikkan pajak, mengurangi belanja → untuk mengendalikan inflasi.</p>
                         </div>
                     </div>
                     
-                    <h3><i class="fas fa-chart-line"></i> Contoh Kebijakan Fiskal di Indonesia</h3>
+                    <h3><i class="fas fa-chart-line"></i> <span data-translate="fiscalExamples">Contoh Kebijakan Fiskal di Indonesia</span></h3>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check-circle fiscal-color"></i> Program PEN (Pemulihan Ekonomi Nasional) saat pandemi COVID-19 (fiskal ekspansif).</li>
-                        <li><i class="fas fa-check-circle fiscal-color"></i> Pembebasan PPN untuk barang kebutuhan pokok.</li>
-                        <li><i class="fas fa-check-circle fiscal-color"></i> Subsidi BBM dan listrik untuk menjaga daya beli.</li>
-                        <li><i class="fas fa-check-circle fiscal-color"></i> Peningkatan belanja infrastruktur dalam APBN.</li>
+                        <li><i class="fas fa-check-circle fiscal-color"></i> <span data-translate="fiscalEx1">Program PEN (Pemulihan Ekonomi Nasional) saat pandemi COVID-19 (fiskal ekspansif).</span></li>
+                        <li><i class="fas fa-check-circle fiscal-color"></i> <span data-translate="fiscalEx2">Pembebasan PPN untuk barang kebutuhan pokok.</span></li>
+                        <li><i class="fas fa-check-circle fiscal-color"></i> <span data-translate="fiscalEx3">Subsidi BBM dan listrik untuk menjaga daya beli.</span></li>
+                        <li><i class="fas fa-check-circle fiscal-color"></i> <span data-translate="fiscalEx4">Peningkatan belanja infrastruktur dalam APBN.</span></li>
                     </ul>
                 </section>
                 
                 <!-- Card: Kebijakan Moneter -->
                 <section class="card monetary-border">
-                    <h2><i class="fas fa-university monetary-color"></i> Kebijakan Moneter</h2>
+                    <h2><i class="fas fa-university monetary-color"></i> <span data-translate="monetaryPolicyTitle">Kebijakan Moneter</span></h2>
                     
-                    <p><strong>Kebijakan moneter</strong> adalah kebijakan yang dilakukan oleh bank sentral (di Indonesia: Bank Indonesia) untuk mengatur jumlah uang beredar dan suku bunga guna mencapai stabilitas nilai rupiah dan mendorong pertumbuhan ekonomi.</p>
+                    <p data-translate="monetaryPolicyDef"><strong>Kebijakan moneter</strong> adalah kebijakan yang dilakukan oleh bank sentral (di Indonesia: Bank Indonesia) untuk mengatur jumlah uang beredar dan suku bunga guna mencapai stabilitas nilai rupiah dan mendorong pertumbuhan ekonomi.</p>
                     
-                    <h3><i class="fas fa-tools"></i> Instrumen Kebijakan Moneter</h3>
+                    <h3><i class="fas fa-tools"></i> <span data-translate="monetaryInstruments">Instrumen Kebijakan Moneter</span></h3>
                     <div class="policy-grid">
                         <div class="policy-card monetary-card">
-                            <h4><i class="fas fa-percent"></i> Suku Bunga Acuan</h4>
-                            <p>BI Rate (saat ini: BI 7-Day Reverse Repo Rate) menjadi sinyal arah kebijakan. Jika naik, suku bunga kredit ikut naik.</p>
+                            <h4><i class="fas fa-percent"></i> <span data-translate="interestRate">Suku Bunga Acuan</span></h4>
+                            <p data-translate="interestRateDesc">BI Rate (saat ini: BI 7-Day Reverse Repo Rate) menjadi sinyal arah kebijakan. Jika naik, suku bunga kredit ikut naik.</p>
                         </div>
                         <div class="policy-card monetary-card">
-                            <h4><i class="fas fa-piggy-bank"></i> Giro Wajib Minimum (GWM)</h4>
-                            <p>Dana yang wajib disimpan bank di BI. Jika GWM naik, likuiditas perbankan berkurang.</p>
+                            <h4><i class="fas fa-piggy-bank"></i> <span data-translate="reserveRequirement">Giro Wajib Minimum (GWM)</span></h4>
+                            <p data-translate="reserveRequirementDesc">Dana yang wajib disimpan bank di BI. Jika GWM naik, likuiditas perbankan berkurang.</p>
                         </div>
                         <div class="policy-card monetary-card">
-                            <h4><i class="fas fa-exchange-alt"></i> Operasi Pasar Terbuka (OPT)</h4>
-                            <p>BI membeli atau menjual SBN untuk menambah atau mengurangi uang beredar.</p>
+                            <h4><i class="fas fa-exchange-alt"></i> <span data-translate="openMarket">Operasi Pasar Terbuka (OPT)</span></h4>
+                            <p data-translate="openMarketDesc">BI membeli atau menjual SBN untuk menambah atau mengurangi uang beredar.</p>
                         </div>
                         <div class="policy-card monetary-card">
-                            <h4><i class="fas fa-hand-holding-usd"></i> Fasilitas Diskonto</h4>
-                            <p>Pinjaman BI ke bank umum dengan bunga tertentu untuk menjaga likuiditas.</p>
+                            <h4><i class="fas fa-hand-holding-usd"></i> <span data-translate="discountRate">Fasilitas Diskonto</span></h4>
+                            <p data-translate="discountRateDesc">Pinjaman BI ke bank umum dengan bunga tertentu untuk menjaga likuiditas.</p>
                         </div>
                     </div>
                     
-                    <h3><i class="fas fa-balance-scale-left"></i> Jenis Kebijakan Moneter</h3>
+                    <h3><i class="fas fa-balance-scale-left"></i> <span data-translate="monetaryTypes">Jenis Kebijakan Moneter</span></h3>
                     <div style="display: flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;">
                         <div style="flex:1; min-width:200px; background:#f0f4ff; padding:1rem; border-radius:12px;">
-                            <strong style="color:var(--primary);">💰 Ekspansif (Longgar)</strong>
-                            <p style="margin-top:0.5rem; font-size:0.95rem;">Menurunkan suku bunga, membeli SBN → menambah uang beredar, mendorong kredit dan investasi.</p>
+                            <strong style="color:var(--primary);">💰 <span data-translate="expansionaryMonetary">Ekspansif (Longgar)</span></strong>
+                            <p style="margin-top:0.5rem; font-size:0.95rem;" data-translate="expansionaryMonetaryDesc">Menurunkan suku bunga, membeli SBN → menambah uang beredar, mendorong kredit dan investasi.</p>
                         </div>
                         <div style="flex:1; min-width:200px; background:#fef2f2; padding:1rem; border-radius:12px;">
-                            <strong style="color:var(--danger);">🔒 Kontraktif (Ketat)</strong>
-                            <p style="margin-top:0.5rem; font-size:0.95rem;">Menaikkan suku bunga, menjual SBN → mengurangi uang beredar, mengendalikan inflasi.</p>
+                            <strong style="color:var(--danger);">🔒 <span data-translate="contractionaryMonetary">Kontraktif (Ketat)</span></strong>
+                            <p style="margin-top:0.5rem; font-size:0.95rem;" data-translate="contractionaryMonetaryDesc">Menaikkan suku bunga, menjual SBN → mengurangi uang beredar, mengendalikan inflasi.</p>
                         </div>
                     </div>
                     
-                    <h3><i class="fas fa-chart-line"></i> Contoh Kebijakan Moneter di Indonesia</h3>
+                    <h3><i class="fas fa-chart-line"></i> <span data-translate="monetaryExamples">Contoh Kebijakan Moneter di Indonesia</span></h3>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check-circle monetary-color"></i> Penurunan BI Rate selama pandemi untuk mendorong pemulihan ekonomi.</li>
-                        <li><i class="fas fa-check-circle monetary-color"></i> Operasi pasar terbuka untuk menjaga stabilitas nilai tukar rupiah.</li>
-                        <li><i class="fas fa-check-circle monetary-color"></i> Penyesuaian Giro Wajib Minimum untuk mengatur likuiditas perbankan.</li>
+                        <li><i class="fas fa-check-circle monetary-color"></i> <span data-translate="monetaryEx1">Penurunan BI Rate selama pandemi untuk mendorong pemulihan ekonomi.</span></li>
+                        <li><i class="fas fa-check-circle monetary-color"></i> <span data-translate="monetaryEx2">Operasi pasar terbuka untuk menjaga stabilitas nilai tukar rupiah.</span></li>
+                        <li><i class="fas fa-check-circle monetary-color"></i> <span data-translate="monetaryEx3">Penyesuaian Giro Wajib Minimum untuk mengatur likuiditas perbankan.</span></li>
                     </ul>
                 </section>
                 
                 <!-- Card: Tabel Perbandingan -->
                 <section class="card">
-                    <h2><i class="fas fa-balance-scale"></i> Perbandingan Fiskal vs Moneter</h2>
+                    <h2><i class="fas fa-balance-scale"></i> <span data-translate="comparisonTitle">Perbandingan Fiskal vs Moneter</span></h2>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Aspek</th>
-                                    <th>Kebijakan Fiskal</th>
-                                    <th>Kebijakan Moneter</th>
+                                    <th data-translate="aspect">Aspek</th>
+                                    <th data-translate="fiscalPolicy">Kebijakan Fiskal</th>
+                                    <th data-translate="monetaryPolicy">Kebijakan Moneter</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="fiscal-row">
-                                    <td><strong>Pelaksana</strong></td>
-                                    <td>Pemerintah (Kementerian Keuangan)</td>
-                                    <td>Bank Sentral (Bank Indonesia)</td>
+                                    <td><strong data-translate="implementer">Pelaksana</strong></td>
+                                    <td data-translate="government">Pemerintah (Kementerian Keuangan)</td>
+                                    <td data-translate="centralBank">Bank Sentral (Bank Indonesia)</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Instrumen Utama</strong></td>
-                                    <td>Pajak, belanja negara, subsidi, APBN</td>
-                                    <td>Suku bunga, GWM, operasi pasar terbuka</td>
+                                    <td><strong data-translate="mainInstruments">Instrumen Utama</strong></td>
+                                    <td data-translate="fiscalInstrumentsList">Pajak, belanja negara, subsidi, APBN</td>
+                                    <td data-translate="monetaryInstrumentsList">Suku bunga, GWM, operasi pasar terbuka</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Tujuan</strong></td>
-                                    <td>Pertumbuhan ekonomi, pemerataan, stabilitas harga</td>
-                                    <td>Stabilitas nilai rupiah (inflasi dan nilai tukar)</td>
+                                    <td><strong data-translate="objective">Tujuan</strong></td>
+                                    <td data-translate="fiscalObjective">Pertumbuhan ekonomi, pemerataan, stabilitas harga</td>
+                                    <td data-translate="monetaryObjective">Stabilitas nilai rupiah (inflasi dan nilai tukar)</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Waktu Respons</strong></td>
-                                    <td>Relatif lambat (perlu persetujuan DPR)</td>
-                                    <td>Relatif cepat (dapat diputuskan dalam RDG BI)</td>
+                                    <td><strong data-translate="responseTime">Waktu Respons</strong></td>
+                                    <td data-translate="slowResponse">Relatif lambat (perlu persetujuan DPR)</td>
+                                    <td data-translate="fastResponse">Relatif cepat (dapat diputuskan dalam RDG BI)</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Sasaran Langsung</strong></td>
-                                    <td>Pendapatan dan belanja masyarakat</td>
-                                    <td>Jumlah uang beredar dan suku bunga</td>
+                                    <td><strong data-translate="directTarget">Sasaran Langsung</strong></td>
+                                    <td data-translate="fiscalTarget">Pendapatan dan belanja masyarakat</td>
+                                    <td data-translate="monetaryTarget">Jumlah uang beredar dan suku bunga</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Efek Samping</strong></td>
-                                    <td>Defisit anggaran, utang publik</td>
-                                    <td>Gelembung aset, ketidakstabilan sektor keuangan</td>
+                                    <td><strong data-translate="sideEffects">Efek Samping</strong></td>
+                                    <td data-translate="fiscalSideEffects">Defisit anggaran, utang publik</td>
+                                    <td data-translate="monetarySideEffects">Gelembung aset, ketidakstabilan sektor keuangan</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <p class="image-caption">Tabel 1. Perbandingan kebijakan fiskal dan moneter</p>
+                    <p class="image-caption" data-translate="tableCaption">Tabel 1. Perbandingan kebijakan fiskal dan moneter</p>
                 </section>
                 
                 <!-- Card: STUDI KASUS (Dikembangkan) -->
                 <section class="card">
-                    <h2><i class="fas fa-briefcase"></i> Studi Kasus: Respons Kebijakan di Masa Pandemi</h2>
+                    <h2><i class="fas fa-briefcase"></i> <span data-translate="caseStudies">Studi Kasus: Respons Kebijakan di Masa Pandemi</span></h2>
                     
                     <div class="case-study">
                         <div class="case-title">
                             <i class="fas fa-virus"></i>
-                            <span>Krisis COVID-19 di Indonesia (2020-2021)</span>
+                            <span data-translate="covidCase">Krisis COVID-19 di Indonesia (2020-2021)</span>
                         </div>
                         
                         <div class="case-content">
-                            <p>Pandemi COVID-19 menyebabkan kontraksi ekonomi yang dalam. Pemerintah dan Bank Indonesia merespons dengan berbagai kebijakan untuk menyelamatkan perekonomian.</p>
-                            <p><strong>Langkah-langkah yang diambil:</strong></p>
+                            <p data-translate="covidDesc">Pandemi COVID-19 menyebabkan kontraksi ekonomi yang dalam. Pemerintah dan Bank Indonesia merespons dengan berbagai kebijakan untuk menyelamatkan perekonomian.</p>
+                            <p><strong data-translate="measuresTaken">Langkah-langkah yang diambil:</strong></p>
                             <ul>
-                                <li><strong>Kebijakan Fiskal:</strong> Pemerintah meluncurkan program PEN (Pemulihan Ekonomi Nasional) dengan total anggaran lebih dari Rp 600 triliun. Program ini mencakup bantuan sosial (PKH, BST), subsidi bunga kredit UMKM, insentif pajak, dan pembiayaan korporasi.</li>
-                                <li><strong>Kebijakan Moneter:</strong> Bank Indonesia menurunkan suku bunga acuan (BI 7-Day RR Rate) dari 5% menjadi 3,5%, melakukan quantitative easing (pembelian SBN di pasar perdana), dan melonggarkan Giro Wajib Minimum.</li>
-                                <li><strong>Koordinasi:</strong> Pemerintah dan BI bersinergi dalam burden sharing (berbagi beban) pembiayaan defisit APBN melalui mekanisme SKB I, II, dan III.</li>
+                                <li><strong data-translate="fiscalPolicy">Kebijakan Fiskal:</strong> <span data-translate="covidFiscal">Pemerintah meluncurkan program PEN (Pemulihan Ekonomi Nasional) dengan total anggaran lebih dari Rp 600 triliun. Program ini mencakup bantuan sosial (PKH, BST), subsidi bunga kredit UMKM, insentif pajak, dan pembiayaan korporasi.</span></li>
+                                <li><strong data-translate="monetaryPolicy">Kebijakan Moneter:</strong> <span data-translate="covidMonetary">Bank Indonesia menurunkan suku bunga acuan (BI 7-Day RR Rate) dari 5% menjadi 3,5%, melakukan quantitative easing (pembelian SBN di pasar perdana), dan melonggarkan Giro Wajib Minimum.</span></li>
+                                <li><strong data-translate="coordination">Koordinasi:</strong> <span data-translate="covidCoordination">Pemerintah dan BI bersinergi dalam burden sharing (berbagi beban) pembiayaan defisit APBN melalui mekanisme SKB I, II, dan III.</span></li>
                             </ul>
                         </div>
                         
                         <div class="question-box">
-                            <p><strong><i class="fas fa-question-circle" style="color: #f97316;"></i> Pertanyaan Studi Kasus:</strong></p>
+                            <p><strong><i class="fas fa-question-circle" style="color: #f97316;"></i> <span data-translate="questions">Pertanyaan Studi Kasus:</span></strong></p>
                             <ol style="margin-left: 1.5rem;">
-                                <li>Jelaskan jenis kebijakan fiskal yang diterapkan pemerintah saat pandemi! Ekspansif atau kontraktif? Berikan alasannya!</li>
-                                <li>Jelaskan jenis kebijakan moneter yang diterapkan Bank Indonesia! Ekspansif atau kontraktif?</li>
-                                <li>Mengapa koordinasi antara kebijakan fiskal dan moneter sangat penting dalam situasi krisis?</li>
-                                <li>Apa risiko dari kebijakan ekspansif yang sangat besar tersebut (misalnya, inflasi atau pelemahan nilai tukar)?</li>
+                                <li data-translate="q1">Jelaskan jenis kebijakan fiskal yang diterapkan pemerintah saat pandemi! Ekspansif atau kontraktif? Berikan alasannya!</li>
+                                <li data-translate="q2">Jelaskan jenis kebijakan moneter yang diterapkan Bank Indonesia! Ekspansif atau kontraktif?</li>
+                                <li data-translate="q3">Mengapa koordinasi antara kebijakan fiskal dan moneter sangat penting dalam situasi krisis?</li>
+                                <li data-translate="q4">Apa risiko dari kebijakan ekspansif yang sangat besar tersebut (misalnya, inflasi atau pelemahan nilai tukar)?</li>
                             </ol>
                         </div>
                         
                         <button class="toggle-btn" onclick="toggleAnswer('covid-answer')">
-                            <i class="fas fa-eye"></i> Lihat Pembahasan Jawaban
+                            <i class="fas fa-eye"></i> <span data-translate="showAnswer">Lihat Pembahasan Jawaban</span>
                         </button>
                         
                         <div id="covid-answer" style="display: none; margin-top: 1.5rem;">
                             <div class="answer-box">
-                                <p><strong>Pembahasan Jawaban:</strong></p>
+                                <p><strong data-translate="discussion">Pembahasan Jawaban:</strong></p>
                                 
-                                <p><strong>1. Kebijakan Fiskal:</strong> Ekspansif. Pemerintah meningkatkan belanja (bansos, subsidi) dan menurunkan penerimaan (insentif pajak). Defisit APBN melebar hingga di atas 5% PDB untuk menyuntikkan stimulus ke ekonomi.</p>
+                                <p><strong data-translate="q1">1. Kebijakan Fiskal:</strong> <span data-translate="a1">Ekspansif. Pemerintah meningkatkan belanja (bansos, subsidi) dan menurunkan penerimaan (insentif pajak). Defisit APBN melebar hingga di atas 5% PDB untuk menyuntikkan stimulus ke ekonomi.</span></p>
                                 
-                                <p><strong>2. Kebijakan Moneter:</strong> Ekspansif (longgar). BI menurunkan suku bunga acuan ke level terendah dalam sejarah (3,5%) dan melakukan pelonggaran kuantitatif (quantitative easing) dengan membeli SBN untuk menambah likuiditas.</p>
+                                <p><strong data-translate="q2">2. Kebijakan Moneter:</strong> <span data-translate="a2">Ekspansif (longgar). BI menurunkan suku bunga acuan ke level terendah dalam sejarah (3,5%) dan melakukan pelonggaran kuantitatif (quantitative easing) dengan membeli SBN untuk menambah likuiditas.</span></p>
                                 
-                                <p><strong>3. Pentingnya Koordinasi:</strong> Kebijakan fiskal ekspansif membutuhkan pembiayaan (penerbitan SBN). Jika BI tidak membantu (tidak membeli SBN), maka suku bunga akan naik dan crowding out terjadi. Koordinasi (burden sharing) memungkinkan pembiayaan defisit dengan biaya murah, sehingga fiskal dan moneter berjalan searah (sama-sama ekspansif).</p>
+                                <p><strong data-translate="q3">3. Pentingnya Koordinasi:</strong> <span data-translate="a3">Kebijakan fiskal ekspansif membutuhkan pembiayaan (penerbitan SBN). Jika BI tidak membantu (tidak membeli SBN), maka suku bunga akan naik dan crowding out terjadi. Koordinasi (burden sharing) memungkinkan pembiayaan defisit dengan biaya murah, sehingga fiskal dan moneter berjalan searah (sama-sama ekspansif).</span></p>
                                 
-                                <p><strong>4. Risiko Kebijakan Ekspansif:</strong> Risiko utama adalah inflasi di masa depan jika stimulus berlebihan (ketika permintaan pulih tajam). Juga, likuiditas yang sangat longgar dapat menekan nilai tukar rupiah. Namun, dengan inflasi yang rendah saat itu, risiko ini dianggap terkendali.</p>
+                                <p><strong data-translate="q4">4. Risiko Kebijakan Ekspansif:</strong> <span data-translate="a4">Risiko utama adalah inflasi di masa depan jika stimulus berlebihan (ketika permintaan pulih tajam). Juga, likuiditas yang sangat longgar dapat menekan nilai tukar rupiah. Namun, dengan inflasi yang rendah saat itu, risiko ini dianggap terkendali.</span></p>
                                 
-                                <p><strong>Hasil:</strong> Ekonomi Indonesia berhasil menghindari resesi yang lebih dalam dan kembali tumbuh positif pada 2021.</p>
+                                <p><strong data-translate="result">Hasil:</strong> <span data-translate="a5">Ekonomi Indonesia berhasil menghindari resesi yang lebih dalam dan kembali tumbuh positif pada 2021.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kasus Nyata: Transisi Pandemi ke Endemi -->
+                    <div class="case-study" style="margin-top: 2rem; background: #e0f2fe; border-color: #38bdf8;">
+                        <div class="case-title" style="color: #0369a1;">
+                            <i class="fas fa-calendar-check"></i>
+                            <span data-translate="transitionCase">Kasus Nyata: Transisi Pandemi ke Endemi (2023-2024) - "Pandemi Dihilangkan"</span>
+                        </div>
+                        
+                        <div class="case-content" style="border-left-color: #0284c7;">
+                            <p data-translate="transitionDesc">Setelah status pandemi dicabut dan Indonesia memasuki masa endemi, pemerintah dan Bank Indonesia menghadapi tantangan baru: <strong data-translate="taperingOff">menarik stimulus secara hati-hati (tapering off)</strong> agar ekonomi tidak kepanasan (overheating) namun pemulihan tetap berlanjut. Berikut adalah kebijakan nyata yang diambil pasca pandemi:</p>
+                            
+                            <h4 style="margin-top: 1rem;">📉 <span data-translate="fiscalTransition">Kebijakan Fiskal: Normalisasi Belanja dan Subsidi Tepat Sasaran</span></h4>
+                            <ul>
+                                <li><strong data-translate="fuelSubsidy">Pengurangan Subsidi BBM (September 2022):</strong> <span data-translate="fuelSubsidyDesc">Pemerintah menaikkan harga BBM bersubsidi (Pertalite, Solar) untuk mengalihkan subsidi ke yang lebih tepat sasaran. Ini adalah bentuk <strong>fiskal kontraktif</strong> untuk mengurangi beban APBN yang membengkak akibat tingginya harga minyak dunia.</span></li>
+                                <li><strong data-translate="taxIncentive">Penghapusan Insentif Pajak UMKM:</strong> <span data-translate="taxIncentiveDesc">Insentif PPh Final UMKM 0,5% DTP (Ditanggung Pemerintah) yang diberikan selama pandemi dihentikan secara bertahap pada 2023.</span></li>
+                                <li><strong data-translate="infrastructureFocus">Fokus Belanja ke Infrastruktur dan IKN:</strong> <span data-translate="infrastructureFocusDesc">Belanja negara dialihkan dari bantuan sosial masif ke proyek produktif seperti pembangunan Ibu Kota Nusantara (IKN) untuk menjaga pertumbuhan jangka panjang.</span></li>
+                            </ul>
+
+                            <h4 style="margin-top: 1rem;">💰 <span data-translate="monetaryTransition">Kebijakan Moneter: Sikap Pro-Stability</span></h4>
+                            <ul>
+                                <li><strong data-translate="rateHike">Kenaikan Suku Bunga Acuan (Agustus 2023 - 2024):</strong> <span data-translate="rateHikeDesc">Bank Indonesia menaikkan BI Rate dari 3,50% menjadi 6,25% secara bertahap. Langkah <strong>moneter kontraktif</strong> ini diambil untuk mengantisipasi dampak <i>imported inflation</i> (kenaikan harga pangan dan energi global) serta memperkuat stabilitas nilai tukar Rupiah di tengah ketidakpastian global.</span></li>
+                                <li><strong data-translate="proMarket">Operasi Moneter Pro-Market:</strong> <span data-translate="proMarketDesc">BI menerbitkan instrumen baru seperti Sekuritas Rupiah Bank Indonesia (SRBI) untuk menarik modal asing dan menstabilkan rupiah, tanpa harus mengorbankan likuiditas perbankan secara berlebihan.</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="question-box" style="background: #bae6fd;">
+                            <p><strong><i class="fas fa-question-circle" style="color: #0369a1;"></i> <span data-translate="analysisTask">Tugas Analisis: Transisi Kebijakan</span></strong></p>
+                            <ol style="margin-left: 1.5rem;">
+                                <li data-translate="transitionQ1">Mengapa pemerintah memutuskan untuk menaikkan harga BBM bersubsidi di tahun 2022, padahal inflasi sedang meningkat? Jelaskan dari sisi fiskal!</li>
+                                <li data-translate="transitionQ2">Jelaskan dilema yang dihadapi Bank Indonesia saat memutuskan menaikkan suku bunga di tahun 2023-2024 (antara inflasi dan pertumbuhan)!</li>
+                                <li data-translate="transitionQ3">Jika "pandemi dihilangkan" secara tiba-tiba tanpa transisi, kira-kira apa yang akan terjadi pada perekonomian? Kaitkan dengan instrumen pajak dan subsidi!</li>
+                                <li data-translate="transitionQ4"><strong>Data Real:</strong> Cari tahu berapa inflasi Indonesia di bulan September 2022 (saat kenaikan BBM) dan bulan Juni 2024. Apakah kenaikan BBM memicu inflasi yang tidak terkendali?</li>
+                            </ol>
+                        </div>
+                        
+                        <button class="toggle-btn" style="background: #0284c7;" onclick="toggleAnswer('transisi-answer')">
+                            <i class="fas fa-chart-simple"></i> <span data-translate="showAnalysis">Show Analisis & Data Real</span>
+                        </button>
+                        
+                        <div id="transisi-answer" style="display: none; margin-top: 1.5rem;">
+                            <div class="answer-box" style="border-left-color: #0284c7;">
+                                <p><strong>📊 <span data-translate="analysis">Analisis dan Data Real:</span></strong></p>
+                                
+                                <p><strong data-translate="transitionA1">1. Dilema Subsidi BBM:</strong> <span data-translate="transitionA1Desc">Kenaikan harga BBM adalah <strong>kebijakan yang menyakitkan namun perlu</strong>. Subsidi BBM yang membengkak hingga Rp 500 triliun (akibat harga minyak tinggi) sangat membebani APBN. Jika terus dipertahankan, justru akan <strong>mengancam stabilitas fiskal</strong> dan mengurangi ruang belanja untuk hal lain. Pemerintah mengompensasi dengan bantuan langsung tunai (BLT BBM) untuk menjaga daya beli masyarakat miskin. Ini adalah contoh <strong>subsidi dialihkan, bukan dihapus</strong>.</span></p>
+                                
+                                <p><strong data-translate="transitionA2">2. Dilema Suku Bunga:</strong> <span data-translate="transitionA2Desc">Dilema BI adalah: (a) Jika suku bunga <strong>tidak dinaikkan</strong>, Rupiah bisa melemah karena selisih bunga dengan AS melebar, dan inflasi impor meningkat. (b) Jika suku bunga <strong>dinaikkan terlalu cepat</strong>, pertumbuhan ekonomi bisa terhambat. BI memilih sikap <strong>pro-stability</strong>, yaitu mengutamakan stabilitas nilai tukar dan inflasi, karena inflasi yang tinggi lebih merusak daya beli masyarakat dalam jangka panjang.</span></p>
+                                
+                                <p><strong data-translate="transitionA3">3. Skenario "Pandemi Dihilangkan" Tiba-tiba:</strong> <span data-translate="transitionA3Desc">Jika stimulus ditarik secara tiba-tiba (pajak langsung naik, subsidi langsung dicabut, suku bunga langsung dinaikkan ke level normal), kemungkinan besar terjadi <strong>kontraksi ekonomi</strong>. Konsumen yang terbiasa dengan bansos akan kehilangan daya beli, UMKM yang terbiasa dengan bunga murah akan kesulitan membayar cicilan, dan investasi bisa turun drastis. Inilah mengapa <strong>kebijakan transisi (tapering off) sangat penting</strong> untuk soft landing.</span></p>
+                                
+                                <p><strong data-translate="transitionA4">4. Data Real Inflasi:</strong></p>
+                                <ul>
+                                    <li><strong data-translate="inflationSep2022">Inflasi September 2022:</strong> 5,95% (yoy). Terjadi lonjakan dari bulan sebelumnya (4,69%) akibat kenaikan harga BBM, transportasi, dan tarif angkutan.</li>
+                                    <li><strong data-translate="inflationJun2024">Inflasi Juni 2024:</strong> 2,51% (yoy). Ini menunjukkan bahwa meskipun ada gejolak di 2022, inflasi berhasil dikendalikan kembali ke sasaran BI (2,5% ± 1%) berkat respons kebijakan yang konsisten.</li>
+                                    <li><strong data-translate="conclusion">Kesimpulan:</strong> <span data-translate="conclusionDesc">Kenaikan BBM memang memicu inflasi tinggi sementara, tetapi tidak menyebabkan inflasi liar yang berkepanjangan karena diikuti dengan kebijakan moneter yang ketat (kenaikan suku bunga) dan bantuan sosial yang tepat sasaran.</span></li>
+                                </ul>
+                                <p><i data-translate="source">Sumber: Data BPS dan Bank Indonesia (diolah untuk pembelajaran).</i></p>
                             </div>
                         </div>
                     </div>
@@ -1404,26 +1508,26 @@
                 
                 <!-- Card: Evaluasi -->
                 <section class="card">
-                    <h2><i class="fas fa-pen"></i> Evaluasi Pemahaman</h2>
+                    <h2><i class="fas fa-pen"></i> <span data-translate="evaluation">Evaluasi Pemahaman</span></h2>
                     
-                    <p>Jawab pertanyaan berikut untuk menguji pemahaman Anda tentang kebijakan fiskal dan moneter.</p>
+                    <p data-translate="evaluationDesc">Jawab pertanyaan berikut untuk menguji pemahaman Anda tentang kebijakan fiskal dan moneter.</p>
                     
                     <ol style="margin: 1.5rem 0 1.5rem 2rem;">
-                        <li>Sebutkan tiga instrumen kebijakan moneter yang dimiliki Bank Indonesia!</li>
-                        <li>Apa yang dimaksud dengan kebijakan fiskal ekspansif? Berikan contoh kebijakan nyata di Indonesia!</li>
-                        <li>Jelaskan perbedaan dampak jangka pendek antara kenaikan suku bunga (moneter kontraktif) dengan kenaikan pajak (fiskal kontraktif)!</li>
-                        <li>Mengapa kebijakan moneter dianggap lebih cepat dampaknya dibanding kebijakan fiskal?</li>
-                        <li>Dalam kondisi inflasi tinggi, kebijakan apa yang sebaiknya diambil? Jelaskan instrumennya!</li>
+                        <li data-translate="evalQ1">Sebutkan tiga instrumen kebijakan moneter yang dimiliki Bank Indonesia!</li>
+                        <li data-translate="evalQ2">Apa yang dimaksud dengan kebijakan fiskal ekspansif? Berikan contoh kebijakan nyata di Indonesia!</li>
+                        <li data-translate="evalQ3">Jelaskan perbedaan dampak jangka pendek antara kenaikan suku bunga (moneter kontraktif) dengan kenaikan pajak (fiskal kontraktif)!</li>
+                        <li data-translate="evalQ4">Mengapa kebijakan moneter dianggap lebih cepat dampaknya dibanding kebijakan fiskal?</li>
+                        <li data-translate="evalQ5">Dalam kondisi inflasi tinggi, kebijakan apa yang sebaiknya diambil? Jelaskan instrumennya!</li>
                     </ol>
                     
                     <details style="background: #f0f4ff; padding: 1.5rem; border-radius: 12px;">
-                        <summary style="font-weight: 600; color: var(--primary); cursor: pointer;">Klik untuk melihat kunci jawaban</summary>
+                        <summary style="font-weight: 600; color: var(--primary); cursor: pointer;" data-translate="showAnswers">Klik untuk melihat kunci jawaban</summary>
                         <div style="margin-top: 1.5rem;">
-                            <p><strong>1. Instrumen kebijakan moneter:</strong> Suku bunga acuan (BI-Rate), Giro Wajib Minimum (GWM), Operasi Pasar Terbuka (OPT), dan Fasilitas Diskonto.</p>
-                            <p><strong>2. Kebijakan fiskal ekspansif:</strong> Kebijakan menaikkan belanja dan/atau menurunkan pajak untuk merangsang ekonomi. Contoh: Program PEN, bantuan langsung tunai, insentif pajak UMKM.</p>
-                            <p><strong>3. Perbedaan dampak:</strong> Kenaikan suku bunga langsung mempengaruhi biaya kredit dan investasi (dampak cepat ke sektor keuangan). Kenaikan pajak mempengaruhi daya beli masyarakat melalui pendapatan disposabel (dampak lebih bertahap).</p>
-                            <p><strong>4. Moneter lebih cepat:</strong> Keputusan moneter dapat diambil kapan saja oleh RDG Bank Indonesia, tanpa perlu persetujuan DPR. Implementasinya langsung melalui mekanisme pasar.</p>
-                            <p><strong>5. Inflasi tinggi:</strong> Kebijakan kontraktif: naikkan suku bunga (moneter) untuk mengurangi uang beredar; dan/atau kurangi belanja/naikkan pajak (fiskal) untuk menekan permintaan agregat.</p>
+                            <p><strong data-translate="answer1">1. Instrumen kebijakan moneter:</strong> <span data-translate="answer1Text">Suku bunga acuan (BI-Rate), Giro Wajib Minimum (GWM), Operasi Pasar Terbuka (OPT), dan Fasilitas Diskonto.</span></p>
+                            <p><strong data-translate="answer2">2. Kebijakan fiskal ekspansif:</strong> <span data-translate="answer2Text">Kebijakan menaikkan belanja dan/atau menurunkan pajak untuk merangsang ekonomi. Contoh: Program PEN, bantuan langsung tunai, insentif pajak UMKM.</span></p>
+                            <p><strong data-translate="answer3">3. Perbedaan dampak:</strong> <span data-translate="answer3Text">Kenaikan suku bunga langsung mempengaruhi biaya kredit dan investasi (dampak cepat ke sektor keuangan). Kenaikan pajak mempengaruhi daya beli masyarakat melalui pendapatan disposabel (dampak lebih bertahap).</span></p>
+                            <p><strong data-translate="answer4">4. Moneter lebih cepat:</strong> <span data-translate="answer4Text">Keputusan moneter dapat diambil kapan saja oleh RDG Bank Indonesia, tanpa perlu persetujuan DPR. Implementasinya langsung melalui mekanisme pasar.</span></p>
+                            <p><strong data-translate="answer5">5. Inflasi tinggi:</strong> <span data-translate="answer5Text">Kebijakan kontraktif: naikkan suku bunga (moneter) untuk mengurangi uang beredar; dan/atau kurangi belanja/naikkan pajak (fiskal) untuk menekan permintaan agregat.</span></p>
                         </div>
                     </details>
                 </section>
@@ -1432,43 +1536,43 @@
             <!-- SIDEBAR (Kanan) -->
             <aside class="sidebar">
                 <div class="sidebar-card">
-                    <h3><i class="fas fa-lightbulb"></i> Fakta Menarik</h3>
+                    <h3><i class="fas fa-lightbulb"></i> <span data-translate="funFacts">Fakta Menarik</span></h3>
                     <ul>
-                        <li><i class="fas fa-check-circle" style="color: var(--fiscal);"></i> APBN 2025 Indonesia mencapai Rp 3.621 triliun.</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--monetary);"></i> BI Rate pernah mencapai 12,75% saat krisis 1998.</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Istilah "kebijakan fiskal" dipopulerkan oleh John Maynard Keynes pada 1930-an.</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Bank Indonesia didirikan pada 1953 sebagai bank sentral.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--fiscal);"></i> <span data-translate="fact1">APBN 2025 Indonesia mencapai Rp 3.621 triliun.</span></li>
+                        <li><i class="fas fa-check-circle" style="color: var(--monetary);"></i> <span data-translate="fact2">BI Rate pernah mencapai 12,75% saat krisis 1998.</span></li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <span data-translate="fact3">Istilah "kebijakan fiskal" dipopulerkan oleh John Maynard Keynes pada 1930-an.</span></li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> <span data-translate="fact4">Bank Indonesia didirikan pada 1953 sebagai bank sentral.</span></li>
                     </ul>
                 </div>
                 
                 <div class="sidebar-card">
-                    <h3><i class="fas fa-link"></i> Materi Prasyarat</h3>
-                    <p>Untuk memahami kebijakan fiskal dan moneter dengan baik, pelajari terlebih dahulu:</p>
+                    <h3><i class="fas fa-link"></i> <span data-translate="prerequisites">Materi Prasyarat</span></h3>
+                    <p data-translate="prerequisitesDesc">Untuk memahami kebijakan fiskal dan moneter dengan baik, pelajari terlebih dahulu:</p>
                     <ul style="margin-top: 1rem;">
-                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="pendapatan-nasional.html" style="text-decoration: none; color: var(--primary);">Pendapatan Nasional</a> (PDB, pertumbuhan ekonomi)</li>
-                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="inflasi.html" style="text-decoration: none; color: var(--primary);">Inflasi</a> (jenis, penyebab, dampak)</li>
-                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="ketenagakerjaan.html" style="text-decoration: none; color: var(--primary);">Ketenagakerjaan</a> (pengangguran)</li>
+                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="pendapatan-nasional.html" style="text-decoration: none; color: var(--primary);" data-translate="nationalIncomeLink">Pendapatan Nasional</a> <span data-translate="nationalIncomeDesc">(PDB, pertumbuhan ekonomi)</span></li>
+                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="inflasi.html" style="text-decoration: none; color: var(--primary);" data-translate="inflationLink">Inflasi</a> <span data-translate="inflationDesc">(jenis, penyebab, dampak)</span></li>
+                        <li><i class="fas fa-arrow-right fiscal-color"></i> <a href="ketenagakerjaan.html" style="text-decoration: none; color: var(--primary);" data-translate="employmentLink">Ketenagakerjaan</a> <span data-translate="employmentDesc">(pengangguran)</span></li>
                     </ul>
                 </div>
                 
                 <div class="sidebar-card">
-                    <h3><i class="fas fa-database"></i> Data Ekonomi Terkini</h3>
+                    <h3><i class="fas fa-database"></i> <span data-translate="latestData">Data Ekonomi Terkini</span></h3>
                     <ul>
-                        <li><i class="fas fa-chart-line fiscal-color"></i> <strong>Inflasi (Feb 2025):</strong> 2,5% yoy</li>
-                        <li><i class="fas fa-chart-line monetary-color"></i> <strong>BI Rate:</strong> 5,75%</li>
-                        <li><i class="fas fa-chart-line fiscal-color"></i> <strong>Pertumbuhan PDB 2024:</strong> 5,03%</li>
-                        <li><i class="fas fa-chart-line monetary-color"></i> <strong>Nilai Tukar USD/IDR:</strong> Rp 15.700</li>
+                        <li><i class="fas fa-chart-line fiscal-color"></i> <strong data-translate="inflationData">Inflasi (Feb 2025):</strong> 2,5% yoy</li>
+                        <li><i class="fas fa-chart-line monetary-color"></i> <strong data-translate="biRate">BI Rate:</strong> 5,75%</li>
+                        <li><i class="fas fa-chart-line fiscal-color"></i> <strong data-translate="gdpGrowth">Pertumbuhan PDB 2024:</strong> 5,03%</li>
+                        <li><i class="fas fa-chart-line monetary-color"></i> <strong data-translate="exchangeRateData">Nilai Tukar USD/IDR:</strong> Rp 15.700</li>
                     </ul>
                 </div>
                 
                 <div class="sidebar-card">
-                    <h3><i class="fas fa-globe"></i> Istilah Penting</h3>
+                    <h3><i class="fas fa-globe"></i> <span data-translate="keyTerms">Istilah Penting</span></h3>
                     <ul>
-                        <li><i class="fas fa-bookmark"></i> <strong>APBN:</strong> Anggaran Pendapatan dan Belanja Negara</li>
-                        <li><i class="fas fa-bookmark"></i> <strong>RDG:</strong> Rapat Dewan Gubernur (Bank Indonesia)</li>
-                        <li><i class="fas fa-bookmark"></i> <strong>SBN:</strong> Surat Berharga Negara</li>
-                        <li><i class="fas fa-bookmark"></i> <strong>Quantitative Easing:</strong> Pelonggaran kuantitatif</li>
-                        <li><i class="fas fa-bookmark"></i> <strong>Defisit APBN:</strong> Ketika belanja > pendapatan</li>
+                        <li><i class="fas fa-bookmark"></i> <strong>APBN:</strong> <span data-translate="apbnDesc">Anggaran Pendapatan dan Belanja Negara</span></li>
+                        <li><i class="fas fa-bookmark"></i> <strong>RDG:</strong> <span data-translate="rdgDesc">Rapat Dewan Gubernur (Bank Indonesia)</span></li>
+                        <li><i class="fas fa-bookmark"></i> <strong>SBN:</strong> <span data-translate="sbnDesc">Surat Berharga Negara</span></li>
+                        <li><i class="fas fa-bookmark"></i> <strong>Quantitative Easing:</strong> <span data-translate="qeDesc">Pelonggaran kuantitatif</span></li>
+                        <li><i class="fas fa-bookmark"></i> <strong>Defisit APBN:</strong> <span data-translate="deficitDesc">Ketika belanja > pendapatan</span></li>
                     </ul>
                 </div>
             </aside>
@@ -1476,15 +1580,15 @@
         
         <!-- Footer Navigasi ke Materi Sebelum/Sesudah -->
         <footer class="footer-nav">
-            <h3>Lanjutkan Perjalanan Belajar Ekonomi</h3>
+            <h3 data-translate="continueLearning">Lanjutkan Perjalanan Belajar Ekonomi</h3>
             <div class="footer-links">
-                <a href="inflasi.html"><i class="fas fa-arrow-left"></i> Sebelumnya: Inflasi</a>
-                <a href="ekonomi-kelas-xi.html"><i class="fas fa-home"></i> Semua Materi</a>
-                <a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-pen"></i> Evaluasi Akhir</a>
+                <a href="inflasi.html"><i class="fas fa-arrow-left"></i> <span data-translate="previous">Sebelumnya: Inflasi</span></a>
+                <a href="ekonomi-kelas-xi.html"><i class="fas fa-home"></i> <span data-translate="allMaterials">Semua Materi</span></a>
+                <a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-pen"></i> <span data-translate="finalEvaluation">Evaluasi Akhir</span></a>
             </div>
             <div class="copyright">
                 &copy; 2025 Alamsah Education - Ekonomi Kelas XI. All rights reserved. | 
-                <i class="fas fa-heart" style="color: var(--accent);"></i> untuk pendidikan Indonesia
+                <i class="fas fa-heart" style="color: var(--accent);"></i> <span data-translate="forEducation">untuk pendidikan Indonesia</span>
             </div>
         </footer>
     </div>
@@ -1512,6 +1616,10 @@
             
             // Inisialisasi
             updateSimulation();
+
+            // Initialize language based on localStorage or default to Indonesian
+            const savedLang = localStorage.getItem('language') || 'id';
+            switchLanguage(savedLang);
         });
         
         function updateSimulation() {
@@ -1565,13 +1673,13 @@
             let exchangeText = '';
             let exchangeClass = '';
             if (Math.abs(exchangeImpact) < 0.5) {
-                exchangeText = 'Stabil';
+                exchangeText = translations[currentLang].stable;
                 exchangeClass = '';
             } else if (exchangeImpact > 0) {
-                exchangeText = 'Apresiasi';
+                exchangeText = translations[currentLang].appreciation;
                 exchangeClass = 'positive';
             } else {
-                exchangeText = 'Depresiasi';
+                exchangeText = translations[currentLang].depreciation;
                 exchangeClass = 'negative';
             }
             document.getElementById('exchange-value').textContent = exchangeText;
@@ -1637,6 +1745,506 @@
             }
         }
         initTheme();
+
+        // ==================== LANGUAGE SWITCHER ====================
+        const translations = {
+            id: {
+                // General
+                home: "🏠 Beranda",
+                economicsClass: "Ekonomi Kelas XI",
+                currentPage: "Kebijakan Fiskal & Moneter",
+                backToEconomics: "Kembali ke Materi Ekonomi",
+                learningPath: "Learning Path Ekonomi Kelas XI",
+                businessEntities: "1. Badan Usaha",
+                nationalIncome: "2. Pendapatan Nasional",
+                employment: "3. Ketenagakerjaan",
+                inflation: "4. Inflasi",
+                fiscalMonetary: "5. Kebijakan Fiskal & Moneter 🎯",
+                synthesisNote: "Materi ini merupakan sintesis dari topik sebelumnya. Memahami pendapatan nasional dan inflasi akan membantu Anda mengerti dampak kebijakan ini.",
+                
+                // Hero
+                heroTitle: "Kebijakan Fiskal & Moneter",
+                heroDescription: "Memahami instrumen, perbedaan, dan dampak kebijakan pemerintah dan bank sentral dalam menjaga stabilitas perekonomian Indonesia.",
+                duration: "90 Menit",
+                level: "Level: Mahir",
+                simulation: "Simulasi Interaktif",
+                
+                // What is Economic Policy
+                whatIsEconomicPolicy: "Apa Itu Kebijakan Ekonomi?",
+                imageCaption: "Ilustrasi kebijakan ekonomi dan dampaknya terhadap sektor riil dan keuangan",
+                economicPolicyDef1: "<strong>Kebijakan ekonomi</strong> adalah serangkaian tindakan yang diambil oleh pemerintah dan bank sentral untuk mengarahkan perekonomian menuju kondisi yang diinginkan, seperti pertumbuhan ekonomi tinggi, inflasi rendah, dan pemerataan pendapatan.",
+                economicPolicyDef2: "Dua instrumen utama dalam kebijakan ekonomi makro adalah <span class='fiscal-color fw-bold'>kebijakan fiskal</span> dan <span class='monetary-color fw-bold'>kebijakan moneter</span>.",
+                importantNote: "Catatan Penting:",
+                coordinationNote: "Kebijakan fiskal dan moneter harus berjalan beriringan. Koordinasi yang baik antara pemerintah (Kementerian Keuangan) dan Bank Indonesia sangat penting untuk mencapai stabilitas ekonomi.",
+                
+                // Simulation
+                simulationTitle: "Simulasi Dampak Kebijakan Ekonomi",
+                simulationDescription: "Ubah parameter kebijakan di bawah untuk melihat dampaknya terhadap indikator ekonomi makro (simulasi sederhana).",
+                fiscalPolicy: "Kebijakan Fiskal",
+                monetaryPolicy: "Kebijakan Moneter",
+                tax: "Pajak (%)",
+                lower: "Lebih Rendah",
+                higher: "Lebih Tinggi",
+                governmentSpending: "Belanja Pemerintah",
+                contractionary: "Kontraktif",
+                expansionary: "Ekspansif",
+                interestRate: "Suku Bunga (%)",
+                low: "Rendah",
+                high: "Tinggi",
+                moneySupply: "Jumlah Uang Beredar",
+                tight: "Ketat",
+                loose: "Longgar",
+                economicGrowth: "Pertumbuhan Ekonomi",
+                inflation: "Inflasi",
+                unemployment: "Pengangguran",
+                exchangeRate: "Nilai Tukar",
+                stable: "Stabil",
+                appreciation: "Apresiasi",
+                depreciation: "Depresiasi",
+                reset: "Reset",
+                expansionaryBtn: "Kebijakan Ekspansif",
+                contractionaryBtn: "Kebijakan Kontraktif",
+                simulationNote: "<i class='fas fa-info-circle'></i> Simulasi ini adalah penyederhanaan untuk tujuan pembelajaran. Dampak kebijakan di dunia nyata dipengaruhi banyak faktor lain.",
+                
+                // Fiscal Policy
+                fiscalPolicyTitle: "Kebijakan Fiskal",
+                fiscalPolicyDef: "<strong>Kebijakan fiskal</strong> adalah kebijakan yang dilakukan pemerintah melalui instrumen Anggaran Pendapatan dan Belanja Negara (APBN) untuk memengaruhi jalannya perekonomian. Kebijakan ini menyangkut pengaturan pendapatan dan belanja negara.",
+                fiscalInstruments: "Instrumen Kebijakan Fiskal",
+                taxDesc: "Pemerintah dapat menaikkan atau menurunkan tarif pajak untuk mengatur daya beli masyarakat. Penurunan pajak meningkatkan disposable income dan konsumsi.",
+                spendingDesc: "Pengeluaran pemerintah untuk infrastruktur, gaji PNS, subsidi, dan bantuan sosial dapat merangsang atau menahan aktivitas ekonomi.",
+                budget: "Anggaran (APBN)",
+                budgetDesc: "Keputusan defisit, surplus, atau berimbang dalam APBN mencerminkan arah kebijakan fiskal.",
+                subsidies: "Subsidi & Transfer",
+                subsidiesDesc: "Pemberian subsidi (BBM, listrik) dan bantuan sosial (PKH, BLT) mempengaruhi distribusi pendapatan.",
+                fiscalTypes: "Jenis Kebijakan Fiskal",
+                expansionaryDesc: "Menurunkan pajak, meningkatkan belanja → untuk mengatasi resesi dan pengangguran.",
+                contractionaryDesc: "Menaikkan pajak, mengurangi belanja → untuk mengendalikan inflasi.",
+                fiscalExamples: "Contoh Kebijakan Fiskal di Indonesia",
+                fiscalEx1: "Program PEN (Pemulihan Ekonomi Nasional) saat pandemi COVID-19 (fiskal ekspansif).",
+                fiscalEx2: "Pembebasan PPN untuk barang kebutuhan pokok.",
+                fiscalEx3: "Subsidi BBM dan listrik untuk menjaga daya beli.",
+                fiscalEx4: "Peningkatan belanja infrastruktur dalam APBN.",
+                
+                // Monetary Policy
+                monetaryPolicyTitle: "Kebijakan Moneter",
+                monetaryPolicyDef: "<strong>Kebijakan moneter</strong> adalah kebijakan yang dilakukan oleh bank sentral (di Indonesia: Bank Indonesia) untuk mengatur jumlah uang beredar dan suku bunga guna mencapai stabilitas nilai rupiah dan mendorong pertumbuhan ekonomi.",
+                monetaryInstruments: "Instrumen Kebijakan Moneter",
+                interestRateDesc: "BI Rate (saat ini: BI 7-Day Reverse Repo Rate) menjadi sinyal arah kebijakan. Jika naik, suku bunga kredit ikut naik.",
+                reserveRequirement: "Giro Wajib Minimum (GWM)",
+                reserveRequirementDesc: "Dana yang wajib disimpan bank di BI. Jika GWM naik, likuiditas perbankan berkurang.",
+                openMarket: "Operasi Pasar Terbuka (OPT)",
+                openMarketDesc: "BI membeli atau menjual SBN untuk menambah atau mengurangi uang beredar.",
+                discountRate: "Fasilitas Diskonto",
+                discountRateDesc: "Pinjaman BI ke bank umum dengan bunga tertentu untuk menjaga likuiditas.",
+                monetaryTypes: "Jenis Kebijakan Moneter",
+                expansionaryMonetary: "Ekspansif (Longgar)",
+                expansionaryMonetaryDesc: "Menurunkan suku bunga, membeli SBN → menambah uang beredar, mendorong kredit dan investasi.",
+                contractionaryMonetary: "Kontraktif (Ketat)",
+                contractionaryMonetaryDesc: "Menaikkan suku bunga, menjual SBN → mengurangi uang beredar, mengendalikan inflasi.",
+                monetaryExamples: "Contoh Kebijakan Moneter di Indonesia",
+                monetaryEx1: "Penurunan BI Rate selama pandemi untuk mendorong pemulihan ekonomi.",
+                monetaryEx2: "Operasi pasar terbuka untuk menjaga stabilitas nilai tukar rupiah.",
+                monetaryEx3: "Penyesuaian Giro Wajib Minimum untuk mengatur likuiditas perbankan.",
+                
+                // Comparison Table
+                comparisonTitle: "Perbandingan Fiskal vs Moneter",
+                aspect: "Aspek",
+                implementer: "Pelaksana",
+                government: "Pemerintah (Kementerian Keuangan)",
+                centralBank: "Bank Sentral (Bank Indonesia)",
+                mainInstruments: "Instrumen Utama",
+                fiscalInstrumentsList: "Pajak, belanja negara, subsidi, APBN",
+                monetaryInstrumentsList: "Suku bunga, GWM, operasi pasar terbuka",
+                objective: "Tujuan",
+                fiscalObjective: "Pertumbuhan ekonomi, pemerataan, stabilitas harga",
+                monetaryObjective: "Stabilitas nilai rupiah (inflasi dan nilai tukar)",
+                responseTime: "Waktu Respons",
+                slowResponse: "Relatif lambat (perlu persetujuan DPR)",
+                fastResponse: "Relatif cepat (dapat diputuskan dalam RDG BI)",
+                directTarget: "Sasaran Langsung",
+                fiscalTarget: "Pendapatan dan belanja masyarakat",
+                monetaryTarget: "Jumlah uang beredar dan suku bunga",
+                sideEffects: "Efek Samping",
+                fiscalSideEffects: "Defisit anggaran, utang publik",
+                monetarySideEffects: "Gelembung aset, ketidakstabilan sektor keuangan",
+                tableCaption: "Tabel 1. Perbandingan kebijakan fiskal dan moneter",
+                
+                // Case Studies
+                caseStudies: "Studi Kasus: Respons Kebijakan di Masa Pandemi",
+                covidCase: "Krisis COVID-19 di Indonesia (2020-2021)",
+                covidDesc: "Pandemi COVID-19 menyebabkan kontraksi ekonomi yang dalam. Pemerintah dan Bank Indonesia merespons dengan berbagai kebijakan untuk menyelamatkan perekonomian.",
+                measuresTaken: "Langkah-langkah yang diambil:",
+                covidFiscal: "Pemerintah meluncurkan program PEN (Pemulihan Ekonomi Nasional) dengan total anggaran lebih dari Rp 600 triliun. Program ini mencakup bantuan sosial (PKH, BST), subsidi bunga kredit UMKM, insentif pajak, dan pembiayaan korporasi.",
+                covidMonetary: "Bank Indonesia menurunkan suku bunga acuan (BI 7-Day RR Rate) dari 5% menjadi 3,5%, melakukan quantitative easing (pembelian SBN di pasar perdana), dan melonggarkan Giro Wajib Minimum.",
+                coordination: "Koordinasi:",
+                covidCoordination: "Pemerintah dan BI bersinergi dalam burden sharing (berbagi beban) pembiayaan defisit APBN melalui mekanisme SKB I, II, dan III.",
+                questions: "Pertanyaan Studi Kasus:",
+                q1: "Jelaskan jenis kebijakan fiskal yang diterapkan pemerintah saat pandemi! Ekspansif atau kontraktif? Berikan alasannya!",
+                q2: "Jelaskan jenis kebijakan moneter yang diterapkan Bank Indonesia! Ekspansif atau kontraktif?",
+                q3: "Mengapa koordinasi antara kebijakan fiskal dan moneter sangat penting dalam situasi krisis?",
+                q4: "Apa risiko dari kebijakan ekspansif yang sangat besar tersebut (misalnya, inflasi atau pelemahan nilai tukar)?",
+                showAnswer: "Lihat Pembahasan Jawaban",
+                discussion: "Pembahasan Jawaban:",
+                a1: "Ekspansif. Pemerintah meningkatkan belanja (bansos, subsidi) dan menurunkan penerimaan (insentif pajak). Defisit APBN melebar hingga di atas 5% PDB untuk menyuntikkan stimulus ke ekonomi.",
+                a2: "Ekspansif (longgar). BI menurunkan suku bunga acuan ke level terendah dalam sejarah (3,5%) dan melakukan pelonggaran kuantitatif (quantitative easing) dengan membeli SBN untuk menambah likuiditas.",
+                a3: "Kebijakan fiskal ekspansif membutuhkan pembiayaan (penerbitan SBN). Jika BI tidak membantu (tidak membeli SBN), maka suku bunga akan naik dan crowding out terjadi. Koordinasi (burden sharing) memungkinkan pembiayaan defisit dengan biaya murah, sehingga fiskal dan moneter berjalan searah (sama-sama ekspansif).",
+                a4: "Risiko utama adalah inflasi di masa depan jika stimulus berlebihan (ketika permintaan pulih tajam). Juga, likuiditas yang sangat longgar dapat menekan nilai tukar rupiah. Namun, dengan inflasi yang rendah saat itu, risiko ini dianggap terkendali.",
+                result: "Hasil:",
+                a5: "Ekonomi Indonesia berhasil menghindari resesi yang lebih dalam dan kembali tumbuh positif pada 2021.",
+                
+                // Transition Case
+                transitionCase: "Kasus Nyata: Transisi Pandemi ke Endemi (2023-2024) - \"Pandemi Dihilangkan\"",
+                transitionDesc: "Setelah status pandemi dicabut dan Indonesia memasuki masa endemi, pemerintah dan Bank Indonesia menghadapi tantangan baru: <strong>menarik stimulus secara hati-hati (tapering off)</strong> agar ekonomi tidak kepanasan (overheating) namun pemulihan tetap berlanjut. Berikut adalah kebijakan nyata yang diambil pasca pandemi:",
+                fiscalTransition: "Kebijakan Fiskal: Normalisasi Belanja dan Subsidi Tepat Sasaran",
+                fuelSubsidy: "Pengurangan Subsidi BBM (September 2022):",
+                fuelSubsidyDesc: "Pemerintah menaikkan harga BBM bersubsidi (Pertalite, Solar) untuk mengalihkan subsidi ke yang lebih tepat sasaran. Ini adalah bentuk <strong>fiskal kontraktif</strong> untuk mengurangi beban APBN yang membengkak akibat tingginya harga minyak dunia.",
+                taxIncentive: "Penghapusan Insentif Pajak UMKM:",
+                taxIncentiveDesc: "Insentif PPh Final UMKM 0,5% DTP (Ditanggung Pemerintah) yang diberikan selama pandemi dihentikan secara bertahap pada 2023.",
+                infrastructureFocus: "Fokus Belanja ke Infrastruktur dan IKN:",
+                infrastructureFocusDesc: "Belanja negara dialihkan dari bantuan sosial masif ke proyek produktif seperti pembangunan Ibu Kota Nusantara (IKN) untuk menjaga pertumbuhan jangka panjang.",
+                monetaryTransition: "Kebijakan Moneter: Sikap Pro-Stability",
+                rateHike: "Kenaikan Suku Bunga Acuan (Agustus 2023 - 2024):",
+                rateHikeDesc: "Bank Indonesia menaikkan BI Rate dari 3,50% menjadi 6,25% secara bertahap. Langkah <strong>moneter kontraktif</strong> ini diambil untuk mengantisipasi dampak <i>imported inflation</i> (kenaikan harga pangan dan energi global) serta memperkuat stabilitas nilai tukar Rupiah di tengah ketidakpastian global.",
+                proMarket: "Operasi Moneter Pro-Market:",
+                proMarketDesc: "BI menerbitkan instrumen baru seperti Sekuritas Rupiah Bank Indonesia (SRBI) untuk menarik modal asing dan menstabilkan rupiah, tanpa harus mengorbankan likuiditas perbankan secara berlebihan.",
+                analysisTask: "Tugas Analisis: Transisi Kebijakan",
+                transitionQ1: "Mengapa pemerintah memutuskan untuk menaikkan harga BBM bersubsidi di tahun 2022, padahal inflasi sedang meningkat? Jelaskan dari sisi fiskal!",
+                transitionQ2: "Jelaskan dilema yang dihadapi Bank Indonesia saat memutuskan menaikkan suku bunga di tahun 2023-2024 (antara inflasi dan pertumbuhan)!",
+                transitionQ3: "Jika \"pandemi dihilangkan\" secara tiba-tiba tanpa transisi, kira-kira apa yang akan terjadi pada perekonomian? Kaitkan dengan instrumen pajak dan subsidi!",
+                transitionQ4: "<strong>Data Real:</strong> Cari tahu berapa inflasi Indonesia di bulan September 2022 (saat kenaikan BBM) dan bulan Juni 2024. Apakah kenaikan BBM memicu inflasi yang tidak terkendali?",
+                showAnalysis: "Show Analisis & Data Real",
+                analysis: "Analisis dan Data Real:",
+                transitionA1: "1. Dilema Subsidi BBM:",
+                transitionA1Desc: "Kenaikan harga BBM adalah <strong>kebijakan yang menyakitkan namun perlu</strong>. Subsidi BBM yang membengkak hingga Rp 500 triliun (akibat harga minyak tinggi) sangat membebani APBN. Jika terus dipertahankan, justru akan <strong>mengancam stabilitas fiskal</strong> dan mengurangi ruang belanja untuk hal lain. Pemerintah mengompensasi dengan bantuan langsung tunai (BLT BBM) untuk menjaga daya beli masyarakat miskin. Ini adalah contoh <strong>subsidi dialihkan, bukan dihapus</strong>.",
+                transitionA2: "2. Dilema Suku Bunga:",
+                transitionA2Desc: "Dilema BI adalah: (a) Jika suku bunga <strong>tidak dinaikkan</strong>, Rupiah bisa melemah karena selisih bunga dengan AS melebar, dan inflasi impor meningkat. (b) Jika suku bunga <strong>dinaikkan terlalu cepat</strong>, pertumbuhan ekonomi bisa terhambat. BI memilih sikap <strong>pro-stability</strong>, yaitu mengutamakan stabilitas nilai tukar dan inflasi, karena inflasi yang tinggi lebih merusak daya beli masyarakat dalam jangka panjang.",
+                transitionA3: "3. Skenario \"Pandemi Dihilangkan\" Tiba-tiba:",
+                transitionA3Desc: "Jika stimulus ditarik secara tiba-tiba (pajak langsung naik, subsidi langsung dicabut, suku bunga langsung dinaikkan ke level normal), kemungkinan besar terjadi <strong>kontraksi ekonomi</strong>. Konsumen yang terbiasa dengan bansos akan kehilangan daya beli, UMKM yang terbiasa dengan bunga murah akan kesulitan membayar cicilan, dan investasi bisa turun drastis. Inilah mengapa <strong>kebijakan transisi (tapering off) sangat penting</strong> untuk soft landing.",
+                transitionA4: "4. Data Real Inflasi:",
+                inflationSep2022: "Inflasi September 2022:",
+                inflationJun2024: "Inflasi Juni 2024:",
+                conclusion: "Kesimpulan:",
+                conclusionDesc: "Kenaikan BBM memang memicu inflasi tinggi sementara, tetapi tidak menyebabkan inflasi liar yang berkepanjangan karena diikuti dengan kebijakan moneter yang ketat (kenaikan suku bunga) dan bantuan sosial yang tepat sasaran.",
+                source: "Sumber: Data BPS dan Bank Indonesia (diolah untuk pembelajaran).",
+                
+                // Evaluation
+                evaluation: "Evaluasi Pemahaman",
+                evaluationDesc: "Jawab pertanyaan berikut untuk menguji pemahaman Anda tentang kebijakan fiskal dan moneter.",
+                evalQ1: "Sebutkan tiga instrumen kebijakan moneter yang dimiliki Bank Indonesia!",
+                evalQ2: "Apa yang dimaksud dengan kebijakan fiskal ekspansif? Berikan contoh kebijakan nyata di Indonesia!",
+                evalQ3: "Jelaskan perbedaan dampak jangka pendek antara kenaikan suku bunga (moneter kontraktif) dengan kenaikan pajak (fiskal kontraktif)!",
+                evalQ4: "Mengapa kebijakan moneter dianggap lebih cepat dampaknya dibanding kebijakan fiskal?",
+                evalQ5: "Dalam kondisi inflasi tinggi, kebijakan apa yang sebaiknya diambil? Jelaskan instrumennya!",
+                showAnswers: "Klik untuk melihat kunci jawaban",
+                answer1: "1. Instrumen kebijakan moneter:",
+                answer1Text: "Suku bunga acuan (BI-Rate), Giro Wajib Minimum (GWM), Operasi Pasar Terbuka (OPT), dan Fasilitas Diskonto.",
+                answer2: "2. Kebijakan fiskal ekspansif:",
+                answer2Text: "Kebijakan menaikkan belanja dan/atau menurunkan pajak untuk merangsang ekonomi. Contoh: Program PEN, bantuan langsung tunai, insentif pajak UMKM.",
+                answer3: "3. Perbedaan dampak:",
+                answer3Text: "Kenaikan suku bunga langsung mempengaruhi biaya kredit dan investasi (dampak cepat ke sektor keuangan). Kenaikan pajak mempengaruhi daya beli masyarakat melalui pendapatan disposabel (dampak lebih bertahap).",
+                answer4: "4. Moneter lebih cepat:",
+                answer4Text: "Keputusan moneter dapat diambil kapan saja oleh RDG Bank Indonesia, tanpa perlu persetujuan DPR. Implementasinya langsung melalui mekanisme pasar.",
+                answer5: "5. Inflasi tinggi:",
+                answer5Text: "Kebijakan kontraktif: naikkan suku bunga (moneter) untuk mengurangi uang beredar; dan/atau kurangi belanja/naikkan pajak (fiskal) untuk menekan permintaan agregat.",
+                
+                // Sidebar
+                funFacts: "Fakta Menarik",
+                fact1: "APBN 2025 Indonesia mencapai Rp 3.621 triliun.",
+                fact2: "BI Rate pernah mencapai 12,75% saat krisis 1998.",
+                fact3: "Istilah \"kebijakan fiskal\" dipopulerkan oleh John Maynard Keynes pada 1930-an.",
+                fact4: "Bank Indonesia didirikan pada 1953 sebagai bank sentral.",
+                prerequisites: "Materi Prasyarat",
+                prerequisitesDesc: "Untuk memahami kebijakan fiskal dan moneter dengan baik, pelajari terlebih dahulu:",
+                nationalIncomeLink: "Pendapatan Nasional",
+                nationalIncomeDesc: "(PDB, pertumbuhan ekonomi)",
+                inflationLink: "Inflasi",
+                inflationDesc: "(jenis, penyebab, dampak)",
+                employmentLink: "Ketenagakerjaan",
+                employmentDesc: "(pengangguran)",
+                latestData: "Data Ekonomi Terkini",
+                inflationData: "Inflasi (Feb 2025):",
+                biRate: "BI Rate:",
+                gdpGrowth: "Pertumbuhan PDB 2024:",
+                exchangeRateData: "Nilai Tukar USD/IDR:",
+                keyTerms: "Istilah Penting",
+                apbnDesc: "Anggaran Pendapatan dan Belanja Negara",
+                rdgDesc: "Rapat Dewan Gubernur (Bank Indonesia)",
+                sbnDesc: "Surat Berharga Negara",
+                qeDesc: "Pelonggaran kuantitatif",
+                deficitDesc: "Ketika belanja > pendapatan",
+                
+                // Footer
+                continueLearning: "Lanjutkan Perjalanan Belajar Ekonomi",
+                previous: "Sebelumnya: Inflasi",
+                allMaterials: "Semua Materi",
+                finalEvaluation: "Evaluasi Akhir",
+                forEducation: "untuk pendidikan Indonesia"
+            },
+            en: {
+                // General
+                home: "🏠 Home",
+                economicsClass: "Economics Class XI",
+                currentPage: "Fiscal & Monetary Policy",
+                backToEconomics: "Back to Economics Materials",
+                learningPath: "Economics Class XI Learning Path",
+                businessEntities: "1. Business Entities",
+                nationalIncome: "2. National Income",
+                employment: "3. Employment",
+                inflation: "4. Inflation",
+                fiscalMonetary: "5. Fiscal & Monetary Policy 🎯",
+                synthesisNote: "This material is a synthesis of previous topics. Understanding national income and inflation will help you grasp the impact of these policies.",
+                
+                // Hero
+                heroTitle: "Fiscal & Monetary Policy",
+                heroDescription: "Understanding the instruments, differences, and impacts of government and central bank policies in maintaining the stability of the Indonesian economy.",
+                duration: "90 Minutes",
+                level: "Level: Advanced",
+                simulation: "Interactive Simulation",
+                
+                // What is Economic Policy
+                whatIsEconomicPolicy: "What is Economic Policy?",
+                imageCaption: "Illustration of economic policy and its impact on the real and financial sectors",
+                economicPolicyDef1: "<strong>Economic policy</strong> is a series of actions taken by the government and central bank to steer the economy towards desired conditions, such as high economic growth, low inflation, and income equality.",
+                economicPolicyDef2: "The two main instruments in macroeconomic policy are <span class='fiscal-color fw-bold'>fiscal policy</span> and <span class='monetary-color fw-bold'>monetary policy</span>.",
+                importantNote: "Important Note:",
+                coordinationNote: "Fiscal and monetary policies must go hand in hand. Good coordination between the government (Ministry of Finance) and Bank Indonesia is crucial to achieve economic stability.",
+                
+                // Simulation
+                simulationTitle: "Economic Policy Impact Simulation",
+                simulationDescription: "Change the policy parameters below to see their impact on macroeconomic indicators (simplified simulation).",
+                fiscalPolicy: "Fiscal Policy",
+                monetaryPolicy: "Monetary Policy",
+                tax: "Tax (%)",
+                lower: "Lower",
+                higher: "Higher",
+                governmentSpending: "Government Spending",
+                contractionary: "Contractionary",
+                expansionary: "Expansionary",
+                interestRate: "Interest Rate (%)",
+                low: "Low",
+                high: "High",
+                moneySupply: "Money Supply",
+                tight: "Tight",
+                loose: "Loose",
+                economicGrowth: "Economic Growth",
+                inflation: "Inflation",
+                unemployment: "Unemployment",
+                exchangeRate: "Exchange Rate",
+                stable: "Stable",
+                appreciation: "Appreciation",
+                depreciation: "Depreciation",
+                reset: "Reset",
+                expansionaryBtn: "Expansionary Policy",
+                contractionaryBtn: "Contractionary Policy",
+                simulationNote: "<i class='fas fa-info-circle'></i> This simulation is a simplification for learning purposes. Real-world policy impacts are influenced by many other factors.",
+                
+                // Fiscal Policy
+                fiscalPolicyTitle: "Fiscal Policy",
+                fiscalPolicyDef: "<strong>Fiscal policy</strong> is a policy carried out by the government through the State Budget (APBN) instruments to influence the course of the economy. This policy involves regulating state revenues and expenditures.",
+                fiscalInstruments: "Fiscal Policy Instruments",
+                taxDesc: "The government can raise or lower tax rates to regulate people's purchasing power. Lower taxes increase disposable income and consumption.",
+                spendingDesc: "Government spending on infrastructure, civil servant salaries, subsidies, and social assistance can stimulate or restrain economic activity.",
+                budget: "Budget (APBN)",
+                budgetDesc: "Decisions on deficit, surplus, or balance in the APBN reflect the direction of fiscal policy.",
+                subsidies: "Subsidies & Transfers",
+                subsidiesDesc: "Providing subsidies (fuel, electricity) and social assistance (PKH, BLT) affects income distribution.",
+                fiscalTypes: "Types of Fiscal Policy",
+                expansionaryDesc: "Lower taxes, increase spending → to overcome recession and unemployment.",
+                contractionaryDesc: "Raise taxes, reduce spending → to control inflation.",
+                fiscalExamples: "Examples of Fiscal Policy in Indonesia",
+                fiscalEx1: "National Economic Recovery (PEN) program during the COVID-19 pandemic (expansionary fiscal).",
+                fiscalEx2: "VAT exemption for staple goods.",
+                fiscalEx3: "Fuel and electricity subsidies to maintain purchasing power.",
+                fiscalEx4: "Increased infrastructure spending in the APBN.",
+                
+                // Monetary Policy
+                monetaryPolicyTitle: "Monetary Policy",
+                monetaryPolicyDef: "<strong>Monetary policy</strong> is a policy carried out by the central bank (in Indonesia: Bank Indonesia) to regulate the money supply and interest rates to achieve rupiah stability and encourage economic growth.",
+                monetaryInstruments: "Monetary Policy Instruments",
+                interestRateDesc: "The BI Rate (currently: BI 7-Day Reverse Repo Rate) signals the policy direction. If it rises, lending rates also increase.",
+                reserveRequirement: "Reserve Requirement (GWM)",
+                reserveRequirementDesc: "Funds that banks must hold at BI. If GWM increases, banking liquidity decreases.",
+                openMarket: "Open Market Operations (OMO)",
+                openMarketDesc: "BI buys or sells government securities to increase or decrease the money supply.",
+                discountRate: "Discount Facility",
+                discountRateDesc: "BI loans to commercial banks at a certain interest rate to maintain liquidity.",
+                monetaryTypes: "Types of Monetary Policy",
+                expansionaryMonetary: "Expansionary (Loose)",
+                expansionaryMonetaryDesc: "Lower interest rates, buy securities → increase money supply, encourage credit and investment.",
+                contractionaryMonetary: "Contractionary (Tight)",
+                contractionaryMonetaryDesc: "Raise interest rates, sell securities → reduce money supply, control inflation.",
+                monetaryExamples: "Examples of Monetary Policy in Indonesia",
+                monetaryEx1: "BI Rate cut during the pandemic to encourage economic recovery.",
+                monetaryEx2: "Open market operations to maintain rupiah exchange rate stability.",
+                monetaryEx3: "Adjustment of Reserve Requirements to regulate banking liquidity.",
+                
+                // Comparison Table
+                comparisonTitle: "Fiscal vs Monetary Comparison",
+                aspect: "Aspect",
+                implementer: "Implementer",
+                government: "Government (Ministry of Finance)",
+                centralBank: "Central Bank (Bank Indonesia)",
+                mainInstruments: "Main Instruments",
+                fiscalInstrumentsList: "Taxes, government spending, subsidies, APBN",
+                monetaryInstrumentsList: "Interest rates, GWM, open market operations",
+                objective: "Objective",
+                fiscalObjective: "Economic growth, equity, price stability",
+                monetaryObjective: "Rupiah stability (inflation and exchange rate)",
+                responseTime: "Response Time",
+                slowResponse: "Relatively slow (requires parliamentary approval)",
+                fastResponse: "Relatively fast (decided in BI Governor Board Meeting)",
+                directTarget: "Direct Target",
+                fiscalTarget: "Public income and expenditure",
+                monetaryTarget: "Money supply and interest rates",
+                sideEffects: "Side Effects",
+                fiscalSideEffects: "Budget deficit, public debt",
+                monetarySideEffects: "Asset bubbles, financial sector instability",
+                tableCaption: "Table 1. Comparison of fiscal and monetary policy",
+                
+                // Case Studies
+                caseStudies: "Case Study: Policy Response During the Pandemic",
+                covidCase: "COVID-19 Crisis in Indonesia (2020-2021)",
+                covidDesc: "The COVID-19 pandemic caused a deep economic contraction. The government and Bank Indonesia responded with various policies to save the economy.",
+                measuresTaken: "Measures taken:",
+                covidFiscal: "The government launched the National Economic Recovery (PEN) program with a total budget of over IDR 600 trillion. This program included social assistance (PKH, BST), MSME credit interest subsidies, tax incentives, and corporate financing.",
+                covidMonetary: "Bank Indonesia lowered its benchmark interest rate (BI 7-Day RR Rate) from 5% to 3.5%, conducted quantitative easing (purchasing government securities in the primary market), and relaxed Reserve Requirements.",
+                coordination: "Coordination:",
+                covidCoordination: "The government and BI synergized in burden sharing to finance the APBN deficit through the SKB I, II, and III mechanisms.",
+                questions: "Case Study Questions:",
+                q1: "Explain the type of fiscal policy implemented by the government during the pandemic! Expansionary or contractionary? Give your reasons!",
+                q2: "Explain the type of monetary policy implemented by Bank Indonesia! Expansionary or contractionary?",
+                q3: "Why is coordination between fiscal and monetary policy crucial in a crisis situation?",
+                q4: "What are the risks of such large expansionary policies (e.g., inflation or currency depreciation)?",
+                showAnswer: "Show Answer Discussion",
+                discussion: "Answer Discussion:",
+                a1: "Expansionary. The government increased spending (social assistance, subsidies) and decreased revenue (tax incentives). The APBN deficit widened to over 5% of GDP to inject stimulus into the economy.",
+                a2: "Expansionary (loose). BI lowered the benchmark interest rate to a historic low (3.5%) and conducted quantitative easing by purchasing government securities to increase liquidity.",
+                a3: "Expansionary fiscal policy requires financing (issuing government securities). If BI does not help (by buying the securities), interest rates would rise and crowding out would occur. Coordination (burden sharing) allows deficit financing at a low cost, so fiscal and monetary policy move in the same direction (both expansionary).",
+                a4: "The main risk is future inflation if the stimulus is excessive (when demand recovers sharply). Also, very loose liquidity can put pressure on the rupiah exchange rate. However, with low inflation at the time, these risks were considered manageable.",
+                result: "Result:",
+                a5: "The Indonesian economy managed to avoid a deeper recession and returned to positive growth in 2021.",
+                
+                // Transition Case
+                transitionCase: "Real Case: Pandemic to Endemic Transition (2023-2024) - \"Pandemic Removed\"",
+                transitionDesc: "After the pandemic status was lifted and Indonesia entered the endemic phase, the government and Bank Indonesia faced a new challenge: <strong>carefully withdrawing stimulus (tapering off)</strong> so that the economy wouldn't overheat but recovery would continue. Here are the real policies taken post-pandemic:",
+                fiscalTransition: "Fiscal Policy: Spending Normalization and Targeted Subsidies",
+                fuelSubsidy: "Fuel Subsidy Reduction (September 2022):",
+                fuelSubsidyDesc: "The government raised prices for subsidized fuel (Pertalite, Diesel) to redirect subsidies to be more targeted. This was a form of <strong>contractionary fiscal policy</strong> to reduce the burden on the APBN, which had swollen due to high world oil prices.",
+                taxIncentive: "Removal of MSME Tax Incentives:",
+                taxIncentiveDesc: "The 0.5% final income tax incentive borne by the government for MSMEs, provided during the pandemic, was gradually phased out in 2023.",
+                infrastructureFocus: "Spending Focus on Infrastructure and IKN:",
+                infrastructureFocusDesc: "State spending was shifted from massive social assistance to productive projects like the development of the Archipelago Capital (IKN) to maintain long-term growth.",
+                monetaryTransition: "Monetary Policy: Pro-Stability Stance",
+                rateHike: "Benchmark Interest Rate Hikes (August 2023 - 2024):",
+                rateHikeDesc: "Bank Indonesia gradually raised the BI Rate from 3.50% to 6.25%. This <strong>contractionary monetary</strong> step was taken to anticipate the impact of <i>imported inflation</i> (rising global food and energy prices) and strengthen Rupiah exchange rate stability amid global uncertainty.",
+                proMarket: "Pro-Market Monetary Operations:",
+                proMarketDesc: "BI issued new instruments like Bank Indonesia Rupiah Securities (SRBI) to attract foreign capital and stabilize the rupiah, without having to sacrifice banking liquidity excessively.",
+                analysisTask: "Analysis Task: Policy Transition",
+                transitionQ1: "Why did the government decide to raise subsidized fuel prices in 2022, even though inflation was rising? Explain from a fiscal perspective!",
+                transitionQ2: "Explain the dilemma faced by Bank Indonesia when deciding to raise interest rates in 2023-2024 (between inflation and growth)!",
+                transitionQ3: "If the 'pandemic were removed' suddenly without transition, what would likely happen to the economy? Relate it to tax and subsidy instruments!",
+                transitionQ4: "<strong>Real Data:</strong> Find out what Indonesia's inflation was in September 2022 (at the time of the fuel price hike) and June 2024. Did the fuel hike trigger uncontrolled inflation?",
+                showAnalysis: "Show Analysis & Real Data",
+                analysis: "Analysis and Real Data:",
+                transitionA1: "1. Fuel Subsidy Dilemma:",
+                transitionA1Desc: "The fuel price hike was a <strong>painful but necessary policy</strong>. The fuel subsidy, which swelled to IDR 500 trillion (due to high oil prices), heavily burdened the APBN. If maintained, it would <strong>threaten fiscal stability</strong> and reduce spending space for other things. The government compensated with direct cash assistance (BLT BBM) to maintain the purchasing power of the poor. This is an example of <strong>redirecting subsidies, not removing them</strong>.",
+                transitionA2: "2. Interest Rate Dilemma:",
+                transitionA2Desc: "BI's dilemma was: (a) If interest rates were <strong>not raised</strong>, the Rupiah could weaken due to a widening interest rate differential with the US, and imported inflation would increase. (b) If interest rates were <strong>raised too quickly</strong>, economic growth could be hampered. BI chose a <strong>pro-stability</strong> stance, prioritizing exchange rate and inflation stability, because high inflation is more damaging to people's purchasing power in the long run.",
+                transitionA3: "3. Sudden 'Pandemic Removed' Scenario:",
+                transitionA3Desc: "If stimulus were withdrawn suddenly (taxes raised immediately, subsidies cut immediately, interest rates hiked to normal levels immediately), a likely outcome would be <strong>economic contraction</strong>. Consumers accustomed to social assistance would lose purchasing power, MSMEs used to cheap credit would struggle to pay installments, and investment could drop drastically. This is why <strong>transitional policies (tapering off) are crucial</strong> for a soft landing.",
+                transitionA4: "4. Real Inflation Data:",
+                inflationSep2022: "Inflation September 2022:",
+                inflationJun2024: "Inflation June 2024:",
+                conclusion: "Conclusion:",
+                conclusionDesc: "The fuel price hike did trigger temporary high inflation, but it did not cause prolonged runaway inflation because it was followed by tight monetary policy (interest rate hikes) and targeted social assistance.",
+                source: "Source: BPS and Bank Indonesia data (processed for learning).",
+                
+                // Evaluation
+                evaluation: "Comprehension Evaluation",
+                evaluationDesc: "Answer the following questions to test your understanding of fiscal and monetary policy.",
+                evalQ1: "Mention three monetary policy instruments owned by Bank Indonesia!",
+                evalQ2: "What is meant by expansionary fiscal policy? Give a real example of policy in Indonesia!",
+                evalQ3: "Explain the difference in short-term impact between an interest rate hike (contractionary monetary) and a tax increase (contractionary fiscal)!",
+                evalQ4: "Why is monetary policy considered to have a faster impact than fiscal policy?",
+                evalQ5: "In a situation of high inflation, what policies should be taken? Explain the instruments!",
+                showAnswers: "Click to see answer key",
+                answer1: "1. Monetary policy instruments:",
+                answer1Text: "Benchmark interest rate (BI-Rate), Reserve Requirement (GWM), Open Market Operations (OMO), and Discount Facility.",
+                answer2: "2. Expansionary fiscal policy:",
+                answer2Text: "Policy to increase spending and/or lower taxes to stimulate the economy. Example: PEN program, direct cash assistance, MSME tax incentives.",
+                answer3: "3. Difference in impact:",
+                answer3Text: "An interest rate hike directly affects the cost of credit and investment (quick impact on the financial sector). A tax increase affects people's purchasing power through disposable income (more gradual impact).",
+                answer4: "4. Monetary is faster:",
+                answer4Text: "Monetary decisions can be made at any time by Bank Indonesia's Governor Board Meeting, without needing parliamentary approval. Implementation is direct through market mechanisms.",
+                answer5: "5. High inflation:",
+                answer5Text: "Contractionary policies: raise interest rates (monetary) to reduce money supply; and/or reduce spending/raise taxes (fiscal) to curb aggregate demand.",
+                
+                // Sidebar
+                funFacts: "Fun Facts",
+                fact1: "Indonesia's 2025 APBN reaches IDR 3,621 trillion.",
+                fact2: "The BI Rate once reached 12.75% during the 1998 crisis.",
+                fact3: "The term 'fiscal policy' was popularized by John Maynard Keynes in the 1930s.",
+                fact4: "Bank Indonesia was established in 1953 as the central bank.",
+                prerequisites: "Prerequisite Materials",
+                prerequisitesDesc: "To understand fiscal and monetary policy well, first study:",
+                nationalIncomeLink: "National Income",
+                nationalIncomeDesc: "(GDP, economic growth)",
+                inflationLink: "Inflation",
+                inflationDesc: "(types, causes, impacts)",
+                employmentLink: "Employment",
+                employmentDesc: "(unemployment)",
+                latestData: "Latest Economic Data",
+                inflationData: "Inflation (Feb 2025):",
+                biRate: "BI Rate:",
+                gdpGrowth: "GDP Growth 2024:",
+                exchangeRateData: "USD/IDR Exchange Rate:",
+                keyTerms: "Key Terms",
+                apbnDesc: "State Budget",
+                rdgDesc: "Board of Governors Meeting (Bank Indonesia)",
+                sbnDesc: "Government Securities",
+                qeDesc: "Quantitative Easing",
+                deficitDesc: "When spending > revenue",
+                
+                // Footer
+                continueLearning: "Continue Your Economics Learning Journey",
+                previous: "Previous: Inflation",
+                allMaterials: "All Materials",
+                finalEvaluation: "Final Evaluation",
+                forEducation: "for Indonesian education"
+            }
+        };
+
+        let currentLang = 'id';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active button states
+            document.getElementById('lang-id').classList.toggle('active', lang === 'id');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update specific elements that might not have data-translate
+            // Update simulation result text for exchange rate based on current value
+            updateSimulation(); // This will refresh the exchange rate text using the new translation
+            
+            // Save language preference
+            localStorage.setItem('language', lang);
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+        }
     </script>
 </body>
 </html>
