@@ -2,11 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   
   <!-- SEO Meta Tags - Optimized for Google Search Console -->
-  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel Kebijakan Rupiah, Simulator, dan Asesmen Interaktif">
-  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi, kebijakan rupiah, inflasi, fiskal moneter">
+  <meta name="description" content="Portal Pembelajaran Ekonomi Kelas XI SMA - Materi, Artikel, Forum Diskusi, Simulator, dan Asesmen Interaktif">
+  <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, simulator ekonomi, artikel ekonomi, forum diskusi, kebijakan rupiah, inflasi, fiskal moneter">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Zuli Astutik, S.Pd - SMAN 1 Cluring">
   <meta name="theme-color" content="#2563eb">
@@ -14,13 +14,13 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
-  <meta property="og:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  <meta property="og:description" content="Materi, artikel, forum diskusi, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
   <meta property="og:image" content="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
-  <meta name="twitter:description" content="Materi, artikel, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
+  <meta name="twitter:description" content="Materi, artikel, forum diskusi, simulator, dan asesmen ekonomi interaktif untuk siswa SMA Kelas XI">
   
   <!-- Structured Data for Google (JSON-LD) -->
   <script type="application/ld+json">
@@ -70,6 +70,7 @@
       --gradient-accent: linear-gradient(135deg, #db2777, #9333ea);
       --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --nav-height: 70px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,6 +82,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      padding-bottom: var(--nav-height);
     }
 
     body.dark-mode {
@@ -138,7 +140,7 @@
       transform: scale(1.1);
     }
 
-    /* Main Navigation Buttons */
+    /* Desktop Navigation - Hidden on Mobile */
     .main-nav {
       background: white;
       padding: 2rem;
@@ -202,6 +204,83 @@
     }
 
     .nav-btn.active i { background: rgba(255, 255, 255, 0.2); }
+
+    /* Mobile Bottom Navigation - App Style */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 0.5rem 0;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    body.dark-mode .mobile-bottom-nav {
+      background: #1f2937;
+      border-top-color: #374151;
+    }
+
+    .mobile-nav-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.5rem 1rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-radius: 12px;
+      min-width: 60px;
+    }
+
+    body.dark-mode .mobile-nav-item { color: #9ca3af; }
+
+    .mobile-nav-item.active {
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    body.dark-mode .mobile-nav-item.active {
+      background: rgba(37, 99, 235, 0.2);
+    }
+
+    .mobile-nav-item i {
+      font-size: 1.3rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .mobile-nav-item span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .mobile-nav-item .notification-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--danger);
+      border-radius: 50%;
+      display: none;
+    }
+
+    .mobile-nav-item.has-notification .notification-dot {
+      display: block;
+    }
 
     /* Content Sections */
     .content-section {
@@ -505,13 +584,25 @@
       padding: 2rem;
       text-align: center;
       margin-top: 4rem;
+      padding-bottom: calc(4rem + var(--nav-height));
     }
 
-    /* Responsive */
+    /* Responsive - Desktop */
+    @media (min-width: 769px) {
+      .mobile-bottom-nav { display: none !important; }
+      body { padding-bottom: 0; }
+      footer { padding-bottom: 2rem; }
+    }
+
+    /* Responsive - Mobile */
     @media (max-width: 768px) {
+      .main-nav { display: none !important; }
+      .mobile-bottom-nav { display: block; }
+      
       .nav-buttons { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
       .section-header h2 { font-size: 1.5rem; }
+      
       .print-btn {
         position: static;
         transform: none;
@@ -519,19 +610,28 @@
         width: 100%;
         justify-content: center;
       }
+      
       .progress-header { flex-direction: column; align-items: flex-start; }
+      
+      header { padding: 1rem; }
+      .logo h1 { font-size: 1.4rem; }
+      .logo small { font-size: 0.75rem; }
+      
+      .content-section { padding: 0 1rem; margin: 1rem auto; }
+      .card-content { padding: 1rem; }
     }
 
     /* PRINT STYLES */
     @media print {
       header, .main-nav, footer, .print-btn, .reset-progress, 
-      .progress-tracker, .theme-toggle, .nav-btn {
+      .progress-tracker, .theme-toggle, .nav-btn, .mobile-bottom-nav {
         display: none !important;
       }
       body {
         background: white;
         color: black;
         font-size: 12pt;
+        padding-bottom: 0;
       }
       .content-section {
         display: block !important;
@@ -586,6 +686,16 @@
       background: #e5e7eb;
     }
     body.dark-mode .card-image { background: #374151; }
+
+    /* Safe area for mobile devices with notches */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      .mobile-bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      body {
+        padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom));
+      }
+    }
   </style>
 </head>
 <body>
@@ -604,7 +714,7 @@
     </div>
   </header>
 
-  <!-- Main Navigation Buttons -->
+  <!-- Desktop Navigation Buttons -->
   <nav class="main-nav">
     <div class="nav-container">
       <div class="nav-buttons">
@@ -616,6 +726,10 @@
           <i class="fas fa-newspaper"></i>
           <span>📰 Artikel & Wawasan</span>
         </button>
+        <button class="nav-btn" onclick="showSection('forum')" aria-controls="forum">
+          <i class="fas fa-comments"></i>
+          <span>💬 Forum Diskusi</span>
+        </button>
         <button class="nav-btn" onclick="showSection('simulator')" aria-controls="simulator">
           <i class="fas fa-flask"></i>
           <span>🧪 Simulator & Praktik</span>
@@ -625,6 +739,33 @@
           <span>📝 Tugas & Asesmen</span>
         </button>
       </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Bottom Navigation (App Style) -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav-items">
+      <a href="#materi" class="mobile-nav-item active" onclick="showSection('materi')" aria-label="Materi Pembelajaran">
+        <i class="fas fa-book"></i>
+        <span>Materi</span>
+      </a>
+      <a href="#artikel" class="mobile-nav-item" onclick="showSection('artikel')" aria-label="Artikel & Wawasan">
+        <i class="fas fa-newspaper"></i>
+        <span>Artikel</span>
+      </a>
+      <a href="#forum" class="mobile-nav-item" onclick="showSection('forum')" aria-label="Forum Diskusi">
+        <i class="fas fa-comments"></i>
+        <span>Forum</span>
+        <span class="notification-dot"></span>
+      </a>
+      <a href="#simulator" class="mobile-nav-item" onclick="showSection('simulator')" aria-label="Simulator & Praktik">
+        <i class="fas fa-flask"></i>
+        <span>Simulator</span>
+      </a>
+      <a href="#aktivitas" class="mobile-nav-item" onclick="showSection('aktivitas')" aria-label="Tugas & Asesmen">
+        <i class="fas fa-tasks"></i>
+        <span>Tugas</span>
+      </a>
     </div>
   </nav>
 
@@ -691,7 +832,7 @@
             <span><i class="fas fa-clock"></i> 45 min</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="badan-usaha.html" class="action-btn">
+          <a href="materi/badan-usaha.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
@@ -713,7 +854,7 @@
             <span><i class="fas fa-chart-line"></i> Grafik</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="pendapatan-nasional.html" class="action-btn">
+          <a href="materi/pendapatan-nasional.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
@@ -735,7 +876,7 @@
             <span><i class="fas fa-users"></i> Interaktif</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="ketenagakerjaan.html" class="action-btn">
+          <a href="materi/ketenagakerjaan.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
@@ -757,7 +898,7 @@
             <span><i class="fas fa-chart-bar"></i> Analisis</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="inflasi.html" class="action-btn">
+          <a href="materi/inflasi.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
@@ -779,7 +920,7 @@
             <span><i class="fas fa-landmark"></i> Pemerintah</span>
             <span class="card-type">Materi</span>
           </div>
-          <a href="Fiskal-Moneter.html" class="action-btn">
+          <a href="materi/Fiskal-Moneter.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Buka Materi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'materi')" role="button" tabindex="0" aria-pressed="false">
@@ -834,7 +975,7 @@
             <span><i class="fas fa-newspaper"></i> Studi Kasus</span>
             <span class="card-type">Artikel</span>
           </div>
-          <a href="Strategi-Menkeu-Purbaya.html" class="action-btn">
+          <a href="artikel/Strategi-Menkeu-Purbaya.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Baca Artikel
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
@@ -856,7 +997,7 @@
             <span><i class="fas fa-heart"></i> Refleksi</span>
             <span class="card-type">Artikel</span>
           </div>
-          <a href="gaji-dan-kebahagiaan.html" class="action-btn">
+          <a href="artikel/gaji-dan-kebahagiaan.html" class="action-btn">
             <i class="fas fa-external-link-alt"></i> Baca Artikel
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
@@ -868,7 +1009,7 @@
         </div>
       </article>
 
-      <!-- ✅ Card 3: Kebijakan Rupiah (BARU) -->
+      <!-- Card 3: Kebijakan Rupiah -->
       <article class="card" data-id="artikel-3">
         <span class="card-badge">EKONOMI MONETER</span>
         <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Kebijakan Ekonomi dan Stabilisasi Rupiah" class="card-image" loading="lazy">
@@ -879,7 +1020,7 @@
             <span><i class="fas fa-chart-line"></i> Analisis Kebijakan</span>
             <span class="card-type">Artikel</span>
           </div>
-          <a href="artikel-ekonomi-kebijakan-rupiah.html" class="action-btn" title="Baca artikel Kebijakan Ekonomi dan Stabilisasi Rupiah">
+          <a href="artikel/artikel-ekonomi-kebijakan-rupiah.html" class="action-btn" title="Baca artikel Kebijakan Ekonomi dan Stabilisasi Rupiah">
             <i class="fas fa-external-link-alt"></i> Baca Artikel
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'artikel')" role="button" tabindex="0" aria-pressed="false">
@@ -893,7 +1034,77 @@
     </div>
   </section>
 
-  <!-- SECTION 3: SIMULATOR & PRAKTIK -->
+  <!-- SECTION 3: FORUM DISKUSI (BARU) -->
+  <section id="forum" class="content-section" aria-labelledby="forum-title">
+    <div class="section-header">
+      <h2 id="forum-title"><i class="fas fa-comments"></i> Forum Diskusi</h2>
+      <p>Berdiskusi dan bertukar pikiran dengan teman sekelas tentang topik ekonomi</p>
+      <button class="print-btn" onclick="printSection('forum')" aria-label="Cetak panduan forum">
+        <i class="fas fa-print"></i> Cetak Panduan
+      </button>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1: Masuk Forum -->
+      <article class="card">
+        <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
+          <i class="fas fa-comments fa-4x" style="color: var(--primary); margin-bottom: 1rem;" aria-hidden="true"></i>
+          <h3>Forum Diskusi Ekonomi</h3>
+          <p>Bergabunglah dalam diskusi interaktif! Tanyakan pertanyaan, berbagi pendapat, dan belajar bersama teman-teman. 💬</p>
+          <a href="forum-diskusi.html" class="action-btn">
+            <i class="fas fa-sign-in-alt"></i> Masuk Forum
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: Panduan Etika -->
+      <article class="card">
+        <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
+          <i class="fas fa-book-reader fa-4x" style="color: var(--success); margin-bottom: 1rem;" aria-hidden="true"></i>
+          <h3>Panduan Etika Diskusi</h3>
+          <p>Baca panduan sebelum berdiskusi. Hormati pendapat orang lain dan jaga sopan santun. 🤝</p>
+          <a href="forum-diskusi.html#panduan" class="action-btn secondary">
+            <i class="fas fa-info-circle"></i> Baca Panduan
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3: Topik Trending -->
+      <article class="card">
+        <div class="card-content" style="text-align: center; padding: 3rem 1.5rem;">
+          <i class="fas fa-fire fa-4x" style="color: var(--accent); margin-bottom: 1rem;" aria-hidden="true"></i>
+          <h3>Topik Trending</h3>
+          <p>Lihat diskusi yang sedang hangat! Inflasi, kebijakan moneter, dan masih banyak lagi. 🔥</p>
+          <a href="forum-diskusi.html#trending" class="action-btn">
+            <i class="fas fa-chart-trending"></i> Lihat Topik
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="progress-container">
+      <div class="progress-header">
+        <h3><i class="fas fa-chart-bar" style="color: var(--primary);"></i> Statistik Forum</h3>
+      </div>
+      <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
+        <div class="stat-card" style="background: var(--light); padding: 1rem; border-radius: 8px; text-align: center;">
+          <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">150+</span>
+          <p style="font-size: 0.8rem; color: var(--gray);">Diskusi</p>
+        </div>
+        <div class="stat-card" style="background: var(--light); padding: 1rem; border-radius: 8px; text-align: center;">
+          <span style="font-size: 1.5rem; font-weight: bold; color: var(--success);">500+</span>
+          <p style="font-size: 0.8rem; color: var(--gray);">Komentar</p>
+        </div>
+        <div class="stat-card" style="background: var(--light); padding: 1rem; border-radius: 8px; text-align: center;">
+          <span style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">50+</span>
+          <p style="font-size: 0.8rem; color: var(--gray);">Member Aktif</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SIMULATOR & PRAKTIK -->
   <section id="simulator" class="content-section" aria-labelledby="simulator-title">
     <div class="section-header">
       <h2 id="simulator-title"><i class="fas fa-flask"></i> Simulator & Praktik</h2>
@@ -929,7 +1140,7 @@
         <div class="card-content">
           <h3>Simulator Ekonomi Makro & Mikro</h3>
           <p>Latihan interaktif konsep ekonomi makro & mikro. Let's play and learn! 🎮</p>
-          <a href="simulator-ekonomi.html" class="action-btn">
+          <a href="simulator/simulator-ekonomi.html" class="action-btn">
             <i class="fas fa-play"></i> Mulai Simulasi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
@@ -947,7 +1158,7 @@
         <div class="card-content">
           <h3>Simulator Fiskal Moneter APBN 2026</h3>
           <p>Simulasikan kebijakan APBN 2026 dengan instrumen fiskal & moneter. Kelola defisit, inflasi, dan pertumbuhan! 📊</p>
-          <a href="simulator_fiskal_moneterapbn_2026.html" class="action-btn">
+          <a href="simulator/simulator_fiskal_moneterapbn_2026.html" class="action-btn">
             <i class="fas fa-play"></i> Jalankan Simulator
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
@@ -966,7 +1177,7 @@
         <div class="card-content">
           <h3>Simulasi Kebijakan Bank Himbara</h3>
           <p>Analisis dampak kebijakan fiskal Menkeu Purbaya terkait program 200T untuk Bank Himbara. Let's simulate! 📈</p>
-          <a href="Simulasi-Analisis-dampak-kebijakan-fiskal.html" class="action-btn">
+          <a href="simulator/Simulasi-Analisis-dampak-kebijakan-fiskal.html" class="action-btn">
             <i class="fas fa-play"></i> Jalankan Simulasi
           </a>
           <div class="progress-tracker" onclick="toggleProgress(this, 'simulator')" role="button" tabindex="0" aria-pressed="false">
@@ -980,7 +1191,7 @@
     </div>
   </section>
 
-  <!-- SECTION 4: TUGAS & ASESMEN -->
+  <!-- SECTION 5: TUGAS & ASESMEN -->
   <section id="aktivitas" class="content-section" aria-labelledby="aktivitas-title">
     <div class="section-header">
       <h2 id="aktivitas-title"><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
@@ -1017,7 +1228,7 @@
           <i class="fas fa-graduation-cap fa-4x" style="color: var(--secondary); margin-bottom: 1rem;" aria-hidden="true"></i>
           <h3>Ulangan & Hasil Asesmen</h3>
           <p>Akses soal ulangan dan lihat hasil penilaian Anda. Check your scores! 📊</p>
-          <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">Masuk</a>
+          <a href="aktivitas/ulangan-dan-hasil-asesmen-login.html" class="action-btn">Masuk</a>
         </div>
       </article>
     </div>
@@ -1026,6 +1237,9 @@
   <footer>
     <p>&copy; 2025 Mata Pelajaran Ekonomi Kelas XI. All rights reserved.</p>
     <p>Made with <i class="fas fa-heart" style="color: var(--accent);" aria-hidden="true"></i> for education</p>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+      <i class="fas fa-school"></i> SMAN 1 Cluring | Guru: Zuli Astutik, S.Pd
+    </p>
   </footer>
 
   <script>
@@ -1038,11 +1252,17 @@
         section.setAttribute('aria-hidden', 'true');
       });
 
-      // Remove active class from all buttons
+      // Remove active class from all desktop buttons
       const buttons = document.querySelectorAll('.nav-btn');
       buttons.forEach(btn => {
         btn.classList.remove('active');
         btn.setAttribute('aria-pressed', 'false');
+      });
+
+      // Remove active class from all mobile nav items
+      const mobileItems = document.querySelectorAll('.mobile-nav-item');
+      mobileItems.forEach(item => {
+        item.classList.remove('active');
       });
 
       // Show selected section
@@ -1050,16 +1270,27 @@
       activeSection.classList.add('active');
       activeSection.setAttribute('aria-hidden', 'false');
 
-      // Add active class to clicked button
-      const activeBtn = event.currentTarget;
-      activeBtn.classList.add('active');
-      activeBtn.setAttribute('aria-pressed', 'true');
+      // Add active class to clicked desktop button
+      const activeBtn = document.querySelector(`.nav-btn[onclick="showSection('${sectionId}')"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-pressed', 'true');
+      }
+
+      // Add active class to clicked mobile nav item
+      const activeMobileItem = document.querySelector(`.mobile-nav-item[onclick="showSection('${sectionId}')"]`);
+      if (activeMobileItem) {
+        activeMobileItem.classList.add('active');
+      }
 
       // Update progress display
       updateProgressDisplay(sectionId);
       
       // Update URL hash for bookmarking (SEO friendly)
       history.replaceState(null, null, `#${sectionId}`);
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Progress Tracker Functions with localStorage
@@ -1270,6 +1501,16 @@
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             btn.click();
+          }
+        });
+      });
+      
+      // Add keyboard support for mobile nav items
+      document.querySelectorAll('.mobile-nav-item').forEach(item => {
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            item.click();
           }
         });
       });
