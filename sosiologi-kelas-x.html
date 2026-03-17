@@ -35,7 +35,7 @@
 }
 }
 </script>
-<title>Sosiologi Kelas X | SMA Negeri 1 Cluring</title>
+<title data-lang-id="Sosiologi Kelas X | SMA Negeri 1 Cluring" data-lang-en="Grade X Sociology | SMA Negeri 1 Cluring">Sosiologi Kelas X | SMA Negeri 1 Cluring</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
@@ -68,7 +68,7 @@ color: var(--dark);
 line-height: 1.6;
 overflow-x: hidden;
 transition: background 0.3s, color 0.3s;
-padding-bottom: 80px; /* Space for bottom navigation on mobile */
+padding-bottom: 80px; 
 }
 body.dark-mode {
 background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -130,10 +130,10 @@ font-size: 0.95rem;
 .header-actions {
 display: flex;
 align-items: center;
-gap: 1rem;
+gap: 0.8rem;
 }
-/* Back to Home Button */
-.btn-home {
+/* Buttons */
+.btn-home, .forum-btn, .lang-switch {
 background: rgba(255, 255, 255, 0.2);
 backdrop-filter: blur(8px);
 color: white;
@@ -148,31 +148,15 @@ gap: 0.6rem;
 transition: all 0.3s ease;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 font-size: 0.9rem;
+cursor: pointer;
 }
-.btn-home:hover {
+.btn-home:hover, .forum-btn:hover, .lang-switch:hover {
 background: rgba(255, 255, 255, 0.35);
 transform: scale(1.05);
 box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
-/* Forum Button in Header */
-.forum-btn {
-background: rgba(255, 255, 255, 0.2);
-backdrop-filter: blur(8px);
-color: white;
-border: 1px solid rgba(255, 255, 255, 0.3);
-padding: 0.6rem 1.2rem;
-border-radius: 50px;
-text-decoration: none;
-font-weight: 600;
-display: flex;
-align-items: center;
-gap: 0.6rem;
-transition: all 0.3s ease;
-font-size: 0.9rem;
-}
-.forum-btn:hover {
-background: rgba(255, 255, 255, 0.35);
-transform: scale(1.05);
+.lang-switch i {
+    font-size: 1.1rem;
 }
 .theme-toggle {
 background: rgba(255, 255, 255, 0.2);
@@ -192,7 +176,7 @@ justify-content: center;
 background: rgba(255, 255, 255, 0.35);
 transform: scale(1.1);
 }
-/* Desktop Navigation - Hidden on Mobile */
+/* Desktop Navigation */
 .desktop-nav {
 background: white;
 padding: 1.5rem 2rem;
@@ -210,7 +194,7 @@ margin: 0 auto;
 }
 .nav-buttons {
 display: grid;
-grid-template-columns: repeat(4, 1fr); /* Updated to 4 columns */
+grid-template-columns: repeat(4, 1fr);
 gap: 1rem;
 }
 .nav-btn {
@@ -246,9 +230,6 @@ border-color: var(--secondary);
 .nav-btn i {
 font-size: 1.3rem;
 }
-.nav-btn.active i {
-background: transparent;
-}
 /* Mobile Bottom Navigation */
 .mobile-bottom-nav {
 display: none;
@@ -264,7 +245,7 @@ border-top: 1px solid #e5e7eb;
 }
 .mobile-nav-items {
 display: grid;
-grid-template-columns: repeat(4, 1fr); /* Updated to 4 columns */
+grid-template-columns: repeat(4, 1fr);
 gap: 0.25rem;
 }
 .mobile-nav-item {
@@ -343,7 +324,6 @@ color: var(--gray);
 font-size: 1rem;
 margin-top: 1rem;
 }
-/* Print Button */
 .print-btn {
 position: absolute;
 right: 0;
@@ -559,7 +539,6 @@ border-radius: 9999px;
 font-size: 0.65rem;
 font-weight: 600;
 }
-/* Progress Tracker Checkbox */
 .progress-tracker {
 display: flex;
 align-items: center;
@@ -618,7 +597,6 @@ color: white;
 color: var(--success);
 text-decoration: line-through;
 }
-/* Action Buttons */
 .action-btn {
 display: inline-block;
 background: var(--gradient-primary);
@@ -642,7 +620,6 @@ box-shadow: var(--shadow-lg);
 .action-btn.secondary {
 background: linear-gradient(120deg, var(--accent), var(--secondary));
 }
-/* Breaking News Style */
 .breaking-news {
 background: var(--danger);
 color: white;
@@ -727,167 +704,47 @@ font-size: 0.85rem;
 }
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
-.desktop-nav {
-display: none; /* Hide desktop navigation on mobile */
+.desktop-nav { display: none; }
+.mobile-bottom-nav { display: block; }
+body { padding-bottom: 70px; }
+.header-content { flex-direction: column; text-align: center; gap: 1rem; }
+.logo { flex-direction: column; }
+.logo h1 { font-size: 1.4rem; }
+.logo p { font-size: 0.8rem; }
+.btn-home span, .forum-btn span, .lang-switch span { display: none; }
+.btn-home, .forum-btn, .lang-switch { padding: 0.5rem; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.btn-home i, .forum-btn i, .lang-switch i { font-size: 1.2rem; margin: 0; }
+.section-header { text-align: left; padding-right: 70px; }
+.section-header h2 { font-size: 1.3rem; }
+.section-header p { font-size: 0.8rem; }
+.print-btn { position: static; transform: none; margin-top: 1rem; width: fit-content; font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+.cards-grid { grid-template-columns: 1fr; }
+.progress-header { flex-direction: column; align-items: flex-start; }
+.progress-stats { text-align: left; }
+.header-actions { flex-wrap: wrap; justify-content: center; }
 }
-.mobile-bottom-nav {
-display: block; /* Show mobile bottom navigation */
-}
-body {
-padding-bottom: 70px;
-}
-.header-content {
-flex-direction: column;
-text-align: center;
-gap: 1rem;
-}
-.logo {
-flex-direction: column;
-}
-.logo h1 {
-font-size: 1.4rem;
-}
-.logo p {
-font-size: 0.8rem;
-}
-.btn-home span,
-.forum-btn span {
-display: none; /* Hide text on mobile, show only icon */
-}
-.btn-home,
-.forum-btn {
-padding: 0.5rem;
-border-radius: 50%;
-width: 40px;
-height: 40px;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.btn-home i,
-.forum-btn i {
-font-size: 1.2rem;
-margin: 0;
-}
-.section-header {
-text-align: left;
-padding-right: 70px; /* Space for print button */
-}
-.section-header h2 {
-font-size: 1.3rem;
-}
-.section-header p {
-font-size: 0.8rem;
-}
-.print-btn {
-position: static;
-transform: none;
-margin-top: 1rem;
-width: fit-content;
-font-size: 0.75rem;
-padding: 0.3rem 0.6rem;
-}
-.cards-grid {
-grid-template-columns: 1fr; /* Single column on mobile */
-}
-.progress-header {
-flex-direction: column;
-align-items: flex-start;
-}
-.progress-stats {
-text-align: left;
-}
-.header-actions {
-flex-wrap: wrap;
-justify-content: center;
-}
-}
-/* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
-.nav-buttons {
-grid-template-columns: repeat(2, 1fr);
-}
-.cards-grid {
-grid-template-columns: repeat(2, 1fr);
-}
+.nav-buttons { grid-template-columns: repeat(2, 1fr); }
+.cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 /* PRINT STYLES */
 @media print {
-header, .desktop-nav, .mobile-bottom-nav, footer, .print-btn, .reset-progress,
-.progress-tracker, .theme-toggle, .nav-btn, .btn-home, .forum-btn {
-display: none !important;
-}
-body {
-background: white;
-color: black;
-font-size: 11pt;
-padding-bottom: 0;
-}
-.content-section {
-display: block !important;
-page-break-after: always;
-margin: 0;
-padding: 0.5in;
-}
-.content-section.active {
-display: block !important;
-}
-.card {
-break-inside: avoid;
-border: 1px solid #000;
-box-shadow: none;
-margin-bottom: 0.5in;
-page-break-inside: avoid;
-}
-.card-image {
-height: 2in;
-filter: grayscale(100%);
--webkit-print-color-adjust: exact;
-print-color-adjust: exact;
-}
-.section-header {
-text-align: left;
-border-bottom: 2px solid #000;
-padding-bottom: 0.2in;
-margin-bottom: 0.3in;
-}
-.section-header h2 {
-color: black;
-font-size: 16pt;
-}
-.section-header h2::after {
-display: none;
-}
-.section-header p {
-color: #333;
-}
-.card-badge {
-background: #000;
-color: white;
--webkit-print-color-adjust: exact;
-print-color-adjust: exact;
-}
-a {
-text-decoration: none;
-color: black;
-}
-.card-content {
-padding: 0.5rem;
-}
-.card h3 {
-font-size: 13pt;
-margin-bottom: 0.4rem;
-}
-.card p {
-font-size: 10pt;
-color: #333;
-}
-.card-meta {
-font-size: 8pt;
-border-top: 1px solid #ccc;
-padding-top: 0.4rem;
-margin-top: 0.4rem;
-}
+header, .desktop-nav, .mobile-bottom-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .btn-home, .forum-btn, .lang-switch { display: none !important; }
+body { background: white; color: black; font-size: 11pt; padding-bottom: 0; }
+.content-section { display: block !important; page-break-after: always; margin: 0; padding: 0.5in; }
+.content-section.active { display: block !important; }
+.card { break-inside: avoid; border: 1px solid #000; box-shadow: none; margin-bottom: 0.5in; page-break-inside: avoid; }
+.card-image { height: 2in; filter: grayscale(100%); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.section-header { text-align: left; border-bottom: 2px solid #000; padding-bottom: 0.2in; margin-bottom: 0.3in; }
+.section-header h2 { color: black; font-size: 16pt; }
+.section-header h2::after { display: none; }
+.section-header p { color: #333; }
+.card-badge { background: #000; color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+a { text-decoration: none; color: black; }
+.card-content { padding: 0.5rem; }
+.card h3 { font-size: 13pt; margin-bottom: 0.4rem; }
+.card p { font-size: 10pt; color: #333; }
+.card-meta { font-size: 8pt; border-top: 1px solid #ccc; padding-top: 0.4rem; margin-top: 0.4rem; }
 }
 </style>
 </head>
@@ -895,485 +752,435 @@ margin-top: 0.4rem;
 <header>
 <div class="header-content">
 <div class="logo">
-<h1>📚 Sosiologi Kelas X</h1>
-<p>SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
+<h1 data-lang-id="📚 Sosiologi Kelas X" data-lang-en="📚 Grade X Sociology">📚 Sosiologi Kelas X</h1>
+<p data-lang-id="SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!" data-lang-en="SMA Negeri 1 Cluring • Learn While Vibing!">SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
 </div>
 <div class="header-actions">
-<!-- Tombol Kembali ke Beranda -->
 <a href="index.html" class="btn-home">
 <i class="fas fa-home"></i>
-<span>Beranda</span>
+<span data-lang-id="Beranda" data-lang-en="Home">Beranda</span>
 </a>
-<!-- Tombol Forum Diskusi (Hanya di Header) -->
 <a href="forum-diskusi.html" class="forum-btn">
 <i class="fas fa-comments"></i>
-<span>Forum</span>
+<span data-lang-id="Forum" data-lang-en="Forum">Forum</span>
 </a>
-<!-- Toggle Dark Mode -->
+<!-- Language Switcher Button -->
+<button class="lang-switch" id="langToggle" aria-label="Switch Language">
+<i class="fas fa-globe"></i>
+<span id="langText">EN</span>
+</button>
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
 <i class="fas fa-moon"></i>
 </button>
 </div>
 </div>
 </header>
-<!-- Desktop Navigation - 4 Tombol (Forum Dihapus) -->
+
+<!-- Desktop Navigation -->
 <nav class="desktop-nav">
 <div class="nav-container">
 <div class="nav-buttons">
-<!-- Tombol 1: Materi -->
 <button class="nav-btn active" onclick="showSection('materi')">
 <i class="fas fa-book"></i>
-<span>Materi</span>
+<span data-lang-id="Materi" data-lang-en="Materials">Materi</span>
 </button>
-<!-- Tombol 2: Modul Ajar -->
 <button class="nav-btn" onclick="showSection('modul')">
 <i class="fas fa-chalkboard-teacher"></i>
-<span>Modul</span>
+<span data-lang-id="Modul" data-lang-en="Modules">Modul</span>
 </button>
-<!-- Tombol 3: Lensa Sosiologis -->
 <button class="nav-btn" onclick="showSection('analisis')">
 <i class="fas fa-microscope"></i>
-<span>Lensa</span>
+<span data-lang-id="Lensa" data-lang-en="Lens">Lensa</span>
 </button>
-<!-- Tombol 4: Tugas & Asesmen -->
 <button class="nav-btn" onclick="showSection('aktivitas')">
 <i class="fas fa-tasks"></i>
-<span>Tugas</span>
+<span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span>
 </button>
 </div>
 </div>
 </nav>
-<!-- Mobile Bottom Navigation - 4 Items (Forum Dihapus) -->
+
+<!-- Mobile Bottom Navigation -->
 <nav class="mobile-bottom-nav">
 <div class="mobile-nav-items">
 <button class="mobile-nav-item active" onclick="showSection('materi')">
 <i class="fas fa-book"></i>
-<span>Materi</span>
+<span data-lang-id="Materi" data-lang-en="Materials">Materi</span>
 </button>
 <button class="mobile-nav-item" onclick="showSection('modul')">
 <i class="fas fa-chalkboard-teacher"></i>
-<span>Modul</span>
+<span data-lang-id="Modul" data-lang-en="Modules">Modul</span>
 </button>
 <button class="mobile-nav-item" onclick="showSection('analisis')">
 <i class="fas fa-microscope"></i>
-<span>Lensa</span>
+<span data-lang-id="Lensa" data-lang-en="Lens">Lensa</span>
 </button>
 <button class="mobile-nav-item" onclick="showSection('aktivitas')">
 <i class="fas fa-tasks"></i>
-<span>Tugas</span>
+<span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span>
 </button>
 </div>
 </nav>
 
-<!-- SECTION 1: MATERI (Bab 1-4) -->
+<!-- SECTION 1: MATERI -->
 <section id="materi" class="content-section active">
 <div class="section-header">
-<h2><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
-<p>Pelajari bab-bab sosiologi secara sistematis sesuai kurikulum</p>
+<h2 data-lang-id="<i class='fas fa-book-open'></i> Materi Pembelajaran" data-lang-en="<i class='fas fa-book-open'></i> Learning Materials"><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
+<p data-lang-id="Pelajari bab-bab sosiologi secara sistematis sesuai kurikulum" data-lang-en="Study sociology chapters systematically according to the curriculum">Pelajari bab-bab sosiologi secara sistematis sesuai kurikulum</p>
 <button class="print-btn" onclick="printSection('materi')">
-<i class="fas fa-print"></i> Cetak Materi
+<i class="fas fa-print"></i> <span data-lang-id="Cetak Materi" data-lang-en="Print Materials">Cetak Materi</span>
 </button>
 </div>
-<!-- Progress Tracker Global -->
 <div class="progress-container">
 <div class="progress-header">
 <div class="progress-title">
 <i class="fas fa-chart-line"></i>
-<span>Progress Bab</span>
+<span data-lang-id="Progress Bab" data-lang-en="Chapter Progress">Progress Bab</span>
 </div>
 <button class="reset-progress" onclick="resetProgress('materi')">
-<i class="fas fa-redo"></i> Reset
+<i class="fas fa-redo"></i> <span data-lang-id="Reset" data-lang-en="Reset">Reset</span>
 </button>
 </div>
 <div class="progress-bar">
 <div class="progress-fill" id="materi-progress" style="width: 0%;"></div>
 </div>
 <p class="progress-stats">
-<span id="materi-count">0</span>/4 Bab Selesai
+<span id="materi-count">0</span>/<span data-lang-id="4 Bab Selesai" data-lang-en="4 Chapters Done">4 Bab Selesai</span>
 </p>
 </div>
 <div class="cards-grid">
-<!-- Card 1: Bab 1 -->
+<!-- Card 1 -->
 <div class="card" data-id="materi-1">
-<div class="card-image">
-<i class="fas fa-university"></i>
-</div>
+<div class="card-image"><i class="fas fa-university"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-book"></i> Bab 1: Fungsi Sosiologi</h3>
-<p>Memahami peran sosiologi sebagai ilmu yang membantu mengurai dinamika sosial di masyarakat.</p>
+<h3 data-lang-id="<i class='fas fa-book'></i> Bab 1: Fungsi Sosiologi" data-lang-en="<i class='fas fa-book'></i> Chapter 1: Functions of Sociology"><i class="fas fa-book"></i> Bab 1: Fungsi Sosiologi</h3>
+<p data-lang-id="Memahami peran sosiologi sebagai ilmu yang membantu mengurai dinamika sosial di masyarakat." data-lang-en="Understanding the role of sociology as a science that helps unravel social dynamics in society.">Memahami peran sosiologi sebagai ilmu yang membantu mengurai dinamika sosial di masyarakat.</p>
 <div class="card-meta">
-<span><i class="fas fa-clock"></i> 3 Minggu</span>
-<span class="card-type">Materi</span>
+<span><i class="fas fa-clock"></i> <span data-lang-id="3 Minggu" data-lang-en="3 Weeks">3 Minggu</span></span>
+<span class="card-type" data-lang-id="Materi" data-lang-en="Material">Materi</span>
 </div>
 <a href="bab-1-Fungsi-Sosiologi-dalam-Menganalisis-Masyarakat.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Materi
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Materi" data-lang-en="Open Material">Buka Materi</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 2: Bab 2 -->
+<!-- Card 2 -->
 <div class="card" data-id="materi-2">
-<div class="card-image">
-<i class="fas fa-users"></i>
-</div>
+<div class="card-image"><i class="fas fa-users"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-users"></i> Bab 2: Individu & Kelompok</h3>
-<p>Menjelajahi interaksi antar individu dan kelompok dalam konteks struktur sosial.</p>
+<h3 data-lang-id="<i class='fas fa-users'></i> Bab 2: Individu & Kelompok" data-lang-en="<i class='fas fa-users'></i> Chapter 2: Individuals & Groups"><i class="fas fa-users"></i> Bab 2: Individu & Kelompok</h3>
+<p data-lang-id="Menjelajahi interaksi antar individu dan kelompok dalam konteks struktur sosial." data-lang-en="Exploring interactions between individuals and groups in the context of social structure.">Menjelajahi interaksi antar individu dan kelompok dalam konteks struktur sosial.</p>
 <div class="card-meta">
-<span><i class="fas fa-clock"></i> 3 Minggu</span>
-<span class="card-type">Materi</span>
+<span><i class="fas fa-clock"></i> <span data-lang-id="3 Minggu" data-lang-en="3 Weeks">3 Minggu</span></span>
+<span class="card-type" data-lang-id="Materi" data-lang-en="Material">Materi</span>
 </div>
 <a href="bab-2-Individu-Kelompok-dan-Hubungan-Sosial.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Materi
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Materi" data-lang-en="Open Material">Buka Materi</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 3: Bab 3 -->
+<!-- Card 3 -->
 <div class="card" data-id="materi-3">
-<div class="card-image">
-<i class="fas fa-balance-scale"></i>
-</div>
+<div class="card-image"><i class="fas fa-balance-scale"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-balance-scale"></i> Bab 3: Nilai & Norma Sosial</h3>
-<p>Mempelajari nilai-nilai sosial, norma, proses sosialisasi, dan berbagai gejala sosial dalam masyarakat.</p>
+<h3 data-lang-id="<i class='fas fa-balance-scale'></i> Bab 3: Nilai & Norma Sosial" data-lang-en="<i class='fas fa-balance-scale'></i> Chapter 3: Social Values & Norms"><i class="fas fa-balance-scale"></i> Bab 3: Nilai & Norma Sosial</h3>
+<p data-lang-id="Mempelajari nilai-nilai sosial, norma, proses sosialisasi, dan berbagai gejala sosial dalam masyarakat." data-lang-en="Learning about social values, norms, socialization processes, and various social phenomena in society.">Mempelajari nilai-nilai sosial, norma, proses sosialisasi, dan berbagai gejala sosial dalam masyarakat.</p>
 <div class="card-meta">
-<span><i class="fas fa-clock"></i> 4 Minggu</span>
-<span class="card-type">Materi</span>
+<span><i class="fas fa-clock"></i> <span data-lang-id="4 Minggu" data-lang-en="4 Weeks">4 Minggu</span></span>
+<span class="card-type" data-lang-id="Materi" data-lang-en="Material">Materi</span>
 </div>
 <a href="bab-3-Nilai-Norma-Sosialisasi-dan-Ragam-Gejala-Sosial.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Materi
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Materi" data-lang-en="Open Material">Buka Materi</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 4: Bab 4 -->
+<!-- Card 4 -->
 <div class="card" data-id="materi-4">
-<div class="card-image">
-<i class="fas fa-search"></i>
-</div>
+<div class="card-image"><i class="fas fa-search"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-search"></i> Bab 4: Metode Penelitian Sosial</h3>
-<p>Memahami berbagai metode dan teknik penelitian yang digunakan dalam studi sosial.</p>
+<h3 data-lang-id="<i class='fas fa-search'></i> Bab 4: Metode Penelitian Sosial" data-lang-en="<i class='fas fa-search'></i> Chapter 4: Social Research Methods"><i class="fas fa-search"></i> Bab 4: Metode Penelitian Sosial</h3>
+<p data-lang-id="Memahami berbagai metode dan teknik penelitian yang digunakan dalam studi sosial." data-lang-en="Understanding various methods and research techniques used in social studies.">Memahami berbagai metode dan teknik penelitian yang digunakan dalam studi sosial.</p>
 <div class="card-meta">
-<span><i class="fas fa-clock"></i> 3 Minggu</span>
-<span class="card-type">Materi</span>
+<span><i class="fas fa-clock"></i> <span data-lang-id="3 Minggu" data-lang-en="3 Weeks">3 Minggu</span></span>
+<span class="card-type" data-lang-id="Materi" data-lang-en="Material">Materi</span>
 </div>
 <a href="bab-4-Metode-Penelitian-Sosial.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Materi
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Materi" data-lang-en="Open Material">Buka Materi</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'materi')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
 </div>
 </section>
+
 <!-- SECTION 2: MODUL AJAR -->
 <section id="modul" class="content-section">
 <div class="section-header">
-<h2><i class="fas fa-chalkboard-teacher"></i> Modul Ajar</h2>
-<p>Modul pembelajaran terstruktur untuk pendalaman materi sosiologi</p>
+<h2 data-lang-id="<i class='fas fa-chalkboard-teacher'></i> Modul Ajar" data-lang-en="<i class='fas fa-chalkboard-teacher'></i> Teaching Modules"><i class="fas fa-chalkboard-teacher"></i> Modul Ajar</h2>
+<p data-lang-id="Modul pembelajaran terstruktur untuk pendalaman materi sosiologi" data-lang-en="Structured learning modules for in-depth sociology materials">Modul pembelajaran terstruktur untuk pendalaman materi sosiologi</p>
 <button class="print-btn" onclick="printSection('modul')">
-<i class="fas fa-print"></i> Cetak Modul
+<i class="fas fa-print"></i> <span data-lang-id="Cetak Modul" data-lang-en="Print Modules">Cetak Modul</span>
 </button>
 </div>
-<!-- Progress Tracker Global -->
 <div class="progress-container">
 <div class="progress-header">
 <div class="progress-title">
 <i class="fas fa-chart-line"></i>
-<span>Progress Modul</span>
+<span data-lang-id="Progress Modul" data-lang-en="Module Progress">Progress Modul</span>
 </div>
 <button class="reset-progress" onclick="resetProgress('modul')">
-<i class="fas fa-redo"></i> Reset
+<i class="fas fa-redo"></i> <span data-lang-id="Reset" data-lang-en="Reset">Reset</span>
 </button>
 </div>
 <div class="progress-bar">
 <div class="progress-fill" id="modul-progress" style="width: 0%;"></div>
 </div>
 <p class="progress-stats">
-<span id="modul-count">0</span>/6 Modul Selesai
+<span id="modul-count">0</span>/<span data-lang-id="6 Modul Selesai" data-lang-en="6 Modules Done">6 Modul Selesai</span>
 </p>
 </div>
 <div class="cards-grid">
-<!-- Card 1: Dasar-Dasar Sosiologi -->
+<!-- Module 1 -->
 <div class="card" data-id="modul-1">
-<span class="card-badge">Modul 1</span>
-<div class="card-image">
-<i class="fas fa-university"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 1" data-lang-en="Module 1">Modul 1</span>
+<div class="card-image"><i class="fas fa-university"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-book"></i> Dasar-Dasar Sosiologi</h3>
-<p>Pengantar lengkap tentang konsep dasar sosiologi dan peranannya dalam memahami dinamika sosial.</p>
+<h3 data-lang-id="<i class='fas fa-book'></i> Dasar-Dasar Sosiologi" data-lang-en="<i class='fas fa-book'></i> Basics of Sociology"><i class="fas fa-book"></i> Dasar-Dasar Sosiologi</h3>
+<p data-lang-id="Pengantar lengkap tentang konsep dasar sosiologi dan peranannya dalam memahami dinamika sosial." data-lang-en="Complete introduction to basic sociological concepts and their role in understanding social dynamics.">Pengantar lengkap tentang konsep dasar sosiologi dan peranannya dalam memahami dinamika sosial.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 4 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="4 Pertemuan" data-lang-en="4 Meetings">4 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_1-4.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 2: Interaksi Sosial & Struktur -->
+<!-- Module 2 -->
 <div class="card" data-id="modul-2">
-<span class="card-badge">Modul 2</span>
-<div class="card-image">
-<i class="fas fa-handshake"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 2" data-lang-en="Module 2">Modul 2</span>
+<div class="card-image"><i class="fas fa-handshake"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-users"></i> Interaksi Sosial & Struktur</h3>
-<p>Eksplorasi mendalam tentang pola interaksi sosial dan struktur yang membentuk masyarakat.</p>
+<h3 data-lang-id="<i class='fas fa-users'></i> Interaksi Sosial & Struktur" data-lang-en="<i class='fas fa-users'></i> Social Interaction & Structure"><i class="fas fa-users"></i> Interaksi Sosial & Struktur</h3>
+<p data-lang-id="Eksplorasi mendalam tentang pola interaksi sosial dan struktur yang membentuk masyarakat." data-lang-en="In-depth exploration of social interaction patterns and structures that shape society.">Eksplorasi mendalam tentang pola interaksi sosial dan struktur yang membentuk masyarakat.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 4 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="4 Pertemuan" data-lang-en="4 Meetings">4 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_5-8.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 3: Nilai, Norma & Pengendalian -->
+<!-- Module 3 -->
 <div class="card" data-id="modul-3">
-<span class="card-badge">Modul 3</span>
-<div class="card-image">
-<i class="fas fa-balance-scale"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 3" data-lang-en="Module 3">Modul 3</span>
+<div class="card-image"><i class="fas fa-balance-scale"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-balance-scale"></i> Nilai, Norma & Pengendalian</h3>
-<p>Analisis tentang sistem nilai, norma sosial, dan mekanisme pengendalian dalam masyarakat.</p>
+<h3 data-lang-id="<i class='fas fa-balance-scale'></i> Nilai, Norma & Pengendalian" data-lang-en="<i class='fas fa-balance-scale'></i> Values, Norms & Control"><i class="fas fa-balance-scale"></i> Nilai, Norma & Pengendalian</h3>
+<p data-lang-id="Analisis tentang sistem nilai, norma sosial, dan mekanisme pengendalian dalam masyarakat." data-lang-en="Analysis of value systems, social norms, and control mechanisms in society.">Analisis tentang sistem nilai, norma sosial, dan mekanisme pengendalian dalam masyarakat.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 4 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="4 Pertemuan" data-lang-en="4 Meetings">4 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_9-12.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 4: Kelompok & Multikultural -->
+<!-- Module 4 -->
 <div class="card" data-id="modul-4">
-<span class="card-badge">Modul 4</span>
-<div class="card-image">
-<i class="fas fa-users"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 4" data-lang-en="Module 4">Modul 4</span>
+<div class="card-image"><i class="fas fa-users"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-globe"></i> Kelompok & Multikultural</h3>
-<p>Memahami berbagai bentuk kelompok sosial dan dinamika masyarakat multikultural.</p>
+<h3 data-lang-id="<i class='fas fa-globe'></i> Kelompok & Multikultural" data-lang-en="<i class='fas fa-globe'></i> Groups & Multicultural"><i class="fas fa-globe"></i> Kelompok & Multikultural</h3>
+<p data-lang-id="Memahami berbagai bentuk kelompok sosial dan dinamika masyarakat multikultural." data-lang-en="Understanding various forms of social groups and multicultural society dynamics.">Memahami berbagai bentuk kelompok sosial dan dinamika masyarakat multikultural.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 2 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="2 Pertemuan" data-lang-en="2 Meetings">2 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_13-14.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 5: Perubahan Sosial & Globalisasi -->
+<!-- Module 5 -->
 <div class="card" data-id="modul-5">
-<span class="card-badge">Modul 5</span>
-<div class="card-image">
-<i class="fas fa-chart-line"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 5" data-lang-en="Module 5">Modul 5</span>
+<div class="card-image"><i class="fas fa-chart-line"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-sync"></i> Perubahan Sosial & Globalisasi</h3>
-<p>Mengkaji faktor-faktor perubahan sosial dan dampak globalisasi terhadap masyarakat.</p>
+<h3 data-lang-id="<i class='fas fa-sync'></i> Perubahan Sosial & Globalisasi" data-lang-en="<i class='fas fa-sync'></i> Social Change & Globalization"><i class="fas fa-sync"></i> Perubahan Sosial & Globalisasi</h3>
+<p data-lang-id="Mengkaji faktor-faktor perubahan sosial dan dampak globalisasi terhadap masyarakat." data-lang-en="Examining factors of social change and the impact of globalization on society.">Mengkaji faktor-faktor perubahan sosial dan dampak globalisasi terhadap masyarakat.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 2 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="2 Pertemuan" data-lang-en="2 Meetings">2 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_15-16.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 6: Sosiologi Terapan & Penelitian -->
+<!-- Module 6 -->
 <div class="card" data-id="modul-6">
-<span class="card-badge">Modul 6</span>
-<div class="card-image">
-<i class="fas fa-graduation-cap"></i>
-</div>
+<span class="card-badge" data-lang-id="Modul 6" data-lang-en="Module 6">Modul 6</span>
+<div class="card-image"><i class="fas fa-graduation-cap"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-search"></i> Sosiologi Terapan & Penelitian</h3>
-<p>Penerapan ilmu sosiologi dalam memecahkan masalah sosial dan teknik penelitian sosial.</p>
+<h3 data-lang-id="<i class='fas fa-search'></i> Sosiologi Terapan & Penelitian" data-lang-en="<i class='fas fa-search'></i> Applied Sociology & Research"><i class="fas fa-search"></i> Sosiologi Terapan & Penelitian</h3>
+<p data-lang-id="Penerapan ilmu sosiologi dalam memecahkan masalah sosial dan teknik penelitian sosial." data-lang-en="Application of sociological science in solving social problems and social research techniques.">Penerapan ilmu sosiologi dalam memecahkan masalah sosial dan teknik penelitian sosial.</p>
 <div class="card-meta">
-<span><i class="far fa-clock"></i> 3 Pertemuan</span>
-<span class="card-type">Modul</span>
+<span><i class="far fa-clock"></i> <span data-lang-id="3 Pertemuan" data-lang-en="3 Meetings">3 Pertemuan</span></span>
+<span class="card-type" data-lang-id="Modul" data-lang-en="Module">Modul</span>
 </div>
 <a href="materi_sosiologi_17-19.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Buka Modul
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Buka Modul" data-lang-en="Open Module">Buka Modul</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'modul')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
 </div>
 </section>
+
 <!-- SECTION 3: LENSA SOSIOLOGIS -->
 <section id="analisis" class="content-section">
 <div class="section-header">
-<h2><i class="fas fa-microscope"></i> 🔬 Lensa Sosiologis</h2>
-<p>Gunakan perspektif sosiologi untuk membedah fenomena dan kebijakan sosial terkini</p>
+<h2 data-lang-id="<i class='fas fa-microscope'></i> 🔬 Lensa Sosiologis" data-lang-en="<i class='fas fa-microscope'></i> 🔬 Sociological Lens"><i class="fas fa-microscope"></i> 🔬 Lensa Sosiologis</h2>
+<p data-lang-id="Gunakan perspektif sosiologi untuk membedah fenomena dan kebijakan sosial terkini" data-lang-en="Use a sociological perspective to dissect current social phenomena and policies">Gunakan perspektif sosiologi untuk membedah fenomena dan kebijakan sosial terkini</p>
 <button class="print-btn" onclick="printSection('analisis')">
-<i class="fas fa-print"></i> Cetak Panduan
+<i class="fas fa-print"></i> <span data-lang-id="Cetak Panduan" data-lang-en="Print Guide">Cetak Panduan</span>
 </button>
 </div>
-<!-- Progress Tracker Global -->
 <div class="progress-container">
 <div class="progress-header">
 <div class="progress-title">
 <i class="fas fa-chart-line"></i>
-<span>Progress Analisis</span>
+<span data-lang-id="Progress Analisis" data-lang-en="Analysis Progress">Progress Analisis</span>
 </div>
 <button class="reset-progress" onclick="resetProgress('analisis')">
-<i class="fas fa-redo"></i> Reset
+<i class="fas fa-redo"></i> <span data-lang-id="Reset" data-lang-en="Reset">Reset</span>
 </button>
 </div>
 <div class="progress-bar">
 <div class="progress-fill" id="analisis-progress" style="width: 0%;"></div>
 </div>
 <p class="progress-stats">
-<span id="analisis-count">0</span>/2 Analisis Selesai
+<span id="analisis-count">0</span>/<span data-lang-id="2 Analisis Selesai" data-lang-en="2 Analyses Done">2 Analisis Selesai</span>
 </p>
 </div>
 <div class="breaking-news">
 <i class="fas fa-bullhorn"></i>
-<span><strong>HOT TOPICS:</strong> 2 Analisis terkini dari perspektif sosiologi!</span>
+<span><strong data-lang-id="HOT TOPICS:" data-lang-en="HOT TOPICS:">HOT TOPICS:</strong> <span data-lang-id="2 Analisis terkini dari perspektif sosiologi!" data-lang-en="2 latest analyses from a sociological perspective!">2 Analisis terkini dari perspektif sosiologi!</span></span>
 </div>
 <div class="cards-grid">
-<!-- Card 1: Dampak Rp200T -->
+<!-- Analysis 1 -->
 <div class="card" data-id="analisis-1">
-<span class="card-badge economy">EKONOMI</span>
-<div class="card-image">
-<i class="fas fa-chart-line"></i>
-</div>
+<span class="card-badge economy" data-lang-id="EKONOMI" data-lang-en="ECONOMY">EKONOMI</span>
+<div class="card-image"><i class="fas fa-chart-line"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-chart-line"></i> Dampak Rp200T: Perspektif Sosiologi-Ekonomi</h3>
-<p>Analisis kritis terhadap kebijakan ekonomi besar dan dampaknya terhadap struktur sosial masyarakat Indonesia.</p>
+<h3 data-lang-id="<i class='fas fa-chart-line'></i> Dampak Rp200T: Perspektif Sosiologi-Ekonomi" data-lang-en="<i class='fas fa-chart-line'></i> Impact of Rp200T: Socio-Economic Perspective"><i class="fas fa-chart-line"></i> Dampak Rp200T: Perspektif Sosiologi-Ekonomi</h3>
+<p data-lang-id="Analisis kritis terhadap kebijakan ekonomi besar dan dampaknya terhadap struktur sosial masyarakat Indonesia." data-lang-en="Critical analysis of major economic policies and their impact on the social structure of Indonesian society.">Analisis kritis terhadap kebijakan ekonomi besar dan dampaknya terhadap struktur sosial masyarakat Indonesia.</p>
 <div class="card-meta">
-<span><i class="fas fa-newspaper"></i> Studi Kasus</span>
-<span class="card-type">Analisis</span>
+<span><i class="fas fa-newspaper"></i> <span data-lang-id="Studi Kasus" data-lang-en="Case Study">Studi Kasus</span></span>
+<span class="card-type" data-lang-id="Analisis" data-lang-en="Analysis">Analisis</span>
 </div>
 <a href="Dampak-Rp200T-Sosiologi-Ekonomi.html" class="action-btn secondary">
-<i class="fas fa-external-link-alt"></i> Baca Analisis
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Baca Analisis" data-lang-en="Read Analysis">Baca Analisis</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'analisis')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
-<!-- Card 2: Generasi Z & Transformasi Nilai Sosial -->
+<!-- Analysis 2 -->
 <div class="card" data-id="analisis-2">
-<span class="card-badge generation">GENERASI Z</span>
-<div class="card-image">
-<i class="fas fa-mobile-alt"></i>
-</div>
+<span class="card-badge generation" data-lang-id="GENERASI Z" data-lang-en="GEN Z">GENERASI Z</span>
+<div class="card-image"><i class="fas fa-mobile-alt"></i></div>
 <div class="card-content">
-<h3><i class="fas fa-users-cog"></i> Generasi Z & Transformasi Nilai Sosial</h3>
-<p>Bagaimana Gen Z mengubah nilai, norma, dan interaksi sosial di era digital? Analisis mendalam tentang transformasi budaya dan identitas generasi muda Indonesia.</p>
+<h3 data-lang-id="<i class='fas fa-users-cog'></i> Generasi Z & Transformasi Nilai Sosial" data-lang-en="<i class='fas fa-users-cog'></i> Gen Z & Social Value Transformation"><i class="fas fa-users-cog"></i> Generasi Z & Transformasi Nilai Sosial</h3>
+<p data-lang-id="Bagaimana Gen Z mengubah nilai, norma, dan interaksi sosial di era digital? Analisis mendalam tentang transformasi budaya dan identitas generasi muda Indonesia." data-lang-en="How does Gen Z change values, norms, and social interactions in the digital era? In-depth analysis of cultural transformation and identity of Indonesia's young generation.">Bagaimana Gen Z mengubah nilai, norma, dan interaksi sosial di era digital? Analisis mendalam tentang transformasi budaya dan identitas generasi muda Indonesia.</p>
 <div class="card-meta">
-<span><i class="fas fa-clock"></i> 15 Menit Baca</span>
-<span class="card-type">Analisis</span>
+<span><i class="fas fa-clock"></i> <span data-lang-id="15 Menit Baca" data-lang-en="15 Min Read">15 Menit Baca</span></span>
+<span class="card-type" data-lang-id="Analisis" data-lang-en="Analysis">Analisis</span>
 </div>
 <a href="Generasi-Z-Transformasi-Nilai-Sosial.html" class="action-btn">
-<i class="fas fa-external-link-alt"></i> Baca Analisis
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Baca Analisis" data-lang-en="Read Analysis">Baca Analisis</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'analisis')">
-<div class="progress-checkbox">
-<i class="fas fa-check"></i>
-</div>
-<span class="progress-label">Tandai sebagai selesai</span>
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
 </div>
 </div>
 </div>
 </div>
 <!-- Discussion Points -->
 <div class="progress-container" style="margin-top: 2rem;">
-<h3 style="color: var(--primary); margin-bottom: 1rem;">
-<i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi
-</h3>
+<h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang-id="<i class='fas fa-comments'></i> Poin Diskusi untuk Refleksi" data-lang-en="<i class='fas fa-comments'></i> Discussion Points for Reflection"><i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi</h3>
 <ul style="list-style: none; padding-left: 0;">
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
 <i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
-<strong>Apakah media sosial memperkuat atau melemahkan ikatan sosial tradisional?</strong>
+<strong data-lang-id="Apakah media sosial memperkuat atau melemahkan ikatan sosial tradisional?" data-lang-en="Does social media strengthen or weaken traditional social bonds?">Apakah media sosial memperkuat atau melemahkan ikatan sosial tradisional?</strong>
 </li>
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
 <i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
-<strong>Bagaimana nilai gotong royong bertransformasi di era digital?</strong>
+<strong data-lang-id="Bagaimana nilai gotong royong bertransformasi di era digital?" data-lang-en="How does the value of mutual cooperation transform in the digital era?">Bagaimana nilai gotong royong bertransformasi di era digital?</strong>
 </li>
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
 <i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
-<strong>Apa dampak kebijakan ekonomi terhadap stratifikasi sosial masyarakat?</strong>
+<strong data-lang-id="Apa dampak kebijakan ekonomi terhadap stratifikasi sosial masyarakat?" data-lang-en="What is the impact of economic policies on the social stratification of society?">Apa dampak kebijakan ekonomi terhadap stratifikasi sosial masyarakat?</strong>
 </li>
 <li style="padding: 0.8rem 0;">
 <i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
-<strong>Bagaimana identitas Gen Z Indonesia berbeda dengan generasi sebelumnya?</strong>
+<strong data-lang-id="Bagaimana identitas Gen Z Indonesia berbeda dengan generasi sebelumnya?" data-lang-en="How does the identity of Indonesian Gen Z differ from previous generations?">Bagaimana identitas Gen Z Indonesia berbeda dengan generasi sebelumnya?</strong>
 </li>
 </ul>
 </div>
 </section>
+
 <!-- SECTION 4: TUGAS & ASESMEN -->
 <section id="aktivitas" class="content-section">
 <div class="section-header">
-<h2><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
-<p>Kelola aktivitas pembelajaran dan evaluasi Anda</p>
+<h2 data-lang-id="<i class='fas fa-clipboard-check'></i> Tugas & Asesmen" data-lang-en="<i class='fas fa-clipboard-check'></i> Tasks & Assessment"><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
+<p data-lang-id="Kelola aktivitas pembelajaran dan evaluasi Anda" data-lang-en="Manage your learning activities and evaluations">Kelola aktivitas pembelajaran dan evaluasi Anda</p>
 <button class="print-btn" onclick="printSection('aktivitas')">
-<i class="fas fa-print"></i> Cetak Instruksi
+<i class="fas fa-print"></i> <span data-lang-id="Cetak Instruksi" data-lang-en="Print Instructions">Cetak Instruksi</span>
 </button>
 </div>
 <div class="cards-grid">
@@ -1381,10 +1188,10 @@ margin-top: 0.4rem;
 <div class="card absensi-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-clipboard-list fa-4x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);">Absensi Harian</h3>
-<p>Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!</p>
+<h3 style="color: var(--primary);" data-lang-id="Absensi Harian" data-lang-en="Daily Attendance">Absensi Harian</h3>
+<p data-lang-id="Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!" data-lang-en="Click to fill out attendance via Google Form. Don't get left behind!">Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!</p>
 <a href="https://docs.google.com/forms/d/1wSz-DFGxiKSckvVEAJx6WOVn8LTiuCXkldNX5gibag4/edit" class="action-btn" target="_blank">
-<i class="fas fa-external-link-alt"></i> Isi Absensi
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Isi Absensi" data-lang-en="Fill Attendance">Isi Absensi</span>
 </a>
 </div>
 </div>
@@ -1392,40 +1199,41 @@ margin-top: 0.4rem;
 <div class="card tugas-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-file-upload fa-4x" style="color: var(--success); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);">Kirim Tugas Anda</h3>
-<p>Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!</p>
+<h3 style="color: var(--primary);" data-lang-id="Kirim Tugas Anda" data-lang-en="Submit Your Task">Kirim Tugas Anda</h3>
+<p data-lang-id="Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!" data-lang-en="Use this form to submit assignments according to teacher instructions. Don't ghost the deadline!">Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!</p>
 <a href="https://docs.google.com/forms/d/1M4eOIBMi04LdpW73Etee8aifP0vAHuo4l7F8SDU0PcA/edit" class="action-btn secondary" target="_blank">
-<i class="fas fa-external-link-alt"></i> Kirim Sekarang
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Kirim Sekarang" data-lang-en="Submit Now">Kirim Sekarang</span>
 </a>
 </div>
 </div>
-<!-- Card 3: Ulangan & Hasil Asesmen -->
+<!-- Card 3: Ulangan -->
 <div class="card ulangan-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-graduation-cap fa-4x" style="color: var(--warning); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);">Ulangan & Hasil Asesmen</h3>
-<p>Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!</p>
+<h3 style="color: var(--primary);" data-lang-id="Ulangan & Hasil Asesmen" data-lang-en="Exams & Assessment Results">Ulangan & Hasil Asesmen</h3>
+<p data-lang-id="Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!" data-lang-en="Log in to take exams or view your assessment results. Get ready to glow up your grades!">Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!</p>
 <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">
-<i class="fas fa-sign-in-alt"></i> Masuk
+<i class="fas fa-sign-in-alt"></i> <span data-lang-id="Masuk" data-lang-en="Login">Masuk</span>
 </a>
 </div>
 </div>
 </div>
 </section>
+
 <footer>
 <div class="footer-grid">
 <div class="footer-section">
-<h3>Menu Navigasi</h3>
+<h3 data-lang-id="Menu Navigasi" data-lang-en="Navigation Menu">Menu Navigasi</h3>
 <ul>
-<li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
-<li><a href="#materi"><i class="fas fa-book"></i> Materi</a></li>
-<li><a href="forum-diskusi.html"><i class="fas fa-comments"></i> Forum</a></li>
-<li><a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-tasks"></i> Tugas</a></li>
-<li><a href="galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+<li><a href="index.html"><i class="fas fa-home"></i> <span data-lang-id="Beranda" data-lang-en="Home">Beranda</span></a></li>
+<li><a href="#materi"><i class="fas fa-book"></i> <span data-lang-id="Materi" data-lang-en="Materials">Materi</span></a></li>
+<li><a href="forum-diskusi.html"><i class="fas fa-comments"></i> <span data-lang-id="Forum" data-lang-en="Forum">Forum</span></a></li>
+<li><a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-tasks"></i> <span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span></a></li>
+<li><a href="galery.html"><i class="fas fa-images"></i> <span data-lang-id="Galeri" data-lang-en="Gallery">Galeri</span></a></li>
 </ul>
 </div>
 <div class="footer-section">
-<h3>🔗 Link Penting</h3>
+<h3 data-lang-id="🔗 Link Penting" data-lang-en="🔗 Important Links">🔗 Link Penting</h3>
 <ul>
 <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
 <li><a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
@@ -1434,7 +1242,7 @@ margin-top: 0.4rem;
 </ul>
 </div>
 <div class="footer-section">
-<h3>📱 Hubungi Kami</h3>
+<h3 data-lang-id="📱 Hubungi Kami" data-lang-en="📱 Contact Us">📱 Hubungi Kami</h3>
 <div class="contact-info">
 <p><i class="fas fa-phone"></i> 0822-2385-7426</p>
 <p><i class="fas fa-map-marker-alt"></i> Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
@@ -1442,158 +1250,207 @@ margin-top: 0.4rem;
 </div>
 </div>
 <div class="copyright">
-&copy; 2025 SMA Negeri 1 Cluring | Sosiologi Kelas X • Stay Curious, Stay Critical!
+&copy; 2025 SMA Negeri 1 Cluring | <span data-lang-id="Sosiologi Kelas X • Stay Curious, Stay Critical!" data-lang-en="Grade X Sociology • Stay Curious, Stay Critical!">Sosiologi Kelas X • Stay Curious, Stay Critical!</span>
 </div>
 </footer>
+
 <script>
-// Tab Navigation
+// --- LANGUAGE SWITCHER LOGIC ---
+let currentLang = 'id'; // Default language
+
+function setLanguage(lang) {
+    currentLang = lang;
+    const elements = document.querySelectorAll('[data-lang-id]');
+    
+    elements.forEach(el => {
+        if (lang === 'en') {
+            if (el.getAttribute('data-lang-en')) {
+                el.innerHTML = el.getAttribute('data-lang-en');
+            }
+        } else {
+            if (el.getAttribute('data-lang-id')) {
+                el.innerHTML = el.getAttribute('data-lang-id');
+            }
+        }
+    });
+
+    // Update button text
+    const langText = document.getElementById('langText');
+    if (lang === 'en') {
+        langText.textContent = 'ID'; // Show option to switch back to ID
+        document.documentElement.lang = 'en';
+    } else {
+        langText.textContent = 'EN'; // Show option to switch to EN
+        document.documentElement.lang = 'id';
+    }
+
+    // Save preference
+    localStorage.setItem('preferredLang', lang);
+}
+
+// Initialize Language
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang') || 'id';
+    setLanguage(savedLang);
+
+    // Attach event listener to toggle button
+    document.getElementById('langToggle').addEventListener('click', () => {
+        const newLang = currentLang === 'id' ? 'en' : 'id';
+        setLanguage(newLang);
+    });
+
+    // Existing Init Logic
+    loadProgress('materi');
+    loadProgress('modul');
+    loadProgress('analisis');
+    
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        showSection(hash);
+    }
+});
+
+// --- TAB NAVIGATION ---
 function showSection(sectionId) {
-// Hide all sections
-const sections = document.querySelectorAll('.content-section');
-sections.forEach(section => {
-section.classList.remove('active');
-});
-// Remove active class from all buttons (both desktop and mobile)
-document.querySelectorAll('.nav-btn, .mobile-nav-item').forEach(btn => {
-btn.classList.remove('active');
-});
-// Show selected section if it exists
-const section = document.getElementById(sectionId);
-if (section) {
-section.classList.add('active');
-// Add active class to clicked button
-if (event && event.currentTarget) {
-event.currentTarget.classList.add('active');
-} else {
-// Handle direct calls
-document.querySelectorAll(`[onclick*="'${sectionId}'"]`).forEach(btn => {
-btn.classList.add('active');
-});
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => section.classList.remove('active'));
+    
+    document.querySelectorAll('.nav-btn, .mobile-nav-item').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.classList.add('active');
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        } else {
+            document.querySelectorAll(`[onclick*="'${sectionId}'"]`).forEach(btn => {
+                btn.classList.add('active');
+            });
+        }
+        updateProgressDisplay(sectionId);
+        history.replaceState(null, null, `#${sectionId}`);
+    }
 }
-// Update progress display
-updateProgressDisplay(sectionId);
-// Update URL hash for bookmarking
-history.replaceState(null, null, `#${sectionId}`);
-}
-}
-// Progress Tracker Functions
+
+// --- PROGRESS TRACKER ---
 function toggleProgress(element, section) {
-const card = element.closest('.card');
-const cardId = card.getAttribute('data-id');
-// Toggle completed class
-card.classList.toggle('completed');
-// Update label text
-const label = element.querySelector('.progress-label');
-if (card.classList.contains('completed')) {
-label.textContent = '✓ Selesai';
-saveProgress(section, cardId, true);
-} else {
-label.textContent = 'Tandai selesai';
-saveProgress(section, cardId, false);
+    const card = element.closest('.card');
+    const cardId = card.getAttribute('data-id');
+    card.classList.toggle('completed');
+    
+    const label = element.querySelector('.progress-label');
+    if (card.classList.contains('completed')) {
+        // Use data attribute for translated label if needed, otherwise static
+        const doneText = currentLang === 'en' ? '✓ Done' : '✓ Selesai';
+        label.textContent = doneText;
+        saveProgress(section, cardId, true);
+    } else {
+        const markText = currentLang === 'en' ? 'Mark as complete' : 'Tandai sebagai selesai';
+        label.textContent = markText;
+        saveProgress(section, cardId, false);
+    }
+    updateProgressBar(section);
 }
-// Update progress bar
-updateProgressBar(section);
-}
+
 function saveProgress(section, cardId, completed) {
-let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
-progress[cardId] = completed;
-localStorage.setItem('progress_' + section, JSON.stringify(progress));
+    let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
+    progress[cardId] = completed;
+    localStorage.setItem('progress_' + section, JSON.stringify(progress));
 }
+
 function loadProgress(section) {
-let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
-const cards = document.querySelectorAll(`#${section} .card`);
-cards.forEach(card => {
-const cardId = card.getAttribute('data-id');
-if (progress[cardId]) {
-card.classList.add('completed');
-const label = card.querySelector('.progress-label');
-if (label) label.textContent = '✓ Selesai';
+    let progress = JSON.parse(localStorage.getItem('progress_' + section)) || {};
+    const cards = document.querySelectorAll(`#${section} .card`);
+    cards.forEach(card => {
+        const cardId = card.getAttribute('data-id');
+        if (progress[cardId]) {
+            card.classList.add('completed');
+            const label = card.querySelector('.progress-label');
+            if (label) {
+                label.textContent = currentLang === 'en' ? '✓ Done' : '✓ Selesai';
+            }
+        }
+    });
+    updateProgressBar(section);
 }
-});
-updateProgressBar(section);
-}
+
 function updateProgressBar(section) {
-const cards = document.querySelectorAll(`#${section} .card`);
-const completedCards = document.querySelectorAll(`#${section} .card.completed`);
-const total = cards.length;
-const completed = completedCards.length;
-const percentage = total > 0 ? (completed / total) * 100 : 0;
-const progressBar = document.getElementById(section + '-progress');
-const countDisplay = document.getElementById(section + '-count');
-if (progressBar) progressBar.style.width = percentage + '%';
-if (countDisplay) countDisplay.textContent = completed;
+    const cards = document.querySelectorAll(`#${section} .card`);
+    const completedCards = document.querySelectorAll(`#${section} .card.completed`);
+    const total = cards.length;
+    const completed = completedCards.length;
+    const percentage = total > 0 ? (completed / total) * 100 : 0;
+    
+    const progressBar = document.getElementById(section + '-progress');
+    const countDisplay = document.getElementById(section + '-count');
+    
+    if (progressBar) progressBar.style.width = percentage + '%';
+    if (countDisplay) countDisplay.textContent = completed;
 }
+
 function updateProgressDisplay(section) {
-loadProgress(section);
+    loadProgress(section);
 }
+
 function resetProgress(section) {
-if (confirm('Apakah Anda yakin ingin mereset progress?')) {
-localStorage.removeItem('progress_' + section);
-const cards = document.querySelectorAll(`#${section} .card`);
-cards.forEach(card => {
-card.classList.remove('completed');
-const label = card.querySelector('.progress-label');
-if (label) label.textContent = 'Tandai selesai';
-});
-updateProgressBar(section);
+    const confirmMsg = currentLang === 'en' ? 'Are you sure you want to reset progress?' : 'Apakah Anda yakin ingin mereset progress?';
+    if (confirm(confirmMsg)) {
+        localStorage.removeItem('progress_' + section);
+        const cards = document.querySelectorAll(`#${section} .card`);
+        cards.forEach(card => {
+            card.classList.remove('completed');
+            const label = card.querySelector('.progress-label');
+            if (label) label.textContent = currentLang === 'en' ? 'Mark as complete' : 'Tandai sebagai selesai';
+        });
+        updateProgressBar(section);
+    }
 }
-}
-// Print Function
+
+// --- PRINT FUNCTION ---
 function printSection(sectionId) {
-// Hide all sections except the active one
-const sections = document.querySelectorAll('.content-section');
-sections.forEach(section => {
-if (section.id !== sectionId) {
-section.style.display = 'none';
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        if (section.id !== sectionId) {
+            section.style.display = 'none';
+        }
+    });
+    setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+            sections.forEach(section => {
+                section.style.display = '';
+            });
+        }, 500);
+    }, 300);
 }
-});
-// Print
-setTimeout(() => {
-window.print();
-// Restore display
-setTimeout(() => {
-sections.forEach(section => {
-section.style.display = '';
-});
-}, 500);
-}, 300);
-}
-// Dark Mode Toggle
+
+// --- DARK MODE TOGGLE ---
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const icon = themeToggle.querySelector('i');
+
 themeToggle.addEventListener('click', () => {
-body.classList.toggle('dark-mode');
-if (body.classList.contains('dark-mode')) {
-icon.classList.remove('fa-moon');
-icon.classList.add('fa-sun');
-localStorage.setItem('theme', 'dark');
-} else {
-icon.classList.remove('fa-sun');
-icon.classList.add('fa-moon');
-localStorage.setItem('theme', 'light');
-}
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
 });
-// Check for saved theme preference
+
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-body.classList.add('dark-mode');
-icon.classList.remove('fa-moon');
-icon.classList.add('fa-sun');
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
 }
-// Initialize progress on page load
-document.addEventListener('DOMContentLoaded', () => {
-loadProgress('materi');
-loadProgress('modul');
-loadProgress('analisis');
-// loadProgress('forum'); // Dihapus karena section forum dihilangkan
-// Handle URL hash for direct section access
-const hash = window.location.hash.replace('#', '');
-if (hash && document.getElementById(hash)) {
-showSection(hash);
-}
-});
 </script>
 </body>
 </html>
