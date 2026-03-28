@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Ledakan Emosi di Keluarga | Family Emotions – Perspektif Sosiologi + Ruang Refleksi</title>
+    <meta name="description" content="Mengapa kita lebih mudah marah kepada keluarga? Analisis sosiologi tentang kedekatan sosial, rasa aman, dan dinamika emosi. Sertai ruang refleksi.">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Noto Sans', sans-serif;
+            background: #fefaf5;
+            color: #1e2a2f;
+            line-height: 1.55;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .main-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #9b2e2e, #c46b3f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub {
+            color: #5a6e6f;
+            border-top: 1px solid #e2dcd5;
+            border-bottom: 1px solid #e2dcd5;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* toggle button */
+        .lang-toggle {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0 1rem;
+        }
+        .toggle-btn {
+            background: #f0e2d4;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #8b4c2c;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .toggle-btn:hover {
+            background: #e2cfbf;
+            transform: scale(0.98);
+        }
+
+        /* language content */
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
+
+        /* images & typography */
+        .hero-img {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .caption {
+            font-size: 0.75rem;
+            color: #8a7a6e;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #a2492c;
+            border-left: 5px solid #e2a17e;
+            padding-left: 1rem;
+        }
+        .section h2:first-of-type {
+            margin-top: 0;
+        }
+        .section p {
+            margin-bottom: 1rem;
+            color: #2c3a3f;
+        }
+        .inline-img {
+            width: 100%;
+            border-radius: 20px;
+            margin: 1.2rem 0 0.8rem 0;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+        }
+        .mid-img-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .mid-img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+        }
+        footer {
+            margin-top: 2rem;
+            border-top: 1px solid #e2cfbf;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7a685a;
+        }
+        .highlight {
+            background: #fef3e9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        /* ===== SECTION KOMENTAR / REFLEKSI ===== */
+        .reflection-section {
+            background: #fffcf9;
+            border-radius: 32px;
+            margin: 3rem 0 2rem;
+            padding: 2rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0e2d4;
+        }
+        .reflection-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .reflection-header h2 {
+            font-size: 1.9rem;
+            color: #a2492c;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #e2a17e;
+            padding-bottom: 8px;
+        }
+        .reflection-header p {
+            color: #6b4e3a;
+            margin-top: 10px;
+        }
+        .comment-form {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f1e5db;
+        }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 180px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #7b5a44;
+            font-size: 0.85rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2cfbf;
+            border-radius: 40px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            background: #fefcf9;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #c46b3f;
+            box-shadow: 0 0 0 3px rgba(196,107,63,0.1);
+        }
+        .form-group textarea {
+            border-radius: 24px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background: linear-gradient(120deg, #9b2e2e, #c46b3f);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(155,46,46,0.3);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .search-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+        .search-box {
+            background: white;
+            border-radius: 60px;
+            padding: 0.3rem 0.3rem 0.3rem 1rem;
+            border: 1px solid #e2cfbf;
+            display: flex;
+            align-items: center;
+            flex: 2;
+            min-width: 200px;
+        }
+        .search-box i {
+            color: #b48c6c;
+        }
+        .search-box input {
+            border: none;
+            padding: 10px 8px;
+            width: 100%;
+            background: transparent;
+            font-size: 0.9rem;
+        }
+        .search-box input:focus {
+            outline: none;
+        }
+        .stats-badge {
+            display: flex;
+            gap: 1.5rem;
+            background: #fef3e9;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+        }
+        .stats-badge span {
+            font-weight: 700;
+            color: #9b2e2e;
+        }
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .comment-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            transition: 0.2s;
+            border-left: 5px solid #e2a17e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .commenter {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #e2a17e, #c46b3f);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .commenter-info .name {
+            font-weight: 800;
+            color: #3e2c21;
+        }
+        .commenter-info .kelas {
+            font-size: 0.7rem;
+            color: #b48c6c;
+        }
+        .comment-time {
+            font-size: 0.7rem;
+            color: #9a8b7c;
+        }
+        .comment-text {
+            margin: 12px 0 12px 52px;
+            background: #fefaf5;
+            padding: 12px 16px;
+            border-radius: 20px;
+            color: #2d3a3f;
+            line-height: 1.45;
+        }
+        .like-btn {
+            background: none;
+            border: 1px solid #e2cfbf;
+            border-radius: 60px;
+            padding: 5px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-left: 52px;
+            color: #7a685a;
+        }
+        .like-btn i {
+            color: #d98c5f;
+        }
+        .like-btn:hover:not(:disabled) {
+            background: #ffe6dc;
+            border-color: #c46b3f;
+        }
+        .like-btn.liked {
+            background: #ffded0;
+            border-color: #c46b3f;
+            color: #9b2e2e;
+        }
+        .empty-comment {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 28px;
+            color: #b48c6c;
+        }
+        .toast-notif {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3a3f;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .main-title { font-size: 1.8rem; }
+            .reflection-section { padding: 1.2rem; }
+            .comment-text { margin-left: 0; }
+            .like-btn { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 class="main-title">Ledakan Emosi di Lingkungan Terdekat:<br> Menelisik Akar Sosiologis Kemarahan dalam Keluarga</h1>
+        <div style="margin: 0.75rem 0;">
+            <span class="sub">✧ perspektif sosiologi · emosi & kedekatan sosial ✧</span>
+        </div>
+        <p style="max-width: 780px; margin: 1rem auto 0; color: #4d5f64;">Mengapa kemarahan lebih mudah meledak di hadapan orang terdekat? Sebuah eksplorasi sosiologis tentang keluarga sebagai ruang privat, rasa aman, serta dinamika harapan dan tekanan sosial.</p>
+    </div>
+
+    <!-- Tombol Toggle Bilingual -->
+    <div class="lang-toggle">
+        <button id="toggleLangBtn" class="toggle-btn">🌐 English version</button>
+    </div>
+
+    <!-- KONTEN BAHASA INDONESIA -->
+    <div id="lang-id" class="lang-content active">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1400&h=550&fit=crop&auto=format" alt="Keluarga hangat">
+        <div class="caption">Keluarga sebagai panggung intim: ruang di mana kita melepas topeng sosial</div>
+        <div class="section"><h2>Pendahuluan</h2><p>Fenomena ini akrab dalam kehidupan kita: di luar rumah, kita menyandang predikat sebagai pribadi yang sabar, diplomatis, dan penuh pengertian. Namun, begitu kaki melangkah masuk ke dalam rumah, pemicu amarah tampak begitu mudah ditemukan—sebuah pertanyaan sederhana, nada bicara yang sedikit meninggi, atau bahkan sekadar gelas yang diletakkan tidak pada tempatnya. Ironisnya, luapan emosi yang paling tajam kerap kali justru melukai orang-orang yang memiliki ikatan darah dengan kita. Pertanyaan sosiologis yang muncul: mengapa kita lebih mudah kehilangan kesabaran di hadapan keluarga dibandingkan dengan orang-orang di luar lingkaran kekerabatan?</p><p>Fenomena ini bukan sekadar masalah manajemen emosi personal, melainkan produk dari struktur sosial, norma, serta sifat unik keluarga sebagai institusi sosial pertama dan paling fundamental.</p></div>
+        <div class="section"><h2>Keluarga sebagai Ruang Interaksi Paling Dekat</h2><p>Dalam sosiologi, merujuk pada pemikiran Charles Horton Cooley, keluarga adalah <span class="highlight">kelompok primer (primary group)</span>: interaksi bersifat personal, intim, dan berlangsung lama. Di dalamnya individu tidak hanya berbagi ruang, tetapi juga sejarah, nilai, dan emosi. Erving Goffman menyebutnya sebagai <em>back stage</em>—panggung belakang tempat kita melepaskan topeng sosial. Keluarga menjadi satu-satunya ruang di mana seseorang merasa tak perlu terus-menerus menjaga kesan. Ironisnya, kebebasan inilah yang membuat emosi negatif yang terkontrol di ruang publik meluap tanpa penyaringan.</p><img class="inline-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&h=400&fit=crop" alt="Interaksi keluarga"><div class="caption">Kedekatan intensif dalam kelompok primer menciptakan rasa memiliki mendalam</div></div>
+        <div class="section"><h2>Rasa Aman dan Ekspresi Emosi</h2><p>Salah satu faktor kunci adalah <span class="highlight">rasa aman psikologis</span>. Individu merasa diterima apa adanya sehingga tidak perlu menyembunyikan perasaan. Namun rasa aman ini memiliki dua sisi: di satu sisi memungkinkan keterbukaan dan kejujuran, di sisi lain membuat individu lebih mudah meluapkan emosi tanpa kontrol yang cukup. Akibatnya, kemarahan yang tertahan di luar rumah kerap “dibayar” kepada orang terdekat. Keluarga, yang seharusnya menjadi tempat pemulihan, justru menjadi korban akumulasi stres yang tidak tersalurkan.</p></div>
+        <div class="section"><h2>Tekanan Sosial dan Pelampiasan Emosi</h2><p>Dalam kehidupan sosial, individu menghadapi tuntutan untuk menjaga sopan santun, menahan emosi, dan menyesuaikan diri dengan norma. Sosiolog Arlie Hochschild menyebut ini sebagai <em>emotion work</em> (kerja emosi). Ketika kembali ke rumah, kontrol sosial eksternal melemah. Rumah menjadi ruang privat tempat terjadinya <strong>pelampiasan</strong>. Amarah yang tidak tersalurkan di ruang publik dilepaskan di ruang privat. Inilah mengapa reaksi emosional di rumah kerap kali tampak tidak proporsional dengan pemicu yang kecil.</p></div>
+        <div class="section"><h2>Ekspektasi Tinggi dalam Hubungan Keluarga</h2><p>Hubungan keluarga dibangun di atas ekspektasi implisit yang sangat tinggi: memahami tanpa dijelaskan, peka terhadap perasaan, memberi dukungan tanpa syarat. Ketika harapan ini tidak terpenuhi, kekecewaan yang muncul jauh lebih dalam. Perilaku yang sama—misalnya lupa janji—akan terasa jauh lebih menyakitkan jika dilakukan oleh pasangan atau anak dibandingkan rekan kerja. <em>Emotional stake</em> dalam keluarga menciptakan taruhan emosional yang sangat besar.</p></div>
+        <div class="section"><h2>Pengaruh Pengalaman Masa Lalu</h2><p>Setiap interaksi dalam keluarga membawa biografi bersama: akumulasi pengalaman masa lalu, konflik yang belum terselesaikan, serta kebiasaan interaksi yang mengakar. Insiden kecil di masa kini sering menjadi pemicu yang membuka kembali memori luka lama. Fenomena <em>flooding</em> ini menjelaskan mengapa reaksi emosional dalam keluarga terasa meledak-ledak dan tidak proporsional.</p></div>
+        <div class="section"><h2>Analisis Sosiologis</h2><p>Dari sudut pandang sosiologi, emosi bukan hanya persoalan individual, melainkan hasil dari interaksi sosial yang kompleks. Struktur sosial (tekanan dunia kerja), norma (keluarga sebagai zona bebas topeng), relasi kuasa, dan budaya kolektif membentuk cara seseorang merespons situasi. Kemarahan dalam keluarga tidak selalu menandakan rusaknya hubungan; justru ia bisa menjadi indikator seberapa dalam keterikatan yang ada—namun tetap perlu dikelola secara sadar.</p></div>
+        <div class="section"><h2>Penutup</h2><p>Kemudahan seseorang meluapkan amarah di hadapan keluarga adalah konsekuensi logis dari rasa aman yang mendalam, tekanan sosial yang menumpuk, tingginya ekspektasi, dan jejak sejarah hubungan. Memahami akar sosiologis ini membawa kesadaran baru: keluarga yang sehat bukanlah keluarga yang bebas konflik, melainkan yang memiliki mekanisme bersama untuk menavigasi emosi. Harmoni dibangun dengan memahami bahasa di balik kemarahan dan membangun kesepakatan bagaimana emosi dirawat serta dikomunikasikan.</p></div>
+    </div>
+
+    <!-- KONTEN BAHASA INGGRIS (singkat tapi tetap padat) -->
+    <div id="lang-en" class="lang-content">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1400&h=550&fit=crop&auto=format" alt="Family warmth">
+        <div class="caption">Family as an intimate stage: where we remove social masks</div>
+        <div class="section"><h2>Introduction</h2><p>We all know this scenario: outside the home, we present ourselves as patient, diplomatic, and understanding. Yet once we step inside, triggers for anger seem to lurk everywhere—a simple question, a slightly sharp tone, or even a misplaced glass. Ironically, the most intense outbursts often wound those with whom we share blood ties. The sociological question is: why do we lose patience more easily with family than with anyone outside our kinship circle?</p><p>This phenomenon is not merely about personal emotion management; it is a product of social structures, norms, and the unique nature of the family as the first and most fundamental social institution.</p></div>
+        <div class="section"><h2>Family as the Closest Interaction Space</h2><p>In sociology, drawing on Charles Horton Cooley, the family is a primary group: interactions are personal, intimate, and long-lasting. Within it, individuals share not only space but also history, values, and emotions. Erving Goffman called this the back stage—the place where we remove our social masks. Family becomes the only arena where one feels no need to constantly manage impressions. Paradoxically, this freedom allows negative emotions, suppressed in public, to overflow without filter.</p><img class="inline-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&h=400&fit=crop" alt="Family together"><div class="caption">Intensive closeness in primary groups creates deep belonging</div></div>
+        <div class="section"><h2>Safety and Emotional Expression</h2><p>A key factor is psychological safety. Individuals feel accepted as they are, so there is no need to hide feelings. However, this safety has two sides: on one hand, it enables openness and honesty; on the other, it makes it easier to vent emotions without sufficient restraint. Consequently, anger held back outside is often “paid” to loved ones. The family, meant to be a place of recovery, becomes the victim of accumulated stress.</p></div>
+        <div class="section"><h2>Social Pressure and Displacement</h2><p>In social life, individuals face demands to maintain courtesy, restrain emotions, and adapt to norms. Sociologist Arlie Hochschild calls this emotion work. Upon returning home, external social controls weaken. The house becomes a private space where displacement occurs. Anger that could not be expressed in public is released in private. This explains why emotional reactions at home often seem disproportionate to minor triggers.</p><img class="inline-img" src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=700&h=400&fit=crop" alt="Stress"><div class="caption">Accumulated social pressure seeks release in safe environments</div></div>
+        <div class="section"><h2>High Expectations in Family</h2><p>Family relationships are built on implicit, high expectations: being understood without explanation, being sensitive to feelings, offering unconditional support. When these expectations are unmet, the resulting disappointment is far deeper. The same behavior—forgetting an appointment—feels much more painful when done by a spouse or child than by a colleague. The emotional stake in family is immense.</p></div>
+        <div class="section"><h2>Influence of Past Experiences</h2><p>Every family interaction carries a shared biography: accumulated past experiences, unresolved conflicts, and ingrained communication patterns. A minor incident today can become a trigger that reopens old emotional wounds. This flooding phenomenon explains why emotional reactions in families can feel explosive and disproportionate.</p></div>
+        <div class="section"><h2>Sociological Analysis & Conclusion</h2><p>From a sociological perspective, emotions are not merely individual matters but outcomes of complex social interactions. Social structure (workplace pressure), norms (family as a mask-free zone), power relations, and collective culture all shape how people respond. Anger within a family does not necessarily signal a broken bond; in fact, it can indicate deep attachment—yet it still needs conscious management.</p><p>The ease with which we vent anger in front of family is a logical consequence of deep safety, accumulated social pressure, high expectations, and shared history. Understanding this sociological root brings new awareness: a healthy family is not one free of conflict, but one that develops collective mechanisms to navigate emotions.</p></div>
+    </div>
+
+    <!-- Gambar tambahan -->
+    <div class="mid-img-container">
+        <img class="mid-img" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1300&h=420&fit=crop" alt="Dinamika emosi">
+        <div class="caption">Dinamika emosi dalam keluarga: antara rasa aman dan ledakan amarah | Emotional dynamics in family: between safety and outbursts</div>
+    </div>
+
+    <!-- =========== RUANG KOMENTAR / REFLEKSI =========== -->
+    <div class="reflection-section" id="commentSection">
+        <div class="reflection-header">
+            <h2><i class="fas fa-comment-dots"></i> Ruang Reflesi & Komentar</h2>
+            <p>Bagikan pengalaman atau pendapat Anda tentang dinamika emosi dalam keluarga. Setiap suara berarti.</p>
+        </div>
+
+        <!-- Form komentar -->
+        <div class="comment-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nama / Name</label>
+                    <input type="text" id="commentName" placeholder="Nama lengkap" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-graduation-cap"></i> Asal / Kelas (opsional)</label>
+                    <input type="text" id="commentClass" placeholder="Kelas / profesi" maxlength="30">
+                </div>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-pencil-alt"></i> Komentar / Refleksi</label>
+                <textarea id="commentText" rows="3" placeholder="Tulis refleksi Anda..."></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+                <button class="btn-submit" id="submitCommentBtn"><i class="fas fa-paper-plane"></i> Kirim Refleksi</button>
+            </div>
+        </div>
+
+        <!-- Pencarian dan statistik -->
+        <div class="search-stats">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchComment" placeholder="Cari komentar atau nama..." onkeyup="filterComments()">
+            </div>
+            <div class="stats-badge">
+                <span><i class="fas fa-comment"></i> <span id="totalCommentCount">0</span> refleksi</span>
+                <span><i class="fas fa-heart"></i> <span id="totalLikeCount">0</span> like</span>
+            </div>
+        </div>
+
+        <!-- Daftar komentar -->
+        <div id="commentListContainer" class="comment-list">
+            <div class="empty-comment"><i class="fas fa-spinner fa-pulse"></i> Memuat refleksi...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>✧ Perspektif Sosiologi · Emosi & Kedekatan Sosial ✧</p>
+        <p>Berdasarkan analisis kelompok primer, kerja emosi, dan ekspektasi dalam relasi kekeluargaan.  |  Based on primary group theory, emotion work, and expectations in kinship relations.</p>
+        <p style="margin-top: 0.8rem; font-size: 0.7rem;">Gambar ilustrasi: Unsplash — untuk tujuan edukasi. | Kolom refleksi terhubung dengan Google Sheets.</p>
+    </footer>
+</div>
+
+<script>
+    // ---------- KONFIGURASI ENDPOINT GOOGLE APPS SCRIPT ----------
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7FWrFd7v2I9glOXD0Iw9y4jDWXO7U5EBJWPDESkV54J8E90ZhxNMJqIx1WK7pdj7p/exec";
+
+    // Global state
+    let allComments = [];
+    let currentSearch = "";
+
+    // Helper: tampilkan notifikasi kecil
+    function showToast(message, isError = false) {
+        let toast = document.createElement("div");
+        toast.className = "toast-notif";
+        toast.style.background = isError ? "#b33b2c" : "#2c5a4a";
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Ambil semua komentar dari server
+    async function fetchComments() {
+        try {
+            const response = await fetch(`${SCRIPT_URL}?action=getComments`);
+            const data = await response.json();
+            allComments = Array.isArray(data) ? data : [];
+            renderCommentList();
+            updateStats();
+        } catch (err) {
+            console.error(err);
+            document.getElementById("commentListContainer").innerHTML = `<div class="empty-comment"><i class="fas fa-exclamation-circle"></i> Gagal memuat komentar. Coba refresh.</div>`;
+            showToast("Gagal memuat data refleksi", true);
+        }
+    }
+
+    // Kirim komentar baru
+    async function sendComment(name, kelas, comment) {
+        if (!name.trim() || !comment.trim()) {
+            showToast("Nama dan komentar harus diisi", true);
+            return false;
+        }
+        const params = new URLSearchParams();
+        params.append("action", "addComment");
+        params.append("name", name.trim());
+        params.append("kelas", kelas.trim() || "-");
+        params.append("comment", comment.trim());
+        
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: params
+            });
+            const result = await response.json();
+            if (result.success === true) {
+                showToast("Refleksi terkirim! Terima kasih.");
+                await fetchComments(); // refresh
+                return true;
+            } else {
+                showToast("Gagal mengirim, coba lagi", true);
+                return false;
+            }
+        } catch (err) {
+            console.error(err);
+            showToast("Koneksi gagal", true);
+            return false;
+        }
+    }
+
+    // Like komentar
+    async function likeComment(rowId) {
+        if (!rowId) return;
+        const params = new URLSearchParams();
+        params.append("action", "likeComment");
+        params.append("row", rowId);
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: params
+            });
+            const result = await response.json();
+            if (result.success === true) {
+                await fetchComments(); // refresh data
+                showToast("👍 Like tersimpan");
+            } else {
+                showToast("Gagal memberi like", true);
+            }
+        } catch (err) {
+            showToast("Error like", true);
+        }
+    }
+
+    // Render daftar komentar berdasarkan pencarian
+    function renderCommentList() {
+        const container = document.getElementById("commentListContainer");
+        let filtered = allComments;
+        if (currentSearch.trim() !== "") {
+            const kw = currentSearch.toLowerCase();
+            filtered = allComments.filter(c => 
+                (c.name && c.name.toLowerCase().includes(kw)) ||
+                (c.kelas && c.kelas.toLowerCase().includes(kw)) ||
+                (c.comment && c.comment.toLowerCase().includes(kw))
+            );
+        }
+        if (!filtered.length) {
+            container.innerHTML = `<div class="empty-comment"><i class="far fa-comment-dots"></i> Belum ada refleksi. Jadilah yang pertama!</div>`;
+            return;
+        }
+        let html = "";
+        filtered.forEach(c => {
+            const initials = (c.name && c.name.length >=2) ? c.name.substring(0,2).toUpperCase() : "AN";
+            const timeAgo = c.timestamp ? new Date(c.timestamp).toLocaleString("id-ID") : "baru saja";
+            const likedStorage = localStorage.getItem(`liked_${c.row}`) === "true";
+            html += `
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="commenter">
+                            <div class="avatar">${escapeHtml(initials)}</div>
+                            <div class="commenter-info">
+                                <div class="name">${escapeHtml(c.name || "Anonim")}</div>
+                                <div class="kelas">${escapeHtml(c.kelas && c.kelas !== "-" ? c.kelas : "Partisipan")}</div>
+                            </div>
+                        </div>
+                        <div class="comment-time"><i class="far fa-clock"></i> ${escapeHtml(timeAgo)}</div>
+                    </div>
+                    <div class="comment-text">${escapeHtml(c.comment || "").replace(/\n/g, '<br>')}</div>
+                    <button class="like-btn ${likedStorage ? 'liked' : ''}" data-row="${c.row}" onclick="handleLike(${c.row})" ${likedStorage ? 'disabled' : ''}>
+                        <i class="fas fa-heart"></i> <span class="like-count">${c.likes || 0}</span> Suka
+                    </button>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    window.handleLike = async function(row) {
+        const btn = document.querySelector(`button[data-row="${row}"]`);
+        if (btn && btn.disabled) return;
+        // disable sebentar
+        if (btn) btn.disabled = true;
+        await likeComment(row);
+        // setelah refresh, status akan update via fetchComments
+    };
+
+    function updateStats() {
+        const total = allComments.length;
+        const totalLikes = allComments.reduce((sum, c) => sum + (c.likes || 0), 0);
+        document.getElementById("totalCommentCount").innerText = total;
+        document.getElementById("totalLikeCount").innerText = totalLikes;
+    }
+
+    function filterComments() {
+        currentSearch = document.getElementById("searchComment").value;
+        renderCommentList();
+    }
+
+    function escapeHtml(str) {
+        if (!str) return "";
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // Event submit form
+    document.getElementById("submitCommentBtn").addEventListener("click", async function() {
+        const name = document.getElementById("commentName").value;
+        const kelas = document.getElementById("commentClass").value;
+        const comment = document.getElementById("commentText").value;
+        const btn = this;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Mengirim...';
+        const success = await sendComment(name, kelas, comment);
+        if (success) {
+            document.getElementById("commentName").value = "";
+            document.getElementById("commentClass").value = "";
+            document.getElementById("commentText").value = "";
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Refleksi';
+    });
+
+    // Load awal
+    fetchComments();
+
+    // Bilingual toggle
+    const btnLang = document.getElementById('toggleLangBtn');
+    const indoDiv = document.getElementById('lang-id');
+    const engDiv = document.getElementById('lang-en');
+    let currentLang = 'id';
+    function setLanguage(lang) {
+        if (lang === 'id') {
+            indoDiv.classList.add('active');
+            engDiv.classList.remove('active');
+            btnLang.innerHTML = '🌐 English version';
+            currentLang = 'id';
+        } else {
+            indoDiv.classList.remove('active');
+            engDiv.classList.add('active');
+            btnLang.innerHTML = '🇮🇩 Versi Indonesia';
+            currentLang = 'en';
+        }
+    }
+    btnLang.addEventListener('click', () => {
+        setLanguage(currentLang === 'id' ? 'en' : 'id');
+    });
+    setLanguage('id');
+</script>
+</body>
+</html>
