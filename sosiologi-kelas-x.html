@@ -1101,12 +1101,12 @@ a { text-decoration: none; color: black; }
 <div class="progress-fill" id="analisis-progress" style="width: 0%;"></div>
 </div>
 <p class="progress-stats">
-<span id="analisis-count">0</span>/<span data-lang-id="2 Analisis Selesai" data-lang-en="2 Analyses Done">2 Analisis Selesai</span>
+<span id="analisis-count">0</span>/<span data-lang-id="3 Analisis Selesai" data-lang-en="3 Analyses Done">3 Analisis Selesai</span>
 </p>
 </div>
 <div class="breaking-news">
 <i class="fas fa-bullhorn"></i>
-<span><strong data-lang-id="HOT TOPICS:" data-lang-en="HOT TOPICS:">HOT TOPICS:</strong> <span data-lang-id="2 Analisis terkini dari perspektif sosiologi!" data-lang-en="2 latest analyses from a sociological perspective!">2 Analisis terkini dari perspektif sosiologi!</span></span>
+<span><strong data-lang-id="HOT TOPICS:" data-lang-en="HOT TOPICS:">HOT TOPICS:</strong> <span data-lang-id="3 Analisis terkini dari perspektif sosiologi!" data-lang-en="3 latest analyses from a sociological perspective!">3 Analisis terkini dari perspektif sosiologi!</span></span>
 </div>
 <div class="cards-grid">
 <!-- Analysis 1 -->
@@ -1141,6 +1141,26 @@ a { text-decoration: none; color: black; }
 <span class="card-type" data-lang-id="Analisis" data-lang-en="Analysis">Analisis</span>
 </div>
 <a href="Generasi-Z-Transformasi-Nilai-Sosial.html" class="action-btn">
+<i class="fas fa-external-link-alt"></i> <span data-lang-id="Baca Analisis" data-lang-en="Read Analysis">Baca Analisis</span>
+</a>
+<div class="progress-tracker" onclick="toggleProgress(this, 'analisis')">
+<div class="progress-checkbox"><i class="fas fa-check"></i></div>
+<span class="progress-label" data-lang-id="Tandai sebagai selesai" data-lang-en="Mark as complete">Tandai sebagai selesai</span>
+</div>
+</div>
+</div>
+<!-- ✅ Analysis 3: Family Emotion Bilingual (BARU DITAMBAHKAN) -->
+<div class="card" data-id="analisis-3">
+<span class="card-badge forum" data-lang-id="FAMILY" data-lang-en="FAMILY">FAMILY</span>
+<div class="card-image"><i class="fas fa-heart"></i></div>
+<div class="card-content">
+<h3 data-lang-id="<i class='fas fa-heart'></i> Emosi Keluarga Bilingual" data-lang-en="<i class='fas fa-heart'></i> Family Emotions Bilingual"><i class="fas fa-heart"></i> Emosi Keluarga Bilingual</h3>
+<p data-lang-id="Eksplorasi dinamika emosi dalam keluarga melalui perspektif sosiologis dengan pendekatan bilingual." data-lang-en="Explore family emotion dynamics through a sociological perspective with a bilingual approach.">Eksplorasi dinamika emosi dalam keluarga melalui perspektif sosiologis dengan pendekatan bilingual.</p>
+<div class="card-meta">
+<span><i class="fas fa-clock"></i> <span data-lang-id="10 Menit Baca" data-lang-en="10 Min Read">10 Menit Baca</span></span>
+<span class="card-type" data-lang-id="Analisis" data-lang-en="Analysis">Analisis</span>
+</div>
+<a href="family_emotion_bilingual.html" class="action-btn">
 <i class="fas fa-external-link-alt"></i> <span data-lang-id="Baca Analisis" data-lang-en="Read Analysis">Baca Analisis</span>
 </a>
 <div class="progress-tracker" onclick="toggleProgress(this, 'analisis')">
@@ -1274,13 +1294,13 @@ function setLanguage(lang) {
         }
     });
 
-    // Update button text - INI YANG DIPERBAIKI
+    // Update button text
     const langText = document.getElementById('langText');
     if (lang === 'en') {
-        langText.textContent = 'ID'; // Jika sedang English, tampilkan ID (opsi untuk kembali)
+        langText.textContent = 'ID';
         document.documentElement.lang = 'en';
     } else {
-        langText.textContent = 'EN'; // Jika sedang Indonesia, tampilkan EN (opsi untuk ganti)
+        langText.textContent = 'EN';
         document.documentElement.lang = 'id';
     }
 
@@ -1342,7 +1362,6 @@ function toggleProgress(element, section) {
     
     const label = element.querySelector('.progress-label');
     if (card.classList.contains('completed')) {
-        // Use data attribute for translated label if needed, otherwise static
         const doneText = currentLang === 'en' ? '✓ Done' : '✓ Selesai';
         label.textContent = doneText;
         saveProgress(section, cardId, true);
