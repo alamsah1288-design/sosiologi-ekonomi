@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* ========== STYLE SAMA SEPERTI SEBELUMNYA (tidak berubah) ========== */
+    /* ========== STYLE (SAMA SEPERTI SEBELUMNYA) ========== */
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
@@ -258,14 +258,14 @@
   function syncUserData() { let nama=document.getElementById('inputNama').value||'User'; let kelas=document.getElementById('inputKelas').value||'Kelas'; document.getElementById('headerNama').innerHTML=`<i class="fas fa-user"></i> ${escapeHtml(nama)}`; document.getElementById('headerKelas').innerHTML=`<i class="fas fa-school"></i> Kelas ${escapeHtml(kelas)}`; }
   function mulaiUlang() { game = { tahun:1, defisit:3.0, growth:5.0, inflasi:3.0, happy:70, riwayat:{ def:[3.0], gr:[5.0], inf:[3.0] }, log:[], lastState:null, selesai:false }; chart.data.labels=['Tahun 1']; chart.data.datasets[0].data=[5.0]; chart.data.datasets[1].data=[3.0]; chart.data.datasets[2].data=[3.0]; chart.update(); renderPolicyButtons(); document.getElementById('nextBtn').disabled=true; document.getElementById('hintBox').style.display='none'; document.getElementById('eventBox').style.display='none'; document.getElementById('resultPanel').classList.remove('show'); updateLog(); updateTampilan(); }
   
-  // ==================== EXPORT PDF (DIPERBAIKI) ====================
+  // ==================== EXPORT PDF (DIPERBAIKI - BERSIHKAN KARAKTER) ====================
   function exportPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     let nama = document.getElementById('inputNama').value.trim() || 'User';
     let kelas = document.getElementById('inputKelas').value.trim() || 'Kelas';
     let tgl = new Date().toLocaleDateString('id-ID');
-    // Bersihkan karakter aneh: hapus emoji dan karakter non-ASCII yang tidak didukung
+    // Fungsi untuk membersihkan emoji dan karakter non-ASCII
     const cleanText = (str) => str.replace(/[^\x00-\x7F]/g, '').replace(/[\u{1F600}-\u{1F6FF}]/gu, '').trim();
     let cleanNama = cleanText(nama);
     let cleanKelas = cleanText(kelas);
@@ -282,7 +282,6 @@
     doc.text(`• Kepuasan ${game.happy}/100`, 20, 82);
     doc.text('Riwayat kebijakan (hanya yang dipilih):', 20, 98);
     let y = 106;
-    // Bersihkan nama kebijakan dari emoji
     game.log.slice(-8).forEach((ev, idx) => {
       if (y > 270) { doc.addPage(); y = 20; }
       let cleanPolicy = cleanText(ev.kebijakan);
