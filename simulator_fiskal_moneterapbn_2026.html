@@ -3,31 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- ========== META SEO ========== -->
   <title>Simulator Kebijakan Ekonomi + Forum Diskusi • Fiskal & Moneter</title>
-  <meta name="title" content="Simulator Kebijakan Ekonomi Indonesia • Fiskal & Moneter • Kelas XI" />
-  <meta name="description" content="Simulator interaktif kebijakan fiskal dan moneter APBN Indonesia. Dilengkapi forum diskusi untuk berbagi ide." />
-  <meta name="keywords" content="simulator ekonomi, kebijakan fiskal, moneter, APBN, inflasi, edukasi ekonomi, forum diskusi" />
+  <meta name="description" content="Simulator interaktif kebijakan fiskal dan moneter APBN Indonesia. Dilengkapi forum diskusi." />
   <meta name="author" content="Alamsah, SE" />
-  <meta name="robots" content="index, follow" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Simulator Kebijakan Ekonomi + Forum Diskusi" />
-  <meta property="og:description" content="Simulator interaktif kebijakan fiskal dan moneter APBN Indonesia. Cocok untuk pembelajaran ekonomi Kelas XI SMA." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="id_ID" />
-
   <!-- Chart.js & jsPDF -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
   <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
   <style>
-    /* ===== GLOBAL & SIMULATOR STYLES (existing) ===== */
+    /* ========== STYLE SAMA SEPERTI SEBELUMNYA (tidak berubah) ========== */
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
@@ -42,21 +28,14 @@
       --gradient-primary: linear-gradient(145deg, #163a5f, #1f4d7a);
       --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: linear-gradient(145deg, #0b2b44 0%, #1b4a6b 100%);
       min-height: 100vh;
       padding: 20px 16px;
       color: #1e293b;
     }
-
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -67,7 +46,6 @@
       box-shadow: var(--shadow-lg);
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
-
     .user-card {
       background: white;
       border-radius: 60px;
@@ -80,952 +58,219 @@
       box-shadow: 0 6px 18px #b3cef0;
       border: 2px solid #c9dfff;
     }
-    
-    .user-field {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    
-    .user-field label {
-      font-weight: 600;
-      color: #142d4c;
-    }
-    
-    .user-field input,
-    .user-field select {
-      padding: 10px 18px;
-      border-radius: 60px;
-      border: 2px solid #bdd3f0;
-      font-size: 1rem;
-      background: #f4faff;
-    }
-
-    header {
-      background: #ffffffcc;
-      border-radius: 40px;
-      padding: 18px 26px;
-      margin-bottom: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .panduan-accordion {
-      background: #e2efff;
-      border-radius: 40px;
-      padding: 6px 26px 14px 26px;
-      margin: 24px 0;
-      cursor: pointer;
-      border: 2px solid #a7c8ff;
-    }
-    
-    .panduan-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: #10355e;
-      padding: 14px 0 6px;
-      font-size: 1.1rem;
-    }
-    
-    .panduan-content {
-      display: none;
-      padding: 12px 0 18px;
-      border-top: 2px dashed #3b82f6;
-    }
-    
-    .panduan-content.show {
-      display: block;
-    }
-
-    .panduan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-    }
-    
-    .panduan-card {
-      background: white;
-      border-radius: 24px;
-      padding: 14px;
-      box-shadow: 0 6px 16px #b7d3f3;
-    }
-
-    .target-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin: 20px 0 10px;
-    }
-    
-    .target {
-      background: white;
-      padding: 8px 24px;
-      border-radius: 60px;
-      font-weight: 500;
-      border: 2px solid #bac8dd;
-    }
-    
-    .target.ok {
-      background: #d1f0d1;
-      border-color: #1f7a1f;
-    }
-    
-    .target.no {
-      background: #ffe0e0;
-      border-color: #ba2c2c;
-    }
-
-    .indicator-panel {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin: 28px 0;
-    }
-    
-    .indicator-card {
-      background: white;
-      border-radius: 32px;
-      padding: 18px 8px 12px;
-      text-align: center;
-      border-bottom: 8px solid #9bb7d4;
-      box-shadow: 0 12px 28px -12px #1e3f60;
-      position: relative;
-    }
-    
-    .indicator-card.good {
-      border-bottom-color: #2ecc71;
-      background: #effff5;
-    }
-    
-    .indicator-card.bad {
-      border-bottom-color: #e74c3c;
-      background: #ffeeec;
-    }
-    
-    .info-btn-small {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: #deeaff;
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .big-value {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin: 8px 0 4px;
-    }
-    
-    .nominal-hint {
-      background: #f1f7ff;
-      padding: 4px 14px;
-      border-radius: 60px;
-      font-size: 0.8rem;
-    }
-
-    .chart-panel {
-      background: #f5faff;
-      border-radius: 40px;
-      padding: 20px;
-      margin: 28px 0;
-    }
-
-    .policies-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin: 20px 0 28px;
-    }
-    
-    .policy-btn {
-      background: white;
-      border: 2px solid #c0d4f0;
-      border-left: 10px solid #3b82f6;
-      padding: 18px 16px;
-      border-radius: 40px;
-      text-align: left;
-      font-weight: 500;
-      box-shadow: 0 6px 12px #bdd2ee;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    
-    .policy-btn.monetary {
-      border-left-color: #8b5cf6;
-    }
-    
-    .policy-btn:hover:not(:disabled) {
-      background: #ecf3ff;
-      transform: translateY(-3px);
-    }
-
-    .log-list {
-      background: #eef4fe;
-      border-radius: 36px;
-      padding: 18px;
-      max-height: 180px;
-      overflow-y: auto;
-    }
-
-    .result-box {
-      background: #d7ecdc;
-      border-radius: 48px;
-      padding: 28px;
-      margin: 20px 0;
-      display: none;
-      text-align: center;
-    }
-    
-    .result-box.show {
-      display: block;
-    }
-
-    .action-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 32px 0 0;
-    }
-    
-    .btn {
-      padding: 14px 28px;
-      border-radius: 60px;
-      border: none;
-      font-weight: 600;
-      background: white;
-      box-shadow: 0 6px 14px #afc9e7;
-      cursor: pointer;
-    }
-    
-    .btn-primary {
-      background: #1e3f70;
-      color: white;
-    }
-    
-    .btn-reset {
-      background: #c54d3a;
-      color: white;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    
-    .modal.show {
-      display: flex;
-    }
-    
-    .modal-card {
-      background: white;
-      max-width: 500px;
-      width: 90%;
-      border-radius: 60px;
-      padding: 32px;
-    }
-
-    .event-box {
-      background: #ffeed9;
-      border-radius: 50px;
-      padding: 14px 24px;
-      margin: 16px 0;
-      display: none;
-    }
-
-    #hintBox {
-      background: #ddecff;
-      border-radius: 60px;
-      padding: 14px 22px;
-      margin: 16px 0;
-      display: none;
-    }
-
-    /* ===== FORUM STYLES (integrated) ===== */
-    .forum-section {
-      margin-top: 40px;
-      border-top: 3px dashed #cbd5e0;
-      padding-top: 30px;
-    }
-    .forum-header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .forum-header h2 {
-      color: #1f4d7a;
-      font-size: 1.8rem;
-    }
-    .forum-header p {
-      color: #4a5568;
-    }
-    .form-box {
-      background: white;
-      border-radius: 32px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    }
-    .input-group {
-      margin-bottom: 18px;
-      position: relative;
-    }
-    .input-group i {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #a0aec0;
-    }
-    .input-group input,
-    .input-group textarea {
-      width: 100%;
-      padding: 12px 15px 12px 45px;
-      border: 2px solid #e2e8f0;
-      border-radius: 28px;
-      font-size: 15px;
-      background: white;
-    }
-    .input-group textarea {
-      min-height: 90px;
-      resize: vertical;
-      padding-top: 12px;
-    }
-    .input-group input:focus,
-    .input-group textarea:focus {
-      outline: none;
-      border-color: #667eea;
-    }
-    .btn-forum {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
-    }
-    .btn-forum:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    .search-box {
-      background: white;
-      border-radius: 50px;
-      padding: 5px 15px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .search-box i {
-      color: #a0aec0;
-    }
-    .search-box input {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      background: transparent;
-    }
-    .stats {
-      background: white;
-      border-radius: 28px;
-      padding: 12px 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .stats-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #4a5568;
-    }
-    .badge-live {
-      background: #667eea;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-    }
-    .comment-card {
-      background: white;
-      border-radius: 24px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-left: 5px solid #667eea;
-      transition: 0.2s;
-    }
-    .comment-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .avatar {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-    }
-    .user-name {
-      font-weight: 700;
-      color: #2d3748;
-    }
-    .user-class {
-      font-size: 13px;
-      color: #718096;
-    }
-    .comment-time {
-      font-size: 12px;
-      color: #a0aec0;
-    }
-    .comment-content {
-      background: #f7fafc;
-      padding: 12px;
-      border-radius: 20px;
-      margin: 10px 0;
-      line-height: 1.5;
-    }
-    .like-button {
-      background: #f1f5f9;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 40px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-    .like-button.liked {
-      background: #fee2e2;
-      color: #e53e3e;
-    }
-    .empty-state {
-      text-align: center;
-      padding: 40px;
-      color: #718096;
-    }
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: white;
-      padding: 12px 20px;
-      border-radius: 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      z-index: 1100;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    @media (max-width: 768px) {
-      .indicator-panel { grid-template-columns: repeat(2,1fr); }
-      .policies-grid { grid-template-columns: 1fr; }
-      .container { padding: 16px; }
-    }
+    .user-field { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .user-field label { font-weight: 600; color: #142d4c; }
+    .user-field input, .user-field select { padding: 10px 18px; border-radius: 60px; border: 2px solid #bdd3f0; font-size: 1rem; background: #f4faff; }
+    header { background: #ffffffcc; border-radius: 40px; padding: 18px 26px; margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    h1 { font-size: 2rem; font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .panduan-accordion { background: #e2efff; border-radius: 40px; padding: 6px 26px 14px 26px; margin: 24px 0; cursor: pointer; border: 2px solid #a7c8ff; }
+    .panduan-header { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #10355e; padding: 14px 0 6px; font-size: 1.1rem; }
+    .panduan-content { display: none; padding: 12px 0 18px; border-top: 2px dashed #3b82f6; }
+    .panduan-content.show { display: block; }
+    .panduan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .panduan-card { background: white; border-radius: 24px; padding: 14px; box-shadow: 0 6px 16px #b7d3f3; }
+    .target-chips { display: flex; flex-wrap: wrap; gap: 14px; margin: 20px 0 10px; }
+    .target { background: white; padding: 8px 24px; border-radius: 60px; font-weight: 500; border: 2px solid #bac8dd; }
+    .target.ok { background: #d1f0d1; border-color: #1f7a1f; }
+    .target.no { background: #ffe0e0; border-color: #ba2c2c; }
+    .indicator-panel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0; }
+    .indicator-card { background: white; border-radius: 32px; padding: 18px 8px 12px; text-align: center; border-bottom: 8px solid #9bb7d4; box-shadow: 0 12px 28px -12px #1e3f60; position: relative; }
+    .indicator-card.good { border-bottom-color: #2ecc71; background: #effff5; }
+    .indicator-card.bad { border-bottom-color: #e74c3c; background: #ffeeec; }
+    .info-btn-small { position: absolute; top: 14px; right: 16px; background: #deeaff; border: none; width: 30px; height: 30px; border-radius: 30px; font-weight: bold; cursor: pointer; }
+    .big-value { font-size: 2.2rem; font-weight: 700; margin: 8px 0 4px; }
+    .nominal-hint { background: #f1f7ff; padding: 4px 14px; border-radius: 60px; font-size: 0.8rem; }
+    .chart-panel { background: #f5faff; border-radius: 40px; padding: 20px; margin: 28px 0; }
+    .policies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0 28px; }
+    .policy-btn { background: white; border: 2px solid #c0d4f0; border-left: 10px solid #3b82f6; padding: 18px 16px; border-radius: 40px; text-align: left; font-weight: 500; box-shadow: 0 6px 12px #bdd2ee; cursor: pointer; transition: 0.1s; }
+    .policy-btn.monetary { border-left-color: #8b5cf6; }
+    .policy-btn:hover:not(:disabled) { background: #ecf3ff; transform: translateY(-3px); }
+    .log-list { background: #eef4fe; border-radius: 36px; padding: 18px; max-height: 180px; overflow-y: auto; }
+    .result-box { background: #d7ecdc; border-radius: 48px; padding: 28px; margin: 20px 0; display: none; text-align: center; }
+    .result-box.show { display: block; }
+    .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 32px 0 0; }
+    .btn { padding: 14px 28px; border-radius: 60px; border: none; font-weight: 600; background: white; box-shadow: 0 6px 14px #afc9e7; cursor: pointer; }
+    .btn-primary { background: #1e3f70; color: white; }
+    .btn-reset { background: #c54d3a; color: white; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 1000; }
+    .modal.show { display: flex; }
+    .modal-card { background: white; max-width: 500px; width: 90%; border-radius: 60px; padding: 32px; }
+    .event-box { background: #ffeed9; border-radius: 50px; padding: 14px 24px; margin: 16px 0; display: none; }
+    #hintBox { background: #ddecff; border-radius: 60px; padding: 14px 22px; margin: 16px 0; display: none; }
+    .forum-section { margin-top: 40px; border-top: 3px dashed #cbd5e0; padding-top: 30px; }
+    .forum-header { text-align: center; margin-bottom: 25px; }
+    .forum-header h2 { color: #1f4d7a; font-size: 1.8rem; }
+    .form-box { background: white; border-radius: 32px; padding: 24px; margin-bottom: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+    .input-group { margin-bottom: 18px; position: relative; }
+    .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #a0aec0; }
+    .input-group input, .input-group textarea { width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e2e8f0; border-radius: 28px; font-size: 15px; background: white; }
+    .input-group textarea { min-height: 90px; resize: vertical; padding-top: 12px; }
+    .btn-forum { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 28px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
+    .btn-forum:disabled { opacity: 0.6; cursor: not-allowed; }
+    .search-box { background: white; border-radius: 50px; padding: 5px 15px; margin-bottom: 20px; display: flex; align-items: center; }
+    .search-box i { color: #a0aec0; }
+    .search-box input { flex: 1; padding: 12px; border: none; background: transparent; }
+    .stats { background: white; border-radius: 28px; padding: 12px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .stats-item { display: flex; align-items: center; gap: 8px; color: #4a5568; }
+    .badge-live { background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+    .comment-card { background: white; border-radius: 24px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid #667eea; }
+    .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .user-info { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+    .user-name { font-weight: 700; color: #2d3748; }
+    .user-class { font-size: 13px; color: #718096; }
+    .comment-time { font-size: 12px; color: #a0aec0; }
+    .comment-content { background: #f7fafc; padding: 12px; border-radius: 20px; margin: 10px 0; line-height: 1.5; }
+    .like-button { background: #f1f5f9; border: none; display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 40px; cursor: pointer; font-weight: 500; }
+    .like-button.liked { background: #fee2e2; color: #e53e3e; }
+    .empty-state { text-align: center; padding: 40px; color: #718096; }
+    .toast { position: fixed; bottom: 20px; right: 20px; background: white; padding: 12px 20px; border-radius: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1100; display: flex; align-items: center; gap: 10px; }
+    @media (max-width: 768px) { .indicator-panel { grid-template-columns: repeat(2,1fr); } .policies-grid { grid-template-columns: 1fr; } .container { padding: 16px; } }
   </style>
 </head>
 <body>
 <div class="container">
-  <!-- ================= SIMULATOR BAGIAN ================= -->
+  <!-- Simulator section -->
   <div class="user-card">
     <div class="user-field">
       <label><i class="fas fa-user"></i> Nama:</label>
-      <input type="text" id="inputNama" value="Alya Putri" placeholder="Nama lengkap" />
-      <label style="margin-left: 8px;"><i class="fas fa-school"></i> Kelas:</label>
-      <input type="text" id="inputKelas" value="XI.5" placeholder="Kelas" />
+      <input type="text" id="inputNama" value="Alya Putri" />
+      <label><i class="fas fa-school"></i> Kelas:</label>
+      <input type="text" id="inputKelas" value="XI.7" />
     </div>
     <div class="user-field">
       <label><i class="fas fa-sliders-h"></i> Kebijakan per tahun:</label>
       <select id="selectJumlahKebijakan">
-        <option value="7" selected>7 kebijakan (standar)</option>
-        <option value="9">9 kebijakan (diperluas)</option>
+        <option value="7">7 kebijakan (standar)</option>
+        <option value="9" selected>9 kebijakan (diperluas)</option>
       </select>
     </div>
   </div>
-
-  <header>
-    <h1><i class="fas fa-landmark"></i> Simulator Ekonomi <span id="headerNama">Alya Putri</span></h1>
-    <div id="headerKelas">Kelas XI.5</div>
-  </header>
-
-  <div class="panduan-accordion" onclick="togglePanduan()">
-    <div class="panduan-header">
-      <span><i class="fas fa-book-open"></i> PANDUAN & NILAI RUPIAH (klik)</span>
-      <span id="panduanToggle">▼ buka</span>
-    </div>
-    <div class="panduan-content" id="panduanContent">
-      <p><strong>PDB 2024 diasumsikan Rp20.000 triliun.</strong></p>
-      <div class="panduan-grid">
-        <div class="panduan-card"><i class="fas fa-chart-line"></i> 📊 Defisit 3% = Rp600 T<br />Target ≤3%</div>
-        <div class="panduan-card"><i class="fas fa-arrow-up"></i> 📈 Growth 5% = +Rp1.000 T/thn<br />Target ≥5%</div>
-        <div class="panduan-card"><i class="fas fa-fire"></i> 💹 Inflasi 3% = +Rp360/kg beras<br />Target 2‑4%</div>
-        <div class="panduan-card"><i class="fas fa-smile"></i> 😊 Kepuasan 70 = 7 dari 10 puas<br />Target ≥65</div>
-      </div>
-      <p style="margin-top: 12px; background:#fff3cd; padding:8px; border-radius:24px;"><i class="fas fa-random"></i> <strong>Catatan:</strong> Terkadang muncul <strong>kejadian acak</strong> (misal: minyak naik, panen raya) yang memengaruhi indikator. Kejadian ini <strong>tidak dicatat sebagai kebijakan</strong> di riwayat, hanya sebagai notifikasi.</p>
-    </div>
-  </div>
-
-  <div class="target-chips">
-    <span class="target" id="targetDefisit">📉 defisit ≤3%</span>
-    <span class="target" id="targetGrowth">📈 growth ≥5%</span>
-    <span class="target" id="targetInflasi">💹 inflasi 2‑4%</span>
-    <span class="target" id="targetHappy">😊 kepuasan ≥65</span>
-  </div>
-
+  <header><h1><i class="fas fa-landmark"></i> Simulator Ekonomi <span id="headerNama">Alya Putri</span></h1><div id="headerKelas">Kelas XI.7</div></header>
+  <div class="panduan-accordion" onclick="togglePanduan()"><div class="panduan-header"><span><i class="fas fa-book-open"></i> PANDUAN & NILAI RUPIAH (klik)</span><span id="panduanToggle">▼ buka</span></div><div class="panduan-content" id="panduanContent"><p><strong>PDB 2024 diasumsikan Rp20.000 triliun.</strong></p><div class="panduan-grid"><div class="panduan-card">📊 Defisit 3% = Rp600 T<br />Target ≤3%</div><div class="panduan-card">📈 Growth 5% = +Rp1.000 T/thn<br />Target ≥5%</div><div class="panduan-card">💹 Inflasi 3% = +Rp360/kg beras<br />Target 2‑4%</div><div class="panduan-card">😊 Kepuasan 70 = 7 dari 10 puas<br />Target ≥65</div></div><p style="margin-top:12px; background:#fff3cd; padding:8px; border-radius:24px;"><i class="fas fa-random"></i> <strong>Catatan:</strong> Terkadang muncul kejadian acak yang memengaruhi indikator.</p></div></div>
+  <div class="target-chips"><span class="target" id="targetDefisit">📉 defisit ≤3%</span><span class="target" id="targetGrowth">📈 growth ≥5%</span><span class="target" id="targetInflasi">💹 inflasi 2‑4%</span><span class="target" id="targetHappy">😊 kepuasan ≥65</span></div>
   <div class="indicator-panel">
-    <div class="indicator-card" id="indDefisit"><button class="info-btn-small" onclick="bukaModal('defisit');event.stopPropagation()">?</button><div><i class="fas fa-chart-line"></i> DEFISIT</div><div class="big-value" id="defisitValue">3.0%</div><span class="nominal-hint" id="defisitNominal">≈ Rp600 T</span></div>
-    <div class="indicator-card" id="indGrowth"><button class="info-btn-small" onclick="bukaModal('growth');event.stopPropagation()">?</button><div><i class="fas fa-arrow-up"></i> GROWTH</div><div class="big-value" id="growthValue">5.0%</div><span class="nominal-hint" id="growthNominal">≈ +Rp1.000 T</span></div>
-    <div class="indicator-card" id="indInflasi"><button class="info-btn-small" onclick="bukaModal('inflasi');event.stopPropagation()">?</button><div><i class="fas fa-fire"></i> INFLASI</div><div class="big-value" id="inflasiValue">3.0%</div><span class="nominal-hint" id="inflasiNominal">≈ Rp360/kg</span></div>
-    <div class="indicator-card" id="indHappy"><button class="info-btn-small" onclick="bukaModal('happy');event.stopPropagation()">?</button><div><i class="fas fa-smile"></i> KEPUASAN</div><div class="big-value" id="happyValue">70</div><span class="nominal-hint">skor /100</span></div>
+    <div class="indicator-card" id="indDefisit"><button class="info-btn-small" onclick="bukaModal('defisit');event.stopPropagation()">?</button><div>DEFISIT</div><div class="big-value" id="defisitValue">3.0%</div><span class="nominal-hint" id="defisitNominal">≈ Rp600 T</span></div>
+    <div class="indicator-card" id="indGrowth"><button class="info-btn-small" onclick="bukaModal('growth');event.stopPropagation()">?</button><div>GROWTH</div><div class="big-value" id="growthValue">5.0%</div><span class="nominal-hint" id="growthNominal">≈ +Rp1.000 T</span></div>
+    <div class="indicator-card" id="indInflasi"><button class="info-btn-small" onclick="bukaModal('inflasi');event.stopPropagation()">?</button><div>INFLASI</div><div class="big-value" id="inflasiValue">3.0%</div><span class="nominal-hint" id="inflasiNominal">≈ Rp360/kg</span></div>
+    <div class="indicator-card" id="indHappy"><button class="info-btn-small" onclick="bukaModal('happy');event.stopPropagation()">?</button><div>KEPUASAN</div><div class="big-value" id="happyValue">70</div><span class="nominal-hint">skor /100</span></div>
   </div>
-
   <div class="chart-panel"><canvas id="ecoChart" height="200"></canvas></div>
   <div class="event-box" id="eventBox"><i class="fas fa-bolt"></i> <span id="eventText"></span></div>
-
-  <h3 style="margin: 12px 0 8px;"><i class="fas fa-tools"></i> Pilih 1 kebijakan setiap tahun</h3>
+  <h3><i class="fas fa-tools"></i> Pilih 1 kebijakan setiap tahun</h3>
   <div class="policies-grid" id="policyContainer"></div>
   <div id="hintBox"><i class="fas fa-lightbulb"></i> <span id="hintText"></span></div>
-  <div class="log-list"><div style="font-weight:600; margin-bottom:8px;"><i class="fas fa-history"></i> 📋 Riwayat Kebijakan (hanya yang dipilih)</div><div id="logEntries">—</div></div>
+  <div class="log-list"><div style="font-weight:600; margin-bottom:8px;"><i class="fas fa-history"></i> 📋 Riwayat Kebijakan</div><div id="logEntries">—</div></div>
   <div class="result-box" id="resultPanel"></div>
-  <div class="action-buttons">
-    <button class="btn" id="undoBtn" onclick="undo()" disabled><i class="fas fa-undo"></i> Undo</button>
-    <button class="btn btn-primary" id="nextBtn" onclick="lanjutTahun()" disabled><i class="fas fa-forward"></i> Lanjut tahun</button>
-    <button class="btn" onclick="exportPDF()"><i class="fas fa-file-pdf"></i> PDF (sesuai user)</button>
-    <button class="btn btn-reset" onclick="mulaiUlang()"><i class="fas fa-redo-alt"></i> Mulai ulang</button>
-  </div>
+  <div class="action-buttons"><button class="btn" id="undoBtn" onclick="undo()" disabled><i class="fas fa-undo"></i> Undo</button><button class="btn btn-primary" id="nextBtn" onclick="lanjutTahun()" disabled><i class="fas fa-forward"></i> Lanjut tahun</button><button class="btn" onclick="exportPDF()"><i class="fas fa-file-pdf"></i> PDF (sesuai user)</button><button class="btn btn-reset" onclick="mulaiUlang()"><i class="fas fa-redo-alt"></i> Mulai ulang</button></div>
 
-  <!-- ================= FORUM DISKUSI (integrated) ================= -->
-  <div class="forum-section">
-    <div class="forum-header">
-      <h2><i class="fas fa-comments"></i> Forum Diskusi Pembelajaran</h2>
-      <p>Bagikan ide, tanya jawab seputar kebijakan ekonomi</p>
-    </div>
-
-    <div class="form-box">
-      <div class="input-group"><i class="fas fa-user"></i><input type="text" id="forumName" placeholder="Nama lengkap" maxlength="50"></div>
-      <div class="input-group"><i class="fas fa-graduation-cap"></i><input type="text" id="forumKelas" placeholder="Kelas" maxlength="20"></div>
-      <div class="input-group"><i class="fas fa-pencil-alt"></i><textarea id="forumComment" placeholder="Tulis komentar Anda..."></textarea></div>
-      <button class="btn-forum" id="sendCommentBtn" onclick="sendForumComment()"><i class="fas fa-paper-plane"></i> Kirim Komentar</button>
-    </div>
-
-    <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchForum" placeholder="Cari komentar atau nama..." onkeyup="searchForumComments()"></div>
-    <div class="stats" id="forumStats"><div class="stats-item"><i class="fas fa-comment"></i><span id="totalComments">0</span> Komentar</div><div class="stats-item"><i class="fas fa-heart"></i><span id="totalLikes">0</span> Likes</div><div class="badge-live"><i class="fas fa-circle" style="color:#48bb78; font-size:10px;"></i> Live</div></div>
-    <div id="forumCommentList"></div>
-  </div>
+  <!-- Forum Diskusi -->
+  <div class="forum-section"><div class="forum-header"><h2><i class="fas fa-comments"></i> Forum Diskusi Pembelajaran</h2><p>Bagikan ide, tanya jawab seputar kebijakan ekonomi</p></div>
+  <div class="form-box"><div class="input-group"><i class="fas fa-user"></i><input type="text" id="forumName" placeholder="Nama lengkap" maxlength="50"></div><div class="input-group"><i class="fas fa-graduation-cap"></i><input type="text" id="forumKelas" placeholder="Kelas" maxlength="20"></div><div class="input-group"><i class="fas fa-pencil-alt"></i><textarea id="forumComment" placeholder="Tulis komentar Anda..."></textarea></div><button class="btn-forum" id="sendCommentBtn" onclick="sendForumComment()"><i class="fas fa-paper-plane"></i> Kirim Komentar</button></div>
+  <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchForum" placeholder="Cari komentar atau nama..." onkeyup="searchForumComments()"></div>
+  <div class="stats" id="forumStats"><div class="stats-item"><i class="fas fa-comment"></i><span id="totalComments">0</span> Komentar</div><div class="stats-item"><i class="fas fa-heart"></i><span id="totalLikes">0</span> Likes</div><div class="badge-live"><i class="fas fa-circle" style="color:#48bb78; font-size:10px;"></i> Live</div></div>
+  <div id="forumCommentList"></div></div>
 </div>
 
-<!-- MODAL PENJELASAN -->
+<!-- Modal -->
 <div class="modal" id="modalPenjelasan"><div class="modal-card"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"><h3 id="modalTitle">Judul</h3><button onclick="tutupModal()" style="font-size:2rem;border:none;background:none;">&times;</button></div><div id="modalBody"></div></div></div>
 
 <script>
-  // ========== SIMULATOR CODE (DIPERBAIKI: EVENT TIDAK DICATAT DI LOG) ==========
+  // ==================== SIMULATOR ====================
   const PDB = 20000, HARGA_BERAS = 12000;
-  let game = { 
-    tahun: 1, 
-    defisit: 3.0, 
-    growth: 5.0, 
-    inflasi: 3.0, 
-    happy: 70, 
-    riwayat: { def: [3.0], gr: [5.0], inf: [3.0] },  // simpan nilai akhir setiap tahun (setelah kebijakan + event)
-    log: [],        // HANYA berisi kebijakan yang dipilih user (bukan event)
-    lastState: null, 
-    selesai: false 
-  };
-  
+  let game = { tahun:1, defisit:3.0, growth:5.0, inflasi:3.0, happy:70, riwayat:{ def:[3.0], gr:[5.0], inf:[3.0] }, log:[], lastState:null, selesai:false };
   const kebijakanSemua = {
-    pajak: { nama: '💸 Naikkan Pajak', type: 'fiscal', efek: { def: -0.8, gr: -0.4, inf: -0.2, hap: -8 }, hint: 'Pajak naik, defisit turun, daya beli turun.' },
-    belanja: { nama: '🏗️ Infrastruktur', type: 'fiscal', efek: { def: +1.0, gr: +0.6, inf: +0.3, hap: +10 }, hint: 'Stimulus growth, defisit membengkak.' },
-    subsidi: { nama: '🛡️ Subsidi Sosial', type: 'fiscal', efek: { def: +0.7, gr: +0.2, inf: +0.1, hap: +15 }, hint: 'Rakyat senang, APBN berat.' },
-    reformasi: { nama: '⚖️ Reformasi Pajak', type: 'fiscal', efek: { def: -0.5, gr: 0, inf: 0, hap: -3 }, hint: 'Efisiensi pajak, tanpa menaikkan tarif.' },
-    bunga_naik: { nama: '📉 Naikkan Suku Bunga', type: 'monetary', efek: { def: 0, gr: -0.3, inf: -0.8, hap: -5 }, hint: 'Inflasi turun, kredit mahal.' },
-    bunga_turun: { nama: '📈 Turunkan Suku Bunga', type: 'monetary', efek: { def: 0, gr: +0.4, inf: +0.6, hap: +7 }, hint: 'Kredit murah, inflasi naik.' },
-    rupiah: { nama: '💱 Stabilkan Rupiah', type: 'monetary', efek: { def: 0, gr: +0.1, inf: -0.3, hap: +4 }, hint: 'Impor stabil, harga terjaga.' },
-    kredit: { nama: '🏦 Longgarkan Kredit', type: 'monetary', efek: { def: 0, gr: +0.5, inf: +0.4, hap: +6 }, hint: 'UMKM bergairah.' },
-    investasi_hijau: { nama: '🌱 Investasi Hijau', type: 'fiscal', efek: { def: +0.2, gr: +0.3, inf: -0.1, hap: +5 }, hint: 'Proyek ramah lingkungan, dukungan global.' }
+    pajak: { nama:'Naikkan Pajak', type:'fiscal', efek:{ def:-0.8, gr:-0.4, inf:-0.2, hap:-8 }, hint:'Pajak naik, defisit turun, daya beli turun.' },
+    belanja: { nama:'Infrastruktur', type:'fiscal', efek:{ def:+1.0, gr:+0.6, inf:+0.3, hap:+10 }, hint:'Stimulus growth, defisit membengkak.' },
+    subsidi: { nama:'Subsidi Sosial', type:'fiscal', efek:{ def:+0.7, gr:+0.2, inf:+0.1, hap:+15 }, hint:'Rakyat senang, APBN berat.' },
+    reformasi: { nama:'Reformasi Pajak', type:'fiscal', efek:{ def:-0.5, gr:0, inf:0, hap:-3 }, hint:'Efisiensi pajak, tanpa menaikkan tarif.' },
+    bunga_naik: { nama:'Naikkan Suku Bunga', type:'monetary', efek:{ def:0, gr:-0.3, inf:-0.8, hap:-5 }, hint:'Inflasi turun, kredit mahal.' },
+    bunga_turun: { nama:'Turunkan Suku Bunga', type:'monetary', efek:{ def:0, gr:+0.4, inf:+0.6, hap:+7 }, hint:'Kredit murah, inflasi naik.' },
+    rupiah: { nama:'Stabilkan Rupiah', type:'monetary', efek:{ def:0, gr:+0.1, inf:-0.3, hap:+4 }, hint:'Impor stabil, harga terjaga.' },
+    kredit: { nama:'Longgarkan Kredit', type:'monetary', efek:{ def:0, gr:+0.5, inf:+0.4, hap:+6 }, hint:'UMKM bergairah.' },
+    investasi_hijau: { nama:'Investasi Hijau', type:'fiscal', efek:{ def:+0.2, gr:+0.3, inf:-0.1, hap:+5 }, hint:'Proyek ramah lingkungan, dukungan global.' }
   };
   const list7 = ['pajak','belanja','subsidi','reformasi','bunga_naik','bunga_turun','rupiah'];
   const list9 = [...list7, 'kredit','investasi_hijau'];
-  
-  let chart; // akan diinisialisasi setelah DOM ready
+  let chart;
 
   function initChart() {
     const ctx = document.getElementById('ecoChart').getContext('2d');
-    chart = new Chart(ctx, { 
-      type: 'line', 
-      data: { 
-        labels: ['Tahun 1'], 
-        datasets: [
-          { label: 'Growth %', data: [5.0], borderColor: '#27ae60', tension: 0.2 },
-          { label: 'Inflasi %', data: [3.0], borderColor: '#e67e22', tension: 0.2 },
-          { label: 'Defisit %', data: [3.0], borderColor: '#3498db', tension: 0.2 }
-        ] 
-      }, 
-      options: { responsive: true, maintainAspectRatio: true }
-    });
+    chart = new Chart(ctx, { type:'line', data:{ labels:['Tahun 1'], datasets:[{ label:'Growth %', data:[5.0], borderColor:'#27ae60', tension:0.2 },{ label:'Inflasi %', data:[3.0], borderColor:'#e67e22', tension:0.2 },{ label:'Defisit %', data:[3.0], borderColor:'#3498db', tension:0.2 }] }, options:{ responsive:true, maintainAspectRatio:true } });
   }
-
+  function formatRp(angkaTriliun) { return angkaTriliun >= 1000 ? (angkaTriliun/1000).toFixed(1) + ' rb T' : angkaTriliun.toFixed(0) + ' T'; }
   function updateTampilan() {
-    document.getElementById('defisitValue').innerText = game.defisit.toFixed(1) + '%';
-    document.getElementById('growthValue').innerText = game.growth.toFixed(1) + '%';
-    document.getElementById('inflasiValue').innerText = game.inflasi.toFixed(1) + '%';
+    document.getElementById('defisitValue').innerText = game.defisit.toFixed(1)+'%';
+    document.getElementById('growthValue').innerText = game.growth.toFixed(1)+'%';
+    document.getElementById('inflasiValue').innerText = game.inflasi.toFixed(1)+'%';
     document.getElementById('happyValue').innerText = game.happy;
-    
-    let defNom = (game.defisit/100) * PDB;
-    let growNom = (game.growth/100) * PDB;
-    let infRupiah = (game.inflasi/100) * HARGA_BERAS;
-    document.getElementById('defisitNominal').innerText = '≈ Rp' + formatRp(defNom);
-    document.getElementById('growthNominal').innerText = '≈ +Rp' + formatRp(growNom) + '/thn';
-    document.getElementById('inflasiNominal').innerText = '≈ Rp' + Math.round(infRupiah) + '/kg';
-    
-    setIndicator('indDefisit', game.defisit <= 3);
-    setIndicator('indGrowth', game.growth >= 5);
-    setIndicator('indInflasi', game.inflasi >= 2 && game.inflasi <= 4);
-    setIndicator('indHappy', game.happy >= 65);
-    
-    setTargetChip('targetDefisit', game.defisit <= 3);
-    setTargetChip('targetGrowth', game.growth >= 5);
-    setTargetChip('targetInflasi', game.inflasi >= 2 && game.inflasi <= 4);
-    setTargetChip('targetHappy', game.happy >= 65);
-    
+    let defNom = (game.defisit/100)*PDB, growNom = (game.growth/100)*PDB, infRupiah = (game.inflasi/100)*HARGA_BERAS;
+    document.getElementById('defisitNominal').innerText = '≈ Rp'+formatRp(defNom);
+    document.getElementById('growthNominal').innerText = '≈ +Rp'+formatRp(growNom)+'/thn';
+    document.getElementById('inflasiNominal').innerText = '≈ Rp'+Math.round(infRupiah)+'/kg';
+    const setIndicator = (id, ok) => { let el=document.getElementById(id); ok? (el.classList.add('good'),el.classList.remove('bad')) : (el.classList.add('bad'),el.classList.remove('good')); };
+    setIndicator('indDefisit', game.defisit<=3); setIndicator('indGrowth', game.growth>=5); setIndicator('indInflasi', game.inflasi>=2 && game.inflasi<=4); setIndicator('indHappy', game.happy>=65);
+    const setChip = (id, ok) => { let el=document.getElementById(id); ok? (el.classList.add('ok'),el.classList.remove('no')) : (el.classList.add('no'),el.classList.remove('ok')); };
+    setChip('targetDefisit', game.defisit<=3); setChip('targetGrowth', game.growth>=5); setChip('targetInflasi', game.inflasi>=2 && game.inflasi<=4); setChip('targetHappy', game.happy>=65);
     document.getElementById('undoBtn').disabled = !game.lastState || game.selesai;
   }
-  
-  function setIndicator(id, ok) {
-    let el = document.getElementById(id);
-    if (ok) { el.classList.add('good'); el.classList.remove('bad'); } 
-    else { el.classList.add('bad'); el.classList.remove('good'); }
-  }
-  function setTargetChip(id, ok) {
-    let el = document.getElementById(id);
-    if (ok) { el.classList.add('ok'); el.classList.remove('no'); } 
-    else { el.classList.add('no'); el.classList.remove('ok'); }
-  }
-  function formatRp(angkaTriliun) {
-    return angkaTriliun >= 1000 ? (angkaTriliun/1000).toFixed(1) + ' rb T' : angkaTriliun.toFixed(0) + ' T';
-  }
-  
-  function simpanState() {
-    game.lastState = {
-      tahun: game.tahun,
-      defisit: game.defisit,
-      growth: game.growth,
-      inflasi: game.inflasi,
-      happy: game.happy,
-      riwayat: JSON.parse(JSON.stringify(game.riwayat)),
-      log: [...game.log],
-      selesai: game.selesai
-    };
-  }
-  
-  function refreshChartFromHistory() {
-    let labels = [];
-    for (let i = 1; i <= game.riwayat.def.length; i++) labels.push('Tahun ' + i);
-    chart.data.labels = labels;
-    chart.data.datasets[0].data = [...game.riwayat.gr];
-    chart.data.datasets[1].data = [...game.riwayat.inf];
-    chart.data.datasets[2].data = [...game.riwayat.def];
-    chart.update();
-  }
-  
-  function updateCurrentChartPoint() {
-    let idx = game.tahun - 1;
-    if (idx < chart.data.datasets[0].data.length) {
-      chart.data.datasets[0].data[idx] = game.growth;
-      chart.data.datasets[1].data[idx] = game.inflasi;
-      chart.data.datasets[2].data[idx] = game.defisit;
-      chart.update();
-    }
-  }
-  
-  function updateLog() {
-    let container = document.getElementById('logEntries');
-    if (game.log.length === 0) {
-      container.innerText = '—';
-      return;
-    }
-    // Tampilkan tahun terbaru di atas (reverse)
-    let reversed = [...game.log].reverse();
-    let html = reversed.slice(0, 6).map(l => 
-      `<div style="background:white; margin:6px 0; padding:8px 16px; border-radius:40px;">
-         <i class="fas fa-clock"></i> Tahun ${l.tahun}: ${l.kebijakan}
-       </div>`
-    ).join('');
-    container.innerHTML = html;
-  }
-  
-  // Terapkan efek event acak (tidak dicatat di log)
+  function simpanState() { game.lastState = { tahun:game.tahun, defisit:game.defisit, growth:game.growth, inflasi:game.inflasi, happy:game.happy, riwayat:JSON.parse(JSON.stringify(game.riwayat)), log:[...game.log], selesai:game.selesai }; }
+  function refreshChartFromHistory() { let labels = []; for(let i=1;i<=game.riwayat.def.length;i++) labels.push('Tahun '+i); chart.data.labels = labels; chart.data.datasets[0].data = [...game.riwayat.gr]; chart.data.datasets[1].data = [...game.riwayat.inf]; chart.data.datasets[2].data = [...game.riwayat.def]; chart.update(); }
+  function updateCurrentChartPoint() { let idx=game.tahun-1; if(idx<chart.data.datasets[0].data.length) { chart.data.datasets[0].data[idx]=game.growth; chart.data.datasets[1].data[idx]=game.inflasi; chart.data.datasets[2].data[idx]=game.defisit; chart.update(); } }
+  function updateLog() { let container=document.getElementById('logEntries'); if(game.log.length===0) { container.innerText='—'; return; } let reversed=[...game.log].reverse(); let html=reversed.slice(0,6).map(l=>`<div style="background:white; margin:6px 0; padding:8px 16px; border-radius:40px;"><i class="fas fa-clock"></i> Tahun ${l.tahun}: ${l.kebijakan}</div>`).join(''); container.innerHTML=html; }
   function applyRandomEvent() {
-    const events = [
-      { nama: '🌍 Minyak naik', efek: { inf: 0.5, gr: -0.2 }, pesan: 'Harga minyak dunia melonjak.' },
-      { nama: '🌾 Panen raya', efek: { inf: -0.4, hap: 5 }, pesan: 'Bahan pangan melimpah.' },
-      { nama: '💰 Investasi asing', efek: { gr: 0.4, def: -0.3 }, pesan: 'PMI asing masuk.' }
-    ];
-    let ev = events[Math.floor(Math.random() * events.length)];
-    game.defisit += ev.efek.def || 0;
-    game.growth += ev.efek.gr || 0;
-    game.inflasi += ev.efek.inf || 0;
-    game.happy += ev.efek.hap || 0;
-    // Batasi
-    game.defisit = Math.min(12, Math.max(0, game.defisit));
-    game.growth = Math.min(12, Math.max(-3, game.growth));
-    game.inflasi = Math.min(18, Math.max(0.5, game.inflasi));
-    game.happy = Math.min(100, Math.max(0, game.happy));
-    // Update riwayat untuk tahun berjalan
-    let idx = game.tahun - 1;
-    game.riwayat.def[idx] = game.defisit;
-    game.riwayat.gr[idx] = game.growth;
-    game.riwayat.inf[idx] = game.inflasi;
-    // Tampilkan notifikasi
-    document.getElementById('eventText').innerHTML = `<i class="fas fa-bolt"></i> ${ev.pesan}`;
-    document.getElementById('eventBox').style.display = 'block';
-    // JANGAN tambahkan ke game.log
-    return ev.nama;
-  }
-  
-  function pilihKebijakan(kode) {
-    if (game.tahun > 5 || game.selesai) {
-      showToast('Simulasi sudah selesai. Mulai ulang untuk bermain lagi.', 'error');
-      return;
-    }
-    let kb = kebijakanSemua[kode];
-    if (!kb) return;
-    
-    simpanState();  // simpan sebelum perubahan
-    
-    // Terapkan efek kebijakan
-    game.defisit += kb.efek.def || 0;
-    game.growth += kb.efek.gr || 0;
-    game.inflasi += kb.efek.inf || 0;
-    game.happy += kb.efek.hap || 0;
-    
-    // Batasi nilai
-    game.defisit = Math.min(12, Math.max(0, game.defisit));
-    game.growth = Math.min(12, Math.max(-3, game.growth));
-    game.inflasi = Math.min(18, Math.max(0.5, game.inflasi));
-    game.happy = Math.min(100, Math.max(0, game.happy));
-    
-    // Update riwayat untuk tahun berjalan
-    let idx = game.tahun - 1;
-    game.riwayat.def[idx] = game.defisit;
-    game.riwayat.gr[idx] = game.growth;
-    game.riwayat.inf[idx] = game.inflasi;
-    
-    // Catat kebijakan di log (HANYA kebijakan)
-    game.log.push({ tahun: game.tahun, kebijakan: kb.nama });
-    updateLog();
-    
-    // Tampilkan hint kebijakan
-    document.getElementById('hintText').innerText = kb.hint;
-    document.getElementById('hintBox').style.display = 'block';
-    
-    // Event random (30%) - TIDAK DICATAT DI LOG
-    let eventOccurred = false;
-    if (Math.random() < 0.3) {
-      applyRandomEvent();
-      eventOccurred = true;
-    } else {
-      document.getElementById('eventBox').style.display = 'none';
-    }
-    
-    // Update tampilan indikator dan grafik
-    updateTampilan();
+    const events = [{ nama:'Minyak naik', efek:{ inf:0.5, gr:-0.2 }, pesan:'Harga minyak dunia melonjak.' },{ nama:'Panen raya', efek:{ inf:-0.4, hap:5 }, pesan:'Bahan pangan melimpah.' },{ nama:'Investasi asing', efek:{ gr:0.4, def:-0.3 }, pesan:'PMI asing masuk.' }];
+    let ev = events[Math.floor(Math.random()*events.length)];
+    game.defisit += ev.efek.def||0; game.growth += ev.efek.gr||0; game.inflasi += ev.efek.inf||0; game.happy += ev.efek.hap||0;
+    game.defisit = Math.min(12, Math.max(0, game.defisit)); game.growth = Math.min(12, Math.max(-3, game.growth)); game.inflasi = Math.min(18, Math.max(0.5, game.inflasi)); game.happy = Math.min(100, Math.max(0, game.happy));
+    let idx = game.tahun-1; game.riwayat.def[idx]=game.defisit; game.riwayat.gr[idx]=game.growth; game.riwayat.inf[idx]=game.inflasi;
     updateCurrentChartPoint();
-    
-    // Disable tombol kebijakan sampai lanjut tahun
-    document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = true);
-    document.getElementById('nextBtn').disabled = false;
+    document.getElementById('eventText').innerHTML = `<i class="fas fa-bolt"></i> ${ev.pesan}`; document.getElementById('eventBox').style.display='block';
   }
-  
+  function pilihKebijakan(kode) {
+    if(game.tahun>5||game.selesai) { showToast('Simulasi selesai. Mulai ulang.','error'); return; }
+    let kb = kebijakanSemua[kode]; if(!kb) return;
+    simpanState();
+    game.defisit += kb.efek.def||0; game.growth += kb.efek.gr||0; game.inflasi += kb.efek.inf||0; game.happy += kb.efek.hap||0;
+    game.defisit = Math.min(12, Math.max(0, game.defisit)); game.growth = Math.min(12, Math.max(-3, game.growth)); game.inflasi = Math.min(18, Math.max(0.5, game.inflasi)); game.happy = Math.min(100, Math.max(0, game.happy));
+    let idx = game.tahun-1; game.riwayat.def[idx]=game.defisit; game.riwayat.gr[idx]=game.growth; game.riwayat.inf[idx]=game.inflasi;
+    game.log.push({ tahun:game.tahun, kebijakan:kb.nama }); updateLog();
+    document.getElementById('hintText').innerText = kb.hint; document.getElementById('hintBox').style.display='block';
+    if(Math.random()<0.3) applyRandomEvent(); else document.getElementById('eventBox').style.display='none';
+    updateTampilan(); updateCurrentChartPoint();
+    document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=true); document.getElementById('nextBtn').disabled=false;
+  }
   function lanjutTahun() {
-    if (game.tahun > 5 || game.selesai) return;
-    if (game.tahun === 5) {
-      game.selesai = true;
-      tampilkanHasil();
-      document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = true);
-      document.getElementById('nextBtn').disabled = true;
-      document.getElementById('undoBtn').disabled = !game.lastState;
+    if(game.tahun>5||game.selesai) return;
+    if(game.tahun===5) {
+      game.selesai=true; tampilkanHasil(); updateTampilan();
+      document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=true); document.getElementById('nextBtn').disabled=true; document.getElementById('undoBtn').disabled=!game.lastState;
       return;
     }
-    
-    // Push nilai saat ini sebagai awal tahun berikutnya
-    game.riwayat.def.push(game.defisit);
-    game.riwayat.gr.push(game.growth);
-    game.riwayat.inf.push(game.inflasi);
-    
-    chart.data.labels.push('Tahun ' + (game.tahun + 1));
-    chart.data.datasets[0].data.push(game.growth);
-    chart.data.datasets[1].data.push(game.inflasi);
-    chart.data.datasets[2].data.push(game.defisit);
-    chart.update();
-    
+    game.riwayat.def.push(game.defisit); game.riwayat.gr.push(game.growth); game.riwayat.inf.push(game.inflasi);
+    chart.data.labels.push('Tahun '+(game.tahun+1)); chart.data.datasets[0].data.push(game.growth); chart.data.datasets[1].data.push(game.inflasi); chart.data.datasets[2].data.push(game.defisit); chart.update();
     game.tahun++;
-    
-    document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = false);
-    document.getElementById('nextBtn').disabled = true;
-    document.getElementById('hintBox').style.display = 'none';
-    document.getElementById('eventBox').style.display = 'none';
-    updateTampilan();
+    document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=false); document.getElementById('nextBtn').disabled=true; document.getElementById('hintBox').style.display='none'; document.getElementById('eventBox').style.display='none'; updateTampilan();
   }
+  function undo() { if(!game.lastState||game.selesai) return; game.tahun=game.lastState.tahun; game.defisit=game.lastState.defisit; game.growth=game.lastState.growth; game.inflasi=game.lastState.inflasi; game.happy=game.lastState.happy; game.riwayat=JSON.parse(JSON.stringify(game.lastState.riwayat)); game.log=[...game.lastState.log]; game.selesai=game.lastState.selesai; refreshChartFromHistory(); document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=false); document.getElementById('nextBtn').disabled=true; document.getElementById('hintBox').style.display='none'; document.getElementById('eventBox').style.display='none'; document.getElementById('resultPanel').classList.remove('show'); updateLog(); updateTampilan(); if(game.tahun>5||game.selesai) { document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=true); document.getElementById('nextBtn').disabled=true; if(game.selesai) tampilkanHasil(); } }
+  function tampilkanHasil() { let d=game.defisit, g=game.growth, i=game.inflasi, h=game.happy, nama=document.getElementById('inputNama').value||'User', kelas=document.getElementById('inputKelas').value||'Kelas'; let skor = (d<=3?25:0)+(g>=5?25:0)+(i>=2&&i<=4?25:0)+(h>=65?25:0); document.getElementById('resultPanel').innerHTML = `<h2><i class="fas fa-graduation-cap"></i> ${escapeHtml(nama)} (${escapeHtml(kelas)}) — Simulasi selesai</h2><div style="background:white; border-radius:40px; padding:20px; margin-top:15px;"><p>📉 Defisit ${d.toFixed(1)}% (${d<=3?'✅':'❌'}) ≈ Rp${formatRp((d/100)*PDB)}</p><p>📈 Growth ${g.toFixed(1)}% (${g>=5?'✅':'❌'}) ≈ +Rp${formatRp((g/100)*PDB)}/thn</p><p>💹 Inflasi ${i.toFixed(1)}% (${i>=2&&i<=4?'✅':'❌'}) ≈ +Rp${Math.round((i/100)*HARGA_BERAS)}/kg</p><p>😊 Kepuasan ${h} (${h>=65?'✅':'❌'})</p><h3>⭐ Skor: ${skor}/100</h3></div>`; document.getElementById('resultPanel').classList.add('show'); }
+  function renderPolicyButtons() { let pilihan=document.getElementById('selectJumlahKebijakan').value; let kodeList = pilihan==='7'?list7:list9; let container=document.getElementById('policyContainer'); container.innerHTML=''; kodeList.forEach(kode=>{ let kb=kebijakanSemua[kode]; if(!kb) return; let btn=document.createElement('button'); btn.className=`policy-btn ${kb.type}`; btn.setAttribute('onclick',`pilihKebijakan('${kode}')`); btn.innerHTML=`<h4>${kb.nama}</h4><small>${kb.hint}</small>`; container.appendChild(btn); }); if(!game.selesai && game.tahun<=5) { if(document.getElementById('nextBtn').disabled) document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=false); else document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=true); } else document.querySelectorAll('.policy-btn').forEach(btn=>btn.disabled=true); }
+  function syncUserData() { let nama=document.getElementById('inputNama').value||'User'; let kelas=document.getElementById('inputKelas').value||'Kelas'; document.getElementById('headerNama').innerHTML=`<i class="fas fa-user"></i> ${escapeHtml(nama)}`; document.getElementById('headerKelas').innerHTML=`<i class="fas fa-school"></i> Kelas ${escapeHtml(kelas)}`; }
+  function mulaiUlang() { game = { tahun:1, defisit:3.0, growth:5.0, inflasi:3.0, happy:70, riwayat:{ def:[3.0], gr:[5.0], inf:[3.0] }, log:[], lastState:null, selesai:false }; chart.data.labels=['Tahun 1']; chart.data.datasets[0].data=[5.0]; chart.data.datasets[1].data=[3.0]; chart.data.datasets[2].data=[3.0]; chart.update(); renderPolicyButtons(); document.getElementById('nextBtn').disabled=true; document.getElementById('hintBox').style.display='none'; document.getElementById('eventBox').style.display='none'; document.getElementById('resultPanel').classList.remove('show'); updateLog(); updateTampilan(); }
   
-  function undo() {
-    if (!game.lastState || game.selesai) return;
-    game.tahun = game.lastState.tahun;
-    game.defisit = game.lastState.defisit;
-    game.growth = game.lastState.growth;
-    game.inflasi = game.lastState.inflasi;
-    game.happy = game.lastState.happy;
-    game.riwayat = JSON.parse(JSON.stringify(game.lastState.riwayat));
-    game.log = [...game.lastState.log];
-    game.selesai = game.lastState.selesai;
-    
-    refreshChartFromHistory();
-    
-    document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = false);
-    document.getElementById('nextBtn').disabled = true;
-    document.getElementById('hintBox').style.display = 'none';
-    document.getElementById('eventBox').style.display = 'none';
-    document.getElementById('resultPanel').classList.remove('show');
-    updateLog();
-    updateTampilan();
-    
-    if (game.tahun > 5 || game.selesai) {
-      document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = true);
-      document.getElementById('nextBtn').disabled = true;
-      if (game.selesai) tampilkanHasil();
-    }
-  }
-  
-  function tampilkanHasil() {
-    let d = game.defisit, g = game.growth, i = game.inflasi, h = game.happy;
-    let nama = document.getElementById('inputNama').value || 'User';
-    let kelas = document.getElementById('inputKelas').value || 'Kelas';
-    let skor = (d <= 3 ? 25 : 0) + (g >= 5 ? 25 : 0) + (i >= 2 && i <= 4 ? 25 : 0) + (h >= 65 ? 25 : 0);
-    document.getElementById('resultPanel').innerHTML = `
-      <h2><i class="fas fa-graduation-cap"></i> ${escapeHtml(nama)} (${escapeHtml(kelas)}) — Simulasi selesai</h2>
-      <div style="background:white; border-radius:40px; padding:20px; margin-top:15px;">
-        <p>📉 Defisit ${d.toFixed(1)}% (${d <= 3 ? '✅' : '❌'}) ≈ Rp${formatRp((d/100)*PDB)}</p>
-        <p>📈 Growth ${g.toFixed(1)}% (${g >= 5 ? '✅' : '❌'}) ≈ +Rp${formatRp((g/100)*PDB)}/thn</p>
-        <p>💹 Inflasi ${i.toFixed(1)}% (${i >= 2 && i <= 4 ? '✅' : '❌'}) ≈ +Rp${Math.round((i/100)*HARGA_BERAS)}/kg</p>
-        <p>😊 Kepuasan ${h} (${h >= 65 ? '✅' : '❌'})</p>
-        <h3>⭐ Skor: ${skor}/100</h3>
-      </div>
-    `;
-    document.getElementById('resultPanel').classList.add('show');
-  }
-  
-  function renderPolicyButtons() {
-    let pilihan = document.getElementById('selectJumlahKebijakan').value;
-    let kodeList = pilihan === '7' ? list7 : list9;
-    let container = document.getElementById('policyContainer');
-    container.innerHTML = '';
-    kodeList.forEach(kode => {
-      let kb = kebijakanSemua[kode];
-      if (!kb) return;
-      let btn = document.createElement('button');
-      btn.className = `policy-btn ${kb.type}`;
-      btn.setAttribute('onclick', `pilihKebijakan('${kode}')`);
-      btn.innerHTML = `<h4>${kb.nama}</h4><small>${kb.hint}</small>`;
-      container.appendChild(btn);
-    });
-    if (!game.selesai && game.tahun <= 5) {
-      if (document.getElementById('nextBtn').disabled) {
-        document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = false);
-      } else {
-        document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = true);
-      }
-    } else {
-      document.querySelectorAll('.policy-btn').forEach(btn => btn.disabled = true);
-    }
-  }
-  
-  function syncUserData() {
-    let nama = document.getElementById('inputNama').value || 'User';
-    let kelas = document.getElementById('inputKelas').value || 'Kelas';
-    document.getElementById('headerNama').innerHTML = `<i class="fas fa-user"></i> ${escapeHtml(nama)}`;
-    document.getElementById('headerKelas').innerHTML = `<i class="fas fa-school"></i> Kelas ${escapeHtml(kelas)}`;
-  }
-  
-  function mulaiUlang() {
-    game = {
-      tahun: 1,
-      defisit: 3.0,
-      growth: 5.0,
-      inflasi: 3.0,
-      happy: 70,
-      riwayat: { def: [3.0], gr: [5.0], inf: [3.0] },
-      log: [],
-      lastState: null,
-      selesai: false
-    };
-    chart.data.labels = ['Tahun 1'];
-    chart.data.datasets[0].data = [5.0];
-    chart.data.datasets[1].data = [3.0];
-    chart.data.datasets[2].data = [3.0];
-    chart.update();
-    
-    renderPolicyButtons();
-    document.getElementById('nextBtn').disabled = true;
-    document.getElementById('hintBox').style.display = 'none';
-    document.getElementById('eventBox').style.display = 'none';
-    document.getElementById('resultPanel').classList.remove('show');
-    updateLog();
-    updateTampilan();
-  }
-  
+  // ==================== EXPORT PDF (DIPERBAIKI) ====================
   function exportPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    let nama = document.getElementById('inputNama').value || 'User';
-    let kelas = document.getElementById('inputKelas').value || 'Kelas';
+    let nama = document.getElementById('inputNama').value.trim() || 'User';
+    let kelas = document.getElementById('inputKelas').value.trim() || 'Kelas';
     let tgl = new Date().toLocaleDateString('id-ID');
+    // Bersihkan karakter aneh: hapus emoji dan karakter non-ASCII yang tidak didukung
+    const cleanText = (str) => str.replace(/[^\x00-\x7F]/g, '').replace(/[\u{1F600}-\u{1F6FF}]/gu, '').trim();
+    let cleanNama = cleanText(nama);
+    let cleanKelas = cleanText(kelas);
     doc.setFontSize(16);
-    doc.text(`Laporan Simulasi Ekonomi - ${nama} (${kelas})`, 105, 20, null, null, 'center');
+    doc.text(`Laporan Simulasi Ekonomi - ${cleanNama} (${cleanKelas})`, 105, 20, null, null, 'center');
     doc.setFontSize(10);
     doc.text(`Tanggal: ${tgl} | Tahun ${game.tahun > 5 ? 'Selesai' : game.tahun + '/5'}`, 105, 30, null, null, 'center');
     doc.text(`PDB: Rp20.000 T | Inflasi acuan beras Rp12.000/kg`, 105, 36, null, null, 'center');
@@ -1037,158 +282,45 @@
     doc.text(`• Kepuasan ${game.happy}/100`, 20, 82);
     doc.text('Riwayat kebijakan (hanya yang dipilih):', 20, 98);
     let y = 106;
+    // Bersihkan nama kebijakan dari emoji
     game.log.slice(-8).forEach((ev, idx) => {
       if (y > 270) { doc.addPage(); y = 20; }
-      doc.text(`${idx+1}. Tahun ${ev.tahun}: ${ev.kebijakan}`, 20, y);
+      let cleanPolicy = cleanText(ev.kebijakan);
+      doc.text(`${idx+1}. Tahun ${ev.tahun}: ${cleanPolicy}`, 20, y);
       y += 6;
     });
-    doc.save(`Simulasi_${nama}_${kelas}.pdf`);
+    doc.save(`Simulasi_${cleanNama}_${cleanKelas}.pdf`);
   }
   
-  function togglePanduan() {
-    let c = document.getElementById('panduanContent');
-    let t = document.getElementById('panduanToggle');
-    c.classList.toggle('show');
-    t.innerText = c.classList.contains('show') ? '▲ tutup' : '▼ buka';
-  }
-  const modalContent = {
-    defisit: { judul: 'Defisit APBN', isi: '<p>Defisit ≤3% PDB. 3% = Rp600 T. Utang negara bertambah jika defisit tinggi.</p>' },
-    growth: { judul: 'Pertumbuhan Ekonomi', isi: '<p>Target ≥5% = +Rp1.000 T/thn. Mencerminkan kenaikan produksi.</p>' },
-    inflasi: { judul: 'Inflasi', isi: '<p>Target 2-4%. 3% = harga beras naik Rp360/kg. Daya beli terjaga.</p>' },
-    happy: { judul: 'Kepuasan Publik', isi: '<p>Skor 0-100, target ≥65. Dipengaruhi harga & lapangan kerja.</p>' }
-  };
-  function bukaModal(k) {
-    let m = modalContent[k];
-    if (!m) return;
-    document.getElementById('modalTitle').innerText = m.judul;
-    document.getElementById('modalBody').innerHTML = m.isi;
-    document.getElementById('modalPenjelasan').classList.add('show');
-  }
-  function tutupModal() {
-    document.getElementById('modalPenjelasan').classList.remove('show');
-  }
-  
-  // ========== FORUM SCRIPT (Apps Script) ==========
+  // ==================== FORUM & UTILITY ====================
   const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7FWrFd7v2I9glOXD0Iw9y4jDWXO7U5EBJWPDESkV54J8E90ZhxNMJqIx1WK7pdj7p/exec";
-  let forumComments = [];
-  let forumLoading = false;
+  let forumComments = [], forumLoading = false, forumInterval = null;
   const badWords = ["anjing","bodoh","tolol","bangsat","kampret","kontol","memek","ngentot","fuck","shit"];
-  
-  async function fetchCommentsFromSheet() {
-    if (forumLoading) return;
-    forumLoading = true;
-    try {
-      const res = await fetch(`${APPSCRIPT_URL}?action=getComments`);
-      const data = await res.json();
-      forumComments = data || [];
-      displayForumComments(forumComments);
-      updateForumStats();
-    } catch(e) { console.error(e); showToast('Gagal ambil komentar','error'); }
-    forumLoading = false;
-  }
-  
-  function displayForumComments(comments) {
-    const container = document.getElementById('forumCommentList');
-    if (!comments || comments.length === 0) {
-      container.innerHTML = '<div class="empty-state"><i class="fas fa-comment-slash"></i><h3>Belum ada komentar</h3><p>Jadilah yang pertama!</p></div>';
-      return;
-    }
-    let html = '';
-    comments.forEach(c => {
-      const initials = (c.name || 'AN').substring(0,2).toUpperCase();
-      const timeAgo = getTimeAgo(new Date(c.timestamp));
-      const liked = checkLikedLocally(c.row);
-      html += `<div class="comment-card">
-        <div class="comment-header">
-          <div class="user-info">
-            <div class="avatar">${escapeHtml(initials)}</div>
-            <div>
-              <div class="user-name">${escapeHtml(c.name || 'Anonymous')}</div>
-              <div class="user-class"><i class="fas fa-graduation-cap"></i> ${escapeHtml(c.kelas || 'Kelas')}</div>
-            </div>
-          </div>
-          <div class="comment-time">${timeAgo}</div>
-        </div>
-        <div class="comment-content">${escapeHtml(c.comment || '').replace(/\n/g, '<br>')}</div>
-        <div>
-          <button class="like-button ${liked ? 'liked' : ''}" onclick="likeComment(${c.row})" ${liked ? 'disabled' : ''}>
-            <i class="fas fa-heart"></i> <span class="like-count">${c.likes || 0}</span> Suka
-          </button>
-        </div>
-      </div>`;
-    });
-    container.innerHTML = html;
-  }
-  
-  async function sendForumComment() {
-    const name = document.getElementById('forumName').value.trim();
-    const kelas = document.getElementById('forumKelas').value.trim();
-    const comment = document.getElementById('forumComment').value.trim();
-    const btn = document.getElementById('sendCommentBtn');
-    if (!name || !kelas || !comment) { showToast('Semua field harus diisi','error'); return; }
-    if (name.length < 2) { showToast('Nama terlalu pendek','error'); return; }
-    let text = comment.toLowerCase();
-    if (badWords.some(w => text.includes(w))) { showToast('Komentar mengandung kata tidak pantas','error'); return; }
-    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-    try {
-      const formData = new URLSearchParams();
-      formData.append('action','addComment');
-      formData.append('name',name);
-      formData.append('kelas',kelas);
-      formData.append('comment',comment);
-      const res = await fetch(APPSCRIPT_URL, { method:'POST', body:formData });
-      await res.json();
-      document.getElementById('forumName').value = '';
-      document.getElementById('forumKelas').value = '';
-      document.getElementById('forumComment').value = '';
-      await fetchCommentsFromSheet();
-      showToast('Komentar terkirim!','success');
-    } catch(e) { showToast('Gagal kirim komentar','error'); }
-    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Komentar';
-  }
-  
-  async function likeComment(row) {
-    const btn = document.querySelector(`.like-button[onclick="likeComment(${row})"]`);
-    if (!btn || btn.disabled) return;
-    btn.disabled = true;
-    try {
-      const formData = new URLSearchParams();
-      formData.append('action','likeComment');
-      formData.append('row',row);
-      await fetch(APPSCRIPT_URL, { method:'POST', body:formData });
-      saveLikeLocally(row);
-      await fetchCommentsFromSheet();
-      showToast('👍 Menyukai komentar','success');
-    } catch(e) { showToast('Gagal like','error'); btn.disabled = false; }
-  }
-  
-  function saveLikeLocally(row) { let liked = JSON.parse(localStorage.getItem('forumLikes')||'[]'); if (!liked.includes(row)) { liked.push(row); localStorage.setItem('forumLikes',JSON.stringify(liked)); } }
-  function checkLikedLocally(row) { let liked = JSON.parse(localStorage.getItem('forumLikes')||'[]'); return liked.includes(row); }
-  function searchForumComments() { const keyword = document.getElementById('searchForum').value.toLowerCase().trim(); if (!keyword) displayForumComments(forumComments); else displayForumComments(forumComments.filter(c => (c.comment||'').toLowerCase().includes(keyword) || (c.name||'').toLowerCase().includes(keyword) || (c.kelas||'').toLowerCase().includes(keyword))); }
-  function updateForumStats() { document.getElementById('totalComments').innerText = forumComments.length; const totalLikes = forumComments.reduce((s,c) => s + (c.likes||0), 0); document.getElementById('totalLikes').innerText = totalLikes; }
-  function getTimeAgo(date) { try { let sec = Math.floor((new Date() - date)/1000); if (sec < 60) return 'baru saja'; let min = Math.floor(sec/60); if (min < 60) return min + ' menit lalu'; let jam = Math.floor(min/60); if (jam < 24) return jam + ' jam lalu'; let hari = Math.floor(jam/24); if (hari < 30) return hari + ' hari lalu'; let bln = Math.floor(hari/30); if (bln < 12) return bln + ' bulan lalu'; return Math.floor(bln/12) + ' tahun lalu'; } catch(e) { return 'baru saja'; } }
-  function escapeHtml(str) { if (!str) return ''; const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
-  function showToast(msg, type) { const toast = document.createElement('div'); toast.className = 'toast'; toast.innerHTML = `<i class="fas ${type==='success'?'fa-check-circle':'fa-exclamation-circle'}"></i><span>${escapeHtml(msg)}</span>`; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
-  
-  setInterval(() => { if (!forumLoading) fetchCommentsFromSheet(); }, 8000);
-  
+  async function fetchCommentsFromSheet() { if(forumLoading) return; forumLoading=true; try { const res=await fetch(`${APPSCRIPT_URL}?action=getComments`); const data=await res.json(); forumComments=data||[]; displayForumComments(forumComments); updateForumStats(); } catch(e){ console.error(e); showToast('Gagal ambil komentar','error'); } forumLoading=false; }
+  function displayForumComments(comments) { const container=document.getElementById('forumCommentList'); if(!comments||comments.length===0){ container.innerHTML='<div class="empty-state"><i class="fas fa-comment-slash"></i><h3>Belum ada komentar</h3><p>Jadilah yang pertama!</p></div>'; return; } let html=''; comments.forEach(c=>{ const initials=(c.name||'AN').substring(0,2).toUpperCase(); const timeAgo=getTimeAgo(new Date(c.timestamp)); const liked=checkLikedLocally(c.row); html+=`<div class="comment-card"><div class="comment-header"><div class="user-info"><div class="avatar">${escapeHtml(initials)}</div><div><div class="user-name">${escapeHtml(c.name||'Anonymous')}</div><div class="user-class"><i class="fas fa-graduation-cap"></i> ${escapeHtml(c.kelas||'Kelas')}</div></div></div><div class="comment-time">${timeAgo}</div></div><div class="comment-content">${escapeHtml(c.comment||'').replace(/\n/g,'<br>')}</div><div><button class="like-button ${liked?'liked':''}" onclick="likeComment(${c.row})" ${liked?'disabled':''}><i class="fas fa-heart"></i> <span class="like-count">${c.likes||0}</span> Suka</button></div></div>`; }); container.innerHTML=html; }
+  async function sendForumComment() { const name=document.getElementById('forumName').value.trim(); const kelas=document.getElementById('forumKelas').value.trim(); const comment=document.getElementById('forumComment').value.trim(); const btn=document.getElementById('sendCommentBtn'); if(!name||!kelas||!comment){ showToast('Semua field harus diisi','error'); return; } if(name.length<2){ showToast('Nama terlalu pendek','error'); return; } if(badWords.some(w=>comment.toLowerCase().includes(w))){ showToast('Komentar mengandung kata tidak pantas','error'); return; } btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Mengirim...'; try { const formData=new URLSearchParams(); formData.append('action','addComment'); formData.append('name',name); formData.append('kelas',kelas); formData.append('comment',comment); await fetch(APPSCRIPT_URL,{ method:'POST', body:formData }); document.getElementById('forumName').value=''; document.getElementById('forumKelas').value=''; document.getElementById('forumComment').value=''; await fetchCommentsFromSheet(); showToast('Komentar terkirim!','success'); } catch(e){ showToast('Gagal kirim komentar','error'); } btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Kirim Komentar'; }
+  async function likeComment(row) { const btn=document.querySelector(`.like-button[onclick="likeComment(${row})"]`); if(!btn||btn.disabled) return; btn.disabled=true; try { const formData=new URLSearchParams(); formData.append('action','likeComment'); formData.append('row',row); await fetch(APPSCRIPT_URL,{ method:'POST', body:formData }); saveLikeLocally(row); await fetchCommentsFromSheet(); showToast('👍 Menyukai komentar','success'); } catch(e){ showToast('Gagal like','error'); btn.disabled=false; } }
+  function saveLikeLocally(row) { let liked=JSON.parse(localStorage.getItem('forumLikes')||'[]'); if(!liked.includes(row)){ liked.push(row); localStorage.setItem('forumLikes',JSON.stringify(liked)); } }
+  function checkLikedLocally(row) { let liked=JSON.parse(localStorage.getItem('forumLikes')||'[]'); return liked.includes(row); }
+  function searchForumComments() { const keyword=document.getElementById('searchForum').value.toLowerCase().trim(); if(!keyword) displayForumComments(forumComments); else displayForumComments(forumComments.filter(c=>(c.comment||'').toLowerCase().includes(keyword)||(c.name||'').toLowerCase().includes(keyword)||(c.kelas||'').toLowerCase().includes(keyword))); }
+  function updateForumStats() { document.getElementById('totalComments').innerText=forumComments.length; const totalLikes=forumComments.reduce((s,c)=>s+(c.likes||0),0); document.getElementById('totalLikes').innerText=totalLikes; }
+  function getTimeAgo(date) { try { let sec=Math.floor((new Date()-date)/1000); if(sec<60) return 'baru saja'; let min=Math.floor(sec/60); if(min<60) return min+' menit lalu'; let jam=Math.floor(min/60); if(jam<24) return jam+' jam lalu'; let hari=Math.floor(jam/24); if(hari<30) return hari+' hari lalu'; let bln=Math.floor(hari/30); if(bln<12) return bln+' bulan lalu'; return Math.floor(bln/12)+' tahun lalu'; } catch(e){ return 'baru saja'; } }
+  function escapeHtml(str) { if(!str) return ''; const div=document.createElement('div'); div.textContent=str; return div.innerHTML; }
+  function showToast(msg,type) { const toast=document.createElement('div'); toast.className='toast'; toast.innerHTML=`<i class="fas ${type==='success'?'fa-check-circle':'fa-exclamation-circle'}"></i><span>${escapeHtml(msg)}</span>`; document.body.appendChild(toast); setTimeout(()=>toast.remove(),3000); }
+  function togglePanduan() { let c=document.getElementById('panduanContent'); let t=document.getElementById('panduanToggle'); c.classList.toggle('show'); t.innerText=c.classList.contains('show')?'▲ tutup':'▼ buka'; }
+  const modalContent={ defisit:{ judul:'Defisit APBN', isi:'<p>Defisit ≤3% PDB. 3% = Rp600 T. Utang negara bertambah jika defisit tinggi.</p>' }, growth:{ judul:'Pertumbuhan Ekonomi', isi:'<p>Target ≥5% = +Rp1.000 T/thn. Mencerminkan kenaikan produksi.</p>' }, inflasi:{ judul:'Inflasi', isi:'<p>Target 2-4%. 3% = harga beras naik Rp360/kg. Daya beli terjaga.</p>' }, happy:{ judul:'Kepuasan Publik', isi:'<p>Skor 0-100, target ≥65. Dipengaruhi harga & lapangan kerja.</p>' } };
+  function bukaModal(k) { let m=modalContent[k]; if(!m) return; document.getElementById('modalTitle').innerText=m.judul; document.getElementById('modalBody').innerHTML=m.isi; document.getElementById('modalPenjelasan').classList.add('show'); }
+  function tutupModal() { document.getElementById('modalPenjelasan').classList.remove('show'); }
+
   window.onload = function() {
-    initChart();
-    renderPolicyButtons();
-    syncUserData();
-    updateTampilan();
-    updateLog();
-    fetchCommentsFromSheet();
-    
-    document.getElementById('selectJumlahKebijakan').addEventListener('change', () => {
-      if (game.log.length > 0 && confirm('Mengubah jumlah kebijakan akan merestart simulasi. Lanjutkan?')) {
-        mulaiUlang();
-      }
-      renderPolicyButtons();
-    });
-    document.getElementById('inputNama').addEventListener('input', syncUserData);
-    document.getElementById('inputKelas').addEventListener('input', syncUserData);
+    initChart(); renderPolicyButtons(); syncUserData(); updateTampilan(); updateLog(); fetchCommentsFromSheet();
+    const kebijakanSelect = document.getElementById('selectJumlahKebijakan');
+    let previousKebijakanValue = kebijakanSelect.value;
+    kebijakanSelect.addEventListener('change', (e) => { let newValue = e.target.value; if(game.log.length===0 || confirm('Mengubah jumlah kebijakan akan merestart simulasi. Lanjutkan?')){ mulaiUlang(); previousKebijakanValue=newValue; renderPolicyButtons(); } else { kebijakanSelect.value=previousKebijakanValue; } });
+    document.getElementById('inputNama').addEventListener('input', syncUserData); document.getElementById('inputKelas').addEventListener('input', syncUserData);
+    if(forumInterval) clearInterval(forumInterval); forumInterval = setInterval(()=>{ if(!forumLoading) fetchCommentsFromSheet(); }, 8000);
   };
+  window.addEventListener('beforeunload', ()=>{ if(forumInterval) clearInterval(forumInterval); });
 </script>
 </body>
 </html>
