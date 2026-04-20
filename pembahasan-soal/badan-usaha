@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soal 1: Jenis Badan Usaha | Ekonomi Kelas XI</title>
+  <!-- Link ke CSS utama dengan path relatif -->
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    /* Style khusus halaman soal */
+    .soal-detail { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .soal-text { font-size: 1.1rem; line-height: 1.8; margin: 1.5rem 0; }
+    .pembahasan { background: #f0f9ff; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2563eb; margin: 1.5rem 0; }
+    .pembahasan h4 { color: var(--primary); margin-bottom: 0.5rem; }
+    .btn-nav { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; margin: 0.5rem 0.25rem; }
+    .btn-nav.secondary { background: var(--gray); }
+    .btn-nav:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <!-- Header sederhana -->
+  <header style="background: var(--gradient-primary); color: white; padding: 1rem 2rem;">
+    <a href="../../../index.html#pembahasan-soal" style="color: white; text-decoration: none;">
+      <i class="fas fa-arrow-left"></i> Kembali ke Daftar Soal
+    </a>
+  </header>
+
+  <main class="soal-detail">
+    <h1>Soal 1: Jenis Badan Usaha</h1>
+    <p style="color: var(--gray);">Bab: Badan Usaha | Tingkat: Mudah</p>
+    
+    <div class="soal-text">
+      <strong>Pertanyaan:</strong><br>
+      Sebutkan 3 ciri-ciri BUMN (Badan Usaha Milik Negara) dan berikan masing-masing 1 contoh perusahaan BUMN di Indonesia!
+    </div>
+
+    <details class="pembahasan">
+      <summary style="cursor: pointer; font-weight: 600; color: var(--primary);">
+        <i class="fas fa-lightbulb"></i> Klik untuk Lihat Pembahasan
+      </summary>
+      <div style="margin-top: 1rem;">
+        <p><strong>Jawaban:</strong></p>
+        <ol>
+          <li><strong>Modal seluruhnya/sebagian besar milik negara</strong><br>Contoh: PT PLN (Persero)</li>
+          <li><strong>Tujuan utama melayani kepentingan publik</strong><br>Contoh: PT Kereta Api Indonesia</li>
+          <li><strong>Diawasi oleh pemerintah melalui Kementerian BUMN</strong><br>Contoh: PT Pertamina (Persero)</li>
+        </ol>
+        <p style="margin-top: 1rem; font-style: italic; color: var(--gray);">
+          💡 Tips: Hafalkan singkatan "MoTuDi" = Modal, Tujuan, Diawasi untuk mengingat ciri BUMN!
+        </p>
+      </div>
+    </details>
+
+    <!-- Navigasi Soal -->
+    <div style="margin: 2rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+      <a href="index.html" class="btn-nav secondary">
+        <i class="fas fa-list"></i> Daftar Soal Bab Ini
+      </a>
+      <a href="soal-2.html" class="btn-nav">
+        Soal Berikutnya <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <!-- Tombol Tandai Selesai -->
+    <div style="text-align: center; margin-top: 2rem;">
+      <button class="action-btn" onclick="markAsDone('soal-bu-1')" style="max-width: 300px;">
+        <i class="fas fa-check-circle"></i> Saya Sudah Paham
+      </button>
+    </div>
+  </main>
+
+  <script>
+    // Fungsi sederhana untuk menandai soal selesai (menggunakan localStorage)
+    function markAsDone(soalId) {
+      let progress = JSON.parse(localStorage.getItem('progress_pembahasan-soal')) || {};
+      progress[soalId] = true;
+      localStorage.setItem('progress_pembahasan-soal', JSON.stringify(progress));
+      
+      // Feedback visual
+      alert('✅ Soal ditandai sebagai selesai! Progress akan tersimpan.');
+      
+      // Opsional: Kembali ke daftar soal
+      // window.location.href = 'index.html';
+    }
+
+    // Cek jika soal sudah pernah ditandai
+    document.addEventListener('DOMContentLoaded', () => {
+      const soalId = 'soal-bu-1'; // Sesuaikan dengan ID soal ini
+      let progress = JSON.parse(localStorage.getItem('progress_pembahasan-soal')) || {};
+      if (progress[soalId]) {
+        document.querySelector('.action-btn').innerHTML = '<i class="fas fa-check"></i> Sudah Dipahami';
+        document.querySelector('.action-btn').disabled = true;
+        document.querySelector('.action-btn').style.opacity = '0.7';
+      }
+    });
+  </script>
+</body>
+</html>
