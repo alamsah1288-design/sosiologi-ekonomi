@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Ujian Sosiologi Bab 3 - Berbasis Kasus (30 Soal)</title>
+<!-- Font & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Library PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --success: #2ecc71;
+    --warning: #f1c40f;
+    --bg: #f4f6f7;
+}
+
+* { box-sizing: border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    margin: 0; padding: 0; color: #333;
+    user-select: none; -webkit-user-select: none;
+}
+
+/* Security Overlay */
+#security-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); z-index: 9999; color: white;
+    flex-direction: column; justify-content: center; align-items: center; text-align: center;
+}
+
+/* Header */
+.exam-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white; padding: 1rem; position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.timer-box {
+    background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold;
+}
+
+/* Container */
+.container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+
+/* Login & Result */
+#login-screen, #result-screen {
+    background: white; padding: 2rem; border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center;
+    margin-top: 2rem;
+}
+.form-group { margin-bottom: 1rem; text-align: left; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+.form-group input, .form-group select {
+    width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;
+}
+.btn-start {
+    background: var(--secondary); color: white; border: none; padding: 1rem 3rem;
+    font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%;
+    transition: 0.3s;
+}
+.btn-start:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+
+/* Quiz */
+.question-card {
+    background: white; border-radius: 12px; padding: 1.5rem;
+    margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--secondary); display: none;
+}
+.q-badge {
+    display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
+    font-size: 0.75rem; font-weight: bold; margin-bottom: 0.5rem; color: white;
+}
+.badge-pg { background: var(--secondary); }
+.badge-complex { background: var(--warning); color: #333; }
+.badge-match { background: var(--accent); }
+
+.q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.6; }
+.case-box {
+    background: #fff3cd; border-left: 4px solid var(--warning);
+    padding: 1rem; margin-bottom: 1rem; font-size: 0.95rem; border-radius: 4px;
+}
+
+/* Options */
+.option-label {
+    display: flex; align-items: center; padding: 1rem; border: 2px solid #e0e0e0;
+    border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 0.5rem;
+}
+.option-label:hover { background: #f9f9f9; border-color: var(--secondary); }
+input[type="radio"], input[type="checkbox"] { margin-right: 1rem; transform: scale(1.2); }
+
+/* Matching */
+.match-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.8rem; border-bottom: 1px solid #eee;
+}
+.match-select {
+    padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; min-width: 180px;
+}
+
+/* Navigation */
+.nav-buttons { display: flex; justify-content: space-between; margin-top: 2rem; }
+.btn-nav { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-prev { background: #95a5a6; color: white; }
+.btn-next { background: var(--secondary); color: white; }
+.btn-submit { background: var(--success); color: white; display: none; }
+
+/* Certificate */
+#certificate-preview {
+    border: 10px double var(--primary); padding: 2rem; background: white;
+    text-align: center; display: none;
+}
+.cert-header { border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin-bottom: 1rem; }
+.cert-score { font-size: 3rem; color: var(--secondary); font-weight: bold; margin: 1rem 0; }
+.cert-details { text-align: left; margin: 2rem 0; border: 1px solid #ddd; padding: 1rem; }
+.btn-download { background: var(--accent); color: white; padding: 1rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; }
+
+@media (max-width: 600px) {
+    .exam-header { flex-direction: column; gap: 0.5rem; }
+    .match-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<!-- Security Overlay -->
+<div id="security-overlay">
+    <i class="fas fa-exclamation-triangle fa-4x" style="color: var(--warning); margin-bottom: 1rem;"></i>
+    <h2>PELANGGARAN TERDETEKSI!</h2>
+    <p>Anda mencoba membuka tab lain atau minimize browser.</p>
+    <button onclick="resumeExam()" class="btn-start" style="margin-top: 1rem; width: auto; padding: 0.5rem 2rem;">Lanjutkan Ujian</button>
+</div>
+
+<header class="exam-header">
+    <div><i class="fas fa-shield-alt"></i> Ujian Sosiologi Bab 3 (Berbasis Kasus)</div>
+    <div class="timer-box"><i class="far fa-clock"></i> <span id="time">60:00</span></div>
+</header>
+
+<div class="container">
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+        <h2><i class="fas fa-user-graduate"></i> Identitas Peserta</h2>
+        <p>Isi data diri sebelum memulai ujian (30 soal, waktu 60 menit).</p>
+        <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="studentName" placeholder="Masukkan Nama Lengkap..." required>
+        </div>
+        <div class="form-group">
+            <label>Kelas</label>
+            <select id="studentClass">
+                <option value="">-- Pilih Kelas --</option>
+                <option value="X-1">X-1</option>
+                <option value="X-2">X-2</option>
+                <option value="X-3">X-3</option>
+                <option value="X-4">X-4</option>
+                <option value="X-5">X-5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nomor Absen</label>
+            <input type="number" id="studentAbsen" placeholder="Contoh: 15" required>
+        </div>
+        <div style="background: #ffeaa7; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem;">
+            <strong>⚠️ Peraturan:</strong>
+            <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
+                <li>Waktu: 60 Menit (30 soal berbasis kasus).</li>
+                <li>Dilarang screenshot/minimize browser.</li>
+                <li>Soal terdiri dari Pilihan Ganda (PG), PG Kompleks, dan Menjodohkan.</li>
+                <li>Setiap soal menyajikan studi kasus nyata.</li>
+            </ul>
+        </div>
+        <button class="btn-start" onclick="startExam()">MULAI UJIAN</button>
+        <br><br>
+        <a href="../pembahasan-soal-sosiologi.html" style="color: var(--secondary);">Kembali ke Menu</a>
+    </div>
+
+    <!-- QUIZ CONTAINER -->
+    <div id="quiz-container" style="display: none;">
+        <div id="question-box"></div>
+        <div class="nav-buttons">
+            <button class="btn-nav btn-prev" onclick="prevQuestion()" id="btn-prev" disabled>Sebelumnya</button>
+            <span id="q-indicator" style="align-self: center; font-weight: bold;">1 / 30</span>
+            <button class="btn-nav btn-next" onclick="nextQuestion()" id="btn-next">Selanjutnya</button>
+            <button class="btn-nav btn-submit" onclick="finishExam()" id="btn-submit">SELESAI & KIRIM</button>
+        </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" style="display: none;">
+        <h2>Ujian Selesai!</h2>
+        <p>Berikut rekap hasil ujian Anda (30 soal, nilai maksimal 100).</p>
+        <div style="font-size: 4rem; color: var(--secondary); font-weight: bold; margin: 1rem 0;" id="final-score-display">0</div>
+        <p id="score-message"></p>
+        <button class="btn-download" onclick="generatePDF()">
+            <i class="fas fa-file-pdf"></i> Download Hasil Ujian (PDF)
+        </button>
+        <br><br>
+        <a href="../pembahasan-soal-sosiologi.html" class="btn-nav" style="background: var(--primary); color: white; text-decoration: none;">Kembali ke Menu Utama</a>
+    </div>
+</div>
+
+<!-- TEMPLATE CERTIFICATE PDF -->
+<div id="certificate-preview">
+    <div class="cert-header">
+        <h2>LAPORAN HASIL UJIAN</h2>
+        <h3>SOSIOLOGI KELAS X - BAB 3 (Nilai, Norma, Sosialisasi & Gejala Sosial)</h3>
+        <p>Ujian Berbasis Kasus - 30 Soal</p>
+    </div>
+    <div class="cert-score" id="cert-score-val">0</div>
+    <div class="cert-details">
+        <p><strong>Nama:</strong> <span id="cert-name"></span></p>
+        <p><strong>Kelas:</strong> <span id="cert-class"></span></p>
+        <p><strong>No. Absen:</strong> <span id="cert-absen"></span></p>
+        <p><strong>Tanggal:</strong> <span id="cert-date"></span></p>
+        <p><strong>Waktu Pengerjaan:</strong> <span id="cert-time-taken"></span></p>
+    </div>
+    <div style="text-align: left; margin-top: 1rem;">
+        <h4>Status Kelulusan (KKM 75):</h4>
+        <p id="cert-status" style="font-weight: bold; font-size: 1.2rem;"></p>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 2rem;">Dokumen ini sah & otomatis.</p>
+    </div>
+</div>
+
+<script>
+// --------------------------------------------------------------
+// 30 SOAL BERBASIS KASUS (PG, PG Kompleks, Menjodohkan)
+// Semua memiliki properti "case" sebagai studi kasus nyata
+// --------------------------------------------------------------
+const questions = [
+    // ===================== PILIHAN GANDA (PG) =====================
+    { type: 'pg', case: "Di Desa Sukamaju, warga yang membuang sampah sembarangan akan mendapat teguran dari ketua RT dan dijauhi tetangga. Norma apa yang dilanggar?", q: "Berdasarkan kasus tersebut, sanksi sosial yang diterapkan termasuk dalam sanksi norma...", options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 2 },
+    { type: 'pg', case: "Rudi, seorang pegawai negeri, terbukti menerima suap proyek. Ia menggunakan uang itu untuk membeli mobil mewah. Menurut teori adaptasi Merton, perilaku Rudi termasuk tipe...", q: "Kasus penyimpangan Rudi menunjukkan tipe adaptasi...", options: ["A. Conformity", "B. Innovation", "C. Ritualism", "D. Retreatism", "E. Rebellion"], answer: 1 },
+    { type: 'pg', case: "Sebuah keluarga mengalami broken home karena orang tua bercerai. Anak remaja mereka mulai terlibat tawuran. Faktor psikologis penyebab penyimpangan adalah...", q: "Dari kasus tersebut, faktor penyebab penyimpangan yang paling dominan dari aspek psikologis adalah...", options: ["A. Kemiskinan struktural", "B. Kecemasan dan frustasi", "C. Labeling dari guru", "D. Subkultur menyimpang", "E. Lemahnya penegakan hukum"], answer: 1 },
+    { type: 'pg', case: "Polisi melakukan razia besar-besaran terhadap geng motor yang meresahkan warga. Puluhan pemotor ditangkap dan ditilang. Pengendalian sosial ini bersifat...", q: "Tindakan polisi tersebut merupakan bentuk pengendalian sosial...", options: ["A. Preventif", "B. Persuasif", "C. Represif", "D. Koersif", "E. Kuratif"], answer: 2 },
+    { type: 'pg', case: "Dalam analisis SWOT sebuah komunitas, maraknya ujaran kebencian di media sosial dinilai sebagai ancaman bagi persatuan. Unsur tersebut termasuk dalam kategori...", q: "Berdasarkan kasus, 'hoaks dan ujaran kebencian' termasuk dalam aspek...", options: ["A. Strength", "B. Weakness", "C. Opportunity", "D. Threat", "E. Strategy"], answer: 3 },
+    { type: 'pg', case: "Ani terbiasa membantu ibu membersihkan rumah tanpa diminta. Ia belajar nilai tanggung jawab dari orang tua. Proses internalisasi nilai ini terjadi melalui tahap...", q: "Dalam teori sosialisasi, proses pembelajaran nilai di lingkungan keluarga disebut sosialisasi...", options: ["A. Sekunder", "B. Primer", "C. Formal", "D. Represif", "E. Partisipatif"], answer: 1 },
+    { type: 'pg', case: "Di sebuah pabrik, pekerja yang melanggar aturan keselamatan kerja langsung dipecat. Sanksi tegas tersebut bertujuan memberikan efek jera. Norma yang digunakan adalah norma...", q: "Sanksi pemecatan termasuk dalam sanksi norma...", options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 0 },
+    { type: 'pg', case: "Seorang siswa SMA mencontek karena teman-temannya juga mencontek dan ia takut dianggap sok suci. Tekanan kelompok ini menunjukkan fungsi negatif dari...", q: "Kasus tersebut menggambarkan penyimpangan akibat...", options: ["A. Sosialisasi tidak sempurna", "B. Asosiasi diferensial", "C. Labeling", "D. Anomi", "E. Subkultur menyimpang"], answer: 1 },
+    { type: 'pg', case: "Di suatu desa, warga melakukan kerja bakti setiap minggu tanpa paksaan. Kegiatan ini mencerminkan nilai gotong royong. Bentuk interaksi sosial yang terjadi adalah...", q: "Kerja bakti tanpa paksaan termasuk bentuk interaksi sosial...", options: ["A. Kooperasi", "B. Akomodasi", "C. Kompetisi", "D. Kontravensi", "E. Konflik"], answer: 0 },
+    { type: 'pg', case: "Setelah demonstrasi besar, pemerintah dan mahasiswa mencapai kesepakatan damai. Proses meredakan ketegangan ini dinamakan...", q: "Berdasarkan ilustrasi, penyelesaian konflik tersebut termasuk bentuk...", options: ["A. Asimilasi", "B. Akulturasi", "C. Akomodasi", "D. Koersi", "E. Mediasi"], answer: 2 },
+    { type: 'pg', case: "Seorang preman memalak pedagang pasar. Tindakan ini melanggar norma hukum dan kesusilaan. Menurut teori labeling, preman tersebut akan mengalami...", q: "Dampak dari pemberian julukan 'preman' sesuai teori labeling adalah...", options: ["A. Penyimpangan primer", "B. Penyimpangan sekunder", "C. Konformitas", "D. Inovasi", "E. Ritualisme"], answer: 1 },
+    { type: 'pg', case: "Di era digital, banyak remaja kecanduan game online hingga mengabaikan sekolah. Lembaga sosial yang paling berperan dalam mengatasi masalah ini adalah...", q: "Kasus kecanduan game pada remaja membutuhkan peran utama dari lembaga...", options: ["A. Ekonomi", "B. Keluarga dan Pendidikan", "C. Agama", "D. Politik", "E. Hukum"], answer: 1 },
+    { type: 'pg', case: "Seorang artis terkenal membuat video kontroversial yang dianggap tidak sopan. Warganet ramai-ramai mengkritik dan membully. Sanksi yang diterima artis tersebut adalah sanksi...", q: "Berdasarkan kasus, sanksi sosial yang diterima termasuk jenis sanksi...", options: ["A. Formal positif", "B. Formal negatif", "C. Informal positif", "D. Informal negatif", "E. Hukum pidana"], answer: 3 },
+    { type: 'pg', case: "Dalam sebuah seminar, dua tokoh masyarakat berbeda pendapat tentang kebijakan baru, namun akhirnya sepakat untuk tidak saling menjatuhkan. Sikap ini mencerminkan nilai...", q: "Nilai yang mendasari sikap saling menghargai perbedaan pendapat adalah...", options: ["A. Toleransi", "B. Nasionalisme", "C. Individualisme", "D. Materialisme", "E. Hedonisme"], answer: 0 },
+    { type: 'pg', case: "Seorang mahasiswa dari Papua belajar di Jawa dan mulai menggunakan bahasa Jawa serta mengikuti tradisi setempat tanpa kehilangan identitas aslinya. Proses ini disebut...", q: "Pencampuran dua budaya tanpa menghilangkan budaya asli disebut...", options: ["A. Asimilasi", "B. Akulturasi", "C. Enkulturasi", "D. Sosialisasi", "E. Difusi"], answer: 1 },
+    { type: 'pg', case: "Ketua kelas memberikan sanksi membersihkan kelas bagi siswa yang terlambat. Tindakan ini merupakan pengendalian sosial di lingkungan...", q: "Pengendalian sosial melalui sanksi membersihkan kelas termasuk dalam lingkup...", options: ["A. Sekolah", "B. Keluarga", "C. Masyarakat", "D. Pemerintah", "E. Agama"], answer: 0 },
+    { type: 'pg', case: "Seorang remaja mulai merokok karena diajak teman-teman barunya. Teori yang menjelaskan perilaku ini adalah...", q: "Kasus perokok pemula karena pengaruh teman sesuai dengan teori...", options: ["A. Differential Association", "B. Anomie", "C. Labeling", "D. Konflik", "E. Fungsionalisme"], answer: 0 },
+    { type: 'pg', case: "Masyarakat adat Baduy masih sangat konsisten menjaga aturan leluhur. Jika ada warga yang melanggar, diasingkan. Norma yang berlaku sangat kuat disebut...", q: "Tingkat kekuatan norma dalam masyarakat Baduy tergolong...", options: ["A. Cara (folkways)", "B. Kebiasaan (customs)", "C. Tata kelakuan (mores)", "D. Hukum (laws)", "E. Fashion"], answer: 2 },
+    { type: 'pg', case: "Seorang CEO perusahaan memberikan bonus besar kepada karyawan berprestasi. Tindakan ini merupakan pengendalian sosial bentuk...", q: "Pemberian bonus termasuk pengendalian sosial jenis...", options: ["A. Persuasif", "B. Preventif", "C. Represif", "D. Koersif", "E. Edukatif"], answer: 0 },
+    { type: 'pg', case: "Di sebuah kampung, warga saling membantu membangun rumah tetangga yang terbakar. Nilai yang mendasari adalah...", q: "Kegiatan gotong royong mencerminkan nilai...", options: ["A. Individualisme", "B. Kompetisi", "C. Solidaritas mekanik", "D. Solidaritas organik", "E. Egoisme"], answer: 2 },
+
+    // ===================== PG KOMPLEKS (PILIH 2 JAWABAN) =====================
+    { type: 'complex', case: "Kasus pungli di sekolah: OSIS memungut biaya secara ilegal untuk kegiatan futsal. Lembaga pengendalian sosial FORMAL yang tepat menanganinya adalah...", q: "Pilih 2 lembaga FORMAL yang berwenang mengatasi pungli di sekolah!", options: ["A. Kepolisian", "B. Guru BK", "C. Komite Sekolah", "D. Pengadilan", "E. Tokoh Masyarakat"], answer: [0, 3] },
+    { type: 'complex', case: "Kasus perundungan (bullying) di media sosial. Dampak positif dari adanya peristiwa ini bagi masyarakat luas bisa berupa...", q: "Pilih 2 dampak POSITIF dari kasus bullying yang viral!", options: ["A. Munculnya kesadaran anti-bullying", "B. Memperkuat aturan perlindungan anak", "C. Menyebabkan depresi massal", "D. Meningkatkan aksi balas dendam", "E. Memecah persatuan"], answer: [0, 1] },
+    { type: 'complex', case: "Dalam proses integrasi sosial, dua kelompok etnis yang berbeda mulai bekerja sama dan saling menikah. Syarat terjadinya interaksi sosial yang tampak adalah...", q: "Pilih 2 syarat utama interaksi sosial berdasarkan kasus!", options: ["A. Kontak sosial", "B. Konflik berkepanjangan", "C. Komunikasi efektif", "D. Isolasi", "E. Dominasi"], answer: [0, 2] },
+    { type: 'complex', case: "Seorang siswa bolos sekolah sekali karena ikut lomba, namun setelah itu tidak pernah bolos. Ini termasuk penyimpangan primer. Contoh lain penyimpangan primer adalah...", q: "Pilih 2 contoh perilaku penyimpangan primer!", options: ["A. Terlambat datang sekali karena macet", "B. Korupsi rutin setiap bulan", "C. Membuang sampah sembarangan saat tidak ada CCTV", "D. Menjadi bandar narkoba", "E. Melakukan aksi teror"], answer: [0, 2] },
+    { type: 'complex', case: "Sebuah keluarga kaya raya, anak-anaknya hidup hedon dan suka pamer kekayaan. Nilai yang kurang ditanamkan orang tua adalah nilai kesederhanaan dan kerja keras. Fungsi keluarga sebagai lembaga sosialisasi yang lemah terlihat dari...", q: "Pilih 2 fungsi keluarga yang tidak berjalan optimal dalam kasus tersebut!", options: ["A. Fungsi afeksi", "B. Fungsi ekonomi", "C. Fungsi sosialisasi nilai", "D. Fungsi perlindungan", "E. Fungsi religius"], answer: [2, 4] },
+    { type: 'complex', case: "Pemerintah menerapkan PPKM saat pandemi, namun banyak warga melanggar. Pengendalian sosial yang tepat untuk menekan pelanggaran adalah...", q: "Pilih 2 upaya pengendalian sosial yang efektif!", options: ["A. Sosialisasi massal", "B. Sanksi denda yang tegas", "C. Membiarkan saja", "D. Menutup semua akses internet", "E. Memberikan penghargaan bagi yang patuh"], answer: [0, 1] },
+
+    // ===================== MENJODOHKAN (MATCHING) =====================
+    // Untuk matching, kami tidak mengacak opsi kanan (stabil), correctMap berisi indeks jawaban benar sesuai urutan pairs.
+    { type: 'matching', case: "Kasus: Norma di masyarakat memiliki sanksi berbeda-beda. Pasangkan jenis norma dengan sanksi yang tepat!", q: "Jodohkan norma dengan sanksinya!", pairs: [{ left: "Norma Agama", right: "Dosa / Berdosa" }, { left: "Norma Hukum", right: "Penjara / Denda" }, { left: "Norma Kesopanan", right: "Celaan / Teguran sosial" }], correctMap: [0, 1, 2] },
+    { type: 'matching', case: "Teori sosiologi klasik. Pasangkan tokoh dengan pemikirannya!", q: "Jodohkan tokoh dan teori!", pairs: [{ left: "Emile Durkheim", right: "Fakta Sosial" }, { left: "Max Weber", right: "Tindakan Sosial" }, { left: "Karl Marx", right: "Konflik Kelas" }], correctMap: [0, 1, 2] },
+    { type: 'matching', case: "Bentuk interaksi sosial dalam kehidupan sehari-hari. Cocokkan jenis interaksi dengan contohnya!", q: "Pasangan tepat interaksi sosial dan contoh!", pairs: [{ left: "Kooperasi", right: "Gotong royong membangun jembatan" }, { left: "Akomodasi", right: "Gencatan senjata antar geng" }, { left: "Kompetisi", right: "Lomba debat antar sekolah" }], correctMap: [0, 1, 2] },
+    { type: 'matching', case: "Jenis lembaga sosial dan fungsinya. Pasangkan!", q: "Cocokkan lembaga dengan fungsi utamanya!", pairs: [{ left: "Lembaga Keluarga", right: "Sosialisasi primer" }, { left: "Lembaga Pendidikan", right: "Transfer pengetahuan" }, { left: "Lembaga Agama", right: "Pedoman moral" }], correctMap: [0, 1, 2] },
+    { type: 'matching', case: "Macam-macam nilai sosial. Pasangkan nilai dengan contoh perilaku!", q: "Jodohkan nilai sosial dan contoh!", pairs: [{ left: "Nilai Material", right: "Membeli mobil mewah" }, { left: "Nilai Vital", right: "Mengonsumsi makanan bergizi" }, { left: "Nilai Kerohanian", right: "Beribadah tepat waktu" }], correctMap: [0, 1, 2] },
+    { type: 'matching', case: "Faktor penyebab penyimpangan sosial. Pasangkan faktor dengan ilustrasi!", q: "Cocokkan faktor penyebab penyimpangan!", pairs: [{ left: "Faktor Keluarga", right: "Orang tua bercerai, anak nakal" }, { left: "Faktor Lingkungan", right: "Teman sebaya pecandu narkoba" }, { left: "Faktor Ekonomi", right: "Menggelapkan uang karena kemiskinan" }], correctMap: [0, 1, 2] }
+];
+
+// --- VARIABEL SISTEM ---
+let currentQ = 0;
+let answers = {};           // menyimpan jawaban: untuk pg: index, complex: array index, matching: object {pairIndex: selectedOptionIndex}
+let timerInterval;
+let timeLeft = 60 * 60;     // 60 menit = 3600 detik
+let examActive = false;
+let startTime;
+
+// --- MULAI UJIAN ---
+function startExam() {
+    const name = document.getElementById('studentName').value;
+    const cls = document.getElementById('studentClass').value;
+    const absen = document.getElementById('studentAbsen').value;
+    if(!name || !cls || !absen) {
+        alert("Harap lengkapi identitas terlebih dahulu!");
+        return;
+    }
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('quiz-container').style.display = 'block';
+    examActive = true;
+    startTime = new Date();
+    renderQuestion();
+    startTimer();
+    enableSecurity();
+}
+
+// --- RENDER SOAL BERDASARKAN TYPE ---
+function renderQuestion() {
+    const q = questions[currentQ];
+    const container = document.getElementById('question-box');
+    let badgeClass = q.type === 'pg' ? 'badge-pg' : (q.type === 'complex' ? 'badge-complex' : 'badge-match');
+    let typeName = q.type === 'pg' ? 'Pilihan Ganda' : (q.type === 'complex' ? 'PG Kompleks (Pilih ≥2)' : 'Menjodohkan');
+    let caseHtml = `<div class="case-box"><strong><i class="fas fa-search"></i> Studi Kasus:</strong> ${q.case}</div>`;
+    let inputHtml = '';
+
+    if(q.type === 'pg') {
+        inputHtml = `<div>${q.options.map((opt, idx) => `
+            <label class="option-label">
+                <input type="radio" name="answer" value="${idx}" ${answers[currentQ] === idx ? 'checked' : ''} onchange="saveAnswer(${idx})">
+                <span>${opt}</span>
+            </label>
+        `).join('')}</div>`;
+    } 
+    else if (q.type === 'complex') {
+        inputHtml = `<div>${q.options.map((opt, idx) => `
+            <label class="option-label">
+                <input type="checkbox" name="complex" value="${idx}" ${answers[currentQ] && answers[currentQ].includes(idx) ? 'checked' : ''} onchange="saveComplexAnswer(this, ${idx})">
+                <span>${opt}</span>
+            </label>
+        `).join('')}</div>`;
+    } 
+    else if (q.type === 'matching') {
+        // TIDAK mengacak opsi kanan agar penilaian stabil
+        let rightOptions = q.pairs.map(p => p.right);
+        inputHtml = `<div style="background:#f9f9f9; padding:1rem; border-radius:8px;">`;
+        q.pairs.forEach((pair, idx) => {
+            let savedVal = (answers[currentQ] && answers[currentQ][idx] !== undefined) ? answers[currentQ][idx] : '';
+            inputHtml += `
+            <div class="match-row">
+                <span><strong>${pair.left}</strong></span>
+                <select class="match-select" onchange="saveMatchAnswer(${idx}, this.value)">
+                    <option value="">-- Pilih Jawaban --</option>
+                    ${rightOptions.map((opt, optIdx) => 
+                        `<option value="${optIdx}" ${savedVal == optIdx ? 'selected' : ''}>${opt}</option>`
+                    ).join('')}
+                </select>
+            </div>`;
+        });
+        inputHtml += `</div>`;
+    }
+
+    let html = `
+        <div class="question-card" style="display:block;">
+            <span class="q-badge ${badgeClass}">${typeName}</span>
+            ${caseHtml}
+            <div class="q-text">${currentQ+1}. ${q.q}</div>
+            ${inputHtml}
+        </div>
+    `;
+    container.innerHTML = html;
+    document.getElementById('q-indicator').innerText = `${currentQ+1} / ${questions.length}`;
+    document.getElementById('btn-prev').disabled = (currentQ === 0);
+    if(currentQ === questions.length-1) {
+        document.getElementById('btn-next').style.display = 'none';
+        document.getElementById('btn-submit').style.display = 'inline-block';
+    } else {
+        document.getElementById('btn-next').style.display = 'inline-block';
+        document.getElementById('btn-submit').style.display = 'none';
+    }
+}
+
+// --- SAVE FUNCTIONS ---
+function saveAnswer(val) { answers[currentQ] = val; }
+function saveComplexAnswer(el, val) {
+    if(!answers[currentQ]) answers[currentQ] = [];
+    if(el.checked) answers[currentQ].push(val);
+    else answers[currentQ] = answers[currentQ].filter(x => x !== val);
+}
+function saveMatchAnswer(pairIdx, val) {
+    if(!answers[currentQ]) answers[currentQ] = {};
+    if(val === "") delete answers[currentQ][pairIdx];
+    else answers[currentQ][pairIdx] = parseInt(val);
+}
+
+function nextQuestion() { if(currentQ < questions.length-1) { currentQ++; renderQuestion(); } }
+function prevQuestion() { if(currentQ > 0) { currentQ--; renderQuestion(); } }
+
+// --- TIMER 60 MENIT ---
+function startTimer() {
+    const display = document.getElementById('time');
+    timerInterval = setInterval(() => {
+        if(timeLeft <= 0) {
+            clearInterval(timerInterval);
+            finishExam(true);
+        } else {
+            timeLeft--;
+            let m = Math.floor(timeLeft / 60);
+            let s = timeLeft % 60;
+            display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+    }, 1000);
+}
+
+// --- FINISH & SKORING ---
+function finishExam(auto = false) {
+    if(!auto && !confirm("Yakin ingin mengumpulkan ujian?")) return;
+    clearInterval(timerInterval);
+    examActive = false;
+    calculateScore();
+}
+
+function calculateScore() {
+    let totalScore = 0;
+    let maxScore = 100;
+    let pointsPerQ = maxScore / questions.length;
+
+    questions.forEach((q, idx) => {
+        let userAns = answers[idx];
+        let isCorrect = false;
+        if(q.type === 'pg') {
+            if(userAns !== undefined && userAns === q.answer) isCorrect = true;
+        } 
+        else if (q.type === 'complex') {
+            if(userAns && Array.isArray(userAns) && userAns.length === q.answer.length && 
+               JSON.stringify(userAns.sort()) === JSON.stringify(q.answer.sort())) isCorrect = true;
+        } 
+        else if (q.type === 'matching') {
+            if(userAns && typeof userAns === 'object') {
+                let correct = true;
+                for(let i=0; i<q.correctMap.length; i++) {
+                    if(userAns[i] !== q.correctMap[i]) { correct = false; break; }
+                }
+                if(correct) isCorrect = true;
+            }
+        }
+        if(isCorrect) totalScore += pointsPerQ;
+    });
+
+    let finalScore = Math.round(totalScore);
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'block';
+    document.getElementById('final-score-display').innerText = finalScore;
+    let msg = finalScore >= 75 ? "🎉 Selamat! Anda LULUS KKM (75)." : "📘 Maaf, Anda belum mencapai KKM. Perbanyak belajar kasus sosiologi.";
+    document.getElementById('score-message').innerHTML = msg;
+    document.getElementById('score-message').style.color = finalScore >= 75 ? 'green' : 'red';
+    prepareCertificate(finalScore);
+}
+
+function prepareCertificate(score) {
+    const name = document.getElementById('studentName').value;
+    const cls = document.getElementById('studentClass').value;
+    const absen = document.getElementById('studentAbsen').value;
+    const date = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('cert-name').innerText = name;
+    document.getElementById('cert-class').innerText = cls;
+    document.getElementById('cert-absen').innerText = absen;
+    document.getElementById('cert-date').innerText = date;
+    document.getElementById('cert-score-val').innerText = score;
+    let timeTaken = 60 - Math.ceil(timeLeft / 60);
+    document.getElementById('cert-time-taken').innerText = timeTaken + " Menit";
+    document.getElementById('cert-status').innerText = score >= 75 ? "LULUS" : "REMIDIAL";
+    document.getElementById('cert-status').style.color = score >= 75 ? "green" : "red";
+}
+
+function generatePDF() {
+    const element = document.getElementById('certificate-preview');
+    element.style.display = 'block';
+    const opt = { margin: 0.5, filename: `Hasil_Ujian_Sosiologi_${document.getElementById('studentName').value}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
+    html2pdf().set(opt).from(element).save().then(() => { element.style.display = 'none'; });
+}
+
+// --- KEAMANAN ---
+function enableSecurity() {
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false; };
+    document.addEventListener("visibilitychange", function() { if(document.hidden && examActive) document.getElementById('security-overlay').style.display = 'flex'; });
+}
+function resumeExam() { document.getElementById('security-overlay').style.display = 'none'; }
+</script>
+</body>
+</html>
