@@ -3,20 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulator Kebijakan Ekonomi + Forum Diskusi • Fiskal & Moneter</title>
-  <meta name="description" content="Simulator interaktif kebijakan fiskal dan moneter APBN Indonesia. Dilengkapi forum diskusi dan refleksi pembelajaran." />
-  <meta name="author" content="Alamsah, SE" />
-  
-  <!-- Chart.js & jsPDF -->
+  <title>Simulator Kebijakan Ekonomi + Forum Diskusi</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
-  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   
   <style>
-    /* ========== STYLE UTAMA ========== */
     :root {
       --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #7c3aed;
       --accent: #db2777; --success: #059669; --warning: #d97706;
@@ -36,8 +29,6 @@
       padding: 28px; border-radius: 40px;
       box-shadow: var(--shadow-lg); border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    
-    /* User Card */
     .user-card {
       background: white; border-radius: 60px; padding: 16px 28px;
       margin-bottom: 28px; display: flex; flex-wrap: wrap;
@@ -50,8 +41,6 @@
       padding: 10px 18px; border-radius: 60px; border: 2px solid #bdd3f0;
       font-size: 1rem; background: #f4faff;
     }
-    
-    /* Header */
     header {
       background: #ffffffcc; border-radius: 40px; padding: 18px 26px;
       margin-bottom: 24px; display: flex; flex-wrap: wrap;
@@ -62,8 +51,6 @@
       background: var(--gradient-primary);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    /* Panduan Accordion */
     .panduan-accordion {
       background: #e2efff; border-radius: 40px; padding: 6px 26px 14px 26px;
       margin: 24px 0; cursor: pointer; border: 2px solid #a7c8ff;
@@ -79,8 +66,6 @@
       background: white; border-radius: 24px; padding: 14px;
       box-shadow: 0 6px 16px #b7d3f3;
     }
-    
-    /* Target Chips */
     .target-chips { display: flex; flex-wrap: wrap; gap: 14px; margin: 20px 0 10px; }
     .target {
       background: white; padding: 8px 24px; border-radius: 60px;
@@ -88,8 +73,6 @@
     }
     .target.ok { background: #d1f0d1; border-color: #1f7a1f; }
     .target.no { background: #ffe0e0; border-color: #ba2c2c; }
-    
-    /* Indicator Panel */
     .indicator-panel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0; }
     .indicator-card {
       background: white; border-radius: 32px; padding: 18px 8px 12px;
@@ -108,8 +91,6 @@
       background: #f1f7ff; padding: 4px 14px; border-radius: 60px;
       font-size: 0.8rem;
     }
-    
-    /* Chart & Policies */
     .chart-panel { background: #f5faff; border-radius: 40px; padding: 20px; margin: 28px 0; }
     .policies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0 28px; }
     .policy-btn {
@@ -119,8 +100,6 @@
     }
     .policy-btn.monetary { border-left-color: #8b5cf6; }
     .policy-btn:hover:not(:disabled) { background: #ecf3ff; transform: translateY(-3px); }
-    
-    /* Log & Result */
     .log-list {
       background: #eef4fe; border-radius: 36px; padding: 18px;
       max-height: 180px; overflow-y: auto;
@@ -130,8 +109,6 @@
       margin: 20px 0; display: none; text-align: center;
     }
     .result-box.show { display: block; }
-    
-    /* Action Buttons */
     .action-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 32px 0 0; }
     .btn {
       padding: 14px 28px; border-radius: 60px; border: none;
@@ -140,8 +117,6 @@
     }
     .btn-primary { background: #1e3f70; color: white; }
     .btn-reset { background: #c54d3a; color: white; }
-    
-    /* Modal */
     .modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);
@@ -152,8 +127,6 @@
       background: white; max-width: 500px; width: 90%;
       border-radius: 60px; padding: 32px;
     }
-    
-    /* Event & Hint Box */
     .event-box {
       background: #ffeed9; border-radius: 50px; padding: 14px 24px;
       margin: 16px 0; display: none;
@@ -162,14 +135,11 @@
       background: #ddecff; border-radius: 60px; padding: 14px 22px;
       margin: 16px 0; display: none;
     }
-    
-    /* ========== FORUM SECTION ========== */
     .forum-section {
       margin-top: 40px; border-top: 3px dashed #cbd5e0; padding-top: 30px;
     }
     .forum-header { text-align: center; margin-bottom: 25px; }
     .forum-header h2 { color: #1f4d7a; font-size: 1.8rem; }
-    
     .form-box {
       background: white; border-radius: 32px; padding: 24px;
       margin-bottom: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
@@ -185,21 +155,18 @@
       font-size: 15px; background: white;
     }
     .input-group textarea { min-height: 90px; resize: vertical; padding-top: 12px; }
-    
     .btn-forum {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white; border: none; padding: 12px 28px;
       border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%;
     }
     .btn-forum:disabled { opacity: 0.6; cursor: not-allowed; }
-    
     .search-box {
       background: white; border-radius: 50px; padding: 5px 15px;
       margin-bottom: 20px; display: flex; align-items: center;
     }
     .search-box i { color: #a0aec0; }
     .search-box input { flex: 1; padding: 12px; border: none; background: transparent; }
-    
     .stats {
       background: white; border-radius: 28px; padding: 12px 20px;
       margin-bottom: 20px; display: flex; justify-content: space-between;
@@ -210,7 +177,6 @@
       background: #667eea; color: white; padding: 4px 12px;
       border-radius: 20px; font-size: 12px;
     }
-    
     .comment-card {
       background: white; border-radius: 24px; padding: 18px;
       margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -241,8 +207,6 @@
     }
     .like-button.liked { background: #fee2e2; color: #e53e3e; }
     .empty-state { text-align: center; padding: 40px; color: #718096; }
-    
-    /* ========== REFLECTION PANEL ========== */
     .reflection-panel {
       background: linear-gradient(135deg, #fef3c7, #fde68a);
       border-radius: 40px; padding: 24px; margin: 28px 0;
@@ -271,8 +235,6 @@
     }
     .reflection-option input { accent-color: #f59e0b; }
     .reflection-option:hover { background: #fffbeb; }
-    
-    /* Toast */
     .toast {
       position: fixed; bottom: 20px; right: 20px;
       background: white; padding: 12px 20px; border-radius: 40px;
@@ -281,8 +243,6 @@
       animation: slideIn 0.3s ease;
     }
     @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    
-    /* Responsive */
     @media (max-width: 768px) {
       .indicator-panel { grid-template-columns: repeat(2,1fr); }
       .policies-grid { grid-template-columns: 1fr; }
@@ -294,8 +254,6 @@
 </head>
 <body>
 <div class="container">
-  
-  <!-- User Card -->
   <div class="user-card">
     <div class="user-field">
       <label><i class="fas fa-user"></i> Nama:</label>
@@ -312,13 +270,11 @@
     </div>
   </div>
   
-  <!-- Header -->
   <header>
     <h1><i class="fas fa-landmark"></i> Simulator Ekonomi <span id="headerNama">Alya Putri</span></h1>
     <div id="headerKelas"><i class="fas fa-school"></i> Kelas XI.7</div>
   </header>
   
-  <!-- Panduan Accordion -->
   <div class="panduan-accordion" onclick="togglePanduan()">
     <div class="panduan-header">
       <span><i class="fas fa-book-open"></i> PANDUAN & NILAI RUPIAH (klik)</span>
@@ -327,10 +283,10 @@
     <div class="panduan-content" id="panduanContent">
       <p><strong>PDB 2024 diasumsikan Rp20.000 triliun.</strong></p>
       <div class="panduan-grid">
-        <div class="panduan-card">📊 Defisit 3% = Rp600 T<br />Target ≤3%</div>
-        <div class="panduan-card">📈 Growth 5% = +Rp1.000 T/thn<br />Target ≥5%</div>
-        <div class="panduan-card">💹 Inflasi 3% = +Rp360/kg beras<br />Target 2‑4%</div>
-        <div class="panduan-card">😊 Kepuasan 70 = 7 dari 10 puas<br />Target ≥65</div>
+        <div class="panduan-card">Defisit 3% = Rp600 T<br />Target ≤3%</div>
+        <div class="panduan-card">Growth 5% = +Rp1.000 T/thn<br />Target ≥5%</div>
+        <div class="panduan-card">Inflasi 3% = +Rp360/kg beras<br />Target 2-4%</div>
+        <div class="panduan-card">Kepuasan 70 = 7 dari 10 puas<br />Target ≥65</div>
       </div>
       <p style="margin-top:12px; background:#fff3cd; padding:8px; border-radius:24px;">
         <i class="fas fa-random"></i> <strong>Catatan:</strong> Terkadang muncul kejadian acak yang memengaruhi indikator.
@@ -338,15 +294,13 @@
     </div>
   </div>
   
-  <!-- Target Chips -->
   <div class="target-chips">
-    <span class="target" id="targetDefisit">📉 defisit ≤3%</span>
-    <span class="target" id="targetGrowth">📈 growth ≥5%</span>
-    <span class="target" id="targetInflasi">💹 inflasi 2‑4%</span>
-    <span class="target" id="targetHappy">😊 kepuasan ≥65</span>
+    <span class="target" id="targetDefisit">defisit ≤3%</span>
+    <span class="target" id="targetGrowth">growth ≥5%</span>
+    <span class="target" id="targetInflasi">inflasi 2-4%</span>
+    <span class="target" id="targetHappy">kepuasan ≥65</span>
   </div>
   
-  <!-- Indicator Panel -->
   <div class="indicator-panel">
     <div class="indicator-card" id="indDefisit">
       <button class="info-btn-small" onclick="bukaModal('defisit');event.stopPropagation()">?</button>
@@ -374,36 +328,22 @@
     </div>
   </div>
   
-  <!-- Chart -->
   <div class="chart-panel"><canvas id="ecoChart" height="200"></canvas></div>
-  
-  <!-- Event Box -->
   <div class="event-box" id="eventBox"><i class="fas fa-bolt"></i> <span id="eventText"></span></div>
-  
-  <!-- Policy Selection -->
   <h3><i class="fas fa-tools"></i> Pilih 1 kebijakan setiap tahun</h3>
   <div class="policies-grid" id="policyContainer"></div>
-  
-  <!-- Hint Box -->
   <div id="hintBox"><i class="fas fa-lightbulb"></i> <span id="hintText"></span></div>
-  
-  <!-- Log -->
   <div class="log-list">
-    <div style="font-weight:600; margin-bottom:8px;"><i class="fas fa-history"></i> 📋 Riwayat Kebijakan</div>
+    <div style="font-weight:600; margin-bottom:8px;"><i class="fas fa-history"></i> Riwayat Kebijakan</div>
     <div id="logEntries">—</div>
   </div>
-  
-  <!-- Result Box -->
   <div class="result-box" id="resultPanel"></div>
   
-  <!-- ========== REFLECTION PANEL ========== -->
   <div class="reflection-panel" id="reflectionPanel" style="display:none;">
-    <h3><i class="fas fa-pen-fancy"></i> 🎓 Refleksi Pembelajaran</h3>
+    <h3><i class="fas fa-pen-fancy"></i> Refleksi Pembelajaran</h3>
     <p style="margin-bottom:16px; color:#78350f;">Jawablah ke-4 pertanyaan berikut:</p>
-    <!-- Dynamic content will be inserted here by JavaScript -->
   </div>
   
-  <!-- Action Buttons -->
   <div class="action-buttons">
     <button class="btn" id="undoBtn" onclick="undo()" disabled><i class="fas fa-undo"></i> Undo</button>
     <button class="btn btn-primary" id="nextBtn" onclick="lanjutTahun()" disabled><i class="fas fa-forward"></i> Lanjut tahun</button>
@@ -411,13 +351,11 @@
     <button class="btn btn-reset" onclick="mulaiUlang()"><i class="fas fa-redo-alt"></i> Mulai ulang</button>
   </div>
 
-  <!-- Forum Diskusi -->
   <div class="forum-section">
     <div class="forum-header">
       <h2><i class="fas fa-comments"></i> Forum Diskusi Pembelajaran</h2>
       <p>Bagikan ide, tanya jawab seputar kebijakan ekonomi</p>
     </div>
-    
     <div class="form-box">
       <div class="input-group">
         <i class="fas fa-user"></i>
@@ -435,24 +373,19 @@
         <i class="fas fa-paper-plane"></i> Kirim Komentar
       </button>
     </div>
-    
     <div class="search-box">
       <i class="fas fa-search"></i>
       <input type="text" id="searchForum" placeholder="Cari komentar atau nama..." onkeyup="searchForumComments()">
     </div>
-    
     <div class="stats" id="forumStats">
       <div class="stats-item"><i class="fas fa-comment"></i><span id="totalComments">0</span> Komentar</div>
       <div class="stats-item"><i class="fas fa-heart"></i><span id="totalLikes">0</span> Likes</div>
       <div class="badge-live"><i class="fas fa-circle" style="color:#48bb78; font-size:10px;"></i> Live</div>
     </div>
-    
     <div id="forumCommentList"></div>
   </div>
-  
 </div>
 
-<!-- Modal Penjelasan -->
 <div class="modal" id="modalPenjelasan">
   <div class="modal-card">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
@@ -464,10 +397,8 @@
 </div>
 
 <script>
-  // ==================== KONFIGURASI DASAR ====================
   const PDB = 20000, HARGA_BERAS = 12000;
   
-  // Bank Soal Refleksi - 4 Soal Wajib
   const reflectionQuestions = [
     "1. Jelaskan dampak kenaikan pajak terhadap masyarakat dan pelaku usaha!",
     "2. Analisis dampak kebijakan suku bunga tinggi terhadap inflasi dan pertumbuhan ekonomi!",
@@ -475,7 +406,6 @@
     "4. Berikan solusi alternatif untuk mengatasi dampak negatif dari kebijakan ekonomi!"
   ];
   
-  // State Game
   let game = { 
     tahun:1, defisit:3.0, growth:5.0, inflasi:3.0, happy:70, 
     riwayat:{ def:[3.0], gr:[5.0], inf:[3.0] }, 
@@ -484,7 +414,6 @@
     allReflectionAnswers: null
   };
   
-  // Database Kebijakan
   const kebijakanSemua = {
     pajak: { nama:'Naikkan Pajak', type:'fiscal', efek:{ def:-0.8, gr:-0.4, inf:-0.2, hap:-8 }, hint:'Pajak naik, defisit turun, daya beli turun.' },
     belanja: { nama:'Infrastruktur', type:'fiscal', efek:{ def:+1.0, gr:+0.6, inf:+0.3, hap:+10 }, hint:'Stimulus growth, defisit membengkak.' },
@@ -501,7 +430,6 @@
   const list9 = [...list7, 'kredit','investasi_hijau'];
   let chart;
   
-  // ==================== FUNGSI CHART ====================
   function initChart() {
     const ctx = document.getElementById('ecoChart').getContext('2d');
     chart = new Chart(ctx, {
@@ -524,7 +452,6 @@
       : angkaTriliun.toFixed(0) + ' T';
   }
   
-  // ==================== UPDATE TAMPILAN ====================
   function updateTampilan() {
     document.getElementById('defisitValue').innerText = game.defisit.toFixed(1)+'%';
     document.getElementById('growthValue').innerText = game.growth.toFixed(1)+'%';
@@ -562,7 +489,6 @@
     document.getElementById('undoBtn').disabled = !game.lastState || game.selesai;
   }
   
-  // ==================== STATE MANAGEMENT ====================
   function simpanState() {
     game.lastState = {
       tahun:game.tahun, defisit:game.defisit, growth:game.growth,
@@ -604,7 +530,6 @@
     container.innerHTML=html;
   }
   
-  // ==================== RANDOM EVENT ====================
   function applyRandomEvent() {
     const events = [
       { nama:'Minyak naik', efek:{ inf:0.5, gr:-0.2 }, pesan:'Harga minyak dunia melonjak.' },
@@ -632,7 +557,6 @@
     document.getElementById('eventBox').style.display='block';
   }
   
-  // ==================== PILIH KEBIJAKAN ====================
   function pilihKebijakan(kode) {
     if(game.tahun>5||game.selesai) {
       showToast('Simulasi selesai. Mulai ulang.','error'); return;
@@ -669,7 +593,6 @@
     document.getElementById('nextBtn').disabled=false;
   }
   
-  // ==================== LANJUT TAHUN ====================
   function lanjutTahun() {
     if(game.tahun>5||game.selesai) return;
     
@@ -704,7 +627,6 @@
     updateTampilan();
   }
   
-  // ==================== UNDO ====================
   function undo() {
     if(!game.lastState||game.selesai) return;
     
@@ -733,7 +655,6 @@
     }
   }
   
-  // ==================== HASIL AKHIR ====================
   function tampilkanHasil() {
     let d=game.defisit, g=game.growth, i=game.inflasi, h=game.happy;
     let nama=document.getElementById('inputNama').value||'User';
@@ -744,26 +665,25 @@
     document.getElementById('resultPanel').innerHTML = `
       <h2><i class="fas fa-graduation-cap"></i> ${escapeHtml(nama)} (${escapeHtml(kelas)}) — Simulasi selesai</h2>
       <div style="background:white; border-radius:40px; padding:20px; margin-top:15px;">
-        <p>📉 Defisit ${d.toFixed(1)}% (${d<=3?'✅':'❌'}) ≈ Rp${formatRp((d/100)*PDB)}</p>
-        <p>📈 Growth ${g.toFixed(1)}% (${g>=5?'✅':'❌'}) ≈ +Rp${formatRp((g/100)*PDB)}/thn</p>
-        <p>💹 Inflasi ${i.toFixed(1)}% (${i>=2&&i<=4?'✅':'❌'}) ≈ +Rp${Math.round((i/100)*HARGA_BERAS)}/kg beras</p>
-        <p>😊 Kepuasan ${h} (${h>=65?'✅':'❌'})</p>
-        <h3>⭐ Skor: ${skor}/100</h3>
+        <p>Defisit ${d.toFixed(1)}% (${d<=3?'OK':'Tidak OK'}) ≈ Rp${formatRp((d/100)*PDB)}</p>
+        <p>Growth ${g.toFixed(1)}% (${g>=5?'OK':'Tidak OK'}) ≈ +Rp${formatRp((g/100)*PDB)}/thn</p>
+        <p>Inflasi ${i.toFixed(1)}% (${i>=2&&i<=4?'OK':'Tidak OK'}) ≈ +Rp${Math.round((i/100)*HARGA_BERAS)}/kg beras</p>
+        <p>Kepuasan ${h} (${h>=65?'OK':'Tidak OK'})</p>
+        <h3>Skor: ${skor}/100</h3>
       </div>
     `;
     document.getElementById('resultPanel').classList.add('show');
   }
   
-  // ==================== REFLECTION FEATURE - ALL 4 QUESTIONS ====================
   function showReflection() {
-    let html = '<h3><i class="fas fa-pen-fancy"></i> 🎓 Refleksi Pembelajaran</h3>';
+    let html = '<h3><i class="fas fa-pen-fancy"></i> Refleksi Pembelajaran</h3>';
     html += '<p style="margin-bottom:16px; color:#78350f;">Jawablah ke-4 pertanyaan berikut:</p>';
     
     const hints = [
-      "💡 Sebutkan minimal 2 dampak positif & 2 negatif",
-      "💡 Hubungkan dengan mekanisme transmisi kebijakan moneter", 
-      "💡 Bandingkan dari sisi fiskal, sosial, dan keberlanjutan",
-      "💡 Berikan contoh konkret relevan dengan Indonesia"
+      "Sebutkan minimal 2 dampak positif & 2 negatif",
+      "Hubungkan dengan mekanisme transmisi kebijakan moneter", 
+      "Bandingkan dari sisi fiskal, sosial, dan keberlanjutan",
+      "Berikan contoh konkret relevan dengan Indonesia"
     ];
     
     reflectionQuestions.slice(0, 4).forEach((q, idx) => {
@@ -811,7 +731,6 @@
     document.getElementById('reflectionPanel').style.display = 'block';
     document.getElementById('reflectionPanel').scrollIntoView({ behavior: 'smooth' });
     
-    // Tambah listener untuk karakter counter
     setTimeout(() => {
       for(let i=0; i<4; i++) {
         const textarea = document.getElementById(`reflectionAnswer${i}`);
@@ -826,7 +745,6 @@
     }, 100);
   }
   
-  // ==================== SUBMIT ALL 4 REFLECTION ANSWERS ====================
   async function submitReflectionAll() {
     const answers = [];
     let allValid = true;
@@ -859,7 +777,7 @@
     
     if(savePDF) {
       game.reflectionAnswer = answers.map((a, idx) => 
-        `${idx+1}. ${a.question}\n💭 ${a.answer}`
+        `${idx+1}. ${a.question}\nJawaban: ${a.answer}`
       ).join('\n\n');
       game.reflectionSaved = true;
       game.allReflectionAnswers = answers;
@@ -875,9 +793,9 @@
     }
     
     if(saveForum) {
-      let fullComment = `🎓 REFLEKSI LENGKAP - ${nama} (${kelas})\n\n`;
+      let fullComment = `REFLEKSI LENGKAP - ${nama} (${kelas})\n\n`;
       answers.forEach((a, idx) => {
-        fullComment += `${idx+1}. ${a.question}\n💭 ${a.answer}\n\n`;
+        fullComment += `${idx+1}. ${a.question}\nJawaban: ${a.answer}\n\n`;
       });
       
       try {
@@ -896,11 +814,11 @@
     }
     
     document.getElementById('reflectionPanel').style.display = 'none';
-    showToast('🎉 Ke-4 jawaban berhasil disimpan!','success');
+    showToast('Ke-4 jawaban berhasil disimpan!','success');
     
     game.log.push({ 
       tahun: game.tahun, 
-      kebijakan: '🎓 Refleksi: 4 soal dijawab lengkap',
+      kebijakan: 'Refleksi: 4 soal dijawab lengkap',
       reflectionQuestion: 'All 4 questions'
     });
     updateLog();
@@ -909,11 +827,10 @@
   function skipReflection() {
     if(confirm('Lewati refleksi? Jawaban tidak akan tersimpan.')) {
       document.getElementById('reflectionPanel').style.display = 'none';
-      showToast('⏭️ Refleksi dilewati','info');
+      showToast('Refleksi dilewati','info');
     }
   }
   
-  // ==================== RENDER POLICY BUTTONS ====================
   function renderPolicyButtons() {
     let pilihan=document.getElementById('selectJumlahKebijakan').value;
     let kodeList = pilihan==='7'?list7:list9;
@@ -929,11 +846,11 @@
       
       btn.addEventListener('mouseenter', () => {
         if(kb.nama.includes('Pajak')) {
-          showHint('💡 Refleksi: Bagaimana dampak kebijakan ini terhadap UMKM di daerah Anda?');
+          showHint('Refleksi: Bagaimana dampak kebijakan ini terhadap UMKM di daerah Anda?');
         } else if(kb.nama.includes('Suku Bunga')) {
-          showHint('💡 Refleksi: Apa trade-off antara mengendalikan inflasi vs mendorong pertumbuhan?');
+          showHint('Refleksi: Apa trade-off antara mengendalikan inflasi vs mendorong pertumbuhan?');
         } else if(kb.nama.includes('Subsidi')) {
-          showHint('💡 Refleksi: Apakah subsidi berkelanjutan dalam jangka panjang?');
+          showHint('Refleksi: Apakah subsidi berkelanjutan dalam jangka panjang?');
         }
       });
       
@@ -958,7 +875,6 @@
     }, 5000);
   }
   
-  // ==================== SYNC USER DATA ====================
   function syncUserData() {
     let nama=document.getElementById('inputNama').value||'User';
     let kelas=document.getElementById('inputKelas').value||'Kelas';
@@ -971,7 +887,6 @@
       document.getElementById('forumKelas').value = kelas;
   }
   
-  // ==================== MULAI ULANG ====================
   function mulaiUlang() {
     game = {
       tahun:1, defisit:3.0, growth:5.0, inflasi:3.0, happy:70,
@@ -996,7 +911,7 @@
     updateLog(); updateTampilan();
   }
   
-  // ==================== EXPORT PDF (DENGAN 4 REFLEKSI) ====================
+  // ==================== EXPORT PDF - VERSI DIPERBAIKI ====================
   function exportPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -1005,7 +920,16 @@
     let kelas = document.getElementById('inputKelas').value.trim() || 'Kelas';
     let tgl = new Date().toLocaleDateString('id-ID');
     
-    const cleanText = (str) => str.replace(/[^\x00-\x7F]/g, '').replace(/[\u{1F600}-\u{1F6FF}]/gu, '').trim();
+    // Fungsi untuk membersihkan teks - HANYA hapus emoji
+    const cleanText = (str) => {
+      if(!str) return '';
+      return str.replace(/[\u{1F600}-\u{1F6FF}]/gu, '')
+                .replace(/[\u{2600}-\u{26FF}]/gu, '')
+                .replace(/[\u{2700}-\u{27BF}]/gu, '')
+                .replace(/[📊⭐📋🎓💭✅❌]/g, '')
+                .trim();
+    };
+    
     let cleanNama = cleanText(nama);
     let cleanKelas = cleanText(kelas);
     
@@ -1016,20 +940,20 @@
     doc.text(`Tanggal: ${tgl} | Tahun ${game.tahun > 5 ? 'Selesai' : game.tahun + '/5'}`, 105, 30, null, null, 'center');
     doc.text(`PDB: Rp20.000 T | Inflasi acuan beras Rp12.000/kg`, 105, 36, null, null, 'center');
     
-    // Indikator
+    // Indikator - TANPA EMOJI
     doc.setFontSize(12);
-    doc.text('📊 Indikator Akhir:', 20, 48);
-    doc.text(`• Defisit ${game.defisit.toFixed(1)}% = Rp${formatRp((game.defisit/100)*PDB)}`, 20, 58);
-    doc.text(`• Growth ${game.growth.toFixed(1)}% = +Rp${formatRp((game.growth/100)*PDB)}/thn`, 20, 66);
-    doc.text(`• Inflasi ${game.inflasi.toFixed(1)}% = +Rp${Math.round((game.inflasi/100)*HARGA_BERAS)}/kg beras`, 20, 74);
-    doc.text(`• Kepuasan ${game.happy}/100`, 20, 82);
+    doc.text('Indikator Akhir:', 20, 48);
+    doc.text(`- Defisit ${game.defisit.toFixed(1)}% = Rp${formatRp((game.defisit/100)*PDB)}`, 20, 58);
+    doc.text(`- Growth ${game.growth.toFixed(1)}% = +Rp${formatRp((game.growth/100)*PDB)}/thn`, 20, 66);
+    doc.text(`- Inflasi ${game.inflasi.toFixed(1)}% = +Rp${Math.round((game.inflasi/100)*HARGA_BERAS)}/kg beras`, 20, 74);
+    doc.text(`- Kepuasan ${game.happy}/100`, 20, 82);
     
     // Skor
     let skor = (game.defisit<=3?25:0)+(game.growth>=5?25:0)+(game.inflasi>=2&&game.inflasi<=4?25:0)+(game.happy>=65?25:0);
-    doc.text(`⭐ Skor Akhir: ${skor}/100`, 20, 92);
+    doc.text(`Skor Akhir: ${skor}/100`, 20, 92);
     
     // Riwayat Kebijakan
-    doc.text('📋 Riwayat Kebijakan:', 20, 108);
+    doc.text('Riwayat Kebijakan:', 20, 108);
     let y = 116;
     game.log.filter(l => !l.reflectionQuestion).slice(-8).forEach((ev, idx) => {
       if (y > 240) { doc.addPage(); y = 20; }
@@ -1039,32 +963,33 @@
     });
     
     // Refleksi - KE-4 SOAL & JAWABAN
-    if(game.reflectionSaved && game.reflectionAnswer) {
+    if(game.reflectionSaved && game.allReflectionAnswers && game.allReflectionAnswers.length > 0) {
       if (y > 220) { doc.addPage(); y = 20; }
       
       doc.setFillColor(254, 243, 199);
       doc.rect(15, y-5, 180, 10, 'F');
       doc.setFontSize(11);
       doc.setTextColor(146, 64, 14);
-      doc.text('🎓 REFLEKSI PEMBELAJARAN (4 Soal)', 20, y);
+      doc.text('REFLEKSI PEMBELAJARAN (4 Soal)', 20, y);
       y += 12;
       
-      const answersToExport = game.allReflectionAnswers || [
-        { question: document.getElementById('reflectionQuestion')?.innerText || '', answer: game.reflectionAnswer }
-      ];
-      
-      answersToExport.forEach((item, idx) => {
+      game.allReflectionAnswers.forEach((item, idx) => {
         if (y > 260) { doc.addPage(); y = 20; }
+        
+        // Pertanyaan - HAPUS nomor ganda
+        let question = cleanText(item.question);
+        question = question.replace(/^\d+\.\s*/, '');
         
         doc.setFontSize(9);
         doc.setTextColor(0, 0, 0);
-        doc.text(`${idx+1}. ${cleanText(item.question)}`, 20, y);
+        doc.text(`${idx+1}. ${question}`, 20, y);
         y += 6;
         
+        // Jawaban
         doc.setFontSize(8);
         doc.setTextColor(50, 50, 50);
-        const answerText = `💭 ${cleanText(item.answer)}`;
-        const answerLines = doc.splitTextToSize(answerText, 165);
+        let answer = cleanText(item.answer);
+        const answerLines = doc.splitTextToSize(`Jawaban: ${answer}`, 165);
         
         answerLines.forEach(line => {
           if (y > 275) { doc.addPage(); y = 20; }
@@ -1078,7 +1003,6 @@
     doc.save(`Simulasi_${cleanNama}_${cleanKelas}.pdf`);
   }
   
-  // ==================== FORUM DISKUSI ====================
   const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7FWrFd7v2I9glOXD0Iw9y4jDWXO7U5EBJWPDESkV54J8E90ZhxNMJqIx1WK7pdj7p/exec";
   let forumComments = [], forumLoading = false, forumInterval = null;
   const badWords = ["anjing","bodoh","tolol","bangsat","kampret","kontol","memek","ngentot","fuck","shit"];
@@ -1181,7 +1105,7 @@
       await fetch(APPSCRIPT_URL,{ method:'POST', body:formData });
       saveLikeLocally(row);
       await fetchCommentsFromSheet();
-      showToast('👍 Menyukai komentar','success');
+      showToast('Menyukai komentar','success');
     } catch(e){
       showToast('Gagal like','error');
       btn.disabled=false;
@@ -1226,7 +1150,6 @@
     } catch(e){ return 'baru saja'; }
   }
   
-  // ==================== UTILITY FUNCTIONS ====================
   function escapeHtml(str) {
     if(!str) return '';
     const div=document.createElement('div');
@@ -1267,7 +1190,6 @@
     document.getElementById('modalPenjelasan').classList.remove('show');
   }
   
-  // ==================== INIT ====================
   window.onload = function() {
     initChart();
     renderPolicyButtons();
