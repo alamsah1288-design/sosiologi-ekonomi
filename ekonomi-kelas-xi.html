@@ -22,6 +22,9 @@
   <meta name="twitter:title" content="EKONOMI Kelas XI | Portal Pembelajaran Interaktif">
   <meta name="twitter:description" content="Portal pembelajaran ekonomi interaktif untuk siswa SMA Kelas XI">
   
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
+  
   <!-- Structured Data for Google (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -253,6 +256,58 @@
     .soal-card { transition: all 0.3s ease; }
     .soal-card.filtered-out { opacity: 0.3; transform: scale(0.95); pointer-events: none; display: none !important; }
     
+    /* Ad Container */
+    .ad-container {
+      margin: 2rem 0;
+      text-align: center;
+      padding: 1rem;
+      background: #f9fafb;
+      border-radius: 12px;
+    }
+    body.dark-mode .ad-container { background: #1f2937; }
+    
+    /* File Links Grid */
+    .file-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .file-link-card {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    body.dark-mode .file-link-card { background: #1f2937; border-color: #374151; }
+    .file-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .file-link-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+    .file-link-card h4 {
+      font-size: 1rem;
+      margin: 0;
+      color: var(--dark);
+    }
+    body.dark-mode .file-link-card h4 { color: white; }
+    .file-link-card span {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    
     /* Footer */
     footer {
       background: var(--dark); color: white; padding: 2rem; text-align: center;
@@ -282,11 +337,12 @@
       .card-content { padding: 1rem; }
       .sub-nav-buttons { overflow-x: auto; padding-bottom: 0.5rem; -webkit-overflow-scrolling: touch; }
       .sub-nav-btn { flex-shrink: 0; white-space: nowrap; }
+      .file-links-grid { grid-template-columns: 1fr; }
     }
     
     /* Print Styles */
     @media print {
-      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .mobile-bottom-nav, .sub-nav-container { display: none !important; }
+      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .mobile-bottom-nav, .sub-nav-container, .ad-container { display: none !important; }
       body { background: white; color: black; font-size: 12pt; padding-bottom: 0; }
       .content-section { display: block !important; page-break-after: always; margin: 0; padding: 0; }
       .card { break-inside: avoid; border: 1px solid #000; box-shadow: none; margin-bottom: 1rem; }
@@ -592,6 +648,19 @@
       <button class="print-btn" onclick="printSection('pembahasan-soal')"><i class="fas fa-print"></i> Cetak</button>
     </div>
 
+    <!-- Google AdSense -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1234355696976048"
+           data-ad-slot="4315823561"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <!-- Sub-Navigation: Filter Bab -->
     <div class="sub-nav-container">
       <div class="sub-nav-title"><i class="fas fa-folder-open"></i> Pilih Bab:</div>
@@ -666,13 +735,33 @@
         </div>
       </article>
 
-      <!-- Tombol Lihat Semua di Folder -->
-      <article class="card" style="justify-content:center;text-align:center">
+      <!-- Tombol Lihat Semua di Folder - UPDATED -->
+      <article class="card" style="grid-column: 1 / -1;">
         <div class="card-content">
-          <i class="fas fa-folder-open fa-3x" style="color:var(--primary);margin-bottom:1rem"></i>
-          <h3>Lihat Semua Soal</h3>
+          <h3><i class="fas fa-folder-open" style="color:var(--primary);margin-right:0.5rem"></i> Lihat Semua Soal</h3>
           <p>Akses lengkap semua soal per bab dengan struktur folder terorganisir.</p>
-          <a href="pembahasan-soal/index.html" class="action-btn secondary"><i class="fas fa-external-link-alt"></i> Buka Folder Soal</a>
+          <div class="file-links-grid">
+            <a href="pembahasan-soalosn/soalosn-ekonomi-bagian1.html" class="file-link-card">
+              <i class="fas fa-file-alt"></i>
+              <h4>Soal OSN Bagian 1</h4>
+              <span>Soal 21-30</span>
+            </a>
+            <a href="pembahasan-soalosn/soalosn-ekonomi-bagian2.html" class="file-link-card">
+              <i class="fas fa-file-alt"></i>
+              <h4>Soal OSN Bagian 2</h4>
+              <span>Soal 26-38</span>
+            </a>
+            <a href="pembahasan-soalosn/soalosn-ekonomi-bagian3.html" class="file-link-card">
+              <i class="fas fa-file-alt"></i>
+              <h4>Soal OSN Bagian 3</h4>
+              <span>Soal 21-30 (Lanjutan)</span>
+            </a>
+            <a href="pembahasan-soalosn/soalosn-ekonomi-bagian4.html" class="file-link-card">
+              <i class="fas fa-file-alt"></i>
+              <h4>Soal OSN Bagian 4</h4>
+              <span>Soal 32-Utilitas</span>
+            </a>
+          </div>
         </div>
       </article>
     </div>
