@@ -38,32 +38,36 @@
 <!-- 🔹 Google AdSense Script -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
      crossorigin="anonymous"></script>
-<title data-lang-id="Sosiologi Kelas X | SMA Negeri 1 Cluring" data-lang-en="Grade X Sociology | SMA Negeri 1 Cluring">Sosiologi Kelas X | SMA Negeri 1 Cluring</title>
+<title>Sosiologi Kelas X | SMA Negeri 1 Cluring</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
 :root {
---primary: #2c3e50;
---secondary: #3498db;
---accent: #1abc9c;
---light: #ecf0f1;
---dark: #2c3e50;
---gray: #95a5a6;
---success: #2ecc71;
---warning: #f39c12;
---danger: #e74c3c;
+--primary: #4361ee;
+--secondary: #3f37c9;
+--accent: #4cc9f0;
+--light: #f8f9fa;
+--dark: #212529;
+--gray: #6c757d;
+--success: #4ade80;
+--warning: #fbbf24;
+--danger: #f87171;
 --neon-blue: #00f0ff;
 --neon-pink: #ff00c8;
 --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
---gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary), var(--neon-blue));
---shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--border-radius: 12px;
+--transition: all 0.3s ease;
+--header-height: 70px;
 }
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
+html { scroll-behavior: smooth; }
 body {
 font-family: 'Poppins', sans-serif;
 background: var(--bg-gradient);
@@ -71,218 +75,213 @@ color: var(--dark);
 line-height: 1.6;
 overflow-x: hidden;
 transition: background 0.3s, color 0.3s;
-padding-bottom: 80px; 
+padding-bottom: 80px;
 }
 body.dark-mode {
-background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-color: #ecf0f1;
+background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+color: #f8f9fa;
 }
 body.dark-mode .card {
-background: #1f2937;
-border-color: #374151;
+background: #2d2d2d;
+border-color: #444;
 }
 body.dark-mode .card p {
 color: #9ca3af;
 }
-body.dark-mode .main-nav,
-body.dark-mode .mobile-bottom-nav {
-background: #1f2937;
-border-color: #374151;
+body.dark-mode .card h3 { color: #f8f9fa; }
+body.dark-mode .progress-container,
+body.dark-mode .section-header h2,
+body.dark-mode .tab-nav {
+background: #2d2d2d;
+color: #f8f9fa;
+border-color: #444;
 }
-/* Header */
+body.dark-mode .tab-btn {
+background: #2d2d2d;
+color: #9ca3af;
+border-color: #444;
+}
+body.dark-mode .tab-btn.active {
+background: var(--gradient-primary);
+color: white;
+}
+body.dark-mode .print-btn,
+body.dark-mode .reset-progress {
+background: #374151;
+border-color: #4b5563;
+color: #f8f9fa;
+}
+
+/* ===== NAVBAR (KONSISTEN DENGAN INDEX) ===== */
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white;
+padding: 0.8rem 1.5rem;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: var(--shadow);
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: var(--header-height);
+}
+.navbar-brand {
+font-weight: 700;
+font-size: 1.2rem;
+text-decoration: none;
+color: white;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.navbar-brand img {
+width: 40px; height: 40px;
+border-radius: 50%;
+border: 2px solid rgba(255,255,255,0.3);
+object-fit: cover;
+}
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links {
+display: flex; gap: 12px; list-style: none;
+margin: 0; padding: 0; position: relative;
+}
+.nav-links a {
+color: white; text-decoration: none; font-weight: 500;
+padding: 8px 12px; border-radius: 50px;
+transition: var(--transition); position: relative;
+display: flex; align-items: center; gap: 5px;
+font-size: 0.92rem;
+}
+.nav-links a:hover, .nav-links a.active {
+background: rgba(255,255,255,0.2);
+transform: translateY(-2px);
+}
+/* Dropdown */
+.dropdown { position: relative; }
+.dropdown-content {
+display: none; position: absolute;
+background: rgba(255,255,255,0.95);
+min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+border-radius: 8px; top: 100%; left: 0; z-index: 1001;
+flex-direction: column; padding: 10px 0;
+backdrop-filter: blur(10px);
+}
+.dropdown-content a {
+color: var(--dark); padding: 10px 16px;
+text-decoration: none; display: block; text-align: left;
+border-radius: 8px; margin: 0 5px; transition: var(--transition);
+}
+.dropdown-content a:hover {
+background: var(--primary); color: white;
+transform: none; padding-left: 20px;
+}
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger {
+display: none; cursor: pointer; background: none;
+border: none; color: white; font-size: 1.5rem; z-index: 1001;
+}
+.theme-toggle, .lang-switch {
+background: rgba(255,255,255,0.15);
+border: none; color: white;
+font-size: 1.1rem; cursor: pointer;
+transition: transform 0.3s;
+display: flex; align-items: center; justify-content: center;
+width: 40px; height: 40px; border-radius: 50%;
+}
+.theme-toggle:hover, .lang-switch:hover {
+transform: rotate(15deg);
+background: rgba(255,255,255,0.25);
+}
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+/* ===== HEADER (SUB HEADER) ===== */
 header {
 background: var(--gradient-primary);
 background-size: 300% 300%;
 animation: gradientBG 8s ease infinite;
 color: white;
-padding: 1.5rem 2rem;
+padding: 3rem 1.5rem 2rem;
+text-align: center;
 position: relative;
-border-radius: 0 0 30px 30px;
-box-shadow: var(--shadow-lg);
+overflow: hidden;
 }
 @keyframes gradientBG {
 0% { background-position: 0% 50%; }
 50% { background-position: 100% 50%; }
 100% { background-position: 0% 50%; }
 }
-.header-content {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 1rem;
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 15s linear infinite; z-index: 1;
 }
-.logo {
-display: flex;
-align-items: center;
-gap: 1rem;
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.header-icon {
+width: 90px; height: 90px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+backdrop-filter: blur(10px);
+font-size: 2.5rem;
+transition: var(--transition);
 }
-.logo h1 {
-font-weight: 800;
-font-size: 1.8rem;
-margin-bottom: 0.3rem;
-text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+.header-icon:hover {
+transform: scale(1.05) rotate(10deg);
+background: rgba(255,255,255,0.25);
 }
-.logo p {
-font-weight: 400;
-opacity: 0.95;
-font-size: 0.95rem;
+header h1 {
+font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;
+z-index: 2; position: relative;
 }
-.header-actions {
-display: flex;
-align-items: center;
-gap: 0.8rem;
+header .subtitle {
+font-weight: 300; opacity: 0.95; z-index: 2;
+position: relative; font-size: 1rem;
 }
-/* Buttons */
-.btn-home, .forum-btn, .lang-switch {
-background: rgba(255, 255, 255, 0.2);
-backdrop-filter: blur(8px);
-color: white;
-border: 1px solid rgba(255, 255, 255, 0.3);
-padding: 0.6rem 1.2rem;
-border-radius: 50px;
-text-decoration: none;
-font-weight: 600;
-display: flex;
-align-items: center;
-gap: 0.6rem;
-transition: all 0.3s ease;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-font-size: 0.9rem;
-cursor: pointer;
+.breadcrumb {
+max-width: 1200px; margin: 20px auto 0; padding: 0 20px;
+font-size: 0.9rem; color: var(--gray);
 }
-.btn-home:hover, .forum-btn:hover, .lang-switch:hover {
-background: rgba(255, 255, 255, 0.35);
-transform: scale(1.05);
-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+.breadcrumb a {
+color: var(--primary); text-decoration: none;
 }
-.lang-switch i {
-    font-size: 1.1rem;
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+/* ===== TAB NAVIGATION (Secondary) ===== */
+.tab-nav {
+max-width: 1200px; margin: 25px auto 20px; padding: 0 20px;
+display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
 }
-.theme-toggle {
-background: rgba(255, 255, 255, 0.2);
-border: none;
-color: white;
-width: 45px;
-height: 45px;
-border-radius: 50%;
-cursor: pointer;
-font-size: 1.2rem;
-transition: all 0.3s;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.theme-toggle:hover {
-background: rgba(255, 255, 255, 0.35);
-transform: scale(1.1);
-}
-/* Desktop Navigation */
-.desktop-nav {
-background: white;
-padding: 1.5rem 2rem;
-box-shadow: var(--shadow);
-position: sticky;
-top: 0;
-z-index: 100;
-}
-body.dark-mode .desktop-nav {
-background: #1f2937;
-}
-.nav-container {
-max-width: 1200px;
-margin: 0 auto;
-}
-.nav-buttons {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 1rem;
-}
-.nav-btn {
-padding: 1.2rem 1rem;
+.tab-btn {
+padding: 14px 12px;
 border: 2px solid #e5e7eb;
 background: white;
-border-radius: 16px;
+border-radius: 14px;
 cursor: pointer;
-transition: all 0.3s;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5rem;
-font-size: 1rem;
+transition: var(--transition);
+display: flex; align-items: center; justify-content: center;
+gap: 8px;
+font-size: 0.95rem;
 font-weight: 600;
 color: var(--dark);
+font-family: 'Poppins', sans-serif;
 }
-body.dark-mode .nav-btn {
-background: #374151;
-border-color: #4b5563;
-color: white;
-}
-.nav-btn:hover {
+.tab-btn:hover {
 transform: translateY(-3px);
 box-shadow: var(--shadow-lg);
-border-color: var(--secondary);
+border-color: var(--primary);
 }
-.nav-btn.active {
+.tab-btn.active {
 background: var(--gradient-primary);
 color: white;
 border-color: var(--secondary);
 }
-.nav-btn i {
-font-size: 1.3rem;
-}
-/* Mobile Bottom Navigation */
-.mobile-bottom-nav {
-display: none;
-position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
-background: white;
-box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
-z-index: 1000;
-padding: 0.5rem 0.25rem;
-border-top: 1px solid #e5e7eb;
-}
-.mobile-nav-items {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 0.25rem;
-}
-.mobile-nav-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding: 0.5rem 0.25rem;
-border: none;
-background: transparent;
-color: var(--gray);
-font-size: 0.7rem;
-cursor: pointer;
-transition: all 0.2s;
-border-radius: 8px;
-text-decoration: none;
-}
-.mobile-nav-item i {
-font-size: 1.3rem;
-margin-bottom: 0.2rem;
-}
-.mobile-nav-item.active {
-color: var(--secondary);
-background: rgba(52, 152, 219, 0.1);
-}
-body.dark-mode .mobile-nav-item.active {
-background: rgba(52, 152, 219, 0.2);
-}
-.mobile-nav-item span {
-font-weight: 500;
-text-align: center;
-line-height: 1.2;
-}
-/* Content Sections */
+.tab-btn i { font-size: 1.2rem; }
+
+/* ===== CONTENT SECTIONS ===== */
 .content-section {
 display: none;
 max-width: 1200px;
@@ -290,9 +289,7 @@ margin: 2rem auto;
 padding: 0 1.5rem;
 animation: fadeIn 0.5s ease;
 }
-.content-section.active {
-display: block;
-}
+.content-section.active { display: block; }
 @keyframes fadeIn {
 from { opacity: 0; transform: translateY(20px); }
 to { opacity: 1; transform: translateY(0); }
@@ -308,9 +305,7 @@ color: var(--primary);
 margin-bottom: 0.5rem;
 display: inline-block;
 }
-body.dark-mode .section-header h2 {
-color: white;
-}
+body.dark-mode .section-header h2 { color: #f8f9fa; }
 .section-header h2::after {
 content: '';
 position: absolute;
@@ -341,19 +336,16 @@ font-size: 0.85rem;
 display: flex;
 align-items: center;
 gap: 0.5rem;
-transition: all 0.3s;
-}
-body.dark-mode .print-btn {
-background: #374151;
-border-color: #4b5563;
-color: white;
+transition: var(--transition);
+color: var(--dark);
 }
 .print-btn:hover {
-background: var(--secondary);
+background: var(--primary);
 color: white;
-border-color: var(--secondary);
+border-color: var(--primary);
 }
-/* Progress Container */
+
+/* ===== PROGRESS CONTAINER ===== */
 .progress-container {
 background: white;
 padding: 1.2rem 1.5rem;
@@ -361,10 +353,6 @@ border-radius: 16px;
 margin-bottom: 2rem;
 box-shadow: var(--shadow);
 border: 1px solid #e5e7eb;
-}
-body.dark-mode .progress-container {
-background: #1f2937;
-border-color: #374151;
 }
 .progress-header {
 display: flex;
@@ -375,24 +363,17 @@ flex-wrap: wrap;
 gap: 0.5rem;
 }
 .progress-title {
-display: flex;
-align-items: center;
-gap: 0.5rem;
-font-weight: 600;
-color: var(--primary);
+display: flex; align-items: center; gap: 0.5rem;
+font-weight: 600; color: var(--primary);
 }
-body.dark-mode .progress-title {
-color: white;
-}
+body.dark-mode .progress-title { color: #f8f9fa; }
 .progress-bar {
 height: 8px;
 background: #e5e7eb;
 border-radius: 9999px;
 overflow: hidden;
 }
-body.dark-mode .progress-bar {
-background: #374151;
-}
+body.dark-mode .progress-bar { background: #374151; }
 .progress-fill {
 height: 100%;
 background: var(--gradient-primary);
@@ -413,13 +394,14 @@ padding: 0.4rem 0.8rem;
 border-radius: 8px;
 cursor: pointer;
 font-size: 0.8rem;
-transition: all 0.3s;
+transition: var(--transition);
 }
 .reset-progress:hover {
 background: var(--danger);
 color: white;
 }
-/* Cards Grid */
+
+/* ===== CARDS ===== */
 .cards-grid {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -439,18 +421,12 @@ position: relative;
 overflow: hidden;
 border: 1px solid rgba(0,0,0,0.03);
 }
-body.dark-mode .card {
-background: #1f2937;
-border-color: #374151;
-}
 .card::before {
 content: '';
 position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 4px;
-background: var(--secondary);
+top: 0; left: 0;
+width: 100%; height: 4px;
+background: var(--primary);
 }
 .card:hover {
 transform: translateY(-8px);
@@ -460,13 +436,10 @@ box-shadow: var(--shadow-lg);
 border-color: var(--success);
 box-shadow: 0 0 0 2px var(--success);
 }
-.card.completed::before {
-background: var(--success);
-}
+.card.completed::before { background: var(--success); }
 .card-badge {
 position: absolute;
-top: 1rem;
-right: 1rem;
+top: 1rem; right: 1rem;
 background: var(--neon-pink);
 color: white;
 padding: 0.25rem 0.8rem;
@@ -475,28 +448,16 @@ font-size: 0.7rem;
 font-weight: 600;
 z-index: 10;
 }
-.card-badge.economy {
-background: linear-gradient(120deg, #f39c12, #e74c3c);
-}
-.card-badge.generation {
-background: linear-gradient(120deg, #9b59b6, #3498db);
-}
-.card-badge.forum {
-background: linear-gradient(120deg, #1abc9c, #3498db);
-}
-.card-badge.geopolitik {
-background: linear-gradient(120deg, #2c3e50, #e74c3c);
-}
+.card-badge.economy { background: linear-gradient(120deg, #f39c12, #e74c3c); }
+.card-badge.generation { background: linear-gradient(120deg, #9b59b6, #3498db); }
+.card-badge.forum { background: linear-gradient(120deg, #1abc9c, #3498db); }
+.card-badge.geopolitik { background: linear-gradient(120deg, #2c3e50, #e74c3c); }
 .card-image {
-width: 100%;
-height: 160px;
+width: 100%; height: 160px;
 object-fit: cover;
-background: linear-gradient(120deg, var(--secondary), var(--neon-blue));
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-font-size: 2.5rem;
+background: linear-gradient(120deg, var(--primary), var(--accent));
+display: flex; align-items: center; justify-content: center;
+color: white; font-size: 2.5rem;
 }
 .card-content {
 padding: 1.4rem;
@@ -507,17 +468,12 @@ flex-direction: column;
 .card h3 {
 margin-bottom: 0.6rem;
 font-size: 1.15rem;
-display: flex;
-align-items: center;
-gap: 0.6rem;
-color: var(--primary);
-}
-body.dark-mode .card h3 {
-color: white;
+display: flex; align-items: center; gap: 0.6rem;
+color: var(--dark);
 }
 .card h3 i {
 font-size: 1.1rem;
-color: var(--secondary);
+color: var(--primary);
 }
 .card p {
 color: var(--gray);
@@ -546,34 +502,23 @@ font-size: 0.65rem;
 font-weight: 600;
 }
 .progress-tracker {
-display: flex;
-align-items: center;
-gap: 0.6rem;
+display: flex; align-items: center; gap: 0.6rem;
 padding: 0.6rem 0.8rem;
 background: var(--light);
 border-radius: 12px;
 cursor: pointer;
-transition: all 0.3s;
+transition: var(--transition);
 margin-top: auto;
 }
-body.dark-mode .progress-tracker {
-background: #374151;
-}
-.progress-tracker:hover {
-background: #dfe6e9;
-}
-body.dark-mode .progress-tracker:hover {
-background: #4b5563;
-}
+body.dark-mode .progress-tracker { background: #374151; }
+.progress-tracker:hover { background: #dfe6e9; }
+body.dark-mode .progress-tracker:hover { background: #4b5563; }
 .progress-checkbox {
-width: 22px;
-height: 22px;
-border: 2px solid var(--secondary);
+width: 22px; height: 22px;
+border: 2px solid var(--primary);
 border-radius: 6px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s;
+display: flex; align-items: center; justify-content: center;
+transition: var(--transition);
 flex-shrink: 0;
 }
 .card.completed .progress-checkbox {
@@ -581,24 +526,19 @@ background: var(--success);
 border-color: var(--success);
 }
 .progress-checkbox i {
-color: white;
-font-size: 0.7rem;
-opacity: 0;
-transform: scale(0);
-transition: all 0.3s;
+color: white; font-size: 0.7rem;
+opacity: 0; transform: scale(0);
+transition: var(--transition);
 }
 .card.completed .progress-checkbox i {
-opacity: 1;
-transform: scale(1);
+opacity: 1; transform: scale(1);
 }
 .progress-label {
 font-size: 0.85rem;
 font-weight: 500;
 color: var(--dark);
 }
-body.dark-mode .progress-label {
-color: white;
-}
+body.dark-mode .progress-label { color: #f8f9fa; }
 .card.completed .progress-label {
 color: var(--success);
 text-decoration: line-through;
@@ -611,7 +551,7 @@ padding: 0.6rem 1.2rem;
 border-radius: 9999px;
 text-decoration: none;
 font-weight: 600;
-transition: all 0.3s;
+transition: var(--transition);
 margin-top: 0.5rem;
 border: none;
 cursor: pointer;
@@ -624,7 +564,7 @@ transform: translateY(-2px);
 box-shadow: var(--shadow-lg);
 }
 .action-btn.secondary {
-background: linear-gradient(120deg, var(--accent), var(--secondary));
+background: linear-gradient(120deg, var(--accent), var(--primary));
 }
 .breaking-news {
 background: var(--danger);
@@ -638,197 +578,381 @@ gap: 0.8rem;
 animation: pulse 2s infinite;
 }
 @keyframes pulse {
-0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
-70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
-100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+0% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.7); }
+70% { box-shadow: 0 0 0 10px rgba(248, 113, 113, 0); }
+100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
 }
-/* Footer */
+
+/* ===== FOOTER (KONSISTEN DENGAN INDEX) ===== */
 footer {
-background: var(--primary);
+background: linear-gradient(135deg, #1e293b, #334155);
 color: white;
-padding: 2.5rem 1.5rem 1.5rem;
-margin-top: 4rem;
-border-radius: 30px 30px 0 0;
+padding: 60px 20px 30px;
+margin-top: 60px;
+font-family: 'Poppins', sans-serif;
+transition: background 0.4s;
 }
-.footer-grid {
+body.dark-mode footer {
+background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+.footer-container {
+max-width: 1200px; margin: 0 auto;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 2rem;
-max-width: 1200px;
-margin: 0 auto;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 40px;
 }
 .footer-section h3 {
-font-size: 1.15rem;
-margin-bottom: 1rem;
-color: var(--neon-blue);
+font-size: 1.2rem;
+margin-bottom: 20px;
 position: relative;
-display: inline-block;
+padding-bottom: 8px;
+color: white;
 }
 .footer-section h3::after {
 content: '';
 position: absolute;
-bottom: -6px;
-left: 0;
-width: 30px;
-height: 2px;
-background: var(--neon-pink);
+left: 0; bottom: 0;
+width: 50px; height: 3px;
+background: var(--primary);
+border-radius: 3px;
 }
-.footer-section ul {
-list-style: none;
-}
-.footer-section ul li {
-margin-bottom: 0.7rem;
-}
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
 .footer-section a {
-color: #d6eaf8;
+color: #e2e8f0;
 text-decoration: none;
-transition: all 0.25s ease;
-display: flex;
-align-items: center;
-gap: 0.5rem;
+transition: var(--transition);
+display: flex; align-items: center; gap: 8px;
 }
 .footer-section a:hover {
-color: var(--neon-blue);
-transform: translateX(4px);
+color: var(--primary);
+transform: translateX(5px);
 }
-.contact-info {
-display: flex;
-flex-direction: column;
-gap: 0.7rem;
+.footer-section p {
+line-height: 1.6;
+margin: 8px 0;
+color: #e2e8f0;
 }
-.contact-info i {
-color: var(--neon-blue);
-min-width: 20px;
+.footer-legal-links {
+display: flex; flex-direction: column; gap: 8px;
+}
+.footer-legal-links a { font-size: 0.9rem; padding: 4px 0; }
+.footer-legal-links i {
+width: 18px; text-align: center;
+font-size: 0.85rem; opacity: 0.8;
+}
+.footer-legal-bar {
+display: none;
+text-align: center;
+padding: 15px 10px;
+margin: 20px 0;
+border-top: 1px solid rgba(255,255,255,0.08);
+border-bottom: 1px solid rgba(255,255,255,0.08);
+flex-wrap: wrap;
+gap: 5px;
+justify-content: center;
+font-size: 0.8rem;
+}
+.footer-legal-bar a {
+color: #94a3b8;
+text-decoration: none;
+transition: color 0.3s;
+padding: 3px 8px;
+}
+.footer-legal-bar a:hover { color: var(--primary); }
+.footer-legal-bar .separator {
+color: rgba(255,255,255,0.2);
+margin: 0 3px;
+}
+.visitor-counter {
+text-align: center;
+padding: 15px;
+background: rgba(255,255,255,0.05);
+border-radius: 8px;
+margin-top: 10px;
+}
+.visitor-counter img {
+max-width: 100%; height: auto;
+filter: brightness(1.2);
+}
+.visitor-counter p {
+margin-top: 10px;
+font-size: 0.85rem;
+opacity: 0.8;
+color: #e2e8f0;
 }
 .copyright {
 text-align: center;
-margin-top: 2rem;
-padding-top: 1.5rem;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-color: var(--gray);
+grid-column: span 4;
+padding-top: 30px;
+border-top: 1px solid rgba(255,255,255,0.1);
+margin-top: 20px;
+}
+.footer-bottom {
+text-align: center;
+padding-top: 20px;
+margin-top: 30px;
+border-top: 1px solid rgba(255,255,255,0.08);
+font-size: 0.9rem;
+color: #94a3b8;
+}
+body.dark-mode .footer-bottom {
+border-color: rgba(255,255,255,0.03);
+}
+
+/* ===== UI UTILITIES ===== */
+.scroll-indicator {
+position: fixed; top: 0; left: 0;
+width: 100%; height: 4px;
+background: rgba(0,0,0,0.1);
+z-index: 9999;
+}
+.scroll-indicator span {
+position: absolute; top: 0; left: 0;
+height: 100%;
+background: var(--primary);
+width: 0%;
+transition: width 0.2s ease;
+}
+.back-to-top {
+position: fixed;
+bottom: 25px; right: 25px;
+width: 50px; height: 50px;
+border-radius: 50%;
+background: var(--primary);
+color: white;
+display: flex; align-items: center; justify-content: center;
+font-size: 1.2rem;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+cursor: pointer;
+transition: var(--transition);
+opacity: 0; visibility: hidden;
+z-index: 999;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover {
+transform: translateY(-5px);
+background: var(--secondary);
+}
+.loader-wrapper {
+position: fixed; top: 0; left: 0;
+width: 100%; height: 100%;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+display: flex; align-items: center; justify-content: center;
+z-index: 9999;
+transition: opacity 0.5s ease-out;
+}
+.loader {
+width: 50px; height: 50px;
+border: 5px solid rgba(255,255,255,0.3);
+border-radius: 50%;
+border-top-color: white;
+animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+.tab-nav { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links {
+display: none;
+position: fixed;
+top: var(--header-height);
+left: 0;
+width: 100%;
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+flex-direction: column;
+gap: 0;
+padding: 1rem 0;
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+z-index: 1000;
+max-height: calc(100vh - var(--header-height));
+overflow-y: auto;
+}
+.nav-links.active {
+display: flex;
+animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+from { opacity: 0; transform: translateY(-10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.nav-links li { width: 100%; }
+.nav-links a {
+padding: 12px 20px;
+border-radius: 0;
+width: 100%;
+display: flex;
+align-items: center;
+}
+.dropdown-content {
+position: static;
+background: rgba(0,0,0,0.1);
+box-shadow: none;
+width: 100%;
+display: none;
+padding: 0;
+backdrop-filter: none;
+}
+.dropdown.active .dropdown-content {
+display: flex;
+flex-direction: column;
+}
+.dropdown-content a {
+padding-left: 40px;
+color: white;
+}
+.dropdown-content a:hover {
+background: rgba(255,255,255,0.1);
+}
+.tab-nav {
+grid-template-columns: repeat(2, 1fr);
+gap: 8px;
+padding: 0 15px;
+}
+.tab-btn {
+padding: 10px 8px;
 font-size: 0.85rem;
 }
-/* Responsive Breakpoints */
-@media (max-width: 768px) {
-.desktop-nav { display: none; }
-.mobile-bottom-nav { display: block; }
-body { padding-bottom: 70px; }
-.header-content { flex-direction: column; text-align: center; gap: 1rem; }
-.logo { flex-direction: column; }
-.logo h1 { font-size: 1.4rem; }
-.logo p { font-size: 0.8rem; }
-.btn-home span, .forum-btn span, .lang-switch span { display: none; }
-.btn-home, .forum-btn, .lang-switch { padding: 0.5rem; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-.btn-home i, .forum-btn i, .lang-switch i { font-size: 1.2rem; margin: 0; }
+.tab-btn span { display: none; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.6rem; }
+.header-icon { width: 70px; height: 70px; font-size: 2rem; }
 .section-header { text-align: left; padding-right: 70px; }
 .section-header h2 { font-size: 1.3rem; }
-.section-header p { font-size: 0.8rem; }
-.print-btn { position: static; transform: none; margin-top: 1rem; width: fit-content; font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+.print-btn {
+position: static;
+transform: none;
+margin-top: 1rem;
+width: fit-content;
+font-size: 0.75rem;
+padding: 0.3rem 0.6rem;
+}
 .cards-grid { grid-template-columns: 1fr; }
 .progress-header { flex-direction: column; align-items: flex-start; }
 .progress-stats { text-align: left; }
-.header-actions { flex-wrap: wrap; justify-content: center; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.footer-legal-bar { display: flex; }
+.footer-section:nth-child(3) { display: none; }
+}
+@media (max-width: 576px) {
+.navbar-brand { font-size: 1rem; }
+.navbar-brand img { width: 35px; height: 35px; }
+.back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
-.nav-buttons { grid-template-columns: repeat(2, 1fr); }
 .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
-/* PRINT STYLES */
+
+/* ===== PRINT STYLES ===== */
 @media print {
-header, .desktop-nav, .mobile-bottom-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .btn-home, .forum-btn, .lang-switch { display: none !important; }
+.navbar, header, .tab-nav, footer, .print-btn, .reset-progress,
+.progress-tracker, .theme-toggle, .lang-switch, .hamburger,
+.scroll-indicator, .back-to-top, .breadcrumb { display: none !important; }
 body { background: white; color: black; font-size: 11pt; padding-bottom: 0; }
 .content-section { display: block !important; page-break-after: always; margin: 0; padding: 0.5in; }
-.content-section.active { display: block !important; }
 .card { break-inside: avoid; border: 1px solid #000; box-shadow: none; margin-bottom: 0.5in; page-break-inside: avoid; }
 .card-image { height: 2in; filter: grayscale(100%); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .section-header { text-align: left; border-bottom: 2px solid #000; padding-bottom: 0.2in; margin-bottom: 0.3in; }
 .section-header h2 { color: black; font-size: 16pt; }
 .section-header h2::after { display: none; }
-.section-header p { color: #333; }
 .card-badge { background: #000; color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 a { text-decoration: none; color: black; }
-.card-content { padding: 0.5rem; }
-.card h3 { font-size: 13pt; margin-bottom: 0.4rem; }
-.card p { font-size: 10pt; color: #333; }
-.card-meta { font-size: 8pt; border-top: 1px solid #ccc; padding-top: 0.4rem; margin-top: 0.4rem; }
 }
 </style>
 </head>
 <body>
+
+<!-- Loading Animation -->
+<div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+</div>
+
+<!-- Scroll Progress Indicator -->
+<div class="scroll-indicator">
+    <span id="scrollProgress"></span>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- ===== NAVBAR (KONSISTEN DENGAN INDEX) ===== -->
+<nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle" aria-label="Switch Language">
+            <span id="langText">EN</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="sosiologi-kelas-x.html" class="active"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<!-- ===== HEADER ===== -->
 <header>
-<div class="header-content">
-<div class="logo">
-<h1 data-lang-id="📚 Sosiologi Kelas X" data-lang-en="📚 Grade X Sociology">📚 Sosiologi Kelas X</h1>
-<p data-lang-id="SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!" data-lang-en="SMA Negeri 1 Cluring • Learn While Vibing!">SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
-</div>
-<div class="header-actions">
-<a href="index.html" class="btn-home">
-<i class="fas fa-home"></i>
-<span data-lang-id="Beranda" data-lang-en="Home">Beranda</span>
-</a>
-<a href="forum-diskusi.html" class="forum-btn">
-<i class="fas fa-comments"></i>
-<span data-lang-id="Forum" data-lang-en="Forum">Forum</span>
-</a>
-<!-- Language Switcher Button -->
-<button class="lang-switch" id="langToggle" aria-label="Switch Language">
-<i class="fas fa-globe"></i>
-<span id="langText">EN</span>
-</button>
-<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-<i class="fas fa-moon"></i>
-</button>
-</div>
-</div>
+    <div class="header-icon">
+        <i class="fas fa-book-reader"></i>
+    </div>
+    <h1 data-lang-id="📚 Sosiologi Kelas X" data-lang-en="📚 Grade X Sociology">📚 Sosiologi Kelas X</h1>
+    <p class="subtitle" data-lang-id="SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!" data-lang-en="SMA Negeri 1 Cluring • Learn While Vibing!">SMA Negeri 1 Cluring • Belajar Sambil Nge-Vibe!</p>
 </header>
 
-<!-- Desktop Navigation -->
-<nav class="desktop-nav">
-<div class="nav-container">
-<div class="nav-buttons">
-<button class="nav-btn active" onclick="showSection('materi')">
-<i class="fas fa-book"></i>
-<span data-lang-id="Materi" data-lang-en="Materials">Materi</span>
-</button>
-<button class="nav-btn" onclick="showSection('modul')">
-<i class="fas fa-chalkboard-teacher"></i>
-<span data-lang-id="Modul" data-lang-en="Modules">Modul</span>
-</button>
-<button class="nav-btn" onclick="showSection('analisis')">
-<i class="fas fa-microscope"></i>
-<span data-lang-id="Lensa" data-lang-en="Lens">Lensa</span>
-</button>
-<button class="nav-btn" onclick="showSection('aktivitas')">
-<i class="fas fa-tasks"></i>
-<span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span>
-</button>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+    <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <span>Sosiologi Kelas X</span>
 </div>
-</div>
-</nav>
 
-<!-- Mobile Bottom Navigation -->
-<nav class="mobile-bottom-nav">
-<div class="mobile-nav-items">
-<button class="mobile-nav-item active" onclick="showSection('materi')">
-<i class="fas fa-book"></i>
-<span data-lang-id="Materi" data-lang-en="Materials">Materi</span>
-</button>
-<button class="mobile-nav-item" onclick="showSection('modul')">
-<i class="fas fa-chalkboard-teacher"></i>
-<span data-lang-id="Modul" data-lang-en="Modules">Modul</span>
-</button>
-<button class="mobile-nav-item" onclick="showSection('analisis')">
-<i class="fas fa-microscope"></i>
-<span data-lang-id="Lensa" data-lang-en="Lens">Lensa</span>
-</button>
-<button class="mobile-nav-item" onclick="showSection('aktivitas')">
-<i class="fas fa-tasks"></i>
-<span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span>
-</button>
+<!-- ===== TAB NAVIGATION (Secondary) ===== -->
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="showSection('materi', this)">
+        <i class="fas fa-book"></i>
+        <span data-lang-id="Materi" data-lang-en="Materials">Materi</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('modul', this)">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span data-lang-id="Modul" data-lang-en="Modules">Modul</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('analisis', this)">
+        <i class="fas fa-microscope"></i>
+        <span data-lang-id="Lensa" data-lang-en="Lens">Lensa</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('aktivitas', this)">
+        <i class="fas fa-tasks"></i>
+        <span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span>
+    </button>
 </div>
-</nav>
 
-<!-- 🔹 Google AdSense Unit - Placement: Top of Content -->
+<!-- 🔹 Google AdSense Unit -->
+<div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-1234355696976048"
@@ -838,6 +962,7 @@ a { text-decoration: none; color: black; }
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
 
 <!-- SECTION 1: MATERI -->
 <section id="materi" class="content-section active">
@@ -1166,7 +1291,7 @@ a { text-decoration: none; color: black; }
 </div>
 </div>
 </div>
-<!-- Analysis 3: Family Emotion Bilingual -->
+<!-- Analysis 3 -->
 <div class="card" data-id="analisis-3">
 <span class="card-badge forum" data-lang-id="FAMILY" data-lang-en="FAMILY">FAMILY</span>
 <div class="card-image"><i class="fas fa-heart"></i></div>
@@ -1186,7 +1311,7 @@ a { text-decoration: none; color: black; }
 </div>
 </div>
 </div>
-<!-- ✅ Analysis 4: GEOPOLITIK 2026 (hasil dari file sosiologi-geopolitik-2026.html) -->
+<!-- Analysis 4: GEOPOLITIK 2026 -->
 <div class="card" data-id="analisis-4">
 <span class="card-badge geopolitik" data-lang-id="GEOPOLITIK 2026" data-lang-en="GEOPOLITICS 2026">GEOPOLITIK 2026</span>
 <div class="card-image"><i class="fas fa-globe-asia"></i></div>
@@ -1212,19 +1337,19 @@ a { text-decoration: none; color: black; }
 <h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang-id="<i class='fas fa-comments'></i> Poin Diskusi untuk Refleksi" data-lang-en="<i class='fas fa-comments'></i> Discussion Points for Reflection"><i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi</h3>
 <ul style="list-style: none; padding-left: 0;">
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
-<i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
+<i class="fas fa-question-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
 <strong data-lang-id="Apakah media sosial memperkuat atau melemahkan ikatan sosial tradisional?" data-lang-en="Does social media strengthen or weaken traditional social bonds?">Apakah media sosial memperkuat atau melemahkan ikatan sosial tradisional?</strong>
 </li>
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
-<i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
+<i class="fas fa-question-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
 <strong data-lang-id="Bagaimana nilai gotong royong bertransformasi di era digital?" data-lang-en="How does the value of mutual cooperation transform in the digital era?">Bagaimana nilai gotong royong bertransformasi di era digital?</strong>
 </li>
 <li style="padding: 0.8rem 0; border-bottom: 1px solid #e5e7eb;">
-<i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
+<i class="fas fa-question-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
 <strong data-lang-id="Apa dampak kebijakan ekonomi terhadap stratifikasi sosial masyarakat?" data-lang-en="What is the impact of economic policies on the social stratification of society?">Apa dampak kebijakan ekonomi terhadap stratifikasi sosial masyarakat?</strong>
 </li>
 <li style="padding: 0.8rem 0;">
-<i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>
+<i class="fas fa-question-circle" style="color: var(--primary); margin-right: 0.5rem;"></i>
 <strong data-lang-id="Bagaimana identitas Gen Z Indonesia berbeda dengan generasi sebelumnya?" data-lang-en="How does the identity of Indonesian Gen Z differ from previous generations?">Bagaimana identitas Gen Z Indonesia berbeda dengan generasi sebelumnya?</strong>
 </li>
 </ul>
@@ -1244,8 +1369,8 @@ a { text-decoration: none; color: black; }
 <!-- Card 1: Absensi -->
 <div class="card absensi-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
-<i class="fas fa-clipboard-list fa-4x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);" data-lang-id="Absensi Harian" data-lang-en="Daily Attendance">Absensi Harian</h3>
+<i class="fas fa-clipboard-list fa-4x" style="color: var(--primary); margin-bottom: 1rem;"></i>
+<h3 style="color: var(--dark);" data-lang-id="Absensi Harian" data-lang-en="Daily Attendance">Absensi Harian</h3>
 <p data-lang-id="Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!" data-lang-en="Click to fill out attendance via Google Form. Don't get left behind!">Klik untuk mengisi kehadiran melalui Google Formulir. Jangan sampai ketinggalan!</p>
 <a href="https://docs.google.com/forms/d/1wSz-DFGxiKSckvVEAJx6WOVn8LTiuCXkldNX5gibag4/edit" class="action-btn" target="_blank">
 <i class="fas fa-external-link-alt"></i> <span data-lang-id="Isi Absensi" data-lang-en="Fill Attendance">Isi Absensi</span>
@@ -1256,7 +1381,7 @@ a { text-decoration: none; color: black; }
 <div class="card tugas-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-file-upload fa-4x" style="color: var(--success); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);" data-lang-id="Kirim Tugas Anda" data-lang-en="Submit Your Task">Kirim Tugas Anda</h3>
+<h3 style="color: var(--dark);" data-lang-id="Kirim Tugas Anda" data-lang-en="Submit Your Task">Kirim Tugas Anda</h3>
 <p data-lang-id="Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!" data-lang-en="Use this form to submit assignments according to teacher instructions. Don't ghost the deadline!">Gunakan formulir ini untuk mengumpulkan tugas sesuai instruksi guru. Deadline jangan di-ghosting!</p>
 <a href="https://docs.google.com/forms/d/1M4eOIBMi04LdpW73Etee8aifP0vAHuo4l7F8SDU0PcA/edit" class="action-btn secondary" target="_blank">
 <i class="fas fa-external-link-alt"></i> <span data-lang-id="Kirim Sekarang" data-lang-en="Submit Now">Kirim Sekarang</span>
@@ -1267,18 +1392,18 @@ a { text-decoration: none; color: black; }
 <div class="card ulangan-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-graduation-cap fa-4x" style="color: var(--warning); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);" data-lang-id="Ulangan & Hasil Asesmen" data-lang-en="Exams & Assessment Results">Ulangan & Hasil Asesmen</h3>
+<h3 style="color: var(--dark);" data-lang-id="Ulangan & Hasil Asesmen" data-lang-en="Exams & Assessment Results">Ulangan & Hasil Asesmen</h3>
 <p data-lang-id="Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!" data-lang-en="Log in to take exams or view your assessment results. Get ready to glow up your grades!">Login untuk mengikuti ulangan atau melihat hasil asesmen Anda. Siap-siap glow up nilai!</p>
 <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">
 <i class="fas fa-sign-in-alt"></i> <span data-lang-id="Masuk" data-lang-en="Login">Masuk</span>
 </a>
 </div>
 </div>
-<!-- ✅ NEW CARD: Pembahasan Soal -->
+<!-- Card 4: Pembahasan Soal -->
 <div class="card pembahasan-card">
 <div class="card-content" style="text-align: center; padding: 2.5rem 1.5rem;">
 <i class="fas fa-lightbulb fa-4x" style="color: var(--accent); margin-bottom: 1rem;"></i>
-<h3 style="color: var(--primary);" data-lang-id="💡 Pembahasan Soal" data-lang-en="💡 Question Discussion">💡 Pembahasan Soal</h3>
+<h3 style="color: var(--dark);" data-lang-id="💡 Pembahasan Soal" data-lang-en="💡 Question Discussion">💡 Pembahasan Soal</h3>
 <p data-lang-id="Akses kunci jawaban dan pembahasan lengkap untuk latihan soal sosiologi. Pelajari cara menjawab dengan tepat!" data-lang-en="Access answer keys and complete discussions for sociology practice questions. Learn how to answer correctly!">Akses kunci jawaban dan pembahasan lengkap untuk latihan soal sosiologi. Pelajari cara menjawab dengan tepat!</p>
 <a href="pembahasan-soal-sosiologi-x/pembahasan-soal-sosiologi.html" class="action-btn secondary">
 <i class="fas fa-book-reader"></i> <span data-lang-id="Lihat Pembahasan" data-lang-en="View Discussion">Lihat Pembahasan</span>
@@ -1288,121 +1413,122 @@ a { text-decoration: none; color: black; }
 </div>
 </section>
 
+<!-- ===== FOOTER (KONSISTEN DENGAN INDEX) ===== -->
 <footer>
-<div class="footer-grid">
-<div class="footer-section">
-<h3 data-lang-id="Menu Navigasi" data-lang-en="Navigation Menu">Menu Navigasi</h3>
-<ul>
-<li><a href="index.html"><i class="fas fa-home"></i> <span data-lang-id="Beranda" data-lang-en="Home">Beranda</span></a></li>
-<li><a href="#materi"><i class="fas fa-book"></i> <span data-lang-id="Materi" data-lang-en="Materials">Materi</span></a></li>
-<li><a href="forum-diskusi.html"><i class="fas fa-comments"></i> <span data-lang-id="Forum" data-lang-en="Forum">Forum</span></a></li>
-<li><a href="ulangan-dan-hasil-asesmen-login.html"><i class="fas fa-tasks"></i> <span data-lang-id="Tugas" data-lang-en="Tasks">Tugas</span></a></li>
-<li><a href="galery.html"><i class="fas fa-images"></i> <span data-lang-id="Galeri" data-lang-en="Gallery">Galeri</span></a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3 data-lang-id="🔗 Link Penting" data-lang-en="🔗 Important Links">🔗 Link Penting</h3>
-<ul>
-<li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
-<li><a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
-<li><a href="https://www.bps.go.id/" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
-<li><a href="https://islam.nu.or.id/" target="_blank"><i class="fas fa-quran"></i> Al-Qur'an NU Online</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3 data-lang-id="📱 Hubungi Kami" data-lang-en="📱 Contact Us">📱 Hubungi Kami</h3>
-<div class="contact-info">
-<p><i class="fas fa-phone"></i> 0822-2385-7426</p>
-<p><i class="fas fa-map-marker-alt"></i> Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
-</div>
-</div>
-</div>
-<div class="copyright">
-&copy; 2025 SMA Negeri 1 Cluring | <span data-lang-id="Sosiologi Kelas X • Stay Curious, Stay Critical!" data-lang-en="Grade X Sociology • Stay Curious, Stay Critical!">Sosiologi Kelas X • Stay Curious, Stay Critical!</span>
-</div>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Link Penting</h3>
+            <ul>
+                <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
+                <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
+                <li><a href="https://www.bps.go.id/id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-open"></i> Al-Qur'an NU Online</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-file-alt"></i> Informasi & Legal</h3>
+            <ul class="footer-legal-links">
+                <li><a href="legal-info.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                <li><a href="legal-info.html#disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                <li><a href="legal-info.html#terms"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</a></li>
+                <li><a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privasi</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0822-2385-7426</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-eye"></i> Statistik Kunjungan</h3>
+            <div class="visitor-counter">
+                <a href="https://www.freecounterstat.com" title="page counter" target="_blank">
+                    <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=s91lf4yugk1a948dm9uz1ej5hzz7xj9q" border="0" title="page counter" alt="page counter">
+                </a>
+                <p>Jumlah pengunjung halaman ini</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-legal-bar">
+        <a href="legal-info.html#about">Tentang</a>
+        <span class="separator">•</span>
+        <a href="legal-info.html#disclaimer">Disclaimer</a>
+        <span class="separator">•</span>
+        <a href="legal-info.html#terms">Syarat</a>
+        <span class="separator">•</span>
+        <a href="privacy-policy.html">Privasi</a>
+        <span class="separator">•</span>
+        <a href="contact.html">Kontak</a>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;" data-lang-id="Platform pembelajaran digital untuk siswa dan guru." data-lang-en="Digital learning platform for students and teachers.">Platform pembelajaran digital untuk siswa dan guru.</p>
+    </div>
+    <div class="footer-bottom">
+        <p data-lang-id="Dibuat dengan <i class='fas fa-heart' style='color: #e74c3c;'></i> untuk pendidikan Indonesia" data-lang-en="Made with <i class='fas fa-heart' style='color: #e74c3c;'></i> for Indonesian education">Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
 </footer>
 
 <script>
-// --- LANGUAGE SWITCHER LOGIC ---
-let currentLang = 'id'; // Default language
+// ===== NAVBAR MOBILE =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
 
-function setLanguage(lang) {
-    currentLang = lang;
-    const elements = document.querySelectorAll('[data-lang-id]');
-    
-    elements.forEach(el => {
-        if (lang === 'en') {
-            if (el.getAttribute('data-lang-en')) {
-                el.innerHTML = el.getAttribute('data-lang-en');
-            }
-        } else {
-            if (el.getAttribute('data-lang-id')) {
-                el.innerHTML = el.getAttribute('data-lang-id');
-            }
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const link = dropdown.querySelector('a');
+    link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
         }
     });
+});
 
-    // Update button text
-    const langText = document.getElementById('langText');
-    if (lang === 'en') {
-        langText.textContent = 'ID';
-        document.documentElement.lang = 'en';
-    } else {
-        langText.textContent = 'EN';
-        document.documentElement.lang = 'id';
-    }
-
-    // Save preference
-    localStorage.setItem('preferredLang', lang);
-}
-
-// Initialize Language
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('preferredLang') || 'id';
-    setLanguage(savedLang);
-
-    // Attach event listener to toggle button
-    document.getElementById('langToggle').addEventListener('click', () => {
-        const newLang = currentLang === 'id' ? 'en' : 'id';
-        setLanguage(newLang);
-    });
-
-    // Existing Init Logic
-    loadProgress('materi');
-    loadProgress('modul');
-    loadProgress('analisis');
-    
-    const hash = window.location.hash.replace('#', '');
-    if (hash && document.getElementById(hash)) {
-        showSection(hash);
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
+        !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+        navLinks.classList.remove('active');
+        hamburger.textContent = '☰';
     }
 });
 
-// --- TAB NAVIGATION ---
-function showSection(sectionId) {
+// ===== TAB NAVIGATION =====
+function showSection(sectionId, btn) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(section => section.classList.remove('active'));
     
-    document.querySelectorAll('.nav-btn, .mobile-nav-item').forEach(btn => {
-        btn.classList.remove('active');
-    });
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     
     const section = document.getElementById(sectionId);
     if (section) {
         section.classList.add('active');
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
-        } else {
-            document.querySelectorAll(`[onclick*="'${sectionId}'"]`).forEach(btn => {
-                btn.classList.add('active');
-            });
-        }
+        if (btn) btn.classList.add('active');
         updateProgressDisplay(sectionId);
         history.replaceState(null, null, `#${sectionId}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
-// --- PROGRESS TRACKER ---
+// ===== PROGRESS TRACKER =====
 function toggleProgress(element, section) {
     const card = element.closest('.card');
     const cardId = card.getAttribute('data-id');
@@ -1456,15 +1582,9 @@ function updateProgressBar(section) {
     if (progressBar) progressBar.style.width = percentage + '%';
     if (countDisplay) countDisplay.textContent = completed;
     
-    // Untuk analisis, update total jika ada perubahan (tapi total statis, hanya count saja)
     if (section === 'analisis') {
         const totalSpan = document.getElementById('analisis-total');
-        if (totalSpan && totalSpan.getAttribute('data-total') !== String(total)) {
-            totalSpan.setAttribute('data-total', total);
-            const totalTextId = currentLang === 'en' ? total + ' Analyses Done' : total + ' Analisis Selesai';
-            totalSpan.textContent = totalTextId;
-        } else if (totalSpan && !totalSpan.getAttribute('data-total')) {
-            totalSpan.setAttribute('data-total', total);
+        if (totalSpan) {
             const totalTextId = currentLang === 'en' ? total + ' Analyses Done' : total + ' Analisis Selesai';
             totalSpan.textContent = totalTextId;
         }
@@ -1489,7 +1609,7 @@ function resetProgress(section) {
     }
 }
 
-// --- PRINT FUNCTION ---
+// ===== PRINT FUNCTION =====
 function printSection(sectionId) {
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(section => {
@@ -1507,7 +1627,31 @@ function printSection(sectionId) {
     }, 300);
 }
 
-// --- DARK MODE TOGGLE ---
+// ===== LANGUAGE SWITCHER =====
+let currentLang = 'id';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    const elements = document.querySelectorAll('[data-lang-id]');
+    elements.forEach(el => {
+        if (lang === 'en' && el.getAttribute('data-lang-en')) {
+            el.innerHTML = el.getAttribute('data-lang-en');
+        } else if (lang === 'id' && el.getAttribute('data-lang-id')) {
+            el.innerHTML = el.getAttribute('data-lang-id');
+        }
+    });
+    const langText = document.getElementById('langText');
+    if (lang === 'en') {
+        langText.textContent = 'ID';
+        document.documentElement.lang = 'en';
+    } else {
+        langText.textContent = 'EN';
+        document.documentElement.lang = 'id';
+    }
+    localStorage.setItem('preferredLang', lang);
+}
+
+// ===== DARK MODE =====
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const icon = themeToggle.querySelector('i');
@@ -1532,6 +1676,54 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     icon.classList.remove('fa-moon');
     icon.classList.add('fa-sun');
 }
+
+// ===== SCROLL & BACK TO TOP =====
+window.onscroll = function() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("scrollProgress").style.width = scrolled + "%";
+
+    const backToTop = document.getElementById('backToTop');
+    if (winScroll > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+};
+
+document.getElementById('backToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===== LOADER =====
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
+    }, 800);
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang') || 'id';
+    setLanguage(savedLang);
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+        const newLang = currentLang === 'id' ? 'en' : 'id';
+        setLanguage(newLang);
+    });
+
+    loadProgress('materi');
+    loadProgress('modul');
+    loadProgress('analisis');
+    
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        showSection(hash, document.querySelector(`[onclick*="'${hash}'"]`));
+    }
+});
 </script>
 </body>
 </html>
