@@ -9,7 +9,7 @@
   <meta name="keywords" content="ekonomi SMA, kelas XI, materi ekonomi, pembahasan soal, simulator ekonomi, artikel ekonomi, forum diskusi, kebijakan rupiah, inflasi, fiskal moneter">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Alamsah - SMAN 1 Cluring">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#4361ee">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -51,222 +51,583 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
   
-  <title>EKONOMI Kelas XI | Portal Pembelajaran Interaktif</title>
+  <title>EKONOMI Kelas XI | Portal Pembelajaran Interaktif — SMAN 1 Cluring</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --primary: #2563eb; --primary-dark: #1d4ed8; --secondary: #7c3aed;
-      --accent: #db2777; --success: #059669; --warning: #d97706; --danger: #dc2626;
-      --light: #f3f4f6; --dark: #1f2937; --gray: #6b7280;
-      --gradient-primary: linear-gradient(135deg, #2563eb, #7c3aed);
-      --gradient-accent: linear-gradient(135deg, #db2777, #9333ea);
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      --nav-height: 70px;
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --success: #4ade80;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --neon-pink: #ff00c8;
+      --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+      --gradient-accent: linear-gradient(120deg, var(--accent), var(--primary));
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --header-height: 70px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif; background-color: #f9fafb; color: var(--dark);
-      line-height: 1.6; -webkit-font-smoothing: antialiased; padding-bottom: var(--nav-height);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+      transition: background 0.4s, color 0.4s;
     }
-    body.dark-mode { background-color: #111827; color: #f3f4f6; }
-    body.dark-mode .card { background-color: #1f2937; border-color: #374151; }
-    
-    /* Header */
-    header {
-      background: var(--gradient-primary); color: white; padding: 1.5rem 2rem;
-      box-shadow: var(--shadow-lg); position: sticky; top: 0; z-index: 200;
+    body.dark-mode {
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      color: #f8f9fa;
     }
-    .header-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo h1 { font-size: 1.8rem; font-weight: 700; }
-    .logo small { font-size: 0.9rem; opacity: 0.9; }
-    .header-actions { display: flex; gap: 1rem; align-items: center; }
+    body.dark-mode .card { background: #2d2d2d; border-color: #444; }
+    body.dark-mode .card h3 { color: #f8f9fa; }
+    body.dark-mode .card p { color: #9ca3af; }
+    body.dark-mode .progress-container,
+    body.dark-mode .sub-nav-container,
+    body.dark-mode .tab-nav {
+      background: #2d2d2d;
+      border-color: #444;
+    }
+    body.dark-mode .tab-btn {
+      background: #2d2d2d;
+      color: #9ca3af;
+      border-color: #444;
+    }
+    body.dark-mode .tab-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    body.dark-mode .print-btn,
+    body.dark-mode .reset-progress,
+    body.dark-mode .sub-nav-btn {
+      background: #374151;
+      border-color: #4b5563;
+      color: #f8f9fa;
+    }
+    body.dark-mode .file-link-card {
+      background: #2d2d2d;
+      border-color: #444;
+    }
+    body.dark-mode .file-link-card h4 { color: #f8f9fa; }
+    body.dark-mode .section-header h2 { color: #f8f9fa; }
+
+    /* ===== NAVBAR (KONSISTEN DENGAN INDEX) ===== */
+    .navbar {
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.8rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: var(--header-height);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar-brand img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      object-fit: cover;
+    }
+    .nav-container { display: flex; align-items: center; gap: 10px; }
+    .nav-links {
+      display: flex; gap: 12px; list-style: none;
+      margin: 0; padding: 0; position: relative;
+    }
+    .nav-links a {
+      color: white; text-decoration: none; font-weight: 500;
+      padding: 8px 12px; border-radius: 50px;
+      transition: var(--transition); position: relative;
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.92rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-content {
+      display: none; position: absolute;
+      background: rgba(255,255,255,0.95);
+      min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px; top: 100%; left: 0; z-index: 1001;
+      flex-direction: column; padding: 10px 0;
+      backdrop-filter: blur(10px);
+    }
+    .dropdown-content a {
+      color: var(--dark); padding: 10px 16px;
+      text-decoration: none; display: block; text-align: left;
+      border-radius: 8px; margin: 0 5px; transition: var(--transition);
+    }
+    .dropdown-content a:hover {
+      background: var(--primary); color: white;
+      transform: none; padding-left: 20px;
+    }
+    .dropdown:hover .dropdown-content { display: flex; }
+    .hamburger {
+      display: none; cursor: pointer; background: none;
+      border: none; color: white; font-size: 1.5rem; z-index: 1001;
+    }
     .theme-toggle {
-      background: rgba(255,255,255,0.2); border: none; color: white;
-      width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
-      font-size: 1.2rem; transition: all 0.3s;
+      background: rgba(255,255,255,0.15);
+      border: none; color: white;
+      font-size: 1.1rem; cursor: pointer;
+      transition: transform 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
     }
-    .theme-toggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
-    
-    /* Desktop Navigation */
-    .main-nav {
-      background: white; padding: 2rem; box-shadow: var(--shadow);
-      position: sticky; top: 76px; z-index: 150;
+    .theme-toggle:hover {
+      transform: rotate(15deg);
+      background: rgba(255,255,255,0.25);
     }
-    body.dark-mode .main-nav { background: #1f2937; }
-    .nav-container { max-width: 1280px; margin: 0 auto; }
-    .nav-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-    .nav-btn {
-      padding: 1.2rem; border: 2px solid #e5e7eb; background: white; border-radius: 16px;
-      cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 0.75rem;
-      font-size: 1rem; font-weight: 600; color: var(--dark);
+
+    /* ===== HEADER (SUB HEADER) ===== */
+    header {
+      background: var(--gradient-primary);
+      background-size: 300% 300%;
+      animation: gradientBG 8s ease infinite;
+      color: white;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    body.dark-mode .nav-btn { background: #374151; border-color: #4b5563; color: white; }
-    .nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .nav-btn.active { background: var(--gradient-primary); color: white; border-color: var(--primary); }
-    .nav-btn i {
-      font-size: 1.3rem; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
-      background: rgba(37,99,235,0.1); border-radius: 10px;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .nav-btn.active i { background: rgba(255,255,255,0.2); }
-    
-    /* Mobile Bottom Navigation */
-    .mobile-bottom-nav {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0;
-      background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-      z-index: 1000; padding: 0.5rem 0; border-top: 1px solid #e5e7eb;
+    header::before {
+      content: ""; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      animation: rotate 15s linear infinite; z-index: 1;
     }
-    body.dark-mode .mobile-bottom-nav { background: #1f2937; border-top-color: #374151; }
-    .mobile-nav-items { display: flex; justify-content: space-around; align-items: center; max-width: 1280px; margin: 0 auto; }
-    .mobile-nav-item {
-      display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
-      padding: 0.5rem 0.75rem; color: var(--gray); text-decoration: none;
-      transition: all 0.3s; border-radius: 12px; min-width: 55px; font-size: 0.65rem;
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .header-icon {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; z-index: 2; position: relative;
+      border: 3px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      font-size: 2.5rem;
+      transition: var(--transition);
     }
-    body.dark-mode .mobile-nav-item { color: #9ca3af; }
-    .mobile-nav-item.active { color: var(--primary); background: rgba(37,99,235,0.1); }
-    body.dark-mode .mobile-nav-item.active { background: rgba(37,99,235,0.2); }
-    .mobile-nav-item i { font-size: 1.2rem; margin-bottom: 0.1rem; }
-    .mobile-nav-item .notification-dot {
-      position: absolute; top: 8px; right: 8px; width: 8px; height: 8px;
-      background: var(--danger); border-radius: 50%; display: none;
+    .header-icon:hover {
+      transform: scale(1.05) rotate(10deg);
+      background: rgba(255,255,255,0.25);
     }
-    .mobile-nav-item.has-notification .notification-dot { display: block; }
-    
-    /* Content Sections */
+    header h1 {
+      font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;
+      z-index: 2; position: relative;
+    }
+    header .subtitle {
+      font-weight: 300; opacity: 0.95; z-index: 2;
+      position: relative; font-size: 1rem;
+    }
+    .breadcrumb {
+      max-width: 1280px; margin: 20px auto 0; padding: 0 20px;
+      font-size: 0.9rem; color: var(--gray);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+    /* ===== TAB NAVIGATION (Secondary) ===== */
+    .tab-nav {
+      max-width: 1280px; margin: 25px auto 20px; padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .tab-btn {
+      padding: 14px 10px;
+      border: 2px solid #e5e7eb;
+      background: white;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-family: 'Poppins', sans-serif;
+    }
+    .tab-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .tab-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+      border-color: var(--secondary);
+    }
+    .tab-btn i { font-size: 1.1rem; }
+
+    /* ===== CONTENT SECTIONS ===== */
     .content-section {
-      display: none; max-width: 1280px; margin: 2rem auto; padding: 0 2rem;
+      display: none;
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 2rem;
       animation: fadeIn 0.5s ease;
     }
     .content-section.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .section-header { text-align: center; margin-bottom: 2rem; position: relative; }
-    .section-header h2 { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
-    .section-header p { color: var(--gray); font-size: 1.1rem; }
-    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .section-header h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--neon-pink);
+      border-radius: 2px;
+    }
+    .section-header p {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
     .print-btn {
-      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-      background: var(--light); border: 1px solid #e5e7eb; padding: 0.5rem 1rem;
-      border-radius: 8px; cursor: pointer; font-size: 0.9rem;
-      display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--light);
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      color: var(--dark);
     }
-    body.dark-mode .print-btn { background: #374151; border-color: #4b5563; color: white; }
-    .print-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
-    
-    /* Progress Bar */
+    .print-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* ===== PROGRESS CONTAINER ===== */
     .progress-container {
-      background: white; padding: 1.5rem; border-radius: 16px;
-      margin-bottom: 2rem; box-shadow: var(--shadow);
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #e5e7eb;
     }
-    body.dark-mode .progress-container { background: #1f2937; }
-    .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-    .progress-bar { height: 10px; background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .progress-header h3 {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--primary);
+    }
+    body.dark-mode .progress-header h3 { color: #f8f9fa; }
+    .progress-bar {
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
     body.dark-mode .progress-bar { background: #374151; }
-    .progress-fill { height: 100%; background: var(--gradient-primary); border-radius: 9999px; transition: width 0.5s ease; }
-    
-    /* Cards Grid */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-primary);
+      border-radius: 9999px;
+      transition: width 0.5s ease;
+    }
+    .reset-progress {
+      background: transparent;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+    .reset-progress:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* ===== CARDS ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
     .card {
-      background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);
-      transition: all 0.3s; text-decoration: none; color: inherit;
-      border: 1px solid #e5e7eb; position: relative; display: flex; flex-direction: column;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
-    body.dark-mode .card { background: #1f2937; border-color: #374151; }
-    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-    .card.completed { border-color: var(--success); box-shadow: 0 0 0 2px var(--success); }
-    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: var(--primary);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card.completed {
+      border-color: var(--success);
+      box-shadow: 0 0 0 2px var(--success);
+    }
+    .card.completed::before { background: var(--success); }
     .card-badge {
-      position: absolute; top: 1rem; right: 1rem; background: var(--gradient-accent);
-      color: white; padding: 0.25rem 1rem; border-radius: 9999px;
-      font-size: 0.75rem; font-weight: 600; z-index: 10;
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: linear-gradient(120deg, var(--accent), var(--primary));
+      color: white;
+      padding: 0.25rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 10;
     }
-    .card-image { width: 100%; height: 180px; object-fit: cover; aspect-ratio: 16/9; background: #e5e7eb; }
-    body.dark-mode .card-image { background: #374151; }
-    
-    .card-content { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--dark); }
-    body.dark-mode .card h3 { color: white; }
-    .card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; flex-grow: 1; }
-    
-    .card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--gray); margin-bottom: 0.75rem; }
-    .card-type { background: var(--gradient-primary); color: white; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 600; }
-    
-    /* Progress Tracker */
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+    }
+    .card-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+    .card-type {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+
+    /* ===== PROGRESS TRACKER ===== */
     .progress-tracker {
-      display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem;
-      background: var(--light); border-radius: 10px; cursor: pointer;
-      transition: all 0.3s; margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem;
+      background: var(--light);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: auto;
     }
     body.dark-mode .progress-tracker { background: #374151; }
     .progress-tracker:hover { background: #e5e7eb; }
     body.dark-mode .progress-tracker:hover { background: #4b5563; }
-    
     .progress-checkbox {
-      width: 22px; height: 22px; border: 2px solid var(--primary); border-radius: 5px;
-      display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0;
+      width: 22px; height: 22px;
+      border: 2px solid var(--primary);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
     }
-    .card.completed .progress-checkbox { background: var(--success); border-color: var(--success); }
-    .progress-checkbox i { color: white; font-size: 0.75rem; opacity: 0; transform: scale(0); transition: all 0.3s; }
-    .card.completed .progress-checkbox i { opacity: 1; transform: scale(1); }
-    
-    .progress-label { font-size: 0.85rem; font-weight: 500; color: var(--dark); }
-    body.dark-mode .progress-label { color: white; }
-    .card.completed .progress-label { color: var(--success); text-decoration: line-through; }
-    
-    /* Action Buttons */
+    .card.completed .progress-checkbox {
+      background: var(--success);
+      border-color: var(--success);
+    }
+    .progress-checkbox i {
+      color: white; font-size: 0.75rem;
+      opacity: 0; transform: scale(0);
+      transition: var(--transition);
+    }
+    .card.completed .progress-checkbox i {
+      opacity: 1; transform: scale(1);
+    }
+    .progress-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    body.dark-mode .progress-label { color: #f8f9fa; }
+    .card.completed .progress-label {
+      color: var(--success);
+      text-decoration: line-through;
+    }
+
+    /* ===== ACTION BUTTONS ===== */
     .action-btn {
-      display: inline-block; background: var(--gradient-primary); color: white;
-      padding: 0.65rem 1.25rem; border-radius: 9999px; text-decoration: none;
-      font-weight: 600; transition: all 0.3s; margin-top: 0.75rem; border: none;
-      cursor: pointer; width: 100%; text-align: center; font-size: 0.95rem;
+      display: inline-block;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.65rem 1.25rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-top: 0.75rem;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      font-size: 0.95rem;
     }
-    .action-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .action-btn.secondary { background: var(--gradient-accent); }
-    
-    /* Reset Progress */
-    .reset-progress {
-      background: transparent; border: 1px solid var(--danger); color: var(--danger);
-      padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;
-      font-size: 0.8rem; transition: all 0.3s;
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
-    .reset-progress:hover { background: var(--danger); color: white; }
-    
-    /* Sub-Navigation for Pembahasan Soal */
+    .action-btn.secondary {
+      background: var(--gradient-accent);
+    }
+
+    /* ===== SUB-NAVIGATION ===== */
     .sub-nav-container {
-      background: white; padding: 1rem; border-radius: 12px;
-      margin-bottom: 1.5rem; box-shadow: var(--shadow);
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #e5e7eb;
     }
-    body.dark-mode .sub-nav-container { background: #1f2937; }
-    .sub-nav-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
-    body.dark-mode .sub-nav-title { color: white; }
-    .sub-nav-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .sub-nav-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    body.dark-mode .sub-nav-title { color: #f8f9fa; }
+    .sub-nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
     .sub-nav-btn {
-      padding: 0.4rem 0.9rem; border: 2px solid #e5e7eb; background: white;
-      color: var(--dark); border-radius: 8px; cursor: pointer;
-      font-size: 0.85rem; transition: all 0.3s; font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border: 2px solid #e5e7eb;
+      background: white;
+      color: var(--dark);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      font-weight: 500;
     }
-    body.dark-mode .sub-nav-btn { background: #374151; border-color: #4b5563; color: white; }
-    .sub-nav-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .sub-nav-btn.active { background: var(--primary) !important; color: white !important; border-color: var(--primary) !important; }
-    
-    /* Soal Card Filter */
-    .soal-card { transition: all 0.3s ease; }
-    .soal-card.filtered-out { opacity: 0.3; transform: scale(0.95); pointer-events: none; display: none !important; }
-    
-    /* Ad Container */
+    .sub-nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .sub-nav-btn.active {
+      background: var(--primary) !important;
+      color: white !important;
+      border-color: var(--primary) !important;
+    }
+
+    /* ===== SOAL FILTER ===== */
+    .soal-card { transition: var(--transition); }
+    .soal-card.filtered-out {
+      opacity: 0.3;
+      transform: scale(0.95);
+      pointer-events: none;
+      display: none !important;
+    }
+
+    /* ===== AD CONTAINER ===== */
     .ad-container {
       margin: 2rem 0;
       text-align: center;
       padding: 1rem;
-      background: #f9fafb;
+      background: white;
       border-radius: 12px;
+      box-shadow: var(--shadow);
     }
-    body.dark-mode .ad-container { background: #1f2937; }
-    
-    /* File Links Grid */
+    body.dark-mode .ad-container { background: #2d2d2d; }
+
+    /* ===== FILE LINKS GRID ===== */
     .file-links-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -279,7 +640,7 @@
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
-      transition: all 0.3s;
+      transition: var(--transition);
       text-decoration: none;
       color: inherit;
       display: flex;
@@ -287,7 +648,6 @@
       align-items: center;
       gap: 0.75rem;
     }
-    body.dark-mode .file-link-card { background: #1f2937; border-color: #374151; }
     .file-link-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-lg);
@@ -302,683 +662,1088 @@
       margin: 0;
       color: var(--dark);
     }
-    body.dark-mode .file-link-card h4 { color: white; }
     .file-link-card span {
       font-size: 0.85rem;
       color: var(--gray);
     }
-    
-    /* Footer */
+
+    /* ===== FOOTER (KONSISTEN DENGAN INDEX) ===== */
     footer {
-      background: var(--dark); color: white; padding: 2rem; text-align: center;
-      margin-top: 4rem; padding-bottom: calc(4rem + var(--nav-height));
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white;
+      padding: 60px 20px 30px;
+      margin-top: 60px;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.4s;
     }
-    
-    /* Responsive Desktop */
-    @media (min-width: 769px) {
-      .mobile-bottom-nav { display: none !important; }
-      body { padding-bottom: 0; }
-      footer { padding-bottom: 2rem; }
+    body.dark-mode footer {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
     }
-    
-    /* Responsive Mobile */
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    .footer-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+      color: white;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 50px; height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    .footer-section ul { list-style: none; padding: 0; }
+    .footer-section li { margin: 10px 0; }
+    .footer-section a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-section a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+    .footer-section p {
+      line-height: 1.6;
+      margin: 8px 0;
+      color: #e2e8f0;
+    }
+    .footer-legal-links {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .footer-legal-links a { font-size: 0.9rem; padding: 4px 0; }
+    .footer-legal-links i {
+      width: 18px; text-align: center;
+      font-size: 0.85rem; opacity: 0.8;
+    }
+    .footer-legal-bar {
+      display: none;
+      text-align: center;
+      padding: 15px 10px;
+      margin: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+    .footer-legal-bar a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s;
+      padding: 3px 8px;
+    }
+    .footer-legal-bar a:hover { color: var(--primary); }
+    .footer-legal-bar .separator {
+      color: rgba(255,255,255,0.2);
+      margin: 0 3px;
+    }
+    .visitor-counter {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .visitor-counter img {
+      max-width: 100%; height: auto;
+      filter: brightness(1.2);
+    }
+    .visitor-counter p {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      color: #e2e8f0;
+    }
+    .copyright {
+      text-align: center;
+      grid-column: span 4;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 20px;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    body.dark-mode .footer-bottom {
+      border-color: rgba(255,255,255,0.03);
+    }
+
+    /* ===== UI UTILITIES ===== */
+    .scroll-indicator {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: rgba(0,0,0,0.1);
+      z-index: 9999;
+    }
+    .scroll-indicator span {
+      position: absolute; top: 0; left: 0;
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 25px; right: 25px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0; visibility: hidden;
+      z-index: 999;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      background: var(--secondary);
+    }
+    .loader-wrapper {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+    .loader {
+      width: 50px; height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .tab-nav {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     @media (max-width: 768px) {
-      .main-nav { display: none !important; }
-      .mobile-bottom-nav { display: block; }
-      .nav-buttons { grid-template-columns: 1fr; }
+      .navbar { padding: 0.8rem 1rem; }
+      .hamburger { display: block; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background: linear-gradient(120deg, var(--primary), var(--secondary));
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
+      }
+      .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        padding: 12px 20px;
+        border-radius: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .dropdown-content {
+        position: static;
+        background: rgba(0,0,0,0.1);
+        box-shadow: none;
+        width: 100%;
+        display: none;
+        padding: 0;
+        backdrop-filter: none;
+      }
+      .dropdown.active .dropdown-content {
+        display: flex;
+        flex-direction: column;
+      }
+      .dropdown-content a {
+        padding-left: 40px;
+        color: white;
+      }
+      .dropdown-content a:hover {
+        background: rgba(255,255,255,0.1);
+      }
+      .tab-nav {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0 15px;
+      }
+      .tab-btn {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+      }
+      .tab-btn span { display: none; }
+      header { padding: 2.5rem 1rem 1.5rem; }
+      header h1 { font-size: 1.6rem; }
+      .header-icon { width: 70px; height: 70px; font-size: 2rem; }
+      .section-header { text-align: left; padding-right: 70px; }
+      .section-header h2 { font-size: 1.3rem; }
+      .print-btn {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+        width: fit-content;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
       .cards-grid { grid-template-columns: 1fr; }
-      .section-header h2 { font-size: 1.5rem; }
-      .print-btn { position: static; transform: none; margin-top: 1rem; width: 100%; justify-content: center; }
       .progress-header { flex-direction: column; align-items: flex-start; }
-      header { padding: 1rem; }
-      .logo h1 { font-size: 1.4rem; }
-      .logo small { font-size: 0.75rem; }
-      .content-section { padding: 0 1rem; margin: 1rem auto; }
-      .card-content { padding: 1rem; }
-      .sub-nav-buttons { overflow-x: auto; padding-bottom: 0.5rem; -webkit-overflow-scrolling: touch; }
-      .sub-nav-btn { flex-shrink: 0; white-space: nowrap; }
+      .content-section { padding: 0 1rem; }
+      .sub-nav-buttons {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .sub-nav-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
       .file-links-grid { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; gap: 30px; }
+      .copyright { grid-column: span 1; }
+      .footer-legal-bar { display: flex; }
+      .footer-section:nth-child(3) { display: none; }
     }
-    
-    /* Print Styles */
+    @media (max-width: 576px) {
+      .navbar-brand { font-size: 1rem; }
+      .navbar-brand img { width: 35px; height: 35px; }
+      .tab-nav { grid-template-columns: repeat(2, 1fr); }
+      .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; }
+    }
+
+    /* ===== PRINT STYLES ===== */
     @media print {
-      header, .main-nav, footer, .print-btn, .reset-progress, .progress-tracker, .theme-toggle, .nav-btn, .mobile-bottom-nav, .sub-nav-container, .ad-container { display: none !important; }
+      .navbar, header, .tab-nav, footer, .print-btn, .reset-progress,
+      .progress-tracker, .theme-toggle, .hamburger, .scroll-indicator,
+      .back-to-top, .breadcrumb, .sub-nav-container, .ad-container { display: none !important; }
       body { background: white; color: black; font-size: 12pt; padding-bottom: 0; }
-      .content-section { display: block !important; page-break-after: always; margin: 0; padding: 0; }
+      .content-section { display: block !important; page-break-after: always; margin: 0; padding: 0.5in; }
       .card { break-inside: avoid; border: 1px solid #000; box-shadow: none; margin-bottom: 1rem; }
       .card-image { height: 150px; filter: grayscale(100%); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .section-header { text-align: left; border-bottom: 2px solid #000; padding-bottom: 0.5rem; margin-bottom: 1rem; }
       .section-header h2 { color: black; font-size: 18pt; }
+      .section-header h2::after { display: none; }
+      .card-badge { background: #000; color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       a { text-decoration: none; color: black; }
-    }
-    
-    /* Safe area for mobile notches */
-    @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      .mobile-bottom-nav { padding-bottom: env(safe-area-inset-bottom); }
-      body { padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom)); }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-content">
-      <div class="logo">
-        <h1>EKONOMI Kelas XI</h1>
-        <small>Portal Pembelajaran Interaktif</small>
-      </div>
-      <div class="header-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+<!-- Loading Animation -->
+<div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+</div>
 
-  <!-- Desktop Navigation -->
-  <nav class="main-nav">
+<!-- Scroll Progress Indicator -->
+<div class="scroll-indicator">
+    <span id="scrollProgress"></span>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- ===== NAVBAR (KONSISTEN DENGAN INDEX) ===== -->
+<nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
     <div class="nav-container">
-      <div class="nav-buttons">
-        <button class="nav-btn active" onclick="showSection('materi')" aria-controls="materi">
-          <i class="fas fa-book"></i><span>📚 Materi</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
         </button>
-        <button class="nav-btn" onclick="showSection('artikel')" aria-controls="artikel">
-          <i class="fas fa-newspaper"></i><span>📰 Artikel</span>
-        </button>
-        <button class="nav-btn" onclick="showSection('forum')" aria-controls="forum">
-          <i class="fas fa-comments"></i><span>💬 Forum</span>
-        </button>
-        <button class="nav-btn" onclick="showSection('simulator')" aria-controls="simulator">
-          <i class="fas fa-flask"></i><span>🧪 Simulator</span>
-        </button>
-        <button class="nav-btn" onclick="showSection('pembahasan-soal')" aria-controls="pembahasan-soal">
-          <i class="fas fa-question-circle"></i><span>💡 Pembahasan Soal</span>
-        </button>
-        <button class="nav-btn" onclick="showSection('aktivitas')" aria-controls="aktivitas">
-          <i class="fas fa-tasks"></i><span>📝 Tugas</span>
-        </button>
-      </div>
+        <button class="hamburger" id="hamburger">☰</button>
     </div>
-  </nav>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="ekonomi-kelas-xi.html" class="active"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
 
-  <!-- Mobile Bottom Navigation -->
-  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-    <div class="mobile-nav-items">
-      <a href="#materi" class="mobile-nav-item active" onclick="showSection('materi')"><i class="fas fa-book"></i><span>Materi</span></a>
-      <a href="#artikel" class="mobile-nav-item" onclick="showSection('artikel')"><i class="fas fa-newspaper"></i><span>Artikel</span></a>
-      <a href="#forum" class="mobile-nav-item" onclick="showSection('forum')"><i class="fas fa-comments"></i><span>Forum</span><span class="notification-dot"></span></a>
-      <a href="#simulator" class="mobile-nav-item" onclick="showSection('simulator')"><i class="fas fa-flask"></i><span>Simulator</span></a>
-      <a href="#pembahasan-soal" class="mobile-nav-item" onclick="showSection('pembahasan-soal')"><i class="fas fa-question-circle"></i><span>Soal</span></a>
-      <a href="#aktivitas" class="mobile-nav-item" onclick="showSection('aktivitas')"><i class="fas fa-tasks"></i><span>Tugas</span></a>
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="header-icon">
+        <i class="fas fa-chart-line"></i>
     </div>
-  </nav>
+    <h1>💹 EKONOMI Kelas XI</h1>
+    <p class="subtitle">Portal Pembelajaran Interaktif — SMAN 1 Cluring</p>
+</header>
 
-  <!-- SECTION 1: MATERI -->
-  <section id="materi" class="content-section active" aria-labelledby="materi-title">
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+    <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <span>Ekonomi Kelas XI</span>
+</div>
+
+<!-- ===== TAB NAVIGATION (Secondary) ===== -->
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="showSection('materi', this)">
+        <i class="fas fa-book"></i>
+        <span>Materi</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('artikel', this)">
+        <i class="fas fa-newspaper"></i>
+        <span>Artikel</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('forum', this)">
+        <i class="fas fa-comments"></i>
+        <span>Forum</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('simulator', this)">
+        <i class="fas fa-flask"></i>
+        <span>Simulator</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('pembahasan-soal', this)">
+        <i class="fas fa-question-circle"></i>
+        <span>Soal</span>
+    </button>
+    <button class="tab-btn" onclick="showSection('aktivitas', this)">
+        <i class="fas fa-tasks"></i>
+        <span>Tugas</span>
+    </button>
+</div>
+
+<!-- SECTION 1: MATERI -->
+<section id="materi" class="content-section active" aria-labelledby="materi-title">
     <div class="section-header">
-      <h2 id="materi-title"><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
-      <p>Pelajari konsep-konsep ekonomi fundamental secara komprehensif</p>
-      <button class="print-btn" onclick="printSection('materi')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="materi-title"><i class="fas fa-book-open"></i> Materi Pembelajaran</h2>
+        <p>Pelajari konsep-konsep ekonomi fundamental secara komprehensif</p>
+        <button class="print-btn" onclick="printSection('materi')"><i class="fas fa-print"></i> Cetak</button>
     </div>
     <div class="progress-container">
-      <div class="progress-header">
-        <div><h3><i class="fas fa-chart-line" style="color:var(--primary)"></i> Progress Materi</h3>
-        <p style="font-size:0.9rem;color:var(--gray)">Tandai materi yang sudah dipelajari</p></div>
-        <button class="reset-progress" onclick="resetProgress('materi')"><i class="fas fa-redo"></i> Reset</button>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="materi-progress" style="width:0%"></div></div>
-      <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="materi-count">0</span>/6 Selesai</p>
+        <div class="progress-header">
+            <div>
+                <h3><i class="fas fa-chart-line"></i> Progress Materi</h3>
+                <p style="font-size:0.9rem;color:var(--gray)">Tandai materi yang sudah dipelajari</p>
+            </div>
+            <button class="reset-progress" onclick="resetProgress('materi')"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="materi-progress" style="width:0%"></div></div>
+        <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="materi-count">0</span>/6 Selesai</p>
     </div>
     <div class="cards-grid">
-      <article class="card" data-id="materi-1">
-        <span class="card-badge">PDF</span>
-        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500" alt="Materi Lengkap" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Materi Ekonomi Lengkap</h3>
-          <p>Download materi ekonomi kelas XI lengkap dalam format PDF.</p>
-          <div class="card-meta"><span><i class="fas fa-file-pdf"></i> PDF</span><span class="card-type">Materi</span></div>
-          <a href="https://drive.google.com/file/d/1e0ajPBwIed-ORadvmuX-PVnUFgXyoig1/view" class="action-btn" target="_blank"><i class="fas fa-download"></i> Download</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="materi-2">
-        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Badan Usaha" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Badan Usaha</h3>
-          <p>Pelajari bentuk dan jenis badan usaha di Indonesia.</p>
-          <div class="card-meta"><span><i class="fas fa-clock"></i> 45 min</span><span class="card-type">Materi</span></div>
-          <a href="materi/badan-usaha.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="materi-3">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Pendapatan Nasional" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Pendapatan Nasional</h3>
-          <p>Konsep, perhitungan, dan peran dalam perekonomian.</p>
-          <div class="card-meta"><span><i class="fas fa-chart-line"></i> Grafik</span><span class="card-type">Materi</span></div>
-          <a href="materi/pendapatan-nasional.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="materi-4">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500" alt="Ketenagakerjaan" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Ketenagakerjaan</h3>
-          <p>Struktur angkatan kerja, pengangguran, dan kebijakan.</p>
-          <div class="card-meta"><span><i class="fas fa-users"></i> Interaktif</span><span class="card-type">Materi</span></div>
-          <a href="materi/ketenagakerjaan.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="materi-5">
-        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Inflasi" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Inflasi</h3>
-          <p>Jenis, penyebab, dan dampak inflasi terhadap perekonomian.</p>
-          <div class="card-meta"><span><i class="fas fa-chart-bar"></i> Analisis</span><span class="card-type">Materi</span></div>
-          <a href="materi/inflasi.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="materi-6">
-        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Fiskal Moneter" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Kebijakan Fiskal & Moneter</h3>
-          <p>Peran APBN, APBD, dan kebijakan moneter dalam stabilitas ekonomi.</p>
-          <div class="card-meta"><span><i class="fas fa-landmark"></i> Pemerintah</span><span class="card-type">Materi</span></div>
-          <a href="materi/Fiskal-Moneter.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card" data-id="materi-1">
+            <span class="card-badge">PDF</span>
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500" alt="Materi Lengkap" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-file-pdf" style="color:var(--danger)"></i> Materi Ekonomi Lengkap</h3>
+                <p>Download materi ekonomi kelas XI lengkap dalam format PDF.</p>
+                <div class="card-meta"><span><i class="fas fa-file-pdf"></i> PDF</span><span class="card-type">Materi</span></div>
+                <a href="https://drive.google.com/file/d/1e0ajPBwIed-ORadvmuX-PVnUFgXyoig1/view" class="action-btn" target="_blank"><i class="fas fa-download"></i> Download</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="materi-2">
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Badan Usaha" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-building" style="color:var(--primary)"></i> Badan Usaha</h3>
+                <p>Pelajari bentuk dan jenis badan usaha di Indonesia.</p>
+                <div class="card-meta"><span><i class="fas fa-clock"></i> 45 min</span><span class="card-type">Materi</span></div>
+                <a href="materi/badan-usaha.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="materi-3">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Pendapatan Nasional" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-chart-line" style="color:var(--success)"></i> Pendapatan Nasional</h3>
+                <p>Konsep, perhitungan, dan peran dalam perekonomian.</p>
+                <div class="card-meta"><span><i class="fas fa-chart-line"></i> Grafik</span><span class="card-type">Materi</span></div>
+                <a href="materi/pendapatan-nasional.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="materi-4">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500" alt="Ketenagakerjaan" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-users" style="color:var(--warning)"></i> Ketenagakerjaan</h3>
+                <p>Struktur angkatan kerja, pengangguran, dan kebijakan.</p>
+                <div class="card-meta"><span><i class="fas fa-users"></i> Interaktif</span><span class="card-type">Materi</span></div>
+                <a href="materi/ketenagakerjaan.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="materi-5">
+            <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Inflasi" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-chart-bar" style="color:var(--danger)"></i> Inflasi</h3>
+                <p>Jenis, penyebab, dan dampak inflasi terhadap perekonomian.</p>
+                <div class="card-meta"><span><i class="fas fa-chart-bar"></i> Analisis</span><span class="card-type">Materi</span></div>
+                <a href="materi/inflasi.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="materi-6">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Fiskal Moneter" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-landmark" style="color:var(--secondary)"></i> Kebijakan Fiskal & Moneter</h3>
+                <p>Peran APBN, APBD, dan kebijakan moneter dalam stabilitas ekonomi.</p>
+                <div class="card-meta"><span><i class="fas fa-landmark"></i> Pemerintah</span><span class="card-type">Materi</span></div>
+                <a href="materi/Fiskal-Moneter.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Buka</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'materi')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <!-- SECTION 2: ARTIKEL -->
-  <section id="artikel" class="content-section" aria-labelledby="artikel-title">
+<!-- SECTION 2: ARTIKEL -->
+<section id="artikel" class="content-section" aria-labelledby="artikel-title">
     <div class="section-header">
-      <h2 id="artikel-title"><i class="fas fa-lightbulb"></i> Artikel & Wawasan</h2>
-      <p>Eksplorasi isu-isu ekonomi terkini dan perspektif baru</p>
-      <button class="print-btn" onclick="printSection('artikel')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="artikel-title"><i class="fas fa-lightbulb"></i> Artikel & Wawasan</h2>
+        <p>Eksplorasi isu-isu ekonomi terkini dan perspektif baru</p>
+        <button class="print-btn" onclick="printSection('artikel')"><i class="fas fa-print"></i> Cetak</button>
     </div>
     <div class="progress-container">
-      <div class="progress-header">
-        <div><h3><i class="fas fa-chart-line" style="color:var(--primary)"></i> Progress Artikel</h3>
-        <p style="font-size:0.9rem;color:var(--gray)">Tandai artikel yang sudah dibaca</p></div>
-        <button class="reset-progress" onclick="resetProgress('artikel')"><i class="fas fa-redo"></i> Reset</button>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="artikel-progress" style="width:0%"></div></div>
-      <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="artikel-count">0</span>/4 Selesai</p>
+        <div class="progress-header">
+            <div>
+                <h3><i class="fas fa-chart-line"></i> Progress Artikel</h3>
+                <p style="font-size:0.9rem;color:var(--gray)">Tandai artikel yang sudah dibaca</p>
+            </div>
+            <button class="reset-progress" onclick="resetProgress('artikel')"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="artikel-progress" style="width:0%"></div></div>
+        <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="artikel-count">0</span>/4 Selesai</p>
     </div>
     <div class="cards-grid">
-      <article class="card" data-id="artikel-1">
-        <span class="card-badge">ANALISIS 2030</span>
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Skenario 2030" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Skenario Perputaran Uang Indonesia 2030</h3>
-          <p>Analisis bonus demografi, digitalisasi & deindustrialisasi untuk lulusan SMA/SMK.</p>
-          <div class="card-meta"><span><i class="fas fa-chart-line"></i> Proyeksi</span><span class="card-type">Artikel</span></div>
-          <a href="skenario-perputaran-uang-indonesia-2030-sma-smk.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="artikel-2">
-        <span class="card-badge">HOT</span>
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500" alt="Strategi Menkeu" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Strategi Menkeu Purbaya</h3>
-          <p>Analisis strategi fiskal, efisiensi anggaran, dan stimulus pertumbuhan.</p>
-          <div class="card-meta"><span><i class="fas fa-newspaper"></i> Studi Kasus</span><span class="card-type">Artikel</span></div>
-          <a href="Strategi-Menkeu-Purbaya.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="artikel-3">
-        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500" alt="Gaji & Kebahagiaan" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Gaji Besar, Namun Tak Selaras Kebahagiaan</h3>
-          <p>Refleksi kritis tentang hubungan antara pendapatan dan kebahagiaan.</p>
-          <div class="card-meta"><span><i class="fas fa-heart"></i> Refleksi</span><span class="card-type">Artikel</span></div>
-          <a href="gaji-dan-kebahagiaan.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="artikel-4">
-        <span class="card-badge">MONETER</span>
-        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Kebijakan Rupiah" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Kebijakan Ekonomi & Stabilisasi Rupiah</h3>
-          <p>Strategi Bank Indonesia menjaga stabilitas nilai tukar di tengah dinamika global.</p>
-          <div class="card-meta"><span><i class="fas fa-chart-line"></i> Analisis</span><span class="card-type">Artikel</span></div>
-          <a href="artikel-ekonomi-kebijakan-rupiah.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card" data-id="artikel-1">
+            <span class="card-badge">ANALISIS 2030</span>
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Skenario 2030" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-chart-line" style="color:var(--primary)"></i> Skenario Perputaran Uang Indonesia 2030</h3>
+                <p>Analisis bonus demografi, digitalisasi & deindustrialisasi untuk lulusan SMA/SMK.</p>
+                <div class="card-meta"><span><i class="fas fa-chart-line"></i> Proyeksi</span><span class="card-type">Artikel</span></div>
+                <a href="skenario-perputaran-uang-indonesia-2030-sma-smk.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="artikel-2">
+            <span class="card-badge">HOT</span>
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500" alt="Strategi Menkeu" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-newspaper" style="color:var(--danger)"></i> Strategi Menkeu Purbaya</h3>
+                <p>Analisis strategi fiskal, efisiensi anggaran, dan stimulus pertumbuhan.</p>
+                <div class="card-meta"><span><i class="fas fa-newspaper"></i> Studi Kasus</span><span class="card-type">Artikel</span></div>
+                <a href="Strategi-Menkeu-Purbaya.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="artikel-3">
+            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500" alt="Gaji & Kebahagiaan" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-heart" style="color:var(--accent)"></i> Gaji Besar, Namun Tak Selaras Kebahagiaan</h3>
+                <p>Refleksi kritis tentang hubungan antara pendapatan dan kebahagiaan.</p>
+                <div class="card-meta"><span><i class="fas fa-heart"></i> Refleksi</span><span class="card-type">Artikel</span></div>
+                <a href="gaji-dan-kebahagiaan.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="artikel-4">
+            <span class="card-badge">MONETER</span>
+            <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500" alt="Kebijakan Rupiah" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-chart-line" style="color:var(--success)"></i> Kebijakan Ekonomi & Stabilisasi Rupiah</h3>
+                <p>Strategi Bank Indonesia menjaga stabilitas nilai tukar di tengah dinamika global.</p>
+                <div class="card-meta"><span><i class="fas fa-chart-line"></i> Analisis</span><span class="card-type">Artikel</span></div>
+                <a href="artikel-ekonomi-kebijakan-rupiah.html" class="action-btn"><i class="fas fa-external-link-alt"></i> Baca</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'artikel')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <!-- SECTION 3: FORUM -->
-  <section id="forum" class="content-section" aria-labelledby="forum-title">
+<!-- SECTION 3: FORUM -->
+<section id="forum" class="content-section" aria-labelledby="forum-title">
     <div class="section-header">
-      <h2 id="forum-title"><i class="fas fa-comments"></i> Forum Diskusi</h2>
-      <p>Berdiskusi dan bertukar pikiran dengan teman sekelas</p>
-      <button class="print-btn" onclick="printSection('forum')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="forum-title"><i class="fas fa-comments"></i> Forum Diskusi</h2>
+        <p>Berdiskusi dan bertukar pikiran dengan teman sekelas</p>
+        <button class="print-btn" onclick="printSection('forum')"><i class="fas fa-print"></i> Cetak</button>
     </div>
     <div class="cards-grid">
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-comments fa-4x" style="color:var(--primary);margin-bottom:1rem"></i>
-          <h3>Forum Diskusi Ekonomi</h3>
-          <p>Bergabunglah dalam diskusi interaktif! Tanyakan pertanyaan dan belajar bersama. 💬</p>
-          <a href="forum-diskusi.html" class="action-btn"><i class="fas fa-sign-in-alt"></i> Masuk Forum</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-book-reader fa-4x" style="color:var(--success);margin-bottom:1rem"></i>
-          <h3>Panduan Etika Diskusi</h3>
-          <p>Baca panduan sebelum berdiskusi. Hormati pendapat orang lain. 🤝</p>
-          <a href="forum-diskusi.html#panduan" class="action-btn secondary"><i class="fas fa-info-circle"></i> Baca Panduan</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-fire fa-4x" style="color:var(--accent);margin-bottom:1rem"></i>
-          <h3>Topik Trending</h3>
-          <p>Lihat diskusi yang sedang hangat! Inflasi, kebijakan moneter, dan lainnya. 🔥</p>
-          <a href="forum-diskusi.html#trending" class="action-btn"><i class="fas fa-chart-trending"></i> Lihat Topik</a>
-        </div>
-      </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-comments fa-4x" style="color:var(--primary);margin-bottom:1rem"></i>
+                <h3>Forum Diskusi Ekonomi</h3>
+                <p>Bergabunglah dalam diskusi interaktif! Tanyakan pertanyaan dan belajar bersama. 💬</p>
+                <a href="forum-diskusi.html" class="action-btn"><i class="fas fa-sign-in-alt"></i> Masuk Forum</a>
+            </div>
+        </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-book-reader fa-4x" style="color:var(--success);margin-bottom:1rem"></i>
+                <h3>Panduan Etika Diskusi</h3>
+                <p>Baca panduan sebelum berdiskusi. Hormati pendapat orang lain. 🤝</p>
+                <a href="forum-diskusi.html#panduan" class="action-btn secondary"><i class="fas fa-info-circle"></i> Baca Panduan</a>
+            </div>
+        </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-fire fa-4x" style="color:var(--danger);margin-bottom:1rem"></i>
+                <h3>Topik Trending</h3>
+                <p>Lihat diskusi yang sedang hangat! Inflasi, kebijakan moneter, dan lainnya. 🔥</p>
+                <a href="forum-diskusi.html#trending" class="action-btn"><i class="fas fa-chart-line"></i> Lihat Topik</a>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <!-- SECTION 4: SIMULATOR -->
-  <section id="simulator" class="content-section" aria-labelledby="simulator-title">
+<!-- SECTION 4: SIMULATOR -->
+<section id="simulator" class="content-section" aria-labelledby="simulator-title">
     <div class="section-header">
-      <h2 id="simulator-title"><i class="fas fa-flask"></i> Simulator & Praktik</h2>
-      <p>Terapkan teori ekonomi melalui simulasi interaktif</p>
-      <button class="print-btn" onclick="printSection('simulator')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="simulator-title"><i class="fas fa-flask"></i> Simulator & Praktik</h2>
+        <p>Terapkan teori ekonomi melalui simulasi interaktif</p>
+        <button class="print-btn" onclick="printSection('simulator')"><i class="fas fa-print"></i> Cetak</button>
     </div>
     <div class="progress-container">
-      <div class="progress-header">
-        <div><h3><i class="fas fa-chart-line" style="color:var(--primary)"></i> Progress Simulasi</h3>
-        <p style="font-size:0.9rem;color:var(--gray)">Tandai simulasi yang sudah dikerjakan</p></div>
-        <button class="reset-progress" onclick="resetProgress('simulator')"><i class="fas fa-redo"></i> Reset</button>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="simulator-progress" style="width:0%"></div></div>
-      <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="simulator-count">0</span>/3 Selesai</p>
+        <div class="progress-header">
+            <div>
+                <h3><i class="fas fa-chart-line"></i> Progress Simulasi</h3>
+                <p style="font-size:0.9rem;color:var(--gray)">Tandai simulasi yang sudah dikerjakan</p>
+            </div>
+            <button class="reset-progress" onclick="resetProgress('simulator')"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="simulator-progress" style="width:0%"></div></div>
+        <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="simulator-count">0</span>/3 Selesai</p>
     </div>
     <div class="cards-grid">
-      <article class="card" data-id="simulator-1">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="Simulator Makro Mikro" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Simulator Ekonomi Makro & Mikro</h3>
-          <p>Latihan interaktif konsep ekonomi makro & mikro. 🎮</p>
-          <a href="simulator-ekonomi.html" class="action-btn"><i class="fas fa-play"></i> Mulai</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="simulator-2">
-        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Simulator APBN" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Simulator Fiskal Moneter APBN 2026</h3>
-          <p>Simulasikan kebijakan APBN 2026 dengan instrumen fiskal & moneter. 📊</p>
-          <a href="simulator_fiskal_moneterapbn_2026.html" class="action-btn"><i class="fas fa-play"></i> Jalankan</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
-      <article class="card" data-id="simulator-3">
-        <span class="card-badge">200T</span>
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Bank Himbara" class="card-image" loading="lazy">
-        <div class="card-content">
-          <h3>Simulasi Kebijakan Bank Himbara</h3>
-          <p>Analisis dampak kebijakan fiskal program 200T untuk Bank Himbara. 📈</p>
-          <a href="Simulasi-Analisis-dampak-kebijakan-fiskal.html" class="action-btn"><i class="fas fa-play"></i> Jalankan</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card" data-id="simulator-1">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="Simulator Makro Mikro" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-play-circle" style="color:var(--primary)"></i> Simulator Ekonomi Makro & Mikro</h3>
+                <p>Latihan interaktif konsep ekonomi makro & mikro. 🎮</p>
+                <a href="simulator-ekonomi.html" class="action-btn"><i class="fas fa-play"></i> Mulai</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="simulator-2">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500" alt="Simulator APBN" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-landmark" style="color:var(--secondary)"></i> Simulator Fiskal Moneter APBN 2026</h3>
+                <p>Simulasikan kebijakan APBN 2026 dengan instrumen fiskal & moneter. 📊</p>
+                <a href="simulator_fiskal_moneterapbn_2026.html" class="action-btn"><i class="fas fa-play"></i> Jalankan</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
+        <article class="card" data-id="simulator-3">
+            <span class="card-badge">200T</span>
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" alt="Bank Himbara" class="card-image" loading="lazy">
+            <div class="card-content">
+                <h3><i class="fas fa-chart-line" style="color:var(--success)"></i> Simulasi Kebijakan Bank Himbara</h3>
+                <p>Analisis dampak kebijakan fiskal program 200T untuk Bank Himbara. 📈</p>
+                <a href="Simulasi-Analisis-dampak-kebijakan-fiskal.html" class="action-btn"><i class="fas fa-play"></i> Jalankan</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'simulator')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <!-- ✅ SECTION 6: PEMBAHASAN SOAL (BARU - TERKONEKSI) -->
-  <section id="pembahasan-soal" class="content-section" aria-labelledby="soal-title">
+<!-- SECTION 5: PEMBAHASAN SOAL -->
+<section id="pembahasan-soal" class="content-section" aria-labelledby="soal-title">
     <div class="section-header">
-      <h2 id="soal-title"><i class="fas fa-question-circle"></i> Pembahasan Soal</h2>
-      <p>Latihan dan pembahasan soal per bab untuk memperdalam pemahaman</p>
-      <button class="print-btn" onclick="printSection('pembahasan-soal')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="soal-title"><i class="fas fa-question-circle"></i> Pembahasan Soal</h2>
+        <p>Latihan dan pembahasan soal per bab untuk memperdalam pemahaman</p>
+        <button class="print-btn" onclick="printSection('pembahasan-soal')"><i class="fas fa-print"></i> Cetak</button>
     </div>
 
     <!-- Google AdSense -->
     <div class="ad-container">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-1234355696976048"
-           data-ad-slot="4315823561"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1234355696976048"
+             data-ad-slot="4315823561"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <!-- Sub-Navigation: Filter Bab -->
     <div class="sub-nav-container">
-      <div class="sub-nav-title"><i class="fas fa-folder-open"></i> Pilih Bab:</div>
-      <div class="sub-nav-buttons">
-        <button class="sub-nav-btn active" onclick="filterSoal('all', event)">Semua</button>
-        <button class="sub-nav-btn" onclick="filterSoal('badan-usaha', event)">Badan Usaha</button>
-        <button class="sub-nav-btn" onclick="filterSoal('pendapatan-nasional', event)">Pendapatan Nasional</button>
-        <button class="sub-nav-btn" onclick="filterSoal('ketenagakerjaan', event)">Ketenagakerjaan</button>
-        <button class="sub-nav-btn" onclick="filterSoal('inflasi', event)">Inflasi</button>
-        <button class="sub-nav-btn" onclick="filterSoal('fiskal-moneter', event)">Fiskal & Moneter</button>
-      </div>
+        <div class="sub-nav-title"><i class="fas fa-folder-open"></i> Pilih Bab:</div>
+        <div class="sub-nav-buttons">
+            <button class="sub-nav-btn active" onclick="filterSoal('all', event)">Semua</button>
+            <button class="sub-nav-btn" onclick="filterSoal('badan-usaha', event)">Badan Usaha</button>
+            <button class="sub-nav-btn" onclick="filterSoal('pendapatan-nasional', event)">Pendapatan Nasional</button>
+            <button class="sub-nav-btn" onclick="filterSoal('ketenagakerjaan', event)">Ketenagakerjaan</button>
+            <button class="sub-nav-btn" onclick="filterSoal('inflasi', event)">Inflasi</button>
+            <button class="sub-nav-btn" onclick="filterSoal('fiskal-moneter', event)">Fiskal & Moneter</button>
+        </div>
     </div>
 
     <!-- Progress Tracker -->
     <div class="progress-container">
-      <div class="progress-header">
-        <div><h3><i class="fas fa-chart-line" style="color:var(--primary)"></i> Progress Latihan Soal</h3>
-        <p style="font-size:0.9rem;color:var(--gray)">Tandai soal yang sudah dipahami</p></div>
-        <button class="reset-progress" onclick="resetProgress('pembahasan-soal')"><i class="fas fa-redo"></i> Reset</button>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="pembahasan-soal-progress" style="width:0%"></div></div>
-      <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="pembahasan-soal-count">0</span>/12 Soal Selesai</p>
+        <div class="progress-header">
+            <div>
+                <h3><i class="fas fa-chart-line"></i> Progress Latihan Soal</h3>
+                <p style="font-size:0.9rem;color:var(--gray)">Tandai soal yang sudah dipahami</p>
+            </div>
+            <button class="reset-progress" onclick="resetProgress('pembahasan-soal')"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="pembahasan-soal-progress" style="width:0%"></div></div>
+        <p style="text-align:right;margin-top:0.5rem;font-size:0.85rem;color:var(--gray)"><span id="pembahasan-soal-count">0</span>/12 Soal Selesai</p>
     </div>
 
     <!-- Grid Soal -->
     <div class="cards-grid">
-      <!-- Soal 1: Badan Usaha -->
-      <article class="card soal-card" data-bab="badan-usaha" data-id="soal-bu-1">
-        <span class="card-badge" style="background:var(--warning)">Mudah</span>
-        <div class="card-content">
-          <h3>Soal 1: Jenis Badan Usaha</h3>
-          <p>Sebutkan 3 ciri-ciri BUMN dan berikan contohnya di Indonesia!</p>
-          <div class="card-meta"><span><i class="fas fa-tag"></i> Badan Usaha</span><span class="card-type">Latihan</span></div>
-          <a href="pembahasan-soal/badan-usaha-soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card soal-card" data-bab="badan-usaha" data-id="soal-bu-1">
+            <span class="card-badge" style="background:var(--warning)">Mudah</span>
+            <div class="card-content">
+                <h3><i class="fas fa-building" style="color:var(--primary)"></i> Soal 1: Jenis Badan Usaha</h3>
+                <p>Sebutkan 3 ciri-ciri BUMN dan berikan contohnya di Indonesia!</p>
+                <div class="card-meta"><span><i class="fas fa-tag"></i> Badan Usaha</span><span class="card-type">Latihan</span></div>
+                <a href="pembahasan-soal/badan-usaha-soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
 
-      <!-- Soal 2: Pendapatan Nasional -->
-      <article class="card soal-card" data-bab="pendapatan-nasional" data-id="soal-pn-1">
-        <span class="card-badge" style="background:var(--primary)">Sedang</span>
-        <div class="card-content">
-          <h3>Soal 2: Menghitung GDP</h3>
-          <p>Jika konsumsi=500, investasi=200, pemerintah=150, ekspor=100, impor=80, berapakah GDP?</p>
-          <div class="card-meta"><span><i class="fas fa-tag"></i> Pendapatan Nasional</span><span class="card-type">Hitungan</span></div>
-          <a href="pembahasan-soal/pendapatan-nasional-soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card soal-card" data-bab="pendapatan-nasional" data-id="soal-pn-1">
+            <span class="card-badge" style="background:var(--primary)">Sedang</span>
+            <div class="card-content">
+                <h3><i class="fas fa-calculator" style="color:var(--primary)"></i> Soal 2: Menghitung GDP</h3>
+                <p>Jika konsumsi=500, investasi=200, pemerintah=150, ekspor=100, impor=80, berapakah GDP?</p>
+                <div class="card-meta"><span><i class="fas fa-tag"></i> Pendapatan Nasional</span><span class="card-type">Hitungan</span></div>
+                <a href="pembahasan-soal/pendapatan-nasional-soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
 
-      <!-- Soal 3: Inflasi -->
-      <article class="card soal-card" data-bab="inflasi" data-id="soal-inf-1">
-        <span class="card-badge" style="background:var(--danger)">Sulit</span>
-        <div class="card-content">
-          <h3>Soal 3: Menghitung Inflasi</h3>
-          <p>Jika IHK tahun 2024=120 dan tahun 2025=132, berapa tingkat inflasinya?</p>
-          <div class="card-meta"><span><i class="fas fa-tag"></i> Inflasi</span><span class="card-type">Hitungan</span></div>
-          <a href="pembahasan-soal/sub-bab/inflasi/soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card soal-card" data-bab="inflasi" data-id="soal-inf-1">
+            <span class="card-badge" style="background:var(--danger)">Sulit</span>
+            <div class="card-content">
+                <h3><i class="fas fa-chart-bar" style="color:var(--danger)"></i> Soal 3: Menghitung Inflasi</h3>
+                <p>Jika IHK tahun 2024=120 dan tahun 2025=132, berapa tingkat inflasinya?</p>
+                <div class="card-meta"><span><i class="fas fa-tag"></i> Inflasi</span><span class="card-type">Hitungan</span></div>
+                <a href="pembahasan-soal/sub-bab/inflasi/soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
 
-      <!-- Soal 4: Fiskal Moneter -->
-      <article class="card soal-card" data-bab="fiskal-moneter" data-id="soal-fm-1">
-        <span class="card-badge" style="background:var(--secondary)">Analisis</span>
-        <div class="card-content">
-          <h3>Soal 4: Kebijakan Moneter</h3>
-          <p>Jelaskan perbedaan kebijakan moneter ekspansif dan kontraktif serta dampaknya!</p>
-          <div class="card-meta"><span><i class="fas fa-tag"></i> Fiskal & Moneter</span><span class="card-type">Esai</span></div>
-          <a href="pembahasan-soal/sub-bab/fiskal-moneter/soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
-          <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
-        </div>
-      </article>
+        <article class="card soal-card" data-bab="fiskal-moneter" data-id="soal-fm-1">
+            <span class="card-badge" style="background:var(--secondary)">Analisis</span>
+            <div class="card-content">
+                <h3><i class="fas fa-landmark" style="color:var(--secondary)"></i> Soal 4: Kebijakan Moneter</h3>
+                <p>Jelaskan perbedaan kebijakan moneter ekspansif dan kontraktif serta dampaknya!</p>
+                <div class="card-meta"><span><i class="fas fa-tag"></i> Fiskal & Moneter</span><span class="card-type">Esai</span></div>
+                <a href="pembahasan-soal/sub-bab/fiskal-moneter/soal-1.html" class="action-btn"><i class="fas fa-play-circle"></i> Kerjakan & Bahas</a>
+                <div class="progress-tracker" onclick="toggleProgress(this,'pembahasan-soal')"><div class="progress-checkbox"><i class="fas fa-check"></i></div><span class="progress-label">Tandai selesai</span></div>
+            </div>
+        </article>
 
-      <!-- Tombol Lihat Semua di Folder - UPDATED -->
-      <article class="card" style="grid-column: 1 / -1;">
-        <div class="card-content">
-          <h3><i class="fas fa-folder-open" style="color:var(--primary);margin-right:0.5rem"></i> Lihat Semua Soal</h3>
-          <p>Akses lengkap semua soal per bab dengan struktur folder terorganisir.</p>
-          <div class="file-links-grid">
-            <a href="pembahasan-soal/soalosn-ekonomi-bagian1.html" class="file-link-card">
-              <i class="fas fa-file-alt"></i>
-              <h4>Soal OSN Bagian 1</h4>
-              <span>Soal 1-20</span>
-            </a>
-            <a href="pembahasan-soal/soalosn-ekonomi-bagian2.html" class="file-link-card">
-              <i class="fas fa-file-alt"></i>
-              <h4>Soal OSN Bagian 2</h4>
-              <span>Soal 21,22,23,24,25,28,29,30</span>
-            </a>
-            <a href="pembahasan-soal/soalosn-ekonomi-bagian3.html" class="file-link-card">
-              <i class="fas fa-file-alt"></i>
-              <h4>Soal OSN Bagian 3</h4>
-              <span>Soal 26,27,31,36,37,38 (Lanjutan)</span>
-            </a>
-            <a href="pembahasan-soal/soalosn-ekonomi-bagian4.html" class="file-link-card">
-              <i class="fas fa-file-alt"></i>
-              <h4>Soal OSN Bagian 4</h4>
-              <span>Soal 32- 40 Utilitas</span>
-            </a>
-          </div>
-        </div>
-      </article>
+        <!-- Tombol Lihat Semua di Folder -->
+        <article class="card" style="grid-column: 1 / -1;">
+            <div class="card-content">
+                <h3><i class="fas fa-folder-open" style="color:var(--primary);margin-right:0.5rem"></i> Lihat Semua Soal</h3>
+                <p>Akses lengkap semua soal per bab dengan struktur folder terorganisir.</p>
+                <div class="file-links-grid">
+                    <a href="pembahasan-soal/soalosn-ekonomi-bagian1.html" class="file-link-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Soal OSN Bagian 1</h4>
+                        <span>Soal 1-20</span>
+                    </a>
+                    <a href="pembahasan-soal/soalosn-ekonomi-bagian2.html" class="file-link-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Soal OSN Bagian 2</h4>
+                        <span>Soal 21,22,23,24,25,28,29,30</span>
+                    </a>
+                    <a href="pembahasan-soal/soalosn-ekonomi-bagian3.html" class="file-link-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Soal OSN Bagian 3</h4>
+                        <span>Soal 26,27,31,36,37,38 (Lanjutan)</span>
+                    </a>
+                    <a href="pembahasan-soal/soalosn-ekonomi-bagian4.html" class="file-link-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Soal OSN Bagian 4</h4>
+                        <span>Soal 32-40 Utilitas</span>
+                    </a>
+                </div>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <!-- SECTION 5: AKTIVITAS -->
-  <section id="aktivitas" class="content-section" aria-labelledby="aktivitas-title">
+<!-- SECTION 6: AKTIVITAS -->
+<section id="aktivitas" class="content-section" aria-labelledby="aktivitas-title">
     <div class="section-header">
-      <h2 id="aktivitas-title"><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
-      <p>Kelola aktivitas pembelajaran dan evaluasi Anda</p>
-      <button class="print-btn" onclick="printSection('aktivitas')"><i class="fas fa-print"></i> Cetak</button>
+        <h2 id="aktivitas-title"><i class="fas fa-clipboard-check"></i> Tugas & Asesmen</h2>
+        <p>Kelola aktivitas pembelajaran dan evaluasi Anda</p>
+        <button class="print-btn" onclick="printSection('aktivitas')"><i class="fas fa-print"></i> Cetak</button>
     </div>
     <div class="cards-grid">
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-clipboard-check fa-4x" style="color:var(--primary);margin-bottom:1rem"></i>
-          <h3>Absensi Harian</h3>
-          <p>Jangan lupa absen setiap hari! Kehadiran penting untuk proses belajar. 📅</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhINoihWRi60jw0ivUe5_N1pJYT4b3wgDejaMnNi5uWnFzuw/viewform" class="action-btn" target="_blank">Isi Absensi</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-file-upload fa-4x" style="color:var(--accent);margin-bottom:1rem"></i>
-          <h3>Kirim Tugas</h3>
-          <p>Submit tugasmu di sini! Deadline waits for no one. 📤</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSclUWSbatHzbavWqSEhZ63_Y2rVok5M1q5rr_sY4QOWOV9knw/viewform" class="action-btn secondary" target="_blank">Kirim Sekarang</a>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-content" style="text-align:center;padding:2rem 1rem">
-          <i class="fas fa-graduation-cap fa-4x" style="color:var(--secondary);margin-bottom:1rem"></i>
-          <h3>Ulangan & Hasil Asesmen</h3>
-          <p>Akses soal ulangan dan lihat hasil penilaian Anda. Check your scores! 📊</p>
-          <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">Masuk</a>
-        </div>
-      </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-clipboard-check fa-4x" style="color:var(--primary);margin-bottom:1rem"></i>
+                <h3>Absensi Harian</h3>
+                <p>Jangan lupa absen setiap hari! Kehadiran penting untuk proses belajar. 📅</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhINoihWRi60jw0ivUe5_N1pJYT4b3wgDejaMnNi5uWnFzuw/viewform" class="action-btn" target="_blank">Isi Absensi</a>
+            </div>
+        </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-file-upload fa-4x" style="color:var(--accent);margin-bottom:1rem"></i>
+                <h3>Kirim Tugas</h3>
+                <p>Submit tugasmu di sini! Deadline waits for no one. 📤</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSclUWSbatHzbavWqSEhZ63_Y2rVok5M1q5rr_sY4QOWOV9knw/viewform" class="action-btn secondary" target="_blank">Kirim Sekarang</a>
+            </div>
+        </article>
+        <article class="card">
+            <div class="card-content" style="text-align:center;padding:2rem 1rem">
+                <i class="fas fa-graduation-cap fa-4x" style="color:var(--secondary);margin-bottom:1rem"></i>
+                <h3>Ulangan & Hasil Asesmen</h3>
+                <p>Akses soal ulangan dan lihat hasil penilaian Anda. Check your scores! 📊</p>
+                <a href="ulangan-dan-hasil-asesmen-login.html" class="action-btn">Masuk</a>
+            </div>
+        </article>
     </div>
-  </section>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Mata Pelajaran Ekonomi Kelas XI. All rights reserved.</p>
-    <p>Made with <i class="fas fa-heart" style="color:var(--accent)"></i> for education</p>
-    <p style="margin-top:1rem;font-size:0.85rem;color:var(--gray)"><i class="fas fa-school"></i> SMAN 1 Cluring | Guru: Alamsah</p>
-  </footer>
+<!-- ===== FOOTER (KONSISTEN DENGAN INDEX) ===== -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Link Penting</h3>
+            <ul>
+                <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
+                <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
+                <li><a href="https://www.bps.go.id/id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-open"></i> Al-Qur'an NU Online</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-file-alt"></i> Informasi & Legal</h3>
+            <ul class="footer-legal-links">
+                <li><a href="legal-info.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                <li><a href="legal-info.html#disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                <li><a href="legal-info.html#terms"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</a></li>
+                <li><a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privasi</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0822-2385-7426</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-eye"></i> Statistik Kunjungan</h3>
+            <div class="visitor-counter">
+                <a href="https://www.freecounterstat.com" title="page counter" target="_blank">
+                    <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=s91lf4yugk1a948dm9uz1ej5hzz7xj9q" border="0" title="page counter" alt="page counter">
+                </a>
+                <p>Jumlah pengunjung halaman ini</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-legal-bar">
+        <a href="legal-info.html#about">Tentang</a>
+        <span class="separator">•</span>
+        <a href="legal-info.html#disclaimer">Disclaimer</a>
+        <span class="separator">•</span>
+        <a href="legal-info.html#terms">Syarat</a>
+        <span class="separator">•</span>
+        <a href="privacy-policy.html">Privasi</a>
+        <span class="separator">•</span>
+        <a href="contact.html">Kontak</a>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;">Platform pembelajaran digital untuk siswa dan guru.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
 
-  <script>
-    // ========== NAVIGASI SECTION ==========
-    function showSection(sectionId) {
-      document.querySelectorAll('.content-section').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-hidden','true'); });
-      document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-      document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
-      
-      const activeSection = document.getElementById(sectionId);
-      if(activeSection) {
-        activeSection.classList.add('active');
-        activeSection.setAttribute('aria-hidden','false');
-      }
-      const activeBtn = document.querySelector(`.nav-btn[onclick="showSection('${sectionId}')"]`);
-      if(activeBtn) { activeBtn.classList.add('active'); activeBtn.setAttribute('aria-pressed','true'); }
-      const activeMobile = document.querySelector(`.mobile-nav-item[onclick="showSection('${sectionId}')"]`);
-      if(activeMobile) activeMobile.classList.add('active');
-      
-      updateProgressDisplay(sectionId);
-      history.replaceState(null, null, `#${sectionId}`);
-      window.scrollTo({top:0, behavior:'smooth'});
+<script>
+    // ===== NAVBAR MOBILE =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
+            !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+    });
+
+    // ===== TAB NAVIGATION =====
+    function showSection(sectionId, btn) {
+        document.querySelectorAll('.content-section').forEach(s => {
+            s.classList.remove('active');
+            s.setAttribute('aria-hidden','true');
+        });
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+            activeSection.setAttribute('aria-hidden','false');
+        }
+        if (btn) btn.classList.add('active');
+        
+        updateProgressDisplay(sectionId);
+        history.replaceState(null, null, `#${sectionId}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ========== PROGRESS TRACKER ==========
+    // ===== PROGRESS TRACKER =====
     function toggleProgress(element, section) {
-      const card = element.closest('.card');
-      const cardId = card?.getAttribute('data-id');
-      if(!card || !cardId) return;
-      
-      card.classList.toggle('completed');
-      const label = element.querySelector('.progress-label');
-      const checkbox = element.querySelector('.progress-checkbox');
-      
-      if(card.classList.contains('completed')) {
-        label.textContent = '✓ Selesai';
-        element.setAttribute('aria-pressed','true');
-        saveProgress(section, cardId, true);
-      } else {
-        label.textContent = 'Tandai selesai';
-        element.setAttribute('aria-pressed','false');
-        saveProgress(section, cardId, false);
-      }
-      updateProgressBar(section);
+        const card = element.closest('.card');
+        const cardId = card?.getAttribute('data-id');
+        if (!card || !cardId) return;
+        
+        card.classList.toggle('completed');
+        const label = element.querySelector('.progress-label');
+        
+        if (card.classList.contains('completed')) {
+            label.textContent = '✓ Selesai';
+            element.setAttribute('aria-pressed','true');
+            saveProgress(section, cardId, true);
+        } else {
+            label.textContent = 'Tandai selesai';
+            element.setAttribute('aria-pressed','false');
+            saveProgress(section, cardId, false);
+        }
+        updateProgressBar(section);
     }
 
     function saveProgress(section, cardId, completed) {
-      try {
-        let progress = JSON.parse(localStorage.getItem('progress_'+section)) || {};
-        progress[cardId] = completed;
-        localStorage.setItem('progress_'+section, JSON.stringify(progress));
-      } catch(e) { console.warn('LocalStorage error:',e); }
+        try {
+            let progress = JSON.parse(localStorage.getItem('progress_'+section)) || {};
+            progress[cardId] = completed;
+            localStorage.setItem('progress_'+section, JSON.stringify(progress));
+        } catch(e) { console.warn('LocalStorage error:', e); }
     }
 
     function loadProgress(section) {
-      try {
-        let progress = JSON.parse(localStorage.getItem('progress_'+section)) || {};
-        document.querySelectorAll(`#${section} .card[data-id]`).forEach(card => {
-          const cardId = card.getAttribute('data-id');
-          if(progress[cardId]) {
-            card.classList.add('completed');
-            const label = card.querySelector('.progress-label');
-            const tracker = card.querySelector('.progress-tracker');
-            if(label) label.textContent = '✓ Selesai';
-            if(tracker) tracker.setAttribute('aria-pressed','true');
-          }
-        });
-        updateProgressBar(section);
-      } catch(e) { console.warn('LocalStorage error:',e); }
+        try {
+            let progress = JSON.parse(localStorage.getItem('progress_'+section)) || {};
+            document.querySelectorAll(`#${section} .card[data-id]`).forEach(card => {
+                const cardId = card.getAttribute('data-id');
+                if (progress[cardId]) {
+                    card.classList.add('completed');
+                    const label = card.querySelector('.progress-label');
+                    const tracker = card.querySelector('.progress-tracker');
+                    if (label) label.textContent = '✓ Selesai';
+                    if (tracker) tracker.setAttribute('aria-pressed','true');
+                }
+            });
+            updateProgressBar(section);
+        } catch(e) { console.warn('LocalStorage error:', e); }
     }
 
     function updateProgressBar(section) {
-      const cards = document.querySelectorAll(`#${section} .card[data-id]`);
-      const completed = document.querySelectorAll(`#${section} .card[data-id].completed`).length;
-      const total = cards.length;
-      const pct = total > 0 ? (completed/total)*100 : 0;
-      
-      const bar = document.getElementById(section+'-progress');
-      const count = document.getElementById(section+'-count');
-      if(bar) { bar.style.width = pct+'%'; bar.closest('[role="progressbar"]')?.setAttribute('aria-valuenow', Math.round(pct)); }
-      if(count) count.textContent = completed;
+        const cards = document.querySelectorAll(`#${section} .card[data-id]`);
+        const completed = document.querySelectorAll(`#${section} .card[data-id].completed`).length;
+        const total = cards.length;
+        const pct = total > 0 ? (completed/total)*100 : 0;
+        
+        const bar = document.getElementById(section+'-progress');
+        const count = document.getElementById(section+'-count');
+        if (bar) bar.style.width = pct+'%';
+        if (count) count.textContent = completed;
     }
 
     function updateProgressDisplay(section) { loadProgress(section); }
 
     function resetProgress(section) {
-      if(confirm('Reset progress di bagian ini?')) {
-        try {
-          localStorage.removeItem('progress_'+section);
-          document.querySelectorAll(`#${section} .card[data-id]`).forEach(card => {
-            card.classList.remove('completed');
-            const label = card.querySelector('.progress-label');
-            const tracker = card.querySelector('.progress-tracker');
-            if(label) label.textContent = 'Tandai selesai';
-            if(tracker) tracker.setAttribute('aria-pressed','false');
-          });
-          updateProgressBar(section);
-        } catch(e) { console.warn('LocalStorage error:',e); }
-      }
-    }
-
-    // ========== FILTER SOAL PER BAB ==========
-    function filterSoal(bab, event) {
-      // Update active button
-      document.querySelectorAll('.sub-nav-btn').forEach(btn => btn.classList.remove('active'));
-      if(event?.target) event.target.classList.add('active');
-      
-      // Filter cards
-      document.querySelectorAll('.soal-card').forEach(card => {
-        if(bab === 'all' || card.getAttribute('data-bab') === bab) {
-          card.classList.remove('filtered-out');
-          card.style.display = 'flex';
-        } else {
-          card.classList.add('filtered-out');
-          card.style.display = 'none';
+        if (confirm('Reset progress di bagian ini?')) {
+            try {
+                localStorage.removeItem('progress_'+section);
+                document.querySelectorAll(`#${section} .card[data-id]`).forEach(card => {
+                    card.classList.remove('completed');
+                    const label = card.querySelector('.progress-label');
+                    const tracker = card.querySelector('.progress-tracker');
+                    if (label) label.textContent = 'Tandai selesai';
+                    if (tracker) tracker.setAttribute('aria-pressed','false');
+                });
+                updateProgressBar(section);
+            } catch(e) { console.warn('LocalStorage error:', e); }
         }
-      });
     }
 
-    // ========== PRINT SECTION ==========
+    // ===== FILTER SOAL PER BAB =====
+    function filterSoal(bab, event) {
+        document.querySelectorAll('.sub-nav-btn').forEach(btn => btn.classList.remove('active'));
+        if (event?.target) event.target.classList.add('active');
+        
+        document.querySelectorAll('.soal-card').forEach(card => {
+            if (bab === 'all' || card.getAttribute('data-bab') === bab) {
+                card.classList.remove('filtered-out');
+                card.style.display = 'flex';
+            } else {
+                card.classList.add('filtered-out');
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // ===== PRINT SECTION =====
     function printSection(sectionId) {
-      document.querySelectorAll('.content-section').forEach(s => {
-        if(s.id !== sectionId) { s.style.display='none'; s.setAttribute('aria-hidden','true'); }
-      });
-      setTimeout(() => {
-        window.print();
+        document.querySelectorAll('.content-section').forEach(s => {
+            if (s.id !== sectionId) {
+                s.style.display = 'none';
+                s.setAttribute('aria-hidden','true');
+            }
+        });
         setTimeout(() => {
-          document.querySelectorAll('.content-section').forEach(s => {
-            s.style.display = '';
-            if(!s.classList.contains('active')) s.setAttribute('aria-hidden','true');
-          });
-        }, 500);
-      }, 300);
+            window.print();
+            setTimeout(() => {
+                document.querySelectorAll('.content-section').forEach(s => {
+                    s.style.display = '';
+                    if (!s.classList.contains('active')) s.setAttribute('aria-hidden','true');
+                });
+            }, 500);
+        }, 300);
     }
 
-    // ========== DARK MODE ==========
+    // ===== DARK MODE =====
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     const icon = themeToggle.querySelector('i');
-    
+
     function setTheme(isDark) {
-      if(isDark) {
-        body.classList.add('dark-mode');
-        icon.classList.replace('fa-moon','fa-sun');
-        localStorage.setItem('theme','dark');
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#1f2937');
-      } else {
-        body.classList.remove('dark-mode');
-        icon.classList.replace('fa-sun','fa-moon');
-        localStorage.setItem('theme','light');
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#2563eb');
-      }
+        if (isDark) {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon','fa-sun');
+            localStorage.setItem('theme','dark');
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#1e293b');
+        } else {
+            body.classList.remove('dark-mode');
+            icon.classList.replace('fa-sun','fa-moon');
+            localStorage.setItem('theme','light');
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#4361ee');
+        }
     }
     themeToggle.addEventListener('click', () => setTheme(!body.classList.contains('dark-mode')));
     
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-    if(savedTheme === 'dark' || (!savedTheme && prefersDark)) setTheme(true);
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) setTheme(true);
 
-    // ========== INIT ==========
-    document.addEventListener('DOMContentLoaded', () => {
-      // Load progress semua section
-      ['materi','artikel','simulator','pembahasan-soal'].forEach(loadProgress);
-      
-      // Handle URL hash
-      const hash = window.location.hash.replace('#','');
-      if(hash && document.getElementById(hash)) showSection(hash);
-      
-      // Keyboard support
-      document.querySelectorAll('.progress-tracker, .nav-btn, .mobile-nav-item, .sub-nav-btn').forEach(el => {
-        el.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); el.click(); }});
-      });
+    // ===== SCROLL & BACK TO TOP =====
+    window.onscroll = function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("scrollProgress").style.width = scrolled + "%";
+
+        const backToTop = document.getElementById('backToTop');
+        if (winScroll > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    };
+
+    document.getElementById('backToTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  </script>
+
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 500);
+        }, 800);
+    });
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+        ['materi','artikel','simulator','pembahasan-soal'].forEach(loadProgress);
+        
+        const hash = window.location.hash.replace('#','');
+        if (hash && document.getElementById(hash)) {
+            showSection(hash, document.querySelector(`[onclick*="'${hash}'"]`));
+        }
+        
+        // Keyboard support
+        document.querySelectorAll('.progress-tracker, .tab-btn, .sub-nav-btn').forEach(el => {
+            el.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    el.click();
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
