@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Indonesia 2045: Bonus Demografi, Tantangan Gen Z & Perputaran Uang</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Analisis periode bonus demografi Indonesia 2020-2045: peran kritis lulusan SMA/SMK dalam menentukan kecepatan perputaran uang dan pencapaian Visi Indonesia Emas 2045.">
+    <meta name="keywords" content="bonus demografi 2045, indonesia emas 2045, velocity of money, tantangan smk, sma, gen z, deindustrialisasi, ekonomi digital">
+    <meta name="author" content="Institute for Future Economy">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .badge-group {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-blue { background: #dbeafe; color: var(--primary-dark); }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-gold { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Cards & Layout --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+
+        .highlight-box.success {
+            background: #ecfdf5;
+            border-left-color: var(--success);
+        }
+
+        .highlight-box.gold {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border-left-color: #f59e0b;
+        }
+
+        /* --- Mobile Optimized Charts --- */
+        .chart-container {
+            width: 100%;
+            overflow-x: hidden;
+            padding: 1rem 0;
+        }
+
+        .bar-chart-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 220px;
+            padding-top: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 22%;
+            position: relative;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            transition: height 1s ease-out;
+            position: relative;
+            min-height: 5px;
+        }
+
+        .bar-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 8px;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Timeline Visualization */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+            margin: 1.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dbeafe, #93c5fd, #2563eb);
+            border-radius: 2px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-point {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .timeline-dot.peak {
+            background: var(--success);
+            box-shadow: 0 0 0 2px var(--success);
+            transform: scale(1.3);
+        }
+
+        .timeline-dot.end {
+            background: var(--danger);
+            box-shadow: 0 0 0 2px var(--danger);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .timeline-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .flow-node {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            font-size: 0.95rem;
+        }
+
+        .flow-arrow {
+            height: 25px;
+            width: 2px;
+            background: #cbd5e1;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -4px;
+            width: 0; 
+            height: 0; 
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid #cbd5e1;
+        }
+
+        /* Scenario Cards */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .scenario-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .scenario-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border-top: 5px solid #ccc;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .sc-opt { border-color: var(--success); background: #ecfdf5; }
+        .sc-mod { border-color: var(--accent); background: #fffbeb; }
+        .sc-pes { border-color: var(--danger); background: #fef2f2; }
+
+        .scenario-title { font-weight: 800; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .velocity-score { font-size: 2rem; font-weight: 900; display: block; margin-bottom: 0.5rem; }
+
+        /* Education Path */
+        .path-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .path-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .path-icon {
+            font-size: 2rem;
+            background: #e0f2fe;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Animation */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeIn 0.8s ease-out forwards; }
+        
+        /* Utility */
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 1rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        strong { color: var(--secondary); }
+        
+        p { margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header class="animate-in">
+        <div class="badge-group">
+            <span class="badge badge-blue">Bonus Demografi 2020-2045</span>
+            <span class="badge badge-gold">🇮🇩 Indonesia Emas 2045</span>
+            <span class="badge badge-red">Tantangan Gen Z</span>
+        </div>
+        <h1>Indonesia 2045: Bonus Demografi & Perputaran Uang</h1>
+        <p class="subtitle">Mengapa kualitas lulusan <strong>SMA & SMK</strong> hari ini akan menentukan apakah Indonesia menjadi negara maju atau terjebak dalam middle-income trap?</p>
+    </header>
+
+    <!-- SECTION 1: TIMELINE BONUS DEMOGRAFI -->
+    <section class="card animate-in" style="animation-delay: 0.1s;">
+        <h2 class="section-title">📅 Jendela Bonus Demografi Indonesia</h2>
+        <p>Bonus demografi Indonesia tidak terjadi dalam satu tahun, melainkan sebuah <strong>jendela kesempatan 25 tahun (2020-2045)</strong>. Memahami fase-fasenya krusial untuk perencanaan pendidikan dan ketenagakerjaan:</p>
+        
+        <div class="timeline">
+            <div class="timeline-point">
+                <div class="timeline-dot"></div>
+                <div class="timeline-year">2020</div>
+                <div class="timeline-label">Awal Jendela</div>
+            </div>
+            <div class="timeline-point">
+                <div class="timeline-dot peak"></div>
+                <div class="timeline-year">2030-2035</div>
+                <div class="timeline-label">Puncak Produktivitas</div>
+            </div>
+            <div class="timeline-point">
+                <div class="timeline-dot end"></div>
+                <div class="timeline-year">2045</div>
+                <div class="timeline-label">Penutupan Jendela</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box gold">
+            <strong>Fakta Kunci:</strong> Pada puncak bonus demografi (2030-2035), rasio ketergantungan Indonesia mencapai titik terendah: <strong>setiap 100 orang usia produktif hanya menanggung ~45 orang non-produktif</strong>. Ini adalah momen emas untuk investasi, tabungan nasional, dan percepatan pertumbuhan ekonomi—<em>jika</em> angkatan kerja memiliki keterampilan yang relevan.
+        </div>
+    </section>
+
+    <!-- SECTION 2: WHY VELOCITY MATTERS -->
+    <section class="card animate-in" style="animation-delay: 0.2s;">
+        <h2 class="section-title">🔄 Mengapa Velocity of Money Penting untuk 2045?</h2>
+        <p><em>Velocity of Money</em> (kecepatan perputaran uang) mengukur seberapa sering satu unit uang berpindah tangan dalam perekonomian selama periode tertentu. Konsep ini vital karena:</p>
+        
+        <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+            <li><strong>Velocity tinggi</strong> = Uang cepat berputar → transaksi meningkat → lapangan kerja tercipta → pendapatan naik → konsumsi bertambah → siklus positif.</li>
+            <li><strong>Velocity rendah</strong> = Uang "mengendap" di tabungan/aset → transaksi lesu → investasi riil turun → pertumbuhan ekonomi melambat.</li>
+        </ul>
+        
+        <p>Dalam konteks bonus demografi 2020-2045, <strong>lulusan SMA dan SMK adalah penggerak utama velocity</strong>. Mereka menyumbang >60% angkatan kerja muda. Jika kelompok ini produktif dan berpenghasilan layak, mereka akan menjadi konsumen aktif, investor pemula, dan wirausaha baru—semua faktor yang mempercepat perputaran uang.</p>
+        
+        <div class="highlight-box danger">
+            <strong>Risiko:</strong> Jika lulusan SMA/SMK terjebak dalam pengangguran, pekerjaan informal, atau pendapatan rendah, mereka akan mengadopsi pola <em>frugal living</em> ekstrem: menunda pernikahan, menghindari kredit, dan memprioritaskan tabungan likuid. Uang tidak berputar di sektor riil, dan bonus demografi berubah menjadi beban sosial.
+        </div>
+    </section>
+
+    <!-- SECTION 3: CURRENT REALITY -->
+    <section class="card animate-in" style="animation-delay: 0.3s;">
+        <h2 class="section-title">📉 Realitas Angkatan Kerja Muda (2024-2025)</h2>
+        <p>Data terkini menunjukkan tantangan struktural yang harus diatasi sebelum puncak bonus demografi:</p>
+        
+        <div class="chart-container">
+            <div class="bar-chart-row">
+                <div class="bar-group">
+                    <div class="bar-value" style="color: var(--danger)">19.2%</div>
+                    <div class="bar" style="height: 85%; background: #fca5a5;"></div>
+                    <div class="bar-label">Pengangguran<br>Lulusan SMA</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value" style="color: #ea580c">17.8%</div>
+                    <div class="bar" style="height: 78%; background: #fb923c;"></div>
+                    <div class="bar-label">Pengangguran<br>Lulusan SMK</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value" style="color: var(--primary)">40%</div>
+                    <div class="bar" style="height: 60%; background: #93c5fd;"></div>
+                    <div class="bar-label">Underemployed<br>Sarjana</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value" style="color: #9333ea">68%</div>
+                    <div class="bar" style="height: 95%; background: #d8b4fe;"></div>
+                    <div class="bar-label">Pekerja<br>Informal Muda</div>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-light); text-align: center; margin-top: 10px;">Sumber: BPS, Survei Angkatan Kerja Nasional 2024-2025</p>
+        </div>
+
+        <p style="margin-top: 1rem;"><strong>Implikasi Ekonomi:</strong> Pengangguran terdidik dan dominasi sektor informal menciptakan ketidakpastian pendapatan. Generasi Z merespons dengan strategi finansial defensif: menabung lebih banyak, menghindari utang konsumtif, dan menunda pembelian aset besar. Pola ini, jika meluas, dapat memperlambat velocity of money secara signifikan.</p>
+    </section>
+
+    <!-- SECTION 4: MACRO FORCES -->
+    <section class="card animate-in" style="animation-delay: 0.4s;">
+        <h2 class="section-title">⚙️ Tiga Kekuatan Makro Pembentuk 2045</h2>
+        
+        <div class="highlight-box">
+            <h4 style="margin-bottom: 0.5rem;">👥 Bonus Demografi: Peluang atau Beban?</h4>
+            <p style="margin: 0;">Jendela 2020-2045 adalah kesempatan sekali seabad. Jika lulusan SMA/SMK memiliki keterampilan relevan dengan Industri 4.0, mereka akan menjadi mesin pertumbuhan. Namun jika hanya menjadi konsumen digital pasif atau pengangguran terselubung, bonus demografi berubah menjadi beban fiskal dan sosial.</p>
+        </div>
+        
+        <div class="highlight-box success">
+            <h4 style="margin-bottom: 0.5rem;">📱 Digitalisasi & Ekonomi Platform</h4>
+            <p style="margin: 0;">QRIS, e-commerce, dan fintech meningkatkan efisiensi transaksi. Namun kemudahan akses ke pinjaman online dan budaya konsumtif digital berisiko menciptakan generasi dengan beban utang tinggi. Literasi keuangan digital menjadi kunci agar digitalisasi mempercepat, bukan memperlambat, velocity.</p>
+        </div>
+        
+        <div class="highlight-box" style="border-left-color: var(--accent); background: #fffbeb;">
+            <h4 style="margin-bottom: 0.5rem;">🏭 Deindustrialisasi Dini & Transformasi Struktural</h4>
+            <p style="margin: 0;">Manufaktur Indonesia stagnan di ~20% PDB. Lulusan SMK yang dirancang untuk industri manufaktur justru banyak terserap di sektor jasa informal. Transformasi menuju ekonomi berbasis teknologi dan jasa bernilai tinggi memerlukan <strong>reskilling massif</strong> angkatan kerja muda.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 5: THREE SCENARIOS 2045 -->
+    <section class="animate-in" style="animation-delay: 0.5s;">
+        <h2 class="section-title">🔮 Tiga Skenario Menuju Indonesia 2045</h2>
+        <div class="scenario-grid">
+            
+            <!-- Optimis -->
+            <div class="scenario-card sc-opt">
+                <div class="scenario-title" style="color: var(--success);">🚀 Skenario Optimis: Indonesia Emas</div>
+                <span class="velocity-score" style="color: var(--success);">Velocity ↑ 35%</span>
+                <p><strong>Revitalisasi pendidikan berhasil.</strong> SMK bermitra erat dengan industri 4.0; lulusan terserap di manufaktur modern, teknologi hijau, dan ekonomi kreatif. Lulusan SMA memiliki jalur vokasi dan sertifikasi kompetensi. Pendapatan kelas menengah muda naik, mendorong konsumsi properti, kendaraan listrik, dan investasi UMKM. Velocity of money meningkat, mendukung pertumbuhan inklusif menuju Indonesia Emas 2045.</p>
+            </div>
+
+            <!-- Moderat -->
+            <div class="scenario-card sc-mod">
+                <div class="scenario-title" style="color: var(--accent);">⚖️ Skenario Moderat: Pertumbuhan Timpang</div>
+                <span class="velocity-score" style="color: var(--accent);">Velocity → Stabil</span>
+                <p><strong>Reformasi parsial.</strong> Sebagian kecil lulusan SMK di kota besar sukses di sektor digital. Namun mayoritas lulusan SMA/SMK di daerah tetap terjebak dalam ekonomi gig dengan pendapatan tidak tetap. Pertumbuhan ekonomi positif, namun kesenjangan antar-wilayah dan kelas sosial melebar. Velocity stabil tapi tidak optimal untuk lompatan menjadi negara maju.</p>
+            </div>
+
+            <!-- Pesimis -->
+            <div class="scenario-card sc-pes">
+                <div class="scenario-title" style="color: var(--danger);">🐢 Skenario Pesimis: Middle-Income Trap</div>
+                <span class="velocity-score" style="color: var(--danger);">Velocity ↓ 15%</span>
+                <p><strong>Stagnasi kebijakan.</strong> Krisis kepercayaan terhadap masa depan membuat lulusan SMA/SMK mengadopsi <em>frugal living</em> ekstrem: menunda pembelian aset, menghindari kredit, dan memprioritaskan tabungan likuid. Konsumsi domestik lesu, investasi riil stagnan. Bonus demografi berakhir tanpa transformasi struktural, dan Indonesia terjebak dalam middle-income trap.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: SOLUTIONS -->
+    <section class="card animate-in" style="animation-delay: 0.6s; border: 2px solid var(--primary);">
+        <h2 class="section-title">💡 Peta Jalan: Memastikan Skenario Optimis</h2>
+        <p class="mb-4">Memanfaatkan jendela bonus demografi 2020-2045 memerlukan aksi terkoordinasi dari pemerintah, industri, dan institusi pendidikan:</p>
+        
+        <div class="path-container">
+            <div class="path-item">
+                <div class="path-icon">🛠️</div>
+                <div>
+                    <h4>Revitalisasi SMK Berbasis Industri 4.0</h4>
+                    <p style="font-size: 0.9rem;">Kurikulum co-creation dengan industri: IoT, robotika, AI dasar, energi terbarukan, digital marketing. Wajib magang bersertifikat minimal 1 tahun. Guru tamu dari praktisi industri setiap semester. Sertifikasi kompetensi diakui nasional dan internasional.</p>
+                </div>
+            </div>
+            <div class="path-item">
+                <div class="path-icon">💻</div>
+                <div>
+                    <h4>Integrasi Vokasi di SMA</h4>
+                    <p style="font-size: 0.9rem;">Mata pelajaran pilihan berbasis keterampilan: coding dasar, desain grafis, akuntansi UMKM, teknik otomotif listrik. Program magang singkat di sektor jasa modern. Bimbingan karir berbasis potensi ekonomi daerah. Jalur sertifikasi profesi pasca-lulus melalui kerjasama industri.</p>
+                </div>
+            </div>
+            <div class="path-item">
+                <div class="path-icon">🤝</div>
+                <div>
+                    <h4>Insentif Industri & Perlindungan Pekerja Muda</h4>
+                    <p style="font-size: 0.9rem;">Tax allowance untuk perusahaan yang merekrut dan melatih lulusan SMA/SMK. Skema jaminan sosial portabel untuk pekerja gig: BPJS Ketenagakerjaan, tabungan pensiun, akses kredit usaha mikro dengan bunga subsidi. Program upah minimum sektoral yang realistis.</p>
+                </div>
+            </div>
+            <div class="path-item">
+                <div class="path-icon">📚</div>
+                <div>
+                    <h4>Literasi Keuangan & Kewirausahaan</h4>
+                    <p style="font-size: 0.9rem;">Edukasi tidak hanya tentang menabung, tapi juga investasi jangka panjang (saham, reksadana, properti), membangun aset produktif, dan kewirausahaan digital. Mengubah mentalitas <em>frugal living</em> menjadi <em>strategic spending</em> yang mendukung pertumbuhan ekonomi inklusif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CONCLUSION -->
+    <section class="card animate-in" style="animation-delay: 0.7s; background: linear-gradient(135deg, #eff6ff, #dbeafe);">
+        <h2 class="section-title" style="color: var(--primary-dark);">📌 Kesimpulan: 2045 Dimulai Hari Ini</h2>
+        <p><strong>Bonus demografi 2020-2045 bukanlah jaminan, melainkan panggilan untuk bertindak.</strong> Kualitas dan kesempatan bagi lulusan SMA dan SMK hari ini akan menentukan apakah Indonesia meraih Visi Indonesia Emas 2045 atau terjebak dalam stagnasi.</p>
+        
+        <p>Jika tantangan struktural—gap kompetensi, underemployment, ketidakpastian kerja—tidak diatasi melalui revitalisasi pendidikan, kemitraan industri-pendidikan, dan kebijakan yang berpihak pada produktivitas muda, maka skenario pesimis akan menjadi kenyataan: velocity of money melambat, pertumbuhan ekonomi stagnan, dan bonus demografi berakhir sebagai peluang yang terlewat.</p>
+        
+        <p>Sebaliknya, jika investasi pada kualitas SDM muda menjadi prioritas nasional, lulusan SMA dan SMK dapat menjadi <strong>akselerator velocity of money</strong> yang membawa Indonesia menuju skenario optimis: ekonomi inklusif, pertumbuhan berkelanjutan, dan kesejahteraan yang merata bagi seluruh rakyat Indonesia.</p>
+        
+        <p style="margin-top: 1.5rem; font-weight: 700; color: var(--primary-dark); text-align: center;">
+            #IndonesiaEmas2045 #RevitalisasiSMK #BonusDemografi #VelocityOfMoney
+        </p>
+    </section>
+
+    <footer>
+        <p>📚 Referensi: BPS, Kementerian Pendidikan & Kebudayaan, Kemenperin, OJK, Bank Indonesia, Bappenas (Visi Indonesia 2045), Survei Angkatan Kerja Nasional 2024-2025.<br><br>© 2026 Institute for Future Economy — Analisis proyeksi independen dengan fokus pada masa depan ekonomi Indonesia dan generasi muda.</p>
+    </footer>
+
+</div>
+
+<script>
+    // Simple animation trigger on scroll for mobile performance
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .scenario-grid').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    });
+</script>
+
+</body>
+</html>
