@@ -88,7 +88,7 @@ body.dark-mode .tab-btn.active { background: var(--gradient-primary); color: whi
 body.dark-mode .print-btn,
 body.dark-mode .reset-progress { background: #374151; border-color: #4b5563; color: #f8f9fa; }
 
-/* ===== NAVBAR (KONSISTEN DENGAN INDEX) ===== */
+/* ===== NAVBAR (KONSISTEN DENGAN EKONOMI XI) ===== */
 .navbar {
 background: linear-gradient(120deg, var(--primary), var(--secondary));
 color: white;
@@ -851,7 +851,7 @@ a { text-decoration: none; color: black; }
     <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ===== NAVBAR (KONSISTEN DENGAN EKONOMI XI) ===== -->
 <nav class="navbar">
     <a href="../index.html" class="navbar-brand">
         <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
@@ -873,7 +873,7 @@ a { text-decoration: none; color: black; }
         <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
         <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
         <li class="dropdown">
-            <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
             <div class="dropdown-content">
                 <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
                 <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
@@ -1541,31 +1541,57 @@ a { text-decoration: none; color: black; }
 </footer>
 
 <script>
-// ===== NAVBAR MOBILE =====
+// ===== NAVBAR MOBILE (DIPERBAIKI AGAR LINK NAVIGASI TIDAK TERINTERCEPT) =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 const dropdowns = document.querySelectorAll('.dropdown');
 
-hamburger.addEventListener('click', () => {
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
     navLinks.classList.toggle('active');
     hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
 });
 
+// Dropdown handler yang diperbaiki - tidak mengintercept semua link
 dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector('a');
-    link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            dropdown.classList.toggle('active');
-        }
-    });
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Tutup dropdown lain yang terbuka
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+                
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
 });
 
+// Tutup menu saat klik di luar
 document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
-        !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
-        navLinks.classList.remove('active');
-        hamburger.textContent = '☰';
+    if (window.innerWidth <= 768) {
+        // Tutup nav-links jika klik di luar
+        if (navLinks.classList.contains('active') && 
+            !e.target.closest('.nav-links') && 
+            !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        
+        // Tutup dropdown jika klik di luar
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && 
+                !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
     }
 });
 
