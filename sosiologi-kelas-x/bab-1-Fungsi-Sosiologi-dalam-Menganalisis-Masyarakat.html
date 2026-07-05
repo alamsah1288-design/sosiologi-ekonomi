@@ -1,323 +1,784 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="description" content="Materi Bab 1 Sosiologi Kelas X - Fungsi Sosiologi untuk Mengenali Gejala Sosial" />
+    <title>Bab 1 - Fungsi Sosiologi | Sosiologi Kelas X</title>
+
+    <!-- Google Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!-- Google AdSense -->
-    <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-123435569676048"
-    crossorigin="anonymous"></script>
-
-    <title>Bab 1 - Fungsi Sosiologi untuk Mengenali Gejala Sosial</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-123435569676048" crossorigin="anonymous"></script>
 
     <style>
+        /* ===== ROOT & RESET ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --header-height: 70px;
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
+            line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
+            padding-bottom: 40px;
         }
-        
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+        body.dark-mode .card,
+        body.dark-mode .content-section {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        body.dark-mode .content-section h2 {
+            color: #f8f9fa;
+        }
+        body.dark-mode .key-concept,
+        body.dark-mode .example-box {
+            background: #3a3a3a;
+            border-color: var(--primary);
+        }
+        body.dark-mode .comparison-table th {
+            background: #1e293b;
+        }
+        body.dark-mode .comparison-table td {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        body.dark-mode .comparison-table tr:nth-child(even) td {
+            background: #383838;
+        }
+        body.dark-mode .comparison-table tr:hover td {
+            background: #3f3f3f;
+        }
+        body.dark-mode footer {
+            background: #0f172a;
+        }
+        body.dark-mode .nav-container {
+            background: #2d2d2d;
+        }
+        body.dark-mode nav li a {
+            color: #e2e8f0;
+        }
+        body.dark-mode nav li a:hover,
+        body.dark-mode nav li a.active {
+            background: var(--primary);
+            color: white;
+        }
+        body.dark-mode header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.08);
+            z-index: 9999;
+        }
+        .scroll-indicator span {
+            display: block;
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.15s ease;
+        }
+        body.dark-mode .scroll-indicator {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0 1.5rem;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-actions .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: white;
+        }
+        .nav-actions .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+        .theme-toggle,
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover,
+        .lang-switch:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(10deg);
+        }
+        .lang-switch {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 16px auto 0;
+            padding: 0 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            margin: 0 6px;
+            opacity: 0.6;
+        }
+        body.dark-mode .breadcrumb {
+            color: #9ca3af;
+        }
+        body.dark-mode .breadcrumb a {
+            color: var(--accent);
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            background-size: 300% 300%;
+            animation: gradientBG 8s ease infinite;
+            color: white;
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .page-header .header-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            z-index: 2;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(6px);
+            font-size: 2.2rem;
+            transition: var(--transition);
+        }
+        .page-header .header-icon:hover {
+            transform: scale(1.05) rotate(6deg);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            z-index: 2;
+            position: relative;
+        }
+        .page-header .subtitle {
+            font-weight: 300;
+            opacity: 0.92;
+            z-index: 2;
+            position: relative;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 20px 0;
         }
-        
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
+
+        /* ===== NAVIGATION (Sticky) ===== */
         .nav-container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             margin-bottom: 30px;
             position: sticky;
-            top: 10px;
-            z-index: 100;
+            top: calc(var(--header-height) + 10px);
+            z-index: 99;
+            padding: 0 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
-        
-        nav ul {
+        .nav-container nav ul {
             display: flex;
-            justify-content: space-around;
+            flex-wrap: wrap;
+            justify-content: center;
             list-style: none;
-            padding: 15px;
+            padding: 10px 0;
+            gap: 4px;
         }
-        
-        nav li a {
+        .nav-container nav li a {
             text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: block;
+            white-space: nowrap;
         }
-        
-        nav li a:hover, nav li a.active {
-            background-color: #4a6491;
+        .nav-container nav li a:hover,
+        .nav-container nav li a.active {
+            background: var(--gradient-primary);
             color: white;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.25);
         }
-        
+
+        /* ===== CONTENT SECTIONS ===== */
         .content-section {
-            background-color: white;
-            border-radius: 15px;
+            background: white;
+            border-radius: var(--radius);
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.02);
         }
-        
         .content-section:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
-        
         .content-section h2 {
-            color: #2c3e50;
-            border-bottom: 3px solid #4a6491;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
             padding-bottom: 10px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
+            gap: 12px;
+            font-size: 1.6rem;
+            font-weight: 600;
         }
-        
         .content-section h2 i {
-            margin-right: 15px;
-            color: #4a6491;
+            color: var(--primary);
+            font-size: 1.4rem;
         }
-        
         .subsection {
             margin-bottom: 25px;
         }
-        
         .subsection h3 {
-            color: #4a6491;
-            margin-bottom: 10px;
+            color: var(--secondary);
+            margin: 18px 0 10px;
             display: flex;
             align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
-        
         .subsection h3 i {
-            margin-right: 10px;
-            font-size: 0.9em;
+            font-size: 1rem;
+            color: var(--primary);
+            width: 24px;
+            text-align: center;
         }
-        
         .key-concept {
-            background-color: #f0f4f8;
-            border-left: 4px solid #4a6491;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+            background: #f0f4f8;
+            border-left: 5px solid var(--primary);
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 0 10px 10px 0;
+            transition: var(--transition);
         }
-        
+        .key-concept p {
+            margin: 0;
+        }
         .example-box {
-            background-color: #e8f4fc;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid #3498db;
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-left: 5px solid var(--accent);
         }
-        
         .example-box h4 {
-            color: #3498db;
-            margin-bottom: 8px;
+            color: var(--secondary);
+            margin-bottom: 6px;
+            font-size: 1rem;
         }
-        
+        .example-box p {
+            margin: 0;
+        }
         ul.concepts {
-            list-style-type: none;
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 6px;
         }
-        
         ul.concepts li {
             margin-bottom: 10px;
+            padding-left: 28px;
             position: relative;
-            padding-left: 30px;
         }
-        
-        ul.concepts li:before {
-            content: "•";
-            color: #4a6491;
+        ul.concepts li::before {
+            content: "▸";
+            color: var(--primary);
             font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2rem;
         }
-        
+        ul.concepts li strong {
+            color: var(--secondary);
+        }
+
+        /* ===== TABLE ===== */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
         }
-        
-        .comparison-table th, .comparison-table td {
-            padding: 15px;
+        .comparison-table th,
+        .comparison-table td {
+            padding: 14px 16px;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e5e7eb;
         }
-        
         .comparison-table th {
-            background-color: #4a6491;
+            background: var(--gradient-primary);
             color: white;
+            font-weight: 600;
         }
-        
         .comparison-table tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background: #f9fafb;
         }
-        
         .comparison-table tr:hover {
-            background-color: #f0f4f8;
+            background: #eef2ff;
         }
-        
+        body.dark-mode .comparison-table th {
+            background: #1e293b;
+            color: #f8f9fa;
+        }
+        body.dark-mode .comparison-table td {
+            border-color: #444;
+        }
+        body.dark-mode .comparison-table tr:nth-child(even) {
+            background: #2a2a2a;
+        }
+        body.dark-mode .comparison-table tr:hover {
+            background: #383838;
+        }
+
+        /* ===== PRINT BUTTON ===== */
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light);
+            border: 1px solid #e5e7eb;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            color: var(--dark);
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .print-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        body.dark-mode .print-btn {
+            background: #374151;
+            border-color: #4b5563;
+            color: #f8f9fa;
+        }
+        body.dark-mode .print-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #2c3e50;
+            padding: 30px 20px 20px;
+            margin-top: 40px;
+            background: var(--gradient-primary);
             color: white;
-            border-radius: 20px 20px 0 0;
+            border-radius: 30px 30px 0 0;
         }
-        
+        footer p {
+            margin: 4px 0;
+            opacity: 0.9;
+        }
+        footer .footer-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
+            .navbar {
+                padding: 0 1rem;
             }
-            
-            nav li {
-                margin-bottom: 10px;
+            .navbar-brand span {
+                font-size: 0.9rem;
             }
-            
+            .nav-actions .back-btn span {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header .subtitle {
+                font-size: 0.9rem;
+            }
             .content-section {
                 padding: 20px;
+            }
+            .content-section h2 {
+                font-size: 1.3rem;
+            }
+            .nav-container nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-container nav li a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 8px;
+            }
+            .container {
+                padding: 12px 12px 0;
+            }
+            .breadcrumb {
+                font-size: 0.75rem;
+                padding: 0 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .page-header .header-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+            .nav-actions .theme-toggle,
+            .nav-actions .lang-switch {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
+            }
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .navbar,
+            .nav-container,
+            .scroll-indicator,
+            .breadcrumb,
+            .print-btn,
+            .theme-toggle,
+            .lang-switch,
+            .back-btn {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+            .content-section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+                transform: none !important;
+            }
+            .page-header {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .comparison-table th {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            footer {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial</h1>
-            <p>Pemahaman tentang masyarakat dan dinamikanya dimulai dengan mengenal hakikat kita sebagai manusia dan ilmu yang dikhususkan untuk mempelajarinya, yaitu sosiologi.</p>
+
+    <!-- ===== SCROLL INDICATOR ===== -->
+    <div class="scroll-indicator"><span id="scrollProgress"></span></div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="sosiologi-kelas-x.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" />
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-actions">
+            <a href="sosiologi-kelas-x.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span>Kembali</span>
+            </a>
+            <button class="lang-switch" id="langToggle" aria-label="Switch Language">
+                <span id="langText">EN</span>
+            </button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
+    </nav>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+        <span>›</span>
+        <a href="sosiologi-kelas-x.html">Sosiologi Kelas X</a>
+        <span>›</span>
+        <span>Bab 1: Fungsi Sosiologi</span>
+    </div>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <header class="page-header">
+        <div class="header-icon"><i class="fas fa-book-open"></i></div>
+        <h1 data-lang-id="Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial" data-lang-en="Chapter 1: Functions of Sociology to Identify Social Phenomena">Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial</h1>
+        <p class="subtitle" data-lang-id="Pemahaman tentang masyarakat dan dinamikanya dimulai dengan mengenal hakikat kita sebagai manusia dan ilmu yang dikhususkan untuk mempelajarinya, yaitu sosiologi." data-lang-en="Understanding society and its dynamics begins with knowing our nature as humans and the science dedicated to studying it, namely sociology.">Pemahaman tentang masyarakat dan dinamikanya dimulai dengan mengenal hakikat kita sebagai manusia dan ilmu yang dikhususkan untuk mempelajarinya, yaitu sosiologi.</p>
     </header>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
-        <div class="nav-container">
+
+        <!-- NAVIGATION (Sticky) -->
+        <div class="nav-container" id="navContainer">
             <nav>
                 <ul>
                     <li><a href="#section-a" class="active">Hakikat Manusia</a></li>
                     <li><a href="#section-b">Konsep Dasar</a></li>
-                    <li><a href="#section-c">Hubungan dengan Ilmu Lain</a></li>
+                    <li><a href="#section-c">Hubungan Ilmu Lain</a></li>
                     <li><a href="#section-d">Fungsi Sosiologi</a></li>
                 </ul>
             </nav>
         </div>
 
+        <!-- SECTION A -->
         <section id="section-a" class="content-section">
-            <h2><i class="fas fa-user-friends"></i> A. Hakikat Manusia sebagai Makhluk Individu dan Sosial</h2>
-            
+            <h2><i class="fas fa-user-friends"></i> <span data-lang-id="A. Hakikat Manusia sebagai Makhluk Individu dan Sosial" data-lang-en="A. Human Nature as Individual and Social Beings">A. Hakikat Manusia sebagai Makhluk Individu dan Sosial</span></h2>
+
             <div class="subsection">
-                <p>Kedua hakikat ini bukanlah dikotomi (pilihan), melainkan sebuah <strong>dialektika</strong> yang terus-menerus terjadi. Manusia adalah produk dari interaksi permanen antara keunikan dirinya dan pengaruh masyarakatnya.</p>
+                <p data-lang-id="Kedua hakikat ini bukanlah dikotomi (pilihan), melainkan sebuah <strong>dialektika</strong> yang terus-menerus terjadi. Manusia adalah produk dari interaksi permanen antara keunikan dirinya dan pengaruh masyarakatnya." data-lang-en="These two natures are not a dichotomy (choice), but a continuous <strong>dialectic</strong>. Humans are products of the permanent interaction between their uniqueness and the influence of their society.">Kedua hakikat ini bukanlah dikotomi (pilihan), melainkan sebuah <strong>dialektika</strong> yang terus-menerus terjadi. Manusia adalah produk dari interaksi permanen antara keunikan dirinya dan pengaruh masyarakatnya.</p>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-user"></i> 1. Manusia sebagai Makhluk Individu</h3>
+                <h3><i class="fas fa-user"></i> <span data-lang-id="1. Manusia sebagai Makhluk Individu" data-lang-en="1. Humans as Individual Beings">1. Manusia sebagai Makhluk Individu</span></h3>
                 <ul class="concepts">
-                    <li><strong>Dimensi Psikologis:</strong> Setiap individu memiliki kepribadian, IQ, EQ, minat, bakat, persepsi, dan motivasi yang unik.</li>
-                    <li><strong>Kebebasan dan Agency:</strong> Sebagai individu, manusia memiliki <strong>agency</strong>, yaitu kapasitas untuk bertindak secara independen dan membuat pilihan sendiri.</li>
-                    <li><strong>Pencarian Identitas:</strong> Proses menjadi "diri sendiri" adalah proyek seumur hidup setiap individu.</li>
+                    <li><strong data-lang-id="Dimensi Psikologis:" data-lang-en="Psychological Dimension:">Dimensi Psikologis:</strong> <span data-lang-id="Setiap individu memiliki kepribadian, IQ, EQ, minat, bakat, persepsi, dan motivasi yang unik." data-lang-en="Each individual has a unique personality, IQ, EQ, interests, talents, perceptions, and motivations.">Setiap individu memiliki kepribadian, IQ, EQ, minat, bakat, persepsi, dan motivasi yang unik.</span></li>
+                    <li><strong data-lang-id="Kebebasan dan Agency:" data-lang-en="Freedom and Agency:">Kebebasan dan Agency:</strong> <span data-lang-id="Sebagai individu, manusia memiliki <strong>agency</strong>, yaitu kapasitas untuk bertindak secara independen dan membuat pilihan sendiri." data-lang-en="As individuals, humans have <strong>agency</strong>, the capacity to act independently and make their own choices.">Sebagai individu, manusia memiliki <strong>agency</strong>, yaitu kapasitas untuk bertindak secara independen dan membuat pilihan sendiri.</span></li>
+                    <li><strong data-lang-id="Pencarian Identitas:" data-lang-en="Identity Seeking:">Pencarian Identitas:</strong> <span data-lang-id="Proses menjadi 'diri sendiri' adalah proyek seumur hidup setiap individu." data-lang-en="The process of becoming 'oneself' is a lifelong project for every individual.">Proses menjadi "diri sendiri" adalah proyek seumur hidup setiap individu.</span></li>
                 </ul>
                 <div class="example-box">
-                    <h4>Contoh:</h4>
-                    <p>Seorang insinyur software memilih untuk keluar dari pekerjaannya yang bergaji tinggi di perusahaan besar untuk memulai start-up-nya sendiri. Ini adalah tindakan individualitas yang mengekspresikan nilai, mimpi, dan penilaian risikonya sendiri.</p>
+                    <h4><i class="fas fa-lightbulb"></i> <span data-lang-id="Contoh" data-lang-en="Example">Contoh</span></h4>
+                    <p data-lang-id="Seorang insinyur software memilih keluar dari pekerjaannya yang bergaji tinggi di perusahaan besar untuk memulai start-up sendiri. Ini adalah tindakan individualitas yang mengekspresikan nilai, mimpi, dan penilaian risikonya sendiri." data-lang-en="A software engineer chooses to leave a high-paying job at a large company to start their own start-up. This is an act of individuality expressing their own values, dreams, and risk assessment.">Seorang insinyur software memilih keluar dari pekerjaannya yang bergaji tinggi di perusahaan besar untuk memulai start-up sendiri. Ini adalah tindakan individualitas yang mengekspresikan nilai, mimpi, dan penilaian risikonya sendiri.</p>
                 </div>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-users"></i> 2. Manusia sebagai Makhluk Sosial</h3>
+                <h3><i class="fas fa-users"></i> <span data-lang-id="2. Manusia sebagai Makhluk Sosial" data-lang-en="2. Humans as Social Beings">2. Manusia sebagai Makhluk Sosial</span></h3>
                 <ul class="concepts">
-                    <li><strong>Dependency (Ketergantungan):</strong> Bayi manusia adalah makhluk yang paling lemah dan bergantung paling lama dibandingkan spesies lain.</li>
-                    <li><strong>Pembentukan Diri melalui Orang Lain (Theory of the Looking-Glass Self):</strong> Konsep diri seseorang dibentuk melalui interaksinya dengan orang lain.</li>
-                    <li><strong>Kebutuhan akan Pengakuan (Recognition):</strong> Manusia memiliki kebutuhan mendasar untuk diakui, diterima, dan menjadi bagian dari suatu kelompok.</li>
+                    <li><strong data-lang-id="Dependency (Ketergantungan):" data-lang-en="Dependency:">Dependency (Ketergantungan):</strong> <span data-lang-id="Bayi manusia adalah makhluk yang paling lemah dan bergantung paling lama dibandingkan spesies lain." data-lang-en="Human infants are the weakest and most dependent for the longest time compared to other species.">Bayi manusia adalah makhluk yang paling lemah dan bergantung paling lama dibandingkan spesies lain.</span></li>
+                    <li><strong data-lang-id="Pembentukan Diri melalui Orang Lain (Theory of the Looking-Glass Self):" data-lang-en="Self-Formation through Others (Looking-Glass Self Theory):">Pembentukan Diri melalui Orang Lain (Theory of the Looking-Glass Self):</strong> <span data-lang-id="Konsep diri seseorang dibentuk melalui interaksinya dengan orang lain." data-lang-en="A person's self-concept is formed through interactions with others.">Konsep diri seseorang dibentuk melalui interaksinya dengan orang lain.</span></li>
+                    <li><strong data-lang-id="Kebutuhan akan Pengakuan (Recognition):" data-lang-en="Need for Recognition:">Kebutuhan akan Pengakuan (Recognition):</strong> <span data-lang-id="Manusia memiliki kebutuhan mendasar untuk diakui, diterima, dan menjadi bagian dari suatu kelompok." data-lang-en="Humans have a fundamental need to be recognized, accepted, and to belong to a group.">Manusia memiliki kebutuhan mendasar untuk diakui, diterima, dan menjadi bagian dari suatu kelompok.</span></li>
                 </ul>
                 <div class="example-box">
-                    <h4>Contoh:</h4>
-                    <p>Insinyur software tadi tetap membutuhkan orang lain: mencari co-founder, menarik investor, membangun jaringan dengan klien, dan berinteraksi dengan komunitas tech untuk bertukar ide. Keberhasilannya tetap bergantung pada masyarakat.</p>
+                    <h4><i class="fas fa-lightbulb"></i> <span data-lang-id="Contoh" data-lang-en="Example">Contoh</span></h4>
+                    <p data-lang-id="Insinyur software tadi tetap membutuhkan orang lain: mencari co-founder, menarik investor, membangun jaringan dengan klien, dan berinteraksi dengan komunitas tech. Keberhasilannya tetap bergantung pada masyarakat." data-lang-en="The software engineer still needs others: finding co-founders, attracting investors, building networks with clients, and interacting with the tech community. Their success still depends on society.">Insinyur software tadi tetap membutuhkan orang lain: mencari co-founder, menarik investor, membangun jaringan dengan klien, dan berinteraksi dengan komunitas tech. Keberhasilannya tetap bergantung pada masyarakat.</p>
                 </div>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-balance-scale"></i> Sintesis: Individu dan Masyarakat adalah Dua Sisi Mata Uang</h3>
-                <p>Individu memengaruhi masyarakat melalui penemuan, inovasi, perlawanan, dan tindakan-tindakannya. Sebaliknya, masyarakat membentuk individu melalui:</p>
+                <h3><i class="fas fa-balance-scale"></i> <span data-lang-id="Sintesis: Individu dan Masyarakat adalah Dua Sisi Mata Uang" data-lang-en="Synthesis: Individual and Society are Two Sides of the Same Coin">Sintesis: Individu dan Masyarakat adalah Dua Sisi Mata Uang</span></h3>
+                <p data-lang-id="Individu memengaruhi masyarakat melalui penemuan, inovasi, perlawanan, dan tindakan-tindakannya. Sebaliknya, masyarakat membentuk individu melalui:" data-lang-en="Individuals influence society through discoveries, innovations, resistance, and their actions. Conversely, society shapes individuals through:">Individu memengaruhi masyarakat melalui penemuan, inovasi, perlawanan, dan tindakan-tindakannya. Sebaliknya, masyarakat membentuk individu melalui:</p>
                 <ul class="concepts">
-                    <li><strong>Sosialisasi:</strong> Proses pembelajaran nilai, norma, dan peran sosial seumur hidup.</li>
-                    <li><strong>Kontrol Sosial:</strong> Berbagai cara yang digunakan masyarakat untuk mengajak bahkan memaksa individu agar conform (sesuai) dengan nilai dan norma yang berlaku.</li>
+                    <li><strong data-lang-id="Sosialisasi:" data-lang-en="Socialization:">Sosialisasi:</strong> <span data-lang-id="Proses pembelajaran nilai, norma, dan peran sosial seumur hidup." data-lang-en="The lifelong process of learning values, norms, and social roles.">Proses pembelajaran nilai, norma, dan peran sosial seumur hidup.</span></li>
+                    <li><strong data-lang-id="Kontrol Sosial:" data-lang-en="Social Control:">Kontrol Sosial:</strong> <span data-lang-id="Berbagai cara yang digunakan masyarakat untuk mengajak bahkan memaksa individu agar conform (sesuai) dengan nilai dan norma yang berlaku." data-lang-en="Various ways society uses to encourage or even force individuals to conform to prevailing values and norms.">Berbagai cara yang digunakan masyarakat untuk mengajak bahkan memaksa individu agar conform (sesuai) dengan nilai dan norma yang berlaku.</span></li>
                 </ul>
             </div>
+            <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Cetak / Print</button>
         </section>
 
+        <!-- SECTION B -->
         <section id="section-b" class="content-section">
-            <h2><i class="fas fa-book"></i> B. Konsep Dasar Sosiologi</h2>
-            
+            <h2><i class="fas fa-book"></i> <span data-lang-id="B. Konsep Dasar Sosiologi" data-lang-en="B. Basic Concepts of Sociology">B. Konsep Dasar Sosiologi</span></h2>
+
             <div class="subsection">
-                <h3><i class="fas fa-graduation-cap"></i> Definisi Menurut Para Ahli</h3>
+                <h3><i class="fas fa-graduation-cap"></i> <span data-lang-id="Definisi Menurut Para Ahli" data-lang-en="Definitions According to Experts">Definisi Menurut Para Ahli</span></h3>
                 <div class="key-concept">
-                    <p><strong>Auguste Comte (Bapak Sosiologi):</strong> Sosiologi adalah ilmu tentang hukum-hukum positif (berdasarkan fakta) yang mengatur masyarakat, yang dapat ditemukan melalui pendekatan ilmiah seperti ilmu alam.</p>
+                    <p><strong>Auguste Comte (Bapak Sosiologi):</strong> <span data-lang-id="Sosiologi adalah ilmu tentang hukum-hukum positif (berdasarkan fakta) yang mengatur masyarakat, yang dapat ditemukan melalui pendekatan ilmiah seperti ilmu alam." data-lang-en="Sociology is the science of positive laws (based on facts) that govern society, discoverable through a scientific approach like natural sciences.">Sosiologi adalah ilmu tentang hukum-hukum positif (berdasarkan fakta) yang mengatur masyarakat, yang dapat ditemukan melalui pendekatan ilmiah seperti ilmu alam.</span></p>
                 </div>
                 <div class="key-concept">
-                    <p><strong>Emile Durkheim:</strong> Sosiologi adalah ilmu yang mempelajari <strong>fakta sosial</strong> (social facts). Fakta sosial adalah cara bertindak, berpikir, dan merasa yang berada di luar individu dan memiliki kekuatan memaksa untuk mengendalikannya. Contoh: hukum, bahasa, sistem mata uang.</p>
+                    <p><strong>Emile Durkheim:</strong> <span data-lang-id="Sosiologi adalah ilmu yang mempelajari <strong>fakta sosial</strong> (social facts). Fakta sosial adalah cara bertindak, berpikir, dan merasa yang berada di luar individu dan memiliki kekuatan memaksa untuk mengendalikannya. Contoh: hukum, bahasa, sistem mata uang." data-lang-en="Sociology is the science that studies <strong>social facts</strong>. Social facts are ways of acting, thinking, and feeling that exist outside individuals and have coercive power to control them. Examples: law, language, monetary systems.">Sosiologi adalah ilmu yang mempelajari <strong>fakta sosial</strong> (social facts). Fakta sosial adalah cara bertindak, berpikir, dan merasa yang berada di luar individu dan memiliki kekuatan memaksa untuk mengendalikannya. Contoh: hukum, bahasa, sistem mata uang.</span></p>
                 </div>
                 <div class="key-concept">
-                    <p><strong>Max Weber:</strong> Sosiologi adalah ilmu yang berusaha memahami (<strong>verstehen</strong>) tindakan sosial dan penjelasan kausal atas arah dan konsekuensi dari tindakan tersebut.</p>
+                    <p><strong>Max Weber:</strong> <span data-lang-id="Sosiologi adalah ilmu yang berusaha memahami (<strong>verstehen</strong>) tindakan sosial dan penjelasan kausal atas arah dan konsekuensi dari tindakan tersebut." data-lang-en="Sociology is a science that seeks to understand (<strong>verstehen</strong>) social action and causal explanations of its direction and consequences.">Sosiologi adalah ilmu yang berusaha memahami (<strong>verstehen</strong>) tindakan sosial dan penjelasan kausal atas arah dan konsekuensi dari tindakan tersebut.</span></p>
                 </div>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-key"></i> Konsep-Konsep Kunci dalam Sosiologi</h3>
+                <h3><i class="fas fa-key"></i> <span data-lang-id="Konsep-Konsep Kunci dalam Sosiologi" data-lang-en="Key Concepts in Sociology">Konsep-Konsep Kunci dalam Sosiologi</span></h3>
                 <ul class="concepts">
-                    <li><strong>Tindakan Sosial (Social Action):</strong> Tindakan individu yang mempertimbangkan keberadaan dan respon orang lain.</li>
-                    <li><strong>Interaksi Sosial:</strong> Proses di mana individu dan kelompok saling berhubungan melalui tindakan sosial.</li>
-                    <li><strong>Status dan Peran (Status & Role):</strong> Status adalah posisi dalam masyarakat, sedangkan Peran adalah perilaku yang diharapkan dari seseorang yang memiliki status tertentu.</li>
-                    <li><strong>Nilai dan Norma Sosial:</strong> Nilai adalah konsep abstrak tentang apa yang dianggap baik dan buruk, sedangkan Norma adalah aturan konkret dan sanksi tertentu yang menjadi pedoman perilaku.</li>
-                    <li><strong>Struktur Sosial:</strong> Pola tetap yang membentuk hubungan dalam masyarakat, seperti institusi keluarga, pendidikan, agama, ekonomi, dan politik.</li>
-                    <li><strong>Perubahan Sosial:</strong> Perubahan dalam struktur dan pola-pola hubungan sosial dalam masyarakat dari waktu ke waktu.</li>
+                    <li><strong data-lang-id="Tindakan Sosial (Social Action):" data-lang-en="Social Action:">Tindakan Sosial (Social Action):</strong> <span data-lang-id="Tindakan individu yang mempertimbangkan keberadaan dan respon orang lain." data-lang-en="Individual actions that consider the existence and responses of others.">Tindakan individu yang mempertimbangkan keberadaan dan respon orang lain.</span></li>
+                    <li><strong data-lang-id="Interaksi Sosial:" data-lang-en="Social Interaction:">Interaksi Sosial:</strong> <span data-lang-id="Proses di mana individu dan kelompok saling berhubungan melalui tindakan sosial." data-lang-en="The process where individuals and groups relate to each other through social actions.">Proses di mana individu dan kelompok saling berhubungan melalui tindakan sosial.</span></li>
+                    <li><strong data-lang-id="Status dan Peran (Status & Role):" data-lang-en="Status and Role:">Status dan Peran (Status & Role):</strong> <span data-lang-id="Status adalah posisi dalam masyarakat, sedangkan Peran adalah perilaku yang diharapkan dari seseorang yang memiliki status tertentu." data-lang-en="Status is a position in society, while Role is the expected behavior of someone with a particular status.">Status adalah posisi dalam masyarakat, sedangkan Peran adalah perilaku yang diharapkan dari seseorang yang memiliki status tertentu.</span></li>
+                    <li><strong data-lang-id="Nilai dan Norma Sosial:" data-lang-en="Values and Social Norms:">Nilai dan Norma Sosial:</strong> <span data-lang-id="Nilai adalah konsep abstrak tentang apa yang dianggap baik dan buruk, sedangkan Norma adalah aturan konkret dan sanksi tertentu yang menjadi pedoman perilaku." data-lang-en="Values are abstract concepts of what is considered good and bad, while Norms are concrete rules and specific sanctions that guide behavior.">Nilai adalah konsep abstrak tentang apa yang dianggap baik dan buruk, sedangkan Norma adalah aturan konkret dan sanksi tertentu yang menjadi pedoman perilaku.</span></li>
+                    <li><strong data-lang-id="Struktur Sosial:" data-lang-en="Social Structure:">Struktur Sosial:</strong> <span data-lang-id="Pola tetap yang membentuk hubungan dalam masyarakat, seperti institusi keluarga, pendidikan, agama, ekonomi, dan politik." data-lang-en="Enduring patterns that shape relationships in society, such as family, education, religion, economy, and political institutions.">Pola tetap yang membentuk hubungan dalam masyarakat, seperti institusi keluarga, pendidikan, agama, ekonomi, dan politik.</span></li>
+                    <li><strong data-lang-id="Perubahan Sosial:" data-lang-en="Social Change:">Perubahan Sosial:</strong> <span data-lang-id="Perubahan dalam struktur dan pola-pola hubungan sosial dalam masyarakat dari waktu ke waktu." data-lang-en="Changes in the structure and patterns of social relationships in society over time.">Perubahan dalam struktur dan pola-pola hubungan sosial dalam masyarakat dari waktu ke waktu.</span></li>
                 </ul>
             </div>
+            <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Cetak / Print</button>
         </section>
 
+        <!-- SECTION C -->
         <section id="section-c" class="content-section">
-            <h2><i class="fas fa-link"></i> C. Hubungan Ilmu Sosiologi dengan Ilmu Lainnya</h2>
-            <p>Hubungan sosiologi dengan ilmu lain melahirkan bidang-bidang interdisipliner yang sangat kaya:</p>
-            
+            <h2><i class="fas fa-link"></i> <span data-lang-id="C. Hubungan Ilmu Sosiologi dengan Ilmu Lainnya" data-lang-en="C. Relationship of Sociology with Other Sciences">C. Hubungan Ilmu Sosiologi dengan Ilmu Lainnya</span></h2>
+            <p data-lang-id="Hubungan sosiologi dengan ilmu lain melahirkan bidang-bidang interdisipliner yang sangat kaya:" data-lang-en="The relationship of sociology with other sciences gives rise to very rich interdisciplinary fields:">Hubungan sosiologi dengan ilmu lain melahirkan bidang-bidang interdisipliner yang sangat kaya:</p>
+
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -331,20 +792,20 @@
                     <tr>
                         <td><strong>Ilmu Ekonomi</strong></td>
                         <td><i>Homo economicus</i> yang rasional dan memaksimalkan keuntungan</td>
-                        <td>Membuktikan bahwa aktivitas ekonomi <strong>tertanam (embedded)</strong> dalam jaringan sosial, budaya, dan hubungan kekuasaan</td>
-                        <td>Studi tentang sistem credit union atau arisan yang berbasis kepercayaan</td>
+                        <td>Membuktikan aktivitas ekonomi <strong>tertanam (embedded)</strong> dalam jaringan sosial, budaya, dan kekuasaan</td>
+                        <td>Studi sistem credit union atau arisan berbasis kepercayaan</td>
                     </tr>
                     <tr>
                         <td><strong>Ilmu Politik</strong></td>
                         <td>Institusi formal seperti negara, pemerintahan, partai politik</td>
-                        <td>Menganalisis kekuasaan dalam kehidupan sehari-hari dan bagaimana opini publik terbentuk</td>
-                        <td>Menganalisis peran media sosial dalam memenangkan pilkada</td>
+                        <td>Menganalisis kekuasaan dalam kehidupan sehari-hari dan pembentukan opini publik</td>
+                        <td>Peran media sosial dalam memenangkan pilkada</td>
                     </tr>
                     <tr>
                         <td><strong>Ilmu Hukum</strong></td>
                         <td>Hukum sebagai sistem norma formal (<i>law in books</i>)</td>
                         <td>Mempelajari hukum dalam praktiknya (<i>law in action</i>) dan pengaruh nilai budaya</td>
-                        <td>Meneliti preferensi masyarakat menyelesaikan sengketa melalui adat</td>
+                        <td>Preferensi masyarakat menyelesaikan sengketa melalui adat</td>
                     </tr>
                     <tr>
                         <td><strong>Ilmu Psikologi</strong></td>
@@ -356,95 +817,168 @@
                         <td><strong>Ilmu Sejarah</strong></td>
                         <td>Peristiwa masa lalu secara <strong>kronologis dan unik</strong></td>
                         <td>Mencari <strong>pola, tren, dan teori</strong> umum tentang perubahan sosial</td>
-                        <td>Mempelajari pola umum transformasi masyarakat agraris ke industri</td>
+                        <td>Pola umum transformasi masyarakat agraris ke industri</td>
                     </tr>
                 </tbody>
             </table>
+            <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Cetak / Print</button>
         </section>
 
+        <!-- SECTION D -->
         <section id="section-d" class="content-section">
-            <h2><i class="fas fa-chart-line"></i> D. Fungsi Sosiologi dalam Mengkaji Hubungan Masyarakat</h2>
-            
+            <h2><i class="fas fa-chart-line"></i> <span data-lang-id="D. Fungsi Sosiologi dalam Mengkaji Hubungan Masyarakat" data-lang-en="D. Functions of Sociology in Studying Social Relations">D. Fungsi Sosiologi dalam Mengkaji Hubungan Masyarakat</span></h2>
+
             <div class="subsection">
-                <h3><i class="fas fa-brain"></i> 1. Fungsi Teoritis / Kognitif</h3>
+                <h3><i class="fas fa-brain"></i> <span data-lang-id="1. Fungsi Teoritis / Kognitif" data-lang-en="1. Theoretical / Cognitive Function">1. Fungsi Teoritis / Kognitif</span></h3>
                 <ul class="concepts">
-                    <li><strong>Memahami (Understanding):</strong> Membantu kita memahami mengapa suatu fenomena sosial terjadi. Misal, memahami akar kemiskinan sebagai hasil dari struktur ekonomi yang timpang.</li>
-                    <li><strong>Memprediksi (Predicting):</strong> Dengan memahami pola, sosiologi dapat memprediksi kecenderungan sosial. Misal, dampak robotisasi terhadap ketenagakerjaan.</li>
-                    <li><strong>Mengembangkan Ilmu Pengetahuan:</strong> Teori-teori sosiologi terus dikembangkan untuk penjelasan yang lebih akurat.</li>
+                    <li><strong data-lang-id="Memahami (Understanding):" data-lang-en="Understanding:">Memahami (Understanding):</strong> <span data-lang-id="Membantu kita memahami mengapa suatu fenomena sosial terjadi. Misal, memahami akar kemiskinan sebagai hasil dari struktur ekonomi yang timpang." data-lang-en="Helps us understand why a social phenomenon occurs. E.g., understanding the roots of poverty as a result of unequal economic structures.">Membantu kita memahami mengapa suatu fenomena sosial terjadi. Misal, memahami akar kemiskinan sebagai hasil dari struktur ekonomi yang timpang.</span></li>
+                    <li><strong data-lang-id="Memprediksi (Predicting):" data-lang-en="Predicting:">Memprediksi (Predicting):</strong> <span data-lang-id="Dengan memahami pola, sosiologi dapat memprediksi kecenderungan sosial. Misal, dampak robotisasi terhadap ketenagakerjaan." data-lang-en="By understanding patterns, sociology can predict social tendencies. E.g., the impact of robotization on employment.">Dengan memahami pola, sosiologi dapat memprediksi kecenderungan sosial. Misal, dampak robotisasi terhadap ketenagakerjaan.</span></li>
+                    <li><strong data-lang-id="Mengembangkan Ilmu Pengetahuan:" data-lang-en="Developing Knowledge:">Mengembangkan Ilmu Pengetahuan:</strong> <span data-lang-id="Teori-teori sosiologi terus dikembangkan untuk penjelasan yang lebih akurat." data-lang-en="Sociological theories are continuously developed for more accurate explanations.">Teori-teori sosiologi terus dikembangkan untuk penjelasan yang lebih akurat.</span></li>
                 </ul>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-tools"></i> 2. Fungsi Praktis / Aplikatif</h3>
+                <h3><i class="fas fa-tools"></i> <span data-lang-id="2. Fungsi Praktis / Aplikatif" data-lang-en="2. Practical / Applied Function">2. Fungsi Praktis / Aplikatif</span></h3>
                 <ul class="concepts">
-                    <li><strong>Perencanaan Sosial (Social Planning):</strong> Data sosiologis untuk merancang program pembangunan yang efektif dan manusiawi.</li>
-                    <li><strong>Pemecahan Masalah Sosial (Social Problem Solving):</strong> Mendiagnosis penyakit masyarakat secara komprehensif.</li>
-                    <li><strong>Evaluasi Kebijakan (Policy Evaluation):</strong> Meneliti efektivitas kebijakan publik.</li>
-                    <li><strong>Pemberdayaan Masyarakat (Community Empowerment):</strong> Memberdayakan komunitas untuk mengenali masalah dan mencari solusi kolektif.</li>
+                    <li><strong data-lang-id="Perencanaan Sosial (Social Planning):" data-lang-en="Social Planning:">Perencanaan Sosial (Social Planning):</strong> <span data-lang-id="Data sosiologis untuk merancang program pembangunan yang efektif dan manusiawi." data-lang-en="Sociological data to design effective and humane development programs.">Data sosiologis untuk merancang program pembangunan yang efektif dan manusiawi.</span></li>
+                    <li><strong data-lang-id="Pemecahan Masalah Sosial (Social Problem Solving):" data-lang-en="Social Problem Solving:">Pemecahan Masalah Sosial (Social Problem Solving):</strong> <span data-lang-id="Mendiagnosis penyakit masyarakat secara komprehensif." data-lang-en="Comprehensively diagnosing societal ills.">Mendiagnosis penyakit masyarakat secara komprehensif.</span></li>
+                    <li><strong data-lang-id="Evaluasi Kebijakan (Policy Evaluation):" data-lang-en="Policy Evaluation:">Evaluasi Kebijakan (Policy Evaluation):</strong> <span data-lang-id="Meneliti efektivitas kebijakan publik." data-lang-en="Evaluating the effectiveness of public policies.">Meneliti efektivitas kebijakan publik.</span></li>
+                    <li><strong data-lang-id="Pemberdayaan Masyarakat (Community Empowerment):" data-lang-en="Community Empowerment:">Pemberdayaan Masyarakat (Community Empowerment):</strong> <span data-lang-id="Memberdayakan komunitas untuk mengenali masalah dan mencari solusi kolektif." data-lang-en="Empowering communities to recognize problems and find collective solutions.">Memberdayakan komunitas untuk mengenali masalah dan mencari solusi kolektif.</span></li>
                 </ul>
             </div>
-            
+
             <div class="subsection">
-                <h3><i class="fas fa-comment-alt"></i> 3. Fungsi Kritik Sosial</h3>
+                <h3><i class="fas fa-comment-alt"></i> <span data-lang-id="3. Fungsi Kritik Sosial" data-lang-en="3. Social Critique Function">3. Fungsi Kritik Sosial</span></h3>
                 <ul class="concepts">
-                    <li>Sosiologi memberikan perspektif untuk <strong>mengkritik</strong> realitas sosial yang dianggap tidak adil.</li>
-                    <li>Sosiologi membongkar <strong>hegemoni</strong> dan <strong>ideologi</strong> yang menyembunyikan ketidakadilan.</li>
-                    <li>Contoh: Kritik terhadap budaya <em>toxic productivity</em> atau iklan yang mendiskriminasi perempuan.</li>
+                    <li><span data-lang-id="Sosiologi memberikan perspektif untuk <strong>mengkritik</strong> realitas sosial yang dianggap tidak adil." data-lang-en="Sociology provides a perspective to <strong>critique</strong> social realities that are considered unjust.">Sosiologi memberikan perspektif untuk <strong>mengkritik</strong> realitas sosial yang dianggap tidak adil.</span></li>
+                    <li><span data-lang-id="Sosiologi membongkar <strong>hegemoni</strong> dan <strong>ideologi</strong> yang menyembunyikan ketidakadilan." data-lang-en="Sociology uncovers <strong>hegemony</strong> and <strong>ideology</strong> that hide injustice.">Sosiologi membongkar <strong>hegemoni</strong> dan <strong>ideologi</strong> yang menyembunyikan ketidakadilan.</span></li>
+                    <li><span data-lang-id="Contoh: Kritik terhadap budaya <em>toxic productivity</em> atau iklan yang mendiskriminasi perempuan." data-lang-en="Example: Critique of <em>toxic productivity</em> culture or advertisements that discriminate against women.">Contoh: Kritik terhadap budaya <em>toxic productivity</em> atau iklan yang mendiskriminasi perempuan.</span></li>
                 </ul>
             </div>
-            
+
             <div class="key-concept">
-                <p>Dengan demikian, sosiologi bukan hanya ilmu untuk diamati di menara gading, tetapi adalah <strong>pisau bedah</strong> untuk membedah realitas sosial dan <strong>kompas</strong> untuk menunjuk arah perbaikan menuju masyarakat yang lebih adil dan manusiawi.</p>
+                <p data-lang-id="Dengan demikian, sosiologi bukan hanya ilmu untuk diamati di menara gading, tetapi adalah <strong>pisau bedah</strong> untuk membedah realitas sosial dan <strong>kompas</strong> untuk menunjuk arah perbaikan menuju masyarakat yang lebih adil dan manusiawi." data-lang-en="Thus, sociology is not just a science to be observed from an ivory tower, but a <strong>scalpel</strong> to dissect social reality and a <strong>compass</strong> to point the way toward a more just and humane society.">Dengan demikian, sosiologi bukan hanya ilmu untuk diamati di menara gading, tetapi adalah <strong>pisau bedah</strong> untuk membedah realitas sosial dan <strong>kompas</strong> untuk menunjuk arah perbaikan menuju masyarakat yang lebih adil dan manusiawi.</p>
             </div>
+            <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Cetak / Print</button>
         </section>
+
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="container">
-            <p>Materi Pembelajaran Sosiologi - Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial</p>
-            <p>© 2023 Pendidikan Sosiologi</p>
-        </div>
+        <p class="footer-brand"><i class="fas fa-graduation-cap"></i> Sosiologi Kelas X</p>
+        <p data-lang-id="Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial" data-lang-en="Chapter 1: Functions of Sociology to Identify Social Phenomena">Bab 1: Fungsi Sosiologi untuk Mengenali Gejala Sosial</p>
+        <p style="font-size:0.85rem; opacity:0.8; margin-top:8px;">&copy; 2025 SMA Negeri 1 Cluring</p>
     </footer>
 
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
     <script>
-        // Simple JavaScript for navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // ===== LANGUAGE SWITCHER =====
+        let currentLang = 'id';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-lang-id]');
+            elements.forEach(el => {
+                if (lang === 'en' && el.getAttribute('data-lang-en')) {
+                    el.innerHTML = el.getAttribute('data-lang-en');
+                } else if (lang === 'id' && el.getAttribute('data-lang-id')) {
+                    el.innerHTML = el.getAttribute('data-lang-id');
+                }
+            });
+            const langText = document.getElementById('langText');
+            langText.textContent = lang === 'en' ? 'ID' : 'EN';
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Load saved language
+        const savedLang = localStorage.getItem('preferredLang') || 'id';
+        setLanguage(savedLang);
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+            setLanguage(newLang);
+        });
+
+        // ===== DARK MODE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // ===== SCROLL INDICATOR =====
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // ===== NAVIGATION ACTIVE LINK & SMOOTH SCROLL =====
+        const navLinks = document.querySelectorAll('.nav-container nav a');
+        const sections = document.querySelectorAll('.content-section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    const navHeight = document.querySelector('.nav-container').offsetHeight;
+                    const headerHeight = document.querySelector('.navbar').offsetHeight;
+                    const offset = headerHeight + 20; // spacing
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
                 // Update active class
-                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                navLinks.forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
             });
         });
-        
+
         // Update active link on scroll
-        window.addEventListener('scroll', function() {
-            let sections = document.querySelectorAll('.content-section');
-            let navLinks = document.querySelectorAll('nav a');
-            
+        function updateActiveNav() {
             let current = '';
-            
+            const offset = 120; // offset for header + nav
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 100)) {
+                if (window.pageYOffset >= sectionTop - offset) {
                     current = section.getAttribute('id');
                 }
             });
-            
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').substring(1) === current) {
                     link.classList.add('active');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
     </script>
 </body>
 </html>
