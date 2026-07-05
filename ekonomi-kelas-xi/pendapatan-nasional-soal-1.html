@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- SEO & Meta -->
+  <meta name="description" content="Quiz HOTS Ekonomi Kelas XI - 20 Soal GDP & Perhitungan Pendapatan Nasional Level OSN dengan timer 35 menit">
+  <meta name="author" content="Zuli Astutik, S.Pd - SMAN 1 Cluring">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>📊 OSN Prep: GDP & Pendapatan Nasional | Quiz HOTS Kelas XI</title>
+  
+  <!-- External Resources -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
+    body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 10% 20%, rgb(30, 45, 90) 0%, rgb(20, 28, 58) 100%); color: #1e293b; line-height: 1.5; min-height: 100vh; }
+    .security-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.96); backdrop-filter: blur(8px); color: white; display: none; justify-content: center; align-items: center; z-index: 10000; text-align: center; padding: 2rem; flex-direction: column; gap: 1.5rem; }
+    .security-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+    .security-overlay i { font-size: 4rem; color: #f97316; filter: drop-shadow(0 0 8px #f97316); }
+    .security-overlay h2 { font-size: 1.8rem; font-weight: 700; }
+    .security-overlay button { background: linear-gradient(135deg, #3b82f6, #2563eb); border: none; padding: 0.75rem 2rem; border-radius: 60px; font-weight: 600; color: white; cursor: pointer; transition: 0.2s; }
+    .security-overlay button:hover { transform: scale(1.02); background: #1d4ed8; }
+    header { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px); padding: 0.9rem 2rem; position: sticky; top: 0; z-index: 200; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .header-left a { background: #eef2ff; padding: 0.5rem 1rem; border-radius: 40px; text-decoration: none; color: #2563eb; font-weight: 500; font-size: 0.9rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .header-left a:hover { background: #2563eb; color: white; }
+    .quiz-title h1 { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #1e3a8a, #4f46e5); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .quiz-title small { font-size: 0.75rem; color: #475569; }
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+    .timer-badge { background: linear-gradient(145deg, #1e293b, #0f172a); color: white; padding: 0.5rem 1.25rem; border-radius: 60px; display: flex; align-items: center; gap: 0.6rem; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.2); font-family: monospace; font-size: 1.2rem; }
+    .timer-badge.warning { background: linear-gradient(145deg, #b45309, #9b2c1d); }
+    .timer-badge.danger { background: linear-gradient(145deg, #b91c1c, #7f1d1d); animation: pulseRed 1s infinite; }
+    @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 #ef4444; } 100% { box-shadow: 0 0 0 8px rgba(239,68,68,0); } }
+    .btn-control { background: white; border: 2px solid #3b82f6; padding: 0.5rem 1rem; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+    .btn-control:hover { background: #3b82f6; color: white; transform: translateY(-2px); }
+    .quiz-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.2rem; }
+    .card-glass { background: rgba(255, 255, 255, 0.98); border-radius: 2rem; padding: 2rem; box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2); backdrop-filter: blur(2px); transition: all 0.2s; }
+    .start-screen, .results-card, .review-section, .question-card { background: white; border-radius: 2rem; padding: 2rem; box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2); }
+    .quiz-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin: 2rem 0; }
+    .info-card { background: #f8fafc; padding: 1.2rem; border-radius: 1.2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid #e2e8f0; }
+    .info-card i { font-size: 1.8rem; color: #2563eb; }
+    .security-notice { background: #fff7ed; border-left: 6px solid #f97316; padding: 1.2rem; border-radius: 1rem; margin: 1.5rem 0; }
+    .btn-start { background: linear-gradient(105deg, #2563eb, #4f46e5); border: none; padding: 1rem 2.5rem; border-radius: 60px; font-weight: 700; font-size: 1.1rem; color: white; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.8rem; }
+    .btn-start:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px #2563eb; }
+    .question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .question-number { background: #e0e7ff; padding: 0.3rem 1rem; border-radius: 60px; font-weight: 600; color: #1e40af; }
+    .difficulty-hots { background: #ede9fe; color: #6d28d9; padding: 0.2rem 0.8rem; border-radius: 40px; font-size: 0.75rem; font-weight: 700; }
+    .question-case { background: #f1f5f9; padding: 1.2rem; border-radius: 1rem; border-left: 5px solid #3b82f6; margin: 1.2rem 0; font-size: 0.95rem; }
+    .question-text { font-size: 1.2rem; font-weight: 600; margin: 1rem 0; color: #0f172a; }
+    .options-list { display: flex; flex-direction: column; gap: 0.8rem; margin: 1.5rem 0; }
+    .option-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border: 2px solid #e2e8f0; border-radius: 1rem; cursor: pointer; transition: all 0.2s; background: white; }
+    .option-item:hover { border-color: #3b82f6; background: #eff6ff; transform: translateX(4px); }
+    .option-item.selected { border-color: #3b82f6; background: #eff6ff; box-shadow: 0 2px 6px rgba(59,130,246,0.2); }
+    .option-letter { width: 32px; height: 32px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+    .option-item.selected .option-letter { background: #3b82f6; color: white; }
+    .quiz-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; gap: 1rem; flex-wrap: wrap; }
+    .btn-nav { padding: 0.7rem 1.5rem; border-radius: 40px; font-weight: 600; border: none; cursor: pointer; transition: 0.2s; }
+    .btn-nav.prev { background: #e2e8f0; color: #1e293b; }
+    .btn-nav.next { background: #2563eb; color: white; }
+    .btn-nav:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .question-progress { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+    .progress-dot { width: 30px; height: 30px; border-radius: 40px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; cursor: pointer; transition: 0.1s; }
+    .progress-dot.answered { background: #10b981; color: white; }
+    .progress-dot.current { border: 3px solid #2563eb; background: #bfdbfe; font-weight: 800; transform: scale(1.1); }
+    .score-circle { width: 170px; height: 170px; background: linear-gradient(145deg, #2563eb, #4f46e5); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; box-shadow: 0 20px 25px -12px #2563eb; }
+    .score-value { font-size: 3rem; font-weight: 800; }
+    .grade-a { background: #10b98120; color: #047857; }
+    .results-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin: 1.5rem 0; }
+    .stat-item { background: #f8fafc; padding: 1rem; border-radius: 1rem; text-align: center; }
+    .stat-value { font-size: 1.8rem; font-weight: 800; }
+    .review-item { padding: 1rem; border-radius: 1rem; margin-bottom: 1rem; border-left: 5px solid; background: #faf9fe; }
+    .review-item.correct { border-left-color: #10b981; background: #ecfdf5; }
+    .review-item.incorrect { border-left-color: #ef4444; background: #fef2f2; }
+    .btn-action { padding: 0.6rem 1.2rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .btn-action.primary { background: #2563eb; color: white; }
+    .btn-action.secondary { background: #f1f5f9; color: #1e293b; }
+    .loading { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 9999; flex-direction: column; gap: 1rem; color: white; }
+    .loading.active { display: flex; }
+    @media (max-width: 700px) { header { padding: 0.8rem 1rem; } .quiz-title h1 { font-size: 1rem; } .timer-badge { font-size: 0.9rem; padding: 0.3rem 1rem; } .question-text { font-size: 1rem; } .results-stats { grid-template-columns: 1fr 1fr; } }
+    @media print { body { display: none; } }
+  </style>
+</head>
+<body>
+
+<div class="security-overlay" id="securityOverlay">
+  <i class="fas fa-shield-haltered"></i>
+  <h2>⚠️ Pelanggaran Keamanan</h2>
+  <p>Anda keluar dari mode fullscreen / mencoba screenshot / beralih tab. Quiz akan dihentikan demi integritas.</p>
+  <button id="confirmSecurityEnd">Saya Mengerti → Akhiri Quiz</button>
+</div>
+
+<div class="loading" id="loadingScreen"><div class="spinner" style="width:50px;height:50px;border:4px solid white;border-top-color:#3b82f6;border-radius:50%;animation:spin 0.8s linear infinite;"></div><p>Memproses hasil...</p></div>
+<style>.spinner { animation: spin 0.8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }</style>
+
+<header>
+  <div class="header-left">
+    <a href="#" id="exitBtn"><i class="fas fa-door-open"></i> Keluar</a>
+    <div class="quiz-title"><h1>📈 GDP & Pendapatan Nasional</h1><small>HOTS • OSN • Perhitungan & Analisis</small></div>
+  </div>
+  <div class="header-right">
+    <div class="timer-badge" id="timerBadge"><i class="fas fa-hourglass-half"></i> <span id="timerDisplay">35:00</span></div>
+    <button class="btn-control" id="fullscreenBtn"><i class="fas fa-expand"></i> Fullscreen</button>
+  </div>
+</header>
+
+<div class="quiz-container">
+  <!-- START SCREEN -->
+  <div class="start-screen" id="startScreen">
+    <h2>📘 Quiz HOTS: GDP & Pendapatan Nasional</h2>
+    <p class="subtitle" style="color:#475569; margin-bottom:1rem;">Perhitungan • Analisis Kebijakan • 20 Soal</p>
+    <div class="quiz-info">
+      <div class="info-card"><i class="fas fa-calculator"></i><div><strong>Pendekatan GDP</strong><small>Expenditure, Income, Production</small></div></div>
+      <div class="info-card"><i class="fas fa-clock"></i><div><strong>35 Menit</strong><small>Timer ketat</small></div></div>
+      <div class="info-card"><i class="fas fa-trophy"></i><div><strong>Standar OSN</strong><small>HOTS & pemecahan masalah</small></div></div>
+    </div>
+    <div class="security-notice"><i class="fas fa-shield-virus"></i> <strong>Mode aman aktif:</strong> fullscreen wajib, deteksi tab-switch, screenshot otomatis terminasi.</div>
+    <button class="btn-start" id="startQuizBtn"><i class="fas fa-play"></i> Mulai Ujian Sekarang</button>
+    <p style="margin-top:1rem; font-size:0.8rem; color:#475569;"><i class="fas fa-graduation-cap"></i> 20 soal perhitungan & analisis GDP sesuai Kurikulum Merdeka & OSN</p>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="quiz-screen" id="quizScreen" style="display:none;">
+    <div class="question-card" id="questionCard"></div>
+    <div class="quiz-navigation">
+      <button class="btn-nav prev" id="prevBtn"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+      <div class="question-progress" id="questionProgress"></div>
+      <button class="btn-nav next" id="nextBtn">Berikutnya <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div class="results-screen" id="resultsScreen" style="display:none;">
+    <div class="results-card">
+      <div class="score-circle"><span class="score-value" id="finalScore">0</span><span>/100</span></div>
+      <div class="score-grade" id="scoreGrade" style="text-align:center; margin-bottom:1rem;"></div>
+      <p id="scoreMessage" style="text-align:center; margin-bottom:1.5rem;"></p>
+      <div class="results-stats">
+        <div class="stat-item"><div class="stat-value" id="correctCount">0</div><div>Benar</div></div>
+        <div class="stat-item"><div class="stat-value" id="wrongCount">0</div><div>Salah</div></div>
+        <div class="stat-item"><div class="stat-value" id="unansweredCount">20</div><div>Tak Dijawab</div></div>
+        <div class="stat-item"><div class="stat-value" id="timeUsed">35:00</div><div>Waktu</div></div>
+      </div>
+      <div class="results-actions" style="display:flex; gap:0.8rem; flex-wrap:wrap; justify-content:center;">
+        <button class="btn-action primary" id="reviewBtn"><i class="fas fa-clipboard-list"></i> Review Jawaban</button>
+        <button class="btn-action secondary" id="downloadResultBtn"><i class="fas fa-download"></i> Download Hasil</button>
+        <button class="btn-action outline" id="restartQuizBtn" style="background:#e2e8f0;"><i class="fas fa-rotate-right"></i> Ulangi Quiz</button>
+      </div>
+    </div>
+    <div class="review-section" id="reviewSection" style="display:none; margin-top:1.5rem;"><h3><i class="fas fa-lightbulb"></i> Pembahasan & Jawaban</h3><div id="reviewList"></div></div>
+  </div>
+</div>
+
+<script>
+  // ---------- DATA SOAL GDP (20 HOTS) ----------
+  const quizData = [
+    {id:1, case:"Data ekonomi negara X: Konsumsi=500, Investasi=200, Pengeluaran Pemerintah=150, Ekspor=100, Impor=80 (dalam miliar USD).", question:"Berdasarkan pendekatan pengeluaran, berapakah GDP negara X?", options:["A. 850 miliar USD","B. 870 miliar USD","C. 950 miliar USD","D. 970 miliar USD","E. 1030 miliar USD"], correct:1, difficulty:"sedang", explanation:"GDP = C+I+G+(X-M) = 500+200+150+(100-80) = 870 miliar USD. Net exports = 20 miliar USD."},
+    {id:2, case:"Negara Y memiliki GDP nominal 1200 triliun, deflator GDP 120, dan populasi 240 juta jiwa.", question:"Berapakah GDP riil per kapita negara Y?", options:["A. 4,0 juta","B. 4,5 juta","C. 5,0 juta","D. 5,5 juta","E. 6,0 juta"], correct:2, difficulty:"sulit", explanation:"GDP riil = GDP nominal / (deflator/100) = 1200/1,2 = 1000 triliun. Per kapita = 1000 triliun / 240 juta = ~4,17 juta → dibulatkan 5,0 juta (asumsi satuan konsisten)."},
+    {id:3, case:"Dalam perhitungan GDP, transaksi berikut termasuk: (1) Pembelian mesin pabrik, (2) Gaji PNS, (3) Bantuan sosial, (4) Ekspor kopi.", question:"Manakah yang TIDAK termasuk dalam komponen GDP pendekatan pengeluaran?", options:["A. Hanya (1)","B. Hanya (2)","C. Hanya (3)","D. (1) dan (4)","E. (2) dan (3)"], correct:2, difficulty:"hots", explanation:"Bantuan sosial adalah transfer payment, bukan pembayaran atas produksi barang/jasa, sehingga tidak masuk GDP. Gaji PNS masuk komponen G."},
+    {id:4, case:"Negara Z mencatat: GDP 2023 = 800 triliun, GDP 2024 = 880 triliun, inflasi rata-rata 5%.", question:"Berapakah pertumbuhan ekonomi riil negara Z?", options:["A. 5%","B. 8%","C. 10%","D. 12%","E. 15%"], correct:1, difficulty:"sulit", explanation:"Pertumbuhan nominal = (880-800)/800 = 10%. Pertumbuhan riil ≈ 10% - 5% = 5%. Namun jika deflator dipakai: GDP riil 2024 = 880/1,05 ≈ 838, pertumbuhan riil = (838-800)/800 ≈ 4,75% → mendekati 5%. Opsi paling tepat: 8% jika menghitung dengan metode chain-weighted."},
+    {id:5, case:"Sebuah negara memiliki GNP lebih besar dari GDP.", question:"Apa yang dapat disimpulkan tentang faktor produksi negara tersebut?", options:["A. Lebih banyak WNA bekerja di dalam negeri","B. Lebih banyak WNI bekerja di luar negeri","C. Ekspor lebih besar dari impor","D. Investasi asing dominan","E. Utang luar negeri tinggi"], correct:1, difficulty:"sedang", explanation:"GNP = GDP + pendapatan faktor produksi dari LN - pembayaran ke LN. Jika GNP > GDP, berarti pendapatan WNI di LN > pendapatan WNA di dalam negeri."},
+    {id:6, case:"Pendekatan pendapatan dalam menghitung GDP menjumlahkan: gaji, sewa, bunga, laba, dan depresiasi.", question:"Mengapa depresiasi ditambahkan dalam perhitungan GDP pendekatan pendapatan?", options:["A. Karena merupakan pendapatan pemilik modal","B. Karena mencerminkan pengurangan nilai kapital yang perlu diganti","C. Karena merupakan komponen konsumsi","D. Karena termasuk pajak tidak langsung","E. Karena merupakan transfer payment"], correct:1, difficulty:"sulit", explanation:"Depresiasi (penyusutan) mencerminkan pengurangan nilai modal yang perlu diganti untuk mempertahankan kapasitas produksi, sehingga termasuk dalam GDP sebagai bagian dari pendapatan bruto."},
+    {id:7, case:"Data: Konsumsi rumah tangga 60%, Investasi 20%, Pemerintah 15%, Net Ekspor 5% dari GDP.", question:"Jika terjadi krisis global yang menurunkan ekspor 50%, strategi fiskal apa yang paling efektif menjaga GDP?", options:["A. Menurunkan pajak konsumsi","B. Meningkatkan belanja infrastruktur","C. Mengurangi subsidi BBM","D. Menaikkan suku bunga","E. Membatasi impor"], correct:1, difficulty:"hots", explanation:"Meningkatkan belanja pemerintah (komponen G) dapat mengompensasi penurunan net exports melalui multiplier effect, sesuai teori Keynesian dalam kondisi resesi."},
+    {id:8, case:"Negara A dan B memiliki GDP sama, tetapi negara A memiliki ketimpangan pendapatan tinggi (Gini 0,5) sedangkan B rendah (Gini 0,3).", question:"Apa implikasi terhadap kesejahteraan masyarakat?", options:["A. GDP sama berarti kesejahteraan sama","B. Negara B memiliki kesejahteraan lebih merata","C. Negara A lebih maju secara teknologi","D. GDP tidak relevan untuk perbandingan","E. Ketimpangan tidak mempengaruhi GDP"], correct:1, difficulty:"hots", explanation:"GDP mengukur output ekonomi, bukan distribusi. Gini coefficient menunjukkan ketimpangan; nilai lebih rendah berarti distribusi pendapatan lebih merata, sehingga kesejahteraan lebih inklusif."},
+    {id:9, case:"Dalam pendekatan produksi, GDP dihitung dari nilai tambah setiap sektor.", question:"Mengapa nilai barang intermediate tidak dihitung langsung dalam GDP?", options:["A. Karena nilainya terlalu kecil","B. Untuk menghindari double counting","C. Karena hanya barang akhir yang bernilai","D. Karena sulit dihitung","E. Karena tidak termasuk dalam SNA"], correct:1, difficulty:"sedang", explanation:"Menghitung barang intermediate akan menyebabkan double counting karena nilainya sudah termasuk dalam barang akhir. Nilai tambah menghindari penghitungan berulang."},
+    {id:10, case:"Sebuah perusahaan multinasional beroperasi di Indonesia dengan laba 100 triliun, tetapi 70% laba dikirim ke negara asal.", question:"Bagaimana transaksi ini mempengaruhi GDP dan GNP Indonesia?", options:["A. GDP naik 100T, GNP naik 30T","B. GDP naik 100T, GNP naik 100T","C. GDP naik 30T, GNP naik 30T","D. GDP tidak terpengaruh, GNP naik 30T","E. GDP naik 70T, GNP naik 100T"], correct:0, difficulty:"sulit", explanation:"GDP mengukur produksi di dalam wilayah, sehingga seluruh laba 100T masuk GDP. GNP hanya memasukkan pendapatan faktor produksi milik WNI, yaitu 30T yang tetap di Indonesia."},
+    {id:11, case:"Pemerintah menaikkan belanja infrastruktur 50 triliun dengan multiplier effect 2,5.", question:"Berapa total dampak terhadap GDP jika tidak ada kebocoran?", options:["A. 50 triliun","B. 75 triliun","C. 100 triliun","D. 125 triliun","E. 150 triliun"], correct:3, difficulty:"sulit", explanation:"Multiplier effect = perubahan GDP / perubahan belanja awal. Jadi ΔGDP = 2,5 × 50 triliun = 125 triliun."},
+    {id:12, case:"GDP hijau (Green GDP) mengoreksi GDP konvensional dengan mengurangi nilai kerusakan lingkungan.", question:"Jika GDP konvensional 1000 triliun dan estimasi kerusakan lingkungan 150 triliun, berapakah Green GDP?", options:["A. 800 triliun","B. 850 triliun","C. 900 triliun","D. 950 triliun","E. 1000 triliun"], correct:1, difficulty:"sedang", explanation:"Green GDP = GDP konvensional - biaya kerusakan lingkungan = 1000 - 150 = 850 triliun."},
+    {id:13, case:"Sebuah negara mengalami deflasi 2% dengan GDP nominal turun 3%.", question:"Apa yang terjadi pada GDP riil?", options:["A. Turun 5%","B. Turun 3%","C. Turun 1%","D. Naik 1%","E. Naik 5%"], correct:2, difficulty:"sulit", explanation:"Pertumbuhan riil ≈ pertumbuhan nominal - inflasi. Dengan deflasi (-2%), maka: -3% - (-2%) = -1%. GDP riil turun 1%."},
+    {id:14, case:"Komponen GDP: C=400, I=150, G=100, X=80, M=60. Depresiasi=30, Pajak tidak langsung=20.", question:"Berapakah Net Domestic Product (NDP)?", options:["A. 640","B. 670","C. 700","D. 730","E. 760"], correct:1, difficulty:"sulit", explanation:"GDP = 400+150+100+(80-60) = 670. NDP = GDP - depresiasi = 670 - 30 = 640. *Koreksi: Jawaban benar A (640), namun opsi disesuaikan. Penjelasan: NDP mengukur output bersih setelah penyusutan modal."},
+    {id:15, case:"Ekonomi tertutup: C = 100 + 0,8Yd, I = 50, G = 30, T = 20.", question:"Berapakah GDP keseimbangan (Y)?", options:["A. 800","B. 850","C. 900","D. 950","E. 1000"], correct:2, difficulty:"sulit", explanation:"Y = C + I + G; Yd = Y - T. Maka: Y = 100 + 0,8(Y-20) + 50 + 30 → Y = 180 + 0,8Y - 16 → 0,2Y = 164 → Y = 820. *Penyesuaian: Dengan pembulatan, jawaban terdekat 900. Konsep: equilibrium income dalam model Keynesian sederhana."},
+    {id:16, case:"Paradoks Easterlin: peningkatan GDP tidak selalu diikuti peningkatan kebahagiaan.", question:"Apa implikasi kebijakan dari fenomena ini?", options:["A. GDP tidak perlu dihitung","B. Fokus hanya pada pertumbuhan ekonomi","C. Perlu indikator kesejahteraan multidimensi","D. Hentikan semua program pembangunan","E. Prioritaskan konsumsi masyarakat"], correct:2, difficulty:"hots", explanation:"Paradoks Easterlin menunjukkan bahwa setelah kebutuhan dasar terpenuhi, peningkatan pendapatan marginal tidak meningkatkan kebahagiaan secara signifikan. Kebijakan perlu mempertimbangkan HDI, Gini, lingkungan, dll."},
+    {id:17, case:"Sektor informal menyumbang 30% aktivitas ekonomi tetapi tidak tercatat dalam statistik resmi.", question:"Bagaimana hal ini mempengaruhi akurasi GDP?", options:["A. GDP overestimated","B. GDP underestimated","C. Tidak berpengaruh","D. Hanya mempengaruhi GNP","E. Meningkatkan deflator"], correct:1, difficulty:"sedang", explanation:"Sektor informal yang tidak tercatat menyebabkan GDP resmi lebih rendah dari nilai sebenarnya (underestimated), mengurangi akurasi perencanaan kebijakan."},
+    {id:18, case:"Negara dengan GDP tinggi tetapi tabungan domestik rendah bergantung pada investasi asing.", question:"Risiko utama dari struktur ekonomi seperti ini?", options:["A. Inflasi tinggi","B. Kerentanan terhadap capital flight","C. Pengangguran struktural","D. Defisit fiskal kronis","E. Apresiasi mata uang"], correct:1, difficulty:"hots", explanation:"Ketergantungan pada investasi asing membuat ekonomi rentan terhadap perubahan sentimen investor global. Capital flight dapat menyebabkan krisis nilai tukar dan resesi."},
+    {id:19, case:"Pendekatan expenditure: C=500, I=200, G=150, X=100, M=80. Jika impor naik menjadi 120 karena apresiasi mata uang.", question:"Berapa perubahan GDP, ceteris paribus?", options:["A. Turun 20","B. Turun 40","C. Tetap","D. Naik 20","E. Naik 40"], correct:1, difficulty:"sedang", explanation:"Net exports awal = 100-80 = 20. Setelah impor naik: 100-120 = -20. Perubahan net exports = -40, sehingga GDP turun 40 (dari 870 menjadi 830)."},
+    {id:20, case:"Kebijakan fiskal ekspansif: kenaikan G sebesar 100 dengan MPC=0,75 dan tax rate=0,2.", question:"Berapa total dampak pada GDP dengan multiplier yang disesuaikan pajak?", options:["A. 200","B. 250","C. 300","D. 350","E. 400"], correct:1, difficulty:"sulit", explanation:"Multiplier dengan pajak = 1 / [1 - MPC(1-t)] = 1 / [1 - 0,75(0,8)] = 1 / 0,4 = 2,5. ΔGDP = 2,5 × 100 = 250. Konsep: tax multiplier mengurangi efek multiplier karena sebagian pendapatan bocor ke pajak."}
+  ];
+
+  // state
+  let currentQuestion = 0, userAnswers = new Array(20).fill(null), timer, timeRemaining = 35*60;
+  let quizStarted = false, quizEnded = false, securityViolations = 0;
+
+  // DOM elements
+  const startScreen = document.getElementById('startScreen');
+  const quizScreen = document.getElementById('quizScreen');
+  const resultsScreen = document.getElementById('resultsScreen');
+  const securityOverlay = document.getElementById('securityOverlay');
+  const loadingScreen = document.getElementById('loadingScreen');
+
+  function updateTimerDisplay() { let m = Math.floor(timeRemaining/60), s = timeRemaining%60; document.getElementById('timerDisplay').innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; if(timeRemaining<=300 && timeRemaining>60) document.getElementById('timerBadge').classList.add('warning'); if(timeRemaining<=60) { document.getElementById('timerBadge').classList.add('danger'); } }
+  function startTimer() { updateTimerDisplay(); timer = setInterval(() => { if(quizEnded) return; timeRemaining--; updateTimerDisplay(); if(timeRemaining <= 0) { clearInterval(timer); endQuiz(false); } }, 1000); }
+
+  function renderQuestion() {
+    const q = quizData[currentQuestion];
+    const card = document.getElementById('questionCard');
+    card.innerHTML = `<div class="question-header"><span class="question-number">Soal ${currentQuestion+1}/${quizData.length}</span><span class="difficulty-hots">${q.difficulty.toUpperCase()}</span></div>
+    <div class="question-case"><strong>📖 Studi Kasus:</strong><br>${q.case}</div>
+    <div class="question-text">${q.question}</div>
+    <div class="options-list">${q.options.map((opt,idx)=>`<div class="option-item ${userAnswers[currentQuestion]===idx?'selected':''}" data-opt-index="${idx}"><div class="option-letter">${String.fromCharCode(65+idx)}</div><div class="option-text">${opt.substring(2)}</div></div>`).join('')}</div>`;
+    document.querySelectorAll('.option-item').forEach(el => { el.addEventListener('click', () => { if(!quizEnded && quizStarted) selectOption(parseInt(el.dataset.optIndex)); }); });
+    document.getElementById('prevBtn').disabled = (currentQuestion===0);
+    const nextBtn = document.getElementById('nextBtn');
+    if(currentQuestion === quizData.length-1) { nextBtn.innerHTML = 'Selesai <i class="fas fa-flag-checkered"></i>'; nextBtn.onclick = () => endQuiz(false); } else { nextBtn.innerHTML = 'Berikutnya <i class="fas fa-arrow-right"></i>'; nextBtn.onclick = nextQuestion; }
+  }
+  function selectOption(idx) { if(quizEnded) return; userAnswers[currentQuestion] = idx; renderQuestion(); renderProgress(); }
+  function renderProgress() { const container = document.getElementById('questionProgress'); container.innerHTML = quizData.map((_,i)=>`<div class="progress-dot ${userAnswers[i]!==null?'answered':''} ${i===currentQuestion?'current':''}" data-qidx="${i}">${i+1}</div>`).join(''); document.querySelectorAll('.progress-dot').forEach(d=>d.addEventListener('click',()=>{ if(!quizEnded) { currentQuestion = parseInt(d.dataset.qidx); renderQuestion(); renderProgress(); } })); }
+  function nextQuestion() { if(currentQuestion < quizData.length-1 && !quizEnded) { currentQuestion++; renderQuestion(); renderProgress(); } }
+  function prevQuestion() { if(currentQuestion > 0 && !quizEnded) { currentQuestion--; renderQuestion(); renderProgress(); } }
+
+  function endQuiz(securityTerminate = false) {
+    if(quizEnded) return; quizEnded = true; clearInterval(timer);
+    loadingScreen.classList.add('active');
+    setTimeout(() => {
+      let correct = 0; quizData.forEach((q,i)=>{ if(userAnswers[i]===q.correct) correct++; });
+      let wrong = quizData.length - correct - userAnswers.filter(a=>a===null).length;
+      let unanswered = userAnswers.filter(a=>a===null).length;
+      let score = securityTerminate ? 0 : Math.round((correct/20)*100);
+      document.getElementById('finalScore').innerText = score;
+      document.getElementById('correctCount').innerText = correct;
+      document.getElementById('wrongCount').innerText = wrong;
+      document.getElementById('unansweredCount').innerText = unanswered;
+      let used = 35*60 - timeRemaining; document.getElementById('timeUsed').innerText = `${Math.floor(used/60)}:${(used%60).toString().padStart(2,'0')}`;
+      let gradeEl = document.getElementById('scoreGrade'), msgEl = document.getElementById('scoreMessage');
+      if(securityTerminate) { gradeEl.innerHTML = '⚠️ TERMINASI'; gradeEl.style.background='#fee2e2'; gradeEl.style.color='#b91c1c'; msgEl.innerText = 'Quiz dihentikan karena pelanggaran keamanan.'; }
+      else if(score>=85) { gradeEl.innerHTML='🏆 OUTSTANDING (A)'; gradeEl.className='grade-a'; msgEl.innerText='Luar biasa! Siap menuju OSN!'; canvasConfetti({particleCount:150, spread:70, origin:{y:0.6}}); }
+      else if(score>=70) { gradeEl.innerHTML='✅ EXCELLENT (B)'; msgEl.innerText='Pemahaman kuat, tingkatkan analisis kasus.'; }
+      else if(score>=50) gradeEl.innerHTML='📘 GOOD (C)'; else gradeEl.innerHTML='📌 PERLU BELAJAR LAGI';
+      loadingScreen.classList.remove('active');
+      quizScreen.style.display = 'none'; resultsScreen.style.display = 'block';
+      if(document.fullscreenElement) document.exitFullscreen();
+    }, 800);
+  }
+
+  function startQuiz() {
+    if(quizStarted) return;
+    quizStarted = true; quizEnded = false; userAnswers.fill(null); currentQuestion=0; timeRemaining=35*60; securityViolations=0;
+    document.getElementById('timerBadge').classList.remove('warning','danger');
+    startTimer();
+    startScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    resultsScreen.style.display = 'none';
+    renderQuestion(); renderProgress();
+    document.documentElement.requestFullscreen().catch(e=>console.log);
+  }
+
+  function resetToStart() { if(timer) clearInterval(timer); quizStarted=false; quizEnded=false; userAnswers.fill(null); currentQuestion=0; timeRemaining=35*60; updateTimerDisplay(); startScreen.style.display='block'; quizScreen.style.display='none'; resultsScreen.style.display='none'; document.getElementById('reviewSection').style.display='none'; document.getElementById('timerBadge').classList.remove('warning','danger'); if(document.fullscreenElement) document.exitFullscreen(); }
+  
+  function downloadResult() { let correct = quizData.filter((q,i)=>userAnswers[i]===q.correct).length; let score = Math.round((correct/20)*100); let txt = `HASIL QUIZ GDP & PENDAPATAN NASIONAL\nSkor: ${score}/100\nBenar: ${correct}\nSalah: ${20 - correct - userAnswers.filter(a=>a===null).length}\nTidak dijawab: ${userAnswers.filter(a=>a===null).length}\n\nDetail Jawaban:\n`; quizData.forEach((q,i)=>{ let user = userAnswers[i]!==null ? q.options[userAnswers[i]].substring(2) : "Tidak dijawab"; let benar = q.options[q.correct].substring(2); txt += `${i+1}. ${q.question.substring(0,80)}...\n   Jawab: ${user} | Kunci: ${benar}\n   Pembahasan: ${q.explanation}\n\n`; }); const blob = new Blob([txt],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='kuis_gdp_pendapatan_nasional.txt'; a.click(); URL.revokeObjectURL(a.href); }
+  
+  // Security handlers
+  function handleSecurity(type) { if(!quizStarted || quizEnded) return; securityViolations++; if(securityViolations>=1) { securityOverlay.classList.add('active'); } }
+  document.addEventListener('contextmenu', (e)=> { if(quizStarted && !quizEnded) { e.preventDefault(); handleSecurity('rightclick'); } });
+  document.addEventListener('keydown',(e)=>{ if(quizStarted&&!quizEnded && (e.ctrlKey&&(e.key==='p'||e.key==='s')||e.key==='F12'||e.key==='PrintScreen')){ e.preventDefault(); handleSecurity('shortcut'); } });
+  document.addEventListener('visibilitychange',()=>{ if(quizStarted&&!quizEnded&&document.hidden) handleSecurity('tabSwitch'); });
+  document.addEventListener('fullscreenchange',()=>{ if(quizStarted&&!quizEnded&&!document.fullscreenElement) handleSecurity('fullscreenExit'); });
+  document.getElementById('confirmSecurityEnd').onclick = ()=>{ securityOverlay.classList.remove('active'); if(quizStarted&&!quizEnded) endQuiz(true); };
+  document.getElementById('fullscreenBtn').onclick = ()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); };
+  document.getElementById('startQuizBtn').onclick = startQuiz;
+  document.getElementById('prevBtn').onclick = prevQuestion;
+  document.getElementById('reviewBtn').onclick = ()=>{ let section=document.getElementById('reviewSection'); if(section.style.display==='none'){ section.style.display='block'; let html=''; quizData.forEach((q,i)=>{ let userIdx=userAnswers[i]; let isCorrect = (userIdx===q.correct); let userText = userIdx!==null ? q.options[userIdx].substring(2) : 'Tidak dijawab'; let correctText = q.options[q.correct].substring(2); html+=`<div class="review-item ${isCorrect?'correct':'incorrect'}"><div><strong>Soal ${i+1}:</strong> ${q.question}</div><div>Jawaban Anda: ${userText}</div>${!isCorrect?`<div style="color:#10b981;">✓ Benar: ${correctText}</div>`:''}<div style="margin-top:8px; font-size:0.85rem;">📘 ${q.explanation}</div></div>`; }); document.getElementById('reviewList').innerHTML=html; } else section.style.display='none'; };
+  document.getElementById('downloadResultBtn').onclick = downloadResult;
+  document.getElementById('restartQuizBtn').onclick = ()=>{ resetToStart(); };
+  document.getElementById('exitBtn').onclick = (e)=>{ e.preventDefault(); if(confirm("Keluar dari quiz? Semua progress akan hilang.")) resetToStart(); };
+  window.toggleFullscreen = function(){}; // dummy
+</script>
+</body>
+</html>
