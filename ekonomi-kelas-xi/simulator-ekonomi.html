@@ -1,1997 +1,2664 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Simulator Ekonomi Nasional & Regional interaktif untuk materi Ekonomi Kelas XI SMAN 1 Cluring. Hitung PDB, PNB, PNN, NNI, PI, Disposable Income, dan PDRB dengan visualisasi chart.">
-  <meta name="keywords" content="simulator ekonomi, PDB, PNB, PNN, NNI, pendapatan perseorangan, disposable income, PDRB, ekonomi nasional, ekonomi regional, kalkulator ekonomi, SMAN 1 Cluring">
-  <meta name="author" content="SMAN 1 Cluring">
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <meta name="bingbot" content="index, follow">
-  <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Simulator Ekonomi Nasional & Regional | Ekonomi Kelas XI SMAN 1 Cluring">
-  <meta property="og:description" content="Simulator interaktif untuk menghitung indikator ekonomi nasional dan regional dengan visualisasi chart.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sman1cluring.sch.id/ekonomi-kelas-xi/simulator-ekonomi.html">
-  <meta property="og:site_name" content="SMAN 1 Cluring">
-  <meta property="og:locale" content="id_ID">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Simulator Ekonomi Nasional & Regional">
-  <meta name="twitter:description" content="Hitung indikator ekonomi secara interaktif dengan simulator lengkap.">
-  
-  <title>Simulator Ekonomi Nasional & Regional — Ekonomi Kelas XI | SMAN 1 Cluring</title>
-  
-  <!-- Google Fonts & Icons (SAMA DENGAN TEMPLATE) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-  
-  <style>
-    /* ===== VARIABEL WARNA (SAMA DENGAN TEMPLATE EKONOMI XII) ===== */
-    :root {
-      --primary: #4361ee;
-      --primary-dark: #3a56d4;
-      --secondary: #3f37c9;
-      --accent: #4cc9f0;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --success: #4ade80;
-      --warning: #fbbf24;
-      --danger: #f87171;
-      --gray: #6c757d;
-      --border-radius: 12px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-      --shadow-lg: 0 15px 35px rgba(0,0,0,0.12);
-      --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
-      --transition: all 0.3s ease;
-      --header-height: 70px;
-      
-      /* Warna khusus Simulator */
-      --sim-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #1f2937 100%);
-      --sim-card: rgba(255, 255, 255, 0.05);
-    }
-
-    .dark-mode {
-      --light: #1a1a1a;
-      --dark: #f8f9fa;
-      --gray: #a0aec0;
-      --shadow: 0 10px 30px rgba(0,0,0,0.3);
-      --sim-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #111827 100%);
-      --sim-card: rgba(45, 45, 45, 0.8);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-      color: var(--dark);
-      line-height: 1.7;
-      padding-bottom: 80px;
-      transition: background 0.4s, color 0.4s;
-      min-height: 100vh;
-    }
-
-    body.dark-mode {
-      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-      color: var(--dark);
-    }
-
-    /* ===== NAVBAR (SAMA DENGAN TEMPLATE) ===== */
-    .navbar {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 0.8rem 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: var(--header-height);
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-decoration: none;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .navbar-brand img {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.3);
-      object-fit: cover;
-    }
-
-    .nav-container { display: flex; align-items: center; gap: 15px; }
-
-    .nav-links {
-      display: flex; gap: 15px; list-style: none;
-      margin: 0; padding: 0; position: relative;
-    }
-
-    .nav-links a {
-      color: white; text-decoration: none; font-weight: 500;
-      padding: 8px 12px; border-radius: 50px;
-      transition: var(--transition); position: relative;
-      display: flex; align-items: center; gap: 5px;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
-    }
-
-    .dropdown { position: relative; }
-
-    .dropdown-content {
-      display: none; position: absolute;
-      background: rgba(255,255,255,0.95);
-      min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 8px; top: 100%; left: 0; z-index: 1001;
-      flex-direction: column; padding: 10px 0;
-      backdrop-filter: blur(10px);
-    }
-
-    .dropdown-content a {
-      color: var(--dark); padding: 10px 16px;
-      text-decoration: none; display: block; text-align: left;
-      border-radius: 8px; margin: 0 5px; transition: var(--transition);
-    }
-
-    .dropdown-content a:hover {
-      background: var(--primary); color: white;
-      transform: none; padding-left: 20px;
-    }
-
-    .dropdown:hover .dropdown-content { display: flex; }
-
-    .hamburger {
-      display: none; cursor: pointer; background: none;
-      border: none; color: white; font-size: 1.5rem; z-index: 1001;
-    }
-
-    .theme-toggle {
-      background: none; border: none; color: white;
-      font-size: 1.2rem; cursor: pointer; transition: transform 0.3s;
-      display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: 50%;
-    }
-
-    .theme-toggle:hover {
-      transform: rotate(15deg);
-      background: rgba(255,255,255,0.1);
-    }
-
-    /* ===== HEADER / HERO ===== */
-    header.sim-header {
-      background: var(--sim-bg);
-      color: white; padding: 4rem 1rem 2.5rem; text-align: center;
-      position: relative; overflow: hidden; box-shadow: var(--shadow);
-    }
-
-    header.sim-header::before {
-      content: ""; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-      animation: rotate 15s linear infinite; z-index: 1;
-    }
-
-    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    .header-icon {
-      width: 90px; height: 90px; border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.2rem; z-index: 2; position: relative;
-      border: 3px solid rgba(255,255,255,0.3);
-      backdrop-filter: blur(10px);
-      transition: var(--transition);
-    }
-
-    .header-icon:hover {
-      transform: scale(1.05) rotate(10deg);
-      background: rgba(255,255,255,0.25);
-    }
-
-    .header-icon i { font-size: 2.5rem; color: white; }
-
-    h1 {
-      font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;
-      z-index: 2; position: relative; letter-spacing: -0.5px;
-    }
-
-    .subtitle {
-      font-weight: 300; opacity: 0.9; z-index: 2;
-      position: relative; font-size: 1.1rem;
-      max-width: 800px; margin: 0 auto;
-    }
-
-    .badge-container {
-      display: flex; justify-content: center; gap: 10px;
-      flex-wrap: wrap; margin-top: 1.2rem; z-index: 2; position: relative;
-    }
-
-    .badge {
-      background: rgba(255,255,255,0.15);
-      padding: 6px 14px; border-radius: 50px;
-      font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.3);
-      display: inline-flex; align-items: center; gap: 6px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* ===== BREADCRUMB ===== */
-    .breadcrumb {
-      max-width: 1200px; margin: 20px auto 0; padding: 0 20px;
-      font-size: 0.9rem; color: var(--gray);
-    }
-
-    .breadcrumb a {
-      color: var(--primary); text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb span { margin: 0 8px; opacity: 0.6; }
-
-    /* ===== MAIN CONTAINER ===== */
-    .main-container {
-      max-width: 1200px; margin: 30px auto; padding: 0 20px;
-    }
-
-    /* ===== LEARNING PATH ===== */
-    .learning-path {
-      background: white; border-radius: var(--border-radius);
-      padding: 20px 25px; margin-bottom: 25px;
-      box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    body.dark-mode .learning-path { background: #2d2d2d; border-color: #444; }
-
-    .path-title {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 1rem; font-weight: 600; margin-bottom: 15px;
-      color: var(--primary);
-    }
-
-    .path-steps {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
-    }
-
-    .path-step {
-      background: var(--light); padding: 6px 14px; border-radius: 50px;
-      text-decoration: none; color: var(--dark); font-size: 0.85rem;
-      font-weight: 500; transition: var(--transition);
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    body.dark-mode .path-step { background: #1e1e1e; border-color: #444; }
-
-    .path-step:hover, .path-step.active {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white; border-color: transparent;
-    }
-
-    .path-arrow { color: var(--gray); font-size: 0.8rem; }
-
-    /* ===== TABS ===== */
-    .tabs {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 8px; margin-bottom: 25px;
-    }
-
-    .tab {
-      background: white; padding: 10px 18px;
-      border-radius: 50px; cursor: pointer;
-      transition: var(--transition); font-weight: 500;
-      display: flex; align-items: center; gap: 6px;
-      border: 1px solid rgba(0,0,0,0.08);
-      font-size: 0.9rem; color: var(--dark);
-    }
-
-    body.dark-mode .tab { background: #2d2d2d; border-color: #444; }
-
-    .tab:hover {
-      background: rgba(67, 97, 238, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .tab.active {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white; border-color: transparent;
-      box-shadow: var(--shadow);
-    }
-
-    .tab i { font-size: 0.95rem; }
-
-    /* ===== CONTENT ===== */
-    .content {
-      display: none;
-      background: white; border-radius: var(--border-radius);
-      padding: 30px; box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.05);
-      animation: fadeIn 0.4s ease;
-    }
-
-    body.dark-mode .content { background: #2d2d2d; border-color: #444; }
-
-    .content.active { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== CARD TITLE ===== */
-    .card-title {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 20px; padding-bottom: 12px;
-      border-bottom: 2px solid var(--primary);
-    }
-
-    .card-title i {
-      font-size: 1.8rem; color: var(--primary);
-    }
-
-    .card-title h2 {
-      font-size: 1.5rem; font-weight: 600; color: var(--dark);
-    }
-
-    body.dark-mode .card-title h2 { color: #f8f9fa; }
-
-    /* ===== EXPLANATION ===== */
-    .explanation {
-      background: var(--light); padding: 15px 18px;
-      border-radius: 10px; margin-bottom: 20px;
-      border-left: 4px solid var(--primary);
-    }
-
-    body.dark-mode .explanation { background: #1e1e1e; }
-
-    /* ===== INPUT GROUP ===== */
-    .input-group {
-      margin-bottom: 18px;
-    }
-
-    .input-group label {
-      display: block; margin-bottom: 6px;
-      font-weight: 500; color: var(--dark);
-      font-size: 0.95rem;
-    }
-
-    body.dark-mode .input-group label { color: #f8f9fa; }
-
-    .input-group small { color: var(--gray); font-weight: 400; }
-
-    .input-group input {
-      width: 100%; padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(0,0,0,0.1);
-      background: var(--light);
-      color: var(--dark);
-      font-size: 1rem;
-      transition: var(--transition);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body.dark-mode .input-group input {
-      background: #1e1e1e; border-color: #444;
-    }
-
-    .input-group input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-    }
-
-    .input-error { border-color: var(--danger) !important; }
-
-    .error-message {
-      color: var(--danger); font-size: 0.85rem;
-      margin-top: 4px; display: none;
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white; border: none;
-      padding: 10px 20px; border-radius: 50px;
-      cursor: pointer; font-size: 0.95rem;
-      font-weight: 600; transition: var(--transition);
-      display: inline-flex; align-items: center; gap: 8px;
-      margin: 8px 0; font-family: 'Poppins', sans-serif;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .btn-calculate-all {
-      background: linear-gradient(120deg, var(--success), #10b981);
-      width: 100%; justify-content: center;
-      padding: 14px; margin: 15px 0 25px;
-      font-size: 1.05rem;
-    }
-
-    /* ===== RESULT CONTAINER ===== */
-    .result-container {
-      background: var(--light);
-      border-radius: var(--border-radius);
-      padding: 20px; margin-top: 20px;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    body.dark-mode .result-container { background: #1e1e1e; border-color: #444; }
-
-    .result-container h3 {
-      color: var(--dark); margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    body.dark-mode .result-container h3 { color: #f8f9fa; }
-
-    .result-value {
-      font-size: 2rem; font-weight: 700;
-      color: var(--success); text-align: center;
-      margin: 15px 0;
-    }
-
-    .formula {
-      background: rgba(67, 97, 238, 0.1);
-      padding: 12px; border-radius: 8px;
-      margin: 12px 0; font-family: monospace;
-      font-size: 1.05rem; text-align: center;
-      border: 1px solid rgba(67, 97, 238, 0.2);
-      color: var(--primary);
-    }
-
-    body.dark-mode .formula {
-      background: rgba(67, 97, 238, 0.15);
-      color: #93c5fd;
-    }
-
-    .note, .info {
-      padding: 12px 15px; border-radius: 8px;
-      margin: 12px 0; font-size: 0.9rem;
-    }
-
-    .note {
-      background: rgba(248, 113, 113, 0.1);
-      border-left: 4px solid var(--danger);
-    }
-
-    .info {
-      background: rgba(67, 97, 238, 0.1);
-      border-left: 4px solid var(--primary);
-    }
-
-    body.dark-mode .note { background: rgba(248, 113, 113, 0.15); }
-    body.dark-mode .info { background: rgba(67, 97, 238, 0.15); }
-
-    /* ===== TABLE ===== */
-    .table-container {
-      overflow-x: auto; margin: 18px 0;
-      max-height: 400px; overflow-y: auto;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-
-    table {
-      width: 100%; border-collapse: collapse;
-      background: white;
-    }
-
-    body.dark-mode table { background: #2d2d2d; }
-
-    th {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white; padding: 12px 14px;
-      font-weight: 600; text-align: center;
-      position: sticky; top: 0;
-      backdrop-filter: blur(5px);
-    }
-
-    td {
-      padding: 12px 14px; text-align: center;
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    body.dark-mode td { border-color: #444; color: #d1d5db; }
-
-    tr:nth-child(even) { background-color: rgba(0,0,0,0.02); }
-    body.dark-mode tr:nth-child(even) { background-color: rgba(255,255,255,0.03); }
-
-    .highlight {
-      background: rgba(74, 222, 128, 0.15);
-      font-weight: 700; color: var(--success);
-    }
-
-    .component-input {
-      width: 100%; padding: 6px 10px;
-      background: var(--light);
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 6px; color: var(--dark);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body.dark-mode .component-input {
-      background: #1e1e1e; border-color: #444;
-    }
-
-    /* ===== CHART CONTAINER ===== */
-    .chart-container {
-      margin: 20px 0;
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    body.dark-mode .chart-container {
-      background: #1e1e1e; border-color: #444;
-    }
-
-    /* ===== STEP ===== */
-    .step {
-      background: var(--light);
-      padding: 18px; border-radius: 10px;
-      margin: 15px 0;
-      border-left: 4px solid var(--primary);
-    }
-
-    body.dark-mode .step { background: #1e1e1e; }
-
-    .step-number {
-      display: inline-block;
-      width: 28px; height: 28px;
-      background: var(--primary);
-      border-radius: 50%;
-      text-align: center; line-height: 28px;
-      margin-right: 10px;
-      font-weight: bold; color: white;
-    }
-
-    /* ===== SUMMARY CARDS ===== */
-    .summary-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px; margin: 20px 0;
-    }
-
-    .summary-card {
-      background: var(--light);
-      border-radius: var(--border-radius);
-      padding: 18px; text-align: center;
-      border: 1px solid rgba(0,0,0,0.05);
-      transition: var(--transition);
-    }
-
-    body.dark-mode .summary-card { background: #1e1e1e; border-color: #444; }
-
-    .summary-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      background: rgba(67, 97, 238, 0.1);
-    }
-
-    .summary-card h3 {
-      font-size: 0.95rem; margin-bottom: 8px;
-      color: var(--primary);
-    }
-
-    .summary-card .value {
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--success);
-    }
-
-    /* ===== LANGUAGE TOGGLE ===== */
-    .language-toggle {
-      position: fixed; top: 85px; right: 20px; z-index: 999;
-      background: white; border-radius: 50px; box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.08); overflow: hidden; display: flex;
-    }
-
-    body.dark-mode .language-toggle { background: #2d2d2d; border-color: #444; }
-
-    .lang-btn {
-      padding: 8px 14px; border: none; background: white;
-      cursor: pointer; font-weight: 600; font-size: 0.85rem;
-      transition: var(--transition); color: var(--gray);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body.dark-mode .lang-btn { background: #2d2d2d; }
-
-    .lang-btn.active {
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: white;
-    }
-
-    .lang-btn:not(.active):hover { background: var(--light); }
-
-    /* ===== FOOTER (SAMA DENGAN TEMPLATE) ===== */
-    footer {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      color: white; padding: 60px 20px 30px; margin-top: 60px;
-      font-family: 'Poppins', sans-serif; transition: background 0.4s;
-    }
-
-    body.dark-mode footer {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-    }
-
-    .footer-container {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-    }
-
-    .footer-section h3 {
-      font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px;
-    }
-
-    .footer-section h3::after {
-      content: ''; position: absolute; left: 0; bottom: 0;
-      width: 50px; height: 3px; background: #4361ee; border-radius: 3px;
-    }
-
-    .footer-section ul { list-style: none; padding: 0; }
-    .footer-section li { margin: 10px 0; }
-
-    .footer-section a {
-      color: #e2e8f0; text-decoration: none; transition: all 0.3s ease;
-      display: flex; align-items: center; gap: 8px;
-    }
-
-    .footer-section a:hover {
-      color: #4361ee; transform: translateX(5px);
-    }
-
-    .footer-section p {
-      line-height: 1.6; margin: 8px 0; color: #e2e8f0;
-    }
-
-    .footer-legal-links {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-
-    .footer-legal-links a { font-size: 0.9rem; padding: 4px 0; }
-    .footer-legal-links i { width: 18px; text-align: center; font-size: 0.85rem; opacity: 0.8; }
-
-    .footer-legal-bar {
-      display: none; text-align: center; padding: 15px 10px;
-      margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap; gap: 5px; justify-content: center; font-size: 0.8rem;
-    }
-
-    .footer-legal-bar a {
-      color: #94a3b8; text-decoration: none; transition: color 0.3s; padding: 3px 8px;
-    }
-
-    .footer-legal-bar a:hover { color: #4361ee; }
-    .footer-legal-bar .separator { color: rgba(255,255,255,0.2); margin: 0 3px; }
-
-    .visitor-counter {
-      text-align: center; padding: 15px;
-      background: rgba(255,255,255,0.05); border-radius: 8px; margin-top: 10px;
-    }
-
-    .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
-    .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
-
-    .copyright {
-      text-align: center; grid-column: span 4; padding-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px;
-    }
-
-    .footer-bottom {
-      text-align: center; padding-top: 20px; margin-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.9rem; color: #94a3b8;
-    }
-
-    body.dark-mode .footer-bottom { border-color: rgba(255,255,255,0.03); }
-
-    /* ===== UI UTILITIES ===== */
-    .scroll-indicator {
-      position: fixed; top: 0; left: 0; width: 100%; height: 4px;
-      background: rgba(0,0,0,0.1); z-index: 9999;
-    }
-
-    .scroll-indicator span {
-      position: absolute; top: 0; left: 0; height: 100%;
-      background: var(--primary); width: 0%; transition: width 0.2s ease;
-    }
-
-    .back-to-top {
-      position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px;
-      border-radius: 50%; background: var(--primary); color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      cursor: pointer; transition: var(--transition);
-      opacity: 0; visibility: hidden; z-index: 999;
-    }
-
-    .back-to-top.visible { opacity: 1; visibility: visible; }
-    .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
-
-    .loader-wrapper {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      display: flex; align-items: center; justify-content: center;
-      z-index: 9999; transition: opacity 0.5s ease-out;
-    }
-
-    .loader {
-      width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.3);
-      border-radius: 50%; border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .navbar { padding: 0.8rem 1rem; }
-      .hamburger { display: block; }
-      .nav-links {
-        display: none; position: fixed; top: var(--header-height); left: 0;
-        width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary));
-        flex-direction: column; gap: 0; padding: 1rem 0;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000;
-        max-height: calc(100vh - var(--header-height));
-        overflow-y: auto;
-      }
-      .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
-      @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .nav-links li { width: 100%; }
-      .nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; display: flex; align-items: center; }
-      .dropdown-content {
-        position: static; background: rgba(0,0,0,0.1); box-shadow: none;
-        width: 100%; display: none; padding: 0;
-      }
-      .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
-      .dropdown-content a { padding-left: 40px; color: white; }
-      .dropdown-content a:hover { background: rgba(255,255,255,0.1); }
-      header.sim-header { padding: 3rem 1rem 2rem; }
-      h1 { font-size: 1.7rem; }
-      .subtitle { font-size: 0.95rem; }
-      .badge { font-size: 0.75rem; padding: 5px 10px; }
-      .content { padding: 20px; }
-      .card-title h2 { font-size: 1.2rem; }
-      .tabs { flex-direction: column; }
-      .tab { width: 100%; justify-content: center; }
-      .summary-cards { grid-template-columns: 1fr 1fr; }
-      .path-steps { flex-direction: column; align-items: flex-start; }
-      .path-arrow { transform: rotate(90deg); margin: 2px 0; }
-      .footer-container { grid-template-columns: 1fr; gap: 30px; }
-      .copyright { grid-column: span 1; }
-      .footer-legal-bar { display: flex; }
-      .footer-section:nth-child(3) { display: none; }
-      .language-toggle { top: 80px; right: 10px; }
-      .lang-btn { padding: 6px 10px; font-size: 0.8rem; }
-    }
-
-    @media (max-width: 576px) {
-      .navbar-brand { font-size: 1rem; }
-      .navbar-brand img { width: 35px; height: 35px; }
-      .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; }
-      .summary-cards { grid-template-columns: 1fr; }
-      .result-value { font-size: 1.5rem; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Simulator Ekonomi Nasional & Regional interaktif untuk materi Ekonomi Kelas XI SMAN 1 Cluring. Hitung PDB, PNB, PNN, NNI, PI, Disposable Income, dan PDRB dengan visualisasi chart.">
+    <meta name="keywords" content="simulator ekonomi, PDB, PNB, PNN, NNI, pendapatan perseorangan, disposable income, PDRB, ekonomi nasional, ekonomi regional, kalkulator ekonomi, SMAN 1 Cluring">
+    <meta name="author" content="SMAN 1 Cluring">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Simulator Ekonomi Nasional & Regional | Ekonomi Kelas XI SMAN 1 Cluring">
+    <meta property="og:description" content="Simulator interaktif untuk menghitung indikator ekonomi nasional dan regional dengan visualisasi chart.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sman1cluring.sch.id/ekonomi-kelas-xi/simulator-ekonomi.html">
+    <meta property="og:site_name" content="SMAN 1 Cluring">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulator Ekonomi Nasional & Regional">
+    <meta name="twitter:description" content="Hitung indikator ekonomi secara interaktif dengan simulator lengkap.">
+
+    <title>Simulator Ekonomi Nasional & Regional — Ekonomi Kelas XI | SMAN 1 Cluring</title>
+
+    <!-- Google Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+    <style>
+        /* ===== VARIABEL WARNA ===== */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+            --sim-bg: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #1f2937 100%);
+            --sim-card: rgba(255, 255, 255, 0.05);
+        }
+
+        .dark-mode {
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --sim-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #111827 100%);
+            --sim-card: rgba(45, 45, 45, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            padding-bottom: 80px;
+            transition: background 0.4s, color 0.4s;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: var(--dark);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            flex-direction: column;
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-radius: 8px;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+
+        .dropdown-content a:hover {
+            background: var(--primary);
+            color: white;
+            transform: none;
+            padding-left: 20px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: flex;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1001;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== HEADER / HERO ===== */
+        header.sim-header {
+            background: var(--sim-bg);
+            color: white;
+            padding: 4rem 1rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        header.sim-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            z-index: 2;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .header-icon:hover {
+            transform: scale(1.05) rotate(10deg);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .header-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            z-index: 2;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            margin: 0 8px;
+            opacity: 0.6;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* ===== LEARNING PATH ===== */
+        .learning-path {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .learning-path {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .path-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .path-steps {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .path-step {
+            background: var(--light);
+            padding: 6px 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .path-step {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .path-step:hover,
+        .path-step.active {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .path-arrow {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            background: white;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        body.dark-mode .tab {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .tab:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow);
+        }
+
+        .tab i {
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            display: none;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.4s ease;
+        }
+
+        body.dark-mode .content {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CARD TITLE ===== */
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .card-title i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .card-title h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        body.dark-mode .card-title h2 {
+            color: #f8f9fa;
+        }
+
+        /* ===== EXPLANATION ===== */
+        .explanation {
+            background: var(--light);
+            padding: 15px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        body.dark-mode .explanation {
+            background: #1e1e1e;
+        }
+
+        /* ===== INPUT GROUP ===== */
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .input-group label {
+            color: #f8f9fa;
+        }
+
+        .input-group small {
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--light);
+            color: var(--dark);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark-mode .input-group input {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .input-error {
+            border-color: var(--danger) !important;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-calculate-all {
+            background: linear-gradient(120deg, var(--success), #10b981);
+            width: 100%;
+            justify-content: center;
+            padding: 14px;
+            margin: 15px 0 25px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== RESULT CONTAINER ===== */
+        .result-container {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .result-container {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .result-container h3 {
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        body.dark-mode .result-container h3 {
+            color: #f8f9fa;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .formula {
+            background: rgba(67, 97, 238, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 1.05rem;
+            text-align: center;
+            border: 1px solid rgba(67, 97, 238, 0.2);
+            color: var(--primary);
+        }
+
+        body.dark-mode .formula {
+            background: rgba(67, 97, 238, 0.15);
+            color: #93c5fd;
+        }
+
+        .note,
+        .info {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        .note {
+            background: rgba(248, 113, 113, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+
+        .info {
+            background: rgba(67, 97, 238, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+
+        body.dark-mode .note {
+            background: rgba(248, 113, 113, 0.15);
+        }
+        body.dark-mode .info {
+            background: rgba(67, 97, 238, 0.15);
+        }
+
+        /* ===== TABLE ===== */
+        .table-container {
+            overflow-x: auto;
+            margin: 18px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        body.dark-mode table {
+            background: #2d2d2d;
+        }
+
+        th {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 14px;
+            font-weight: 600;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        td {
+            padding: 12px 14px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode td {
+            border-color: #444;
+            color: #d1d5db;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        body.dark-mode tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .highlight {
+            background: rgba(74, 222, 128, 0.15);
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .component-input {
+            width: 100%;
+            padding: 6px 10px;
+            background: var(--light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark-mode .component-input {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        /* ===== CHART CONTAINER ===== */
+        .chart-container {
+            margin: 20px 0;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .chart-container {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        /* ===== STEP ===== */
+        .step {
+            background: var(--light);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        body.dark-mode .step {
+            background: #1e1e1e;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            margin-right: 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* ===== SUMMARY CARDS ===== */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .summary-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .summary-card {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .summary-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .summary-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        /* ===== LANGUAGE TOGGLE ===== */
+        .language-toggle {
+            position: fixed;
+            top: 85px;
+            right: 20px;
+            z-index: 999;
+            background: white;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+        }
+
+        body.dark-mode .language-toggle {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            color: var(--gray);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark-mode .lang-btn {
+            background: #2d2d2d;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .lang-btn:not(.active):hover {
+            background: var(--light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.4s;
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #4361ee;
+            border-radius: 3px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section li {
+            margin: 10px 0;
+        }
+
+        .footer-section a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #4361ee;
+            transform: translateX(5px);
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin: 8px 0;
+            color: #e2e8f0;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-legal-links a {
+            font-size: 0.9rem;
+            padding: 4px 0;
+        }
+        .footer-legal-links i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-legal-bar {
+            display: none;
+            text-align: center;
+            padding: 15px 10px;
+            margin: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .footer-legal-bar a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 3px 8px;
+        }
+
+        .footer-legal-bar a:hover {
+            color: #4361ee;
+        }
+        .footer-legal-bar .separator {
+            color: rgba(255, 255, 255, 0.2);
+            margin: 0 3px;
+        }
+
+        .visitor-counter {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .visitor-counter img {
+            max-width: 100%;
+            height: auto;
+            filter: brightness(1.2);
+        }
+        .visitor-counter p {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: #e2e8f0;
+        }
+
+        .copyright {
+            text-align: center;
+            grid-column: span 4;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* ===== UI UTILITIES ===== */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .scroll-indicator span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: linear-gradient(120deg, var(--primary), var(--secondary));
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                max-height: calc(100vh - var(--header-height));
+                overflow-y: auto;
+            }
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                border-radius: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+            .dropdown-content {
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                width: 100%;
+                display: none;
+                padding: 0;
+            }
+            .dropdown.active .dropdown-content {
+                display: flex;
+                flex-direction: column;
+            }
+            .dropdown-content a {
+                padding-left: 40px;
+                color: white;
+            }
+            .dropdown-content a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            header.sim-header {
+                padding: 3rem 1rem 2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            .badge {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+            .content {
+                padding: 20px;
+            }
+            .card-title h2 {
+                font-size: 1.2rem;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab {
+                width: 100%;
+                justify-content: center;
+            }
+            .summary-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+            .path-steps {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .path-arrow {
+                transform: rotate(90deg);
+                margin: 2px 0;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .copyright {
+                grid-column: span 1;
+            }
+            .footer-legal-bar {
+                display: flex;
+            }
+            .footer-section:nth-child(3) {
+                display: none;
+            }
+            .language-toggle {
+                top: 80px;
+                right: 10px;
+            }
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .navbar-brand img {
+                width: 35px;
+                height: 35px;
+            }
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+            .result-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Loading Animation -->
-  <div class="loader-wrapper" id="loader">
-    <div class="loader"></div>
-  </div>
-
-  <!-- Scroll Progress Indicator -->
-  <div class="scroll-indicator">
-    <span id="scrollProgress"></span>
-  </div>
-
-  <!-- Back to Top Button -->
-  <div class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-  </div>
-
-  <!-- NAVBAR (SAMA DENGAN TEMPLATE EKONOMI XII) -->
-  <nav class="navbar">
-    <a href="../index.html" class="navbar-brand">
-      <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
-      <span>SMAN 1 Cluring</span>
-    </a>
-    <div class="nav-container">
-      <button class="theme-toggle" id="themeToggle">🌙</button>
-      <button class="hamburger" id="hamburger">☰</button>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-      <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
-      <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
-      <li><a href="../ekonomi-kelas-xi.html" class="active"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
-      <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
-      <li class="dropdown">
-        <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
-        <div class="dropdown-content">
-          <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
-          <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
-          <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- HEADER -->
-  <header class="sim-header">
-    <div class="header-icon">
-      <i class="fas fa-calculator"></i>
-    </div>
-    <h1>Simulator Ekonomi Nasional & Regional</h1>
-    <p class="subtitle">Hitung indikator ekonomi secara dinamis dengan langkah-langkah perhitungan yang jelas dan visualisasi chart interaktif</p>
-    <div class="badge-container">
-      <span class="badge"><i class="fas fa-calculator"></i> 9 Simulator</span>
-      <span class="badge"><i class="fas fa-chart-pie"></i> Visualisasi Chart</span>
-      <span class="badge"><i class="fas fa-chart-line"></i> Level: Lanjutan</span>
-    </div>
-  </header>
-
-  <!-- LANGUAGE TOGGLE -->
-  <div class="language-toggle">
-    <button class="lang-btn active" onclick="switchLanguage('id')" id="lang-id">🇮🇩 ID</button>
-    <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">🇬🇧 EN</button>
-  </div>
-
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
-    <span>›</span>
-    <a href="../ekonomi-kelas-xi.html">Ekonomi XI</a>
-    <span>›</span>
-    <span>Simulator Ekonomi</span>
-  </div>
-
-  <!-- MAIN CONTAINER -->
-  <div class="main-container">
-
-    <!-- LEARNING PATH -->
-    <div class="learning-path">
-      <div class="path-title">
-        <i class="fas fa-route"></i>
-        <span>Learning Path — Ekonomi Kelas XI</span>
-      </div>
-      <div class="path-steps">
-        <a href="badan-usaha.html" class="path-step">1. Badan Usaha</a>
-        <i class="fas fa-chevron-right path-arrow"></i>
-        <a href="pendapatan-nasional.html" class="path-step">2. Pendapatan Nasional</a>
-        <i class="fas fa-chevron-right path-arrow"></i>
-        <a href="ketenagakerjaan.html" class="path-step">3. Ketenagakerjaan</a>
-        <i class="fas fa-chevron-right path-arrow"></i>
-        <a href="inflasi.html" class="path-step">4. Inflasi</a>
-        <i class="fas fa-chevron-right path-arrow"></i>
-        <a href="Fiskal-Moneter.html" class="path-step">5. Kebijakan Fiskal & Moneter</a>
-        <i class="fas fa-chevron-right path-arrow"></i>
-        <span class="path-step active">6. Simulator Ekonomi ⭐</span>
-      </div>
+    <!-- Loading Animation -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader"></div>
     </div>
 
-    <!-- TABS -->
-    <div class="tabs">
-      <div class="tab active" data-tab="gdp"><i class="fas fa-globe-asia"></i> PDB</div>
-      <div class="tab" data-tab="gnp"><i class="fas fa-flag"></i> PNB</div>
-      <div class="tab" data-tab="nnp"><i class="fas fa-calculator"></i> PNN</div>
-      <div class="tab" data-tab="nni"><i class="fas fa-money-bill-wave"></i> NNI</div>
-      <div class="tab" data-tab="pi"><i class="fas fa-user"></i> PI</div>
-      <div class="tab" data-tab="di"><i class="fas fa-wallet"></i> Disposable</div>
-      <div class="tab" data-tab="pdrb"><i class="fas fa-map-marked-alt"></i> PDRB</div>
-      <div class="tab" data-tab="detail-di"><i class="fas fa-calculator"></i> Detail Disposabel</div>
-      <div class="tab" data-tab="summary"><i class="fas fa-chart-pie"></i> Ringkasan</div>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <span id="scrollProgress"></span>
     </div>
 
-    <!-- HITUNG SEMUA -->
-    <button class="btn btn-calculate-all" onclick="calculateAll()">
-      <i class="fas fa-calculator"></i> Hitung Semua Indikator
-    </button>
-
-    <!-- PDB Content -->
-    <div class="content active" id="gdp-content">
-      <div class="card-title">
-        <i class="fas fa-globe-asia"></i>
-        <h2>PDB (Produk Domestik Bruto)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di dalam batas wilayah suatu negara dalam 1 tahun, tanpa memperhatikan siapa pemiliknya (asing/lokal).</p>
-      </div>
-
-      <div class="input-group">
-        <label for="c">Konsumsi Rumah Tangga (C) <small>(dalam triliun)</small></label>
-        <input type="number" id="c" value="1000" placeholder="Contoh: 1000" min="0">
-        <div class="error-message" id="c-error">Nilai konsumsi tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="i">Investasi (I) <small>(dalam triliun)</small></label>
-        <input type="number" id="i" value="500" placeholder="Contoh: 500" min="0">
-        <div class="error-message" id="i-error">Nilai investasi tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="g">Pengeluaran Pemerintah (G) <small>(dalam triliun)</small></label>
-        <input type="number" id="g" value="700" placeholder="Contoh: 700" min="0">
-        <div class="error-message" id="g-error">Nilai pengeluaran pemerintah tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="x">Ekspor (X) <small>(dalam triliun)</small></label>
-        <input type="number" id="x" value="300" placeholder="Contoh: 300" min="0">
-        <div class="error-message" id="x-error">Nilai ekspor tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="m">Impor (M) <small>(dalam triliun)</small></label>
-        <input type="number" id="m" value="200" placeholder="Contoh: 200" min="0">
-        <div class="error-message" id="m-error">Nilai impor tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculateGDP()">
-        <i class="fas fa-calculator"></i> Hitung PDB
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">PDB = C + I + G + (X - M)</div>
-        <div class="result-value" id="gdp-result">Rp2.300 T</div>
-
-        <div class="chart-container">
-          <canvas id="gdp-chart"></canvas>
-        </div>
-
-        <div class="note">
-          <strong>Catatan:</strong> PDB menghitung semua produksi di dalam negeri, termasuk perusahaan asing yang beroperasi di Indonesia.
-        </div>
-      </div>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- PNB Content -->
-    <div class="content" id="gnp-content">
-      <div class="card-title">
-        <i class="fas fa-flag"></i>
-        <h2>PNB (Produk Nasional Bruto)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Nilai barang dan jasa yang dihasilkan oleh warga negara, baik di dalam maupun di luar negeri.</p>
-      </div>
-
-      <div class="input-group">
-        <label for="wni-income">Pendapatan WNI di Luar Negeri <small>(dalam triliun)</small></label>
-        <input type="number" id="wni-income" value="50" placeholder="Contoh: 50" min="0">
-        <div class="error-message" id="wni-income-error">Nilai pendapatan WNI tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="wna-income">Pendapatan WNA di Dalam Negeri <small>(dalam triliun)</small></label>
-        <input type="number" id="wna-income" value="30" placeholder="Contoh: 30" min="0">
-        <div class="error-message" id="wna-income-error">Nilai pendapatan WNA tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculateGNP()">
-        <i class="fas fa-calculator"></i> Hitung PNB
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">PNB = PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</div>
-        <div class="result-value" id="gnp-result">Rp2.320 T</div>
-
-        <div class="info" id="gnp-info">
-          <strong>Perhitungan:</strong> PDB (Rp2.300 T) + (Rp50 T - Rp30 T) = Rp2.320 T
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">☰</button>
         </div>
-
-        <div class="note">
-          <strong>Perbedaan PNB dan PDB:</strong> PNB berdasarkan kepemilikan produksi (nasionalitas), sedangkan PDB berdasarkan lokasi produksi.
-        </div>
-      </div>
-    </div>
-
-    <!-- PNN Content -->
-    <div class="content" id="nnp-content">
-      <div class="card-title">
-        <i class="fas fa-calculator"></i>
-        <h2>PNN (Produk Nasional Neto)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Nilai bersih dari PNB setelah dikurangi penyusutan alat produksi.</p>
-      </div>
-
-      <div class="input-group">
-        <label for="depreciation">Penyusutan Aset <small>(dalam triliun)</small></label>
-        <input type="number" id="depreciation" value="120" placeholder="Contoh: 120" min="0">
-        <div class="error-message" id="depreciation-error">Nilai penyusutan tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculateNNP()">
-        <i class="fas fa-calculator"></i> Hitung PNN
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">PNN = PNB - Penyusutan</div>
-        <div class="result-value" id="nnp-result">Rp2.200 T</div>
-
-        <div class="info" id="nnp-info">
-          <strong>Perhitungan:</strong> PNB (Rp2.320 T) - Penyusutan (Rp120 T) = Rp2.200 T
-        </div>
-
-        <div class="note">
-          <strong>Penyusutan:</strong> Penurunan nilai alat produksi karena dipakai terus-menerus dalam proses produksi.
-        </div>
-      </div>
-    </div>
-
-    <!-- NNI Content -->
-    <div class="content" id="nni-content">
-      <div class="card-title">
-        <i class="fas fa-money-bill-wave"></i>
-        <h2>NNI (Pendapatan Nasional Neto)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Pendapatan nasional bersih yang dapat dinikmati masyarakat, setelah pajak tidak langsung dan subsidi pemerintah.</p>
-      </div>
-
-      <div class="input-group">
-        <label for="indirect-tax">Pajak Tidak Langsung <small>(dalam triliun)</small></label>
-        <input type="number" id="indirect-tax" value="100" placeholder="Contoh: 100" min="0">
-        <div class="error-message" id="indirect-tax-error">Nilai pajak tidak langsung tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="subsidy">Subsidi <small>(dalam triliun)</small></label>
-        <input type="number" id="subsidy" value="50" placeholder="Contoh: 50" min="0">
-        <div class="error-message" id="subsidy-error">Nilai subsidi tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculateNNI()">
-        <i class="fas fa-calculator"></i> Hitung NNI
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">NNI = PNN - Pajak Tidak Langsung + Subsidi</div>
-        <div class="result-value" id="nni-result">Rp2.150 T</div>
-
-        <div class="info" id="nni-info">
-          <strong>Perhitungan:</strong> PNN (Rp2.200 T) - Pajak Tidak Langsung (Rp100 T) + Subsidi (Rp50 T) = Rp2.150 T
-        </div>
-
-        <div class="note">
-          <strong>Pajak tidak langsung:</strong> Pajak yang tidak dibayar langsung oleh individu (PPN, cukai, bea masuk). 
-          <strong>Subsidi:</strong> Bantuan pemerintah yang meningkatkan daya beli masyarakat.
-        </div>
-      </div>
-    </div>
-
-    <!-- PI Content -->
-    <div class="content" id="pi-content">
-      <div class="card-title">
-        <i class="fas fa-user"></i>
-        <h2>PI (Pendapatan Perseorangan)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Pendapatan yang benar-benar diterima langsung oleh masyarakat, baik dari kerja, bunga, sewa, maupun bantuan pemerintah.</p>
-      </div>
-
-      <div class="input-group">
-        <label for="transfer">Transfer Payment <small>(dalam triliun)</small></label>
-        <input type="number" id="transfer" value="100" placeholder="Contoh: 100" min="0">
-        <div class="error-message" id="transfer-error">Nilai transfer payment tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="retained">Laba Ditahan <small>(dalam triliun)</small></label>
-        <input type="number" id="retained" value="80" placeholder="Contoh: 80" min="0">
-        <div class="error-message" id="retained-error">Nilai laba ditahan tidak valid</div>
-      </div>
-
-      <div class="input-group">
-        <label for="social">Iuran Jaminan Sosial & Pajak Perseroan <small>(dalam triliun)</small></label>
-        <input type="number" id="social" value="120" placeholder="Contoh: 120" min="0">
-        <div class="error-message" id="social-error">Nilai iuran tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculatePI()">
-        <i class="fas fa-calculator"></i> Hitung PI
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">PI = NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</div>
-        <div class="result-value" id="pi-result">Rp2.050 T</div>
-
-        <div class="info" id="pi-info">
-          <strong>Perhitungan:</strong> NNI (Rp2.150 T) + Transfer Payment (Rp100 T) - (Laba Ditahan (Rp80 T) + Iuran (Rp120 T)) = Rp2.050 T
-        </div>
-
-        <div class="note">
-          <strong>Laba ditahan:</strong> Keuntungan perusahaan yang tidak dibagikan. 
-          <strong>Transfer payment:</strong> Bantuan sosial (BLT), pensiun, beasiswa.
-        </div>
-      </div>
-    </div>
-
-    <!-- Disposable Income Content -->
-    <div class="content" id="di-content">
-      <div class="card-title">
-        <i class="fas fa-wallet"></i>
-        <h2>Disposable Income</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Pendapatan yang benar-benar dapat digunakan masyarakat untuk konsumsi atau ditabung, setelah dikurangi pajak langsung.</p>
-      </div>
-
-      <div class="input-group">
-        <label for="direct-tax">Pajak Langsung <small>(dalam triliun)</small></label>
-        <input type="number" id="direct-tax" value="150" placeholder="Contoh: 150" min="0">
-        <div class="error-message" id="direct-tax-error">Nilai pajak langsung tidak valid</div>
-      </div>
-
-      <button class="btn" onclick="calculateDI()">
-        <i class="fas fa-calculator"></i> Hitung Disposable Income
-      </button>
-
-      <div class="result-container">
-        <h3>Hasil Perhitungan</h3>
-        <div class="formula">Disposable Income = PI - Pajak Langsung</div>
-        <div class="result-value" id="di-result">Rp1.900 T</div>
-
-        <div class="info" id="di-info">
-          <strong>Perhitungan:</strong> PI (Rp2.050 T) - Pajak Langsung (Rp150 T) = Rp1.900 T
-        </div>
-
-        <div class="note">
-          <strong>Pajak langsung:</strong> Pajak Penghasilan (PPh), pajak kekayaan, dan pajak warisan. Pendapatan ini sudah bersih dari kewajiban pajak langsung.
-        </div>
-      </div>
-    </div>
-
-    <!-- PDRB Content -->
-    <div class="content" id="pdrb-content">
-      <div class="card-title">
-        <i class="fas fa-map-marked-alt"></i>
-        <h2>PDRB (Produk Domestik Regional Bruto)</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di suatu wilayah (provinsi/kota) dalam 1 tahun.</p>
-        <p><strong>Fungsi:</strong> Mengetahui kekuatan ekonomi dan pembangunan daerah.</p>
-      </div>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Provinsi</th>
-              <th>Pertanian</th>
-              <th>Industri</th>
-              <th>Jasa</th>
-              <th>PDRB</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Jawa Timur</td><td>150</td><td>500</td><td>400</td><td class="highlight">1.050</td></tr>
-            <tr><td>Kalimantan Timur</td><td>80</td><td>600</td><td>200</td><td class="highlight">880</td></tr>
-            <tr><td>Jawa Barat</td><td>120</td><td>450</td><td>350</td><td class="highlight">920</td></tr>
-            <tr><td>Sumatera Utara</td><td>200</td><td>300</td><td>250</td><td class="highlight">750</td></tr>
-            <tr><td>Bali</td><td>50</td><td>100</td><td>500</td><td class="highlight">650</td></tr>
-            <tr><td>Papua</td><td>120</td><td>350</td><td>180</td><td class="highlight">650</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="chart-container">
-        <canvas id="pdrb-chart"></canvas>
-      </div>
-
-      <div class="result-container">
-        <div class="formula">PDRB = Pertanian + Industri + Jasa</div>
-        <div class="note">
-          <strong>Analisis:</strong> Jawa Timur memiliki ekonomi yang seimbang dengan kontribusi signifikan dari industri dan jasa. 
-          Kalimantan Timur sangat bergantung pada industri, sementara Bali memiliki kontribusi jasa yang dominan.
-        </div>
-      </div>
-    </div>
-
-    <!-- Detail Disposable Income Content -->
-    <div class="content" id="detail-di-content">
-      <div class="card-title">
-        <i class="fas fa-calculator"></i>
-        <h2>Perhitungan Detail Pendapatan Disposabel</h2>
-      </div>
-
-      <div class="explanation">
-        <p><strong>Pendapatan Disposabel</strong> adalah pendapatan yang siap dibelanjakan oleh rumah tangga setelah dikurangi pajak langsung dan iuran wajib.</p>
-        <p>Berikut adalah komponen-komponen yang digunakan dalam perhitungan:</p>
-      </div>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Komponen</th>
-              <th>Nilai (Rp miliar)</th>
-              <th>Keterangan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Produk Domestik Bruto (PDB)</td>
-              <td><input type="number" id="pdb" value="50000" class="component-input" min="0"></td>
-              <td>Gross Domestic Product (GDP)</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Pendapatan Neto terhadap LN</td>
-              <td><input type="number" id="pendapatan-neto" value="2000" class="component-input" min="0"></td>
-              <td>Pendapatan dari luar negeri dikurangi pembayaran ke LN</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Penyusutan Barang Modal</td>
-              <td><input type="number" id="penyusutan" value="5000" class="component-input" min="0"></td>
-              <td>Depresiasi</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Pajak Tidak Langsung</td>
-              <td><input type="number" id="pajak-tidak-langsung" value="4000" class="component-input" min="0"></td>
-              <td>Pajak yang dibebankan ke konsumen (e.g., PPN)</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Transfer Payment</td>
-              <td><input type="number" id="transfer-payment" value="2000" class="component-input" min="0"></td>
-              <td>Subsidi, bantuan sosial, dll.</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Pajak Perseroan</td>
-              <td><input type="number" id="pajak-perseroan" value="2500" class="component-input" min="0"></td>
-              <td>Pajak atas laba perusahaan</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Laba Ditahan</td>
-              <td><input type="number" id="laba-ditahan" value="1200" class="component-input" min="0"></td>
-              <td>Laba perusahaan yang tidak dibagikan</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>Iuran Asuransi</td>
-              <td><input type="number" id="iuran-asuransi" value="1300" class="component-input" min="0"></td>
-              <td>Kontribusi wajib (e.g., BPJS)</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>Pajak Langsung</td>
-              <td><input type="number" id="pajak-langsung" value="1000" class="component-input" min="0"></td>
-              <td>Pajak penghasilan (PPh)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <button class="btn" onclick="calculateDetailDisposabel()">
-        <i class="fas fa-calculator"></i> Hitung Pendapatan Disposabel
-      </button>
-
-      <div class="result-container">
-        <h3>Langkah-langkah Perhitungan</h3>
-
-        <div class="step">
-          <span class="step-number">1</span>
-          <strong>Produk Nasional Bruto (PNB)</strong>
-          <div class="formula">PNB = PDB + Pendapatan Neto terhadap LN</div>
-          <div class="result-value" id="pnb-result">Rp52.000 miliar</div>
-        </div>
-
-        <div class="step">
-          <span class="step-number">2</span>
-          <strong>Pendapatan Nasional (PN)</strong>
-          <div class="formula">PN = PNB - Penyusutan Barang Modal</div>
-          <div class="result-value" id="pn-result">Rp47.000 miliar</div>
-        </div>
-
-        <div class="step">
-          <span class="step-number">3</span>
-          <strong>Pendapatan Perseorangan (PP)</strong>
-          <div class="formula">PP = PN - Pajak Tidak Langsung - Pajak Perseroan - Laba Ditahan + Transfer Payment</div>
-          <div class="result-value" id="pp-result">Rp41.300 miliar</div>
-        </div>
-
-        <div class="step">
-          <span class="step-number">4</span>
-          <strong>Pendapatan Disposabel (PD)</strong>
-          <div class="formula">PD = PP - Pajak Langsung - Iuran Asuransi</div>
-          <div class="result-value" id="pd-result">Rp39.000 miliar</div>
-        </div>
-
-        <div class="chart-container">
-          <canvas id="detail-di-chart"></canvas>
-        </div>
-
-        <div class="note">
-          <strong>Kesimpulan:</strong> Berdasarkan perhitungan, nilai Pendapatan Disposabel adalah Rp39.000 miliar. 
-          Nilai ini menunjukkan jumlah uang yang benar-benar tersedia bagi rumah tangga untuk dibelanjakan atau ditabung.
-        </div>
-      </div>
-    </div>
-
-    <!-- Summary Content -->
-    <div class="content" id="summary-content">
-      <div class="card-title">
-        <i class="fas fa-chart-pie"></i>
-        <h2>Ringkasan Indikator Ekonomi</h2>
-      </div>
-
-      <div class="explanation">
-        <p>Berikut adalah ringkasan dari semua indikator ekonomi yang telah dihitung. Gunakan tab di atas untuk melihat detail masing-masing indikator.</p>
-      </div>
-
-      <div class="summary-cards">
-        <div class="summary-card">
-          <h3>PDB</h3>
-          <div class="value" id="summary-gdp">Rp2.300 T</div>
-        </div>
-        <div class="summary-card">
-          <h3>PNB</h3>
-          <div class="value" id="summary-gnp">Rp2.320 T</div>
-        </div>
-        <div class="summary-card">
-          <h3>PNN</h3>
-          <div class="value" id="summary-nnp">Rp2.200 T</div>
-        </div>
-        <div class="summary-card">
-          <h3>NNI</h3>
-          <div class="value" id="summary-nni">Rp2.150 T</div>
-        </div>
-        <div class="summary-card">
-          <h3>PI</h3>
-          <div class="value" id="summary-pi">Rp2.050 T</div>
-        </div>
-        <div class="summary-card">
-          <h3>Disposable</h3>
-          <div class="value" id="summary-di">Rp1.900 T</div>
-        </div>
-      </div>
-
-      <div class="chart-container">
-        <canvas id="summary-chart"></canvas>
-      </div>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Indikator</th>
-              <th>Rumus</th>
-              <th>Nilai (Rp Triliun)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>PDB</td><td>C + I + G + (X - M)</td><td id="comparison-gdp">2.300</td></tr>
-            <tr><td>PNB</td><td>PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</td><td id="comparison-gnp">2.320</td></tr>
-            <tr><td>PNN</td><td>PNB - Penyusutan</td><td id="comparison-nnp">2.200</td></tr>
-            <tr><td>NNI</td><td>PNN - Pajak Tidak Langsung + Subsidi</td><td id="comparison-nni">2.150</td></tr>
-            <tr><td>PI</td><td>NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</td><td id="comparison-pi">2.050</td></tr>
-            <tr><td>Disposable Income</td><td>PI - Pajak Langsung</td><td id="comparison-di">1.900</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER (SAMA DENGAN TEMPLATE) -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
-        <ul>
-          <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-          <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
-          <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
-          <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
-          <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
-          <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+            <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+            <li><a href="../ekonomi-kelas-xi.html" class="active"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+            <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+            <li class="dropdown">
+                <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                    <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                    <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+                </div>
+            </li>
         </ul>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-link"></i> Link Penting</h3>
-        <ul>
-          <li><a href="https://www.bps.go.id/id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
-          <li><a href="https://www.bi.go.id/id" target="_blank"><i class="fas fa-landmark"></i> Bank Indonesia</a></li>
-          <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
-          <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
-          <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-open"></i> Al-Qur'an NU Online</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-file-alt"></i> Informasi & Legal</h3>
-        <ul class="footer-legal-links">
-          <li><a href="../legal-info.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
-          <li><a href="../legal-info.html#disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
-          <li><a href="../legal-info.html#terms"><i class="fas fa-file-contract"></i> Syarat & Ketentuan</a></li>
-          <li><a href="../privacy-policy.html"><i class="fas fa-shield-alt"></i> Privasi</a></li>
-          <li><a href="../contact.html"><i class="fas fa-envelope"></i> Kontak</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
-        <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0822-2385-7426</p>
-        <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-eye"></i> Statistik Kunjungan</h3>
-        <div class="visitor-counter">
-          <a href="https://www.freecounterstat.com" title="page counter" target="_blank">
-            <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=s91lf4yugk1a948dm9uz1ej5hzz7xj9q" border="0" title="page counter" alt="page counter">
-          </a>
-          <p>Jumlah pengunjung halaman ini</p>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="sim-header">
+        <div class="header-icon">
+            <i class="fas fa-calculator"></i>
         </div>
-      </div>
+        <h1>Simulator Ekonomi Nasional & Regional</h1>
+        <p class="subtitle">Hitung indikator ekonomi secara dinamis dengan langkah-langkah perhitungan yang jelas dan visualisasi chart interaktif</p>
+        <div class="badge-container">
+            <span class="badge"><i class="fas fa-calculator"></i> 9 Simulator</span>
+            <span class="badge"><i class="fas fa-chart-pie"></i> Visualisasi Chart</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Level: Lanjutan</span>
+        </div>
+    </header>
+
+    <!-- ===== LANGUAGE TOGGLE ===== -->
+    <div class="language-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('id')" id="lang-id">🇮🇩 ID</button>
+        <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">🇬🇧 EN</button>
     </div>
-    <div class="footer-legal-bar">
-      <a href="../legal-info.html#about">Tentang</a>
-      <span class="separator">•</span>
-      <a href="../legal-info.html#disclaimer">Disclaimer</a>
-      <span class="separator">•</span>
-      <a href="../legal-info.html#terms">Syarat</a>
-      <span class="separator">•</span>
-      <a href="../privacy-policy.html">Privasi</a>
-      <span class="separator">•</span>
-      <a href="../contact.html">Kontak</a>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="breadcrumb">
+        <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+        <span>›</span>
+        <a href="../ekonomi-kelas-xi.html">Ekonomi XI</a>
+        <span>›</span>
+        <span>Simulator Ekonomi</span>
     </div>
-    <div class="copyright">
-      <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
-      <p>Semua hak dilindungi undang-undang.</p>
-      <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;">Platform pembelajaran digital untuk siswa dan guru.</p>
-    </div>
-    <div class="footer-bottom">
-      <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
-    </div>
-  </footer>
 
-  <script>
-    // ===== DARK MODE (SAMA DENGAN TEMPLATE) =====
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="main-container">
 
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      body.classList.add('dark-mode');
-      themeToggle.textContent = '☀️';
-    }
+        <!-- LEARNING PATH -->
+        <div class="learning-path">
+            <div class="path-title">
+                <i class="fas fa-route"></i>
+                <span>Learning Path — Ekonomi Kelas XI</span>
+            </div>
+            <div class="path-steps">
+                <a href="badan-usaha.html" class="path-step">1. Badan Usaha</a>
+                <i class="fas fa-chevron-right path-arrow"></i>
+                <a href="pendapatan-nasional.html" class="path-step">2. Pendapatan Nasional</a>
+                <i class="fas fa-chevron-right path-arrow"></i>
+                <a href="ketenagakerjaan.html" class="path-step">3. Ketenagakerjaan</a>
+                <i class="fas fa-chevron-right path-arrow"></i>
+                <a href="inflasi.html" class="path-step">4. Inflasi</a>
+                <i class="fas fa-chevron-right path-arrow"></i>
+                <a href="Fiskal-Moneter.html" class="path-step">5. Kebijakan Fiskal &amp; Moneter</a>
+                <i class="fas fa-chevron-right path-arrow"></i>
+                <span class="path-step active">6. Simulator Ekonomi ⭐</span>
+            </div>
+        </div>
 
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        themeToggle.textContent = '☀️';
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        themeToggle.textContent = '🌙';
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
+        <!-- TABS -->
+        <div class="tabs" id="tabContainer">
+            <div class="tab active" data-tab="gdp"><i class="fas fa-globe-asia"></i> PDB</div>
+            <div class="tab" data-tab="gnp"><i class="fas fa-flag"></i> PNB</div>
+            <div class="tab" data-tab="nnp"><i class="fas fa-calculator"></i> PNN</div>
+            <div class="tab" data-tab="nni"><i class="fas fa-money-bill-wave"></i> NNI</div>
+            <div class="tab" data-tab="pi"><i class="fas fa-user"></i> PI</div>
+            <div class="tab" data-tab="di"><i class="fas fa-wallet"></i> Disposable</div>
+            <div class="tab" data-tab="pdrb"><i class="fas fa-map-marked-alt"></i> PDRB</div>
+            <div class="tab" data-tab="detail-di"><i class="fas fa-calculator"></i> Detail Disposabel</div>
+            <div class="tab" data-tab="summary"><i class="fas fa-chart-pie"></i> Ringkasan</div>
+        </div>
 
-    // ===== NAVBAR MOBILE (SAMA DENGAN TEMPLATE) =====
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    const dropdowns = document.querySelectorAll('.dropdown');
+        <!-- HITUNG SEMUA -->
+        <button class="btn btn-calculate-all" onclick="calculateAll()">
+            <i class="fas fa-calculator"></i> Hitung Semua Indikator
+        </button>
 
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-    });
+        <!-- ==================== PDB ==================== -->
+        <div class="content active" id="gdp-content">
+            <div class="card-title">
+                <i class="fas fa-globe-asia"></i>
+                <h2>PDB (Produk Domestik Bruto)</h2>
+            </div>
 
-    dropdowns.forEach(dropdown => {
-      const link = dropdown.querySelector('a');
-      link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          dropdown.classList.toggle('active');
-        }
-      });
-    });
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di dalam batas wilayah suatu negara dalam 1 tahun, tanpa memperhatikan siapa pemiliknya (asing/lokal).</p>
+            </div>
 
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
-        !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
-        navLinks.classList.remove('active');
-        hamburger.textContent = '☰';
-      }
-    });
+            <div class="input-group">
+                <label for="c">Konsumsi Rumah Tangga (C) <small>(dalam triliun)</small></label>
+                <input type="number" id="c" value="1000" placeholder="Contoh: 1000" min="0">
+                <div class="error-message" id="c-error">Nilai konsumsi tidak valid</div>
+            </div>
 
-    // ===== SCROLL & BACK TO TOP (SAMA DENGAN TEMPLATE) =====
-    window.onscroll = function() {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById("scrollProgress").style.width = scrolled + "%";
+            <div class="input-group">
+                <label for="i">Investasi (I) <small>(dalam triliun)</small></label>
+                <input type="number" id="i" value="500" placeholder="Contoh: 500" min="0">
+                <div class="error-message" id="i-error">Nilai investasi tidak valid</div>
+            </div>
 
-      const backToTop = document.getElementById('backToTop');
-      if (winScroll > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    };
+            <div class="input-group">
+                <label for="g">Pengeluaran Pemerintah (G) <small>(dalam triliun)</small></label>
+                <input type="number" id="g" value="700" placeholder="Contoh: 700" min="0">
+                <div class="error-message" id="g-error">Nilai pengeluaran pemerintah tidak valid</div>
+            </div>
 
-    document.getElementById('backToTop').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+            <div class="input-group">
+                <label for="x">Ekspor (X) <small>(dalam triliun)</small></label>
+                <input type="number" id="x" value="300" placeholder="Contoh: 300" min="0">
+                <div class="error-message" id="x-error">Nilai ekspor tidak valid</div>
+            </div>
 
-    // ===== LOADER (SAMA DENGAN TEMPLATE) =====
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500);
-      }, 800);
-    });
+            <div class="input-group">
+                <label for="m">Impor (M) <small>(dalam triliun)</small></label>
+                <input type="number" id="m" value="200" placeholder="Contoh: 200" min="0">
+                <div class="error-message" id="m-error">Nilai impor tidak valid</div>
+            </div>
 
-    // ===== TAB SWITCHER =====
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-        
-        this.classList.add('active');
-        
-        const tabId = this.getAttribute('data-tab');
-        document.getElementById(`${tabId}-content`).classList.add('active');
-        
-        if (tabId === 'summary') updateSummary();
-        if (tabId === 'pdrb') createPDRBChart();
-        if (tabId === 'detail-di') createDetailDIChart();
-      });
-    });
+            <button class="btn" onclick="calculateGDP()">
+                <i class="fas fa-calculator"></i> Hitung PDB
+            </button>
 
-    // ===== DATA GLOBAL =====
-    const economicData = {
-      gdp: 2300, gnp: 2320, nnp: 2200,
-      nni: 2150, pi: 2050, di: 1900
-    };
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PDB = C + I + G + (X - M)</div>
+                <div class="result-value" id="gdp-result">Rp2.300 T</div>
 
-    // ===== VALIDASI INPUT =====
-    function validateInput(inputId, errorId) {
-      const input = document.getElementById(inputId);
-      const error = document.getElementById(errorId);
-      const value = parseFloat(input.value);
-      
-      if (isNaN(value) || value < 0) {
-        input.classList.add('input-error');
-        error.style.display = 'block';
-        return false;
-      } else {
-        input.classList.remove('input-error');
-        error.style.display = 'none';
-        return true;
-      }
-    }
+                <div class="chart-container">
+                    <canvas id="gdp-chart"></canvas>
+                </div>
 
-    // ===== FUNGSI PERHITUNGAN =====
-    function calculateGDP() {
-      const inputsValid = [
-        validateInput('c', 'c-error'),
-        validateInput('i', 'i-error'),
-        validateInput('g', 'g-error'),
-        validateInput('x', 'x-error'),
-        validateInput('m', 'm-error')
-      ].every(valid => valid);
-      
-      if (!inputsValid) return;
-      
-      const c = parseFloat(document.getElementById('c').value) || 0;
-      const i = parseFloat(document.getElementById('i').value) || 0;
-      const g = parseFloat(document.getElementById('g').value) || 0;
-      const x = parseFloat(document.getElementById('x').value) || 0;
-      const m = parseFloat(document.getElementById('m').value) || 0;
-      
-      const gdp = c + i + g + (x - m);
-      economicData.gdp = gdp;
-      
-      document.getElementById('gdp-result').textContent = `Rp${gdp.toLocaleString('id-ID')} T`;
-      createGDPChart(c, i, g, x, m);
-    }
+                <div class="note">
+                    <strong>Catatan:</strong> PDB menghitung semua produksi di dalam negeri, termasuk perusahaan asing yang beroperasi di Indonesia.
+                </div>
+            </div>
+        </div>
 
-    function calculateGNP() {
-      const inputsValid = [
-        validateInput('wni-income', 'wni-income-error'),
-        validateInput('wna-income', 'wna-income-error')
-      ].every(valid => valid);
-      
-      if (!inputsValid) return;
-      
-      const wniIncome = parseFloat(document.getElementById('wni-income').value) || 0;
-      const wnaIncome = parseFloat(document.getElementById('wna-income').value) || 0;
-      
-      const gnp = economicData.gdp + (wniIncome - wnaIncome);
-      economicData.gnp = gnp;
-      
-      document.getElementById('gnp-result').textContent = `Rp${gnp.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('gnp-info').innerHTML = `
-        <strong>Perhitungan:</strong> PDB (Rp${economicData.gdp.toLocaleString('id-ID')} T) + 
-        (Rp${wniIncome.toLocaleString('id-ID')} T - Rp${wnaIncome.toLocaleString('id-ID')} T) = 
-        Rp${gnp.toLocaleString('id-ID')} T
-      `;
-    }
+        <!-- ==================== PNB ==================== -->
+        <div class="content" id="gnp-content">
+            <div class="card-title">
+                <i class="fas fa-flag"></i>
+                <h2>PNB (Produk Nasional Bruto)</h2>
+            </div>
 
-    function calculateNNP() {
-      if (!validateInput('depreciation', 'depreciation-error')) return;
-      
-      const depreciation = parseFloat(document.getElementById('depreciation').value) || 0;
-      
-      const nnp = economicData.gnp - depreciation;
-      economicData.nnp = nnp;
-      
-      document.getElementById('nnp-result').textContent = `Rp${nnp.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('nnp-info').innerHTML = `
-        <strong>Perhitungan:</strong> PNB (Rp${economicData.gnp.toLocaleString('id-ID')} T) - 
-        Penyusutan (Rp${depreciation.toLocaleString('id-ID')} T) = 
-        Rp${nnp.toLocaleString('id-ID')} T
-      `;
-    }
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai barang dan jasa yang dihasilkan oleh warga negara, baik di dalam maupun di luar negeri.</p>
+            </div>
 
-    function calculateNNI() {
-      const inputsValid = [
-        validateInput('indirect-tax', 'indirect-tax-error'),
-        validateInput('subsidy', 'subsidy-error')
-      ].every(valid => valid);
-      
-      if (!inputsValid) return;
-      
-      const indirectTax = parseFloat(document.getElementById('indirect-tax').value) || 0;
-      const subsidy = parseFloat(document.getElementById('subsidy').value) || 0;
-      
-      const nni = economicData.nnp - indirectTax + subsidy;
-      economicData.nni = nni;
-      
-      document.getElementById('nni-result').textContent = `Rp${nni.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('nni-info').innerHTML = `
-        <strong>Perhitungan:</strong> PNN (Rp${economicData.nnp.toLocaleString('id-ID')} T) - 
-        Pajak Tidak Langsung (Rp${indirectTax.toLocaleString('id-ID')} T) + 
-        Subsidi (Rp${subsidy.toLocaleString('id-ID')} T) = 
-        Rp${nni.toLocaleString('id-ID')} T
-      `;
-    }
+            <div class="input-group">
+                <label for="wni-income">Pendapatan WNI di Luar Negeri <small>(dalam triliun)</small></label>
+                <input type="number" id="wni-income" value="50" placeholder="Contoh: 50" min="0">
+                <div class="error-message" id="wni-income-error">Nilai pendapatan WNI tidak valid</div>
+            </div>
 
-    function calculatePI() {
-      const inputsValid = [
-        validateInput('transfer', 'transfer-error'),
-        validateInput('retained', 'retained-error'),
-        validateInput('social', 'social-error')
-      ].every(valid => valid);
-      
-      if (!inputsValid) return;
-      
-      const transfer = parseFloat(document.getElementById('transfer').value) || 0;
-      const retained = parseFloat(document.getElementById('retained').value) || 0;
-      const social = parseFloat(document.getElementById('social').value) || 0;
-      
-      const pi = economicData.nni + transfer - (retained + social);
-      economicData.pi = pi;
-      
-      document.getElementById('pi-result').textContent = `Rp${pi.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('pi-info').innerHTML = `
-        <strong>Perhitungan:</strong> NNI (Rp${economicData.nni.toLocaleString('id-ID')} T) + 
-        Transfer Payment (Rp${transfer.toLocaleString('id-ID')} T) - 
-        (Laba Ditahan (Rp${retained.toLocaleString('id-ID')} T) + Iuran (Rp${social.toLocaleString('id-ID')} T)) = 
-        Rp${pi.toLocaleString('id-ID')} T
-      `;
-    }
+            <div class="input-group">
+                <label for="wna-income">Pendapatan WNA di Dalam Negeri <small>(dalam triliun)</small></label>
+                <input type="number" id="wna-income" value="30" placeholder="Contoh: 30" min="0">
+                <div class="error-message" id="wna-income-error">Nilai pendapatan WNA tidak valid</div>
+            </div>
 
-    function calculateDI() {
-      if (!validateInput('direct-tax', 'direct-tax-error')) return;
-      
-      const directTax = parseFloat(document.getElementById('direct-tax').value) || 0;
-      
-      const di = economicData.pi - directTax;
-      economicData.di = di;
-      
-      document.getElementById('di-result').textContent = `Rp${di.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('di-info').innerHTML = `
-        <strong>Perhitungan:</strong> PI (Rp${economicData.pi.toLocaleString('id-ID')} T) - 
-        Pajak Langsung (Rp${directTax.toLocaleString('id-ID')} T) = 
-        Rp${di.toLocaleString('id-ID')} T
-      `;
-    }
+            <button class="btn" onclick="calculateGNP()">
+                <i class="fas fa-calculator"></i> Hitung PNB
+            </button>
 
-    function calculateDetailDisposabel() {
-      const pdb = parseFloat(document.getElementById('pdb').value) || 0;
-      const pendapatanNeto = parseFloat(document.getElementById('pendapatan-neto').value) || 0;
-      const penyusutan = parseFloat(document.getElementById('penyusutan').value) || 0;
-      const pajakTidakLangsung = parseFloat(document.getElementById('pajak-tidak-langsung').value) || 0;
-      const transferPayment = parseFloat(document.getElementById('transfer-payment').value) || 0;
-      const pajakPerseroan = parseFloat(document.getElementById('pajak-perseroan').value) || 0;
-      const labaDitahan = parseFloat(document.getElementById('laba-ditahan').value) || 0;
-      const iuranAsuransi = parseFloat(document.getElementById('iuran-asuransi').value) || 0;
-      const pajakLangsung = parseFloat(document.getElementById('pajak-langsung').value) || 0;
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PNB = PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</div>
+                <div class="result-value" id="gnp-result">Rp2.320 T</div>
 
-      const pnb = pdb + pendapatanNeto;
-      const pn = pnb - penyusutan;
-      const pp = pn - pajakTidakLangsung - pajakPerseroan - labaDitahan + transferPayment;
-      const pd = pp - pajakLangsung - iuranAsuransi;
-      
-      const format = (num) => num.toLocaleString('id-ID');
-      
-      document.getElementById('pnb-result').textContent = `Rp${format(pnb)} miliar`;
-      document.getElementById('pn-result').textContent = `Rp${format(pn)} miliar`;
-      document.getElementById('pp-result').textContent = `Rp${format(pp)} miliar`;
-      document.getElementById('pd-result').textContent = `Rp${format(pd)} miliar`;
-      
-      createDetailDIChart(pnb, pn, pp, pd);
-    }
+                <div class="info" id="gnp-info">
+                    <strong>Perhitungan:</strong> PDB (Rp2.300 T) + (Rp50 T - Rp30 T) = Rp2.320 T
+                </div>
 
-    // ===== CHART FUNCTIONS =====
-    function createGDPChart(c, i, g, x, m) {
-      const ctx = document.getElementById('gdp-chart').getContext('2d');
-      
-      if (window.gdpChart) window.gdpChart.destroy();
-      
-      window.gdpChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['Konsumsi (C)', 'Investasi (I)', 'Pemerintah (G)', 'Ekspor Neto (X-M)'],
-          datasets: [{
-            data: [c, i, g, (x - m)],
-            backgroundColor: ['#4361ee', '#3f37c9', '#4cc9f0', '#4ade80']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Komposisi PDB',
-              color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-            },
-            legend: {
-              labels: {
-                color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-              }
+                <div class="note">
+                    <strong>Perbedaan PNB dan PDB:</strong> PNB berdasarkan kepemilikan produksi (nasionalitas), sedangkan PDB berdasarkan lokasi produksi.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PNN ==================== -->
+        <div class="content" id="nnp-content">
+            <div class="card-title">
+                <i class="fas fa-calculator"></i>
+                <h2>PNN (Produk Nasional Neto)</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai bersih dari PNB setelah dikurangi penyusutan alat produksi.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="depreciation">Penyusutan Aset <small>(dalam triliun)</small></label>
+                <input type="number" id="depreciation" value="120" placeholder="Contoh: 120" min="0">
+                <div class="error-message" id="depreciation-error">Nilai penyusutan tidak valid</div>
+            </div>
+
+            <button class="btn" onclick="calculateNNP()">
+                <i class="fas fa-calculator"></i> Hitung PNN
+            </button>
+
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PNN = PNB - Penyusutan</div>
+                <div class="result-value" id="nnp-result">Rp2.200 T</div>
+
+                <div class="info" id="nnp-info">
+                    <strong>Perhitungan:</strong> PNB (Rp2.320 T) - Penyusutan (Rp120 T) = Rp2.200 T
+                </div>
+
+                <div class="note">
+                    <strong>Penyusutan:</strong> Penurunan nilai alat produksi karena dipakai terus-menerus dalam proses produksi.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== NNI ==================== -->
+        <div class="content" id="nni-content">
+            <div class="card-title">
+                <i class="fas fa-money-bill-wave"></i>
+                <h2>NNI (Pendapatan Nasional Neto)</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan nasional bersih yang dapat dinikmati masyarakat, setelah pajak tidak langsung dan subsidi pemerintah.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="indirect-tax">Pajak Tidak Langsung <small>(dalam triliun)</small></label>
+                <input type="number" id="indirect-tax" value="100" placeholder="Contoh: 100" min="0">
+                <div class="error-message" id="indirect-tax-error">Nilai pajak tidak langsung tidak valid</div>
+            </div>
+
+            <div class="input-group">
+                <label for="subsidy">Subsidi <small>(dalam triliun)</small></label>
+                <input type="number" id="subsidy" value="50" placeholder="Contoh: 50" min="0">
+                <div class="error-message" id="subsidy-error">Nilai subsidi tidak valid</div>
+            </div>
+
+            <button class="btn" onclick="calculateNNI()">
+                <i class="fas fa-calculator"></i> Hitung NNI
+            </button>
+
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">NNI = PNN - Pajak Tidak Langsung + Subsidi</div>
+                <div class="result-value" id="nni-result">Rp2.150 T</div>
+
+                <div class="info" id="nni-info">
+                    <strong>Perhitungan:</strong> PNN (Rp2.200 T) - Pajak Tidak Langsung (Rp100 T) + Subsidi (Rp50 T) = Rp2.150 T
+                </div>
+
+                <div class="note">
+                    <strong>Pajak tidak langsung:</strong> Pajak yang tidak dibayar langsung oleh individu (PPN, cukai, bea masuk).
+                    <strong>Subsidi:</strong> Bantuan pemerintah yang meningkatkan daya beli masyarakat.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PI ==================== -->
+        <div class="content" id="pi-content">
+            <div class="card-title">
+                <i class="fas fa-user"></i>
+                <h2>PI (Pendapatan Perseorangan)</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan yang benar-benar diterima langsung oleh masyarakat, baik dari kerja, bunga, sewa, maupun bantuan pemerintah.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="transfer">Transfer Payment <small>(dalam triliun)</small></label>
+                <input type="number" id="transfer" value="100" placeholder="Contoh: 100" min="0">
+                <div class="error-message" id="transfer-error">Nilai transfer payment tidak valid</div>
+            </div>
+
+            <div class="input-group">
+                <label for="retained">Laba Ditahan <small>(dalam triliun)</small></label>
+                <input type="number" id="retained" value="80" placeholder="Contoh: 80" min="0">
+                <div class="error-message" id="retained-error">Nilai laba ditahan tidak valid</div>
+            </div>
+
+            <div class="input-group">
+                <label for="social">Iuran Jaminan Sosial &amp; Pajak Perseroan <small>(dalam triliun)</small></label>
+                <input type="number" id="social" value="120" placeholder="Contoh: 120" min="0">
+                <div class="error-message" id="social-error">Nilai iuran tidak valid</div>
+            </div>
+
+            <button class="btn" onclick="calculatePI()">
+                <i class="fas fa-calculator"></i> Hitung PI
+            </button>
+
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">PI = NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</div>
+                <div class="result-value" id="pi-result">Rp2.050 T</div>
+
+                <div class="info" id="pi-info">
+                    <strong>Perhitungan:</strong> NNI (Rp2.150 T) + Transfer Payment (Rp100 T) - (Laba Ditahan (Rp80 T) + Iuran (Rp120 T)) = Rp2.050 T
+                </div>
+
+                <div class="note">
+                    <strong>Laba ditahan:</strong> Keuntungan perusahaan yang tidak dibagikan.
+                    <strong>Transfer payment:</strong> Bantuan sosial (BLT), pensiun, beasiswa.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Disposable Income ==================== -->
+        <div class="content" id="di-content">
+            <div class="card-title">
+                <i class="fas fa-wallet"></i>
+                <h2>Disposable Income</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Pendapatan yang benar-benar dapat digunakan masyarakat untuk konsumsi atau ditabung, setelah dikurangi pajak langsung.</p>
+            </div>
+
+            <div class="input-group">
+                <label for="direct-tax">Pajak Langsung <small>(dalam triliun)</small></label>
+                <input type="number" id="direct-tax" value="150" placeholder="Contoh: 150" min="0">
+                <div class="error-message" id="direct-tax-error">Nilai pajak langsung tidak valid</div>
+            </div>
+
+            <button class="btn" onclick="calculateDI()">
+                <i class="fas fa-calculator"></i> Hitung Disposable Income
+            </button>
+
+            <div class="result-container">
+                <h3>Hasil Perhitungan</h3>
+                <div class="formula">Disposable Income = PI - Pajak Langsung</div>
+                <div class="result-value" id="di-result">Rp1.900 T</div>
+
+                <div class="info" id="di-info">
+                    <strong>Perhitungan:</strong> PI (Rp2.050 T) - Pajak Langsung (Rp150 T) = Rp1.900 T
+                </div>
+
+                <div class="note">
+                    <strong>Pajak langsung:</strong> Pajak Penghasilan (PPh), pajak kekayaan, dan pajak warisan. Pendapatan ini sudah bersih dari kewajiban pajak langsung.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PDRB ==================== -->
+        <div class="content" id="pdrb-content">
+            <div class="card-title">
+                <i class="fas fa-map-marked-alt"></i>
+                <h2>PDRB (Produk Domestik Regional Bruto)</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pengertian:</strong> Nilai seluruh barang dan jasa akhir yang diproduksi di suatu wilayah (provinsi/kota) dalam 1 tahun.</p>
+                <p><strong>Fungsi:</strong> Mengetahui kekuatan ekonomi dan pembangunan daerah.</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Provinsi</th>
+                            <th>Pertanian</th>
+                            <th>Industri</th>
+                            <th>Jasa</th>
+                            <th>PDRB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Jawa Timur</td><td>150</td><td>500</td><td>400</td><td class="highlight">1.050</td></tr>
+                        <tr><td>Kalimantan Timur</td><td>80</td><td>600</td><td>200</td><td class="highlight">880</td></tr>
+                        <tr><td>Jawa Barat</td><td>120</td><td>450</td><td>350</td><td class="highlight">920</td></tr>
+                        <tr><td>Sumatera Utara</td><td>200</td><td>300</td><td>250</td><td class="highlight">750</td></tr>
+                        <tr><td>Bali</td><td>50</td><td>100</td><td>500</td><td class="highlight">650</td></tr>
+                        <tr><td>Papua</td><td>120</td><td>350</td><td>180</td><td class="highlight">650</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="pdrb-chart"></canvas>
+            </div>
+
+            <div class="result-container">
+                <div class="formula">PDRB = Pertanian + Industri + Jasa</div>
+                <div class="note">
+                    <strong>Analisis:</strong> Jawa Timur memiliki ekonomi yang seimbang dengan kontribusi signifikan dari industri dan jasa.
+                    Kalimantan Timur sangat bergantung pada industri, sementara Bali memiliki kontribusi jasa yang dominan.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Detail Disposable Income ==================== -->
+        <div class="content" id="detail-di-content">
+            <div class="card-title">
+                <i class="fas fa-calculator"></i>
+                <h2>Perhitungan Detail Pendapatan Disposabel</h2>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Pendapatan Disposabel</strong> adalah pendapatan yang siap dibelanjakan oleh rumah tangga setelah dikurangi pajak langsung dan iuran wajib.</p>
+                <p>Berikut adalah komponen-komponen yang digunakan dalam perhitungan:</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Komponen</th>
+                            <th>Nilai (Rp miliar)</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Produk Domestik Bruto (PDB)</td>
+                            <td><input type="number" id="pdb" value="50000" class="component-input" min="0"></td>
+                            <td>Gross Domestic Product (GDP)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Pendapatan Neto terhadap LN</td>
+                            <td><input type="number" id="pendapatan-neto" value="2000" class="component-input" min="0"></td>
+                            <td>Pendapatan dari luar negeri dikurangi pembayaran ke LN</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Penyusutan Barang Modal</td>
+                            <td><input type="number" id="penyusutan" value="5000" class="component-input" min="0"></td>
+                            <td>Depresiasi</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Pajak Tidak Langsung</td>
+                            <td><input type="number" id="pajak-tidak-langsung" value="4000" class="component-input" min="0"></td>
+                            <td>Pajak yang dibebankan ke konsumen (e.g., PPN)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Transfer Payment</td>
+                            <td><input type="number" id="transfer-payment" value="2000" class="component-input" min="0"></td>
+                            <td>Subsidi, bantuan sosial, dll.</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Pajak Perseroan</td>
+                            <td><input type="number" id="pajak-perseroan" value="2500" class="component-input" min="0"></td>
+                            <td>Pajak atas laba perusahaan</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Laba Ditahan</td>
+                            <td><input type="number" id="laba-ditahan" value="1200" class="component-input" min="0"></td>
+                            <td>Laba perusahaan yang tidak dibagikan</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Iuran Asuransi</td>
+                            <td><input type="number" id="iuran-asuransi" value="1300" class="component-input" min="0"></td>
+                            <td>Kontribusi wajib (e.g., BPJS)</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Pajak Langsung</td>
+                            <td><input type="number" id="pajak-langsung" value="1000" class="component-input" min="0"></td>
+                            <td>Pajak penghasilan (PPh)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn" onclick="calculateDetailDisposabel()">
+                <i class="fas fa-calculator"></i> Hitung Pendapatan Disposabel
+            </button>
+
+            <div class="result-container">
+                <h3>Langkah-langkah Perhitungan</h3>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Produk Nasional Bruto (PNB)</strong>
+                    <div class="formula">PNB = PDB + Pendapatan Neto terhadap LN</div>
+                    <div class="result-value" id="pnb-result">Rp52.000 miliar</div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Pendapatan Nasional (PN)</strong>
+                    <div class="formula">PN = PNB - Penyusutan Barang Modal</div>
+                    <div class="result-value" id="pn-result">Rp47.000 miliar</div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Pendapatan Perseorangan (PP)</strong>
+                    <div class="formula">PP = PN - Pajak Tidak Langsung - Pajak Perseroan - Laba Ditahan + Transfer Payment</div>
+                    <div class="result-value" id="pp-result">Rp41.300 miliar</div>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Pendapatan Disposabel (PD)</strong>
+                    <div class="formula">PD = PP - Pajak Langsung - Iuran Asuransi</div>
+                    <div class="result-value" id="pd-result">Rp39.000 miliar</div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="detail-di-chart"></canvas>
+                </div>
+
+                <div class="note">
+                    <strong>Kesimpulan:</strong> Berdasarkan perhitungan, nilai Pendapatan Disposabel adalah Rp39.000 miliar.
+                    Nilai ini menunjukkan jumlah uang yang benar-benar tersedia bagi rumah tangga untuk dibelanjakan atau ditabung.
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== Summary ==================== -->
+        <div class="content" id="summary-content">
+            <div class="card-title">
+                <i class="fas fa-chart-pie"></i>
+                <h2>Ringkasan Indikator Ekonomi</h2>
+            </div>
+
+            <div class="explanation">
+                <p>Berikut adalah ringkasan dari semua indikator ekonomi yang telah dihitung. Gunakan tab di atas untuk melihat detail masing-masing indikator.</p>
+            </div>
+
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>PDB</h3>
+                    <div class="value" id="summary-gdp">Rp2.300 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PNB</h3>
+                    <div class="value" id="summary-gnp">Rp2.320 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PNN</h3>
+                    <div class="value" id="summary-nnp">Rp2.200 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>NNI</h3>
+                    <div class="value" id="summary-nni">Rp2.150 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>PI</h3>
+                    <div class="value" id="summary-pi">Rp2.050 T</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Disposable</h3>
+                    <div class="value" id="summary-di">Rp1.900 T</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="summary-chart"></canvas>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indikator</th>
+                            <th>Rumus</th>
+                            <th>Nilai (Rp Triliun)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>PDB</td><td>C + I + G + (X - M)</td><td id="comparison-gdp">2.300</td></tr>
+                        <tr><td>PNB</td><td>PDB + (Pendapatan WNI LN - Pendapatan WNA DN)</td><td id="comparison-gnp">2.320</td></tr>
+                        <tr><td>PNN</td><td>PNB - Penyusutan</td><td id="comparison-nnp">2.200</td></tr>
+                        <tr><td>NNI</td><td>PNN - Pajak Tidak Langsung + Subsidi</td><td id="comparison-nni">2.150</td></tr>
+                        <tr><td>PI</td><td>NNI + Transfer Payment - (Laba Ditahan + Iuran + Pajak Perseroan)</td><td id="comparison-pi">2.050</td></tr>
+                        <tr><td>Disposable Income</td><td>PI - Pajak Langsung</td><td id="comparison-di">1.900</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div><!-- end .main-container -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                    <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                    <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                    <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                    <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Link Penting</h3>
+                <ul>
+                    <li><a href="https://www.bps.go.id/id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                    <li><a href="https://www.bi.go.id/id" target="_blank"><i class="fas fa-landmark"></i> Bank Indonesia</a></li>
+                    <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
+                    <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank - GDP Indonesia</a></li>
+                    <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-open"></i> Al-Qur'an NU Online</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-file-alt"></i> Informasi &amp; Legal</h3>
+                <ul class="footer-legal-links">
+                    <li><a href="../legal-info.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="../legal-info.html#disclaimer"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    <li><a href="../legal-info.html#terms"><i class="fas fa-file-contract"></i> Syarat &amp; Ketentuan</a></li>
+                    <li><a href="../privacy-policy.html"><i class="fas fa-shield-alt"></i> Privasi</a></li>
+                    <li><a href="../contact.html"><i class="fas fa-envelope"></i> Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+                <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0822-2385-7426</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi,<br>Jawa Timur</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-eye"></i> Statistik Kunjungan</h3>
+                <div class="visitor-counter">
+                    <a href="https://www.freecounterstat.com" title="page counter" target="_blank">
+                        <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=s91lf4yugk1a948dm9uz1ej5hzz7xj9q" border="0" title="page counter" alt="page counter">
+                    </a>
+                    <p>Jumlah pengunjung halaman ini</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-legal-bar">
+            <a href="../legal-info.html#about">Tentang</a>
+            <span class="separator">•</span>
+            <a href="../legal-info.html#disclaimer">Disclaimer</a>
+            <span class="separator">•</span>
+            <a href="../legal-info.html#terms">Syarat</a>
+            <span class="separator">•</span>
+            <a href="../privacy-policy.html">Privasi</a>
+            <span class="separator">•</span>
+            <a href="../contact.html">Kontak</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+            <p>Semua hak dilindungi undang-undang.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;">Platform pembelajaran digital untuk siswa dan guru.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
+    <!-- ============================================================ -->
+    <script>
+        /**
+         * ============================================================
+         * 1. DARK MODE
+         * ============================================================
+         */
+        (function initDarkMode() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
             }
-          }
-        }
-      });
-    }
 
-    function createPDRBChart() {
-      const ctx = document.getElementById('pdrb-chart').getContext('2d');
-      
-      if (window.pdrbChart) window.pdrbChart.destroy();
-      
-      window.pdrbChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Jawa Timur', 'Kalimantan Timur', 'Jawa Barat', 'Sumatera Utara', 'Bali', 'Papua'],
-          datasets: [
-            {
-              label: 'Pertanian',
-              data: [150, 80, 120, 200, 50, 120],
-              backgroundColor: '#4ade80'
-            },
-            {
-              label: 'Industri',
-              data: [500, 600, 450, 300, 100, 350],
-              backgroundColor: '#4361ee'
-            },
-            {
-              label: 'Jasa',
-              data: [400, 200, 350, 250, 500, 180],
-              backgroundColor: '#fbbf24'
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                themeToggle.textContent = isDark ? '☀️' : '🌙';
+                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+                // Re-render charts with new color scheme
+                renderAllCharts();
+            });
+        })();
+
+        /**
+         * ============================================================
+         * 2. NAVBAR MOBILE
+         * ============================================================
+         */
+        (function initNavbar() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+
+            dropdowns.forEach(function(dropdown) {
+                const link = dropdown.querySelector('a');
+                if (!link) return;
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768 &&
+                    navLinks.classList.contains('active') &&
+                    !e.target.closest('.nav-links') &&
+                    !e.target.closest('.hamburger')) {
+                    navLinks.classList.remove('active');
+                    hamburger.textContent = '☰';
+                }
+            });
+        })();
+
+        /**
+         * ============================================================
+         * 3. SCROLL PROGRESS & BACK TO TOP
+         * ============================================================
+         */
+        (function initScroll() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const backToTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = height ? (winScroll / height) * 100 : 0;
+                scrollProgress.style.width = scrolled + '%';
+
+                if (winScroll > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+
+        /**
+         * ============================================================
+         * 4. LOADER
+         * ============================================================
+         */
+        (function initLoader() {
+            const loader = document.getElementById('loader');
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    loader.style.opacity = '0';
+                    setTimeout(function() {
+                        loader.style.display = 'none';
+                    }, 500);
+                }, 800);
+            });
+        })();
+
+        /**
+         * ============================================================
+         * 5. TAB SWITCHER
+         * ============================================================
+         */
+        (function initTabs() {
+            const tabs = document.querySelectorAll('.tab');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    // Remove active from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(function(t) {
+                        t.classList.remove('active');
+                    });
+                    document.querySelectorAll('.content').forEach(function(c) {
+                        c.classList.remove('active');
+                    });
+
+                    // Activate current tab
+                    this.classList.add('active');
+
+                    // Show corresponding content
+                    var tabId = this.getAttribute('data-tab');
+                    var target = document.getElementById(tabId + '-content');
+                    if (target) target.classList.add('active');
+
+                    // Render charts when switching to chart tabs
+                    if (tabId === 'summary') updateSummary();
+                    if (tabId === 'pdrb') createPDRBChart();
+                    if (tabId === 'detail-di') createDetailDIChart();
+                });
+            });
+        })();
+
+        /**
+         * ============================================================
+         * 6. GLOBAL DATA
+         * ============================================================
+         */
+        var economicData = {
+            gdp: 2300,
+            gnp: 2320,
+            nnp: 2200,
+            nni: 2150,
+            pi: 2050,
+            di: 1900
+        };
+
+        // Chart instances for reuse
+        var chartInstances = {
+            gdp: null,
+            pdrb: null,
+            detailDI: null,
+            summary: null
+        };
+
+        /**
+         * ============================================================
+         * 7. VALIDATION HELPERS
+         * ============================================================
+         */
+        function validateInput(inputId, errorId) {
+            var input = document.getElementById(inputId);
+            var error = document.getElementById(errorId);
+            if (!input || !error) return false;
+            var value = parseFloat(input.value);
+
+            if (isNaN(value) || value < 0) {
+                input.classList.add('input-error');
+                error.style.display = 'block';
+                return false;
+            } else {
+                input.classList.remove('input-error');
+                error.style.display = 'none';
+                return true;
             }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'PDRB per Provinsi',
-              color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-            },
-            legend: {
-              labels: {
-                color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-              }
-            }
-          },
-          scales: {
-            x: {
-              stacked: true,
-              ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' }
-            },
-            y: {
-              stacked: true,
-              ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' }
-            }
-          }
         }
-      });
-    }
 
-    function createDetailDIChart(pnb = 52000, pn = 47000, pp = 41300, pd = 39000) {
-      const ctx = document.getElementById('detail-di-chart').getContext('2d');
-      
-      if (window.detailDIChart) window.detailDIChart.destroy();
-      
-      window.detailDIChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['PNB', 'PN', 'PP', 'PD'],
-          datasets: [{
-            label: 'Nilai (Rp Miliar)',
-            data: [pnb, pn, pp, pd],
-            backgroundColor: 'rgba(67, 97, 238, 0.2)',
-            borderColor: '#4361ee',
-            borderWidth: 2,
-            pointBackgroundColor: '#4361ee',
-            fill: true
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Alur Perhitungan Pendapatan Disposabel',
-              color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-            },
-            legend: {
-              labels: {
-                color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-              }
+        function getVal(id, fallback) {
+            var el = document.getElementById(id);
+            if (!el) return fallback || 0;
+            var v = parseFloat(el.value);
+            return isNaN(v) ? (fallback || 0) : v;
+        }
+
+        function isDarkMode() {
+            return document.body.classList.contains('dark-mode');
+        }
+
+        function getChartTextColor() {
+            return isDarkMode() ? '#f8f9fa' : '#212529';
+        }
+
+        /**
+         * ============================================================
+         * 8. PERHITUNGAN INDIKATOR
+         * ============================================================
+         */
+
+        // ---- GDP ----
+        function calculateGDP() {
+            var inputsValid = [
+                validateInput('c', 'c-error'),
+                validateInput('i', 'i-error'),
+                validateInput('g', 'g-error'),
+                validateInput('x', 'x-error'),
+                validateInput('m', 'm-error')
+            ].every(function(v) { return v; });
+
+            if (!inputsValid) return;
+
+            var c = getVal('c', 0);
+            var i = getVal('i', 0);
+            var g = getVal('g', 0);
+            var x = getVal('x', 0);
+            var m = getVal('m', 0);
+
+            var gdp = c + i + g + (x - m);
+            economicData.gdp = gdp;
+
+            document.getElementById('gdp-result').textContent = 'Rp' + gdp.toLocaleString('id-ID') + ' T';
+            createGDPChart(c, i, g, x, m);
+        }
+
+        // ---- GNP ----
+        function calculateGNP() {
+            var inputsValid = [
+                validateInput('wni-income', 'wni-income-error'),
+                validateInput('wna-income', 'wna-income-error')
+            ].every(function(v) { return v; });
+
+            if (!inputsValid) return;
+
+            var wniIncome = getVal('wni-income', 0);
+            var wnaIncome = getVal('wna-income', 0);
+
+            var gnp = economicData.gdp + (wniIncome - wnaIncome);
+            economicData.gnp = gnp;
+
+            document.getElementById('gnp-result').textContent = 'Rp' + gnp.toLocaleString('id-ID') + ' T';
+
+            document.getElementById('gnp-info').innerHTML =
+                '<strong>Perhitungan:</strong> PDB (Rp' + economicData.gdp.toLocaleString('id-ID') + ' T) + ' +
+                '(Rp' + wniIncome.toLocaleString('id-ID') + ' T - Rp' + wnaIncome.toLocaleString('id-ID') + ' T) = ' +
+                'Rp' + gnp.toLocaleString('id-ID') + ' T';
+        }
+
+        // ---- NNP ----
+        function calculateNNP() {
+            if (!validateInput('depreciation', 'depreciation-error')) return;
+
+            var depreciation = getVal('depreciation', 0);
+
+            var nnp = economicData.gnp - depreciation;
+            economicData.nnp = nnp;
+
+            document.getElementById('nnp-result').textContent = 'Rp' + nnp.toLocaleString('id-ID') + ' T';
+
+            document.getElementById('nnp-info').innerHTML =
+                '<strong>Perhitungan:</strong> PNB (Rp' + economicData.gnp.toLocaleString('id-ID') + ' T) - ' +
+                'Penyusutan (Rp' + depreciation.toLocaleString('id-ID') + ' T) = ' +
+                'Rp' + nnp.toLocaleString('id-ID') + ' T';
+        }
+
+        // ---- NNI ----
+        function calculateNNI() {
+            var inputsValid = [
+                validateInput('indirect-tax', 'indirect-tax-error'),
+                validateInput('subsidy', 'subsidy-error')
+            ].every(function(v) { return v; });
+
+            if (!inputsValid) return;
+
+            var indirectTax = getVal('indirect-tax', 0);
+            var subsidy = getVal('subsidy', 0);
+
+            var nni = economicData.nnp - indirectTax + subsidy;
+            economicData.nni = nni;
+
+            document.getElementById('nni-result').textContent = 'Rp' + nni.toLocaleString('id-ID') + ' T';
+
+            document.getElementById('nni-info').innerHTML =
+                '<strong>Perhitungan:</strong> PNN (Rp' + economicData.nnp.toLocaleString('id-ID') + ' T) - ' +
+                'Pajak Tidak Langsung (Rp' + indirectTax.toLocaleString('id-ID') + ' T) + ' +
+                'Subsidi (Rp' + subsidy.toLocaleString('id-ID') + ' T) = ' +
+                'Rp' + nni.toLocaleString('id-ID') + ' T';
+        }
+
+        // ---- PI ----
+        function calculatePI() {
+            var inputsValid = [
+                validateInput('transfer', 'transfer-error'),
+                validateInput('retained', 'retained-error'),
+                validateInput('social', 'social-error')
+            ].every(function(v) { return v; });
+
+            if (!inputsValid) return;
+
+            var transfer = getVal('transfer', 0);
+            var retained = getVal('retained', 0);
+            var social = getVal('social', 0);
+
+            var pi = economicData.nni + transfer - (retained + social);
+            economicData.pi = pi;
+
+            document.getElementById('pi-result').textContent = 'Rp' + pi.toLocaleString('id-ID') + ' T';
+
+            document.getElementById('pi-info').innerHTML =
+                '<strong>Perhitungan:</strong> NNI (Rp' + economicData.nni.toLocaleString('id-ID') + ' T) + ' +
+                'Transfer Payment (Rp' + transfer.toLocaleString('id-ID') + ' T) - ' +
+                '(Laba Ditahan (Rp' + retained.toLocaleString('id-ID') + ' T) + Iuran (Rp' + social.toLocaleString(
+                'id-ID') + ' T)) = ' +
+                'Rp' + pi.toLocaleString('id-ID') + ' T';
+        }
+
+        // ---- Disposable Income ----
+        function calculateDI() {
+            if (!validateInput('direct-tax', 'direct-tax-error')) return;
+
+            var directTax = getVal('direct-tax', 0);
+
+            var di = economicData.pi - directTax;
+            economicData.di = di;
+
+            document.getElementById('di-result').textContent = 'Rp' + di.toLocaleString('id-ID') + ' T';
+
+            document.getElementById('di-info').innerHTML =
+                '<strong>Perhitungan:</strong> PI (Rp' + economicData.pi.toLocaleString('id-ID') + ' T) - ' +
+                'Pajak Langsung (Rp' + directTax.toLocaleString('id-ID') + ' T) = ' +
+                'Rp' + di.toLocaleString('id-ID') + ' T';
+        }
+
+        // ---- Detail Disposable Income ----
+        function calculateDetailDisposabel() {
+            var pdb = getVal('pdb', 0);
+            var pendapatanNeto = getVal('pendapatan-neto', 0);
+            var penyusutan = getVal('penyusutan', 0);
+            var pajakTidakLangsung = getVal('pajak-tidak-langsung', 0);
+            var transferPayment = getVal('transfer-payment', 0);
+            var pajakPerseroan = getVal('pajak-perseroan', 0);
+            var labaDitahan = getVal('laba-ditahan', 0);
+            var iuranAsuransi = getVal('iuran-asuransi', 0);
+            var pajakLangsung = getVal('pajak-langsung', 0);
+
+            var pnb = pdb + pendapatanNeto;
+            var pn = pnb - penyusutan;
+            var pp = pn - pajakTidakLangsung - pajakPerseroan - labaDitahan + transferPayment;
+            var pd = pp - pajakLangsung - iuranAsuransi;
+
+            var format = function(num) { return num.toLocaleString('id-ID'); };
+
+            document.getElementById('pnb-result').textContent = 'Rp' + format(pnb) + ' miliar';
+            document.getElementById('pn-result').textContent = 'Rp' + format(pn) + ' miliar';
+            document.getElementById('pp-result').textContent = 'Rp' + format(pp) + ' miliar';
+            document.getElementById('pd-result').textContent = 'Rp' + format(pd) + ' miliar';
+
+            createDetailDIChart(pnb, pn, pp, pd);
+        }
+
+        /**
+         * ============================================================
+         * 9. CHART FUNCTIONS
+         * ============================================================
+         */
+
+        // ---- GDP Chart ----
+        function createGDPChart(c, i, g, x, m) {
+            var ctx = document.getElementById('gdp-chart');
+            if (!ctx) return;
+
+            if (chartInstances.gdp) {
+                chartInstances.gdp.destroy();
+                chartInstances.gdp = null;
             }
-          },
-          scales: {
-            x: { ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' } },
-            y: { ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' } }
-          }
+
+            chartInstances.gdp = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Konsumsi (C)', 'Investasi (I)', 'Pemerintah (G)', 'Ekspor Neto (X-M)'],
+                    datasets: [{
+                        data: [c, i, g, (x - m)],
+                        backgroundColor: ['#4361ee', '#3f37c9', '#4cc9f0', '#4ade80']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Komposisi PDB',
+                            color: getChartTextColor()
+                        },
+                        legend: {
+                            labels: {
+                                color: getChartTextColor()
+                            }
+                        }
+                    }
+                }
+            });
         }
-      });
-    }
 
-    function updateSummary() {
-      document.getElementById('summary-gdp').textContent = `Rp${economicData.gdp.toLocaleString('id-ID')} T`;
-      document.getElementById('summary-gnp').textContent = `Rp${economicData.gnp.toLocaleString('id-ID')} T`;
-      document.getElementById('summary-nnp').textContent = `Rp${economicData.nnp.toLocaleString('id-ID')} T`;
-      document.getElementById('summary-nni').textContent = `Rp${economicData.nni.toLocaleString('id-ID')} T`;
-      document.getElementById('summary-pi').textContent = `Rp${economicData.pi.toLocaleString('id-ID')} T`;
-      document.getElementById('summary-di').textContent = `Rp${economicData.di.toLocaleString('id-ID')} T`;
-      
-      document.getElementById('comparison-gdp').textContent = economicData.gdp.toLocaleString('id-ID');
-      document.getElementById('comparison-gnp').textContent = economicData.gnp.toLocaleString('id-ID');
-      document.getElementById('comparison-nnp').textContent = economicData.nnp.toLocaleString('id-ID');
-      document.getElementById('comparison-nni').textContent = economicData.nni.toLocaleString('id-ID');
-      document.getElementById('comparison-pi').textContent = economicData.pi.toLocaleString('id-ID');
-      document.getElementById('comparison-di').textContent = economicData.di.toLocaleString('id-ID');
-      
-      createSummaryChart();
-    }
+        // ---- PDRB Chart ----
+        function createPDRBChart() {
+            var ctx = document.getElementById('pdrb-chart');
+            if (!ctx) return;
 
-    function createSummaryChart() {
-      const ctx = document.getElementById('summary-chart').getContext('2d');
-      
-      if (window.summaryChart) window.summaryChart.destroy();
-      
-      window.summaryChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['PDB', 'PNB', 'PNN', 'NNI', 'PI', 'Disposable'],
-          datasets: [{
-            label: 'Nilai (Rp Triliun)',
-            data: [
-              economicData.gdp, economicData.gnp, economicData.nnp,
-              economicData.nni, economicData.pi, economicData.di
-            ],
-            backgroundColor: ['#4361ee', '#3f37c9', '#4cc9f0', '#fbbf24', '#4ade80', '#f87171']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Perbandingan Indikator Ekonomi',
-              color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529'
-            },
-            legend: { display: false }
-          },
-          scales: {
-            x: { ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' } },
-            y: { ticks: { color: body.classList.contains('dark-mode') ? '#f8f9fa' : '#212529' } }
-          }
+            if (chartInstances.pdrb) {
+                chartInstances.pdrb.destroy();
+                chartInstances.pdrb = null;
+            }
+
+            chartInstances.pdrb = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jawa Timur', 'Kalimantan Timur', 'Jawa Barat', 'Sumatera Utara', 'Bali', 'Papua'],
+                    datasets: [{
+                        label: 'Pertanian',
+                        data: [150, 80, 120, 200, 50, 120],
+                        backgroundColor: '#4ade80'
+                    }, {
+                        label: 'Industri',
+                        data: [500, 600, 450, 300, 100, 350],
+                        backgroundColor: '#4361ee'
+                    }, {
+                        label: 'Jasa',
+                        data: [400, 200, 350, 250, 500, 180],
+                        backgroundColor: '#fbbf24'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'PDRB per Provinsi',
+                            color: getChartTextColor()
+                        },
+                        legend: {
+                            labels: {
+                                color: getChartTextColor()
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: { color: getChartTextColor() }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: { color: getChartTextColor() }
+                        }
+                    }
+                }
+            });
         }
-      });
-    }
 
-    function calculateAll() {
-      calculateGDP();
-      calculateGNP();
-      calculateNNP();
-      calculateNNI();
-      calculatePI();
-      calculateDI();
-      calculateDetailDisposabel();
-      
-      alert('Semua indikator telah dihitung!');
-    }
+        // ---- Detail DI Chart ----
+        function createDetailDIChart(pnb, pn, pp, pd) {
+            var ctx = document.getElementById('detail-di-chart');
+            if (!ctx) return;
 
-    // ===== LANGUAGE SWITCHER =====
-    function switchLanguage(lang) {
-      document.getElementById('lang-id').classList.toggle('active', lang==='id');
-      document.getElementById('lang-en').classList.toggle('active', lang==='en');
-      localStorage.setItem('language', lang);
-      document.documentElement.lang = lang;
-      alert('Fitur terjemahan akan segera tersedia!');
-    }
+            if (chartInstances.detailDI) {
+                chartInstances.detailDI.destroy();
+                chartInstances.detailDI = null;
+            }
 
-    // Init language
-    const savedLang = localStorage.getItem('language') || 'id';
-    if (savedLang === 'en') switchLanguage('en');
+            chartInstances.detailDI = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['PNB', 'PN', 'PP', 'PD'],
+                    datasets: [{
+                        label: 'Nilai (Rp Miliar)',
+                        data: [pnb || 52000, pn || 47000, pp || 41300, pd || 39000],
+                        backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                        borderColor: '#4361ee',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#4361ee',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Alur Perhitungan Pendapatan Disposabel',
+                            color: getChartTextColor()
+                        },
+                        legend: {
+                            labels: {
+                                color: getChartTextColor()
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { ticks: { color: getChartTextColor() } },
+                        y: { ticks: { color: getChartTextColor() } }
+                    }
+                }
+            });
+        }
 
-    // ===== INISIALISASI =====
-    window.onload = function() {
-      calculateGDP();
-      calculateGNP();
-      calculateNNP();
-      calculateNNI();
-      calculatePI();
-      calculateDI();
-      calculateDetailDisposabel();
-      
-      const c = parseFloat(document.getElementById('c').value) || 0;
-      const i = parseFloat(document.getElementById('i').value) || 0;
-      const g = parseFloat(document.getElementById('g').value) || 0;
-      const x = parseFloat(document.getElementById('x').value) || 0;
-      const m = parseFloat(document.getElementById('m').value) || 0;
-      createGDPChart(c, i, g, x, m);
-    };
-  </script>
+        // ---- Summary Chart ----
+        function createSummaryChart() {
+            var ctx = document.getElementById('summary-chart');
+            if (!ctx) return;
+
+            if (chartInstances.summary) {
+                chartInstances.summary.destroy();
+                chartInstances.summary = null;
+            }
+
+            chartInstances.summary = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['PDB', 'PNB', 'PNN', 'NNI', 'PI', 'Disposable'],
+                    datasets: [{
+                        label: 'Nilai (Rp Triliun)',
+                        data: [
+                            economicData.gdp || 0,
+                            economicData.gnp || 0,
+                            economicData.nnp || 0,
+                            economicData.nni || 0,
+                            economicData.pi || 0,
+                            economicData.di || 0
+                        ],
+                        backgroundColor: ['#4361ee', '#3f37c9', '#4cc9f0', '#fbbf24', '#4ade80', '#f87171']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Perbandingan Indikator Ekonomi',
+                            color: getChartTextColor()
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: getChartTextColor() } },
+                        y: { ticks: { color: getChartTextColor() } }
+                    }
+                }
+            });
+        }
+
+        /**
+         * ============================================================
+         * 10. SUMMARY UPDATE
+         * ============================================================
+         */
+        function updateSummary() {
+            var format = function(num) {
+                return 'Rp' + num.toLocaleString('id-ID') + ' T';
+            };
+
+            document.getElementById('summary-gdp').textContent = format(economicData.gdp);
+            document.getElementById('summary-gnp').textContent = format(economicData.gnp);
+            document.getElementById('summary-nnp').textContent = format(economicData.nnp);
+            document.getElementById('summary-nni').textContent = format(economicData.nni);
+            document.getElementById('summary-pi').textContent = format(economicData.pi);
+            document.getElementById('summary-di').textContent = format(economicData.di);
+
+            var ids = ['comparison-gdp', 'comparison-gnp', 'comparison-nnp', 'comparison-nni', 'comparison-pi',
+                'comparison-di'
+            ];
+            var vals = [economicData.gdp, economicData.gnp, economicData.nnp, economicData.nni, economicData.pi,
+                economicData.di
+            ];
+            ids.forEach(function(id, idx) {
+                var el = document.getElementById(id);
+                if (el) el.textContent = vals[idx].toLocaleString('id-ID');
+            });
+
+            createSummaryChart();
+        }
+
+        /**
+         * ============================================================
+         * 11. CALCULATE ALL
+         * ============================================================
+         */
+        function calculateAll() {
+            calculateGDP();
+            calculateGNP();
+            calculateNNP();
+            calculateNNI();
+            calculatePI();
+            calculateDI();
+            calculateDetailDisposabel();
+
+            alert('Semua indikator telah dihitung!');
+        }
+
+        /**
+         * ============================================================
+         * 12. RENDER ALL CHARTS (for dark mode toggle)
+         * ============================================================
+         */
+        function renderAllCharts() {
+            // Re-create GDP chart
+            var c = getVal('c', 1000);
+            var i = getVal('i', 500);
+            var g = getVal('g', 700);
+            var x = getVal('x', 300);
+            var m = getVal('m', 200);
+            createGDPChart(c, i, g, x, m);
+
+            // Re-create PDRB chart
+            createPDRBChart();
+
+            // Re-create Detail DI chart (use current values)
+            var pdb = getVal('pdb', 50000);
+            var pendapatanNeto = getVal('pendapatan-neto', 2000);
+            var penyusutan = getVal('penyusutan', 5000);
+            var pajakTidakLangsung = getVal('pajak-tidak-langsung', 4000);
+            var transferPayment = getVal('transfer-payment', 2000);
+            var pajakPerseroan = getVal('pajak-perseroan', 2500);
+            var labaDitahan = getVal('laba-ditahan', 1200);
+            var iuranAsuransi = getVal('iuran-asuransi', 1300);
+            var pajakLangsung = getVal('pajak-langsung', 1000);
+
+            var pnb = pdb + pendapatanNeto;
+            var pn = pnb - penyusutan;
+            var pp = pn - pajakTidakLangsung - pajakPerseroan - labaDitahan + transferPayment;
+            var pd = pp - pajakLangsung - iuranAsuransi;
+            createDetailDIChart(pnb, pn, pp, pd);
+
+            // Re-create Summary chart
+            createSummaryChart();
+        }
+
+        /**
+         * ============================================================
+         * 13. LANGUAGE SWITCHER
+         * ============================================================
+         */
+        function switchLanguage(lang) {
+            var idBtn = document.getElementById('lang-id');
+            var enBtn = document.getElementById('lang-en');
+            if (idBtn) idBtn.classList.toggle('active', lang === 'id');
+            if (enBtn) enBtn.classList.toggle('active', lang === 'en');
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+            alert('Fitur terjemahan akan segera tersedia!');
+        }
+
+        // Init language
+        (function initLanguage() {
+            var savedLang = localStorage.getItem('language') || 'id';
+            if (savedLang === 'en') switchLanguage('en');
+        })();
+
+        /**
+         * ============================================================
+         * 14. INIT ON LOAD
+         * ============================================================
+         */
+        (function init() {
+            // Get initial values
+            var c = getVal('c', 1000);
+            var i = getVal('i', 500);
+            var g = getVal('g', 700);
+            var x = getVal('x', 300);
+            var m = getVal('m', 200);
+
+            // Initial calculations
+            calculateGDP();
+            calculateGNP();
+            calculateNNP();
+            calculateNNI();
+            calculatePI();
+            calculateDI();
+            calculateDetailDisposabel();
+
+            // Initial charts
+            createGDPChart(c, i, g, x, m);
+            createPDRBChart();
+            createSummaryChart();
+
+            // Update summary data
+            updateSummary();
+        })();
+    </script>
 </body>
 </html>
