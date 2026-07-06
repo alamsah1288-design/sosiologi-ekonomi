@@ -1,487 +1,1304 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Ujian Sosiologi Bab 3 - Berbasis Kasus (30 Soal)</title>
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
-     crossorigin="anonymous"></script>
-<!-- bab-3-pembahasan-soal-1.html -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1234355696976048"
-     data-ad-slot="1733755231"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<!-- Font & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<!-- Library PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ujian Sosiologi Bab 3 - Berbasis Kasus (30 Soal)</title>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
+    <!-- bab-3-pembahasan-soal-1.html -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="1733755231" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <!-- Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Library PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+    </script>
+    <style>
+        /* ===== ROOT & RESET ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --neon-blue: #00f0ff;
+            --neon-pink: #ff00c8;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+            padding-bottom: 40px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+        body.dark-mode .card,
+        body.dark-mode .exam-header,
+        body.dark-mode .footer {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        body.dark-mode .question-card {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            border-left-color: var(--secondary);
+        }
+        body.dark-mode .case-box {
+            background: #3d3d3d;
+            color: #f8f9fa;
+        }
+        body.dark-mode .option-label {
+            border-color: #555;
+            color: #f8f9fa;
+        }
+        body.dark-mode .option-label:hover {
+            background: #3a3a3a;
+        }
+        body.dark-mode .match-row {
+            border-color: #444;
+        }
+        body.dark-mode .match-select {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            border-color: #555;
+        }
+        body.dark-mode #login-screen,
+        body.dark-mode #result-screen {
+            background: #2d2d2d;
+            color: #f8f9fa;
+        }
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select {
+            background: #1e1e1e;
+            color: #f8f9fa;
+            border-color: #555;
+        }
 
-<style>
-:root {
-    --primary: #2c3e50;
-    --secondary: #3498db;
-    --accent: #e74c3c;
-    --success: #2ecc71;
-    --warning: #f1c40f;
-    --bg: #f4f6f7;
-}
+        /* ===== NAVBAR (konsisten dengan portal utama) ===== */
+        .navbar {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.92rem;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            flex-direction: column;
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-radius: 8px;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        .dropdown-content a:hover {
+            background: var(--primary);
+            color: white;
+            transform: none;
+            padding-left: 20px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: flex;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1001;
+        }
+        .theme-toggle,
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .theme-toggle:hover,
+        .lang-switch:hover {
+            transform: rotate(15deg);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .lang-switch {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-* { box-sizing: border-box; }
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg);
-    margin: 0; padding: 0; color: #333;
-    user-select: none; -webkit-user-select: none;
-}
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            margin: 0 8px;
+            opacity: 0.6;
+        }
 
-/* Security Overlay */
-#security-overlay {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95); z-index: 9999; color: white;
-    flex-direction: column; justify-content: center; align-items: center; text-align: center;
-}
+        /* ===== SECURITY OVERLAY ===== */
+        #security-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            color: white;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #security-overlay .btn-start {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        #security-overlay .btn-start:hover {
+            transform: scale(1.05);
+        }
 
-/* Header */
-.exam-header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white; padding: 1rem; position: sticky; top: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.timer-box {
-    background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold;
-}
+        /* ===== EXAM HEADER (timer) ===== */
+        .exam-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: var(--header-height);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .exam-header .title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .timer-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .timer-box i {
+            margin-right: 0.4rem;
+        }
 
-/* Container */
-.container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
 
-/* Login & Result */
-#login-screen, #result-screen {
-    background: white; padding: 2rem; border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center;
-    margin-top: 2rem;
-}
-.form-group { margin-bottom: 1rem; text-align: left; }
-.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-.form-group input, .form-group select {
-    width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;
-}
-.btn-start {
-    background: var(--secondary); color: white; border: none; padding: 1rem 3rem;
-    font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%;
-    transition: 0.3s;
-}
-.btn-start:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+        /* ===== LOGIN & RESULT ===== */
+        #login-screen,
+        #result-screen {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #login-screen h2,
+        #result-screen h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .btn-start {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .btn-back:hover {
+            text-decoration: underline;
+        }
 
-/* Quiz */
-.question-card {
-    background: white; border-radius: 12px; padding: 1.5rem;
-    margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--secondary); display: none;
-}
-.q-badge {
-    display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
-    font-size: 0.75rem; font-weight: bold; margin-bottom: 0.5rem; color: white;
-}
-.badge-pg { background: var(--secondary); }
-.badge-complex { background: var(--warning); color: #333; }
-.badge-match { background: var(--accent); }
+        /* ===== QUESTION CARD ===== */
+        .question-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary);
+            display: none;
+        }
+        .q-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        .badge-pg {
+            background: var(--secondary);
+        }
+        .badge-complex {
+            background: var(--warning);
+            color: #333;
+        }
+        .badge-match {
+            background: var(--danger);
+        }
+        .q-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .case-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            border-radius: 4px;
+        }
+        body.dark-mode .case-box {
+            background: #3d3d3d;
+            color: #f8f9fa;
+            border-left-color: var(--warning);
+        }
 
-.q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.6; }
-.case-box {
-    background: #fff3cd; border-left: 4px solid var(--warning);
-    padding: 1rem; margin-bottom: 1rem; font-size: 0.95rem; border-radius: 4px;
-}
+        /* ===== OPTIONS ===== */
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        .option-label:hover {
+            background: #f9f9f9;
+            border-color: var(--secondary);
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 1rem;
+            transform: scale(1.2);
+            flex-shrink: 0;
+        }
 
-/* Options */
-.option-label {
-    display: flex; align-items: center; padding: 1rem; border: 2px solid #e0e0e0;
-    border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 0.5rem;
-}
-.option-label:hover { background: #f9f9f9; border-color: var(--secondary); }
-input[type="radio"], input[type="checkbox"] { margin-right: 1rem; transform: scale(1.2); }
+        /* ===== MATCHING ===== */
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+            gap: 1rem;
+        }
+        .match-select {
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            min-width: 180px;
+            font-family: 'Poppins', sans-serif;
+            background: white;
+        }
+        body.dark-mode .match-select {
+            background: #2d2d2d;
+            color: #f8f9fa;
+            border-color: #555;
+        }
 
-/* Matching */
-.match-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.8rem; border-bottom: 1px solid #eee;
-}
-.match-select {
-    padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; min-width: 180px;
-}
+        /* ===== NAVIGATION ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .btn-nav {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .btn-prev {
+            background: #95a5a6;
+            color: white;
+        }
+        .btn-prev:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-next {
+            background: var(--secondary);
+            color: white;
+        }
+        .btn-submit {
+            background: var(--success);
+            color: white;
+            display: none;
+        }
+        #q-indicator {
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+        }
+        body.dark-mode #q-indicator {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8f9fa;
+        }
 
-/* Navigation */
-.nav-buttons { display: flex; justify-content: space-between; margin-top: 2rem; }
-.btn-nav { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-.btn-prev { background: #95a5a6; color: white; }
-.btn-next { background: var(--secondary); color: white; }
-.btn-submit { background: var(--success); color: white; display: none; }
+        /* ===== RESULT ===== */
+        #final-score-display {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        #score-message {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .btn-download {
+            background: var(--danger);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
 
-/* Certificate */
-#certificate-preview {
-    border: 10px double var(--primary); padding: 2rem; background: white;
-    text-align: center; display: none;
-}
-.cert-header { border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin-bottom: 1rem; }
-.cert-score { font-size: 3rem; color: var(--secondary); font-weight: bold; margin: 1rem 0; }
-.cert-details { text-align: left; margin: 2rem 0; border: 1px solid #ddd; padding: 1rem; }
-.btn-download { background: var(--accent); color: white; padding: 1rem; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; }
+        /* ===== CERTIFICATE PREVIEW (PDF) ===== */
+        #certificate-preview {
+            border: 10px double var(--primary);
+            padding: 2rem;
+            background: white;
+            text-align: center;
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cert-header {
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .cert-header h2 {
+            color: var(--primary);
+        }
+        .cert-score {
+            font-size: 3rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .cert-details {
+            text-align: left;
+            margin: 2rem 0;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+        }
 
-@media (max-width: 600px) {
-    .exam-header { flex-direction: column; gap: 0.5rem; }
-    .match-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-}
-</style>
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            margin-top: 3rem;
+            border-radius: 30px 30px 0 0;
+            text-align: center;
+        }
+        body.dark-mode .footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+        .footer p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--gradient-primary);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                max-height: calc(100vh - var(--header-height));
+                overflow-y: auto;
+            }
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                border-radius: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+            }
+            .dropdown-content {
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                width: 100%;
+                display: none;
+                padding: 0;
+                backdrop-filter: none;
+            }
+            .dropdown.active .dropdown-content {
+                display: flex;
+                flex-direction: column;
+            }
+            .dropdown-content a {
+                padding-left: 40px;
+                color: white;
+            }
+            .dropdown-content a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .exam-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+                top: var(--header-height);
+            }
+            .match-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .match-select {
+                width: 100%;
+                min-width: unset;
+            }
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #login-screen,
+            #result-screen {
+                padding: 1.5rem;
+            }
+            #final-score-display {
+                font-size: 3rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .navbar-brand img {
+                width: 35px;
+                height: 35px;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .question-card {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body oncontextmenu="return false;">
 
-<!-- Security Overlay -->
-<div id="security-overlay">
-    <i class="fas fa-exclamation-triangle fa-4x" style="color: var(--warning); margin-bottom: 1rem;"></i>
-    <h2>PELANGGARAN TERDETEKSI!</h2>
-    <p>Anda mencoba membuka tab lain atau minimize browser.</p>
-    <button onclick="resumeExam()" class="btn-start" style="margin-top: 1rem; width: auto; padding: 0.5rem 2rem;">Lanjutkan Ujian</button>
-</div>
+    <!-- ===== SECURITY OVERLAY ===== -->
+    <div id="security-overlay">
+        <i class="fas fa-exclamation-triangle fa-4x" style="color: var(--warning); margin-bottom: 1rem;"></i>
+        <h2>PELANGGARAN TERDETEKSI!</h2>
+        <p>Anda mencoba membuka tab lain atau minimize browser.</p>
+        <button onclick="resumeExam()" class="btn-start" style="width: auto; padding: 0.5rem 2.5rem;">Lanjutkan Ujian</button>
+    </div>
 
-<header class="exam-header">
-    <div><i class="fas fa-shield-alt"></i> Ujian Sosiologi Bab 3 (Berbasis Kasus)</div>
-    <div class="timer-box"><i class="far fa-clock"></i> <span id="time">60:00</span></div>
-</header>
-
-<div class="container">
-    <!-- LOGIN SCREEN -->
-    <div id="login-screen">
-        <h2><i class="fas fa-user-graduate"></i> Identitas Peserta</h2>
-        <p>Isi data diri sebelum memulai ujian (30 soal, waktu 60 menit).</p>
-        <div class="form-group">
-            <label>Nama Lengkap</label>
-            <input type="text" id="studentName" placeholder="Masukkan Nama Lengkap..." required>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" loading="lazy">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="lang-switch" id="langToggle" aria-label="Switch Language">
+                <span id="langText">EN</span>
+            </button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
         </div>
-        <div class="form-group">
-            <label>Kelas</label>
-            <select id="studentClass">
-                <option value="">-- Pilih Kelas --</option>
-                <option value="X-5">X-5</option>
-                <option value="X-6">X-6</option>
-                <option value="X-7">X-7</option>
-                <option value="X-8">X-8</option>
-                <option value="X-9">X-9</option>
-            </select>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="sosiologi-kelas-x.html" class="active"><i class="fas fa-book"></i> Sosiologi X</a></li>
+            <li><a href="geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+            <li><a href="ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+            <li><a href="ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                    <a href="#"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                    <a href="#"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+        <span>›</span>
+        <a href="sosiologi-kelas-x.html">Sosiologi Kelas X</a>
+        <span>›</span>
+        <a href="pembahasan-soal-sosiologi.html">Pembahasan Soal</a>
+        <span>›</span>
+        <span>Ujian Bab 3</span>
+    </div>
+
+    <!-- ===== EXAM HEADER (TIMER) ===== -->
+    <header class="exam-header">
+        <div class="title">
+            <i class="fas fa-shield-alt"></i>
+            <span>Ujian Sosiologi Bab 3 (Berbasis Kasus)</span>
         </div>
-        <div class="form-group">
-            <label>Nomor Absen</label>
-            <input type="number" id="studentAbsen" placeholder="Contoh: 15" required>
+        <div class="timer-box">
+            <i class="far fa-clock"></i>
+            <span id="time">60:00</span>
         </div>
-        <div style="background: #ffeaa7; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem;">
-            <strong>⚠️ Peraturan:</strong>
-            <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
-                <li>Waktu: 60 Menit (30 soal berbasis kasus).</li>
-                <li>Dilarang screenshot/minimize browser.</li>
-                <li>Soal terdiri dari Pilihan Ganda (PG), PG Kompleks, dan Menjodohkan.</li>
-                <li>Setiap soal menyajikan studi kasus nyata.</li>
-            </ul>
-        </div>
-        <button class="btn-start" onclick="startExam()">MULAI UJIAN</button>
-        <br><br>
-        <a href="../pembahasan-soal-sosiologi.html" style="color: var(--secondary);">Kembali ke Menu</a>
-    </div>
+    </header>
 
-    <!-- QUIZ CONTAINER -->
-    <div id="quiz-container" style="display: none;">
-        <div id="question-box"></div>
-        <div class="nav-buttons">
-            <button class="btn-nav btn-prev" onclick="prevQuestion()" id="btn-prev" disabled>Sebelumnya</button>
-            <span id="q-indicator" style="align-self: center; font-weight: bold;">1 / 30</span>
-            <button class="btn-nav btn-next" onclick="nextQuestion()" id="btn-next">Selanjutnya</button>
-            <button class="btn-nav btn-submit" onclick="finishExam()" id="btn-submit">SELESAI & KIRIM</button>
-        </div>
-    </div>
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
 
-    <!-- RESULT SCREEN -->
-    <div id="result-screen" style="display: none;">
-        <h2>Ujian Selesai!</h2>
-        <p>Berikut rekap hasil ujian Anda (30 soal, nilai maksimal 100).</p>
-        <div style="font-size: 4rem; color: var(--secondary); font-weight: bold; margin: 1rem 0;" id="final-score-display">0</div>
-        <p id="score-message"></p>
-        <button class="btn-download" onclick="generatePDF()">
-            <i class="fas fa-file-pdf"></i> Download Hasil Ujian (PDF)
-        </button>
-        <br><br>
-        <a href="../pembahasan-soal-sosiologi.html" class="btn-nav" style="background: var(--primary); color: white; text-decoration: none;">Kembali ke Menu Utama</a>
-    </div>
-</div>
-
-<!-- TEMPLATE CERTIFICATE PDF -->
-<div id="certificate-preview">
-    <div class="cert-header">
-        <h2>LAPORAN HASIL UJIAN</h2>
-        <h3>SOSIOLOGI KELAS X - BAB 3 (Nilai, Norma, Sosialisasi & Gejala Sosial)</h3>
-        <p>Ujian Berbasis Kasus - 30 Soal</p>
-    </div>
-    <div class="cert-score" id="cert-score-val">0</div>
-    <div class="cert-details">
-        <p><strong>Nama:</strong> <span id="cert-name"></span></p>
-        <p><strong>Kelas:</strong> <span id="cert-class"></span></p>
-        <p><strong>No. Absen:</strong> <span id="cert-absen"></span></p>
-        <p><strong>Tanggal:</strong> <span id="cert-date"></span></p>
-        <p><strong>Waktu Pengerjaan:</strong> <span id="cert-time-taken"></span></p>
-    </div>
-    <div style="text-align: left; margin-top: 1rem;">
-        <h4>Status Kelulusan (KKM 75):</h4>
-        <p id="cert-status" style="font-weight: bold; font-size: 1.2rem;"></p>
-        <p style="font-size: 0.8rem; color: #666; margin-top: 2rem;">Dokumen ini sah & otomatis.</p>
-    </div>
-</div>
-
-<script>
-// --------------------------------------------------------------
-// 30 SOAL BERBASIS KASUS (PG, PG Kompleks, Menjodohkan)
-// Semua memiliki properti "case" sebagai studi kasus nyata
-// --------------------------------------------------------------
-const questions = [
-    // ===================== PILIHAN GANDA (PG) =====================
-    { type: 'pg', case: "Di Desa Sukamaju, warga yang membuang sampah sembarangan akan mendapat teguran dari ketua RT dan dijauhi tetangga. Norma apa yang dilanggar?", q: "Berdasarkan kasus tersebut, sanksi sosial yang diterapkan termasuk dalam sanksi norma...", options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 2 },
-    { type: 'pg', case: "Rudi, seorang pegawai negeri, terbukti menerima suap proyek. Ia menggunakan uang itu untuk membeli mobil mewah. Menurut teori adaptasi Merton, perilaku Rudi termasuk tipe...", q: "Kasus penyimpangan Rudi menunjukkan tipe adaptasi...", options: ["A. Conformity", "B. Innovation", "C. Ritualism", "D. Retreatism", "E. Rebellion"], answer: 1 },
-    { type: 'pg', case: "Sebuah keluarga mengalami broken home karena orang tua bercerai. Anak remaja mereka mulai terlibat tawuran. Faktor psikologis penyebab penyimpangan adalah...", q: "Dari kasus tersebut, faktor penyebab penyimpangan yang paling dominan dari aspek psikologis adalah...", options: ["A. Kemiskinan struktural", "B. Kecemasan dan frustasi", "C. Labeling dari guru", "D. Subkultur menyimpang", "E. Lemahnya penegakan hukum"], answer: 1 },
-    { type: 'pg', case: "Polisi melakukan razia besar-besaran terhadap geng motor yang meresahkan warga. Puluhan pemotor ditangkap dan ditilang. Pengendalian sosial ini bersifat...", q: "Tindakan polisi tersebut merupakan bentuk pengendalian sosial...", options: ["A. Preventif", "B. Persuasif", "C. Represif", "D. Koersif", "E. Kuratif"], answer: 2 },
-    { type: 'pg', case: "Dalam analisis SWOT sebuah komunitas, maraknya ujaran kebencian di media sosial dinilai sebagai ancaman bagi persatuan. Unsur tersebut termasuk dalam kategori...", q: "Berdasarkan kasus, 'hoaks dan ujaran kebencian' termasuk dalam aspek...", options: ["A. Strength", "B. Weakness", "C. Opportunity", "D. Threat", "E. Strategy"], answer: 3 },
-    { type: 'pg', case: "Ani terbiasa membantu ibu membersihkan rumah tanpa diminta. Ia belajar nilai tanggung jawab dari orang tua. Proses internalisasi nilai ini terjadi melalui tahap...", q: "Dalam teori sosialisasi, proses pembelajaran nilai di lingkungan keluarga disebut sosialisasi...", options: ["A. Sekunder", "B. Primer", "C. Formal", "D. Represif", "E. Partisipatif"], answer: 1 },
-    { type: 'pg', case: "Di sebuah pabrik, pekerja yang melanggar aturan keselamatan kerja langsung dipecat. Sanksi tegas tersebut bertujuan memberikan efek jera. Norma yang digunakan adalah norma...", q: "Sanksi pemecatan termasuk dalam sanksi norma...", options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 0 },
-    { type: 'pg', case: "Seorang siswa SMA mencontek karena teman-temannya juga mencontek dan ia takut dianggap sok suci. Tekanan kelompok ini menunjukkan fungsi negatif dari...", q: "Kasus tersebut menggambarkan penyimpangan akibat...", options: ["A. Sosialisasi tidak sempurna", "B. Asosiasi diferensial", "C. Labeling", "D. Anomi", "E. Subkultur menyimpang"], answer: 1 },
-    { type: 'pg', case: "Di suatu desa, warga melakukan kerja bakti setiap minggu tanpa paksaan. Kegiatan ini mencerminkan nilai gotong royong. Bentuk interaksi sosial yang terjadi adalah...", q: "Kerja bakti tanpa paksaan termasuk bentuk interaksi sosial...", options: ["A. Kooperasi", "B. Akomodasi", "C. Kompetisi", "D. Kontravensi", "E. Konflik"], answer: 0 },
-    { type: 'pg', case: "Setelah demonstrasi besar, pemerintah dan mahasiswa mencapai kesepakatan damai. Proses meredakan ketegangan ini dinamakan...", q: "Berdasarkan ilustrasi, penyelesaian konflik tersebut termasuk bentuk...", options: ["A. Asimilasi", "B. Akulturasi", "C. Akomodasi", "D. Koersi", "E. Mediasi"], answer: 2 },
-    { type: 'pg', case: "Seorang preman memalak pedagang pasar. Tindakan ini melanggar norma hukum dan kesusilaan. Menurut teori labeling, preman tersebut akan mengalami...", q: "Dampak dari pemberian julukan 'preman' sesuai teori labeling adalah...", options: ["A. Penyimpangan primer", "B. Penyimpangan sekunder", "C. Konformitas", "D. Inovasi", "E. Ritualisme"], answer: 1 },
-    { type: 'pg', case: "Di era digital, banyak remaja kecanduan game online hingga mengabaikan sekolah. Lembaga sosial yang paling berperan dalam mengatasi masalah ini adalah...", q: "Kasus kecanduan game pada remaja membutuhkan peran utama dari lembaga...", options: ["A. Ekonomi", "B. Keluarga dan Pendidikan", "C. Agama", "D. Politik", "E. Hukum"], answer: 1 },
-    { type: 'pg', case: "Seorang artis terkenal membuat video kontroversial yang dianggap tidak sopan. Warganet ramai-ramai mengkritik dan membully. Sanksi yang diterima artis tersebut adalah sanksi...", q: "Berdasarkan kasus, sanksi sosial yang diterima termasuk jenis sanksi...", options: ["A. Formal positif", "B. Formal negatif", "C. Informal positif", "D. Informal negatif", "E. Hukum pidana"], answer: 3 },
-    { type: 'pg', case: "Dalam sebuah seminar, dua tokoh masyarakat berbeda pendapat tentang kebijakan baru, namun akhirnya sepakat untuk tidak saling menjatuhkan. Sikap ini mencerminkan nilai...", q: "Nilai yang mendasari sikap saling menghargai perbedaan pendapat adalah...", options: ["A. Toleransi", "B. Nasionalisme", "C. Individualisme", "D. Materialisme", "E. Hedonisme"], answer: 0 },
-    { type: 'pg', case: "Seorang mahasiswa dari Papua belajar di Jawa dan mulai menggunakan bahasa Jawa serta mengikuti tradisi setempat tanpa kehilangan identitas aslinya. Proses ini disebut...", q: "Pencampuran dua budaya tanpa menghilangkan budaya asli disebut...", options: ["A. Asimilasi", "B. Akulturasi", "C. Enkulturasi", "D. Sosialisasi", "E. Difusi"], answer: 1 },
-    { type: 'pg', case: "Ketua kelas memberikan sanksi membersihkan kelas bagi siswa yang terlambat. Tindakan ini merupakan pengendalian sosial di lingkungan...", q: "Pengendalian sosial melalui sanksi membersihkan kelas termasuk dalam lingkup...", options: ["A. Sekolah", "B. Keluarga", "C. Masyarakat", "D. Pemerintah", "E. Agama"], answer: 0 },
-    { type: 'pg', case: "Seorang remaja mulai merokok karena diajak teman-teman barunya. Teori yang menjelaskan perilaku ini adalah...", q: "Kasus perokok pemula karena pengaruh teman sesuai dengan teori...", options: ["A. Differential Association", "B. Anomie", "C. Labeling", "D. Konflik", "E. Fungsionalisme"], answer: 0 },
-    { type: 'pg', case: "Masyarakat adat Baduy masih sangat konsisten menjaga aturan leluhur. Jika ada warga yang melanggar, diasingkan. Norma yang berlaku sangat kuat disebut...", q: "Tingkat kekuatan norma dalam masyarakat Baduy tergolong...", options: ["A. Cara (folkways)", "B. Kebiasaan (customs)", "C. Tata kelakuan (mores)", "D. Hukum (laws)", "E. Fashion"], answer: 2 },
-    { type: 'pg', case: "Seorang CEO perusahaan memberikan bonus besar kepada karyawan berprestasi. Tindakan ini merupakan pengendalian sosial bentuk...", q: "Pemberian bonus termasuk pengendalian sosial jenis...", options: ["A. Persuasif", "B. Preventif", "C. Represif", "D. Koersif", "E. Edukatif"], answer: 0 },
-    { type: 'pg', case: "Di sebuah kampung, warga saling membantu membangun rumah tetangga yang terbakar. Nilai yang mendasari adalah...", q: "Kegiatan gotong royong mencerminkan nilai...", options: ["A. Individualisme", "B. Kompetisi", "C. Solidaritas mekanik", "D. Solidaritas organik", "E. Egoisme"], answer: 2 },
-
-    // ===================== PG KOMPLEKS (PILIH 2 JAWABAN) =====================
-    { type: 'complex', case: "Kasus pungli di sekolah: OSIS memungut biaya secara ilegal untuk kegiatan futsal. Lembaga pengendalian sosial FORMAL yang tepat menanganinya adalah...", q: "Pilih 2 lembaga FORMAL yang berwenang mengatasi pungli di sekolah!", options: ["A. Kepolisian", "B. Guru BK", "C. Komite Sekolah", "D. Pengadilan", "E. Tokoh Masyarakat"], answer: [0, 3] },
-    { type: 'complex', case: "Kasus perundungan (bullying) di media sosial. Dampak positif dari adanya peristiwa ini bagi masyarakat luas bisa berupa...", q: "Pilih 2 dampak POSITIF dari kasus bullying yang viral!", options: ["A. Munculnya kesadaran anti-bullying", "B. Memperkuat aturan perlindungan anak", "C. Menyebabkan depresi massal", "D. Meningkatkan aksi balas dendam", "E. Memecah persatuan"], answer: [0, 1] },
-    { type: 'complex', case: "Dalam proses integrasi sosial, dua kelompok etnis yang berbeda mulai bekerja sama dan saling menikah. Syarat terjadinya interaksi sosial yang tampak adalah...", q: "Pilih 2 syarat utama interaksi sosial berdasarkan kasus!", options: ["A. Kontak sosial", "B. Konflik berkepanjangan", "C. Komunikasi efektif", "D. Isolasi", "E. Dominasi"], answer: [0, 2] },
-    { type: 'complex', case: "Seorang siswa bolos sekolah sekali karena ikut lomba, namun setelah itu tidak pernah bolos. Ini termasuk penyimpangan primer. Contoh lain penyimpangan primer adalah...", q: "Pilih 2 contoh perilaku penyimpangan primer!", options: ["A. Terlambat datang sekali karena macet", "B. Korupsi rutin setiap bulan", "C. Membuang sampah sembarangan saat tidak ada CCTV", "D. Menjadi bandar narkoba", "E. Melakukan aksi teror"], answer: [0, 2] },
-    { type: 'complex', case: "Sebuah keluarga kaya raya, anak-anaknya hidup hedon dan suka pamer kekayaan. Nilai yang kurang ditanamkan orang tua adalah nilai kesederhanaan dan kerja keras. Fungsi keluarga sebagai lembaga sosialisasi yang lemah terlihat dari...", q: "Pilih 2 fungsi keluarga yang tidak berjalan optimal dalam kasus tersebut!", options: ["A. Fungsi afeksi", "B. Fungsi ekonomi", "C. Fungsi sosialisasi nilai", "D. Fungsi perlindungan", "E. Fungsi religius"], answer: [2, 4] },
-    { type: 'complex', case: "Pemerintah menerapkan PPKM saat pandemi, namun banyak warga melanggar. Pengendalian sosial yang tepat untuk menekan pelanggaran adalah...", q: "Pilih 2 upaya pengendalian sosial yang efektif!", options: ["A. Sosialisasi massal", "B. Sanksi denda yang tegas", "C. Membiarkan saja", "D. Menutup semua akses internet", "E. Memberikan penghargaan bagi yang patuh"], answer: [0, 1] },
-
-    // ===================== MENJODOHKAN (MATCHING) =====================
-    // Untuk matching, kami tidak mengacak opsi kanan (stabil), correctMap berisi indeks jawaban benar sesuai urutan pairs.
-    { type: 'matching', case: "Kasus: Norma di masyarakat memiliki sanksi berbeda-beda. Pasangkan jenis norma dengan sanksi yang tepat!", q: "Jodohkan norma dengan sanksinya!", pairs: [{ left: "Norma Agama", right: "Dosa / Berdosa" }, { left: "Norma Hukum", right: "Penjara / Denda" }, { left: "Norma Kesopanan", right: "Celaan / Teguran sosial" }], correctMap: [0, 1, 2] },
-    { type: 'matching', case: "Teori sosiologi klasik. Pasangkan tokoh dengan pemikirannya!", q: "Jodohkan tokoh dan teori!", pairs: [{ left: "Emile Durkheim", right: "Fakta Sosial" }, { left: "Max Weber", right: "Tindakan Sosial" }, { left: "Karl Marx", right: "Konflik Kelas" }], correctMap: [0, 1, 2] },
-    { type: 'matching', case: "Bentuk interaksi sosial dalam kehidupan sehari-hari. Cocokkan jenis interaksi dengan contohnya!", q: "Pasangan tepat interaksi sosial dan contoh!", pairs: [{ left: "Kooperasi", right: "Gotong royong membangun jembatan" }, { left: "Akomodasi", right: "Gencatan senjata antar geng" }, { left: "Kompetisi", right: "Lomba debat antar sekolah" }], correctMap: [0, 1, 2] },
-    { type: 'matching', case: "Jenis lembaga sosial dan fungsinya. Pasangkan!", q: "Cocokkan lembaga dengan fungsi utamanya!", pairs: [{ left: "Lembaga Keluarga", right: "Sosialisasi primer" }, { left: "Lembaga Pendidikan", right: "Transfer pengetahuan" }, { left: "Lembaga Agama", right: "Pedoman moral" }], correctMap: [0, 1, 2] },
-    ];
-
-// --- VARIABEL SISTEM ---
-let currentQ = 0;
-let answers = {};           // menyimpan jawaban: untuk pg: index, complex: array index, matching: object {pairIndex: selectedOptionIndex}
-let timerInterval;
-let timeLeft = 60 * 60;     // 60 menit = 3600 detik
-let examActive = false;
-let startTime;
-
-// --- MULAI UJIAN ---
-function startExam() {
-    const name = document.getElementById('studentName').value;
-    const cls = document.getElementById('studentClass').value;
-    const absen = document.getElementById('studentAbsen').value;
-    if(!name || !cls || !absen) {
-        alert("Harap lengkapi identitas terlebih dahulu!");
-        return;
-    }
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'block';
-    examActive = true;
-    startTime = new Date();
-    renderQuestion();
-    startTimer();
-    enableSecurity();
-}
-
-// --- RENDER SOAL BERDASARKAN TYPE ---
-function renderQuestion() {
-    const q = questions[currentQ];
-    const container = document.getElementById('question-box');
-    let badgeClass = q.type === 'pg' ? 'badge-pg' : (q.type === 'complex' ? 'badge-complex' : 'badge-match');
-    let typeName = q.type === 'pg' ? 'Pilihan Ganda' : (q.type === 'complex' ? 'PG Kompleks (Pilih ≥2)' : 'Menjodohkan');
-    let caseHtml = `<div class="case-box"><strong><i class="fas fa-search"></i> Studi Kasus:</strong> ${q.case}</div>`;
-    let inputHtml = '';
-
-    if(q.type === 'pg') {
-        inputHtml = `<div>${q.options.map((opt, idx) => `
-            <label class="option-label">
-                <input type="radio" name="answer" value="${idx}" ${answers[currentQ] === idx ? 'checked' : ''} onchange="saveAnswer(${idx})">
-                <span>${opt}</span>
-            </label>
-        `).join('')}</div>`;
-    } 
-    else if (q.type === 'complex') {
-        inputHtml = `<div>${q.options.map((opt, idx) => `
-            <label class="option-label">
-                <input type="checkbox" name="complex" value="${idx}" ${answers[currentQ] && answers[currentQ].includes(idx) ? 'checked' : ''} onchange="saveComplexAnswer(this, ${idx})">
-                <span>${opt}</span>
-            </label>
-        `).join('')}</div>`;
-    } 
-    else if (q.type === 'matching') {
-        // TIDAK mengacak opsi kanan agar penilaian stabil
-        let rightOptions = q.pairs.map(p => p.right);
-        inputHtml = `<div style="background:#f9f9f9; padding:1rem; border-radius:8px;">`;
-        q.pairs.forEach((pair, idx) => {
-            let savedVal = (answers[currentQ] && answers[currentQ][idx] !== undefined) ? answers[currentQ][idx] : '';
-            inputHtml += `
-            <div class="match-row">
-                <span><strong>${pair.left}</strong></span>
-                <select class="match-select" onchange="saveMatchAnswer(${idx}, this.value)">
-                    <option value="">-- Pilih Jawaban --</option>
-                    ${rightOptions.map((opt, optIdx) => 
-                        `<option value="${optIdx}" ${savedVal == optIdx ? 'selected' : ''}>${opt}</option>`
-                    ).join('')}
+        <!-- LOGIN SCREEN -->
+        <div id="login-screen">
+            <h2><i class="fas fa-user-graduate"></i> Identitas Peserta</h2>
+            <p>Isi data diri sebelum memulai ujian (30 soal, waktu 60 menit).</p>
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" id="studentName" placeholder="Masukkan Nama Lengkap..." required>
+            </div>
+            <div class="form-group">
+                <label>Kelas</label>
+                <select id="studentClass">
+                    <option value="">-- Pilih Kelas --</option>
+                    <option value="X-5">X-5</option>
+                    <option value="X-6">X-6</option>
+                    <option value="X-7">X-7</option>
+                    <option value="X-8">X-8</option>
+                    <option value="X-9">X-9</option>
                 </select>
-            </div>`;
-        });
-        inputHtml += `</div>`;
-    }
-
-    let html = `
-        <div class="question-card" style="display:block;">
-            <span class="q-badge ${badgeClass}">${typeName}</span>
-            ${caseHtml}
-            <div class="q-text">${currentQ+1}. ${q.q}</div>
-            ${inputHtml}
+            </div>
+            <div class="form-group">
+                <label>Nomor Absen</label>
+                <input type="number" id="studentAbsen" placeholder="Contoh: 15" required>
+            </div>
+            <div style="background: #ffeaa7; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem;">
+                <strong>⚠️ Peraturan:</strong>
+                <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
+                    <li>Waktu: 60 Menit (30 soal berbasis kasus).</li>
+                    <li>Dilarang screenshot/minimize browser.</li>
+                    <li>Soal terdiri dari Pilihan Ganda (PG), PG Kompleks, dan Menjodohkan.</li>
+                    <li>Setiap soal menyajikan studi kasus nyata.</li>
+                </ul>
+            </div>
+            <button class="btn-start" onclick="startExam()">MULAI UJIAN</button>
+            <br><br>
+            <a href="pembahasan-soal-sosiologi.html" class="btn-back">Kembali ke Menu</a>
         </div>
-    `;
-    container.innerHTML = html;
-    document.getElementById('q-indicator').innerText = `${currentQ+1} / ${questions.length}`;
-    document.getElementById('btn-prev').disabled = (currentQ === 0);
-    if(currentQ === questions.length-1) {
-        document.getElementById('btn-next').style.display = 'none';
-        document.getElementById('btn-submit').style.display = 'inline-block';
-    } else {
-        document.getElementById('btn-next').style.display = 'inline-block';
-        document.getElementById('btn-submit').style.display = 'none';
-    }
-}
 
-// --- SAVE FUNCTIONS ---
-function saveAnswer(val) { answers[currentQ] = val; }
-function saveComplexAnswer(el, val) {
-    if(!answers[currentQ]) answers[currentQ] = [];
-    if(el.checked) answers[currentQ].push(val);
-    else answers[currentQ] = answers[currentQ].filter(x => x !== val);
-}
-function saveMatchAnswer(pairIdx, val) {
-    if(!answers[currentQ]) answers[currentQ] = {};
-    if(val === "") delete answers[currentQ][pairIdx];
-    else answers[currentQ][pairIdx] = parseInt(val);
-}
+        <!-- QUIZ CONTAINER -->
+        <div id="quiz-container" style="display: none;">
+            <div id="question-box"></div>
+            <div class="nav-buttons">
+                <button class="btn-nav btn-prev" onclick="prevQuestion()" id="btn-prev" disabled>Sebelumnya</button>
+                <span id="q-indicator">1 / 30</span>
+                <button class="btn-nav btn-next" onclick="nextQuestion()" id="btn-next">Selanjutnya</button>
+                <button class="btn-nav btn-submit" onclick="finishExam()" id="btn-submit">SELESAI & KIRIM</button>
+            </div>
+        </div>
 
-function nextQuestion() { if(currentQ < questions.length-1) { currentQ++; renderQuestion(); } }
-function prevQuestion() { if(currentQ > 0) { currentQ--; renderQuestion(); } }
+        <!-- RESULT SCREEN -->
+        <div id="result-screen" style="display: none;">
+            <h2>Ujian Selesai!</h2>
+            <p>Berikut rekap hasil ujian Anda (30 soal, nilai maksimal 100).</p>
+            <div id="final-score-display">0</div>
+            <p id="score-message"></p>
+            <button class="btn-download" onclick="generatePDF()">
+                <i class="fas fa-file-pdf"></i> Download Hasil Ujian (PDF)
+            </button>
+            <br><br>
+            <a href="pembahasan-soal-sosiologi.html" class="btn-back">Kembali ke Menu Utama</a>
+        </div>
 
-// --- TIMER 60 MENIT ---
-function startTimer() {
-    const display = document.getElementById('time');
-    timerInterval = setInterval(() => {
-        if(timeLeft <= 0) {
-            clearInterval(timerInterval);
-            finishExam(true);
-        } else {
-            timeLeft--;
-            let m = Math.floor(timeLeft / 60);
-            let s = timeLeft % 60;
-            display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        }
-    }, 1000);
-}
+        <!-- TEMPLATE CERTIFICATE PDF (hidden) -->
+        <div id="certificate-preview">
+            <div class="cert-header">
+                <h2>LAPORAN HASIL UJIAN</h2>
+                <h3>SOSIOLOGI KELAS X - BAB 3 (Nilai, Norma, Sosialisasi & Gejala Sosial)</h3>
+                <p>Ujian Berbasis Kasus - 30 Soal</p>
+            </div>
+            <div class="cert-score" id="cert-score-val">0</div>
+            <div class="cert-details">
+                <p><strong>Nama:</strong> <span id="cert-name"></span></p>
+                <p><strong>Kelas:</strong> <span id="cert-class"></span></p>
+                <p><strong>No. Absen:</strong> <span id="cert-absen"></span></p>
+                <p><strong>Tanggal:</strong> <span id="cert-date"></span></p>
+                <p><strong>Waktu Pengerjaan:</strong> <span id="cert-time-taken"></span></p>
+            </div>
+            <div style="text-align: left; margin-top: 1rem;">
+                <h4>Status Kelulusan (KKM 75):</h4>
+                <p id="cert-status" style="font-weight: bold; font-size: 1.2rem;"></p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 2rem;">Dokumen ini sah & otomatis.</p>
+            </div>
+        </div>
+    </div>
 
-// --- FINISH & SKORING ---
-function finishExam(auto = false) {
-    if(!auto && !confirm("Yakin ingin mengumpulkan ujian?")) return;
-    clearInterval(timerInterval);
-    examActive = false;
-    calculateScore();
-}
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>&copy; 2025 SMA Negeri 1 Cluring • Sosiologi Kelas X</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Belajar Sosiologi dengan Kritis dan Kreatif!</p>
+    </footer>
 
-function calculateScore() {
-    let totalScore = 0;
-    let maxScore = 100;
-    let pointsPerQ = maxScore / questions.length;
+    <script>
+        // ============================================================
+        // NAVBAR MOBILE
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
-    questions.forEach((q, idx) => {
-        let userAns = answers[idx];
-        let isCorrect = false;
-        if(q.type === 'pg') {
-            if(userAns !== undefined && userAns === q.answer) isCorrect = true;
-        } 
-        else if (q.type === 'complex') {
-            if(userAns && Array.isArray(userAns) && userAns.length === q.answer.length && 
-               JSON.stringify(userAns.sort()) === JSON.stringify(q.answer.sort())) isCorrect = true;
-        } 
-        else if (q.type === 'matching') {
-            if(userAns && typeof userAns === 'object') {
-                let correct = true;
-                for(let i=0; i<q.correctMap.length; i++) {
-                    if(userAns[i] !== q.correctMap[i]) { correct = false; break; }
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
                 }
-                if(correct) isCorrect = true;
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
+                !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+                navLinks.classList.remove('active');
+                hamburger.textContent = '☰';
+            }
+        });
+
+        // ============================================================
+        // DARK MODE & LANGUAGE TOGGLE (fungsi minimal)
+        // ============================================================
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Language toggle (hanya UI, tidak ada konten bilingual di halaman ini)
+        document.getElementById('langToggle').addEventListener('click', function() {
+            const langText = document.getElementById('langText');
+            if (langText.textContent === 'EN') {
+                langText.textContent = 'ID';
+                // bisa ditambahkan terjemahan jika diperlukan
+            } else {
+                langText.textContent = 'EN';
+            }
+        });
+
+        // ============================================================
+        // SISTEM UJIAN (30 SOAL)
+        // ============================================================
+        const questions = [
+            // ===================== PG (20 soal) =====================
+            { type: 'pg', case: "Di Desa Sukamaju, warga yang membuang sampah sembarangan akan mendapat teguran dari ketua RT dan dijauhi tetangga. Norma apa yang dilanggar?",
+                q: "Berdasarkan kasus tersebut, sanksi sosial yang diterapkan termasuk dalam sanksi norma...",
+                options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 2 },
+            { type: 'pg', case: "Rudi, seorang pegawai negeri, terbukti menerima suap proyek. Ia menggunakan uang itu untuk membeli mobil mewah. Menurut teori adaptasi Merton, perilaku Rudi termasuk tipe...",
+                q: "Kasus penyimpangan Rudi menunjukkan tipe adaptasi...",
+                options: ["A. Conformity", "B. Innovation", "C. Ritualism", "D. Retreatism", "E. Rebellion"], answer: 1 },
+            { type: 'pg', case: "Sebuah keluarga mengalami broken home karena orang tua bercerai. Anak remaja mereka mulai terlibat tawuran. Faktor psikologis penyebab penyimpangan adalah...",
+                q: "Dari kasus tersebut, faktor penyebab penyimpangan yang paling dominan dari aspek psikologis adalah...",
+                options: ["A. Kemiskinan struktural", "B. Kecemasan dan frustasi", "C. Labeling dari guru", "D. Subkultur menyimpang",
+                    "E. Lemahnya penegakan hukum"
+                ], answer: 1 },
+            { type: 'pg', case: "Polisi melakukan razia besar-besaran terhadap geng motor yang meresahkan warga. Puluhan pemotor ditangkap dan ditilang. Pengendalian sosial ini bersifat...",
+                q: "Tindakan polisi tersebut merupakan bentuk pengendalian sosial...",
+                options: ["A. Preventif", "B. Persuasif", "C. Represif", "D. Koersif", "E. Kuratif"], answer: 2 },
+            { type: 'pg', case: "Dalam analisis SWOT sebuah komunitas, maraknya ujaran kebencian di media sosial dinilai sebagai ancaman bagi persatuan. Unsur tersebut termasuk dalam kategori...",
+                q: "Berdasarkan kasus, 'hoaks dan ujaran kebencian' termasuk dalam aspek...",
+                options: ["A. Strength", "B. Weakness", "C. Opportunity", "D. Threat", "E. Strategy"], answer: 3 },
+            { type: 'pg', case: "Ani terbiasa membantu ibu membersihkan rumah tanpa diminta. Ia belajar nilai tanggung jawab dari orang tua. Proses internalisasi nilai ini terjadi melalui tahap...",
+                q: "Dalam teori sosialisasi, proses pembelajaran nilai di lingkungan keluarga disebut sosialisasi...",
+                options: ["A. Sekunder", "B. Primer", "C. Formal", "D. Represif", "E. Partisipatif"], answer: 1 },
+            { type: 'pg', case: "Di sebuah pabrik, pekerja yang melanggar aturan keselamatan kerja langsung dipecat. Sanksi tegas tersebut bertujuan memberikan efek jera. Norma yang digunakan adalah norma...",
+                q: "Sanksi pemecatan termasuk dalam sanksi norma...",
+                options: ["A. Hukum", "B. Agama", "C. Kesopanan", "D. Kesusilaan", "E. Kebiasaan"], answer: 0 },
+            { type: 'pg', case: "Seorang siswa SMA mencontek karena teman-temannya juga mencontek dan ia takut dianggap sok suci. Tekanan kelompok ini menunjukkan fungsi negatif dari...",
+                q: "Kasus tersebut menggambarkan penyimpangan akibat...",
+                options: ["A. Sosialisasi tidak sempurna", "B. Asosiasi diferensial", "C. Labeling", "D. Anomi", "E. Subkultur menyimpang"],
+                answer: 1 },
+            { type: 'pg', case: "Di suatu desa, warga melakukan kerja bakti setiap minggu tanpa paksaan. Kegiatan ini mencerminkan nilai gotong royong. Bentuk interaksi sosial yang terjadi adalah...",
+                q: "Kerja bakti tanpa paksaan termasuk bentuk interaksi sosial...",
+                options: ["A. Kooperasi", "B. Akomodasi", "C. Kompetisi", "D. Kontravensi", "E. Konflik"], answer: 0 },
+            { type: 'pg', case: "Setelah demonstrasi besar, pemerintah dan mahasiswa mencapai kesepakatan damai. Proses meredakan ketegangan ini dinamakan...",
+                q: "Berdasarkan ilustrasi, penyelesaian konflik tersebut termasuk bentuk...",
+                options: ["A. Asimilasi", "B. Akulturasi", "C. Akomodasi", "D. Koersi", "E. Mediasi"], answer: 2 },
+            { type: 'pg', case: "Seorang preman memalak pedagang pasar. Tindakan ini melanggar norma hukum dan kesusilaan. Menurut teori labeling, preman tersebut akan mengalami...",
+                q: "Dampak dari pemberian julukan 'preman' sesuai teori labeling adalah...",
+                options: ["A. Penyimpangan primer", "B. Penyimpangan sekunder", "C. Konformitas", "D. Inovasi", "E. Ritualisme"],
+                answer: 1 },
+            { type: 'pg', case: "Di era digital, banyak remaja kecanduan game online hingga mengabaikan sekolah. Lembaga sosial yang paling berperan dalam mengatasi masalah ini adalah...",
+                q: "Kasus kecanduan game pada remaja membutuhkan peran utama dari lembaga...",
+                options: ["A. Ekonomi", "B. Keluarga dan Pendidikan", "C. Agama", "D. Politik", "E. Hukum"], answer: 1 },
+            { type: 'pg', case: "Seorang artis terkenal membuat video kontroversial yang dianggap tidak sopan. Warganet ramai-ramai mengkritik dan membully. Sanksi yang diterima artis tersebut adalah sanksi...",
+                q: "Berdasarkan kasus, sanksi sosial yang diterima termasuk jenis sanksi...",
+                options: ["A. Formal positif", "B. Formal negatif", "C. Informal positif", "D. Informal negatif", "E. Hukum pidana"],
+                answer: 3 },
+            { type: 'pg', case: "Dalam sebuah seminar, dua tokoh masyarakat berbeda pendapat tentang kebijakan baru, namun akhirnya sepakat untuk tidak saling menjatuhkan. Sikap ini mencerminkan nilai...",
+                q: "Nilai yang mendasari sikap saling menghargai perbedaan pendapat adalah...",
+                options: ["A. Toleransi", "B. Nasionalisme", "C. Individualisme", "D. Materialisme", "E. Hedonisme"], answer: 0 },
+            { type: 'pg', case: "Seorang mahasiswa dari Papua belajar di Jawa dan mulai menggunakan bahasa Jawa serta mengikuti tradisi setempat tanpa kehilangan identitas aslinya. Proses ini disebut...",
+                q: "Pencampuran dua budaya tanpa menghilangkan budaya asli disebut...",
+                options: ["A. Asimilasi", "B. Akulturasi", "C. Enkulturasi", "D. Sosialisasi", "E. Difusi"], answer: 1 },
+            { type: 'pg', case: "Ketua kelas memberikan sanksi membersihkan kelas bagi siswa yang terlambat. Tindakan ini merupakan pengendalian sosial di lingkungan...",
+                q: "Pengendalian sosial melalui sanksi membersihkan kelas termasuk dalam lingkup...",
+                options: ["A. Sekolah", "B. Keluarga", "C. Masyarakat", "D. Pemerintah", "E. Agama"], answer: 0 },
+            { type: 'pg', case: "Seorang remaja mulai merokok karena diajak teman-teman barunya. Teori yang menjelaskan perilaku ini adalah...",
+                q: "Kasus perokok pemula karena pengaruh teman sesuai dengan teori...",
+                options: ["A. Differential Association", "B. Anomie", "C. Labeling", "D. Konflik", "E. Fungsionalisme"], answer: 0 },
+            { type: 'pg', case: "Masyarakat adat Baduy masih sangat konsisten menjaga aturan leluhur. Jika ada warga yang melanggar, diasingkan. Norma yang berlaku sangat kuat disebut...",
+                q: "Tingkat kekuatan norma dalam masyarakat Baduy tergolong...",
+                options: ["A. Cara (folkways)", "B. Kebiasaan (customs)", "C. Tata kelakuan (mores)", "D. Hukum (laws)", "E. Fashion"],
+                answer: 2 },
+            { type: 'pg', case: "Seorang CEO perusahaan memberikan bonus besar kepada karyawan berprestasi. Tindakan ini merupakan pengendalian sosial bentuk...",
+                q: "Pemberian bonus termasuk pengendalian sosial jenis...",
+                options: ["A. Persuasif", "B. Preventif", "C. Represif", "D. Koersif", "E. Edukatif"], answer: 0 },
+            { type: 'pg', case: "Di sebuah kampung, warga saling membantu membangun rumah tetangga yang terbakar. Nilai yang mendasari adalah...",
+                q: "Kegiatan gotong royong mencerminkan nilai...",
+                options: ["A. Individualisme", "B. Kompetisi", "C. Solidaritas mekanik", "D. Solidaritas organik", "E. Egoisme"],
+                answer: 2 },
+
+            // ===================== PG KOMPLEKS (6 soal) =====================
+            { type: 'complex', case: "Kasus pungli di sekolah: OSIS memungut biaya secara ilegal untuk kegiatan futsal. Lembaga pengendalian sosial FORMAL yang tepat menanganinya adalah...",
+                q: "Pilih 2 lembaga FORMAL yang berwenang mengatasi pungli di sekolah!",
+                options: ["A. Kepolisian", "B. Guru BK", "C. Komite Sekolah", "D. Pengadilan", "E. Tokoh Masyarakat"], answer: [0, 3] },
+            { type: 'complex', case: "Kasus perundungan (bullying) di media sosial. Dampak positif dari adanya peristiwa ini bagi masyarakat luas bisa berupa...",
+                q: "Pilih 2 dampak POSITIF dari kasus bullying yang viral!",
+                options: ["A. Munculnya kesadaran anti-bullying", "B. Memperkuat aturan perlindungan anak", "C. Menyebabkan depresi massal",
+                    "D. Meningkatkan aksi balas dendam", "E. Memecah persatuan"
+                ], answer: [0, 1] },
+            { type: 'complex', case: "Dalam proses integrasi sosial, dua kelompok etnis yang berbeda mulai bekerja sama dan saling menikah. Syarat terjadinya interaksi sosial yang tampak adalah...",
+                q: "Pilih 2 syarat utama interaksi sosial berdasarkan kasus!",
+                options: ["A. Kontak sosial", "B. Konflik berkepanjangan", "C. Komunikasi efektif", "D. Isolasi", "E. Dominasi"],
+                answer: [0, 2] },
+            { type: 'complex', case: "Seorang siswa bolos sekolah sekali karena ikut lomba, namun setelah itu tidak pernah bolos. Ini termasuk penyimpangan primer. Contoh lain penyimpangan primer adalah...",
+                q: "Pilih 2 contoh perilaku penyimpangan primer!",
+                options: ["A. Terlambat datang sekali karena macet", "B. Korupsi rutin setiap bulan", "C. Membuang sampah sembarangan saat tidak ada CCTV",
+                    "D. Menjadi bandar narkoba", "E. Melakukan aksi teror"
+                ], answer: [0, 2] },
+            { type: 'complex', case: "Sebuah keluarga kaya raya, anak-anaknya hidup hedon dan suka pamer kekayaan. Nilai yang kurang ditanamkan orang tua adalah nilai kesederhanaan dan kerja keras. Fungsi keluarga sebagai lembaga sosialisasi yang lemah terlihat dari...",
+                q: "Pilih 2 fungsi keluarga yang tidak berjalan optimal dalam kasus tersebut!",
+                options: ["A. Fungsi afeksi", "B. Fungsi ekonomi", "C. Fungsi sosialisasi nilai", "D. Fungsi perlindungan",
+                    "E. Fungsi religius"
+                ], answer: [2, 4] },
+            { type: 'complex', case: "Pemerintah menerapkan PPKM saat pandemi, namun banyak warga melanggar. Pengendalian sosial yang tepat untuk menekan pelanggaran adalah...",
+                q: "Pilih 2 upaya pengendalian sosial yang efektif!",
+                options: ["A. Sosialisasi massal", "B. Sanksi denda yang tegas", "C. Membiarkan saja", "D. Menutup semua akses internet",
+                    "E. Memberikan penghargaan bagi yang patuh"
+                ], answer: [0, 1] },
+
+            // ===================== MENJODOHKAN (4 soal) =====================
+            { type: 'matching', case: "Kasus: Norma di masyarakat memiliki sanksi berbeda-beda. Pasangkan jenis norma dengan sanksi yang tepat!",
+                q: "Jodohkan norma dengan sanksinya!",
+                pairs: [{ left: "Norma Agama", right: "Dosa / Berdosa" }, { left: "Norma Hukum", right: "Penjara / Denda" },
+                    { left: "Norma Kesopanan", right: "Celaan / Teguran sosial" }
+                ], correctMap: [0, 1, 2] },
+            { type: 'matching', case: "Teori sosiologi klasik. Pasangkan tokoh dengan pemikirannya!",
+                q: "Jodohkan tokoh dan teori!",
+                pairs: [{ left: "Emile Durkheim", right: "Fakta Sosial" }, { left: "Max Weber", right: "Tindakan Sosial" },
+                    { left: "Karl Marx", right: "Konflik Kelas" }
+                ], correctMap: [0, 1, 2] },
+            { type: 'matching', case: "Bentuk interaksi sosial dalam kehidupan sehari-hari. Cocokkan jenis interaksi dengan contohnya!",
+                q: "Pasangan tepat interaksi sosial dan contoh!",
+                pairs: [{ left: "Kooperasi", right: "Gotong royong membangun jembatan" }, { left: "Akomodasi",
+                        right: "Gencatan senjata antar geng" },
+                    { left: "Kompetisi", right: "Lomba debat antar sekolah" }
+                ], correctMap: [0, 1, 2] },
+            { type: 'matching', case: "Jenis lembaga sosial dan fungsinya. Pasangkan!",
+                q: "Cocokkan lembaga dengan fungsi utamanya!",
+                pairs: [{ left: "Lembaga Keluarga", right: "Sosialisasi primer" }, { left: "Lembaga Pendidikan",
+                        right: "Transfer pengetahuan" },
+                    { left: "Lembaga Agama", right: "Pedoman moral" }
+                ], correctMap: [0, 1, 2] },
+        ];
+
+        // --- VARIABEL SISTEM ---
+        let currentQ = 0;
+        let answers = {};
+        let timerInterval;
+        let timeLeft = 60 * 60;
+        let examActive = false;
+        let startTime;
+
+        // --- MULAI UJIAN ---
+        function startExam() {
+            const name = document.getElementById('studentName').value;
+            const cls = document.getElementById('studentClass').value;
+            const absen = document.getElementById('studentAbsen').value;
+            if (!name || !cls || !absen) {
+                alert("Harap lengkapi identitas terlebih dahulu!");
+                return;
+            }
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            examActive = true;
+            startTime = new Date();
+            renderQuestion();
+            startTimer();
+            enableSecurity();
+        }
+
+        // --- RENDER SOAL ---
+        function renderQuestion() {
+            const q = questions[currentQ];
+            const container = document.getElementById('question-box');
+            let badgeClass = q.type === 'pg' ? 'badge-pg' : (q.type === 'complex' ? 'badge-complex' : 'badge-match');
+            let typeName = q.type === 'pg' ? 'Pilihan Ganda' : (q.type === 'complex' ? 'PG Kompleks (Pilih ≥2)' :
+            'Menjodohkan');
+            let caseHtml = `<div class="case-box"><strong><i class="fas fa-search"></i> Studi Kasus:</strong> ${q.case}</div>`;
+            let inputHtml = '';
+
+            if (q.type === 'pg') {
+                inputHtml = `<div>${q.options.map((opt, idx) => `
+                        <label class="option-label">
+                            <input type="radio" name="answer" value="${idx}" ${answers[currentQ] === idx ? 'checked' : ''} onchange="saveAnswer(${idx})">
+                            <span>${opt}</span>
+                        </label>
+                    `).join('')}</div>`;
+            } else if (q.type === 'complex') {
+                inputHtml = `<div>${q.options.map((opt, idx) => `
+                        <label class="option-label">
+                            <input type="checkbox" name="complex" value="${idx}" ${answers[currentQ] && answers[currentQ].includes(idx) ? 'checked' : ''} onchange="saveComplexAnswer(this, ${idx})">
+                            <span>${opt}</span>
+                        </label>
+                    `).join('')}</div>`;
+            } else if (q.type === 'matching') {
+                let rightOptions = q.pairs.map(p => p.right);
+                inputHtml = `<div style="background:#f9f9f9; padding:1rem; border-radius:8px;">`;
+                q.pairs.forEach((pair, idx) => {
+                    let savedVal = (answers[currentQ] && answers[currentQ][idx] !== undefined) ? answers[currentQ][
+                    idx] : '';
+                    inputHtml += `
+                        <div class="match-row">
+                            <span><strong>${pair.left}</strong></span>
+                            <select class="match-select" onchange="saveMatchAnswer(${idx}, this.value)">
+                                <option value="">-- Pilih Jawaban --</option>
+                                ${rightOptions.map((opt, optIdx) => 
+                                    `<option value="${optIdx}" ${savedVal == optIdx ? 'selected' : ''}>${opt}</option>`
+                                ).join('')}
+                            </select>
+                        </div>`;
+                });
+                inputHtml += `</div>`;
+            }
+
+            let html = `
+                <div class="question-card" style="display:block;">
+                    <span class="q-badge ${badgeClass}">${typeName}</span>
+                    ${caseHtml}
+                    <div class="q-text">${currentQ+1}. ${q.q}</div>
+                    ${inputHtml}
+                </div>
+            `;
+            container.innerHTML = html;
+            document.getElementById('q-indicator').innerText = `${currentQ+1} / ${questions.length}`;
+            document.getElementById('btn-prev').disabled = (currentQ === 0);
+            if (currentQ === questions.length - 1) {
+                document.getElementById('btn-next').style.display = 'none';
+                document.getElementById('btn-submit').style.display = 'inline-block';
+            } else {
+                document.getElementById('btn-next').style.display = 'inline-block';
+                document.getElementById('btn-submit').style.display = 'none';
             }
         }
-        if(isCorrect) totalScore += pointsPerQ;
-    });
 
-    let finalScore = Math.round(totalScore);
-    document.getElementById('quiz-container').style.display = 'none';
-    document.getElementById('result-screen').style.display = 'block';
-    document.getElementById('final-score-display').innerText = finalScore;
-    let msg = finalScore >= 75 ? "🎉 Selamat! Anda LULUS KKM (75)." : "📘 Maaf, Anda belum mencapai KKM. Perbanyak belajar kasus sosiologi.";
-    document.getElementById('score-message').innerHTML = msg;
-    document.getElementById('score-message').style.color = finalScore >= 75 ? 'green' : 'red';
-    prepareCertificate(finalScore);
-}
+        // --- SAVE FUNCTIONS ---
+        function saveAnswer(val) { answers[currentQ] = val; }
 
-function prepareCertificate(score) {
-    const name = document.getElementById('studentName').value;
-    const cls = document.getElementById('studentClass').value;
-    const absen = document.getElementById('studentAbsen').value;
-    const date = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('cert-name').innerText = name;
-    document.getElementById('cert-class').innerText = cls;
-    document.getElementById('cert-absen').innerText = absen;
-    document.getElementById('cert-date').innerText = date;
-    document.getElementById('cert-score-val').innerText = score;
-    let timeTaken = 60 - Math.ceil(timeLeft / 60);
-    document.getElementById('cert-time-taken').innerText = timeTaken + " Menit";
-    document.getElementById('cert-status').innerText = score >= 75 ? "LULUS" : "REMIDIAL";
-    document.getElementById('cert-status').style.color = score >= 75 ? "green" : "red";
-}
+        function saveComplexAnswer(el, val) {
+            if (!answers[currentQ]) answers[currentQ] = [];
+            if (el.checked) answers[currentQ].push(val);
+            else answers[currentQ] = answers[currentQ].filter(x => x !== val);
+        }
 
-function generatePDF() {
-    const element = document.getElementById('certificate-preview');
-    element.style.display = 'block';
-    const opt = { margin: 0.5, filename: `Hasil_Ujian_Sosiologi_${document.getElementById('studentName').value}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
-    html2pdf().set(opt).from(element).save().then(() => { element.style.display = 'none'; });
-}
+        function saveMatchAnswer(pairIdx, val) {
+            if (!answers[currentQ]) answers[currentQ] = {};
+            if (val === "") delete answers[currentQ][pairIdx];
+            else answers[currentQ][pairIdx] = parseInt(val);
+        }
 
-// --- KEAMANAN ---
-function enableSecurity() {
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false; };
-    document.addEventListener("visibilitychange", function() { if(document.hidden && examActive) document.getElementById('security-overlay').style.display = 'flex'; });
-}
-function resumeExam() { document.getElementById('security-overlay').style.display = 'none'; }
-</script>
+        function nextQuestion() { if (currentQ < questions.length - 1) { currentQ++;
+                renderQuestion(); } }
+
+        function prevQuestion() { if (currentQ > 0) { currentQ--;
+                renderQuestion(); } }
+
+        // --- TIMER ---
+        function startTimer() {
+            const display = document.getElementById('time');
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishExam(true);
+                } else {
+                    timeLeft--;
+                    let m = Math.floor(timeLeft / 60);
+                    let s = timeLeft % 60;
+                    display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                }
+            }, 1000);
+        }
+
+        // --- FINISH & SKORING ---
+        function finishExam(auto = false) {
+            if (!auto && !confirm("Yakin ingin mengumpulkan ujian?")) return;
+            clearInterval(timerInterval);
+            examActive = false;
+            calculateScore();
+        }
+
+        function calculateScore() {
+            let totalScore = 0;
+            let maxScore = 100;
+            let pointsPerQ = maxScore / questions.length;
+
+            questions.forEach((q, idx) => {
+                let userAns = answers[idx];
+                let isCorrect = false;
+                if (q.type === 'pg') {
+                    if (userAns !== undefined && userAns === q.answer) isCorrect = true;
+                } else if (q.type === 'complex') {
+                    if (userAns && Array.isArray(userAns) && userAns.length === q.answer.length &&
+                        JSON.stringify(userAns.sort()) === JSON.stringify(q.answer.sort())) isCorrect = true;
+                } else if (q.type === 'matching') {
+                    if (userAns && typeof userAns === 'object') {
+                        let correct = true;
+                        for (let i = 0; i < q.correctMap.length; i++) {
+                            if (userAns[i] !== q.correctMap[i]) { correct = false; break; }
+                        }
+                        if (correct) isCorrect = true;
+                    }
+                }
+                if (isCorrect) totalScore += pointsPerQ;
+            });
+
+            let finalScore = Math.round(totalScore);
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            document.getElementById('final-score-display').innerText = finalScore;
+            let msg = finalScore >= 75 ? "🎉 Selamat! Anda LULUS KKM (75)." :
+                "📘 Maaf, Anda belum mencapai KKM. Perbanyak belajar kasus sosiologi.";
+            document.getElementById('score-message').innerHTML = msg;
+            document.getElementById('score-message').style.color = finalScore >= 75 ? 'green' : 'red';
+            prepareCertificate(finalScore);
+        }
+
+        function prepareCertificate(score) {
+            const name = document.getElementById('studentName').value;
+            const cls = document.getElementById('studentClass').value;
+            const absen = document.getElementById('studentAbsen').value;
+            const date = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long',
+                day: 'numeric' });
+            document.getElementById('cert-name').innerText = name;
+            document.getElementById('cert-class').innerText = cls;
+            document.getElementById('cert-absen').innerText = absen;
+            document.getElementById('cert-date').innerText = date;
+            document.getElementById('cert-score-val').innerText = score;
+            let timeTaken = 60 - Math.ceil(timeLeft / 60);
+            document.getElementById('cert-time-taken').innerText = timeTaken + " Menit";
+            document.getElementById('cert-status').innerText = score >= 75 ? "LULUS" : "REMIDIAL";
+            document.getElementById('cert-status').style.color = score >= 75 ? "green" : "red";
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('certificate-preview');
+            element.style.display = 'block';
+            const opt = {
+                margin: 0.5,
+                filename: `Hasil_Ujian_Sosiologi_${document.getElementById('studentName').value}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save().then(() => { element.style.display = 'none'; });
+        }
+
+        // --- KEAMANAN ---
+        function enableSecurity() {
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.onkeydown = function(e) {
+                if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false;
+            };
+            document.addEventListener("visibilitychange", function() {
+                if (document.hidden && examActive) document.getElementById('security-overlay').style.display = 'flex';
+            });
+        }
+
+        function resumeExam() {
+            document.getElementById('security-overlay').style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>
