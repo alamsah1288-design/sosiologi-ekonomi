@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 3.B — Jurnal Penyesuaian + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+.adj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:15px 0}
+.adj-item{background:white;padding:18px;border-radius:10px;border-top:4px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+body.dark-mode .adj-item{background:#1e1e1e}
+.adj-item i{font-size:2rem;color:var(--primary);margin-bottom:10px}
+.adj-item h4{color:var(--primary);margin-bottom:8px}
+.adj-item p{font-size:.9rem;margin:0}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#11998e,#38ef7d);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(17,153,142,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.simulator h3{color:#fef3c7!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-form{background:rgba(255,255,255,.1);padding:20px;border-radius:10px;margin-bottom:15px;backdrop-filter:blur(10px)}
+.sim-form label{display:block;margin-bottom:8px;font-weight:500}
+.sim-form select,.sim-form input{width:100%;padding:10px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;margin-bottom:10px;font-size:.95rem;background:white;color:#333}
+.sim-btn{background:white;color:#11998e;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.journal-result{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px}
+.journal-result h4{text-align:center;color:var(--primary);margin-bottom:15px}
+.journal-result table{width:100%;border-collapse:collapse}
+.journal-result td{padding:8px;border-bottom:1px solid #e5e7eb}
+.journal-result .kredit{padding-left:30px;color:var(--danger);font-weight:700}
+.journal-result .debit{color:var(--success);font-weight:700;text-align:right}
+.journal-result .desc{font-style:italic;color:var(--gray);font-size:.85rem;text-align:center}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-sliders-h"></i></div>
+<h1>Bab 3.B — Jurnal Penyesuaian</h1>
+<p class="subtitle">Menyesuaikan saldo akun di akhir periode + Simulator 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 3.B
+</div>
+
+<div class="card">
+<h2><i class="fas fa-sliders-h"></i> Pengertian Jurnal Penyesuaian</h2>
+<p><strong>Jurnal penyesuaian (adjustment journal)</strong> adalah jurnal yang dibuat <strong>di akhir periode</strong> untuk <strong>menyesuaikan</strong> saldo akun-akun tertentu agar laporan keuangan mencerminkan keadaan yang <strong>sebenarnya</strong>.</p>
+
+<div class="highlight-box">
+<strong>🎯 Tujuan Jurnal Penyesuaian:</strong><br>
+• Menyesuaikan saldo akun yang <strong>belum tercatat</strong><br>
+• Mengakui pendapatan/beban yang <strong>menjadi hak/kewajiban</strong> periode ini<br>
+• Memenuhi prinsip <strong>matching</strong> (penandingan) & <strong>accrual</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-layer-group"></i> Jenis-Jenis Jurnal Penyesuaian</h2>
+
+<div class="adj-grid">
+<div class="adj-item">
+<i class="fas fa-clock"></i>
+<h4>1. Beban Dibayar Dimuka</h4>
+<p>Sewa/asuransi dibayar di awal. Disesuaikan menjadi <strong>beban</strong> + <strong>pengurangan harta</strong>.</p>
+</div>
+<div class="adj-item">
+<i class="fas fa-tools"></i>
+<h4>2. Penyusutan Aset Tetap</h4>
+<p>Peralatan/gedung menyusut nilainya. Dicatat <strong>beban penyusutan</strong> + <strong>akumulasi penyusutan</strong>.</p>
+</div>
+<div class="adj-item">
+<i class="fas fa-box-open"></i>
+<h4>3. Perlengkapan Terpakai</h4>
+<p>Perlengkapan yang sudah digunakan. Dicatat <strong>beban perlengkapan</strong> + <strong>pengurangan perlengkapan</strong>.</p>
+</div>
+<div class="adj-item">
+<i class="fas fa-money-bill-wave"></i>
+<h4>4. Pendapatan Diterima Dimuka</h4>
+<p>Uang diterima tapi jasa belum diberikan. Disesuaikan menjadi <strong>pendapatan</strong> + <strong>pengurangan utang</strong>.</p>
+</div>
+<div class="adj-item">
+<i class="fas fa-hand-holding-usd"></i>
+<h4>5. Pendapatan Masih Harus Diterima</h4>
+<p>Jasa sudah diberikan tapi uang belum diterima. Dicatat <strong>piutang</strong> + <strong>pendapatan</strong>.</p>
+</div>
+<div class="adj-item">
+<i class="fas fa-file-invoice-dollar"></i>
+<h4>6. Beban Masih Harus Dibayar</h4>
+<p>Beban sudah terjadi tapi belum dibayar. Dicatat <strong>beban</strong> + <strong>utang</strong>.</p>
+</div>
+</div>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Buat Jurnal Penyesuaian</h2>
+<div class="sim-intro">
+<strong>Latihan Membuat Jurnal Penyesuaian!</strong> ✍️<br>
+Pilih <strong>jenis penyesuaian</strong> dan masukkan <strong>jumlahnya</strong>. Simulator akan otomatis membuat jurnal penyesuaian yang tepat. Pelajari polanya!
+</div>
+
+<div class="sim-form">
+<label>📋 Pilih Jenis Penyesuaian:</label>
+<select id="adjType">
+<option value="">-- Pilih jenis --</option>
+<option value="1">1. Beban Sewa (sewa dibayar dimuka Rp 2.400.000 untuk 1 tahun, sudah 1 bulan)</option>
+<option value="2">2. Penyusutan Peralatan (nilai Rp 1.500.000, umur 5 tahun, metode garis lurus)</option>
+<option value="3">3. Perlengkapan Terpakai (saldo awal Rp 500.000, sisa Rp 150.000)</option>
+<option value="4">4. Pendapatan Diterima Dimuka (diterima Rp 1.200.000 untuk 3 bulan, sudah 1 bulan)</option>
+<option value="5">5. Pendapatan Masih Harus Diterima (jasa sudah diberikan, belum diterima Rp 300.000)</option>
+<option value="6">6. Beban Gaji Masih Harus Dibayar (gaji karyawan belum dibayar Rp 400.000)</option>
+</select>
+
+<label>💰 Jumlah Penyesuaian (Rp):</label>
+<input type="number" id="adjAmount" placeholder="Kosongkan untuk pakai nilai default">
+
+<button class="sim-btn" onclick="generateAdj()"><i class="fas fa-magic"></i> Buat Jurnal</button>
+<button class="sim-btn reset" onclick="resetAdj()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<div id="journalResult"></div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Jurnal penyesuaian dibuat <strong>di akhir periode</strong></li>
+<li>✅ 6 jenis utama: beban dibayar dimuka, penyusutan, perlengkapan, pendapatan diterima dimuka, pendapatan harus diterima, beban harus dibayar</li>
+<li>✅ Tujuannya: agar laporan keuangan <strong>sesuai kenyataan</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab3-a.html"><i class="fas fa-arrow-left"></i> Neraca Saldo</a>
+<a href="bab3-c.html">Kertas Kerja + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+const adjData = {
+  1:{
+    title:'Penyesuaian Beban Sewa',
+    desc:'Sewa dibayar dimuka Rp 2.400.000 untuk 12 bulan. Sudah lewat 1 bulan, maka beban sewa = Rp 200.000',
+    entries:[
+      {acc:'Beban Sewa',d:200000,k:0},
+      {acc:'Sewa Dibayar Dimuka',d:0,k:200000}
+    ]
+  },
+  2:{
+    title:'Penyesuaian Penyusutan Peralatan',
+    desc:'Peralatan Rp 1.500.000, umur 5 tahun. Penyusutan per tahun = Rp 300.000',
+    entries:[
+      {acc:'Beban Penyusutan Peralatan',d:300000,k:0},
+      {acc:'Akumulasi Penyusutan Peralatan',d:0,k:300000}
+    ]
+  },
+  3:{
+    title:'Penyesuaian Perlengkapan Terpakai',
+    desc:'Perlengkapan awal Rp 500.000, sisa Rp 150.000. Terpakai = Rp 350.000',
+    entries:[
+      {acc:'Beban Perlengkapan',d:350000,k:0},
+      {acc:'Perlengkapan',d:0,k:350000}
+    ]
+  },
+  4:{
+    title:'Penyesuaian Pendapatan Diterima Dimuka',
+    desc:'Diterima Rp 1.200.000 untuk 3 bulan. Sudah 1 bulan, pendapatan = Rp 400.000',
+    entries:[
+      {acc:'Pendapatan Diterima Dimuka',d:400000,k:0},
+      {acc:'Pendapatan Jasa',d:0,k:400000}
+    ]
+  },
+  5:{
+    title:'Penyesuaian Pendapatan Masih Harus Diterima',
+    desc:'Jasa sudah diberikan tapi belum diterima uangnya = Rp 300.000',
+    entries:[
+      {acc:'Piutang Usaha',d:300000,k:0},
+      {acc:'Pendapatan Jasa',d:0,k:300000}
+    ]
+  },
+  6:{
+    title:'Penyesuaian Beban Masih Harus Dibayar',
+    desc:'Beban gaji yang belum dibayar = Rp 400.000',
+    entries:[
+      {acc:'Beban Gaji',d:400000,k:0},
+      {acc:'Utang Gaji',d:0,k:400000}
+    ]
+  }
+};
+
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function generateAdj(){
+  const type = document.getElementById('adjType').value;
+  if(!type){alert('Pilih jenis penyesuaian dulu ya! 😊');return}
+  const data = adjData[type];
+  
+  let html = `<div class="journal-result">
+    <h4>📝 ${data.title}</h4>
+    <p style="background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;color:#78350f;font-size:.9rem">
+      <strong>📊 Perhitungan:</strong><br>${data.desc}
+    </p>
+    <table>
+      <tr><td colspan="2" style="text-align:center;font-weight:700;color:var(--gray);font-size:.85rem">31 Januari 2025</td></tr>
+      <tr><td><strong>${data.entries[0].acc}</strong></td><td class="debit">Rp ${fmt(data.entries[0].d||data.entries[0].k)}</td></tr>
+      <tr><td class="kredit">${data.entries[1].acc}</td><td style="text-align:right">Rp ${fmt(data.entries[1].d||data.entries[1].k)}</td></tr>
+    </table>
+  </div>`;
+  
+  document.getElementById('journalResult').innerHTML = html;
+}
+
+function resetAdj(){
+  document.getElementById('adjType').value='';
+  document.getElementById('adjAmount').value='';
+  document.getElementById('journalResult').innerHTML='';
+}
+</script>
+</body>
+</html>

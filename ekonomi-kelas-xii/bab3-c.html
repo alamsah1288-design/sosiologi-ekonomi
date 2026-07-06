@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 3.C — Kertas Kerja (Worksheet) + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1200px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== SIMULATOR WORKSHEET ====== */
+.simulator{background:linear-gradient(135deg,#f093fb,#f5576c);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(245,87,108,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-btn{background:white;color:#f5576c;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.ws-wrapper{overflow-x:auto;background:white;border-radius:10px;padding:10px;margin-top:15px}
+.ws-table{width:100%;border-collapse:collapse;font-size:.75rem;color:var(--dark);min-width:900px}
+.ws-table th{background:var(--primary);color:white;padding:8px 4px;text-align:center;font-size:.7rem;position:sticky;top:0}
+.ws-table th.group-ns{background:#4361ee}
+.ws-table th.group-adj{background:#f59e0b}
+.ws-table th.group-nsadj{background:#10b981}
+.ws-table th.group-lr{background:#ef4444}
+.ws-table th.group-nr{background:#8b5cf6}
+.ws-table td{padding:5px 4px;border-bottom:1px solid #e5e7eb;text-align:right}
+.ws-table td.name{text-align:left;font-weight:500;padding-left:8px}
+.ws-table tfoot{background:#fef3c7;font-weight:700}
+.ws-table tfoot td{padding:8px 4px}
+.ws-table .total-row{background:#e0e7ff;font-weight:700}
+.ws-table .net-row{background:#fef3c7;font-weight:700}
+.ws-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:15px}
+.ws-summary-item{background:rgba(255,255,255,.2);padding:12px;border-radius:8px;text-align:center;backdrop-filter:blur(10px)}
+.ws-summary-item .label{font-size:.85rem;opacity:.9}
+.ws-summary-item .value{font-size:1.1rem;font-weight:700;margin-top:5px}
+.status-box{padding:12px;border-radius:8px;margin-top:15px;text-align:center;font-weight:700}
+.status-box.ok{background:var(--success);color:#064e3b}
+.status-box.laba{background:#4ade80;color:#064e3b}
+.status-box.rugi{background:var(--danger);color:white}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-table"></i></div>
+<h1>Bab 3.C — Kertas Kerja (Worksheet)</h1>
+<p class="subtitle">Alat bantu menyusun laporan keuangan + Simulator 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 3.C
+</div>
+
+<div class="card">
+<h2><i class="fas fa-table"></i> Pengertian Kertas Kerja</h2>
+<p><strong>Kertas kerja (worksheet)</strong> adalah kertas berkolom-kolom yang digunakan sebagai <strong>alat bantu</strong> untuk menyusun laporan keuangan. Kertas kerja <strong>bukan</strong> bagian dari laporan keuangan, hanya alat bantu internal.</p>
+
+<div class="highlight-box">
+<strong>🎯 Fungsi Kertas Kerja:</strong><br>
+• Memudahkan penyusunan <strong>laporan keuangan</strong><br>
+• Menghubungkan <strong>neraca saldo → penyesuaian → laporan</strong><br>
+• Mendeteksi <strong>kesalahan</strong> sebelum laporan dibuat
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-columns"></i> Format Kertas Kerja 10 Kolom</h2>
+<p>Kertas kerja terdiri dari <strong>5 pasangan kolom</strong>:</p>
+<ol>
+<li><strong>Neraca Saldo</strong> (Debit & Kredit)</li>
+<li><strong>Penyesuaian</strong> (Debit & Kredit)</li>
+<li><strong>Neraca Saldo Disesuaikan</strong> (Debit & Kredit)</li>
+<li><strong>Laporan Laba/Rugi</strong> (Debit & Kredit)</li>
+<li><strong>Neraca</strong> (Debit & Kredit)</li>
+</ol>
+
+<h3>📐 Rumus Penting</h3>
+<ul>
+<li><strong>Neraca Saldo Disesuaikan</strong> = Neraca Saldo ± Penyesuaian</li>
+<li><strong>Laba/Rugi</strong> = Pendapatan − Beban → Laba/Rugi</li>
+<li><strong>Neraca</strong> = Harta = Utang + Modal</li>
+<li>Total Debit <strong>harus = Total Kredit</strong> di setiap pasangan kolom</li>
+</ul>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Kertas Kerja 10 Kolom</h2>
+<div class="sim-intro">
+<strong>Lihat Kertas Kerja Secara Otomatis!</strong> 📊<br>
+Kertas kerja di bawah ini akan <strong>terisi otomatis</strong> berdasarkan data "Laundry Bersih". Perhatikan bagaimana setiap kolom saling terhubung dan menghasilkan <strong>laba/rugi</strong> serta <strong>neraca</strong> yang seimbang.
+</div>
+
+<div>
+<button class="sim-btn" onclick="loadWorksheet()"><i class="fas fa-magic"></i> Muat Kertas Kerja</button>
+<button class="sim-btn reset" onclick="resetWorksheet()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<div class="ws-wrapper">
+<table class="ws-table" id="wsTable">
+<thead>
+<tr>
+<th rowspan="2" style="width:25%">Nama Akun</th>
+<th colspan="2" class="group-ns">Neraca Saldo</th>
+<th colspan="2" class="group-adj">Penyesuaian</th>
+<th colspan="2" class="group-nsadj">NS Disesuaikan</th>
+<th colspan="2" class="group-lr">Laba/Rugi</th>
+<th colspan="2" class="group-nr">Neraca</th>
+</tr>
+<tr>
+<th class="group-ns">D</th><th class="group-ns">K</th>
+<th class="group-adj">D</th><th class="group-adj">K</th>
+<th class="group-nsadj">D</th><th class="group-nsadj">K</th>
+<th class="group-lr">D</th><th class="group-lr">K</th>
+<th class="group-nr">D</th><th class="group-nr">K</th>
+</tr>
+</thead>
+<tbody id="wsBody">
+<tr><td colspan="11" style="text-align:center;padding:20px;opacity:.6;font-style:italic">Klik "Muat Kertas Kerja" untuk melihat data</td></tr>
+</tbody>
+<tfoot id="wsFoot">
+<tr><td colspan="11" style="text-align:center;padding:10px;opacity:.6">Total akan muncul di sini</td></tr>
+</tfoot>
+</table>
+</div>
+
+<div class="ws-summary" id="wsSummary"></div>
+<div class="status-box ok" id="wsStatus" style="display:none"></div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Kertas kerja = alat bantu <strong>internal</strong>, bukan laporan</li>
+<li>✅ Format 10 kolom: 5 pasangan (NS, Adj, NS Adj, L/R, Neraca)</li>
+<li>✅ Setiap pasangan kolom harus <strong>seimbang</strong></li>
+<li>✅ Dari kertas kerja → langsung ke <strong>laporan keuangan</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab3-b.html"><i class="fas fa-arrow-left"></i> Jurnal Penyesuaian</a>
+<a href="bab3-d.html">Laporan Laba/Rugi <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+// Data Laundry Bersih
+const wsData = [
+  {name:'Kas',ns:[4300000,0],adj:[0,0],type:'neraca'},
+  {name:'Piutang Usaha',ns:[300000,0],adj:[300000,0],type:'neraca'},
+  {name:'Perlengkapan',ns:[500000,0],adj:[0,350000],type:'neraca'},
+  {name:'Sewa Dibayar Dimuka',ns:[1200000,0],adj:[0,100000],type:'neraca'},
+  {name:'Peralatan',ns:[1500000,0],adj:[0,0],type:'neraca'},
+  {name:'Akum. Peny. Peralatan',ns:[0,0],adj:[0,300000],type:'neraca'},
+  {name:'Utang Usaha',ns:[0,300000],adj:[0,0],type:'neraca'},
+  {name:'Utang Gaji',ns:[0,0],adj:[0,400000],type:'neraca'},
+  {name:'Modal Tuan Andi',ns:[0,5000000],adj:[0,0],type:'neraca'},
+  {name:'Prive',ns:[100000,0],adj:[0,0],type:'neraca'},
+  {name:'Pendapatan Jasa',ns:[0,2000000],adj:[0,300000],type:'laba'},
+  {name:'Beban Gaji',ns:[500000,0],adj:[400000,0],type:'laba'},
+  {name:'Beban Sewa',ns:[0,0],adj:[100000,0],type:'laba'},
+  {name:'Beban Perlengkapan',ns:[0,0],adj:[350000,0],type:'laba'},
+  {name:'Beban Peny. Peralatan',ns:[0,0],adj:[300000,0],type:'laba'}
+];
+
+function fmt(n){return n===0?'-':n.toLocaleString('id-ID')}
+function fmtRp(n){return n.toLocaleString('id-ID')}
+
+function loadWorksheet(){
+  const body = document.getElementById('wsBody');
+  const foot = document.getElementById('wsFoot');
+  let html = '';
+  
+  let totals = {nsD:0,nsK:0,adjD:0,adjK:0,nsadjD:0,nsadjK:0,lrD:0,lrK:0,nrD:0,nrK:0};
+  
+  wsData.forEach(row=>{
+    const nsD=row.ns[0],nsK=row.ns[1];
+    const adjD=row.adj[0],adjK=row.adj[1];
+    const nsadjD = nsD+adjD-adjK;
+    const nsadjK = nsK+adjK-adjD;
+    
+    let lrD=0,lrK=0,nrD=0,nrK=0;
+    if(row.type==='laba'){
+      if(nsadjD>0) lrD=nsadjD;
+      if(nsadjK>0) lrK=nsadjK;
+    } else {
+      if(nsadjD>0) nrD=nsadjD;
+      if(nsadjK>0) nrK=nsadjK;
+    }
+    
+    totals.nsD+=nsD;totals.nsK+=nsK;
+    totals.adjD+=adjD;totals.adjK+=adjK;
+    totals.nsadjD+=nsadjD;totals.nsadjK+=nsadjK;
+    totals.lrD+=lrD;totals.lrK+=lrK;
+    totals.nrD+=nrD;totals.nrK+=nrK;
+    
+    html+=`<tr>
+      <td class="name">${row.name}</td>
+      <td>${fmt(nsD)}</td><td>${fmt(nsK)}</td>
+      <td>${fmt(adjD)}</td><td>${fmt(adjK)}</td>
+      <td>${fmt(nsadjD)}</td><td>${fmt(nsadjK)}</td>
+      <td>${fmt(lrD)}</td><td>${fmt(lrK)}</td>
+      <td>${fmt(nrD)}</td><td>${fmt(nrK)}</td>
+    </tr>`;
+  });
+  
+  body.innerHTML = html;
+  
+  // Laba/Rugi
+  const laba = totals.lrK - totals.lrD;
+  const labaLabel = laba>=0?'Laba Bersih':'Rugi Bersih';
+  
+  // Tambahkan laba/rugi ke kolom LR dan Neraca
+  if(laba>=0){
+    totals.lrD += laba; // di LR: debit (supaya balance)
+    totals.nrK += laba; // di Neraca: kredit (menambah modal)
+  } else {
+    totals.lrK += Math.abs(laba);
+    totals.nrD += Math.abs(laba);
+  }
+  
+  foot.innerHTML = `
+    <tr class="total-row">
+      <td style="text-align:left;padding-left:8px"><strong>TOTAL</strong></td>
+      <td>${fmtRp(totals.nsD)}</td><td>${fmtRp(totals.nsK)}</td>
+      <td>${fmtRp(totals.adjD)}</td><td>${fmtRp(totals.adjK)}</td>
+      <td>${fmtRp(totals.nsadjD)}</td><td>${fmtRp(totals.nsadjK)}</td>
+      <td>${fmtRp(totals.lrD)}</td><td>${fmtRp(totals.lrK)}</td>
+      <td>${fmtRp(totals.nrD)}</td><td>${fmtRp(totals.nrK)}</td>
+    </tr>
+  `;
+  
+  // Summary
+  const summary = document.getElementById('wsSummary');
+  summary.innerHTML = `
+    <div class="ws-summary-item">
+      <div class="label">Total Neraca Saldo</div>
+      <div class="value">Rp ${fmtRp(totals.nsD)}</div>
+    </div>
+    <div class="ws-summary-item">
+      <div class="label">${labaLabel}</div>
+      <div class="value">Rp ${fmtRp(Math.abs(laba))}</div>
+    </div>
+    <div class="ws-summary-item">
+      <div class="label">Total Neraca</div>
+      <div class="value">Rp ${fmtRp(totals.nrD)}</div>
+    </div>
+  `;
+  
+  // Status
+  const status = document.getElementById('wsStatus');
+  status.style.display='block';
+  if(totals.nsD===totals.nsK && totals.adjD===totals.adjK && totals.lrD===totals.lrK && totals.nrD===totals.nrK){
+    status.className='status-box '+(laba>=0?'laba':'rugi');
+    status.innerHTML=`✅ <strong>SEMPURNA!</strong> Semua kolom SEIMBANG. ${labaLabel}: Rp ${fmtRp(Math.abs(laba))}`;
+  } else {
+    status.className='status-box ok';
+    status.innerHTML='⚠️ Periksa keseimbangan kolom';
+  }
+}
+
+function resetWorksheet(){
+  document.getElementById('wsBody').innerHTML='<tr><td colspan="11" style="text-align:center;padding:20px;opacity:.6;font-style:italic">Klik "Muat Kertas Kerja" untuk melihat data</td></tr>';
+  document.getElementById('wsFoot').innerHTML='<tr><td colspan="11" style="text-align:center;padding:10px;opacity:.6">Total akan muncul di sini</td></tr>';
+  document.getElementById('wsSummary').innerHTML='';
+  document.getElementById('wsStatus').style.display='none';
+}
+</script>
+</body>
+</html>

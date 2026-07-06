@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 3.A — Neraca Saldo + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(102,126,234,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.simulator h3{color:#fef3c7!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-btn{background:white;color:#764ba2;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.sim-btn.check{background:var(--success);color:#064e3b}
+.trial-table{width:100%;border-collapse:collapse;background:white;color:var(--dark);border-radius:10px;overflow:hidden;margin-top:15px}
+.trial-table th{background:var(--primary);color:white;padding:12px;text-align:center;font-size:.9rem}
+.trial-table td{padding:8px;border-bottom:1px solid #e5e7eb;font-size:.85rem}
+.trial-table td input{width:100%;padding:6px;border:1px solid #ddd;border-radius:5px;font-family:'Poppins',sans-serif;font-size:.85rem;text-align:right}
+.trial-table td input:focus{outline:2px solid var(--primary)}
+.trial-table tfoot{background:#fef3c7;font-weight:700}
+.trial-table tfoot td{padding:12px}
+.status-box{padding:12px;border-radius:8px;margin-top:15px;text-align:center;font-weight:700}
+.status-box.ok{background:var(--success);color:#064e3b}
+.status-box.err{background:var(--danger);color:white}
+.status-box.warn{background:var(--warning);color:#78350f}
+.hint-box{background:rgba(255,255,255,.1);padding:15px;border-radius:10px;margin-top:15px;font-size:.9rem}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.trial-table{font-size:.75rem}.trial-table th,.trial-table td{padding:6px 4px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-list-ol"></i></div>
+<h1>Bab 3.A — Neraca Saldo (Trial Balance)</h1>
+<p class="subtitle">Daftar saldo akhir semua akun + Simulator Interaktif 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 3.A
+</div>
+
+<div class="card">
+<h2><i class="fas fa-list"></i> Pengertian Neraca Saldo</h2>
+<p><strong>Neraca saldo (trial balance)</strong> adalah daftar yang berisi <strong>saldo akhir setiap akun</strong> dari buku besar pada tanggal tertentu. Neraca saldo disusun <strong>setelah posting</strong> jurnal ke buku besar.</p>
+
+<div class="highlight-box">
+<strong>🎯 Fungsi Neraca Saldo:</strong><br>
+• Memastikan <strong>total Debit = Total Kredit</strong><br>
+• Mendeteksi <strong>kesalahan pencatatan</strong><br>
+• Dasar penyusunan <strong>jurnal penyesuaian</strong> & <strong>kertas kerja</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-table"></i> Format Neraca Saldo</h2>
+<table style="width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden">
+<thead>
+<tr style="background:var(--primary);color:white">
+<th style="padding:10px">No</th>
+<th style="padding:10px">Nama Akun</th>
+<th style="padding:10px">Ref</th>
+<th style="padding:10px">Debit</th>
+<th style="padding:10px">Kredit</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding:8px;text-align:center">1</td><td style="padding:8px">Kas</td><td style="padding:8px;text-align:center">101</td><td style="padding:8px;text-align:right">Rp 4.300.000</td><td style="padding:8px;text-align:right">-</td></tr>
+<tr><td style="padding:8px;text-align:center">2</td><td style="padding:8px">Perlengkapan</td><td style="padding:8px;text-align:center">103</td><td style="padding:8px;text-align:right">Rp 500.000</td><td style="padding:8px;text-align:right">-</td></tr>
+<tr><td style="padding:8px;text-align:center">3</td><td style="padding:8px">Peralatan</td><td style="padding:8px;text-align:center">104</td><td style="padding:8px;text-align:right">Rp 1.500.000</td><td style="padding:8px;text-align:right">-</td></tr>
+<tr><td style="padding:8px;text-align:center">4</td><td style="padding:8px">Utang Usaha</td><td style="padding:8px;text-align:center">201</td><td style="padding:8px;text-align:right">-</td><td style="padding:8px;text-align:right">Rp 300.000</td></tr>
+<tr><td style="padding:8px;text-align:center">5</td><td style="padding:8px">Modal</td><td style="padding:8px;text-align:center">301</td><td style="padding:8px;text-align:right">-</td><td style="padding:8px;text-align:right">Rp 5.000.000</td></tr>
+<tr><td style="padding:8px;text-align:center">6</td><td style="padding:8px">Pendapatan Jasa</td><td style="padding:8px;text-align:center">401</td><td style="padding:8px;text-align:right">-</td><td style="padding:8px;text-align:right">Rp 800.000</td></tr>
+<tr><td style="padding:8px;text-align:center">7</td><td style="padding:8px">Beban Gaji</td><td style="padding:8px;text-align:center">501</td><td style="padding:8px;text-align:right">Rp 300.000</td><td style="padding:8px;text-align:right">-</td></tr>
+</tbody>
+<tfoot>
+<tr><td colspan="3" style="padding:10px;text-align:right"><strong>TOTAL</strong></td><td style="padding:10px;text-align:right"><strong>Rp 6.600.000</strong></td><td style="padding:10px;text-align:right"><strong>Rp 6.100.000</strong></td></tr>
+</tfoot>
+</table>
+
+<h3>📝 Aturan Penyusunan</h3>
+<ul>
+<li>Urutan akun: <strong>Harta → Utang → Modal → Pendapatan → Beban</strong></li>
+<li>Akun bersaldo <strong>Debit</strong> → kolom Debit</li>
+<li>Akun bersaldo <strong>Kredit</strong> → kolom Kredit</li>
+<li>Total Debit <strong>harus = Total Kredit</strong></li>
+</ul>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Susun Neraca Saldo</h2>
+<div class="sim-intro">
+<strong>Latihan Menyusun Neraca Saldo!</strong> ✍️<br>
+Berikut adalah saldo akhir beberapa akun dari Buku Besar "Laundry Bersih". <strong>Isi kolom Debit atau Kredit</strong> sesuai dengan posisi saldo akun tersebut. Ingat: Harta & Beban di Debit, Utang, Modal & Pendapatan di Kredit!
+</div>
+
+<div class="hint-box">
+<strong>💡 Petunjuk:</strong><br>
+• <strong>Harta</strong> (Kas, Perlengkapan, Peralatan, Piutang) → <strong>Debit</strong><br>
+• <strong>Utang & Modal</strong> → <strong>Kredit</strong><br>
+• <strong>Pendapatan</strong> → <strong>Kredit</strong><br>
+• <strong>Beban & Prive</strong> → <strong>Debit</strong>
+</div>
+
+<div style="overflow-x:auto">
+<table class="trial-table" id="trialTable">
+<thead>
+<tr>
+<th style="width:5%">No</th>
+<th style="width:35%">Nama Akun</th>
+<th style="width:10%">Ref</th>
+<th style="width:25%">Debit (Rp)</th>
+<th style="width:25%">Kredit (Rp)</th>
+</tr>
+</thead>
+<tbody id="trialBody"></tbody>
+<tfoot>
+<tr>
+<td colspan="3" style="text-align:right"><strong>TOTAL</strong></td>
+<td id="totalD" style="text-align:right">0</td>
+<td id="totalK" style="text-align:right">0</td>
+</tr>
+</tfoot>
+</table>
+</div>
+
+<div class="status-box warn" id="statusBox">
+⚠️ Isi kolom Debit atau Kredit untuk setiap akun, lalu klik "Periksa"
+</div>
+
+<div>
+<button class="sim-btn check" onclick="checkAnswer()"><i class="fas fa-check"></i> Periksa Jawaban</button>
+<button class="sim-btn" onclick="showHint()"><i class="fas fa-lightbulb"></i> Lihat Kunci</button>
+<button class="sim-btn reset" onclick="resetTrial()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Neraca saldo = daftar saldo akhir semua akun</li>
+<li>✅ Disusun setelah <strong>posting</strong> jurnal</li>
+<li>✅ Total Debit harus <strong>= Total Kredit</strong></li>
+<li>✅ Dasar penyusunan <strong>jurnal penyesuaian</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="../bab2-f.html"><i class="fas fa-arrow-left"></i> Bab 2.F</a>
+<a href="bab3-b.html">Jurnal Penyesuaian + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+const accounts = [
+  {name:'Kas',ref:'101',d:4300000,k:0},
+  {name:'Piutang Usaha',ref:'102',d:300000,k:0},
+  {name:'Perlengkapan',ref:'103',d:500000,k:0},
+  {name:'Peralatan',ref:'104',d:1500000,k:0},
+  {name:'Utang Usaha',ref:'201',d:0,k:300000},
+  {name:'Modal Tuan Andi',ref:'301',d:0,k:5000000},
+  {name:'Prive',ref:'302',d:100000,k:0},
+  {name:'Pendapatan Jasa',ref:'401',d:0,k:1100000},
+  {name:'Beban Gaji',ref:'501',d:300000,k:0},
+  {name:'Beban Sewa',ref:'502',d:200000,k:0},
+  {name:'Beban Listrik',ref:'503',d:200000,k:0}
+];
+
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function renderTrial(){
+  const body = document.getElementById('trialBody');
+  let html = '';
+  accounts.forEach((a,i)=>{
+    html+=`<tr>
+      <td style="text-align:center">${i+1}</td>
+      <td>${a.name}</td>
+      <td style="text-align:center">${a.ref}</td>
+      <td><input type="number" id="d${i}" placeholder="0" oninput="updateTotals()"></td>
+      <td><input type="number" id="k${i}" placeholder="0" oninput="updateTotals()"></td>
+    </tr>`;
+  });
+  body.innerHTML = html;
+}
+
+function updateTotals(){
+  let td=0,tk=0;
+  accounts.forEach((a,i)=>{
+    td += parseFloat(document.getElementById('d'+i).value)||0;
+    tk += parseFloat(document.getElementById('k'+i).value)||0;
+  });
+  document.getElementById('totalD').textContent = 'Rp '+fmt(td);
+  document.getElementById('totalK').textContent = 'Rp '+fmt(tk);
+}
+
+function checkAnswer(){
+  let correct = 0;
+  accounts.forEach((a,i)=>{
+    const d = parseFloat(document.getElementById('d'+i).value)||0;
+    const k = parseFloat(document.getElementById('k'+i).value)||0;
+    if(d===a.d && k===a.k) correct++;
+  });
+  const status = document.getElementById('statusBox');
+  const total = accounts.length;
+  const td = accounts.reduce((s,a)=>s+a.d,0);
+  const tk = accounts.reduce((s,a)=>s+a.k,0);
+  
+  if(correct===total && td===tk){
+    status.className='status-box ok';
+    status.innerHTML=`🎉 <strong>SEMPURNA!</strong> Semua ${total} akun benar dan SEIMBANG (Rp ${fmt(td)})`;
+  } else if(td===tk){
+    status.className='status-box warn';
+    status.innerHTML=`⚠️ Total seimbang, tapi baru <strong>${correct}/${total}</strong> akun yang benar. Coba lagi!`;
+  } else {
+    status.className='status-box err';
+    status.innerHTML=`❌ <strong>BELUM SEIMBANG!</strong> Debit ≠ Kredit. Periksa kembali posisi akun.`;
+  }
+}
+
+function showHint(){
+  accounts.forEach((a,i)=>{
+    document.getElementById('d'+i).value = a.d||'';
+    document.getElementById('k'+i).value = a.k||'';
+  });
+  updateTotals();
+  const status = document.getElementById('statusBox');
+  status.className='status-box warn';
+  status.innerHTML='💡 <strong>Kunci jawaban ditampilkan.</strong> Pelajari posisi setiap akun!';
+}
+
+function resetTrial(){
+  accounts.forEach((a,i)=>{
+    document.getElementById('d'+i).value='';
+    document.getElementById('k'+i).value='';
+  });
+  updateTotals();
+  document.getElementById('statusBox').className='status-box warn';
+  document.getElementById('statusBox').innerHTML='⚠️ Isi kolom Debit atau Kredit untuk setiap akun, lalu klik "Periksa"';
+}
+
+renderTrial();
+</script>
+</body>
+</html>
