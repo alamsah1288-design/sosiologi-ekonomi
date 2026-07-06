@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 2.F — Posting ke Buku Besar + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#f7971e,#ffd200);border-radius:15px;padding:25px;color:#333;margin:25px 0;box-shadow:0 15px 40px rgba(247,151,30,.3)}
+.simulator h2{color:#333!important;border-bottom:2px solid rgba(0,0,0,.2);padding-bottom:10px}
+.simulator h3{color:#78350f!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.6);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-btn{background:var(--primary);color:white;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger)}
+.sim-btn.example{background:var(--success);color:#064e3b}
+.t-accounts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin-top:20px}
+.t-account{background:white;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);border:2px solid var(--primary)}
+.t-account .title{background:var(--primary);color:white;padding:10px;text-align:center;font-weight:700}
+.t-body{display:grid;grid-template-columns:1fr 1fr;min-height:120px}
+.t-side{padding:10px;font-size:.85rem}
+.t-side.left{border-right:1px solid #e5e7eb}
+.t-side h4{text-align:center;color:var(--primary);margin-bottom:8px;font-size:.85rem;padding-bottom:5px;border-bottom:1px solid #e5e7eb}
+.t-side ul{list-style:none;padding:0;margin:0}
+.t-side li{padding:4px 6px;border-bottom:1px dashed #e5e7eb;font-family:'Courier New',monospace;font-size:.8rem}
+.t-side .total{background:#fef3c7;font-weight:700;margin-top:5px;padding:6px;border-radius:4px;text-align:center}
+.t-side .saldo{background:var(--success);color:#064e3b;font-weight:700;margin-top:5px;padding:6px;border-radius:4px;text-align:center}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-arrow-right"></i></div>
+<h1>Bab 2.F — Posting ke Buku Besar</h1>
+<p class="subtitle">Memindahkan jurnal ke buku besar + Simulator T-Account 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 2.F
+</div>
+
+<div class="card">
+<h2><i class="fas fa-arrow-right"></i> Pengertian Posting</h2>
+<p><strong>Posting</strong> adalah proses <strong>memindahkan</strong> catatan dari <strong>jurnal</strong> ke <strong>buku besar</strong> (ledger). Setiap angka di jurnal akan masuk ke akun yang sesuai di buku besar.</p>
+
+<div class="highlight-box">
+<strong>🎯 Tujuan Posting:</strong><br>
+• Mengelompokkan transaksi <strong>per akun</strong><br>
+• Mengetahui <strong>saldo akhir</strong> setiap akun<br>
+• Dasar penyusunan <strong>neraca saldo</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-list-ol"></i> Langkah-Langkah Posting</h2>
+<ol>
+<li><strong>Buka buku besar</strong> untuk akun yang bersangkutan</li>
+<li><strong>Catat tanggal</strong> transaksi di sisi yang sesuai (Debit/Kredit)</li>
+<li><strong>Catat keterangan</strong> (lawan akun)</li>
+<li><strong>Catat jumlah</strong> di kolom yang sesuai</li>
+<li><strong>Isi kolom referensi</strong> di jurnal dengan kode akun</li>
+<li><strong>Hitung saldo</strong> akhir akun tersebut</li>
+</ol>
+
+<div class="example-box">
+<strong>Contoh:</strong> Dari jurnal "Kas (D) Rp 5.000.000 / Modal (K) Rp 5.000.000"<br>
+→ Posting ke akun <strong>Kas</strong>: sisi Debit Rp 5.000.000<br>
+→ Posting ke akun <strong>Modal</strong>: sisi Kredit Rp 5.000.000
+</div>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Posting ke T-Account</h2>
+<div class="sim-intro">
+<strong>Lihat Posting Secara Visual!</strong> 👀<br>
+Setiap transaksi jurnal akan otomatis <strong>diposting</strong> ke T-Account masing-masing akun. Kamu bisa melihat bagaimana saldo setiap akun terbentuk dari berbagai transaksi.
+</div>
+
+<div>
+<button class="sim-btn example" onclick="loadPostingExample()"><i class="fas fa-magic"></i> Muat Contoh Jurnal</button>
+<button class="sim-btn reset" onclick="resetPosting()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<h3 style="margin-top:20px"><i class="fas fa-book"></i> Buku Besar (T-Account)</h3>
+<div class="t-accounts" id="tAccounts">
+<div style="grid-column:1/-1;text-align:center;padding:30px;opacity:.6;font-style:italic;background:rgba(255,255,255,.4);border-radius:10px">
+Klik "Muat Contoh Jurnal" untuk melihat T-Account terisi!
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Posting = memindahkan jurnal ke buku besar</li>
+<li>✅ Setiap transaksi masuk ke <strong>minimal 2 akun</strong></li>
+<li>✅ Hasil posting = <strong>saldo akhir setiap akun</strong></li>
+<li>✅ Saldo ini akan digunakan untuk menyusun <strong>neraca saldo</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab2-e.html"><i class="fas fa-arrow-left"></i> Jurnal Umum</a>
+<a href="../ekonomi-kelas-xii.html">Kembali ke Bab <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+const sampleJournal = [
+  {date:'01/01',desc:'Setor modal',accs:[
+    {acc:'Kas',side:'D',amount:5000000},
+    {acc:'Modal',side:'K',amount:5000000}
+  ]},
+  {date:'03/01',desc:'Beli peralatan',accs:[
+    {acc:'Peralatan',side:'D',amount:1500000},
+    {acc:'Kas',side:'K',amount:1500000}
+  ]},
+  {date:'05/01',desc:'Beli perlengkapan kredit',accs:[
+    {acc:'Perlengkapan',side:'D',amount:500000},
+    {acc:'Utang',side:'K',amount:500000}
+  ]},
+  {date:'10/01',desc:'Pendapatan jasa tunai',accs:[
+    {acc:'Kas',side:'D',amount:800000},
+    {acc:'Pendapatan Jasa',side:'K',amount:800000}
+  ]},
+  {date:'18/01',desc:'Bayar beban gaji',accs:[
+    {acc:'Beban Gaji',side:'D',amount:300000},
+    {acc:'Kas',side:'K',amount:300000}
+  ]},
+  {date:'22/01',desc:'Bayar utang',accs:[
+    {acc:'Utang',side:'D',amount:200000},
+    {acc:'Kas',side:'K',amount:200000}
+  ]}
+];
+
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function loadPostingExample(){
+  const accounts = {};
+  sampleJournal.forEach(t=>{
+    t.accs.forEach(a=>{
+      if(!accounts[a.acc]) accounts[a.acc] = {d:[],k:[]};
+      if(a.side==='D') accounts[a.acc].d.push({date:t.date,desc:t.desc,amount:a.amount});
+      else accounts[a.acc].k.push({date:t.date,desc:t.desc,amount:a.amount});
+    });
+  });
+  
+  const container = document.getElementById('tAccounts');
+  let html = '';
+  
+  Object.keys(accounts).sort().forEach(acc=>{
+    const data = accounts[acc];
+    const totalD = data.d.reduce((s,i)=>s+i.amount,0);
+    const totalK = data.k.reduce((s,i)=>s+i.amount,0);
+    const saldo = totalD - totalK;
+    const saldoSide = saldo>=0?'Debit':'Kredit';
+    const saldoAbs = Math.abs(saldo);
+    
+    html += `<div class="t-account">
+      <div class="title">${acc}</div>
+      <div class="t-body">
+        <div class="t-side left">
+          <h4>DEBIT</h4>
+          <ul>`;
+    data.d.forEach(e=>{
+      html+=`<li>${e.date} | ${e.desc}<br><strong>Rp ${fmt(e.amount)}</strong></li>`;
+    });
+    html+=`</ul>
+          <div class="total">Total: Rp ${fmt(totalD)}</div>
+        </div>
+        <div class="t-side">
+          <h4>KREDIT</h4>
+          <ul>`;
+    data.k.forEach(e=>{
+      html+=`<li>${e.date} | ${e.desc}<br><strong>Rp ${fmt(e.amount)}</strong></li>`;
+    });
+    html+=`</ul>
+          <div class="total">Total: Rp ${fmt(totalK)}</div>
+        </div>
+      </div>
+      <div style="background:#e0e7ff;padding:10px;text-align:center;font-weight:700;color:var(--primary)">
+        Saldo ${saldoSide}: Rp ${fmt(saldoAbs)}
+      </div>
+    </div>`;
+  });
+  
+  container.innerHTML = html;
+}
+
+function resetPosting(){
+  document.getElementById('tAccounts').innerHTML = `
+    <div style="grid-column:1/-1;text-align:center;padding:30px;opacity:.6;font-style:italic;background:rgba(255,255,255,.4);border-radius:10px">
+      Klik "Muat Contoh Jurnal" untuk melihat T-Account terisi!
+    </div>`;
+}
+</script>
+</body>
+</html>

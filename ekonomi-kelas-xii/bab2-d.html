@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 2.D — Akun / Buku Besar | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1000px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+.t-account{display:inline-block;background:white;border:2px solid var(--primary);border-radius:8px;margin:10px;min-width:280px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+body.dark-mode .t-account{background:#1e1e1e}
+.t-account .title{background:var(--primary);color:white;padding:10px;text-align:center;font-weight:700}
+.t-body{display:grid;grid-template-columns:1fr 1fr;min-height:150px}
+.t-side{padding:10px}
+.t-side.left{border-right:1px solid #e5e7eb}
+.t-side h4{text-align:center;color:var(--primary);margin-bottom:8px;font-size:.9rem}
+.t-side ul{list-style:none;padding:0;margin:0}
+.t-side li{padding:5px 8px;font-size:.85rem;border-bottom:1px dashed #e5e7eb}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.t-account{min-width:100%}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-book"></i></div>
+<h1>Bab 2.D — Akun / Buku Besar</h1>
+<p class="subtitle">Tempat mencatat transaksi per akun secara rinci</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 2.D
+</div>
+
+<div class="card">
+<h2><i class="fas fa-book-open"></i> Pengertian Buku Besar</h2>
+<p><strong>Buku besar (ledger)</strong> adalah kumpulan akun-akun yang digunakan untuk mencatat transaksi keuangan secara <strong>terperinci per akun</strong>. Buku besar merupakan <strong>kumpulan dari semua akun</strong> yang dimiliki perusahaan.</p>
+
+<div class="highlight-box">
+<strong>🎯 Fungsi Buku Besar:</strong><br>
+• Menyediakan informasi <strong>saldo setiap akun</strong><br>
+• Dasar penyusunan <strong>neraca saldo</strong><br>
+• Memudahkan <strong>penyusunan laporan keuangan</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-shapes"></i> Bentuk Buku Besar</h2>
+
+<h3>📘 A. Bentuk T (T-Account)</h3>
+<p>Bentuk paling sederhana, menyerupai huruf "T". Digunakan untuk <strong>analisis</strong> dan <strong>pembelajaran</strong>.</p>
+<div style="text-align:center">
+<div class="t-account">
+<div class="title">KAS</div>
+<div class="t-body">
+<div class="t-side left">
+<h4>DEBIT</h4>
+<ul>
+<li>Modal: Rp 5.000.000</li>
+<li>Pendapatan: Rp 1.000.000</li>
+</ul>
+</div>
+<div class="t-side">
+<h4>KREDIT</h4>
+<ul>
+<li>Peralatan: Rp 1.500.000</li>
+<li>Beban: Rp 200.000</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<h3>📗 B. Bentuk Skontro (2 Kolom / Staffel)</h3>
+<p>Terdiri dari kolom <strong>Debit</strong> dan <strong>Kredit</strong> secara berdampingan. Umum digunakan di Indonesia.</p>
+
+<h3>📕 C. Bentuk Staffel (4 Kolom / 6 Kolom)</h3>
+<p>Bentuk lebih lengkap dengan kolom tanggal, keterangan, referensi, debit, kredit, dan saldo.</p>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-list"></i> Jenis Buku Besar</h2>
+<ul>
+<li><strong>Buku Besar Umum (General Ledger)</strong> — berisi semua akun neraca & laba/rugi</li>
+<li><strong>Buku Besar Pembantu (Subsidiary Ledger)</strong> — rincian akun tertentu, misal: buku pembantu utang per kreditur</li>
+</ul>
+
+<div class="example-box">
+<strong>Contoh:</strong> PT Maju Jaya punya 5 supplier. Daripada membuat 5 akun "Utang" terpisah, cukup buat 1 akun "Utang Usaha" di buku besar umum, lalu buat <strong>buku pembantu utang</strong> yang merinci utang ke masing-masing supplier.
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Buku besar = kumpulan akun untuk mencatat transaksi per akun</li>
+<li>✅ Bentuk: <strong>T-Account</strong>, Skontro, Staffel</li>
+<li>✅ Jenis: <strong>Buku Besar Umum</strong> dan <strong>Buku Besar Pembantu</strong></li>
+<li>✅ Sumber data buku besar = <strong>jurnal</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab2-c.html"><i class="fas fa-arrow-left"></i> Analisis Transaksi</a>
+<a href="bab2-e.html">Jurnal + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+</body>
+</html>

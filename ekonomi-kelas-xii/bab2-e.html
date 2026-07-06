@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 2.E — Jurnal Umum + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#fc466b,#3f5efb);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(252,70,107,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.simulator h3{color:#fef3c7!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-form{background:rgba(255,255,255,.1);padding:20px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-form label{display:block;margin-bottom:8px;font-weight:500}
+.sim-form select,.sim-form input{width:100%;padding:10px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;margin-bottom:10px;font-size:.95rem;background:white;color:#333}
+.sim-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.sim-form-row{grid-template-columns:1fr}}
+.sim-btn{background:white;color:#3f5efb;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.sim-btn.example{background:var(--warning);color:#78350f}
+.journal-table{width:100%;border-collapse:collapse;background:white;color:var(--dark);border-radius:10px;overflow:hidden;margin-top:15px}
+.journal-table th{background:var(--primary);color:white;padding:12px;text-align:center;font-size:.9rem}
+.journal-table td{padding:10px;border-bottom:1px solid #e5e7eb;font-size:.9rem}
+.journal-table .kredit{text-align:right;padding-left:40px;color:var(--danger)}
+.journal-table .debit{text-align:right;color:var(--success)}
+.journal-table .desc{font-style:italic;color:var(--gray);font-size:.85rem}
+.journal-table tfoot{background:#fef3c7;font-weight:700}
+.journal-table tfoot td{padding:12px}
+.balance-ok{background:var(--success);color:#064e3b;padding:12px;border-radius:8px;margin-top:15px;text-align:center;font-weight:700}
+.balance-err{background:var(--danger);color:white;padding:12px;border-radius:8px;margin-top:15px;text-align:center;font-weight:700}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.journal-table{font-size:.75rem}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-pen-fancy"></i></div>
+<h1>Bab 2.E — Jurnal Umum</h1>
+<p class="subtitle">Tahap pencatatan transaksi + Simulator Interaktif 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 2.E
+</div>
+
+<div class="card">
+<h2><i class="fas fa-pen"></i> Pengertian Jurnal</h2>
+<p><strong>Jurnal</strong> adalah catatan <strong>pertama (book of original entry)</strong> yang digunakan untuk mencatat transaksi secara <strong>berurutan kronologis</strong> dengan menyebutkan akun, jumlah debit, dan kredit.</p>
+
+<div class="highlight-box">
+<strong>🎯 Fungsi Jurnal:</strong><br>
+• Fungsi <strong>pencatatan</strong> — setiap transaksi dicatat di sini<br>
+• Fungsi <strong>historis</strong> — dicatat sesuai urutan waktu<br>
+• Fungsi <strong>analisis</strong> — menganalisis debit/kredit<br>
+• Fungsi <strong>instruktif</strong> — perintah untuk posting ke buku besar<br>
+• Fungsi <strong>informatif</strong> — memberikan penjelasan transaksi
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-table"></i> Format Jurnal Umum</h2>
+<table style="width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden">
+<thead>
+<tr style="background:var(--primary);color:white">
+<th style="padding:10px">Tanggal</th>
+<th style="padding:10px">Nama Akun</th>
+<th style="padding:10px">Ref</th>
+<th style="padding:10px">Debit</th>
+<th style="padding:10px">Kredit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:center">01/01/2025</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb"><strong>Kas</strong></td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:center">101</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right;color:var(--success);font-weight:700">Rp 5.000.000</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">-</td>
+</tr>
+<tr>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb"></td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;padding-left:30px">Modal Tuan Andi</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:center">301</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">-</td>
+<td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right;color:var(--danger);font-weight:700">Rp 5.000.000</td>
+</tr>
+</tbody>
+</table>
+
+<h3>📝 Aturan Penulisan</h3>
+<ul>
+<li>Akun yang di-<strong>Debit</strong> ditulis <strong>lebih dulu</strong> (rata kiri)</li>
+<li>Akun yang di-<strong>Kredit</strong> ditulis <strong>menjorok ke kanan</strong></li>
+<li>Keterangan tambahan ditulis <strong>miring di tengah</strong></li>
+<li>Total Debit harus <strong>sama</strong> dengan Total Kredit</li>
+</ul>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Jurnal Umum</h2>
+<div class="sim-intro">
+<strong>Belajar Membuat Jurnal!</strong> ✍️<br>
+Pilih transaksi di bawah, lalu lihat bagaimana sistem otomatis membuat <strong>jurnal umum</strong>-nya. Kamu juga bisa mencoba membuat jurnal sendiri dengan memilih akun debit dan kredit!
+</div>
+
+<div class="sim-form">
+<h3><i class="fas fa-magic"></i> Mode 1: Lihat Contoh Otomatis</h3>
+<label>Pilih transaksi:</label>
+<select id="exampleSelect">
+<option value="">-- Pilih transaksi --</option>
+<option value="1">1. Pemilik menyetor uang tunai Rp 5.000.000 sebagai modal</option>
+<option value="2">2. Membeli peralatan tunai Rp 1.500.000</option>
+<option value="3">3. Membeli perlengkapan secara kredit Rp 500.000</option>
+<option value="4">4. Menerima pendapatan jasa tunai Rp 800.000</option>
+<option value="5">5. Membayar beban gaji Rp 300.000</option>
+<option value="6">6. Membayar utang Rp 200.000</option>
+<option value="7">7. Pemilik mengambil uang untuk pribadi Rp 100.000</option>
+</select>
+<button class="sim-btn example" onclick="showExample()"><i class="fas fa-eye"></i> Tampilkan Jurnal</button>
+</div>
+
+<div class="sim-form">
+<h3><i class="fas fa-edit"></i> Mode 2: Buat Jurnal Sendiri</h3>
+<div class="sim-form-row">
+<div>
+<label>📅 Tanggal:</label>
+<input type="date" id="inputDate" value="2025-01-15">
+</div>
+<div>
+<label>💰 Jumlah (Rp):</label>
+<input type="number" id="inputAmount" placeholder="contoh: 500000">
+</div>
+</div>
+<div class="sim-form-row">
+<div>
+<label>📈 Akun Debit:</label>
+<select id="inputDebit">
+<option value="">-- Pilih akun --</option>
+<option>Kas</option><option>Piutang Usaha</option><option>Perlengkapan</option>
+<option>Peralatan</option><option>Utang Usaha</option><option>Modal</option>
+<option>Pendapatan Jasa</option><option>Beban Gaji</option><option>Beban Sewa</option>
+<option>Beban Listrik</option><option>Prive</option>
+</select>
+</div>
+<div>
+<label>📉 Akun Kredit:</label>
+<select id="inputKredit">
+<option value="">-- Pilih akun --</option>
+<option>Kas</option><option>Piutang Usaha</option><option>Perlengkapan</option>
+<option>Peralatan</option><option>Utang Usaha</option><option>Modal</option>
+<option>Pendapatan Jasa</option><option>Beban Gaji</option><option>Beban Sewa</option>
+<option>Beban Listrik</option><option>Prive</option>
+</select>
+</div>
+</div>
+<label>📝 Keterangan (opsional):</label>
+<input type="text" id="inputDesc" placeholder="contoh: Setoran modal awal">
+<button class="sim-btn" onclick="addCustom()"><i class="fas fa-plus"></i> Tambah ke Jurnal</button>
+<button class="sim-btn reset" onclick="resetJournal()"><i class="fas fa-redo"></i> Reset Jurnal</button>
+</div>
+
+<h3><i class="fas fa-book"></i> Jurnal Umum "Laundry Bersih"</h3>
+<div style="overflow-x:auto">
+<table class="journal-table" id="journalTable">
+<thead>
+<tr>
+<th style="width:15%">Tanggal</th>
+<th style="width:35%">Nama Akun</th>
+<th style="width:10%">Ref</th>
+<th style="width:20%">Debit</th>
+<th style="width:20%">Kredit</th>
+</tr>
+</thead>
+<tbody id="journalBody">
+<tr><td colspan="5" style="text-align:center;padding:20px;opacity:.6;font-style:italic">Belum ada jurnal. Pilih contoh atau buat sendiri!</td></tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="3" style="text-align:right"><strong>TOTAL</strong></td>
+<td id="totalDebit" style="text-align:right">0</td>
+<td id="totalKredit" style="text-align:right">0</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="balance-ok" id="balanceStatus">✅ Debit = Kredit (Seimbang)</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Jurnal = catatan pertama transaksi (book of original entry)</li>
+<li>✅ Format: Tanggal, Akun, Ref, Debit, Kredit</li>
+<li>✅ Akun Debit ditulis rata kiri, Kredit menjorok kanan</li>
+<li>✅ <strong>Total Debit harus = Total Kredit</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab2-d.html"><i class="fas fa-arrow-left"></i> Akun / Buku Besar</a>
+<a href="bab2-f.html">Posting ke Buku Besar + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+const examples = {
+  1:{date:'2025-01-01',entries:[
+    {acc:'Kas',ref:'101',d:5000000,k:0,desc:'Setoran modal awal'},
+    {acc:'Modal Tuan Andi',ref:'301',d:0,k:5000000,desc:''}
+  ]},
+  2:{date:'2025-01-03',entries:[
+    {acc:'Peralatan',ref:'104',d:1500000,k:0,desc:'Beli peralatan tunai'},
+    {acc:'Kas',ref:'101',d:0,k:1500000,desc:''}
+  ]},
+  3:{date:'2025-01-05',entries:[
+    {acc:'Perlengkapan',ref:'103',d:500000,k:0,desc:'Beli perlengkapan kredit'},
+    {acc:'Utang Usaha',ref:'201',d:0,k:500000,desc:''}
+  ]},
+  4:{date:'2025-01-10',entries:[
+    {acc:'Kas',ref:'101',d:800000,k:0,desc:'Pendapatan jasa tunai'},
+    {acc:'Pendapatan Jasa',ref:'401',d:0,k:800000,desc:''}
+  ]},
+  5:{date:'2025-01-18',entries:[
+    {acc:'Beban Gaji',ref:'501',d:300000,k:0,desc:'Bayar gaji karyawan'},
+    {acc:'Kas',ref:'101',d:0,k:300000,desc:''}
+  ]},
+  6:{date:'2025-01-22',entries:[
+    {acc:'Utang Usaha',ref:'201',d:200000,k:0,desc:'Bayar sebagian utang'},
+    {acc:'Kas',ref:'101',d:0,k:200000,desc:''}
+  ]},
+  7:{date:'2025-01-30',entries:[
+    {acc:'Prive',ref:'302',d:100000,k:0,desc:'Prive pemilik'},
+    {acc:'Kas',ref:'101',d:0,k:100000,desc:''}
+  ]}
+};
+
+let journal = [];
+
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function showExample(){
+  const sel = document.getElementById('exampleSelect').value;
+  if(!sel){alert('Pilih transaksi dulu ya! 😊');return}
+  const ex = examples[sel];
+  ex.entries.forEach(e=>{
+    journal.push({date:ex.date,acc:e.acc,ref:e.ref,d:e.d,k:e.k,desc:e.desc});
+  });
+  renderJournal();
+  document.getElementById('exampleSelect').value='';
+}
+
+function addCustom(){
+  const date = document.getElementById('inputDate').value;
+  const amount = parseFloat(document.getElementById('inputAmount').value);
+  const debit = document.getElementById('inputDebit').value;
+  const kredit = document.getElementById('inputKredit').value;
+  const desc = document.getElementById('inputDesc').value;
+  
+  if(!date||!amount||!debit||!kredit){alert('Lengkapi semua field ya! 😊');return}
+  if(debit===kredit){alert('Akun debit dan kredit tidak boleh sama! 😊');return}
+  
+  journal.push({date,acc:debit,ref:'-',d:amount,k:0,desc});
+  journal.push({date,acc:kredit,ref:'-',d:0,k:amount,desc:''});
+  renderJournal();
+  document.getElementById('inputAmount').value='';
+  document.getElementById('inputDesc').value='';
+}
+
+function resetJournal(){
+  journal=[];
+  renderJournal();
+}
+
+function renderJournal(){
+  const body = document.getElementById('journalBody');
+  if(journal.length===0){
+    body.innerHTML='<tr><td colspan="5" style="text-align:center;padding:20px;opacity:.6;font-style:italic">Belum ada jurnal.</td></tr>';
+    document.getElementById('totalDebit').textContent='0';
+    document.getElementById('totalKredit').textContent='0';
+    document.getElementById('balanceStatus').className='balance-ok';
+    document.getElementById('balanceStatus').innerHTML='✅ Debit = Kredit (Seimbang)';
+    return;
+  }
+  
+  let html='';
+  let totalD=0,totalK=0;
+  let lastDate='';
+  
+  journal.forEach((e,i)=>{
+    const showDate = e.date!==lastDate?e.date:'';
+    lastDate = e.date;
+    const isKredit = e.k>0;
+    html+=`<tr>
+      <td style="text-align:center">${showDate}</td>
+      <td class="${isKredit?'kredit':''}">${e.acc}${e.desc?' <span class="desc">('+e.desc+')</span>':''}</td>
+      <td style="text-align:center">${e.ref}</td>
+      <td class="debit">${e.d?fmt(e.d):'-'}</td>
+      <td style="text-align:right;color:var(--danger);font-weight:700">${e.k?fmt(e.k):'-'}</td>
+    </tr>`;
+    totalD+=e.d;totalK+=e.k;
+  });
+  
+  body.innerHTML=html;
+  document.getElementById('totalDebit').textContent='Rp '+fmt(totalD);
+  document.getElementById('totalKredit').textContent='Rp '+fmt(totalK);
+  
+  const status = document.getElementById('balanceStatus');
+  if(totalD===totalK){
+    status.className='balance-ok';
+    status.innerHTML='✅ <strong>SEIMBANG!</strong> Debit (Rp '+fmt(totalD)+') = Kredit (Rp '+fmt(totalK)+')';
+  } else {
+    status.className='balance-err';
+    status.innerHTML='❌ <strong>TIDAK SEIMBANG!</strong> Debit (Rp '+fmt(totalD)+') ≠ Kredit (Rp '+fmt(totalK)+')';
+  }
+}
+</script>
+</body>
+</html>
