@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 4.C — Jurnal Pembalik + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:15px 0}
+.rev-item{background:white;padding:18px;border-radius:10px;border-top:4px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+body.dark-mode .rev-item{background:#1e1e1e}
+.rev-item i{font-size:2rem;color:var(--primary);margin-bottom:10px}
+.rev-item h4{color:var(--primary);margin-bottom:8px}
+.rev-item p{font-size:.9rem;margin:0}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#00b09b,#96c93d);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(0,176,155,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.simulator h3{color:#fef3c7!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-form{background:rgba(255,255,255,.1);padding:20px;border-radius:10px;margin-bottom:15px;backdrop-filter:blur(10px)}
+.sim-form label{display:block;margin-bottom:8px;font-weight:500}
+.sim-form select{width:100%;padding:10px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;margin-bottom:10px;font-size:.95rem;background:white;color:#333}
+.sim-btn{background:white;color:#00b09b;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.reversing-journal{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px}
+.reversing-journal h4{text-align:center;color:var(--primary);margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid var(--primary)}
+.journal-comparison{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:15px}
+@media(max-width:768px){.journal-comparison{grid-template-columns:1fr}}
+.journal-box{background:#f9fafb;padding:15px;border-radius:8px;border-left:4px solid var(--primary)}
+.journal-box.adjustment{border-left-color:var(--warning)}
+.journal-box.reversing{border-left-color:var(--success)}
+.journal-box .title{font-weight:700;color:var(--primary);margin-bottom:10px;font-size:.95rem}
+.journal-box.adjustment .title{color:#b45309}
+.journal-box.reversing .title{color:#047857}
+.journal-box table{width:100%;border-collapse:collapse;font-size:.85rem}
+.journal-box td{padding:5px 6px}
+.journal-box .kredit{padding-left:20px;color:var(--danger);font-weight:700}
+.journal-box .debit{color:var(--success);font-weight:700;text-align:right}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-undo"></i></div>
+<h1>Bab 4.C — Jurnal Pembalik</h1>
+<p class="subtitle">Reversing Entry — Membalik jurnal penyesuaian tertentu + Simulator 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 4.C
+</div>
+
+<div class="card">
+<h2><i class="fas fa-undo"></i> Pengertian Jurnal Pembalik</h2>
+<p><strong>Jurnal pembalik (reversing entry)</strong> adalah jurnal yang dibuat <strong>di awal periode berikutnya</strong> untuk <strong>membalik</strong> jurnal penyesuaian tertentu. Tujuannya untuk <strong>memudahkan pencatatan</strong> transaksi di periode berikutnya.</p>
+
+<div class="highlight-box">
+<strong>🎯 Tujuan Jurnal Pembalik:</strong><br>
+• Menyederhanakan pencatatan transaksi di <strong>periode berikutnya</strong><br>
+• Menghindari <strong>pengulangan pencatatan</strong><br>
+• Tidak wajib, hanya <strong>opsional</strong> untuk efisiensi
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-filter"></i> Jurnal Penyesuaian yang Dibalik</h2>
+<p>Tidak semua jurnal penyesuaian perlu dibalik. Hanya <strong>2 jenis</strong> yang biasanya dibalik:</p>
+
+<div class="rev-grid">
+<div class="rev-item">
+<i class="fas fa-check-circle"></i>
+<h4>✅ Yang Dibalik</h4>
+<p><strong>1. Beban yang masih harus dibayar</strong> (utang beban)<br><strong>2. Pendapatan yang masih harus diterima</strong> (piutang pendapatan)</p>
+</div>
+<div class="rev-item">
+<i class="fas fa-times-circle"></i>
+<h4>❌ Yang Tidak Dibalik</h4>
+<p><strong>1. Beban dibayar dimuka</strong><br><strong>2. Penyusutan aset tetap</strong><br><strong>3. Perlengkapan terpakai</strong><br><strong>4. Pendapatan diterima dimuka</strong></p>
+</div>
+</div>
+
+<div class="example-box">
+<strong>Mengapa hanya 2 jenis?</strong><br>
+Karena kedua jenis ini melibatkan <strong>utang/piutang</strong> yang akan dilunasi di periode berikutnya. Dengan dibalik, saat pelunasan terjadi, cukup catat satu jurnal saja tanpa perlu mengecek jurnal penyesuaian sebelumnya.
+</div>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Jurnal Pembalik Otomatis</h2>
+<div class="sim-intro">
+<strong>Lihat Perbandingan Jurnal Penyesuaian & Pembalik!</strong> 🔄<br>
+Pilih jenis jurnal penyesuaian di bawah, lalu lihat bagaimana <strong>jurnal pembalik</strong> dibuat di awal periode berikutnya. Perhatikan posisi Debit dan Kredit yang <strong>terbalik</strong>!
+</div>
+
+<div class="sim-form">
+<label>📋 Pilih Jurnal Penyesuaian yang Dibalik:</label>
+<select id="reversingType">
+<option value="">-- Pilih jenis --</option>
+<option value="1">1. Beban Gaji yang Masih Harus Dibayar (Utang Gaji Rp 400.000)</option>
+<option value="2">2. Pendapatan yang Masih Harus Diterima (Piutang Jasa Rp 300.000)</option>
+</select>
+
+<button class="sim-btn" onclick="generateReversing()"><i class="fas fa-magic"></i> Tampilkan Jurnal</button>
+<button class="sim-btn reset" onclick="resetReversing()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<div id="reversingResult"></div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Jurnal pembalik = <strong>kebalikan</strong> dari jurnal penyesuaian tertentu</li>
+<li>✅ Dibuat di <strong>awal periode berikutnya</strong> (1 Januari)</li>
+<li>✅ Hanya untuk: <strong>beban masih harus dibayar</strong> & <strong>pendapatan masih harus diterima</strong></li>
+<li>✅ Tujuannya: <strong>efisiensi</strong> pencatatan di periode baru</li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab4-b.html"><i class="fas fa-arrow-left"></i> Daftar Saldo Setelah Penutupan</a>
+<a href="../ekonomi-kelas-xii.html">Kembali ke Bab <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function generateReversing(){
+  const type = document.getElementById('reversingType').value;
+  if(!type){alert('Pilih jenis jurnal dulu ya! 😊');return}
+  
+  let html = '<div class="reversing-journal">';
+  
+  if(type === '1'){
+    // Beban Gaji Masih Harus Dibayar
+    html += `<h4>🔄 Jurnal Pembalik: Beban Gaji yang Masih Harus Dibayar</h4>
+    
+    <div class="journal-comparison">
+      <div class="journal-box adjustment">
+        <div class="title">📝 Jurnal Penyesuaian (31 Januari 2025)</div>
+        <table>
+          <tr><td><strong>Beban Gaji</strong></td><td class="debit">Rp 400.000</td></tr>
+          <tr><td class="kredit">Utang Gaji</td><td style="text-align:right">Rp 400.000</td></tr>
+        </table>
+      </div>
+      
+      <div class="journal-box reversing">
+        <div class="title">🔄 Jurnal Pembalik (1 Februari 2025)</div>
+        <table>
+          <tr><td><strong>Utang Gaji</strong></td><td class="debit">Rp 400.000</td></tr>
+          <tr><td class="kredit">Beban Gaji</td><td style="text-align:right">Rp 400.000</td></tr>
+        </table>
+      </div>
+    </div>
+    
+    <div style="background:#e0e7ff;padding:15px;border-radius:8px;margin-top:15px">
+      <strong>💡 Penjelasan:</strong><br>
+      Jurnal pembalik <strong>membalik posisi</strong> Debit dan Kredit dari jurnal penyesuaian. Saat gaji benar-benar dibayar di Februari, cukup catat:<br>
+      <code style="background:white;padding:5px 10px;border-radius:5px;display:inline-block;margin-top:8px">
+        Beban Gaji (D) Rp 400.000 / Kas (K) Rp 400.000
+      </code>
+    </div>`;
+  } else {
+    // Pendapatan Masih Harus Diterima
+    html += `<h4>🔄 Jurnal Pembalik: Pendapatan yang Masih Harus Diterima</h4>
+    
+    <div class="journal-comparison">
+      <div class="journal-box adjustment">
+        <div class="title">📝 Jurnal Penyesuaian (31 Januari 2025)</div>
+        <table>
+          <tr><td><strong>Piutang Jasa</strong></td><td class="debit">Rp 300.000</td></tr>
+          <tr><td class="kredit">Pendapatan Jasa</td><td style="text-align:right">Rp 300.000</td></tr>
+        </table>
+      </div>
+      
+      <div class="journal-box reversing">
+        <div class="title">🔄 Jurnal Pembalik (1 Februari 2025)</div>
+        <table>
+          <tr><td><strong>Pendapatan Jasa</strong></td><td class="debit">Rp 300.000</td></tr>
+          <tr><td class="kredit">Piutang Jasa</td><td style="text-align:right">Rp 300.000</td></tr>
+        </table>
+      </div>
+    </div>
+    
+    <div style="background:#e0e7ff;padding:15px;border-radius:8px;margin-top:15px">
+      <strong>💡 Penjelasan:</strong><br>
+      Jurnal pembalik <strong>membalik posisi</strong> Debit dan Kredit. Saat piutang benar-benar diterima di Februari, cukup catat:<br>
+      <code style="background:white;padding:5px 10px;border-radius:5px;display:inline-block;margin-top:8px">
+        Kas (D) Rp 300.000 / Pendapatan Jasa (K) Rp 300.000
+      </code>
+    </div>`;
+  }
+  
+  html += '</div>';
+  
+  document.getElementById('reversingResult').innerHTML = html;
+}
+
+function resetReversing(){
+  document.getElementById('reversingType').value = '';
+  document.getElementById('reversingResult').innerHTML = '';
+}
+</script>
+</body>
+</html>

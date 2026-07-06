@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 4.B — Daftar Saldo Setelah Penutupan + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#5f72bd,#9b23ea);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(95,114,189,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-btn{background:white;color:#9b23ea;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.after-table{width:100%;border-collapse:collapse;background:white;color:var(--dark);border-radius:10px;overflow:hidden;margin-top:15px}
+.after-table th{background:var(--primary);color:white;padding:12px;text-align:center;font-size:.9rem}
+.after-table td{padding:8px;border-bottom:1px solid #e5e7eb;font-size:.85rem}
+.after-table tfoot{background:#fef3c7;font-weight:700}
+.after-table tfoot td{padding:12px}
+.status-box{padding:12px;border-radius:8px;margin-top:15px;text-align:center;font-weight:700}
+.status-box.ok{background:var(--success);color:#064e3b}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.after-table{font-size:.75rem}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-list-check"></i></div>
+<h1>Bab 4.B — Daftar Saldo Setelah Penutupan</h1>
+<p class="subtitle">After Closing Trial Balance + Simulator 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 4.B
+</div>
+
+<div class="card">
+<h2><i class="fas fa-list-check"></i> Pengertian Daftar Saldo Setelah Penutupan</h2>
+<p><strong>Daftar Saldo Setelah Penutupan (After Closing Trial Balance)</strong> adalah daftar yang berisi <strong>saldo akun-akun riil</strong> (harta, utang, modal) setelah jurnal penutup diposting. Akun nominal sudah <strong>nol</strong> dan tidak muncul di daftar ini.</p>
+
+<div class="highlight-box">
+<strong>🎯 Tujuan:</strong><br>
+• Memastikan <strong>total Debit = Total Kredit</strong> setelah penutupan<br>
+• Memverifikasi hanya akun <strong>riil</strong> yang masih bersaldo<br>
+• Dasar penyusunan <strong>neraca awal</strong> periode berikutnya
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-filter"></i> Akun yang Muncul</h2>
+<p>Setelah jurnal penutup, hanya akun <strong>riil</strong> yang masih memiliki saldo:</p>
+<ul>
+<li>✅ <strong>Harta</strong> — Kas, Piutang, Perlengkapan, Peralatan, dll</li>
+<li>✅ <strong>Utang</strong> — Utang Usaha, Utang Gaji, dll</li>
+<li>✅ <strong>Modal</strong> — Modal pemilik (sudah termasuk laba)</li>
+<li>❌ <strong>Pendapatan</strong> — sudah ditutup (saldo = 0)</li>
+<li>❌ <strong>Beban</strong> — sudah ditutup (saldo = 0)</li>
+<li>❌ <strong>Prive</strong> — sudah ditutup (saldo = 0)</li>
+<li>❌ <strong>Ikhtisar Laba/Rugi</strong> — sudah ditutup (saldo = 0)</li>
+</ul>
+
+<div class="example-box">
+<strong>Contoh:</strong> Setelah penutupan, akun "Pendapatan Jasa" dan "Beban Gaji" tidak muncul lagi di daftar saldo karena saldonya sudah nol. Hanya "Kas", "Utang Usaha", dan "Modal" yang masih ada.
+</div>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Daftar Saldo Setelah Penutupan</h2>
+<div class="sim-intro">
+<strong>Lihat Daftar Saldo Setelah Penutupan!</strong> 📊<br>
+Setelah jurnal penutup dari Bab 4.A diposting, hanya akun <strong>riil</strong> yang tersisa. Simulator akan menampilkan daftar saldo akhir "Laundry Bersih" yang siap untuk periode berikutnya!
+</div>
+
+<div>
+<button class="sim-btn" onclick="generateAfterClosing()"><i class="fas fa-magic"></i> Tampilkan Daftar Saldo</button>
+<button class="sim-btn reset" onclick="resetAfterClosing()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<div id="afterClosingResult"></div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Daftar saldo setelah penutupan = hanya akun <strong>riil</strong></li>
+<li>✅ Akun nominal sudah <strong>nol</strong> dan tidak muncul</li>
+<li>✅ Total Debit harus <strong>= Total Kredit</strong></li>
+<li>✅ Menjadi dasar <strong>neraca awal</strong> periode berikutnya</li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab4-a.html"><i class="fas fa-arrow-left"></i> Jurnal Penutup</a>
+<a href="bab4-c.html">Jurnal Pembalik + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function generateAfterClosing(){
+  // Data setelah penutupan (hanya akun riil)
+  const accounts = [
+    {name:'Kas',ref:'101',d:3400000,k:0},
+    {name:'Piutang Usaha',ref:'102',d:600000,k:0},
+    {name:'Sewa Dibayar Dimuka',ref:'103',d:1100000,k:0},
+    {name:'Perlengkapan',ref:'104',d:150000,k:0},
+    {name:'Peralatan',ref:'105',d:1500000,k:0},
+    {name:'Akumulasi Penyusutan Peralatan',ref:'106',d:0,k:300000},
+    {name:'Utang Usaha',ref:'201',d:0,k:300000},
+    {name:'Utang Gaji',ref:'202',d:0,k:400000},
+    {name:'Modal Tuan Andi',ref:'301',d:0,k:5750000}
+  ];
+  
+  let totalD = 0, totalK = 0;
+  
+  let html = `<div style="overflow-x:auto">
+    <table class="after-table">
+      <thead>
+        <tr>
+          <th style="width:5%">No</th>
+          <th style="width:45%">Nama Akun</th>
+          <th style="width:10%">Ref</th>
+          <th style="width:20%">Debit</th>
+          <th style="width:20%">Kredit</th>
+        </tr>
+      </thead>
+      <tbody>`;
+  
+  accounts.forEach((a,i)=>{
+    html+=`<tr>
+      <td style="text-align:center">${i+1}</td>
+      <td>${a.name}</td>
+      <td style="text-align:center">${a.ref}</td>
+      <td style="text-align:right">${a.d?'Rp '+fmt(a.d):'-'}</td>
+      <td style="text-align:right">${a.k?'Rp '+fmt(a.k):'-'}</td>
+    </tr>`;
+    totalD += a.d;
+    totalK += a.k;
+  });
+  
+  html += `</tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right"><strong>TOTAL</strong></td>
+          <td style="text-align:right"><strong>Rp ${fmt(totalD)}</strong></td>
+          <td style="text-align:right"><strong>Rp ${fmt(totalK)}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>`;
+  
+  html += `<div class="status-box ok">
+    ✅ <strong>SEIMBANG!</strong> Total Debit (Rp ${fmt(totalD)}) = Total Kredit (Rp ${fmt(totalK)})<br>
+    <span style="font-size:.9rem;opacity:.9">Semua akun nominal sudah ditutup. Siap untuk periode berikutnya!</span>
+  </div>`;
+  
+  document.getElementById('afterClosingResult').innerHTML = html;
+}
+
+function resetAfterClosing(){
+  document.getElementById('afterClosingResult').innerHTML = '';
+}
+</script>
+</body>
+</html>

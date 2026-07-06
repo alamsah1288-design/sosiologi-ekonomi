@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 4.A — Jurnal Penutup + Simulator | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+.step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin:15px 0}
+.step-item{background:white;padding:18px;border-radius:10px;border-left:4px solid var(--success);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+body.dark-mode .step-item{background:#1e1e1e}
+.step-item .num{width:40px;height:40px;border-radius:50%;background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+.step-item h4{color:var(--primary);margin-bottom:8px}
+.step-item p{font-size:.9rem;margin:0}
+
+/* ====== SIMULATOR STYLES ====== */
+.simulator{background:linear-gradient(135deg,#ee0979,#ff6a00);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(238,9,121,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.simulator h3{color:#fef3c7!important;border-bottom:none}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-btn{background:white;color:#ee0979;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.closing-journal{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px}
+.closing-journal h4{text-align:center;color:var(--primary);margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid var(--primary)}
+.journal-entry{margin-bottom:20px;padding:15px;background:#f9fafb;border-radius:8px;border-left:4px solid var(--success)}
+.journal-entry .title{font-weight:700;color:var(--primary);margin-bottom:10px;font-size:1rem}
+.journal-entry table{width:100%;border-collapse:collapse;font-size:.9rem}
+.journal-entry td{padding:6px 8px}
+.journal-entry .kredit{padding-left:30px;color:var(--danger);font-weight:700}
+.journal-entry .debit{color:var(--success);font-weight:700;text-align:right}
+.journal-entry .desc{font-style:italic;color:var(--gray);font-size:.85rem;text-align:center;padding:8px 0}
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-door-closed"></i></div>
+<h1>Bab 4.A — Jurnal Penutup</h1>
+<p class="subtitle">Closing Entry — Menutup akun nominal + Simulator 🎮</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 4.A
+</div>
+
+<div class="card">
+<h2><i class="fas fa-door-closed"></i> Pengertian Jurnal Penutup</h2>
+<p><strong>Jurnal penutup (closing entry)</strong> adalah jurnal yang dibuat <strong>di akhir periode</strong> untuk <strong>menutup akun-akun nominal</strong> (pendapatan, beban, dan prive) sehingga saldonya menjadi <strong>nol</strong>. Akun nominal akan dimulai lagi dari nol di periode berikutnya.</p>
+
+<div class="highlight-box">
+<strong>🎯 Tujuan Jurnal Penutup:</strong><br>
+• Menutup akun <strong>nominal</strong> (pendapatan, beban, prive)<br>
+• Memindahkan <strong>laba/rugi</strong> ke akun <strong>modal</strong><br>
+• Mempersiapkan akun untuk <strong>periode berikutnya</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-list-ol"></i> 4 Langkah Jurnal Penutup</h2>
+
+<div class="step-grid">
+<div class="step-item">
+<div class="num">1</div>
+<h4>Menutup Pendapatan</h4>
+<p>Debit: Semua akun pendapatan<br>Kredit: Ikhtisar Laba/Rugi (IL/R)</p>
+</div>
+<div class="step-item">
+<div class="num">2</div>
+<h4>Menutup Beban</h4>
+<p>Debit: Ikhtisar Laba/Rugi (IL/R)<br>Kredit: Semua akun beban</p>
+</div>
+<div class="step-item">
+<div class="num">3</div>
+<h4>Menutup Ikhtisar Laba/Rugi</h4>
+<p>Jika <strong>laba</strong>: Debit IL/R, Kredit Modal<br>Jika <strong>rugi</strong>: Debit Modal, Kredit IL/R</p>
+</div>
+<div class="step-item">
+<div class="num">4</div>
+<h4>Menutup Prive</h4>
+<p>Debit: Modal<br>Kredit: Prive</p>
+</div>
+</div>
+
+<div class="example-box">
+<strong>Ingat:</strong> Setelah jurnal penutup, hanya akun <strong>riil</strong> (harta, utang, modal) yang masih memiliki saldo. Akun <strong>nominal</strong> (pendapatan, beban) sudah nol.
+</div>
+</div>
+
+<!-- ============ SIMULATOR ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Jurnal Penutup Otomatis</h2>
+<div class="sim-intro">
+<strong>Lihat Jurnal Penutup Secara Otomatis!</strong> ✨<br>
+Berdasarkan data "Laundry Bersih" dari Bab 3, simulator akan otomatis membuat <strong>4 jurnal penutup</strong>. Perhatikan bagaimana akun nominal ditutup dan laba dipindahkan ke modal!
+</div>
+
+<div>
+<button class="sim-btn" onclick="generateClosing()"><i class="fas fa-magic"></i> Buat Jurnal Penutup</button>
+<button class="sim-btn reset" onclick="resetClosing()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<div id="closingJournal"></div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Jurnal penutup = menutup akun <strong>nominal</strong></li>
+<li>✅ 4 langkah: tutup pendapatan → beban → IL/R → prive</li>
+<li>✅ Setelah penutupan, hanya akun <strong>riil</strong> yang bersaldo</li>
+<li>✅ Laba/rugi dipindahkan ke <strong>modal</strong></li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="../bab3-g.html"><i class="fas fa-arrow-left"></i> Bab 3.G</a>
+<a href="bab4-b.html">Daftar Saldo Setelah Penutupan + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+
+<script>
+function fmt(n){return n.toLocaleString('id-ID')}
+
+function generateClosing(){
+  const data = {
+    pendapatan: 2300000,
+    bebanGaji: 900000,
+    bebanSewa: 100000,
+    bebanPerlengkapan: 350000,
+    bebanPenyusutan: 300000,
+    prive: 100000
+  };
+  
+  const totalBeban = data.bebanGaji + data.bebanSewa + data.bebanPerlengkapan + data.bebanPenyusutan;
+  const laba = data.pendapatan - totalBeban;
+  
+  let html = '<div class="closing-journal">';
+  
+  // 1. Menutup Pendapatan
+  html += `<div class="journal-entry">
+    <div class="title">📝 1. Menutup Akun Pendapatan</div>
+    <table>
+      <tr><td colspan="2" class="desc">31 Januari 2025</td></tr>
+      <tr><td><strong>Pendapatan Jasa</strong></td><td class="debit">Rp ${fmt(data.pendapatan)}</td></tr>
+      <tr><td class="kredit">Ikhtisar Laba/Rugi</td><td style="text-align:right">Rp ${fmt(data.pendapatan)}</td></tr>
+    </table>
+  </div>`;
+  
+  // 2. Menutup Beban
+  html += `<div class="journal-entry">
+    <div class="title">📝 2. Menutup Akun Beban</div>
+    <table>
+      <tr><td colspan="2" class="desc">31 Januari 2025</td></tr>
+      <tr><td><strong>Ikhtisar Laba/Rugi</strong></td><td class="debit">Rp ${fmt(totalBeban)}</td></tr>
+      <tr><td class="kredit">Beban Gaji</td><td style="text-align:right">Rp ${fmt(data.bebanGaji)}</td></tr>
+      <tr><td class="kredit">Beban Sewa</td><td style="text-align:right">Rp ${fmt(data.bebanSewa)}</td></tr>
+      <tr><td class="kredit">Beban Perlengkapan</td><td style="text-align:right">Rp ${fmt(data.bebanPerlengkapan)}</td></tr>
+      <tr><td class="kredit">Beban Penyusutan Peralatan</td><td style="text-align:right">Rp ${fmt(data.bebanPenyusutan)}</td></tr>
+    </table>
+  </div>`;
+  
+  // 3. Menutup IL/R (Laba)
+  html += `<div class="journal-entry">
+    <div class="title">📝 3. Menutup Ikhtisar Laba/Rugi (Laba: Rp ${fmt(laba)})</div>
+    <table>
+      <tr><td colspan="2" class="desc">31 Januari 2025</td></tr>
+      <tr><td><strong>Ikhtisar Laba/Rugi</strong></td><td class="debit">Rp ${fmt(laba)}</td></tr>
+      <tr><td class="kredit">Modal Tuan Andi</td><td style="text-align:right">Rp ${fmt(laba)}</td></tr>
+    </table>
+  </div>`;
+  
+  // 4. Menutup Prive
+  html += `<div class="journal-entry">
+    <div class="title">📝 4. Menutup Prive</div>
+    <table>
+      <tr><td colspan="2" class="desc">31 Januari 2025</td></tr>
+      <tr><td><strong>Modal Tuan Andi</strong></td><td class="debit">Rp ${fmt(data.prive)}</td></tr>
+      <tr><td class="kredit">Prive</td><td style="text-align:right">Rp ${fmt(data.prive)}</td></tr>
+    </table>
+  </div>`;
+  
+  html += `<div style="background:#e0e7ff;padding:15px;border-radius:8px;margin-top:15px;text-align:center">
+    <strong>✅ SELESAI!</strong><br>
+    Semua akun nominal sudah ditutup. Laba bersih Rp ${fmt(laba)} sudah dipindahkan ke Modal.
+  </div>`;
+  
+  html += '</div>';
+  
+  document.getElementById('closingJournal').innerHTML = html;
+}
+
+function resetClosing(){
+  document.getElementById('closingJournal').innerHTML = '';
+}
+</script>
+</body>
+</html>
