@@ -385,9 +385,9 @@ opacity:0; visibility:hidden; z-index:999;
 position:fixed; top:0; left:0; width:100%; height:100%;
 background:linear-gradient(135deg,var(--primary),var(--secondary));
 display:flex; align-items:center; justify-content:center; z-index:9999;
-transition:opacity 0.5s ease-out;
+transition:opacity 0.25s ease-out;
 }
-.loader { width:50px; height:50px; border:5px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:white; animation:spin 1s ease-in-out infinite; }
+.loader { width:50px; height:50px; border:5px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:white; animation:spin 0.8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 
 /* ===== RESPONSIVE ===== */
@@ -1198,13 +1198,13 @@ document.getElementById('backToTop').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ===== LOADER =====
+// ===== LOADER (DIPERCEPAT) =====
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     setTimeout(() => {
         loader.style.opacity = '0';
-        setTimeout(() => { loader.style.display = 'none'; }, 500);
-    }, 800);
+        setTimeout(() => { loader.style.display = 'none'; }, 250);
+    }, 200);
 });
 
 // ===== INIT =====
