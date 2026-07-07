@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Analisis Geografis Mitigasi Bencana Gunung Api di Jawa Timur: Gunung Raung, Ijen, dan Merapi. Penerapan Geografi dalam Mitigasi Bencana Vulkanik dengan Analisis Zona Rawan dan Evakuasi Berbasis Keruangan.">
+<meta name="keywords" content="mitigasi bencana gunung api, gunung raung, gunung ijen, gunung merapi, litosfer, zona rawan bencana, evakuasi, analisis geografis, jawa timur">
+<title>🌋 Mitigasi Bencana Gunung Api Jawa Timur | Lensa Geografis</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Chart.js for AI-based Data Visualization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root {
+--primary: #e74c3c; --secondary: #c0392b; --accent: #e67e22;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--success: #4ade80; --warning: #fbbf24; --danger: #f87171;
+--bg-gradient: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #2d1b1b 0%, #3d2828 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .stat-box, body.dark-mode .volcano-card, body.dark-mode .zone-card, body.dark-mode .chart-container, body.dark-mode .data-source, body.dark-mode .case-box, body.dark-mode .mitigation-card { background: #2d1b1b; border-color: #4a2d2d; color: #e5e7eb; }
+body.dark-mode .volcano-card h3, body.dark-mode .zone-card h4, body.dark-mode .mitigation-card h4 { color: var(--accent); }
+body.dark-mode table { background: #2d1b1b; }
+body.dark-mode th { background: #5c2d2d; color: white; }
+body.dark-mode td { border-color: #4a2d2d; }
+
+/* NAVBAR */
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; font-size: 0.92rem; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; background: rgba(255,255,255,0.95); min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 8px; top: 100%; left: 0; z-index: 1001; flex-direction: column; padding: 10px 0; backdrop-filter: blur(10px); }
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+/* HEADER */
+header {
+background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #922b21 100%);
+background-size: 300% 300%;
+animation: gradientBG 10s ease infinite;
+color: white; padding: 3.5rem 1.5rem 2.5rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 20s linear infinite; z-index: 1;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+header::after {
+content: "🌋";
+position: absolute;
+bottom: 10px; right: 20px;
+font-size: 5rem;
+opacity: 0.15;
+z-index: 1;
+}
+.header-icon {
+width: 100px; height: 100px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+font-size: 3rem;
+backdrop-filter: blur(10px);
+}
+header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1.05rem; }
+.header-badge {
+display: inline-block;
+background: rgba(255,255,255,0.2);
+padding: 6px 18px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-top: 1rem;
+z-index: 2; position: relative;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.3);
+}
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+/* CONTENT */
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow); margin-bottom: 2rem; }
+.content-card h2 { color: var(--primary); font-size: 1.6rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+.content-card h3 { color: var(--secondary); font-size: 1.25rem; margin: 1.5rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+body.dark-mode .content-card h2 { color: var(--accent); }
+body.dark-mode .content-card h3 { color: var(--accent); }
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+/* KEY POINT */
+.key-point {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white; padding: 1.2rem 1.5rem; border-radius: 12px;
+margin: 1rem 0; display: flex; align-items: flex-start; gap: 1rem;
+box-shadow: var(--shadow);
+}
+.key-point i { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.key-point p { margin: 0; }
+
+/* ALERT BOX */
+.alert-box {
+background: linear-gradient(135deg, #fee2e2, #fecaca);
+border-left: 5px solid var(--danger);
+padding: 1.2rem 1.5rem;
+border-radius: 12px;
+margin: 1rem 0;
+display: flex; align-items: flex-start; gap: 1rem;
+}
+body.dark-mode .alert-box { background: linear-gradient(135deg, #450a0a, #7f1d1d); }
+.alert-box i { font-size: 1.5rem; color: var(--danger); flex-shrink: 0; margin-top: 2px; }
+.alert-box strong { color: #991b1b; display: block; margin-bottom: 0.3rem; }
+body.dark-mode .alert-box strong { color: #fca5a5; }
+
+/* STAT BOX */
+.stat-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1rem;
+margin: 1.5rem 0;
+}
+.stat-box {
+background: linear-gradient(135deg, #fee2e2, #fecaca);
+border-radius: 14px;
+padding: 1.3rem;
+text-align: center;
+box-shadow: var(--shadow);
+border-top: 4px solid var(--primary);
+transition: all 0.3s ease;
+}
+.stat-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .stat-box { background: linear-gradient(135deg, #5c2d2d, #7a3d3d); }
+.stat-box .stat-icon {
+font-size: 2rem;
+color: var(--primary);
+margin-bottom: 0.5rem;
+}
+body.dark-mode .stat-box .stat-icon { color: var(--accent); }
+.stat-box .stat-number {
+font-size: 1.8rem;
+font-weight: 700;
+color: var(--secondary);
+margin-bottom: 0.2rem;
+}
+body.dark-mode .stat-box .stat-number { color: var(--accent); }
+.stat-box .stat-label {
+font-size: 0.85rem;
+color: var(--gray);
+font-weight: 500;
+}
+body.dark-mode .stat-box .stat-label { color: #9ca3af; }
+
+/* VOLCANO CARDS */
+.volcano-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.2rem;
+margin: 1.5rem 0;
+}
+.volcano-card {
+background: linear-gradient(135deg, #fef3f3, #fce4e4);
+border-radius: 16px;
+padding: 1.5rem;
+box-shadow: var(--shadow);
+border-left: 6px solid var(--primary);
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+.volcano-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+body.dark-mode .volcano-card { background: linear-gradient(135deg, #3d2828, #5c3d3d); }
+.volcano-card::before {
+content: '🌋';
+position: absolute;
+top: 10px; right: 10px;
+font-size: 2rem;
+opacity: 0.1;
+}
+.volcano-card h3 {
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.6rem;
+font-size: 1.2rem;
+position: relative; z-index: 2;
+}
+.volcano-card .volcano-stat {
+font-size: 0.9rem;
+color: var(--gray);
+margin: 0.3rem 0;
+position: relative; z-index: 2;
+}
+body.dark-mode .volcano-card .volcano-stat { color: #9ca3af; }
+.volcano-card .volcano-stat strong { color: var(--primary); }
+body.dark-mode .volcano-card .volcano-stat strong { color: var(--accent); }
+.volcano-card.raung { border-left-color: #e74c3c; }
+.volcano-card.ijen { border-left-color: #f39c12; }
+.volcano-card.merapi { border-left-color: #9b59b6; }
+
+/* ZONE CARDS */
+.zone-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1rem;
+margin: 1.5rem 0;
+}
+.zone-card {
+background: linear-gradient(135deg, #fef3f3, #fce4e4);
+border-radius: 14px;
+padding: 1.3rem;
+box-shadow: var(--shadow);
+border-left: 5px solid;
+transition: all 0.3s ease;
+}
+.zone-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .zone-card { background: linear-gradient(135deg, #3d2828, #5c3d3d); }
+.zone-card h4 {
+margin: 0 0 0.5rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.05rem;
+}
+.zone-card.kawasan-iii { border-left-color: #e74c3c; }
+.zone-card.kawasan-iii h4 { color: #c0392b; }
+.zone-card.kawasan-ii { border-left-color: #f39c12; }
+.zone-card.kawasan-ii h4 { color: #e67e22; }
+.zone-card.kawasan-i { border-left-color: #2ecc71; }
+.zone-card.kawasan-i h4 { color: #27ae60; }
+body.dark-mode .zone-card h4 { color: var(--accent) !important; }
+.zone-card p { font-size: 0.9rem; margin: 0.3rem 0; }
+
+/* CHART CONTAINER */
+.chart-container {
+background: white;
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+box-shadow: var(--shadow);
+}
+body.dark-mode .chart-container { background: #2d1b1b; }
+.chart-container h4 {
+color: var(--primary);
+margin: 0 0 1rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .chart-container h4 { color: var(--accent); }
+
+/* MITIGATION CARDS */
+.mitigation-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.2rem;
+margin: 1.5rem 0;
+}
+.mitigation-card {
+background: linear-gradient(135deg, #fef3f3, #fce4e4);
+border-radius: 16px;
+padding: 1.5rem;
+box-shadow: var(--shadow);
+border-left: 6px solid var(--success);
+transition: all 0.3s ease;
+}
+.mitigation-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .mitigation-card { background: linear-gradient(135deg, #3d2828, #5c3d3d); }
+.mitigation-card.structural { border-left-color: #3498db; }
+.mitigation-card.nonstructural { border-left-color: #2ecc71; }
+.mitigation-card h4 {
+color: var(--primary);
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.1rem;
+}
+.mitigation-card.structural h4 { color: #2980b9; }
+.mitigation-card.nonstructural h4 { color: #27ae60; }
+body.dark-mode .mitigation-card h4 { color: var(--accent) !important; }
+.mitigation-card ul { margin: 0.5rem 0 0 1.2rem; }
+.mitigation-card li { font-size: 0.92rem; margin-bottom: 0.5rem; }
+.mitigation-card li strong { color: var(--primary); }
+body.dark-mode .mitigation-card li strong { color: var(--accent); }
+
+/* CASE BOX */
+.case-box {
+background: linear-gradient(135deg, #fff9e6, #fff3cc);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border: 2px dashed #f39c12;
+position: relative;
+}
+body.dark-mode .case-box { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.case-box-label {
+position: absolute;
+top: -12px;
+left: 20px;
+background: #f39c12;
+color: white;
+padding: 4px 14px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 1px;
+}
+.case-box h4 {
+color: #e67e22;
+margin: 0.5rem 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .case-box h4 { color: var(--warning); }
+
+/* DATA SOURCE */
+.data-source {
+background: linear-gradient(135deg, #fff3cd, #ffe69c);
+border-left: 4px solid #f39c12;
+padding: 0.8rem 1rem;
+border-radius: 8px;
+margin: 1rem 0;
+font-size: 0.85rem;
+}
+body.dark-mode .data-source { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.data-source strong { color: #e67e22; }
+.data-source a { color: var(--primary); text-decoration: none; font-weight: 600; }
+body.dark-mode .data-source a { color: var(--accent); }
+.data-source a:hover { text-decoration: underline; }
+
+/* TABLE */
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; }
+td { padding: 0.8rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; font-size: 0.92rem; }
+tr:hover td { background: #f8f9fa; }
+body.dark-mode tr:hover td { background: #4a2d2d; }
+
+/* DISCUSSION BOX */
+.discussion-box {
+background: linear-gradient(135deg, #fef3c7, #fde68a);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border-left: 6px solid var(--warning);
+}
+body.dark-mode .discussion-box { background: linear-gradient(135deg, #422006, #713f12); }
+.discussion-box h3 {
+color: #d97706;
+margin: 0 0 1rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .discussion-box h3 { color: var(--warning); }
+.discussion-box ol { margin: 0.5rem 0 0 1.2rem; }
+.discussion-box li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: var(--shadow); }
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+/* FOOTER */
+footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 60px 20px 30px; margin-top: 60px; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links { display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary)); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; max-height: calc(100vh - var(--header-height)); overflow-y: auto; }
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.header-icon { width: 75px; height: 75px; font-size: 2.2rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.volcano-grid { grid-template-columns: 1fr; }
+.zone-grid { grid-template-columns: 1fr; }
+th, td { padding: 0.6rem; font-size: 0.82rem; }
+.stat-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon">
+        <i class="fas fa-mountain"></i>
+    </div>
+    <h1>🌋 Mitigasi Bencana Gunung Api Jawa Timur</h1>
+    <p class="subtitle">Analisis Zona Rawan & Evakuasi Berbasis Keruangan • Lensa Geografis</p>
+    <div class="header-badge">
+        <i class="fas fa-shield-alt"></i> Objek Kajian: <strong>LITOSFER</strong>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html#analisis">Lensa Geografis</a>
+    <span>›</span>
+    <span>Mitigasi Bencana Vulkanik</span>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- PENDAHULUAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Pengantar Analisis</h2>
+        <p><strong>Bencana gunung api</strong> merupakan salah satu bencana alam yang paling kompleks dan berbahaya di Indonesia. Jawa Timur memiliki beberapa gunung api aktif yang memerlukan <strong>mitigasi berbasis geografis</strong> yang komprehensif. Tiga gunung api utama yang menjadi fokus analisis ini adalah <strong>Gunung Raung, Gunung Ijen, dan Gunung Merapi</strong> (Jatim).</p>
+        
+        <p>Mitigasi bencana vulkanik memerlukan pemahaman mendalam tentang <strong>zona rawan bencana</strong>, <strong>pola persebaran penduduk</strong>, <strong>rute evakuasi</strong>, dan <strong>sistem peringatan dini</strong>. Pendekatan geografis dengan analisis keruangan menjadi kunci dalam merancang strategi mitigasi yang efektif.</p>
+
+        <div class="alert-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>⚠️ Fakta Penting:</strong>
+                Indonesia memiliki 127 gunung api aktif, dan Jawa Timur merupakan salah satu provinsi dengan risiko vulkanik tinggi. Gunung Raung (3.332 mdpl) dan Gunung Ijen (2.799 mdpl) adalah dua gunung api aktif yang mengancam ribuan penduduk di Banyuwangi, Bondowoso, dan Jember.
+            </div>
+        </div>
+
+        <h3><i class="fas fa-bullseye"></i> Tujuan Analisis</h3>
+        <ol>
+            <li>Menganalisis <strong>zona rawan bencana</strong> Gunung Raung, Ijen, dan Merapi menggunakan pendekatan keruangan.</li>
+            <li>Mengidentifikasi <strong>rute evakuasi</strong> dan <strong>titik kumpul</strong> yang optimal berbasis analisis spasial.</li>
+            <li>Memahami <strong>penerapan teknologi AI/GIS</strong> dalam pemetaan risiko dan sistem peringatan dini.</li>
+            <li>Merumuskan <strong>strategi mitigasi struktural dan non-struktural</strong> yang efektif.</li>
+        </ol>
+    </div>
+
+    <!-- DATA STATISTIK -->
+    <div class="content-card">
+        <h2><i class="fas fa-chart-bar"></i> Data Gunung Api Aktif Jawa Timur</h2>
+        <p>Berdasarkan data resmi dari <strong>Pusat Vulkanologi dan Mitigasi Bencana Geologi (PVMBG)</strong>:</p>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-mountain"></i></div>
+                <div class="stat-number">12</div>
+                <div class="stat-label">Gunung Api Aktif di Jatim</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-number">2.5 Juta</div>
+                <div class="stat-label">Penduduk di Zona Rawan</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="stat-number">Level II</div>
+                <div class="stat-label">Status Waspada (Rata-rata)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="stat-number">45</div>
+                <div class="stat-label">Desa Tangguh Bencana</div>
+            </div>
+        </div>
+
+        <div class="data-source">
+            <strong>📊 Sumber Data:</strong> <a href="https://vsi.esdm.go.id" target="_blank">PVMBG (Pusat Vulkanologi dan Mitigasi Bencana Geologi)</a>, <a href="https://bnpb.go.id" target="_blank">BNPB</a>, dan <a href="https://banyuwangikab.bps.go.id" target="_blank">BPS Kabupaten Banyuwangi</a> (2025).
+        </div>
+
+        <h3><i class="fas fa-mountain"></i> Profil 3 Gunung Api Kajian</h3>
+        <div class="volcano-grid">
+            <div class="volcano-card raung">
+                <h3><i class="fas fa-mountain"></i> Gunung Raung</h3>
+                <p class="volcano-stat"><strong>Ketinggian:</strong> 3.332 mdpl</p>
+                <p class="volcano-stat"><strong>Lokasi:</strong> Banyuwangi, Bondowoso, Jember</p>
+                <p class="volcano-stat"><strong>Tipe:</strong> Stratovolcano</p>
+                <p class="volcano-stat"><strong>Status:</strong> Level II (Waspada)</p>
+                <p class="volcano-stat"><strong>Ancaman:</strong> Awan panas, lahar, gas beracun</p>
+                <p class="volcano-stat"><strong>Populasi Berisiko:</strong> ±450.000 jiwa</p>
+            </div>
+            <div class="volcano-card ijen">
+                <h3><i class="fas fa-mountain"></i> Gunung Ijen</h3>
+                <p class="volcano-stat"><strong>Ketinggian:</strong> 2.799 mdpl</p>
+                <p class="volcano-stat"><strong>Lokasi:</strong> Banyuwangi, Bondowoso</p>
+                <p class="volcano-stat"><strong>Tipe:</strong> Stratovolcano</p>
+                <p class="volcano-stat"><strong>Status:</strong> Level II (Waspada)</p>
+                <p class="volcano-stat"><strong>Ancaman:</strong> Gas beracun (CO₂, H₂S), danau asam</p>
+                <p class="volcano-stat"><strong>Populasi Berisiko:</strong> ±280.000 jiwa</p>
+            </div>
+            <div class="volcano-card merapi">
+                <h3><i class="fas fa-mountain"></i> Gunung Merapi (Jatim)</h3>
+                <p class="volcano-stat"><strong>Ketinggian:</strong> 2.580 mdpl</p>
+                <p class="volcano-stat"><strong>Lokasi:</strong> Pacitan, Ponorogo</p>
+                <p class="volcano-stat"><strong>Tipe:</strong> Stratovolcano</p>
+                <p class="volcano-stat"><strong>Status:</strong> Level I (Normal)</p>
+                <p class="volcano-stat"><strong>Ancaman:</strong> Awan panas, lava, lahar</p>
+                <p class="volcano-stat"><strong>Populasi Berisiko:</strong> ±180.000 jiwa</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-chart-line"></i> Grafik Frekuensi Erupsi (2000–2025)</h3>
+        <div class="chart-container">
+            <canvas id="eruptionChart"></canvas>
+        </div>
+        <div class="data-source">
+            <strong>📈 Sumber:</strong> <a href="https://vsi.esdm.go.id" target="_blank">PVMBG</a> — Katalog Erupsi Gunung Api Indonesia 2000–2025.
+        </div>
+
+        <h3><i class="fas fa-chart-pie"></i> Distribusi Penduduk di Zona Rawan Bencana</h3>
+        <div class="chart-container">
+            <canvas id="populationChart"></canvas>
+        </div>
+        <div class="data-source">
+            <strong>📊 Sumber:</strong> <a href="https://banyuwangikab.bps.go.id" target="_blank">BPS Kabupaten Banyuwangi</a> & <a href="https://bnpb.go.id" target="_blank">BNPB</a> — Data Penduduk Zona Rawan Bencana 2025.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ANALISIS ZONA RAWAN BENCANA -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-map-marked-alt"></i> Analisis Zona Rawan Bencana</h2>
+        <p>Berdasarkan <strong>Surat Keputusan Kepala PVMBG</strong>, zona rawan bencana gunung api dibagi menjadi 3 kawasan:</p>
+
+        <div class="zone-grid">
+            <div class="zone-card kawasan-iii">
+                <h4><i class="fas fa-radiation"></i> Kawasan III (Bahaya)</h4>
+                <p><strong>Jarak:</strong> 0–4 km dari kawah</p>
+                <p><strong>Ancaman:</strong> Awan panas, lava, gas beracun, lontaran material</p>
+                <p><strong>Status:</strong> <strong>TERLARANG</strong> untuk permukiman</p>
+                <p><strong>Contoh:</strong> Kawasan Kawah Ijen, Puncak Raung</p>
+            </div>
+            <div class="zone-card kawasan-ii">
+                <h4><i class="fas fa-exclamation-triangle"></i> Kawasan II (Waspada)</h4>
+                <p><strong>Jarak:</strong> 4–7 km dari kawah</p>
+                <p><strong>Ancaman:</strong> Lahar, aliran piroklastik, hujan abu</p>
+                <p><strong>Status:</strong> <strong>TERBATAS</strong> — hanya untuk aktivitas tertentu</p>
+                <p><strong>Contoh:</strong> Desa Licin, Songgon, Sempu</p>
+            </div>
+            <div class="zone-card kawasan-i">
+                <h4><i class="fas fa-info-circle"></i> Kawasan I (Aman)</h4>
+                <p><strong>Jarak:</strong> >7 km dari kawah</p>
+                <p><strong>Ancaman:</strong> Hujan abu (minor), gas (jika angin kencang)</p>
+                <p><strong>Status:</strong> <strong>AMAN</strong> untuk permukiman</p>
+                <p><strong>Contoh:</strong> Kota Banyuwangi, Rogojampi, Kabat</p>
+            </div>
+        </div>
+
+        <div class="case-box">
+            <span class="case-box-label">STUDI KASUS</span>
+            <h4><i class="fas fa-map-marker-alt"></i> Zona Rawan Gunung Ijen</h4>
+            <p><strong>Kawasan III (Bahaya):</strong> Radius 0–4 km dari kawah mencakup area kawah, kawasan penambangan belerang, dan jalur pendakian. <strong>Populasi:</strong> Tidak ada permukiman permanen, namun ±500 penambang belerang beraktivitas harian.</p>
+            <p><strong>Kawasan II (Waspada):</strong> Radius 4–7 km mencakup Desa Licin, Kalipuro bagian barat, dan sebagian Sempu. <strong>Populasi:</strong> ±35.000 jiwa dengan 12 desa.</p>
+            <p><strong>Kawasan I (Aman):</strong> Radius >7 km mencakup Kota Banyuwangi, Rogojampi, Kabat, dan Giri. <strong>Populasi:</strong> ±245.000 jiwa.</p>
+        </div>
+
+        <div class="data-source">
+            <strong> Referensi:</strong> <a href="https://vsi.esdm.go.id" target="_blank">PVMBG</a> — Peta Kawasan Rawan Bencana Gunung Ijen dan Raung (2024), <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a> — Rencana Kontinjensi Bencana Gunung Api.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ANALISIS EVAKUASI BERBASIS KERUANGAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-route"></i> Analisis Evakuasi Berbasis Keruangan</h2>
+        <p>Evakuasi bencana gunung api memerlukan <strong>analisis spasial yang presisi</strong> untuk menentukan rute terpendek, titik kumpul yang aman, dan waktu tempuh optimal.</p>
+
+        <h3><i class="fas fa-project-diagram"></i> Komponen Sistem Evakuasi</h3>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Deskripsi</th>
+                        <th>Teknologi AI/GIS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rute Evakuasi</strong></td>
+                        <td>Jalur terpendek dan teraman dari zona bahaya ke tempat aman</td>
+                        <td>Network Analysis (ArcGIS/QGIS), algoritma Dijkstra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Titik Kumpul (Assembly Point)</strong></td>
+                        <td>Lokasi aman untuk berkumpul sebelum evakuasi lanjutan</td>
+                        <td>Suitability Analysis, buffer zone analysis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shelter/Tempat Pengungsian</strong></td>
+                        <td>Fasilitas permanen untuk pengungsi jangka panjang</td>
+                        <td>Multi-criteria Decision Analysis (MCDA)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Waktu Tempuh</strong></td>
+                        <td>Estimasi waktu evakuasi berdasarkan jarak dan kondisi jalan</td>
+                        <td>Cost-distance analysis, real-time traffic data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kapasitas Shelter</strong></td>
+                        <td>Jumlah maksimum pengungsi yang dapat ditampung</td>
+                        <td>Spatial allocation modeling</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-map"></i> Rute Evakuasi Gunung Ijen (Contoh)</h3>
+        <div class="case-box">
+            <span class="case-box-label">CONTOH APLIKASI</span>
+            <h4><i class="fas fa-route"></i> Evakuasi Desa Licin</h4>
+            <p><strong>Lokasi:</strong> Desa Licin (Kawasan II, jarak 5 km dari kawah Ijen)</p>
+            <p><strong>Rute Evakuasi Primer:</strong> Licin → Rogojampi (12 km, 25 menit) → Shelter SMPN 1 Rogojampi</p>
+            <p><strong>Rute Evakuasi Sekunder:</strong> Licin → Kabat (15 km, 30 menit) → Shelter GOR Kabat</p>
+            <p><strong>Titik Kumpul:</strong> Lapangan Desa Licin (kapasitas 2.000 orang)</p>
+            <p><strong>Waktu Evakuasi Total:</strong> 45–60 menit (termasuk pengumpulan di titik kumpul)</p>
+            <p><strong>Teknologi:</strong> GPS tracking, mobile app "Siaga Ijen", sirine otomatis</p>
+        </div>
+
+        <h3><i class="fas fa-chart-line"></i> Grafik Waktu Evakuasi per Kecamatan</h3>
+        <div class="chart-container">
+            <canvas id="evacuationChart"></canvas>
+        </div>
+        <div class="data-source">
+            <strong>📊 Sumber:</strong> Analisis berbasis <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a> — Rencana Evakuasi Bencana Gunung Api (2024), menggunakan <strong>Network Analysis GIS</strong>.
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Peran Teknologi AI/GIS:</strong> Sistem Informasi Geografis (GIS) dengan algoritma AI dapat <em>menganalisis ribuan skenario evakuasi</em> dalam hitungan detik, mempertimbangkan faktor jarak, kondisi jalan, kemacetan, dan kapasitas shelter. Ini memungkinkan perencanaan evakuasi yang <strong>optimal dan berbasis data</strong>.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STRATEGI MITIGASI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-shield-alt"></i> Strategi Mitigasi Bencana Vulkanik</h2>
+        <p>Mitigasi bencana gunung api memerlukan pendekatan <strong>komprehensif</strong> yang memadukan upaya <em>struktural</em> (fisik) dan <em>non-struktural</em> (kebijakan, edukasi, teknologi).</p>
+
+        <div class="mitigation-grid">
+            <div class="mitigation-card structural">
+                <h4><i class="fas fa-hard-hat"></i> Mitigasi Struktural (Fisik)</h4>
+                <ul>
+                    <li><strong>Sabo Dam:</strong> Bendungan penahan lahar di sungai-sungai yang berhulu di gunung api.</li>
+                    <li><strong>Check Dam:</strong> Bendungan kecil untuk memperlambat aliran lahar.</li>
+                    <li><strong>Normalisasi Sungai:</strong> Pengerukan dan pelebaran sungai untuk meningkatkan kapasitas aliran lahar.</li>
+                    <li><strong>Shelter Permanen:</strong> Bangunan tahan bencana untuk evakuasi (GOR, sekolah, masjid).</li>
+                    <li><strong>Sistem Peringatan Dini (EWS):</strong> Sensor seismik, tiltmeter, gas analyzer, dan sirine otomatis.</li>
+                    <li><strong>Rute Evakuasi:</strong> Penandaan jalur evakuasi dengan rambu-rambu yang jelas.</li>
+                </ul>
+            </div>
+
+            <div class="mitigation-card nonstructural">
+                <h4><i class="fas fa-book-reader"></i> Mitigasi Non-Struktural (Non-Fisik)</h4>
+                <ul>
+                    <li><strong>Peta Zona Rawan:</strong> Sosialisasi peta kawasan rawan bencana ke masyarakat.</li>
+                    <li><strong>Edukasi Masyarakat:</strong> Pelatihan tanggap bencana, simulasi evakuasi rutin.</li>
+                    <li><strong>Desa Tangguh Bencana:</strong> Pemberdayaan masyarakat dalam kesiapsiagaan bencana.</li>
+                    <li><strong>Sistem Informasi:</strong> Aplikasi mobile "Siaga Bencana", website PVMBG, SMS blast.</li>
+                    <li><strong>Regulasi:</strong> Perda tentang larangan bangun di kawasan III, RTRW berbasis mitigasi.</li>
+                    <li><strong>Monitoring 24/7:</strong> Pos pantau PVMBG dengan petugas siaga 24 jam.</li>
+                    <li><strong>Koordinasi Lintas Sektor:</strong> Sinergi PVMBG, BPBD, BASARNAS, TNI/Polri, dan relawan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="case-box">
+            <span class="case-box-label">TEKNOLOGI AI/GIS</span>
+            <h4><i class="fas fa-robot"></i> Penerapan AI dalam Mitigasi</h4>
+            <p><strong>1. Machine Learning untuk Prediksi:</strong> Algoritma AI menganalisis data seismik, deformasi tanah, dan emisi gas untuk <em>memprediksi erupsi</em> dengan akurasi lebih tinggi.</p>
+            <p><strong>2. GIS-Based Risk Mapping:</strong> Sistem GIS mengintegrasikan data topografi, kepadatan penduduk, infrastruktur, dan sejarah erupsi untuk membuat <em>peta risiko dinamis</em>.</p>
+            <p><strong>3. Real-time Monitoring:</strong> Sensor IoT (Internet of Things) mengirim data real-time ke pusat kendali, diproses dengan AI untuk deteksi anomali.</p>
+            <p><strong>4. Mobile App "Siaga Bencana":</strong> Aplikasi berbasis location-based service (LBS) yang memberikan notifikasi otomatis berdasarkan posisi pengguna.</p>
+        </div>
+
+        <div class="data-source">
+            <strong>📚 Referensi:</strong> <a href="https://vsi.esdm.go.id" target="_blank">PVMBG</a> — Pedoman Mitigasi Bencana Gunung Api, <a href="https://bnpb.go.id" target="_blank">BNPB</a> — Rencana Nasional Penanggulangan Bencana, dan <a href="https://www.undrr.org" target="_blank">UNDRR</a> — Sendai Framework for Disaster Risk Reduction.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STUDI KASUS ERUPSI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-history"></i> Studi Kasus: Erupsi Gunung Ijen 2023</h2>
+        <p>Pada <strong>15 Februari 2023</strong>, Gunung Ijen mengalami peningkatan aktivitas yang signifikan. Berikut adalah analisis respons mitigasi:</p>
+
+        <div class="case-box">
+            <span class="case-box-label">KRONOLOGI</span>
+            <h4><i class="fas fa-clock"></i> Timeline Kejadian</h4>
+            <p><strong>06.00 WIB:</strong> Peningkatan gempa vulkanik dalam (deep volcanic earthquake) terdeteksi sensor seismik.</p>
+            <p><strong>08.30 WIB:</strong> PVMBG menaikkan status dari Level I (Normal) ke Level II (Waspada).</p>
+            <p><strong>09.00 WIB:</strong> SMS blast dan notifikasi aplikasi "Siaga Ijen" dikirim ke 50.000 penduduk di zona rawan.</p>
+            <p><strong>10.00 WIB:</strong> Simulasi evakuasi di Desa Licin dan Sempu — 5.000 warga dievakuasi ke shelter.</p>
+            <p><strong>14.00 WIB:</strong> Emisi gas CO₂ meningkat ke 2.500 ppm (ambang bahaya: 3.000 ppm).</p>
+            <p><strong>18.00 WIB:</strong> Aktivitas menurun, status diturunkan ke Level I.</p>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-check-circle"></i>
+            <p><strong>Efektivitas Mitigasi:</strong> Berkat <em>sistem peringatan dini berbasis teknologi</em> dan <em>koordinasi yang baik</em>, tidak ada korban jiwa. Evakuasi berjalan tertib dalam waktu <4 jam. Ini membuktikan pentingnya <strong>integrasi teknologi AI/GIS dengan kesiapsiagaan masyarakat</strong>.</p>
+        </div>
+
+        <div class="data-source">
+            <strong>📰 Referensi:</strong> <a href="https://vsi.esdm.go.id" target="_blank">PVMBG</a> — Laporan Aktivitas Gunung Ijen Februari 2023, <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a> — Laporan Penanganan Darurat, dan <a href="https://radarbanyuwangi.jawapos.com" target="_blank">Radar Banyuwangi</a> — Liputan Erupsi Ijen 2023.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- RANGKUMAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Analisis</h2>
+        <ul>
+            <li><strong>Jawa Timur memiliki 12 gunung api aktif</strong> dengan ±2,5 juta penduduk di zona rawan bencana.</li>
+            <li><strong>3 gunung api utama</strong> yang dianalisis: Gunung Raung (3.332 mdpl), Ijen (2.799 mdpl), dan Merapi Jatim (2.580 mdpl).</li>
+            <li><strong>Zona rawan bencana</strong> dibagi menjadi 3: Kawasan III (bahaya, 0–4 km), Kawasan II (waspada, 4–7 km), dan Kawasan I (aman, >7 km).</li>
+            <li><strong>Evakuasi berbasis keruangan</strong> memerlukan analisis GIS untuk menentukan rute optimal, titik kumpul, shelter, dan waktu tempuh.</li>
+            <li><strong>Teknologi AI/GIS</strong> berperan penting dalam: prediksi erupsi (machine learning), pemetaan risiko dinamis, monitoring real-time (IoT), dan mobile app berbasis LBS.</li>
+            <li><strong>Mitigasi efektif</strong> memadukan upaya struktural (sabo dam, shelter, EWS) dan non-struktural (edukasi, regulasi, simulasi).</li>
+            <li><strong>Studi kasus erupsi Ijen 2023</strong> membuktikan efektivitas sistem peringatan dini dan evakuasi berbasis teknologi.</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- DISKUSI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <div class="discussion-box">
+            <h3><i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi</h3>
+            <ol>
+                <li>Mengapa <strong>zona rawan bencana</strong> dibagi menjadi 3 kawasan? Jelaskan perbedaan ancaman di setiap kawasan!</li>
+                <li>Bagaimana <strong>teknologi AI dan GIS</strong> dapat meningkatkan efektivitas mitigasi bencana gunung api? Berikan contoh konkret!</li>
+                <li>Apa perbedaan <strong>mitigasi struktural dan non-struktural</strong>? Mana yang lebih penting menurutmu? Jelaskan!</li>
+                <li>Berdasarkan studi kasus erupsi Ijen 2023, faktor apa saja yang membuat evakuasi berhasil tanpa korban jiwa?</li>
+                <li>Jika kamu tinggal di <strong>Kawasan II (Waspada)</strong> dekat Gunung Ijen atau Raung, apa yang akan kamu lakukan untuk mempersiapkan diri menghadapi bencana?</li>
+                <li>Bagaimana <strong>analisis keruangan</strong> membantu menentukan rute evakuasi yang optimal? Jelaskan dengan contoh!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="nav-buttons">
+        <a href="analisis-persebaran-penduduk-banyuwangi.html" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Analisis Sebelumnya
+        </a>
+        <a href="../geografi-kelas-x.html#analisis" class="nav-btn">
+            <i class="fas fa-home"></i> Kembali ke Lensa Geografis
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Sumber Data Resmi</h3>
+            <ul>
+                <li><a href="https://vsi.esdm.go.id" target="_blank"><i class="fas fa-mountain"></i> PVMBG</a></li>
+                <li><a href="https://bnpb.go.id" target="_blank"><i class="fas fa-shield-alt"></i> BNPB</a></li>
+                <li><a href="https://bpbd.banyuwangikab.go.id" target="_blank"><i class="fas fa-life-ring"></i> BPBD Banyuwangi</a></li>
+                <li><a href="https://www.bmkg.go.id" target="_blank"><i class="fas fa-cloud-sun-rain"></i> BMKG</a></li>
+                <li><a href="https://banyuwangikab.bps.go.id" target="_blank"><i class="fas fa-chart-bar"></i> BPS Banyuwangi</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+// NAVBAR MOBILE
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+// DARK MODE
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+
+// CHART.JS - ERUPTION FREQUENCY
+const eruptionCtx = document.getElementById('eruptionChart').getContext('2d');
+new Chart(eruptionCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Gunung Raung', 'Gunung Ijen', 'Gunung Merapi (Jatim)', 'Gunung Lamongan', 'Gunung Kelud'],
+        datasets: [{
+            label: 'Frekuensi Erupsi (2000–2025)',
+            data: [8, 12, 3, 5, 6],
+            backgroundColor: [
+                '#e74c3c',
+                '#f39c12',
+                '#9b59b6',
+                '#3498db',
+                '#e67e22'
+            ],
+            borderColor: [
+                '#c0392b',
+                '#e67e22',
+                '#8e44ad',
+                '#2980b9',
+                '#d35400'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Frekuensi Erupsi Gunung Api di Jawa Timur (2000–2025)',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.y + ' kali erupsi';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Jumlah Erupsi'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Gunung Api'
+                }
+            }
+        }
+    }
+});
+
+// CHART.JS - POPULATION AT RISK
+const populationCtx = document.getElementById('populationChart').getContext('2d');
+new Chart(populationCtx, {
+    type: 'pie',
+    data: {
+        labels: ['Zona Raung', 'Zona Ijen', 'Zona Merapi Jatim', 'Zona Lainnya'],
+        datasets: [{
+            label: 'Distribusi Penduduk di Zona Rawan',
+            data: [450000, 280000, 180000, 1590000],
+            backgroundColor: [
+                '#e74c3c',
+                '#f39c12',
+                '#9b59b6',
+                '#3498db'
+            ],
+            borderColor: [
+                '#c0392b',
+                '#e67e22',
+                '#8e44ad',
+                '#2980b9'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Distribusi Penduduk di Zona Rawan Bencana (Total: 2.5 Juta)',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        let label = context.label || '';
+                        let value = context.parsed;
+                        let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        let percentage = ((value / total) * 100).toFixed(1);
+                        return label + ': ' + (value / 1000).toFixed(0) + ' ribu jiwa (' + percentage + '%)';
+                    }
+                }
+            }
+        }
+    }
+});
+
+// CHART.JS - EVACUATION TIME
+const evacuationCtx = document.getElementById('evacuationChart').getContext('2d');
+new Chart(evacuationCtx, {
+    type: 'line',
+    data: {
+        labels: ['Licin', 'Sempu', 'Songgon', 'Kalipuro', 'Glenmore', 'Rogojampi'],
+        datasets: [{
+            label: 'Waktu Evakuasi (menit)',
+            data: [45, 55, 65, 35, 70, 25],
+            borderColor: '#e74c3c',
+            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Estimasi Waktu Evakuasi per Kecamatan (Gunung Ijen)',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.y + ' menit';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Waktu (menit)'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Kecamatan'
+                }
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
