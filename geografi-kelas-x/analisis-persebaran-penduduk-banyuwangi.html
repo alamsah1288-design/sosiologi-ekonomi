@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Analisis Geografis Persebaran Penduduk Kabupaten Banyuwangi menggunakan Prinsip Persebaran, Interelasi, dan Korologi. Hubungan dengan Kondisi Fisik Wilayah.">
+<meta name="keywords" content="persebaran penduduk banyuwangi, antroposfer, analisis geografis, kepadatan penduduk, demografi banyuwangi, lensa geografis">
+<title>👥 Persebaran Penduduk Banyuwangi | Lensa Geografis</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Chart.js for Data Visualization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root {
+--primary: #9b59b6; --secondary: #8e44ad; --accent: #a569bd;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--success: #4ade80; --warning: #fbbf24; --danger: #f87171;
+--bg-gradient: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #2d1b4e 0%, #3d2860 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .stat-box, body.dark-mode .principle-card, body.dark-mode .district-card, body.dark-mode .chart-container, body.dark-mode .data-source, body.dark-mode .case-box { background: #1e1b2e; border-color: #3d345c; color: #e5e7eb; }
+body.dark-mode .principle-card h3, body.dark-mode .district-card h4 { color: var(--accent); }
+body.dark-mode table { background: #1e1b2e; }
+body.dark-mode th { background: #4a3f6b; color: white; }
+body.dark-mode td { border-color: #3d345c; }
+
+/* NAVBAR */
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; font-size: 0.92rem; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; background: rgba(255,255,255,0.95); min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 8px; top: 100%; left: 0; z-index: 1001; flex-direction: column; padding: 10px 0; backdrop-filter: blur(10px); }
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+/* HEADER */
+header {
+background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 50%, #6c3483 100%);
+background-size: 300% 300%;
+animation: gradientBG 10s ease infinite;
+color: white; padding: 3.5rem 1.5rem 2.5rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 20s linear infinite; z-index: 1;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+header::after {
+content: "👥";
+position: absolute;
+bottom: 10px; right: 20px;
+font-size: 5rem;
+opacity: 0.15;
+z-index: 1;
+}
+.header-icon {
+width: 100px; height: 100px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+font-size: 3rem;
+backdrop-filter: blur(10px);
+}
+header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1.05rem; }
+.header-badge {
+display: inline-block;
+background: rgba(255,255,255,0.2);
+padding: 6px 18px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-top: 1rem;
+z-index: 2; position: relative;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.3);
+}
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+/* CONTENT */
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow); margin-bottom: 2rem; }
+.content-card h2 { color: var(--primary); font-size: 1.6rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+.content-card h3 { color: var(--secondary); font-size: 1.25rem; margin: 1.5rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+body.dark-mode .content-card h2 { color: var(--accent); }
+body.dark-mode .content-card h3 { color: var(--accent); }
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+/* KEY POINT */
+.key-point {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white; padding: 1.2rem 1.5rem; border-radius: 12px;
+margin: 1rem 0; display: flex; align-items: flex-start; gap: 1rem;
+box-shadow: var(--shadow);
+}
+.key-point i { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.key-point p { margin: 0; }
+
+/* STAT BOX */
+.stat-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1rem;
+margin: 1.5rem 0;
+}
+.stat-box {
+background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+border-radius: 14px;
+padding: 1.3rem;
+text-align: center;
+box-shadow: var(--shadow);
+border-top: 4px solid var(--primary);
+transition: all 0.3s ease;
+}
+.stat-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .stat-box { background: linear-gradient(135deg, #4a3f6b, #5d4e8a); }
+.stat-box .stat-icon {
+font-size: 2rem;
+color: var(--primary);
+margin-bottom: 0.5rem;
+}
+body.dark-mode .stat-box .stat-icon { color: var(--accent); }
+.stat-box .stat-number {
+font-size: 1.8rem;
+font-weight: 700;
+color: var(--secondary);
+margin-bottom: 0.2rem;
+}
+body.dark-mode .stat-box .stat-number { color: var(--accent); }
+.stat-box .stat-label {
+font-size: 0.85rem;
+color: var(--gray);
+font-weight: 500;
+}
+body.dark-mode .stat-box .stat-label { color: #9ca3af; }
+
+/* DISTRICT CARDS */
+.district-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1rem;
+margin: 1.5rem 0;
+}
+.district-card {
+background: linear-gradient(135deg, #faf3f0, #f5e6e0);
+border-radius: 14px;
+padding: 1.3rem;
+box-shadow: var(--shadow);
+border-left: 5px solid var(--primary);
+transition: all 0.3s ease;
+}
+.district-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .district-card { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.district-card h4 {
+color: var(--secondary);
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.05rem;
+}
+body.dark-mode .district-card h4 { color: var(--accent); }
+.district-card .district-stat {
+font-size: 0.88rem;
+color: var(--gray);
+margin: 0.3rem 0;
+display: flex;
+justify-content: space-between;
+}
+body.dark-mode .district-card .district-stat { color: #9ca3af; }
+.district-card .district-stat strong { color: var(--primary); }
+body.dark-mode .district-card .district-stat strong { color: var(--accent); }
+.density-high { border-left-color: #e74c3c; }
+.density-medium { border-left-color: #f39c12; }
+.density-low { border-left-color: #27ae60; }
+
+/* PRINCIPLE CARDS */
+.principle-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 18px;
+padding: 1.8rem;
+margin: 1.5rem 0;
+box-shadow: var(--shadow);
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+border-left: 7px solid var(--primary);
+}
+.principle-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.principle-card::before {
+content: '';
+position: absolute;
+top: -50px; right: -50px;
+width: 180px; height: 180px;
+border-radius: 50%;
+opacity: 0.08;
+}
+.principle-card h3 {
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.8rem;
+font-size: 1.3rem;
+position: relative; z-index: 2;
+}
+.principle-icon {
+width: 55px; height: 55px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+flex-shrink: 0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+position: relative;
+z-index: 2;
+}
+.principle-subtitle {
+display: inline-block;
+background: rgba(255,255,255,0.7);
+padding: 3px 12px;
+border-radius: 20px;
+font-size: 0.78rem;
+font-weight: 600;
+margin-left: 0.5rem;
+color: var(--gray);
+letter-spacing: 0.5px;
+}
+body.dark-mode .principle-subtitle { background: rgba(255,255,255,0.1); color: #9ca3af; }
+.principle-focus {
+background: rgba(255,255,255,0.7);
+padding: 0.8rem 1rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+border-left: 4px solid;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .principle-focus { background: rgba(255,255,255,0.05); }
+.principle-analysis {
+background: rgba(255,255,255,0.5);
+padding: 1rem 1.2rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .principle-analysis { background: rgba(255,255,255,0.03); }
+.principle-conclusion {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white;
+padding: 1rem 1.2rem;
+border-radius: 10px;
+margin: 1rem 0 0;
+position: relative;
+z-index: 2;
+font-weight: 500;
+}
+
+/* Warna prinsip */
+.principle-card.persebaran { border-left-color: #e74c3c; }
+.principle-card.persebaran::before { background: #e74c3c; }
+.principle-card.persebaran .principle-icon { background: linear-gradient(120deg, #e74c3c, #c0392b); }
+.principle-card.persebaran .principle-focus { border-left-color: #e74c3c; }
+.principle-card.persebaran h3 { color: #c0392b; }
+
+.principle-card.interelasi { border-left-color: #3498db; }
+.principle-card.interelasi::before { background: #3498db; }
+.principle-card.interelasi .principle-icon { background: linear-gradient(120deg, #3498db, #2980b9); }
+.principle-card.interelasi .principle-focus { border-left-color: #3498db; }
+.principle-card.interelasi h3 { color: #2980b9; }
+
+.principle-card.korologi { border-left-color: #9b59b6; }
+.principle-card.korologi::before { background: #9b59b6; }
+.principle-card.korologi .principle-icon { background: linear-gradient(120deg, #9b59b6, #8e44ad); }
+.principle-card.korologi .principle-focus { border-left-color: #9b59b6; }
+.principle-card.korologi h3 { color: #8e44ad; }
+
+body.dark-mode .principle-card h3 { color: var(--accent) !important; }
+
+/* CHART CONTAINER */
+.chart-container {
+background: white;
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+box-shadow: var(--shadow);
+}
+body.dark-mode .chart-container { background: #1e1b2e; }
+.chart-container h4 {
+color: var(--primary);
+margin: 0 0 1rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .chart-container h4 { color: var(--accent); }
+
+/* CASE BOX */
+.case-box {
+background: linear-gradient(135deg, #fff9e6, #fff3cc);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border: 2px dashed #f39c12;
+position: relative;
+}
+body.dark-mode .case-box { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.case-box-label {
+position: absolute;
+top: -12px;
+left: 20px;
+background: #f39c12;
+color: white;
+padding: 4px 14px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 1px;
+}
+.case-box h4 {
+color: #e67e22;
+margin: 0.5rem 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .case-box h4 { color: var(--warning); }
+
+/* DATA SOURCE */
+.data-source {
+background: linear-gradient(135deg, #fff3cd, #ffe69c);
+border-left: 4px solid #f39c12;
+padding: 0.8rem 1rem;
+border-radius: 8px;
+margin: 1rem 0;
+font-size: 0.85rem;
+}
+body.dark-mode .data-source { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.data-source strong { color: #e67e22; }
+.data-source a { color: var(--primary); text-decoration: none; font-weight: 600; }
+body.dark-mode .data-source a { color: var(--accent); }
+.data-source a:hover { text-decoration: underline; }
+
+/* TABLE */
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; }
+td { padding: 0.8rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; font-size: 0.92rem; }
+tr:hover td { background: #f8f9fa; }
+body.dark-mode tr:hover td { background: #3d345c; }
+
+/* DISCUSSION BOX */
+.discussion-box {
+background: linear-gradient(135deg, #fef3c7, #fde68a);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border-left: 6px solid var(--warning);
+}
+body.dark-mode .discussion-box { background: linear-gradient(135deg, #422006, #713f12); }
+.discussion-box h3 {
+color: #d97706;
+margin: 0 0 1rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .discussion-box h3 { color: var(--warning); }
+.discussion-box ol { margin: 0.5rem 0 0 1.2rem; }
+.discussion-box li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: var(--shadow); }
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+/* FOOTER */
+footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 60px 20px 30px; margin-top: 60px; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links { display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary)); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; max-height: calc(100vh - var(--header-height)); overflow-y: auto; }
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.header-icon { width: 75px; height: 75px; font-size: 2.2rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.principle-card { padding: 1.3rem; }
+.principle-card h3 { font-size: 1.1rem; flex-wrap: wrap; }
+.principle-icon { width: 45px; height: 45px; font-size: 1.2rem; }
+.principle-subtitle { margin-left: 0; margin-top: 5px; }
+th, td { padding: 0.6rem; font-size: 0.82rem; }
+.stat-grid { grid-template-columns: 1fr 1fr; }
+.district-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon">
+        <i class="fas fa-users"></i>
+    </div>
+    <h1>👥 Persebaran Penduduk Banyuwangi</h1>
+    <p class="subtitle">Analisis Prinsip Persebaran, Interelasi, dan Korologi • Lensa Geografis</p>
+    <div class="header-badge">
+        <i class="fas fa-user-friends"></i> Objek Kajian: <strong>ANTROPOSFER</strong>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html#analisis">Lensa Geografis</a>
+    <span>›</span>
+    <span>Persebaran Penduduk</span>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- PENDAHULUAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Pengantar Analisis</h2>
+        <p><strong>Persebaran penduduk</strong> adalah salah satu fenomena antroposfer yang paling fundamental dalam geografi. Di Kabupaten Banyuwangi, persebaran penduduk menunjukkan <strong>pola yang sangat timpang</strong> — terkonsentrasi di wilayah tertentu dan sangat jarang di wilayah lain. Ketimpangan ini bukan kebetulan, melainkan hasil dari <strong>interaksi kompleks</strong> antara kondisi fisik wilayah, aksesibilitas, ekonomi, dan sejarah perkembangan wilayah.</p>
+        
+        <p>Dengan luas wilayah <strong>5.782,50 km²</strong> dan penduduk ±<strong>1,75 juta jiwa</strong> (2025), Banyuwangi memiliki kepadatan rata-rata <strong>303 jiwa/km²</strong>. Namun, angka ini sangat menyesatkan karena <strong>tidak mencerminkan realitas spasial</strong> yang sebenarnya. Di satu sisi, Kota Banyuwangi memiliki kepadatan >4.000 jiwa/km², sementara di sisi lain, kecamatan pegunungan seperti Siliragung hanya memiliki 108 jiwa/km².</p>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Mengapa Analisis Ini Penting?</strong> Memahami pola persebaran penduduk membantu kita merencanakan <em>pembangunan yang merata</em>, <em>distribusi fasilitas publik yang adil</em>, dan <em>kebijakan tata ruang yang berkelanjutan</em>. Tanpa pemahaman ini, pembangunan akan terpusat di wilayah yang sudah padat, memperlebar kesenjangan antarwilayah.</p>
+        </div>
+
+        <h3><i class="fas fa-bullseye"></i> Tujuan Analisis</h3>
+        <ol>
+            <li>Menganalisis <strong>pola persebaran penduduk</strong> di Kabupaten Banyuwangi menggunakan prinsip persebaran.</li>
+            <li>Mengidentifikasi <strong>hubungan (interelasi)</strong> antara persebaran penduduk dengan kondisi fisik wilayah (topografi, aksesibilitas, ekonomi).</li>
+            <li>Menyusun <strong>analisis komprehensif (korologi)</strong> yang memadukan aspek spasial, ekologis, dan sosial-ekonomi.</li>
+            <li>Memberikan <strong>rekomendasi kebijakan</strong> untuk pemerataan pembangunan.</li>
+        </ol>
+    </div>
+
+    <!-- DATA STATISTIK -->
+    <div class="content-card">
+        <h2><i class="fas fa-chart-bar"></i> Data Statistik Penduduk Banyuwangi</h2>
+        <p>Berdasarkan data resmi dari <strong>Badan Pusat Statistik (BPS) Kabupaten Banyuwangi</strong> tahun 2025:</p>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-number">1.750.000</div>
+                <div class="stat-label">Total Penduduk (2025)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-ruler-combined"></i></div>
+                <div class="stat-number">5.782 km²</div>
+                <div class="stat-label">Luas Wilayah</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-number">303</div>
+                <div class="stat-label">Kepadatan Rata-rata (jiwa/km²)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-city"></i></div>
+                <div class="stat-number">25</div>
+                <div class="stat-label">Jumlah Kecamatan</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-percent"></i></div>
+                <div class="stat-number">1,2%</div>
+                <div class="stat-label">Pertumbuhan Penduduk/tahun</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-venus-mars"></i></div>
+                <div class="stat-number">102</div>
+                <div class="stat-label">Rasio Jenis Kelamin (L:P)</div>
+            </div>
+        </div>
+
+        <div class="data-source">
+            <strong>📊 Sumber Data:</strong> <a href="https://banyuwangikab.bps.go.id" target="_blank">BPS Kabupaten Banyuwangi</a> — "Kabupaten Banyuwangi Dalam Angka 2025", <a href="https://dukcapil.banyuwangikab.go.id" target="_blank">Dinas Kependudukan dan Pencatatan Sipil</a>, dan <a href="https://www.bps.go.id" target="_blank">BPS Indonesia</a> — Sensus Penduduk 2020.
+        </div>
+
+        <h3><i class="fas fa-map-marked-alt"></i> 10 Kecamatan dengan Kepadatan Tertinggi</h3>
+        <div class="district-grid">
+            <div class="district-card density-high">
+                <h4><i class="fas fa-building"></i> 1. Banyuwangi (Kota)</h4>
+                <p class="district-stat"><strong>Luas:</strong> 27,75 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 112.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>4.035 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Pusat pemerintahan & ekonomi</em></p>
+            </div>
+            <div class="district-card density-high">
+                <h4><i class="fas fa-building"></i> 2. Kalipuro</h4>
+                <p class="district-stat"><strong>Luas:</strong> 106,30 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 78.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>734 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Pelabuhan Ketapang (penyeberangan Bali)</em></p>
+            </div>
+            <div class="district-card density-high">
+                <h4><i class="fas fa-building"></i> 3. Giri</h4>
+                <p class="district-stat"><strong>Luas:</strong> 130,50 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 85.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>651 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Kawasan pendidikan & permukiman</em></p>
+            </div>
+            <div class="district-card density-high">
+                <h4><i class="fas fa-building"></i> 4. Rogojampi</h4>
+                <p class="district-stat"><strong>Luas:</strong> 112,40 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 72.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>641 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Bandara Blimbingsari</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 5. Glagah</h4>
+                <p class="district-stat"><strong>Luas:</strong> 98,20 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 58.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>591 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Kawasan industri & pelabuhan</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 6. Kabat</h4>
+                <p class="district-stat"><strong>Luas:</strong> 115,60 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 65.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>562 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Pertanian & permukiman</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 7. Singojuruh</h4>
+                <p class="district-stat"><strong>Luas:</strong> 142,80 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 72.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>504 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Pertanian padi & tembakau</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 8. Srono</h4>
+                <p class="district-stat"><strong>Luas:</strong> 125,40 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 62.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>494 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Transisi dataran-pegunungan</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 9. Genteng</h4>
+                <p class="district-stat"><strong>Luas:</strong> 98,50 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 48.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>487 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Pertanian & perkebunan</em></p>
+            </div>
+            <div class="district-card density-medium">
+                <h4><i class="fas fa-building"></i> 10. Tegaldlimo</h4>
+                <p class="district-stat"><strong>Luas:</strong> 156,20 km²</p>
+                <p class="district-stat"><strong>Penduduk:</strong> 72.000 jiwa</p>
+                <p class="district-stat"><strong>Kepadatan:</strong> <strong>461 jiwa/km²</strong></p>
+                <p class="district-stat"><em>Sentra buah naga</em></p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-chart-line"></i> Grafik Persebaran Penduduk per Wilayah</h3>
+        <div class="chart-container">
+            <canvas id="populationChart"></canvas>
+        </div>
+        <div class="data-source">
+            <strong>📊 Catatan:</strong> Grafik di atas menunjukkan <strong>ketimpangan ekstrem</strong> antara wilayah timur (padat) dan barat (jarang). Wilayah dengan kepadatan <500 jiwa/km² mayoritas berada di bagian barat (pegunungan Ijen-Raung).
+        </div>
+
+        <h3><i class="fas fa-history"></i> Tren Pertumbuhan Penduduk (2010–2025)</h3>
+        <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+        </div>
+        <div class="data-source">
+            <strong>📈 Sumber:</strong> <a href="https://banyuwangikab.bps.go.id" target="_blank">BPS Kabupaten Banyuwangi</a> — Sensus Penduduk 2010, 2020, dan Proyeksi Penduduk 2025.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ANALISIS 3 PRINSIP GEOGRAFI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-sitemap"></i> Analisis dengan 3 Prinsip Geografi</h2>
+        <p>Untuk memahami persebaran penduduk Banyuwangi secara mendalam, kita akan menggunakan <strong>3 prinsip geografi</strong> yang saling melengkapi: persebaran, interelasi, dan korologi.</p>
+
+        <!-- PRINSIP 1: PERSEBARAN -->
+        <div class="principle-card persebaran">
+            <h3>
+                <span class="principle-icon"><i class="fas fa-map-marked-alt"></i></span>
+                1. Prinsip Persebaran <span class="principle-subtitle">DISTRIBUTION</span>
+            </h3>
+            
+            <div class="principle-focus">
+                <strong>🎯 Fokus:</strong> Pola dan lokasi persebaran penduduk di Kabupaten Banyuwangi.
+            </div>
+
+            <div class="principle-analysis">
+                <strong>🔍 Analisis Persebaran:</strong>
+                <ul>
+                    <li><strong>Pola Umum:</strong> Persebaran penduduk Banyuwangi sangat <strong>tidak merata</strong> (tidak homogen). Terdapat <strong>3 zona kepadatan</strong> yang jelas:
+                        <ul>
+                            <li><strong>Zona Timur (Padat):</strong> Banyuwangi Kota, Kalipuro, Giri, Rogojampi, Glagah — kepadatan 400–4.000 jiwa/km².</li>
+                            <li><strong>Zona Tengah (Sedang):</strong> Kabat, Singojuruh, Srono, Genteng, Tegaldlimo — kepadatan 200–600 jiwa/km².</li>
+                            <li><strong>Zona Barat (Jarang):</strong> Songgon, Licin, Sempu, Siliragung, Pesanggaran — kepadatan <200 jiwa/km².</li>
+                        </ul>
+                    </li>
+                    <li><strong>Pola Keruangan:</strong>
+                        <ul>
+                            <li><strong>Pola Linear:</strong> Penduduk terkonsentrasi <strong>memanjang mengikuti jalan nasional</strong> (Jalur Pantura-Jatim) dari barat ke timur.</li>
+                            <li><strong>Pola Nukleated (Mengelompok):</strong> Di sekitar pusat-pusat pertumbuhan (Kota Banyuwangi, Pelabuhan Ketapang, Bandara Blimbingsari).</li>
+                            <li><strong>Pola Acak (Random):</strong> Di wilayah pegunungan barat yang topografinya terjal.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Klaster Kepadatan:</strong>
+                        <ul>
+                            <li><strong>Klaster 1 (Pusat Kota):</strong> Banyuwangi Kota + Kalipuro + Giri — inti urbanisasi.</li>
+                            <li><strong>Klaster 2 (Pesisir Timur):</strong> Glagah + Wongsorejo — kawasan industri & pelabuhan.</li>
+                            <li><strong>Klaster 3 (Transisi):</strong> Rogojampi + Kabat + Singojuruh — pertanian intensif.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Faktor Spasial yang Mempengaruhi:</strong>
+                        <ul>
+                            <li><strong>Aksesibilitas:</strong> Wilayah dengan jalan nasional/provinsi lebih padat.</li>
+                            <li><strong>Topografi:</strong> Dataran rendah lebih padat daripada pegunungan.</li>
+                            <li><strong>Pusat Ekonomi:</strong> Dekat pelabuhan, bandara, pasar — menarik penduduk.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="principle-conclusion">
+                <strong>💎 Kesimpulan Persebaran:</strong> Persebaran penduduk Banyuwangi menunjukkan <em>pola yang sangat timpang</em> dengan konsentrasi tinggi di dataran rendah bagian timur (terutama sepanjang jalan nasional) dan sangat jarang di wilayah pegunungan barat. Pola ini mencerminkan <strong>pengaruh kuat faktor fisik dan ekonomi</strong> terhadap lokasi permukiman.
+            </div>
+        </div>
+
+        <!-- PRINSIP 2: INTERELASI -->
+        <div class="principle-card interelasi">
+            <h3>
+                <span class="principle-icon"><i class="fas fa-exchange-alt"></i></span>
+                2. Prinsip Interelasi <span class="principle-subtitle">INTERRELATION</span>
+            </h3>
+            
+            <div class="principle-focus">
+                <strong>🎯 Fokus:</strong> Hubungan timbal balik antara persebaran penduduk dengan kondisi fisik wilayah.
+            </div>
+
+            <div class="principle-analysis">
+                <strong>🔍 Analisis Interelasi:</strong>
+                <ul>
+                    <li><strong>Hubungan dengan Topografi:</strong>
+                        <ul>
+                            <li><strong>Korelasi Negatif Kuat:</strong> Semakin tinggi elevasi, semakin rendah kepadatan penduduk.</li>
+                            <li><strong>Bukti:</strong> Kecamatan Siliragung (elevasi 300–800 mdpl) = 108 jiwa/km², sedangkan Banyuwangi Kota (0–50 mdpl) = 4.035 jiwa/km².</li>
+                            <li><strong>Alasan:</strong> Dataran rendah lebih mudah dibangun infrastruktur, cocok untuk pertanian intensif, dan akses transportasi lebih baik.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Hubungan dengan Aksesibilitas:</strong>
+                        <ul>
+                            <li><strong>Korelasi Positif Kuat:</strong> Wilayah yang dilintasi jalan nasional/provinsi memiliki kepadatan 3–5x lebih tinggi.</li>
+                            <li><strong>Bukti:</strong> Kecamatan di sepanjang Jalur Pantura-Jatim (Banyuwangi, Kalipuro, Giri, Rogojampi) memiliki kepadatan rata-rata 1.000+ jiwa/km².</li>
+                            <li><strong>Alasan:</strong> Akses mudah menarik aktivitas ekonomi, perdagangan, dan permukiman.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Hubungan dengan Sumber Daya Ekonomi:</strong>
+                        <ul>
+                            <li><strong>Pelabuhan Ketapang:</strong> Kalipuro memiliki kepadatan 734 jiwa/km² karena menjadi gerbang penyeberangan Bali-Jawa.</li>
+                            <li><strong>Bandara Blimbingsari:</strong> Rogojampi berkembang pesat (641 jiwa/km²) sejak bandara beroperasi.</li>
+                            <li><strong>Pertanian Intensif:</strong> Kecamatan dengan sawah subur (Singojuruh, Kabat) memiliki kepadatan sedang-tinggi (500–600 jiwa/km²).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Hubungan dengan Infrastruktur:</strong>
+                        <ul>
+                            <li><strong>Fasilitas Pendidikan:</strong> Kecamatan dengan perguruan tinggi (Giri, Banyuwangi Kota) menarik mahasiswa dan dosen → kepadatan tinggi.</li>
+                            <li><strong>Fasilitas Kesehatan:</strong> Rumah sakit dan puskesmas terkonsentrasi di wilayah padat, memperkuat daya tarik wilayah tersebut.</li>
+                            <li><strong>Drainase & Air Bersih:</strong> Wilayah dengan akses air bersih baik lebih diminati untuk permukiman.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Rantai Sebab-Akibat:</strong>
+                        <div class="case-box" style="margin: 1rem 0;">
+                            <h4><i class="fas fa-project-diagram"></i> Diagram Interelasi</h4>
+                            <p><strong>Topografi Datar + Akses Jalan Baik</strong> → Infrastruktur Berkembang → Aktivitas Ekonomi Tinggi → Lapangan Kerja Tersedia → Migrasi Masuk → Kepadatan Meningkat → Tekanan pada Lahan & Lingkungan.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="principle-conclusion">
+                <strong>💎 Kesimpulan Interelasi:</strong> Terdapat <em>hubungan sebab-akibat yang kuat</em> antara kondisi fisik (topografi, aksesibilitas) dengan persebaran penduduk. Wilayah dengan topografi datar, akses jalan baik, dan fasilitas ekonomi lengkap menarik konsentrasi penduduk tinggi. Sebaliknya, wilayah pegunungan dengan akses terbatas memiliki kepadatan sangat rendah. Ini adalah <strong>interelasi klasik manusia-lingkungan</strong> dalam geografi.
+            </div>
+        </div>
+
+        <!-- PRINSIP 3: KOROLOGI -->
+        <div class="principle-card korologi">
+            <h3>
+                <span class="principle-icon"><i class="fas fa-globe-asia"></i></span>
+                3. Prinsip Korologi <span class="principle-subtitle">CHOROLOGY</span>
+            </h3>
+            
+            <div class="principle-focus">
+                <strong>🎯 Fokus:</strong> Analisis komprehensif karakteristik keruangan persebaran penduduk Banyuwangi.
+            </div>
+
+            <div class="principle-analysis">
+                <strong>🔍 Analisis Korologi (Komprehensif):</strong>
+                <ul>
+                    <li><strong>Karakteristik Fisik Wilayah:</strong>
+                        <ul>
+                            <li><strong>Topografi:</strong> Variasi ekstrem dari 0 mdpl (pesisir) hingga 3.332 mdpl (Gunung Raung).</li>
+                            <li><strong>Iklim:</strong> Curah hujan 1.500–3.000 mm/tahun, mendukung pertanian intensif di dataran rendah.</li>
+                            <li><strong>Hidrologi:</strong> 3 DAS besar (Badeng, Konto, Tamansari) menyediakan air untuk pertanian & permukiman.</li>
+                            <li><strong>Tanah:</strong> Aluvial subur di dataran rendah, vulkanik di pegunungan.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Sosial-Ekonomi:</strong>
+                        <ul>
+                            <li><strong>Struktur Ekonomi:</strong> Pertanian (35%), perdagangan & jasa (40%), industri (15%), lainnya (10%).</li>
+                            <li><strong>Mata Pencaharian:</strong> Petani (45%), pedagang (20%), buruh (15%), PNS/swasta (20%).</li>
+                            <li><strong>Pendidikan:</strong> Rata-rata lama sekolah 8,5 tahun (setara SMP), lebih tinggi di wilayah urban.</li>
+                            <li><strong>Kesehatan:</strong> Angka harapan hidup 71,2 tahun, akses fasilitas kesehatan lebih baik di wilayah padat.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Demografi:</strong>
+                        <ul>
+                            <li><strong>Struktur Umur:</strong> 65% usia produktif (15–64 tahun), 30% muda (<15 tahun), 5% lansia (>64 tahun).</li>
+                            <li><strong>Migrasi:</strong> Urbanisasi tinggi dari barat ke timur, dari desa ke kota.</li>
+                            <li><strong>Kepadatan:</strong> Rata-rata 303 jiwa/km², namun bervariasi ekstrem (108–4.035 jiwa/km²).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Infrastruktur:</strong>
+                        <ul>
+                            <li><strong>Transportasi:</strong> Jalan nasional (Pantura-Jatim), Pelabuhan Ketapang, Bandara Blimbingsari.</li>
+                            <li><strong>Permukiman:</strong> 70% di dataran rendah, 30% di pegunungan.</li>
+                            <li><strong>Fasilitas Publik:</strong> Sekolah, puskesmas, pasar terkonsentrasi di wilayah padat.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Potensi & Masalah Wilayah:</strong>
+                        <ul>
+                            <li><strong>Potensi:</strong>
+                                <ul>
+                                    <li>Wilayah timur: pusat pertumbuhan ekonomi, perdagangan, jasa.</li>
+                                    <li>Wilayah tengah: lumbung pangan (padi, buah naga, kopi).</li>
+                                    <li>Wilayah barat: potensi ekowisata (Ijen, Raung), perkebunan.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Masalah:</strong>
+                                <ul>
+                                    <li>Ketimpangan pembangunan antara timur-barat.</li>
+                                    <li>Wilayah timur: kemacetan, banjir, tekanan lahan.</li>
+                                    <li>Wilayah barat: keterbatasan akses, fasilitas minim, kemiskinan tinggi.</li>
+                                    <li>Urbanisasi tidak terkendali ke Kota Banyuwangi.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Kesimpulan Korologi:</strong>
+                        <p>Kabupaten Banyuwangi memiliki <strong>karakteristik keruangan yang unik</strong>: wilayah terluas di Jawa Timur dengan "wajah ganda" — <em>padat-perkotaan di timur</em> dan <em>longgar-agraris di barat</em>. Persebaran penduduk yang timpang ini adalah hasil interaksi kompleks antara <strong>kondisi fisik (topografi, iklim), aksesibilitas (jalan, pelabuhan, bandara), dan aktivitas ekonomi (pertanian, perdagangan, industri)</strong>. Solusi untuk pemerataan memerlukan <em>pendekatan terpadu</em>: pengembangan pusat pertumbuhan baru di wilayah barat, perbaikan infrastruktur, dan insentif untuk investasi di daerah tertinggal.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="principle-conclusion">
+                <strong>💎 Kesimpulan Korologi:</strong> Persebaran penduduk Banyuwangi mencerminkan <em>karakteristik komprehensif wilayah</em> yang dipengaruhi oleh interaksi multidimensi: fisik, ekonomi, sosial, dan infrastruktur. Pemahaman holistik ini penting untuk <strong>perencanaan tata ruang yang berkelanjutan</strong> dan <strong>pemerataan pembangunan</strong>.
+            </div>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-puzzle-piece"></i>
+            <p><strong>Sinergi 3 Prinsip:</strong> Prinsip <em>persebaran</em> menunjukkan <strong>di mana</strong> penduduk terkonsentrasi, <em>interelasi</em> menjelaskan <strong>mengapa</strong> mereka berada di sana (hubungan dengan fisik & ekonomi), dan <em>korologi</em> memberikan <strong>gambaran utuh</strong> tentang karakteristik wilayah. Ketiganya saling melengkapi untuk analisis yang komprehensif.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STUDI KASUS -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-search-location"></i> Studi Kasus: Perbandingan 3 Kecamatan</h2>
+        <p>Untuk memahami variasi persebaran penduduk, mari kita bandingkan <strong>3 kecamatan dengan karakteristik berbeda</strong>:</p>
+
+        <div class="case-box">
+            <span class="case-box-label">KASUS 1: WILAYAH PADAT</span>
+            <h4><i class="fas fa-building"></i> Kecamatan Banyuwangi (Kota)</h4>
+            <p><strong>Profil:</strong> Pusat pemerintahan dan ekonomi Kabupaten Banyuwangi.</p>
+            <p><strong>Kepadatan:</strong> 4.035 jiwa/km² (tertinggi di kabupaten).</p>
+            <p><strong>Faktor Pendorong:</strong>
+                <ul>
+                    <li>Pusat pemerintahan (kantor bupati, DPRD, dinas-dinas).</li>
+                    <li>Pusat perdagangan (pasar, mall, pertokoan).</li>
+                    <li>Pusat pendidikan (universitas, sekolah unggulan).</li>
+                    <li>Pusat kesehatan (RSUD, klinik, apotek).</li>
+                    <li>Infrastruktur lengkap (jalan lebar, drainase, listrik, air bersih).</li>
+                </ul>
+            </p>
+            <p><strong>Dampak:</strong> Kemacetan, harga tanah mahal, tekanan pada lingkungan, kesenjangan sosial.</p>
+        </div>
+
+        <div class="case-box">
+            <span class="case-box-label">KASUS 2: WILAYAH SEDANG</span>
+            <h4><i class="fas fa-tractor"></i> Kecamatan Singojuruh</h4>
+            <p><strong>Profil:</strong> Kawasan pertanian intensif di bagian tengah kabupaten.</p>
+            <p><strong>Kepadatan:</strong> 504 jiwa/km².</p>
+            <p><strong>Faktor Pendorong:</strong>
+                <ul>
+                    <li>Lahan sawah subur (irigasi teknis).</li>
+                    <li>Produksi padi & tembakau tinggi.</li>
+                    <li>Akses jalan provinsi yang baik.</li>
+                    <li>Tradisi pertanian yang kuat.</li>
+                </ul>
+            </p>
+            <p><strong>Karakteristik:</strong> Permukiman tersebar di antara lahan pertanian, ekonomi berbasis agraris, urbanisasi sedang.</p>
+        </div>
+
+        <div class="case-box">
+            <span class="case-box-label">KASUS 3: WILAYAH JARANG</span>
+            <h4><i class="fas fa-mountain"></i> Kecamatan Siliragung</h4>
+            <p><strong>Profil:</strong> Kawasan pegunungan di bagian barat daya kabupaten.</p>
+            <p><strong>Kepadatan:</strong> 108 jiwa/km² (terendah di kabupaten).</p>
+            <p><strong>Faktor Penghambat:</strong>
+                <ul>
+                    <li>Topografi terjal (elevasi 300–800 mdpl).</li>
+                    <li>Akses jalan sulit (berliku, sempit).</li>
+                    <li>Lahan pertanian terbatas (lereng curam).</li>
+                    <li>Fasilitas minim (sekolah, puskesmas jauh).</li>
+                    <li>Ekonomi subsisten (pertanian tadah hujan).</li>
+                </ul>
+            </p>
+            <p><strong>Dampak:</strong> Kemiskinan tinggi, urbanisasi ke kota, generasi muda merantau, keterbatasan akses layanan.</p>
+        </div>
+
+        <div class="comparison-table">
+            <h3 style="margin: 1.5rem 0 1rem;"><i class="fas fa-table"></i> Tabel Perbandingan 3 Kecamatan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Banyuwangi (Kota)</th>
+                        <th>Singojuruh</th>
+                        <th>Siliragung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kepadatan</strong></td>
+                        <td>4.035 jiwa/km²</td>
+                        <td>504 jiwa/km²</td>
+                        <td>108 jiwa/km²</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Topografi</strong></td>
+                        <td>Dataran rendah (0–50 mdpl)</td>
+                        <td>Dataran (50–150 mdpl)</td>
+                        <td>Pegunungan (300–800 mdpl)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mata Pencaharian</strong></td>
+                        <td>Perdagangan, jasa, PNS</td>
+                        <td>Pertanian (padi, tembakau)</td>
+                        <td>Pertanian subsisten</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aksesibilitas</strong></td>
+                        <td>Sangat baik (jalan nasional)</td>
+                        <td>Baik (jalan provinsi)</td>
+                        <td>Buruk (jalan sempit)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fasilitas</strong></td>
+                        <td>Lengkap</td>
+                        <td>Cukup</td>
+                        <td>Terbatas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tingkat Kemiskinan</strong></td>
+                        <td>8%</td>
+                        <td>15%</td>
+                        <td>28%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- REKOMENDASI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-lightbulb"></i> Rekomendasi Kebijakan</h2>
+        <p>Berdasarkan analisis geografis, berikut adalah rekomendasi untuk <strong>mengatasi ketimpangan persebaran penduduk</strong> dan <strong>mendorong pemerataan pembangunan</strong>:</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategi</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🏙️ Pengembangan Pusat Pertumbuhan Baru</strong></td>
+                        <td>Membangun <em>secondary cities</em> di wilayah barat (misalnya: Songgon, Licin) dengan fasilitas lengkap untuk menarik penduduk dan investasi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🛣️ Perbaikan Infrastruktur Barat</strong></td>
+                        <td>Melebarkan dan memperbaiki jalan penghubung barat-timur, membangun jembatan, dan meningkatkan akses listrik & internet.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🏭 Insentif Investasi Wilayah Tertinggal</strong></td>
+                        <td>Pembebasan pajak, kemudahan perizinan, dan subsidi untuk investor yang membangun usaha di kecamatan dengan kepadatan <200 jiwa/km².</td>
+                    </tr>
+                    <tr>
+                        <td><strong> Pengembangan Ekowisata</strong></td>
+                        <td>Memaksimalkan potensi wisata alam (Gunung Ijen, Raung, pantai selatan) di wilayah barat untuk menciptakan lapangan kerja.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🎓 Pemerataan Fasilitas Pendidikan & Kesehatan</strong></td>
+                        <td>Membangun sekolah unggulan dan puskesmas rawat inap di wilayah barat untuk mengurangi urbanisasi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🏘️ Desa Mandiri</strong></td>
+                        <td>Program pemberdayaan ekonomi desa dengan pelatihan keterampilan, akses modal, dan pemasaran produk lokal.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📊 Zonasi Tata Ruang</strong></td>
+                        <td>Penetapan <em>zona lindung</em> di pegunungan dan <em>zona budidaya</em> di dataran rendah untuk mengendalikan persebaran permukiman.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🚇 Transportasi Publik Terintegrasi</strong></td>
+                        <td>Rute bus yang menghubungkan wilayah barat dengan pusat ekonomi untuk meningkatkan mobilitas tanpa harus pindah domisili.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-balance-scale"></i>
+            <p><strong>Prinsip Utama:</strong> Pemerataan bukan berarti <em>menyamakan</em> kepadatan penduduk, melainkan <em>memberikan kesempatan yang sama</em> bagi seluruh warga untuk mengakses fasilitas, lapangan kerja, dan layanan publik — di mana pun mereka tinggal.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- RANGKUMAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Analisis</h2>
+        <ul>
+            <li><strong>Persebaran penduduk Banyuwangi sangat timpang</strong> — terkonsentrasi di dataran rendah bagian timur (kepadatan 400–4.035 jiwa/km²) dan sangat jarang di pegunungan barat (108–200 jiwa/km²).</li>
+            <li><strong>Prinsip Persebaran</strong> menunjukkan pola linear mengikuti jalan nasional dan mengelompok di sekitar pusat pertumbuhan (kota, pelabuhan, bandara).</li>
+            <li><strong>Prinsip Interelasi</strong> mengungkap hubungan kuat antara kepadatan penduduk dengan topografi (negatif), aksesibilitas (positif), dan fasilitas ekonomi (positif).</li>
+            <li><strong>Prinsip Korologi</strong> memberikan analisis komprehensif yang memadukan aspek fisik, sosial, ekonomi, dan infrastruktur untuk memahami karakteristik wilayah secara utuh.</li>
+            <li><strong>Ketimpangan ini menimbulkan masalah</strong>: wilayah timur (kemacetan, banjir, tekanan lahan), wilayah barat (kemiskinan, keterbatasan akses, urbanisasi).</li>
+            <li><strong>Solusi memerlukan pendekatan terpadu</strong>: pengembangan pusat pertumbuhan baru, perbaikan infrastruktur barat, insentif investasi, dan pemerataan fasilitas publik.</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- DISKUSI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <div class="discussion-box">
+            <h3><i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi</h3>
+            <ol>
+                <li>Mengapa persebaran penduduk di Banyuwangi sangat timpang? Jelaskan menggunakan <strong>prinsip persebaran</strong>!</li>
+                <li>Bagaimana <strong>topografi dan aksesibilitas</strong> memengaruhi kepadatan penduduk? Berikan contoh konkret dari data yang disajikan!</li>
+                <li>Apa hubungan antara <strong>pusat ekonomi</strong> (pelabuhan, bandara, pasar) dengan konsentrasi penduduk? Jelaskan dengan <strong>prinsip interelasi</strong>!</li>
+                <li>Sebagai siswa yang tinggal di Banyuwangi, menurutmu <strong>strategi mana yang paling efektif</strong> untuk pemerataan pembangunan? Jelaskan alasanmu!</li>
+                <li>Bagaimana <strong>urbanisasi</strong> memengaruhi persebaran penduduk di Banyuwangi? Apa dampak positif dan negatifnya?</li>
+                <li>Jika kamu menjadi bupati, <strong>kebijakan apa</strong> yang akan kamu terapkan untuk mengurangi ketimpangan antara wilayah timur dan barat? Jelaskan dengan <strong>prinsip korologi</strong>!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="nav-buttons">
+        <a href="analisis-alih-fungsi-lahan-purwoharjo.html" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Analisis Sebelumnya
+        </a>
+        <a href="analisis-mitigasi-bencana-vulkanik.html" class="nav-btn">
+            Analisis Selanjutnya <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Sumber Data Resmi</h3>
+            <ul>
+                <li><a href="https://banyuwangikab.bps.go.id" target="_blank"><i class="fas fa-chart-bar"></i> BPS Banyuwangi</a></li>
+                <li><a href="https://www.bps.go.id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                <li><a href="https://dukcapil.banyuwangikab.go.id" target="_blank"><i class="fas fa-users"></i> Disdukcapil Banyuwangi</a></li>
+                <li><a href="https://bappenas.go.id" target="_blank"><i class="fas fa-chart-line"></i> BAPPENAS</a></li>
+                <li><a href="https://www.banyuwangikab.go.id" target="_blank"><i class="fas fa-landmark"></i> Pemkab Banyuwangi</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+// NAVBAR MOBILE
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+// DARK MODE
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+
+// CHART.JS - POPULATION DISTRIBUTION
+const populationCtx = document.getElementById('populationChart').getContext('2d');
+new Chart(populationCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Banyuwangi', 'Kalipuro', 'Giri', 'Rogojampi', 'Glagah', 'Kabat', 'Singojuruh', 'Srono', 'Genteng', 'Tegaldlimo', 'Songgon', 'Licin', 'Sempu', 'Siliragung', 'Pesanggaran'],
+        datasets: [{
+            label: 'Kepadatan Penduduk (jiwa/km²)',
+            data: [4035, 734, 651, 641, 591, 562, 504, 494, 487, 461, 354, 194, 165, 108, 142],
+            backgroundColor: [
+                '#e74c3c', '#e67e22', '#f39c12', '#f1c40f', '#2ecc71', 
+                '#1abc9c', '#3498db', '#9b59b6', '#e91e63', '#00bcd4',
+                '#795548', '#607d8b', '#9e9e9e', '#c0392b', '#d35400'
+            ],
+            borderColor: [
+                '#c0392b', '#e67e22', '#d4ac0d', '#b7950b', '#27ae60',
+                '#16a085', '#2980b9', '#8e44ad', '#c2185b', '#0097a7',
+                '#5d4037', '#455a64', '#757575', '#a93226', '#ba4a00'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Kepadatan Penduduk per Kecamatan (2025)',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.y + ' jiwa/km²';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Kepadatan (jiwa/km²)'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Kecamatan'
+                },
+                ticks: {
+                    maxRotation: 45,
+                    minRotation: 45
+                }
+            }
+        }
+    }
+});
+
+// CHART.JS - POPULATION GROWTH
+const growthCtx = document.getElementById('growthChart').getContext('2d');
+new Chart(growthCtx, {
+    type: 'line',
+    data: {
+        labels: ['2010', '2015', '2020', '2025'],
+        datasets: [{
+            label: 'Total Penduduk (juta jiwa)',
+            data: [1.55, 1.62, 1.69, 1.75],
+            borderColor: '#9b59b6',
+            backgroundColor: 'rgba(155, 89, 182, 0.2)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Tren Pertumbuhan Penduduk Banyuwangi (2010–2025)',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.y + ' juta jiwa';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: false,
+                min: 1.4,
+                title: {
+                    display: true,
+                    text: 'Jumlah Penduduk (juta jiwa)'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Tahun'
+                }
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
