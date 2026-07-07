@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Pertemuan 2: Hakikat & Ruang Lingkup Geografi - Fenomena Geosfer dan Ruang Lingkup Geografi Fisik dan Sosial.">
+<title>Pertemuan 2: Hakikat & Ruang Lingkup Geografi | Geografi Kelas X</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+:root {
+--primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .sphere-card { background: #2d2d2d; border-color: #444; color: #e5e7eb; }
+body.dark-mode .sphere-card h3 { color: var(--accent); }
+body.dark-mode table { background: #2d2d2d; }
+body.dark-mode th { background: #374151; color: white; }
+body.dark-mode td { border-color: #444; }
+
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand {
+font-weight: 700; font-size: 1.2rem;
+text-decoration: none; color: white;
+display: flex; align-items: center; gap: 8px;
+}
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+color: white; text-decoration: none; font-weight: 500;
+padding: 8px 12px; border-radius: 50px;
+transition: all 0.3s ease;
+display: flex; align-items: center; gap: 5px;
+font-size: 0.92rem;
+}
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content {
+display: none; position: absolute;
+background: rgba(255,255,255,0.95);
+min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+border-radius: 8px; top: 100%; left: 0; z-index: 1001;
+flex-direction: column; padding: 10px 0;
+backdrop-filter: blur(10px);
+}
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch {
+background: rgba(255,255,255,0.15); border: none; color: white;
+font-size: 1.1rem; cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+width: 40px; height: 40px; border-radius: 50%;
+}
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+header {
+background: var(--gradient-primary);
+background-size: 300% 300%;
+animation: gradientBG 8s ease infinite;
+color: white; padding: 3rem 1.5rem 2rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 15s linear infinite; z-index: 1;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.header-icon {
+width: 90px; height: 90px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+font-size: 2.5rem;
+}
+header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1rem; }
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card {
+background: white; border-radius: 20px;
+padding: 2.5rem; box-shadow: var(--shadow);
+margin-bottom: 2rem;
+}
+.content-card h2 {
+color: var(--primary); font-size: 1.6rem;
+margin-bottom: 1rem;
+display: flex; align-items: center; gap: 0.6rem;
+border-bottom: 3px solid var(--accent);
+padding-bottom: 0.5rem;
+}
+.content-card h3 {
+color: var(--secondary); font-size: 1.25rem;
+margin: 1.5rem 0 0.8rem;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+.sphere-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1rem 0;
+box-shadow: var(--shadow);
+border-left: 5px solid var(--primary);
+transition: all 0.3s ease;
+}
+.sphere-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.sphere-card h3 {
+margin: 0 0 0.5rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.sphere-card.litosfer { border-left-color: #8b4513; }
+.sphere-card.litosfer h3 { color: #8b4513; }
+.sphere-card.atmosfer { border-left-color: #4cc9f0; }
+.sphere-card.atmosfer h3 { color: #4cc9f0; }
+.sphere-card.hidrosfer { border-left-color: #0077b6; }
+.sphere-card.hidrosfer h3 { color: #0077b6; }
+.sphere-card.biosfer { border-left-color: #2ecc71; }
+.sphere-card.biosfer h3 { color: #2ecc71; }
+.sphere-card.antroposfer { border-left-color: #9b59b6; }
+.sphere-card.antroposfer h3 { color: #9b59b6; }
+
+.sphere-icon {
+width: 50px; height: 50px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+margin-right: 0.8rem;
+}
+.sphere-icon.litosfer { background: linear-gradient(120deg, #8b4513, #d2691e); }
+.sphere-icon.atmosfer { background: linear-gradient(120deg, #4cc9f0, #4361ee); }
+.sphere-icon.hidrosfer { background: linear-gradient(120deg, #0077b6, #00b4d8); }
+.sphere-icon.biosfer { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.sphere-icon.antroposfer { background: linear-gradient(120deg, #9b59b6, #8e44ad); }
+
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; }
+td { padding: 0.9rem 1rem; border-bottom: 1px solid #e5e7eb; }
+tr:hover td { background: #f8f9fa; }
+
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn {
+display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+padding: 1rem; background: var(--gradient-primary);
+color: white; text-decoration: none;
+border-radius: 12px; font-weight: 600;
+transition: all 0.3s ease;
+box-shadow: var(--shadow);
+}
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+footer {
+background: linear-gradient(135deg, #1e293b, #334155);
+color: white; padding: 60px 20px 30px;
+margin-top: 60px;
+}
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links {
+display: none; position: fixed;
+top: var(--header-height); left: 0; width: 100%;
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+flex-direction: column; gap: 0; padding: 1rem 0;
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+z-index: 1000;
+max-height: calc(100vh - var(--header-height));
+overflow-y: auto;
+}
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon"><i class="fas fa-earth-americas"></i></div>
+    <h1>Pertemuan 2: Hakikat & Ruang Lingkup Geografi</h1>
+    <p class="subtitle">Bab 1: Hakikat Ilmu Geografi • Fase E Kurikulum Merdeka</p>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <span>Pertemuan 2</span>
+</div>
+
+<div class="content-wrapper">
+
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Capaian Pembelajaran</h2>
+        <p>Pada pertemuan ini, peserta didik diharapkan mampu <strong>memahami hakikat geografi sebagai ilmu</strong> serta <strong>mengidentifikasi ruang lingkup kajian geografi</strong> yang meliputi fenomena geosfer (litosfer, atmosfer, hidrosfer, biosfer, antroposfer) dan ruang lingkup geografi fisik maupun sosial.</p>
+        
+        <h3><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h3>
+        <ol>
+            <li>Menjelaskan hakikat geografi sebagai ilmu pengetahuan.</li>
+            <li>Mengidentifikasi ciri-ciri khas geografi sebagai disiplin ilmu.</li>
+            <li>Mendeskripsikan 5 lapisan fenomena geosfer.</li>
+            <li>Membedakan ruang lingkup geografi fisik dan geografi sosial.</li>
+        </ol>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-atom"></i> Hakikat Geografi sebagai Ilmu</h2>
+        <p>Geografi merupakan ilmu pengetahuan yang <strong>objektif, sistematis, dan universal</strong>. Sebagai ilmu, geografi memiliki ciri-ciri sebagai berikut:</p>
+        
+        <h3><i class="fas fa-check-circle"></i> Ciri-Ciri Geografi sebagai Ilmu</h3>
+        <ol>
+            <li><strong>Empiris</strong> — Berdasarkan pengamatan terhadap fenomena nyata di lapangan, bukan sekadar angan-angan.</li>
+            <li><strong>Sistematis</strong> — Memiliki struktur, konsep, prinsip, dan pendekatan yang teratur dan saling berkaitan.</li>
+            <li><strong>Universal</strong> — Kajiannya berlaku di mana saja, dari tingkat lokal hingga global.</li>
+            <li><strong>Objektif</strong> — Berdasarkan fakta dan data yang dapat diukur, bukan subjektivitas peneliti.</li>
+            <li><strong>Integratif</strong> — Mengkaji fenomena secara menyeluruh, memadukan aspek fisik dan sosial.</li>
+        </ol>
+        
+        <h3><i class="fas fa-fingerprint"></i> Kekhasan Geografi</h3>
+        <p>Geografi memiliki <strong>3 ciri khas</strong> yang membedakannya dari ilmu lain:</p>
+        <ul>
+            <li><strong>Spasial (Keruangan)</strong> — Selalu memperhatikan lokasi, persebaran, dan pola di permukaan bumi.</li>
+            <li><strong>Ekologis (Kelingkungan)</strong> — Menganalisis hubungan timbal balik antara manusia dengan lingkungan.</li>
+            <li><strong>Regional (Kewilayahan)</strong> — Mengkaji karakteristik khas suatu wilayah yang membedakannya dengan wilayah lain.</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-layer-group"></i> Fenomena Geosfer (5 Lapisan)</h2>
+        <p>Geografi mempelajari fenomena di permukaan bumi yang disebut <strong>geosfer</strong>. Geosfer terdiri dari 5 lapisan utama:</p>
+
+        <div class="sphere-card litosfer">
+            <h3><span class="sphere-icon litosfer"><i class="fas fa-mountain"></i></span> 1. Litosfer (Lapisan Batuan)</h3>
+            <p>Litosfer adalah lapisan kerak bumi terluar yang terdiri dari <strong>batuan dan mineral</strong>. Fenomena yang dikaji meliputi:</p>
+            <ul>
+                <li>Gempa bumi, gunung berapi, dan tektonisme.</li>
+                <li>Jenis-jenis batuan (beku, sedimen, metamorf).</li>
+                <li>Tenaga endogen (pembentuk relief) dan eksogen (perusak relief).</li>
+                <li>Tanah, erosi, dan longsor.</li>
+            </ul>
+        </div>
+
+        <div class="sphere-card atmosfer">
+            <h3><span class="sphere-icon atmosfer"><i class="fas fa-cloud-sun"></i></span> 2. Atmosfer (Lapisan Udara)</h3>
+            <p>Atmosfer adalah lapisan gas yang menyelimuti bumi. Fenomena yang dikaji meliputi:</p>
+            <ul>
+                <li>Cuaca dan iklim (suhu, kelembapan, angin, curah hujan).</li>
+                <li>Lapisan atmosfer (troposfer, stratosfer, mesosfer, termosfer, eksosfer).</li>
+                <li>Perubahan iklim global dan pemanasan global.</li>
+                <li>Pencemaran udara dan efek rumah kaca.</li>
+            </ul>
+        </div>
+
+        <div class="sphere-card hidrosfer">
+            <h3><span class="sphere-icon hidrosfer"><i class="fas fa-water"></i></span> 3. Hidrosfer (Lapisan Air)</h3>
+            <p>Hidrosfer adalah seluruh perairan di permukaan bumi. Fenomena yang dikaji meliputi:</p>
+            <ul>
+                <li>Siklus hidrologi (evaporasi, kondensasi, presipitasi).</li>
+                <li>Perairan darat (sungai, danau, rawa, air tanah).</li>
+                <li>Perairan laut (arus laut, pasang surut, gelombang).</li>
+                <li>Banjir, kekeringan, dan potensi sumber daya air.</li>
+            </ul>
+        </div>
+
+        <div class="sphere-card biosfer">
+            <h3><span class="sphere-icon biosfer"><i class="fas fa-tree"></i></span> 4. Biosfer (Lapisan Kehidupan)</h3>
+            <p>Biosfer adalah lapisan tempat hidup seluruh makhluk hidup. Fenomena yang dikaji meliputi:</p>
+            <ul>
+                <li>Persebaran flora dan fauna di dunia (realm).</li>
+                <li>Faktor yang memengaruhi persebaran makhluk hidup.</li>
+                <li>Keanekaragaman hayati dan konservasi.</li>
+                <li>Ekosistem, rantai makanan, dan jaring-jaring makanan.</li>
+            </ul>
+        </div>
+
+        <div class="sphere-card antroposfer">
+            <h3><span class="sphere-icon antroposfer"><i class="fas fa-users"></i></span> 5. Antroposfer (Lapisan Manusia)</h3>
+            <p>Antroposfer adalah lapisan yang berkaitan dengan <strong>aktivitas manusia</strong> di permukaan bumi. Fenomena yang dikaji meliputi:</p>
+            <ul>
+                <li>Kependudukan (jumlah, persebaran, komposisi, pertumbuhan).</li>
+                <li>Aktivitas ekonomi (pertanian, industri, perdagangan, jasa).</li>
+                <li>Budaya, adat istiadat, dan tradisi masyarakat.</li>
+                <li>Pemukiman, urbanisasi, dan mobilitas penduduk.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-code-branch"></i> Ruang Lingkup Geografi</h2>
+        <p>Secara umum, ruang lingkup geografi dibagi menjadi dua cabang utama:</p>
+        
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Geografi Fisik</th>
+                        <th>Geografi Sosial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fokus Kajian</strong></td>
+                        <td>Fenomena alamiah di permukaan bumi</td>
+                        <td>Aktivitas, perilaku, dan kehidupan manusia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Objek Material</strong></td>
+                        <td>Litosfer, atmosfer, hidrosfer, biosfer</td>
+                        <td>Antroposfer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contoh Kajian</strong></td>
+                        <td>Gunung, sungai, iklim, tanah, flora-fauna</td>
+                        <td>Populasi, ekonomi, budaya, pemukiman</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cabang Ilmu</strong></td>
+                        <td>Geomorfologi, klimatologi, hidrologi, biogeografi</td>
+                        <td>Geografi penduduk, ekonomi, sosial, budaya, politik</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sifat Kajian</strong></td>
+                        <td>Lebih objektif dan terukur</td>
+                        <td>Lebih dinamis dan kompleks</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-puzzle-piece"></i> Geografi Teknik (Pendukung)</h3>
+        <p>Selain dua cabang utama, terdapat <strong>geografi teknik</strong> yang menjadi alat bantu kajian geografi, meliputi:</p>
+        <ul>
+            <li><strong>Kartografi</strong> — Ilmu dan seni pembuatan peta.</li>
+            <li><strong>Penginderaan Jauh (Remote Sensing)</strong> — Teknik memperoleh data dari jarak jauh menggunakan sensor (citra satelit, drone).</li>
+            <li><strong>Sistem Informasi Geografis (SIG)</strong> — Sistem komputer untuk mengolah, menganalisis, dan memvisualisasikan data spasial.</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-map-marked-alt"></i> Studi Kasus: Fenomena Geosfer di Banyuwangi</h2>
+        <p>Banyuwangi sebagai wilayah di ujung timur Pulau Jawa memiliki fenomena geosfer yang lengkap:</p>
+        <ul>
+            <li><strong>Litosfer:</strong> Gunung Raung, Gunung Ijen, dan patahan aktif.</li>
+            <li><strong>Atmosfer:</strong> Iklim tropis dengan curah hujan tinggi di wilayah pegunungan.</li>
+            <li><strong>Hidrosfer:</strong> Selat Bali, Pantai Pulau Merah, Sungai Bengawan Solo.</li>
+            <li><strong>Biosfer:</strong> Taman Nasional Alas Purwo, hutan mangrove, dan flora endemik Ijen.</li>
+            <li><strong>Antroposfer:</strong> Keragaman suku (Using, Osing, Jawa, Madura) dan tradisi Kebo-keboan.</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Pertemuan 2</h2>
+        <ul>
+            <li>Geografi adalah ilmu yang empiris, sistematis, universal, objektif, dan integratif.</li>
+            <li>Tiga ciri khas geografi: spasial, ekologis, dan regional.</li>
+            <li>Geosfer terdiri dari 5 lapisan: litosfer, atmosfer, hidrosfer, biosfer, dan antroposfer.</li>
+            <li>Ruang lingkup geografi terbagi menjadi geografi fisik, geografi sosial, dan geografi teknik.</li>
+            <li>Banyuwangi memiliki contoh lengkap fenomena geosfer yang dapat dikaji secara geografis.</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <h2><i class="fas fa-pencil-alt"></i> Latihan Soal</h2>
+        <ol>
+            <li>Jelaskan 5 ciri geografi sebagai ilmu pengetahuan!</li>
+            <li>Apa yang dimaksud dengan geosfer? Sebutkan 5 lapisannya beserta contoh fenomena masing-masing!</li>
+            <li>Bandingkan geografi fisik dan geografi sosial dalam tabel!</li>
+            <li>Sebutkan 3 cabang geografi teknik dan jelaskan fungsinya!</li>
+            <li>Berikan contoh fenomena geosfer yang terjadi di lingkungan sekitarmu!</li>
+        </ol>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="pertemuan-1-pengertian-geografi.html" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Pertemuan 1
+        </a>
+        <a href="pertemuan-3-objek-material-formal.html" class="nav-btn">
+            Pertemuan 3 <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+</script>
+</body>
+</html>
