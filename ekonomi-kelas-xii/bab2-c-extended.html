@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bab 2.C (Extended) — Klasifikasi Debit & Kredit | Ekonomi XII</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
+.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
+body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
+.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
+.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
+.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
+header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
+.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
+.header-icon i{font-size:2.2rem;color:white}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
+.subtitle{opacity:.9;font-size:1rem}
+.container{max-width:1200px;margin:30px auto;padding:0 20px}
+.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
+body.dark-mode .card{background:#2d2d2d}
+.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
+body.dark-mode .card h3{color:var(--accent)}
+.card p{margin-bottom:12px;text-align:justify}
+.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
+body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
+body.dark-mode .example-box{background:rgba(251,191,36,.1)}
+.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
+.warning-box{background:#fee2e2;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--danger)}
+body.dark-mode .warning-box{background:rgba(248,113,113,.1)}
+.warning-box::before{content:"⚠️ PENGECUALIAN PENTING";display:block;font-weight:700;color:#b91c1c;margin-bottom:8px;font-size:.85rem}
+ul,ol{margin:10px 0 15px 25px}
+li{margin-bottom:8px}
+
+/* ====== TABEL MASTER ====== */
+.master-table{width:100%;border-collapse:collapse;margin:15px 0;background:white;border-radius:10px;overflow:hidden;font-size:.85rem}
+body.dark-mode .master-table{background:#1e1e1e}
+.master-table th{background:var(--primary);color:white;padding:10px;text-align:left;font-size:.8rem}
+.master-table td{padding:8px 10px;border-bottom:1px solid #e5e7eb}
+.master-table tr:nth-child(even){background:rgba(67,97,238,.03)}
+.master-table .debit{color:var(--success);font-weight:700}
+.master-table .kredit{color:var(--danger);font-weight:700}
+.master-table .kontra{background:#fee2e2!important}
+body.dark-mode .master-table .kontra{background:rgba(248,113,113,.15)!important}
+
+/* ====== LOGIKA BOX ====== */
+.logic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:15px 0}
+.logic-box{background:white;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);border-top:4px solid var(--primary)}
+body.dark-mode .logic-box{background:#1e1e1e}
+.logic-box.debit{border-top-color:var(--success)}
+.logic-box.kredit{border-top-color:var(--danger)}
+.logic-box .emoji{font-size:2.5rem;text-align:center;margin-bottom:10px}
+.logic-box h4{text-align:center;margin-bottom:10px;font-size:1.1rem}
+.logic-box .list{list-style:none;padding:0;margin:10px 0}
+.logic-box .list li{padding:5px 0;border-bottom:1px dashed #e5e7eb;font-size:.9rem}
+
+/* ====== JEMBATAN KELEDAI ====== */
+.mnemonic-card{background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:25px;border-radius:15px;margin:20px 0;text-align:center;box-shadow:0 10px 30px rgba(102,126,234,.3)}
+.mnemonic-card h3{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.mnemonic-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}
+@media(max-width:600px){.mnemonic-grid{grid-template-columns:1fr}}
+.mnemonic-item{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;backdrop-filter:blur(10px)}
+.mnemonic-item .big{font-size:1.8rem;font-weight:700;margin-bottom:8px}
+.mnemonic-item .desc{font-size:.9rem;opacity:.9}
+
+/* ====== SIMULATOR KUIS ====== */
+.simulator{background:linear-gradient(135deg,#11998e,#38ef7d);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(17,153,142,.3)}
+.simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-question{background:rgba(255,255,255,.1);padding:20px;border-radius:10px;margin-bottom:15px;backdrop-filter:blur(10px)}
+.sim-question .q-text{font-size:1.05rem;margin-bottom:15px;font-weight:500}
+.sim-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.sim-option{background:rgba(255,255,255,.2);padding:12px;border-radius:8px;text-align:center;cursor:pointer;transition:.3s;border:2px solid transparent;font-weight:500}
+.sim-option:hover{background:rgba(255,255,255,.3);transform:translateY(-2px)}
+.sim-option.correct{background:var(--success);color:#064e3b;border-color:var(--success)}
+.sim-option.wrong{background:var(--danger);color:white;border-color:var(--danger)}
+.sim-btn{background:white;color:#11998e;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.sim-btn.reset{background:var(--danger);color:white}
+.sim-score{background:rgba(255,255,255,.2);padding:15px;border-radius:10px;margin-top:15px;text-align:center;font-size:1.1rem;font-weight:700}
+.sim-feedback{margin-top:10px;padding:12px;border-radius:8px;font-size:.9rem;display:none}
+.sim-feedback.show{display:block}
+.sim-feedback.ok{background:rgba(74,222,128,.3)}
+.sim-feedback.no{background:rgba(248,113,113,.3)}
+
+/* ====== TRANSAKSI CARD ====== */
+.trans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin:15px 0}
+.trans-card{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid var(--primary)}
+body.dark-mode .trans-card{background:#1e1e1e}
+.trans-card .trans-title{font-weight:700;color:var(--primary);margin-bottom:8px;font-size:.95rem}
+.trans-card .journal{font-family:'Courier New',monospace;font-size:.85rem;background:#f9fafb;padding:10px;border-radius:6px;margin-top:8px}
+.trans-card .journal .debit-line{color:var(--success);font-weight:700}
+.trans-card .journal .kredit-line{color:var(--danger);font-weight:700;padding-left:20px}
+.trans-card .reason{font-size:.85rem;color:var(--gray);margin-top:8px;font-style:italic}
+
+.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
+footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
+<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+<span>SMAN 1 Cluring</span>
+</a>
+<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+</nav>
+
+<header>
+<div class="header-icon"><i class="fas fa-balance-scale"></i></div>
+<h1>Bab 2.C (Extended) — Klasifikasi Debit & Kredit</h1>
+<p class="subtitle">Memahami LOGIKA di balik posisi Debit dan Kredit</p>
+</header>
+
+<div class="container">
+<div class="breadcrumb">
+<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › <a href="bab2-c.html">Bab 2.C</a> › Extended
+</div>
+
+<div class="card">
+<h2><i class="fas fa-brain"></i> LOGIKA DASAR: Mengapa Ada Debit & Kredit?</h2>
+<p>Sebelum menghafal aturan, pahami dulu <strong>logika</strong> di baliknya!</p>
+
+<h3>🧠 Analogi "Neraca Timbangan"</h3>
+<p>Bayangkan sebuah <strong>timbangan</strong>:</p>
+<div class="highlight-box" style="text-align:center;font-size:1.2rem">
+<strong>👈 SISI KIRI = DEBIT</strong> &nbsp;&nbsp;⚖️&nbsp;&nbsp; <strong>SISI KANAN = KREDIT 👉</strong><br>
+<small>Agar timbangan seimbang, kedua sisi harus sama beratnya</small>
+</div>
+
+<h3>📖 Asal Kata</h3>
+<ul>
+<li><strong>Debit (D)</strong> — dari bahasa Latin <em>"debere"</em> = yang diterima/dimiliki</li>
+<li><strong>Kredit (K)</strong> — dari bahasa Latin <em>"credere"</em> = yang menjadi sumber/utang</li>
+</ul>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-layer-group"></i> 5 KELOMPOK AKUN & POSISINYA</h2>
+
+<div class="logic-grid">
+<div class="logic-box debit">
+<div class="emoji">📦</div>
+<h4 style="color:var(--success)">HARTA (ASET)</h4>
+<p style="text-align:center;font-size:.9rem">Sesuatu yang <strong>dimiliki</strong> perusahaan</p>
+<ul class="list">
+<li>✅ Bertambah → <strong>DEBIT</strong></li>
+<li>❌ Berkurang → KREDIT</li>
+<li>📍 Saldo normal: <strong>Debit</strong></li>
+</ul>
+</div>
+
+<div class="logic-box kredit">
+<div class="emoji">💰</div>
+<h4 style="color:var(--danger)">UTANG (LIABILITAS)</h4>
+<p style="text-align:center;font-size:.9rem">Kewajiban kepada <strong>pihak luar</strong></p>
+<ul class="list">
+<li>✅ Bertambah → <strong>KREDIT</strong></li>
+<li>❌ Berkurang → DEBIT</li>
+<li>📍 Saldo normal: <strong>Kredit</strong></li>
+</ul>
+</div>
+
+<div class="logic-box kredit">
+<div class="emoji">👤</div>
+<h4 style="color:var(--danger)">MODAL (EKUITAS)</h4>
+<p style="text-align:center;font-size:.9rem">Hak <strong>pemilik</strong> atas perusahaan</p>
+<ul class="list">
+<li>✅ Bertambah → <strong>KREDIT</strong></li>
+<li>❌ Berkurang → DEBIT</li>
+<li>📍 Saldo normal: <strong>Kredit</strong></li>
+</ul>
+</div>
+
+<div class="logic-box kredit">
+<div class="emoji">💵</div>
+<h4 style="color:var(--danger)">PENDAPATAN</h4>
+<p style="text-align:center;font-size:.9rem">Sumber yang <strong>menambah modal</strong></p>
+<ul class="list">
+<li>✅ Bertambah → <strong>KREDIT</strong></li>
+<li>❌ Berkurang → DEBIT</li>
+<li>📍 Saldo normal: <strong>Kredit</strong></li>
+</ul>
+</div>
+
+<div class="logic-box debit">
+<div class="emoji">💸</div>
+<h4 style="color:var(--success)">BEBAN</h4>
+<p style="text-align:center;font-size:.9rem">Pengorbanan yang <strong>mengurangi modal</strong></p>
+<ul class="list">
+<li>✅ Bertambah → <strong>DEBIT</strong></li>
+<li>❌ Berkurang → KREDIT</li>
+<li>📍 Saldo normal: <strong>Debit</strong></li>
+</ul>
+</div>
+
+<div class="logic-box debit">
+<div class="emoji">🏃</div>
+<h4 style="color:var(--success)">PRIVE</h4>
+<p style="text-align:center;font-size:.9rem">Pengambilan oleh <strong>pemilik</strong></p>
+<ul class="list">
+<li>✅ Bertambah → <strong>DEBIT</strong></li>
+<li>❌ Berkurang → KREDIT</li>
+<li>📍 Saldo normal: <strong>Debit</strong></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-lightbulb"></i> JEMBATAN KELEDAI (MUDAH DIINGAT!)</h2>
+
+<div class="mnemonic-card">
+<h3>🧠 Metode 1: "H-B-P vs U-M-P"</h3>
+<div class="mnemonic-grid">
+<div class="mnemonic-item">
+<div class="big" style="color:#4ade80">H - B - P</div>
+<div class="desc"><strong>Bertambah di DEBIT</strong><br>Harta, Beban, Prive<br>"Yang kita miliki & korbankan"</div>
+</div>
+<div class="mnemonic-item">
+<div class="big" style="color:#fbbf24">U - M - P</div>
+<div class="desc"><strong>Bertambah di KREDIT</strong><br>Utang, Modal, Pendapatan<br>"Yang jadi sumber dana"</div>
+</div>
+</div>
+</div>
+
+<div class="mnemonic-card" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+<h3>🧠 Metode 2: "Yang Diterima vs Sumber"</h3>
+<div class="mnemonic-grid">
+<div class="mnemonic-item">
+<div class="big">👈 YANG DITERIMA</div>
+<div class="desc"><strong>DEBIT (Kiri)</strong><br>Uang, barang, hak, pengorbanan<br>"Yang masuk ke perusahaan"</div>
+</div>
+<div class="mnemonic-item">
+<div class="big">👉 SUMBER DANA</div>
+<div class="desc"><strong>KREDIT (Kanan)</strong><br>Utang, modal, pendapatan<br>"Yang membiayai perusahaan"</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-table"></i> TABEL MASTER: SEMUA AKUN + POSISI + ALASAN</h2>
+<p>Tabel lengkap 36 akun yang sering muncul di perusahaan jasa:</p>
+
+<div style="overflow-x:auto">
+<table class="master-table">
+<thead>
+<tr>
+<th>No</th>
+<th>Nama Akun</th>
+<th>Kelompok</th>
+<th>Bertambah</th>
+<th>Berkurang</th>
+<th>Saldo Normal</th>
+<th>Alasan Logis</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Kas</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Uang masuk ke perusahaan</td></tr>
+<tr><td>2</td><td>Bank</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Uang di bank bertambah</td></tr>
+<tr><td>3</td><td>Piutang Usaha</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak tagih ke pelanggan</td></tr>
+<tr><td>4</td><td>Piutang Lain-lain</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak tagih lain</td></tr>
+<tr><td>5</td><td>Perlengkapan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Barang habis pakai masuk</td></tr>
+<tr><td>6</td><td>Sewa Dibayar Dimuka</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak atas sewa yang sudah dibayar</td></tr>
+<tr><td>7</td><td>Asuransi Dibayar Dimuka</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak atas asuransi</td></tr>
+<tr><td>8</td><td>Peralatan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
+<tr><td>9</td><td>Gedung</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
+<tr><td>10</td><td>Tanah</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
+<tr><td>11</td><td>Kendaraan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
+<tr class="kontra"><td>12</td><td>⚠️ Akum. Peny. Peralatan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit"><strong>Kredit</strong></td><td><strong>Kredit</strong></td><td>Pengurang harta</td></tr>
+<tr class="kontra"><td>13</td><td>⚠️ Akum. Peny. Gedung</td><td>Harta</td><td class="debit">Debit</td><td class="kredit"><strong>Kredit</strong></td><td><strong>Kredit</strong></td><td>Pengurang harta</td></tr>
+<tr><td>14</td><td>Utang Usaha</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban ke supplier</td></tr>
+<tr><td>15</td><td>Utang Bank</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban ke bank</td></tr>
+<tr><td>16</td><td>Utang Gaji</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban gaji</td></tr>
+<tr><td>17</td><td>Utang Bunga</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban bunga</td></tr>
+<tr><td>18</td><td>Utang Pajak</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban pajak</td></tr>
+<tr><td>19</td><td>Pendapatan Diterima Dimuka</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban memberikan jasa</td></tr>
+<tr><td>20</td><td>Modal Pemilik</td><td>Modal</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Hak pemilik</td></tr>
+<tr><td>21</td><td>Laba Ditahan</td><td>Modal</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Laba tidak dibagi</td></tr>
+<tr class="kontra"><td>22</td><td>⚠️ Prive</td><td>Modal</td><td class="debit"><strong>Debit</strong></td><td class="kredit">Kredit</td><td><strong>Debit</strong></td><td>Pengurang modal</td></tr>
+<tr><td>23</td><td>Pendapatan Jasa</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
+<tr><td>24</td><td>Pendapatan Sewa</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
+<tr><td>25</td><td>Pendapatan Bunga</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
+<tr><td>26</td><td>Pendapatan Komisi</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
+<tr><td>27</td><td>Pendapatan Lain-lain</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
+<tr><td>28</td><td>Beban Gaji</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>29</td><td>Beban Sewa</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>30</td><td>Beban Listrik</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>31</td><td>Beban Air</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>32</td><td>Beban Perlengkapan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>33</td><td>Beban Penyusutan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>34</td><td>Beban Iklan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>35</td><td>Beban Transportasi</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+<tr><td>36</td><td>Beban Lain-lain</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-exclamation-triangle"></i> PENGECUALIAN: AKUN KONTRA</h2>
+
+<div class="warning-box">
+<strong>Akun kontra</strong> adalah akun yang posisinya <strong>BERLAWANAN</strong> dengan kelompok aslinya, karena berfungsi sebagai <strong>PENGURANG</strong>.
+</div>
+
+<table class="master-table">
+<thead>
+<tr>
+<th>Akun Kontra</th>
+<th>Kelompok Asal</th>
+<th>Posisi Sebenarnya</th>
+<th>Alasan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="kontra"><td><strong>Akumulasi Penyusutan</strong></td><td>Harta</td><td><strong>KREDIT</strong></td><td>Pengurang nilai harta</td></tr>
+<tr class="kontra"><td><strong>Prive</strong></td><td>Modal</td><td><strong>DEBIT</strong></td><td>Pengurang modal pemilik</td></tr>
+<tr class="kontra"><td><strong>Retur Penjualan</strong></td><td>Pendapatan</td><td><strong>DEBIT</strong></td><td>Pengurang pendapatan</td></tr>
+<tr class="kontra"><td><strong>Diskon Penjualan</strong></td><td>Pendapatan</td><td><strong>DEBIT</strong></td><td>Pengurang pendapatan</td></tr>
+<tr class="kontra"><td><strong>Retur Pembelian</strong></td><td>Beban</td><td><strong>KREDIT</strong></td><td>Pengurang beban</td></tr>
+<tr class="kontra"><td><strong>Diskon Pembelian</strong></td><td>Beban</td><td><strong>KREDIT</strong></td><td>Pengurang beban</td></tr>
+</tbody>
+</table>
+
+<div class="example-box">
+<strong>Mengapa Akumulasi Penyusutan di KREDIT?</strong><br>
+Karena ia <strong>mengurangi nilai peralatan</strong>. Peralatan sendiri bertambah di Debit, maka pengurangnya harus di posisi sebaliknya (Kredit). Begitu juga Prive yang mengurangi Modal.
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-exchange-alt"></i> 10 CONTOH TRANSAKSI LENGKAP</h2>
+
+<div class="trans-grid">
+<div class="trans-card">
+<div class="trans-title">1. Pemilik menyetor modal Rp 10.000.000</div>
+<div class="journal">
+<div class="debit-line">(D) Kas ........................ Rp 10.000.000</div>
+<div class="kredit-line">(K) Modal ...................... Rp 10.000.000</div>
+</div>
+<div class="reason">💡 Uang masuk (kiri), sumber dari pemilik (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">2. Beli peralatan tunai Rp 3.000.000</div>
+<div class="journal">
+<div class="debit-line">(D) Peralatan ................... Rp 3.000.000</div>
+<div class="kredit-line">(K) Kas ........................ Rp 3.000.000</div>
+</div>
+<div class="reason">💡 Peralatan masuk (kiri), kas keluar (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">3. Beli perlengkapan kredit Rp 500.000</div>
+<div class="journal">
+<div class="debit-line">(D) Perlengkapan ................ Rp 500.000</div>
+<div class="kredit-line">(K) Utang Usaha ................ Rp 500.000</div>
+</div>
+<div class="reason">💡 Barang masuk (kiri), sumber dari utang (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">4. Terima pendapatan jasa Rp 2.000.000</div>
+<div class="journal">
+<div class="debit-line">(D) Kas ........................ Rp 2.000.000</div>
+<div class="kredit-line">(K) Pendapatan Jasa ............ Rp 2.000.000</div>
+</div>
+<div class="reason">💡 Uang masuk (kiri), sumber dari jasa (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">5. Bayar beban gaji Rp 800.000</div>
+<div class="journal">
+<div class="debit-line">(D) Beban Gaji .................. Rp 800.000</div>
+<div class="kredit-line">(K) Kas ........................ Rp 800.000</div>
+</div>
+<div class="reason">💡 Pengorbanan (kiri), kas keluar (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">6. Terima pelunasan piutang Rp 1.000.000</div>
+<div class="journal">
+<div class="debit-line">(D) Kas ........................ Rp 1.000.000</div>
+<div class="kredit-line">(K) Piutang Usaha .............. Rp 1.000.000</div>
+</div>
+<div class="reason">💡 Uang masuk (kiri), hak tagih hilang (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">7. Bayar sebagian utang Rp 300.000</div>
+<div class="journal">
+<div class="debit-line">(D) Utang Usaha ................. Rp 300.000</div>
+<div class="kredit-line">(K) Kas ........................ Rp 300.000</div>
+</div>
+<div class="reason">💡 Kewajiban hilang (kiri), kas keluar (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">8. Pemilik ambil uang pribadi Rp 200.000</div>
+<div class="journal">
+<div class="debit-line">(D) Prive ....................... Rp 200.000</div>
+<div class="kredit-line">(K) Kas ........................ Rp 200.000</div>
+</div>
+<div class="reason">💡 Pengambilan (kiri), kas keluar (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">9. Perlengkapan terpakai Rp 150.000</div>
+<div class="journal">
+<div class="debit-line">(D) Beban Perlengkapan .......... Rp 150.000</div>
+<div class="kredit-line">(K) Perlengkapan ............... Rp 150.000</div>
+</div>
+<div class="reason">💡 Pengorbanan (kiri), aset berkurang (kanan)</div>
+</div>
+
+<div class="trans-card">
+<div class="trans-title">10. Penyusutan peralatan Rp 100.000</div>
+<div class="journal">
+<div class="debit-line">(D) Beban Penyusutan ............ Rp 100.000</div>
+<div class="kredit-line">(K) Akum. Peny. Peralatan ...... Rp 100.000</div>
+</div>
+<div class="reason">💡 Pengorbanan (kiri), pengurang aset (kanan)</div>
+</div>
+</div>
+</div>
+
+<!-- ============ SIMULATOR KUIS ============ -->
+<div class="simulator">
+<h2><i class="fas fa-gamepad"></i> 🎮 KUIS: Debit atau Kredit?</h2>
+<div class="sim-intro">
+<strong>Uji Pemahamanmu!</strong> 🎯<br>
+Untuk setiap transaksi, tentukan posisi akun yang <strong>ditanyakan</strong>. Klik jawaban yang tepat. Ada 10 soal acak dari 20 bank soal!
+</div>
+
+<div id="quizContainer"></div>
+
+<div style="margin-top:15px">
+<button class="sim-btn" onclick="nextQuestion()"><i class="fas fa-forward"></i> Soal Berikutnya</button>
+<button class="sim-btn reset" onclick="resetQuiz()"><i class="fas fa-redo"></i> Mulai Ulang</button>
+</div>
+
+<div class="sim-score">
+🏆 Skor: <span id="score">0</span> / <span id="total">0</span>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-check-double"></i> 5 LANGKAH ANALISIS TRANSAKSI</h2>
+<ol>
+<li><strong>Baca transaksi</strong> dengan teliti</li>
+<li><strong>Identifikasi akun</strong> yang terpengaruh (minimal 2)</li>
+<li><strong>Tentukan kelompok</strong> (Harta/Utang/Modal/Pendapatan/Beban)</li>
+<li><strong>Tentukan bertambah/berkurang</strong></li>
+<li><strong>Tentukan posisi</strong> (Debit/Kredit) sesuai aturan</li>
+</ol>
+
+<div class="highlight-box">
+<strong>🔑 Pertanyaan Kunci:</strong><br>
+• "Apa yang <strong>masuk</strong> ke perusahaan?" → <strong>DEBIT</strong><br>
+• "Apa yang <strong>keluar</strong> dari perusahaan?" → <strong>KREDIT</strong><br>
+• "Dari mana <strong>sumbernya</strong>?" → <strong>KREDIT</strong><br>
+• "Untuk apa <strong>digunakan</strong>?" → <strong>DEBIT</strong>
+</div>
+</div>
+
+<div class="card">
+<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<ul>
+<li>✅ Debit & Kredit punya <strong>LOGIKA</strong>, bukan sekadar hafalan</li>
+<li>✅ <strong>H-B-P</strong> bertambah di Debit | <strong>U-M-P</strong> bertambah di Kredit</li>
+<li>✅ Akun kontra <strong>selalu berlawanan</strong> dengan kelompok aslinya</li>
+<li>✅ Total Debit <strong>harus = Total Kredit</strong> (prinsip keseimbangan)</li>
+<li>✅ Latih pemahaman dengan <strong>kuis interaktif</strong> di atas!</li>
+</ul>
+</div>
+
+<div class="nav-bab">
+<a href="bab2-c.html"><i class="fas fa-arrow-left"></i> Kembali ke Bab 2.C</a>
+<a href="bab2-d.html">Lanjut ke Bab 2.D <i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Materi Ekonomi Kelas XII</p></footer>
+
+<script>
+const questions = [
+  {trans:"Pemilik menyetor modal tunai Rp 10.000.000",acc:"Kas",a:"Debit",explain:"Kas (Harta) bertambah → DEBIT"},
+  {trans:"Pemilik menyetor modal tunai Rp 10.000.000",acc:"Modal",a:"Kredit",explain:"Modal (Modal) bertambah → KREDIT"},
+  {trans:"Membeli peralatan tunai Rp 3.000.000",acc:"Peralatan",a:"Debit",explain:"Peralatan (Harta) bertambah → DEBIT"},
+  {trans:"Membeli peralatan tunai Rp 3.000.000",acc:"Kas",a:"Kredit",explain:"Kas (Harta) berkurang → KREDIT"},
+  {trans:"Membeli perlengkapan secara kredit Rp 500.000",acc:"Perlengkapan",a:"Debit",explain:"Perlengkapan (Harta) bertambah → DEBIT"},
+  {trans:"Membeli perlengkapan secara kredit Rp 500.000",acc:"Utang Usaha",a:"Kredit",explain:"Utang (Utang) bertambah → KREDIT"},
+  {trans:"Menerima pendapatan jasa tunai Rp 2.000.000",acc:"Kas",a:"Debit",explain:"Kas (Harta) bertambah → DEBIT"},
+  {trans:"Menerima pendapatan jasa tunai Rp 2.000.000",acc:"Pendapatan Jasa",a:"Kredit",explain:"Pendapatan bertambah → KREDIT"},
+  {trans:"Membayar beban gaji Rp 800.000",acc:"Beban Gaji",a:"Debit",explain:"Beban bertambah → DEBIT"},
+  {trans:"Membayar beban gaji Rp 800.000",acc:"Kas",a:"Kredit",explain:"Kas (Harta) berkurang → KREDIT"},
+  {trans:"Membayar sebagian utang Rp 300.000",acc:"Utang Usaha",a:"Debit",explain:"Utang berkurang → DEBIT"},
+  {trans:"Membayar sebagian utang Rp 300.000",acc:"Kas",a:"Kredit",explain:"Kas berkurang → KREDIT"},
+  {trans:"Pemilik mengambil uang untuk pribadi Rp 200.000",acc:"Prive",a:"Debit",explain:"Prive (pengurang modal) bertambah → DEBIT"},
+  {trans:"Pemilik mengambil uang untuk pribadi Rp 200.000",acc:"Kas",a:"Kredit",explain:"Kas berkurang → KREDIT"},
+  {trans:"Pencatatan penyusutan peralatan Rp 100.000",acc:"Beban Penyusutan",a:"Debit",explain:"Beban bertambah → DEBIT"},
+  {trans:"Pencatatan penyusutan peralatan Rp 100.000",acc:"Akumulasi Penyusutan",a:"Kredit",explain:"Akumulasi Penyusutan (kontra harta) bertambah → KREDIT"},
+  {trans:"Menerima pelunasan piutang Rp 1.000.000",acc:"Kas",a:"Debit",explain:"Kas bertambah → DEBIT"},
+  {trans:"Menerima pelunasan piutang Rp 1.000.000",acc:"Piutang Usaha",a:"Kredit",explain:"Piutang (Harta) berkurang → KREDIT"},
+  {trans:"Perlengkapan terpakai Rp 150.000",acc:"Beban Perlengkapan",a:"Debit",explain:"Beban bertambah → DEBIT"},
+  {trans:"Perlengkapan terpakai Rp 150.000",acc:"Perlengkapan",a:"Kredit",explain:"Perlengkapan (Harta) berkurang → KREDIT"}
+];
+
+let current = 0, score = 0, answered = false, shuffled = [];
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function initQuiz(){
+  shuffled = shuffle(questions).slice(0,10);
+  current = 0; score = 0;
+  document.getElementById('score').textContent = 0;
+  document.getElementById('total').textContent = shuffled.length;
+  showQuestion();
+}
+
+function showQuestion(){
+  if(current >= shuffled.length){
+    document.getElementById('quizContainer').innerHTML = `
+      <div class="sim-question" style="text-align:center">
+        <h3>🎉 Kuis Selesai!</h3>
+        <p style="font-size:1.3rem;margin:15px 0">Skor kamu: <strong>${score} / ${shuffled.length}</strong></p>
+        <p>${score>=9?'🏆 LUAR BIASA! Kamu sudah menguasai Debit-Kredit!':score>=7?'👍 Bagus! Terus berlatih ya!':score>=5?'💪 Lumayan, coba lagi yuk!':'📚 Pelajari kembali materi di atas'}</p>
+      </div>`;
+    return;
+  }
+  const q = shuffled[current];
+  let html = `<div class="sim-question">
+    <div class="q-text">📌 Soal ${current+1}: Pada transaksi "<strong>${q.trans}</strong>", akun "<strong>${q.acc}</strong>" berada di posisi...</div>
+    <div class="sim-options">
+      <div class="sim-option" onclick="selectAnswer(this,'Debit','${q.a}','${q.explain.replace(/'/g,"\\'")}')">
+        <div style="font-size:1.5rem;margin-bottom:5px">👈</div>
+        <strong>DEBIT</strong>
+      </div>
+      <div class="sim-option" onclick="selectAnswer(this,'Kredit','${q.a}','${q.explain.replace(/'/g,"\\'")}')">
+        <div style="font-size:1.5rem;margin-bottom:5px">👉</div>
+        <strong>KREDIT</strong>
+      </div>
+    </div>
+    <div class="sim-feedback" id="feedback"></div>
+  </div>`;
+  document.getElementById('quizContainer').innerHTML = html;
+  answered = false;
+}
+
+function selectAnswer(el,selected,correct,explain){
+  if(answered) return;
+  answered = true;
+  const feedback = document.getElementById('feedback');
+  document.querySelectorAll('.sim-option').forEach(o=>{
+    const text = o.textContent.trim();
+    if(text.includes(correct)) o.classList.add('correct');
+    else if(o === el && selected !== correct) o.classList.add('wrong');
+  });
+  if(selected === correct){
+    score++;
+    document.getElementById('score').textContent = score;
+    feedback.className = 'sim-feedback show ok';
+    feedback.innerHTML = `✅ <strong>Benar!</strong> ${explain}`;
+  } else {
+    feedback.className = 'sim-feedback show no';
+    feedback.innerHTML = `❌ <strong>Kurang tepat.</strong> Jawaban benar: <strong>${correct}</strong>.<br>${explain}`;
+  }
+}
+
+function nextQuestion(){
+  if(!answered && current < shuffled.length){alert('Pilih jawaban dulu ya! 😊');return}
+  current++;
+  showQuestion();
+}
+
+function resetQuiz(){initQuiz()}
+initQuiz();
+</script>
+</body>
+</html>
