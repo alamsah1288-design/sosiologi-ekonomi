@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Pertemuan 3: Objek Material & Formal Geografi - 5 Lapisan Geosfer dan 3 Cara Pandang Geografi.">
+<title>Pertemuan 3: Objek Material & Formal Geografi | Geografi Kelas X</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+:root {
+--primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .sphere-card, body.dark-mode .approach-card, body.dark-mode .case-study { background: #2d2d2d; border-color: #444; color: #e5e7eb; }
+body.dark-mode .sphere-card h3, body.dark-mode .approach-card h3 { color: var(--accent); }
+body.dark-mode table { background: #2d2d2d; }
+body.dark-mode th { background: #374151; color: white; }
+body.dark-mode td { border-color: #444; }
+
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand {
+font-weight: 700; font-size: 1.2rem;
+text-decoration: none; color: white;
+display: flex; align-items: center; gap: 8px;
+}
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+color: white; text-decoration: none; font-weight: 500;
+padding: 8px 12px; border-radius: 50px;
+transition: all 0.3s ease;
+display: flex; align-items: center; gap: 5px;
+font-size: 0.92rem;
+}
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content {
+display: none; position: absolute;
+background: rgba(255,255,255,0.95);
+min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+border-radius: 8px; top: 100%; left: 0; z-index: 1001;
+flex-direction: column; padding: 10px 0;
+backdrop-filter: blur(10px);
+}
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch {
+background: rgba(255,255,255,0.15); border: none; color: white;
+font-size: 1.1rem; cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+width: 40px; height: 40px; border-radius: 50%;
+}
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+header {
+background: var(--gradient-primary);
+background-size: 300% 300%;
+animation: gradientBG 8s ease infinite;
+color: white; padding: 3rem 1.5rem 2rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 15s linear infinite; z-index: 1;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.header-icon {
+width: 90px; height: 90px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+font-size: 2.5rem;
+}
+header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1rem; }
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card {
+background: white; border-radius: 20px;
+padding: 2.5rem; box-shadow: var(--shadow);
+margin-bottom: 2rem;
+}
+.content-card h2 {
+color: var(--primary); font-size: 1.6rem;
+margin-bottom: 1rem;
+display: flex; align-items: center; gap: 0.6rem;
+border-bottom: 3px solid var(--accent);
+padding-bottom: 0.5rem;
+}
+.content-card h3 {
+color: var(--secondary); font-size: 1.25rem;
+margin: 1.5rem 0 0.8rem;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+/* SPHERE CARDS */
+.sphere-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1rem 0;
+box-shadow: var(--shadow);
+border-left: 5px solid var(--primary);
+transition: all 0.3s ease;
+}
+.sphere-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.sphere-card h3 {
+margin: 0 0 0.5rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.sphere-card.litosfer { border-left-color: #8b4513; }
+.sphere-card.litosfer h3 { color: #8b4513; }
+.sphere-card.atmosfer { border-left-color: #4cc9f0; }
+.sphere-card.atmosfer h3 { color: #4cc9f0; }
+.sphere-card.hidrosfer { border-left-color: #0077b6; }
+.sphere-card.hidrosfer h3 { color: #0077b6; }
+.sphere-card.biosfer { border-left-color: #2ecc71; }
+.sphere-card.biosfer h3 { color: #2ecc71; }
+.sphere-card.antroposfer { border-left-color: #9b59b6; }
+.sphere-card.antroposfer h3 { color: #9b59b6; }
+
+.sphere-icon {
+width: 50px; height: 50px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+margin-right: 0.8rem;
+flex-shrink: 0;
+}
+.sphere-icon.litosfer { background: linear-gradient(120deg, #8b4513, #d2691e); }
+.sphere-icon.atmosfer { background: linear-gradient(120deg, #4cc9f0, #4361ee); }
+.sphere-icon.hidrosfer { background: linear-gradient(120deg, #0077b6, #00b4d8); }
+.sphere-icon.biosfer { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.sphere-icon.antroposfer { background: linear-gradient(120deg, #9b59b6, #8e44ad); }
+
+/* APPROACH CARDS */
+.approach-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1rem 0;
+box-shadow: var(--shadow);
+border-left: 5px solid var(--accent);
+transition: all 0.3s ease;
+}
+.approach-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.approach-card h3 {
+margin: 0 0 0.5rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+color: var(--primary);
+}
+.approach-card.keruangan { border-left-color: #4361ee; }
+.approach-card.keruangan h3 { color: #4361ee; }
+.approach-card.kelingkungan { border-left-color: #2ecc71; }
+.approach-card.kelingkungan h3 { color: #27ae60; }
+.approach-card.kewilayahan { border-left-color: #f39c12; }
+.approach-card.kewilayahan h3 { color: #e67e22; }
+
+.approach-icon {
+width: 50px; height: 50px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+margin-right: 0.8rem;
+flex-shrink: 0;
+}
+.approach-icon.keruangan { background: linear-gradient(120deg, #4361ee, #3f37c9); }
+.approach-icon.kelingkungan { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.approach-icon.kewilayahan { background: linear-gradient(120deg, #f39c12, #e67e22); }
+
+/* CASE STUDY */
+.case-study {
+background: linear-gradient(135deg, #fff5e6, #ffe8cc);
+border-radius: 16px;
+padding: 1.8rem;
+margin: 1.5rem 0;
+border: 2px dashed #f39c12;
+position: relative;
+}
+.case-study h3 {
+color: #e67e22;
+margin-top: 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.case-study-label {
+position: absolute;
+top: -12px;
+left: 20px;
+background: #f39c12;
+color: white;
+padding: 4px 14px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 1px;
+}
+
+/* KEY POINT */
+.key-point {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white;
+padding: 1.2rem 1.5rem;
+border-radius: 12px;
+margin: 1rem 0;
+display: flex;
+align-items: flex-start;
+gap: 1rem;
+box-shadow: var(--shadow);
+}
+.key-point i {
+font-size: 1.5rem;
+flex-shrink: 0;
+margin-top: 2px;
+}
+.key-point p { margin: 0; }
+
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; }
+td { padding: 0.9rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+tr:hover td { background: #f8f9fa; }
+
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn {
+display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+padding: 1rem; background: var(--gradient-primary);
+color: white; text-decoration: none;
+border-radius: 12px; font-weight: 600;
+transition: all 0.3s ease;
+box-shadow: var(--shadow);
+}
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+footer {
+background: linear-gradient(135deg, #1e293b, #334155);
+color: white; padding: 60px 20px 30px;
+margin-top: 60px;
+}
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links {
+display: none; position: fixed;
+top: var(--header-height); left: 0; width: 100%;
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+flex-direction: column; gap: 0; padding: 1rem 0;
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+z-index: 1000;
+max-height: calc(100vh - var(--header-height));
+overflow-y: auto;
+}
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.sphere-icon, .approach-icon { width: 40px; height: 40px; font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon"><i class="fas fa-layer-group"></i></div>
+    <h1>Pertemuan 3: Objek Material & Formal Geografi</h1>
+    <p class="subtitle">Bab 1: Hakikat Ilmu Geografi • Fase E Kurikulum Merdeka</p>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <span>Pertemuan 3</span>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- CAPAIAN & TUJUAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Capaian Pembelajaran</h2>
+        <p>Pada pertemuan ini, peserta didik diharapkan mampu <strong>membedakan objek material dan objek formal geografi</strong> serta menerapkannya dalam menganalisis fenomena geosfer di lingkungan sekitar.</p>
+        
+        <h3><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h3>
+        <ol>
+            <li>Menjelaskan pengertian objek material geografi beserta 5 lapisan geosfer.</li>
+            <li>Mengidentifikasi objek formal geografi (keruangan, kelingkungan, kewilayahan).</li>
+            <li>Membedakan objek material dan objek formal dalam kajian geografi.</li>
+            <li>Menganalisis fenomena geosfer menggunakan pendekatan objek material dan formal.</li>
+        </ol>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Ingat!</strong> Setiap ilmu pengetahuan memiliki objek kajian. Geografi memiliki dua jenis objek, yaitu <strong>objek material</strong> (apa yang dikaji) dan <strong>objek formal</strong> (bagaimana cara mengkajinya).</p>
+        </div>
+    </div>
+
+    <!-- OBJEK MATERIAL -->
+    <div class="content-card">
+        <h2><i class="fas fa-globe"></i> Objek Material Geografi</h2>
+        <p><strong>Objek material</strong> geografi adalah segala fenomena di permukaan bumi yang menjadi bahan kajian, baik aspek fisik maupun sosial. Objek material ini mencakup <strong>5 lapisan geosfer</strong>:</p>
+
+        <div class="sphere-card litosfer">
+            <h3><span class="sphere-icon litosfer"><i class="fas fa-mountain"></i></span> 1. Litosfer (Lapisan Batuan)</h3>
+            <p>Lapisan kerak bumi terluar yang terdiri dari batuan dan mineral. Fenomena yang dikaji meliputi gempa bumi, vulkanisme, tektonisme, jenis batuan, tanah, dan bentuk muka bumi.</p>
+            <p><strong>📍 Contoh di Banyuwangi:</strong> Gunung Raung (1.675 mdpl), Gunung Merapi (2.800 mdpl), dan dataran rendah di bagian timur yang subur akibat endapan vulkanik.</p>
+        </div>
+
+        <div class="sphere-card atmosfer">
+            <h3><span class="sphere-icon atmosfer"><i class="fas fa-cloud-sun"></i></span> 2. Atmosfer (Lapisan Udara)</h3>
+            <p>Lapisan gas yang menyelimuti bumi. Fenomena yang dikaji meliputi cuaca, iklim, suhu, kelembapan, angin, curah hujan, dan perubahan iklim.</p>
+            <p><strong>📍 Contoh di Banyuwangi:</strong> Iklim tropis dengan dua musim (hujan & kemarau), curah hujan tinggi di wilayah pegunungan Ijen-Raung, dan angin muson yang memengaruhi pola tanam.</p>
+        </div>
+
+        <div class="sphere-card hidrosfer">
+            <h3><span class="sphere-icon hidrosfer"><i class="fas fa-water"></i></span> 3. Hidrosfer (Lapisan Air)</h3>
+            <p>Seluruh perairan di permukaan bumi. Fenomena yang dikaji meliputi siklus hidrologi, perairan darat (sungai, danau, rawa), perairan laut (arus, pasang surut, gelombang), dan kualitas air.</p>
+            <p><strong>📍 Contoh di Banyuwangi:</strong> Selat Bali, Pantai Pulau Merah, Pantai Boom, Sungai Badeng, dan Kawah Ijen yang berwarna turquoise (danau asam terbesar di dunia).</p>
+        </div>
+
+        <div class="sphere-card biosfer">
+            <h3><span class="sphere-icon biosfer"><i class="fas fa-tree"></i></span> 4. Biosfer (Lapisan Kehidupan)</h3>
+            <p>Lapisan tempat hidup seluruh makhluk hidup. Fenomena yang dikaji meliputi persebaran flora dan fauna, keanekaragaman hayati, ekosistem, dan konservasi.</p>
+            <p><strong>📍 Contoh di Banyuwangi:</strong> Taman Nasional Alas Purwo (hutan tropis dataran rendah), hutan mangrove di Pantai Camplong, dan flora endemik di kawasan Ijen seperti Edelweis Jawa (<em>Anaphalis javanica</em>).</p>
+        </div>
+
+        <div class="sphere-card antroposfer">
+            <h3><span class="sphere-icon antroposfer"><i class="fas fa-users"></i></span> 5. Antroposfer (Lapisan Manusia)</h3>
+            <p>Lapisan yang berkaitan dengan aktivitas manusia di permukaan bumi. Fenomena yang dikaji meliputi kependudukan, aktivitas ekonomi, budaya, pemukiman, dan mobilitas penduduk.</p>
+            <p><strong>📍 Contoh di Banyuwangi:</strong> Keragaman suku (Using, Osing, Jawa, Madura, Bali), tradisi Kebo-keboan di Alas Malas, festival Banyuwangi Ethno Carnival, dan aktivitas pariwisata di Kawah Ijen.</p>
+        </div>
+    </div>
+
+    <!-- OBJEK FORMAL -->
+    <div class="content-card">
+        <h2><i class="fas fa-eye"></i> Objek Formal Geografi</h2>
+        <p><strong>Objek formal</strong> geografi adalah <em>cara pandang</em> atau <em>cara kajian</em> terhadap objek material. Objek formal menentukan <strong>metode dan perspektif</strong> yang digunakan dalam menganalisis fenomena geosfer. Terdapat 3 objek formal utama:</p>
+
+        <div class="approach-card keruangan">
+            <h3><span class="approach-icon keruangan"><i class="fas fa-map-marked-alt"></i></span> 1. Keruangan (Spasial)</h3>
+            <p>Menekankan analisis pada <strong>aspek lokasi, persebaran, pola, dan hubungan antar-ruang</strong>. Pertanyaan kuncinya: <em>"Di mana?"</em>, <em>"Bagaimana polanya?"</em>, dan <em>"Mengapa di situ?"</em></p>
+            <p><strong>Fokus:</strong> Lokasi, jarak, keterjangkauan, pola, aglomerasi, dan diferensiasi area.</p>
+            <p><strong>Contoh:</strong> Menganalisis mengapa permukiman di Banyuwangi terkonsentrasi di dataran rendah bagian timur.</p>
+        </div>
+
+        <div class="approach-card kelingkungan">
+            <h3><span class="approach-icon kelingkungan"><i class="fas fa-recycle"></i></span> 2. Kelingkungan (Ekologi)</h3>
+            <p>Menekankan analisis pada <strong>hubungan timbal balik antara manusia dengan lingkungannya</strong>. Pertanyaan kuncinya: <em>"Bagaimana hubungan manusia dengan alam?"</em> dan <em>"Apa dampak aktivitas manusia terhadap lingkungan?"</em></p>
+            <p><strong>Fokus:</strong> Interaksi organisme dengan lingkungan, rantai makanan, daya dukung lingkungan, dan keseimbangan ekosistem.</p>
+            <p><strong>Contoh:</strong> Menganalisis dampak alih fungsi lahan pertanian di Purwoharjo terhadap produktivitas pangan dan kualitas lingkungan.</p>
+        </div>
+
+        <div class="approach-card kewilayahan">
+            <h3><span class="approach-icon kewilayahan"><i class="fas fa-globe-asia"></i></span> 3. Kewilayahan (Regional)</h3>
+            <p>Menekankan analisis pada <strong>karakteristik khas suatu wilayah</strong> yang membedakannya dengan wilayah lain. Pertanyaan kuncinya: <em>"Apa yang khas dari wilayah ini?"</em> dan <em>"Bagaimana wilayah ini berbeda dari wilayah lain?"</em></p>
+            <p><strong>Fokus:</strong> Karakteristik unik wilayah, potensi wilayah, dan perbandingan antarwilayah.</p>
+            <p><strong>Contoh:</strong> Mengkaji Kabupaten Banyuwangi sebagai "The Sunrise of Java" dengan karakteristik wisata alam, budaya Using, dan produk kopi Ijen yang khas.</p>
+        </div>
+    </div>
+
+    <!-- TABEL PERBANDINGAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-code-branch"></i> Perbandingan Objek Material vs Objek Formal</h2>
+        <p>Berikut adalah perbandingan antara objek material dan objek formal geografi:</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Objek Material</th>
+                        <th>Objek Formal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pengertian</strong></td>
+                        <td>Fenomena yang dikaji (bahan kajian)</td>
+                        <td>Cara pandang/metode mengkaji</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pertanyaan Kunci</strong></td>
+                        <td><em>"Apa yang dikaji?"</em></td>
+                        <td><em>"Bagaimana cara mengkajinya?"</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cakupan</strong></td>
+                        <td>Litosfer, atmosfer, hidrosfer, biosfer, antroposfer</td>
+                        <td>Keruangan, kelingkungan, kewilayahan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sifat</strong></td>
+                        <td>Konkret, dapat diamati langsung</td>
+                        <td>Abstrak, berupa perspektif analisis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contoh</strong></td>
+                        <td>Gunung Ijen, Kawah Ijen, hutan Alas Purwo</td>
+                        <td>Menganalisis pola persebaran, hubungan ekologis, atau karakteristik wilayah</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peran</strong></td>
+                        <td>Sebagai <em>bahan</em> kajian geografi</td>
+                        <td>Sebagai <em>pisau analisis</em> geografi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Analogi Sederhana:</strong> Bayangkan seorang dokter. <strong>Objek material</strong> adalah <em>pasien</em> (tubuh manusia yang diperiksa), sedangkan <strong>objek formal</strong> adalah <em>cara pemeriksaan</em> (apakah menggunakan stetoskop, rontgen, atau tes darah). Keduanya saling melengkapi!</p>
+        </div>
+    </div>
+
+    <!-- STUDI KASUS -->
+    <div class="content-card">
+        <h2><i class="fas fa-mountain"></i> Studi Kasus: Gunung Ijen</h2>
+        <div class="case-study">
+            <span class="case-study-label">STUDI KASUS LOKAL</span>
+            <h3><i class="fas fa-fire"></i> Analisis Gunung Ijen dengan Objek Material & Formal</h3>
+            <p>Gunung Ijen adalah kompleks gunung berapi di perbatasan Kabupaten Banyuwangi dan Bondowoso, Jawa Timur. Mari kita analisis menggunakan objek material dan formal geografi!</p>
+        </div>
+
+        <h3><i class="fas fa-cube"></i> Analisis dengan Objek Material</h3>
+        <ul>
+            <li><strong>Litosfer:</strong> Gunung Ijen merupakan stratovolcano dengan tinggi 2.799 mdpl. Terdapat kawah dengan diameter 900 × 600 meter yang mengandung belerang (sulfur) tinggi.</li>
+            <li><strong>Atmosfer:</strong> Suhu di puncak Ijen berkisar 5–10°C pada dini hari. Gas belerang (SO₂) yang dikeluarkan memengaruhi kualitas udara sekitar.</li>
+            <li><strong>Hidrosfer:</strong> Kawah Ijen berisi danau asam terbesar di dunia dengan pH mendekati 0 (sangat asam) dan berwarna turquoise akibat kandungan mineral.</li>
+            <li><strong>Biosfer:</strong> Di sekitar Ijen terdapat vegetasi khas pegunungan seperti Edelweis Jawa (<em>Anaphalis javanica</em>), cemara, dan pinus. Fauna meliputi elang Jawa dan berbagai jenis burung pegunungan.</li>
+            <li><strong>Antroposfer:</strong> Aktivitas penambang belerang tradisional yang bekerja pada malam hari untuk melihat <em>blue fire</em>. Pariwisata internasional yang berkembang pesat, serta budaya masyarakat Using di sekitar kawasan.</li>
+        </ul>
+
+        <h3><i class="fas fa-eye"></i> Analisis dengan Objek Formal</h3>
+        
+        <div class="approach-card keruangan">
+            <h3><i class="fas fa-map-marked-alt"></i> Pendekatan Keruangan</h3>
+            <ul>
+                <li><strong>Lokasi:</strong> Ijen terletak di koordinat 8°03'LS dan 114°14'BT, di perbatasan Banyuwangi-Bondowoso.</li>
+                <li><strong>Pola:</strong> Persebaran titik wisata di kawasan Ijen membentuk klaster (pemandangan kawah, blue fire, pos penambang).</li>
+                <li><strong>Keterjangkauan:</strong> Akses menuju Ijen memerlukan perjalanan 1,5–2 jam dari pusat Kota Banyuwangi dengan jalan menanjak.</li>
+            </ul>
+        </div>
+
+        <div class="approach-card kelingkungan">
+            <h3><i class="fas fa-recycle"></i> Pendekatan Kelingkungan</h3>
+            <ul>
+                <li><strong>Interaksi manusia-lingkungan:</strong> Penambang belerang beradaptasi dengan lingkungan ekstrem (gas beracun, suhu tinggi) untuk memenuhi kebutuhan ekonomi.</li>
+                <li><strong>Dampak aktivitas:</strong> Aktivitas penambangan dan pariwisata memengaruhi kualitas udara, air kawah, dan vegetasi sekitar.</li>
+                <li><strong>Daya dukung:</strong> Perlu kajian daya dukung lingkungan agar pariwisata tidak merusak ekosistem Ijen.</li>
+            </ul>
+        </div>
+
+        <div class="approach-card kewilayahan">
+            <h3><i class="fas fa-globe-asia"></i> Pendekatan Kewilayahan</h3>
+            <ul>
+                <li><strong>Karakteristik khas:</strong> Ijen memiliki <em>blue fire</em> (api biru) yang hanya ada 2 di dunia (Ijen & Islandia), menjadikannya wilayah unik secara global.</li>
+                <li><strong>Potensi wilayah:</strong> Wisata alam, geowisata, penelitian vulkanologi, dan penambangan belerang tradisional.</li>
+                <li><strong>Perbandingan:</strong> Berbeda dengan Gunung Bromo yang lebih fokus pada pemandangan kaldera, Ijen unggul pada fenomena blue fire dan danau asam.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RANGKUMAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Pertemuan 3</h2>
+        <ul>
+            <li><strong>Objek material</strong> geografi adalah fenomena yang dikaji, meliputi 5 lapisan geosfer: litosfer, atmosfer, hidrosfer, biosfer, dan antroposfer.</li>
+            <li><strong>Objek formal</strong> geografi adalah cara pandang dalam mengkaji, meliputi pendekatan keruangan, kelingkungan, dan kewilayahan.</li>
+            <li>Kedua objek ini saling melengkapi: objek material sebagai <em>bahan kajian</em>, objek formal sebagai <em>pisau analisis</em>.</li>
+            <li>Studi kasus Gunung Ijen menunjukkan bagaimana satu fenomena dapat dianalisis dengan berbagai objek material dan formal.</li>
+            <li>Pemahaman objek material dan formal menjadi dasar untuk menganalisis fenomena geosfer pada pertemuan-pertemuan selanjutnya.</li>
+        </ul>
+    </div>
+
+    <!-- LATIHAN SOAL -->
+    <div class="content-card">
+        <h2><i class="fas fa-pencil-alt"></i> Latihan Soal</h2>
+        <ol>
+            <li>Jelaskan perbedaan antara objek material dan objek formal geografi! Berikan masing-masing 2 contoh!</li>
+            <li>Sebutkan 5 lapisan geosfer yang menjadi objek material geografi, beserta contoh fenomena di Banyuwangi!</li>
+            <li>Apa yang dimaksud dengan pendekatan keruangan, kelingkungan, dan kewilayahan? Berikan contoh penerapannya!</li>
+            <li>Pilih satu fenomena di lingkungan sekitarmu (misalnya: banjir, kemacetan, atau alih fungsi lahan). Analisis fenomena tersebut menggunakan objek material dan formal!</li>
+            <li>Mengapa objek formal geografi disebut sebagai "pisau analisis"? Jelaskan dengan analogimu sendiri!</li>
+        </ol>
+    </div>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="nav-buttons">
+        <a href="pertemuan-2-hakikat-ruang-lingkup.html" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Pertemuan 2
+        </a>
+        <a href="pertemuan-4-konsep-esensial.html" class="nav-btn">
+            Pertemuan 4 <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+</script>
+</body>
+</html>
