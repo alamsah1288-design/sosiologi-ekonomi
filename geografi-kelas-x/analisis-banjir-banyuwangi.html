@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Analisis Geografis Banjir Bandang Banyuwangi menggunakan 3 Pendekatan Geografi (Keruangan, Kelingkungan, Kompleks Wilayah). Studi Kasus Hidrosfer dengan Faktor Penyebab dan Mitigasi.">
+<meta name="keywords" content="banjir bandang banyuwangi, analisis geografis, pendekatan geografi, mitigasi banjir, DAS Badeng, hidrosfer, lensa geografis">
+<title>🌊 Banjir Bandang Banyuwangi: Analisis Geografis | Lensa Geografis</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+:root {
+--primary: #0077b6; --secondary: #023e8a; --accent: #00b4d8;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--success: #4ade80; --warning: #fbbf24; --danger: #f87171;
+--bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #0a1929 0%, #132f4c 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .stat-box, body.dark-mode .approach-card, body.dark-mode .cause-card, body.dark-mode .mitigation-card, body.dark-mode .timeline-item, body.dark-mode .data-source, body.dark-mode .case-box { background: #1e293b; border-color: #334155; color: #e5e7eb; }
+body.dark-mode .approach-card h3, body.dark-mode .cause-card h4, body.dark-mode .mitigation-card h4, body.dark-mode .timeline-item h4 { color: var(--accent); }
+body.dark-mode table { background: #1e293b; }
+body.dark-mode th { background: #0c4a6e; color: white; }
+body.dark-mode td { border-color: #334155; }
+
+/* NAVBAR */
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; font-size: 0.92rem; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; background: rgba(255,255,255,0.95); min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 8px; top: 100%; left: 0; z-index: 1001; flex-direction: column; padding: 10px 0; backdrop-filter: blur(10px); }
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+/* HEADER */
+header {
+background: linear-gradient(135deg, #0077b6 0%, #023e8a 50%, #03045e 100%);
+background-size: 300% 300%;
+animation: gradientBG 10s ease infinite;
+color: white; padding: 3.5rem 1.5rem 2.5rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+header::before {
+content: ""; position: absolute; top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+animation: rotate 20s linear infinite; z-index: 1;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+header::after {
+content: "🌊";
+position: absolute;
+bottom: 10px; right: 20px;
+font-size: 5rem;
+opacity: 0.15;
+z-index: 1;
+}
+.header-icon {
+width: 100px; height: 100px; border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 1rem; z-index: 2; position: relative;
+border: 3px solid rgba(255,255,255,0.3);
+font-size: 3rem;
+backdrop-filter: blur(10px);
+}
+header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1.05rem; }
+.header-badge {
+display: inline-block;
+background: rgba(255,255,255,0.2);
+padding: 6px 18px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-top: 1rem;
+z-index: 2; position: relative;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.3);
+}
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+/* CONTENT */
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow); margin-bottom: 2rem; }
+.content-card h2 { color: var(--primary); font-size: 1.6rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+.content-card h3 { color: var(--secondary); font-size: 1.25rem; margin: 1.5rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+body.dark-mode .content-card h2 { color: var(--accent); }
+body.dark-mode .content-card h3 { color: var(--accent); }
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+/* KEY POINT */
+.key-point {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white; padding: 1.2rem 1.5rem; border-radius: 12px;
+margin: 1rem 0; display: flex; align-items: flex-start; gap: 1rem;
+box-shadow: var(--shadow);
+}
+.key-point i { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.key-point p { margin: 0; }
+
+/* ALERT BOX */
+.alert-box {
+background: linear-gradient(135deg, #fee2e2, #fecaca);
+border-left: 5px solid var(--danger);
+padding: 1.2rem 1.5rem;
+border-radius: 12px;
+margin: 1rem 0;
+display: flex; align-items: flex-start; gap: 1rem;
+}
+body.dark-mode .alert-box { background: linear-gradient(135deg, #450a0a, #7f1d1d); }
+.alert-box i { font-size: 1.5rem; color: var(--danger); flex-shrink: 0; margin-top: 2px; }
+.alert-box strong { color: #991b1b; display: block; margin-bottom: 0.3rem; }
+body.dark-mode .alert-box strong { color: #fca5a5; }
+
+/* STAT BOX */
+.stat-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 1rem;
+margin: 1.5rem 0;
+}
+.stat-box {
+background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+border-radius: 14px;
+padding: 1.3rem;
+text-align: center;
+box-shadow: var(--shadow);
+border-top: 4px solid var(--primary);
+transition: all 0.3s ease;
+}
+.stat-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+body.dark-mode .stat-box { background: linear-gradient(135deg, #0c4a6e, #075985); }
+.stat-box .stat-icon {
+font-size: 2rem;
+color: var(--primary);
+margin-bottom: 0.5rem;
+}
+body.dark-mode .stat-box .stat-icon { color: var(--accent); }
+.stat-box .stat-number {
+font-size: 1.8rem;
+font-weight: 700;
+color: var(--secondary);
+margin-bottom: 0.2rem;
+}
+body.dark-mode .stat-box .stat-number { color: var(--accent); }
+.stat-box .stat-label {
+font-size: 0.85rem;
+color: var(--gray);
+font-weight: 500;
+}
+body.dark-mode .stat-box .stat-label { color: #9ca3af; }
+
+/* TIMELINE */
+.timeline {
+position: relative;
+padding-left: 2.5rem;
+margin: 1.5rem 0;
+}
+.timeline::before {
+content: '';
+position: absolute;
+left: 12px;
+top: 0;
+bottom: 0;
+width: 4px;
+background: linear-gradient(180deg, var(--primary), var(--accent));
+border-radius: 2px;
+}
+.timeline-item {
+position: relative;
+margin-bottom: 1.5rem;
+padding: 1.2rem 1.5rem;
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 12px;
+border-left: 4px solid var(--primary);
+box-shadow: var(--shadow);
+}
+body.dark-mode .timeline-item { background: #1e293b; }
+.timeline-item::before {
+content: '';
+position: absolute;
+left: -2.4rem;
+top: 1.5rem;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: var(--primary);
+border: 3px solid white;
+box-shadow: 0 0 0 3px var(--primary);
+}
+body.dark-mode .timeline-item::before { border-color: #1e293b; }
+.timeline-item h4 {
+color: var(--primary);
+margin-bottom: 0.3rem;
+font-size: 1.05rem;
+display: flex; align-items: center; gap: 0.5rem;
+}
+.timeline-item .timeline-date {
+display: inline-block;
+background: var(--primary);
+color: white;
+padding: 2px 10px;
+border-radius: 12px;
+font-size: 0.75rem;
+font-weight: 600;
+margin-bottom: 0.5rem;
+}
+.timeline-item p { margin: 0; font-size: 0.92rem; }
+
+/* APPROACH CARDS */
+.approach-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 18px;
+padding: 1.8rem;
+margin: 1.5rem 0;
+box-shadow: var(--shadow);
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+border-left: 7px solid var(--primary);
+}
+.approach-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.approach-card::before {
+content: '';
+position: absolute;
+top: -50px; right: -50px;
+width: 180px; height: 180px;
+border-radius: 50%;
+opacity: 0.08;
+}
+.approach-card h3 {
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.8rem;
+font-size: 1.3rem;
+position: relative; z-index: 2;
+}
+.approach-icon {
+width: 55px; height: 55px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+flex-shrink: 0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+position: relative;
+z-index: 2;
+}
+.approach-subtitle {
+display: inline-block;
+background: rgba(255,255,255,0.7);
+padding: 3px 12px;
+border-radius: 20px;
+font-size: 0.78rem;
+font-weight: 600;
+margin-left: 0.5rem;
+color: var(--gray);
+letter-spacing: 0.5px;
+}
+body.dark-mode .approach-subtitle { background: rgba(255,255,255,0.1); color: #9ca3af; }
+.approach-focus {
+background: rgba(255,255,255,0.7);
+padding: 0.8rem 1rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+border-left: 4px solid;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .approach-focus { background: rgba(255,255,255,0.05); }
+.approach-analysis {
+background: rgba(255,255,255,0.5);
+padding: 1rem 1.2rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .approach-analysis { background: rgba(255,255,255,0.03); }
+.approach-conclusion {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white;
+padding: 1rem 1.2rem;
+border-radius: 10px;
+margin: 1rem 0 0;
+position: relative;
+z-index: 2;
+font-weight: 500;
+}
+
+/* Warna pendekatan */
+.approach-card.spasial { border-left-color: #4361ee; }
+.approach-card.spasial::before { background: #4361ee; }
+.approach-card.spasial .approach-icon { background: linear-gradient(120deg, #4361ee, #3f37c9); }
+.approach-card.spasial .approach-focus { border-left-color: #4361ee; }
+.approach-card.spasial h3 { color: #3f37c9; }
+
+.approach-card.ekologi { border-left-color: #2ecc71; }
+.approach-card.ekologi::before { background: #2ecc71; }
+.approach-card.ekologi .approach-icon { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.approach-card.ekologi .approach-focus { border-left-color: #2ecc71; }
+.approach-card.ekologi h3 { color: #27ae60; }
+
+.approach-card.regional { border-left-color: #e67e22; }
+.approach-card.regional::before { background: #e67e22; }
+.approach-card.regional .approach-icon { background: linear-gradient(120deg, #f39c12, #e67e22); }
+.approach-card.regional .approach-focus { border-left-color: #e67e22; }
+.approach-card.regional h3 { color: #e67e22; }
+
+body.dark-mode .approach-card h3 { color: var(--accent) !important; }
+
+/* CAUSE CARDS */
+.cause-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.2rem;
+margin: 1.5rem 0;
+}
+.cause-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+box-shadow: var(--shadow);
+border-top: 5px solid var(--primary);
+transition: all 0.3s ease;
+}
+.cause-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.cause-card.alam { border-top-color: #0077b6; }
+.cause-card.manusia { border-top-color: #e74c3c; }
+.cause-card h4 {
+color: var(--primary);
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.1rem;
+}
+.cause-card.alam h4 { color: #0077b6; }
+.cause-card.manusia h4 { color: #c0392b; }
+body.dark-mode .cause-card h4 { color: var(--accent) !important; }
+.cause-card ul { margin: 0.5rem 0 0 1.2rem; }
+.cause-card li { font-size: 0.92rem; margin-bottom: 0.4rem; }
+
+/* FLOW DIAGRAM */
+.flow-diagram {
+background: linear-gradient(135deg, #fff3cd, #ffe69c);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border: 2px dashed #f39c12;
+}
+body.dark-mode .flow-diagram { background: linear-gradient(135deg, #3d2817, #5a3a1f); border-color: #f39c12; }
+.flow-diagram h4 {
+color: #e67e22;
+margin: 0 0 1rem 0;
+text-align: center;
+display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.flow-steps {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
+}
+.flow-step {
+background: white;
+padding: 0.7rem 1rem;
+border-radius: 10px;
+font-size: 0.88rem;
+font-weight: 500;
+box-shadow: var(--shadow);
+text-align: center;
+min-width: 140px;
+border-left: 4px solid var(--primary);
+}
+body.dark-mode .flow-step { background: #1e293b; }
+.flow-arrow {
+color: var(--primary);
+font-size: 1.5rem;
+font-weight: 700;
+}
+body.dark-mode .flow-arrow { color: var(--accent); }
+
+/* MITIGATION CARDS */
+.mitigation-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.2rem;
+margin: 1.5rem 0;
+}
+.mitigation-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+box-shadow: var(--shadow);
+border-left: 6px solid var(--success);
+transition: all 0.3s ease;
+}
+.mitigation-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.mitigation-card.struktural { border-left-color: #3498db; }
+.mitigation-card.nonstruktural { border-left-color: #2ecc71; }
+.mitigation-card h4 {
+color: var(--primary);
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.1rem;
+}
+.mitigation-card.struktural h4 { color: #2980b9; }
+.mitigation-card.nonstruktural h4 { color: #27ae60; }
+body.dark-mode .mitigation-card h4 { color: var(--accent) !important; }
+.mitigation-card ul { margin: 0.5rem 0 0 1.2rem; }
+.mitigation-card li { font-size: 0.92rem; margin-bottom: 0.5rem; }
+.mitigation-card li strong { color: var(--primary); }
+body.dark-mode .mitigation-card li strong { color: var(--accent); }
+
+/* CASE BOX */
+.case-box {
+background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border: 2px dashed var(--primary);
+position: relative;
+}
+body.dark-mode .case-box { background: linear-gradient(135deg, #0c4a6e, #075985); }
+.case-box-label {
+position: absolute;
+top: -12px;
+left: 20px;
+background: var(--primary);
+color: white;
+padding: 4px 14px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 1px;
+}
+.case-box h4 {
+color: var(--primary);
+margin: 0.5rem 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .case-box h4 { color: var(--accent); }
+
+/* DATA SOURCE */
+.data-source {
+background: linear-gradient(135deg, #fff3cd, #ffe69c);
+border-left: 4px solid #f39c12;
+padding: 0.8rem 1rem;
+border-radius: 8px;
+margin: 1rem 0;
+font-size: 0.85rem;
+}
+body.dark-mode .data-source { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.data-source strong { color: #e67e22; }
+.data-source a { color: var(--primary); text-decoration: none; font-weight: 600; }
+body.dark-mode .data-source a { color: var(--accent); }
+.data-source a:hover { text-decoration: underline; }
+
+/* TABLE */
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; }
+td { padding: 0.8rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; font-size: 0.92rem; }
+tr:hover td { background: #f8f9fa; }
+body.dark-mode tr:hover td { background: #334155; }
+
+/* DISCUSSION BOX */
+.discussion-box {
+background: linear-gradient(135deg, #fef3c7, #fde68a);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border-left: 6px solid var(--warning);
+}
+body.dark-mode .discussion-box { background: linear-gradient(135deg, #422006, #713f12); }
+.discussion-box h3 {
+color: #d97706;
+margin: 0 0 1rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .discussion-box h3 { color: var(--warning); }
+.discussion-box ol { margin: 0.5rem 0 0 1.2rem; }
+.discussion-box li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+
+/* NAV BUTTONS */
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: var(--shadow); }
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+/* FOOTER */
+footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 60px 20px 30px; margin-top: 60px; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links { display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary)); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; max-height: calc(100vh - var(--header-height)); overflow-y: auto; }
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.header-icon { width: 75px; height: 75px; font-size: 2.2rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.approach-card { padding: 1.3rem; }
+.approach-card h3 { font-size: 1.1rem; flex-wrap: wrap; }
+.approach-icon { width: 45px; height: 45px; font-size: 1.2rem; }
+.approach-subtitle { margin-left: 0; margin-top: 5px; }
+th, td { padding: 0.6rem; font-size: 0.82rem; }
+.flow-steps { flex-direction: column; }
+.flow-arrow { transform: rotate(90deg); }
+.stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon">
+        <i class="fas fa-water"></i>
+    </div>
+    <h1>🌊 Banjir Bandang Banyuwangi</h1>
+    <p class="subtitle">Analisis Geografis dengan 3 Pendekatan • Lensa Geografis</p>
+    <div class="header-badge">
+        <i class="fas fa-layer-group"></i> Objek Kajian: <strong>HIDROSFER</strong>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html#analisis">Lensa Geografis</a>
+    <span>›</span>
+    <span>Banjir Bandang Banyuwangi</span>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- PENDAHULUAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Pengantar Analisis</h2>
+        <p><strong>Banjir bandang</strong> merupakan salah satu bencana hidrosfer yang paling merusak dan menakutkan. Berbeda dengan banjir biasa yang terjadi secara perlahan, banjir bandang datang <strong>secara tiba-tiba</strong> dengan debit air sangat besar, membawa material padat (batuan, kayu, lumpur), dan memiliki daya rusak yang luar biasa.</p>
+        
+        <p>Kabupaten <strong>Banyuwangi</strong>, dengan topografi yang bervariasi dari pegunungan vulkanik (Ijen-Raung) hingga dataran rendah pesisir, memiliki <strong>kerentanan tinggi</strong> terhadap banjir bandang. Beberapa Daerah Aliran Sungai (DAS) seperti <strong>DAS Badeng, DAS Kali Konto, dan DAS Kali Tamansari</strong> tercatat sebagai wilayah rawan bencana.</p>
+
+        <div class="alert-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>⚠️ Mengapa Analisis Geografis Penting?</strong>
+                Banjir bandang bukan sekadar "air yang meluap". Ia adalah hasil interaksi kompleks antara <em>curah hujan, morfologi DAS, tutupan lahan, dan aktivitas manusia</em>. Hanya dengan analisis geografis yang komprehensif kita dapat memahami penyebab, memetakan kerentanan, dan merumuskan mitigasi yang efektif.
+            </div>
+        </div>
+
+        <h3><i class="fas fa-bullseye"></i> Tujuan Analisis</h3>
+        <ol>
+            <li>Menganalisis fenomena banjir bandang di Banyuwangi menggunakan <strong>3 pendekatan geografi</strong> (keruangan, kelingkungan, kompleks wilayah).</li>
+            <li>Mengidentifikasi <strong>faktor penyebab</strong> banjir bandang (faktor alam dan manusia).</li>
+            <li>Merumuskan <strong>strategi mitigasi</strong> berbasis analisis geografis.</li>
+            <li>Mengembangkan <strong>kesadaran spasial</strong> terhadap bencana di lingkungan sekitar.</li>
+        </ol>
+    </div>
+
+    <!-- DATA STATISTIK -->
+    <div class="content-card">
+        <h2><i class="fas fa-chart-bar"></i> Data & Statistik Banjir Banyuwangi</h2>
+        <p>Sebelum melakukan analisis, penting untuk memahami <strong>data faktual</strong> tentang banjir di Banyuwangi:</p>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="stat-number">25</div>
+                <div class="stat-label">Kecamatan Rawan Banjir</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-cloud-rain"></i></div>
+                <div class="stat-number">2.500 mm</div>
+                <div class="stat-label">Curah Hujan/tahun</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-water"></i></div>
+                <div class="stat-number">3</div>
+                <div class="stat-label">DAS Kritis</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon"><i class="fas fa-home"></i></div>
+                <div class="stat-number">5.000+</div>
+                <div class="stat-label">KK Terdampak (2024)</div>
+            </div>
+        </div>
+
+        <div class="data-source">
+            <strong>📊 Sumber Data:</strong> <a href="https://banyuwangikab.bps.go.id" target="_blank">BPS Kabupaten Banyuwangi</a> (2025), <a href="https://bnpb.go.id" target="_blank">BNPB</a> — Indeks Risiko Bencana Indonesia, dan <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a> — Laporan Kejadian Bencana 2024.
+        </div>
+
+        <h3><i class="fas fa-history"></i> Timeline Kejadian Banjir Bandang Penting</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">Januari 2021</span>
+                <h4><i class="fas fa-cloud-rain"></i> Banjir Bandang Songgon</h4>
+                <p>Hujan deras selama 5 jam memicu banjir bandang di Kecamatan Songgon. Ratusan rumah terendam, jalan nasional terputus, dan ratusan hektar sawah rusak. Material lumpur dan batu membawa kerusakan parah.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Februari 2022</span>
+                <h4><i class="fas fa-cloud-rain"></i> Banjir DAS Badeng</h4>
+                <p>Sungai Badeng meluap akibat curah hujan ekstrem. Kawasan Banyuwangi Kota, Kalipuro, dan Giri terendam hingga 1–2 meter. Ribuan warga dievakuasi.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Desember 2023</span>
+                <h4><i class="fas fa-cloud-rain"></i> Banjir Bandang Licin</h4>
+                <p>Longsor di lereng Gunung Ijen memicu banjir bandang di Kecamatan Licin. Akses jalan terputus total selama 3 hari. Tim rescue kesulitan menjangkau lokasi.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Januari 2024</span>
+                <h4><i class="fas fa-cloud-rain"></i> Banjir Besar Banyuwangi</h4>
+                <p>Curah hujan tertinggi dalam 10 tahun (320 mm/24 jam) memicu banjir di 15 kecamatan. Kerugian ditaksir mencapai <strong>Rp 45 miliar</strong>. 5.000+ KK mengungsi.</p>
+            </div>
+        </div>
+
+        <div class="data-source">
+            <strong>📰 Referensi:</strong> Data kejadian diolah dari <a href="https://radarbanyuwangi.jawapos.com" target="_blank">Radar Banyuwangi</a>, <a href="https://banyuwangitv.com" target="_blank">Banyuwangi TV</a>, dan laporan resmi <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a>.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ANALISIS 3 PENDEKATAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-sitemap"></i> Analisis dengan 3 Pendekatan Geografi</h2>
+        <p>Untuk memahami banjir bandang Banyuwangi secara utuh, kita akan menggunakan <strong>3 pendekatan geografi</strong> secara berurutan. Setiap pendekatan memberikan perspektif yang berbeda namun saling melengkapi.</p>
+
+        <!-- PENDEKATAN 1: KERUANGAN -->
+        <div class="approach-card spasial">
+            <h3>
+                <span class="approach-icon"><i class="fas fa-map-marked-alt"></i></span>
+                1. Pendekatan Keruangan <span class="approach-subtitle">SPATIAL APPROACH</span>
+            </h3>
+            
+            <div class="approach-focus">
+                <strong>🎯 Fokus:</strong> Lokasi, persebaran, pola, dan jaringan banjir bandang di Banyuwangi.
+            </div>
+
+            <div class="approach-analysis">
+                <strong>🔍 Analisis Spasial:</strong>
+                <ul>
+                    <li><strong>Lokasi Rawan:</strong> Banjir bandang terkonsentrasi di <em>kecamatan yang dilintasi DAS besar</em> — Songgon, Licin, Sempu, Glenmore, Banyuwangi Kota, Kalipuro, dan Giri.</li>
+                    <li><strong>Pola Persebaran:</strong> Pola <strong>linear</strong> mengikuti alur sungai dan lembah. Kawasan hulu (pegunungan Ijen-Raung) menjadi <em>zona origin</em>, sedangkan dataran rendah menjadi <em>zona deposisi</em>.</li>
+                    <li><strong>Klaster Kerentanan:</strong> Terbentuk 3 klaster utama:
+                        <ul>
+                            <li><strong>Klaster Barat:</strong> Songgon, Licin, Sempu (hulu DAS, topografi curam).</li>
+                            <li><strong>Klaster Tengah:</strong> Glenmore, Rogojampi, Kabat (transisi hulu-hilir).</li>
+                            <li><strong>Klaster Timur:</strong> Banyuwangi Kota, Kalipuro, Wongsorejo (hilir, padat penduduk).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Jaringan Sungai:</strong> DAS Badeng, DAS Kali Konto, dan DAS Tamansari menjadi "pembuluh utama" yang mengalirkan banjir bandang dari hulu ke hilir.</li>
+                    <li><strong>Keterjangkauan:</strong> Saat banjir bandang terjadi, akses jalan nasional dan provinsi terputus, menghambat evakuasi dan distribusi bantuan.</li>
+                </ul>
+            </div>
+
+            <div class="approach-conclusion">
+                <strong>💎 Kesimpulan Spasial:</strong> Banjir bandang Banyuwangi memiliki <em>pola keruangan yang jelas</em> — terkonsentrasi di sepanjang DAS dengan klaster kerentanan yang dapat dipetakan. Pemetaan spasial ini menjadi dasar untuk <strong>zona rawan bencana</strong> dan <strong>jalur evakuasi</strong>.
+            </div>
+        </div>
+
+        <!-- PENDEKATAN 2: KELINGKUNGAN -->
+        <div class="approach-card ekologi">
+            <h3>
+                <span class="approach-icon"><i class="fas fa-recycle"></i></span>
+                2. Pendekatan Kelingkungan <span class="approach-subtitle">ECOLOGICAL APPROACH</span>
+            </h3>
+            
+            <div class="approach-focus">
+                <strong>🎯 Fokus:</strong> Hubungan timbal balik antara aktivitas manusia dengan lingkungan DAS yang memicu banjir bandang.
+            </div>
+
+            <div class="approach-analysis">
+                <strong>🔍 Analisis Ekologis:</strong>
+                <ul>
+                    <li><strong>Gangguan Siklus Hidrologi:</strong> Alih fungsi hutan di hulu (hutan → perkebunan kopi/permukiman) mengurangi <em>daerah resapan air</em>. Akibatnya, air hujan langsung menjadi <em>limpasan permukaan (run-off)</em> yang deras.</li>
+                    <li><strong>Erosi & Sedimentasi:</strong> Penebangan vegetasi meningkatkan erosi tanah. Material erosi terbawa air → sedimentasi di sungai → pendangkalan → kapasitas sungai menurun → banjir lebih mudah terjadi.</li>
+                    <li><strong>Rantai Sebab-Akibat Ekologis:</strong>
+                        <div class="flow-diagram" style="margin: 1rem 0;">
+                            <h4><i class="fas fa-project-diagram"></i> Rantai Kausalitas Ekologis</h4>
+                            <div class="flow-steps">
+                                <div class="flow-step">🌲 Hutan Hulu Gundul</div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">💧 Resapan Air ↓</div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">🌊 Limpasan ↑</div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">⛰️ Erosi & Longsor</div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">🏞️ Sungai Dangkal</div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">🌊💥 Banjir Bandang</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><strong>Dampak pada Ekosistem:</strong> Banjir bandang merusak ekosistem sungai, mencemari air bersih, membawa material beracun (limbah pertanian), dan mengganggu kehidupan akuatik.</li>
+                    <li><strong>Daya Dukung Lingkungan:</strong> Banyak permukiman di bantaran sungai melebihi <em>daya dukung lingkungan</em>. Sungai yang seharusnya menjadi ruang air, dipersempit oleh bangunan.</li>
+                </ul>
+            </div>
+
+            <div class="approach-conclusion">
+                <strong>💎 Kesimpulan Ekologis:</strong> Banjir bandang adalah <em>gejala ketidakseimbangan ekosistem DAS</em>. Perubahan di hulu (deforestasi, alih fungsi lahan) berdampak domino di hilir. Solusinya harus menyentuh <strong>akar masalah ekologis</strong>: restorasi hutan, konservasi DAS, dan penghormatan pada daya dukung lingkungan.
+            </div>
+        </div>
+
+        <!-- PENDEKATAN 3: KOMPLEKS WILAYAH -->
+        <div class="approach-card regional">
+            <h3>
+                <span class="approach-icon"><i class="fas fa-globe-asia"></i></span>
+                3. Pendekatan Kompleks Wilayah <span class="approach-subtitle">REGIONAL COMPLEX APPROACH</span>
+            </h3>
+            
+            <div class="approach-focus">
+                <strong>🎯 Fokus:</strong> Karakteristik komprehensif wilayah rawan banjir bandang Banyuwangi sebagai satu kesatuan ruang.
+            </div>
+
+            <div class="approach-analysis">
+                <strong>🔍 Analisis Komprehensif Wilayah:</strong>
+                <ul>
+                    <li><strong>Karakteristik Fisik:</strong>
+                        <ul>
+                            <li>Topografi: Pegunungan vulkanik (Ijen 2.799 mdpl, Raung 3.332 mdpl) → dataran rendah pesisir.</li>
+                            <li>Geologi: Material vulkanik muda yang mudah tererosi.</li>
+                            <li>Hidrologi: Curah hujan tinggi (2.500 mm/th), 3 DAS besar dengan kemiringan lereng curam di hulu.</li>
+                            <li>Iklim: Musim hujan November–Maret dengan puncak Januari–Februari.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Sosial-Ekonomi:</strong>
+                        <ul>
+                            <li>Kepadatan penduduk tinggi di hilir (±800–2.500 jiwa/km²).</li>
+                            <li>Pusat ekonomi Banyuwangi (perdagangan, jasa, pelabuhan) terletak di zona rawan.</li>
+                            <li>Kerugian material besar: Rp 45 miliar (2024), merusak infrastruktur vital.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Budaya & Kelembagaan:</strong>
+                        <ul>
+                            <li>Masyarakat sudah memiliki <em>kearifan lokal</em> (misalnya tanda-tanda alam sebelum banjir).</li>
+                            <li>Terdapat <strong>BPBD, TAGANA, Desa Tangguh Bencana</strong> yang aktif.</li>
+                            <li>Perda RTRW Banyuwangi sudah mengatur <em>sempadan sungai</em>, namun penegakannya lemah.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Karakteristik Infrastruktur:</strong>
+                        <ul>
+                            <li>Sistem peringatan dini (<em>early warning system</em>) masih terbatas di beberapa DAS.</li>
+                            <li>Drainase kota tidak memadai untuk debit ekstrem.</li>
+                            <li>Jalan nasional yang terputus saat banjir mengganggu logistik.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Potensi & Masalah Wilayah:</strong>
+                        <ul>
+                            <li><strong>Potensi:</strong> Kesadaran masyarakat tinggi, kelembagaan bencana kuat, dukungan pemerintah daerah.</li>
+                            <li><strong>Masalah:</strong> Tekanan pembangunan, alih fungsi lahan masif, penegakan hukum lemah, keterbatasan anggaran mitigasi.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="approach-conclusion">
+                <strong>💎 Kesimpulan Regional:</strong> Wilayah rawan banjir bandang Banyuwangi adalah <em>sistem kompleks</em> yang memadukan kerentanan fisik, tekanan sosial-ekonomi, dan tantangan kelembagaan. Solusi harus <strong>terpadu dan multi-sektor</strong>: tata ruang berbasis mitigasi + restorasi ekosistem hulu + penguatan kapasitas masyarakat + penegakan hukum lingkungan.
+            </div>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-puzzle-piece"></i>
+            <p><strong>Sinergi 3 Pendekatan:</strong> Pendekatan <em>spasial</em> menunjukkan <strong>di mana</strong> banjir terjadi, <em>ekologi</em> menjelaskan <strong>mengapa</strong> banjir terjadi, dan <em>regional</em> merumuskan <strong>solusi komprehensif</strong> untuk wilayah tersebut. Ketiganya saling melengkapi untuk analisis yang utuh.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FAKTOR PENYEBAB -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-search"></i> Faktor Penyebab Banjir Bandang</h2>
+        <p>Banjir bandang di Banyuwangi merupakan hasil interaksi antara <strong>faktor alam</strong> dan <strong>faktor manusia</strong>. Keduanya saling memperkuat dan menciptakan kondisi yang ideal untuk terjadinya bencana.</p>
+
+        <div class="cause-grid">
+            <div class="cause-card alam">
+                <h4><i class="fas fa-mountain"></i> Faktor Alam</h4>
+                <ul>
+                    <li><strong>Curah Hujan Ekstrem:</strong> Hujan >100 mm/24 jam di hulu, terutama saat puncak musim hujan (Jan–Feb).</li>
+                    <li><strong>Topografi Curam:</strong> Lereng DAS Ijen-Raung dengan kemiringan >30% mempercepat aliran air.</li>
+                    <li><strong>Geologi Vulkanik:</strong> Material vulkanik muda mudah tererosi, menyediakan material padat untuk banjir bandang.</li>
+                    <li><strong>Kapasitas Sungai Terbatas:</strong> Sungai dengan penampang kecil tidak mampu menampung debit puncak.</li>
+                    <li><strong>La Niña:</strong> Fenomena iklim yang meningkatkan curah hujan di Indonesia (terjadi 2020–2023).</li>
+                </ul>
+            </div>
+
+            <div class="cause-card manusia">
+                <h4><i class="fas fa-users"></i> Faktor Manusia</h4>
+                <ul>
+                    <li><strong>Deforestasi Hulu:</strong> Alih fungsi hutan lindung menjadi perkebunan kopi, permukiman, dan tambang.</li>
+                    <li><strong>Pembangunan di Sempadan Sungai:</strong> Rumah, warung, dan bangunan lain di bantaran sungai mempersempit ruang air.</li>
+                    <li><strong>Pendangkalan Sungai:</strong> Pembuangan sampah dan material konstruksi ke sungai.</li>
+                    <li><strong>Drainase Buruk:</strong> Sistem drainase kota tidak terawat dan tidak memadai.</li>
+                    <li><strong>Lemahnya Penegakan Hukum:</strong> Pelanggaran Perda RTRW dan sempadan sungai tidak ditindak tegas.</li>
+                    <li><strong>Rendahnya Kesadaran:</strong> Masyarakat masih membuang sampah ke sungai dan membangun di zona rawan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flow-diagram">
+            <h4><i class="fas fa-project-diagram"></i> Interaksi Faktor Alam & Manusia</h4>
+            <div class="flow-steps">
+                <div class="flow-step">🌧️ Hujan Deras + 🏔️ Topografi Curam</div>
+                <div class="flow-arrow">+</div>
+                <div class="flow-step">🌲 Deforestasi + 🏘️ Pembangunan di Sempadan</div>
+                <div class="flow-arrow">=</div>
+                <div class="flow-step" style="border-left-color: var(--danger);">💥 BANJIR BANDANG</div>
+            </div>
+        </div>
+
+        <div class="case-box">
+            <span class="case-box-label">STUDI KASUS</span>
+            <h4><i class="fas fa-map-marker-alt"></i> Kasus Banjir Bandang Songgon (Januari 2021)</h4>
+            <p><strong>Kronologi:</strong> Hujan deras selama 5 jam di hulu DAS Badeng (Kecamatan Songgon) memicu limpasan air yang sangat besar. Material longsor dari lereng yang gundul ikut terbawa, menciptakan banjir bandang yang menghantam permukiman di hilir.</p>
+            <p><strong>Faktor Alam:</strong> Curah hujan ekstrem (180 mm/5 jam), topografi curam (kemiringan 35°), material vulkanik muda.</p>
+            <p><strong>Faktor Manusia:</strong> Alih fungsi hutan menjadi perkebunan kopi di hulu, pembangunan rumah di bantaran sungai, drainase desa tidak memadai.</p>
+            <p><strong>Dampak:</strong> 250 rumah rusak, 1 orang meninggal, jalan nasional terputus 2 hari, kerugian Rp 8 miliar.</p>
+        </div>
+
+        <div class="data-source">
+            <strong>📊 Sumber Data:</strong> Analisis faktor penyebab berdasarkan laporan <a href="https://bpbd.banyuwangikab.go.id" target="_blank">BPBD Banyuwangi</a> (2021), kajian <a href="https://www.pu.banyuwangikab.go.id" target="_blank">Dinas PU Banyuwangi</a>, dan penelitian <a href="https://www.unej.ac.id" target="_blank">Universitas Jember</a> tentang DAS Badeng.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MITIGASI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-shield-alt"></i> Strategi Mitigasi Banjir Bandang</h2>
+        <p>Mitigasi banjir bandang memerlukan pendekatan <strong>terpadu</strong> yang memadukan upaya <em>struktural</em> (fisik) dan <em>non-struktural</em> (kebijakan, edukasi, kelembagaan). Berikut adalah strategi mitigasi berbasis analisis geografis:</p>
+
+        <div class="mitigation-grid">
+            <div class="mitigation-card struktural">
+                <h4><i class="fas fa-hard-hat"></i> Mitigasi Struktural (Fisik)</h4>
+                <ul>
+                    <li><strong>Normalisasi Sungai:</strong> Pengerukan sedimentasi, pelebaran penampang sungai, dan penguatan tebing sungai di titik-titik kritis.</li>
+                    <li><strong>Pembangunan Check Dam:</strong> Bendung pengendali di hulu untuk memperlambat aliran air dan menangkap material padat.</li>
+                    <li><strong>Sistem Peringatan Dini (EWS):</strong> Pemasangan sensor curah hujan dan tinggi muka air di hulu yang terhubung dengan sirine di hilir.</li>
+                    <li><strong>Normalisasi Drainase Kota:</strong> Perbaikan dan perluasan drainase di kawasan Banyuwangi Kota, Kalipuro, dan Giri.</li>
+                    <li><strong>Pembangunan Tanggul & Sabo Dam:</strong> Di lokasi-lokasi kritis sepanjang DAS Badeng dan Kali Konto.</li>
+                    <li><strong>Ruang Terbuka Hijau (RTH):</strong> Penyediaan area resapan di perkotaan untuk mengurangi limpasan.</li>
+                </ul>
+            </div>
+
+            <div class="mitigation-card nonstruktural">
+                <h4><i class="fas fa-book-reader"></i> Mitigasi Non-Struktural (Non-Fisik)</h4>
+                <ul>
+                    <li><strong>Reboisasi Hulu DAS:</strong> Penanaman kembali hutan lindung di kawasan Ijen-Raung dengan melibatkan masyarakat (<em>perhutanan sosial</em>).</li>
+                    <li><strong>Penegakan Perda RTRW:</strong> Larangan tegas pembangunan di sempadan sungai (minimal 100 m dari sungai besar) dan zona rawan bencana.</li>
+                    <li><strong>Edukasi Masyarakat:</strong> Sosialisasi tanda-tanda banjir bandang, jalur evakuasi, dan prosedur keselamatan melalui sekolah, desa, dan media lokal.</li>
+                    <li><strong>Peta Rawan Bencana:</strong> Penyusunan dan diseminasi <em>peta zona rawan banjir bandang</em> ke seluruh kecamatan.</li>
+                    <li><strong>Desa Tangguh Bencana:</strong> Penguatan kapasitas masyarakat di desa-desa rawan melalui pelatihan dan simulasi.</li>
+                    <li><strong>Asuransi Bencana:</strong> Skema asuransi untuk rumah dan usaha di zona rawan.</li>
+                    <li><strong>Penelitian & Monitoring:</strong> Kerjasama dengan universitas untuk monitoring DAS dan kajian berkala.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Prinsip Mitigasi Modern:</strong> Mitigasi yang efektif bukan hanya <em>bertahan terhadap banjir</em>, tetapi <em>hidup harmonis dengan air</em>. Ini berarti kita harus memberi ruang bagi sungai untuk meluap secara aman (melalui <em>room for the river</em>), memulihkan ekosistem hulu, dan membangun masyarakat yang tangguh.</p>
+        </div>
+
+        <h3><i class="fas fa-route"></i> Rekomendasi Spesifik untuk Banyuwangi</h3>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wilayah</th>
+                        <th>Prioritas Mitigasi</th>
+                        <th>Aksi Utama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hulu (Songgon, Licin, Sempu)</strong></td>
+                        <td>Konservasi & Reboisasi</td>
+                        <td>Reboisasi hutan lindung, check dam, perhutanan sosial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tengah (Glenmore, Rogojampi)</strong></td>
+                        <td>Pengendalian Aliran</td>
+                        <td>Sabo dam, normalisasi sungai, EWS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hilir (Banyuwangi Kota, Kalipuro)</strong></td>
+                        <td>Adaptasi & Kesiapsiagaan</td>
+                        <td>Drainase kota, peta evakuasi, simulasi bencana, larangan bangun di sempadan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="data-source">
+            <strong>📚 Referensi Mitigasi:</strong> Strategi ini mengacu pada <a href="https://bnpb.go.id" target="_blank">Pedoman BNPB</a> tentang Penanggulangan Bencana Banjir, <a href="https://www.pu.banyuwangikab.go.id" target="_blank">Rencana Penanganan Banjir Dinas PU Banyuwangi</a>, dan prinsip <em>Room for the River</em> dari Belanda yang diterapkan di berbagai negara.
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- REFLEKSI & DISKUSI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Analisis</h2>
+        <ul>
+            <li><strong>Banjir bandang Banyuwangi</strong> adalah fenomena hidrosfer kompleks yang terjadi akibat interaksi faktor alam (curah hujan, topografi, geologi) dan faktor manusia (deforestasi, pembangunan di sempadan sungai).</li>
+            <li><strong>Pendekatan keruangan</strong> menunjukkan pola linear banjir sepanjang DAS dengan 3 klaster kerentanan (hulu, tengah, hilir).</li>
+            <li><strong>Pendekatan kelingkungan</strong> mengungkap rantai kausalitas: deforestasi → limpasan ↑ → erosi → sedimentasi → banjir bandang.</li>
+            <li><strong>Pendekatan kompleks wilayah</strong> memberikan analisis komprehensif yang memadukan aspek fisik, sosial, ekonomi, dan kelembagaan.</li>
+            <li>Mitigasi yang efektif memerlukan <strong>pendekatan terpadu</strong>: struktural (check dam, EWS, normalisasi) + non-struktural (reboisasi, penegakan hukum, edukasi).</li>
+            <li>Setiap wilayah (hulu, tengah, hilir) memerlukan <strong>strategi mitigasi yang berbeda</strong> sesuai karakteristiknya.</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <div class="discussion-box">
+            <h3><i class="fas fa-comments"></i> Poin Diskusi untuk Refleksi</h3>
+            <ol>
+                <li>Mengapa Banyuwangi rawan banjir bandang? Konsep geografi apa yang paling tepat untuk menganalisisnya?</li>
+                <li>Bagaimana 3 pendekatan geografi memberikan pemahaman yang berbeda namun saling melengkapi tentang banjir bandang?</li>
+                <li>Mana yang lebih penting: mitigasi struktural (fisik) atau non-struktural (kebijakan)? Jelaskan alasanmu!</li>
+                <li>Sebagai warga Banyuwangi, apa yang bisa kamu lakukan untuk mengurangi risiko banjir bandang di lingkunganmu?</li>
+                <li>Bagaimana hubungan antara alih fungsi lahan di hulu dengan banjir di hilir? Jelaskan menggunakan prinsip interelasi!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="nav-buttons">
+        <a href="../geografi-kelas-x.html#analisis" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Kembali ke Lensa Geografis
+        </a>
+        <a href="analisis-alih-fungsi-lahan-purwoharjo.html" class="nav-btn">
+            Analisis Selanjutnya <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-link"></i> Sumber Data Resmi</h3>
+            <ul>
+                <li><a href="https://bnpb.go.id" target="_blank"><i class="fas fa-shield-alt"></i> BNPB</a></li>
+                <li><a href="https://www.bps.go.id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                <li><a href="https://banyuwangikab.bps.go.id" target="_blank"><i class="fas fa-chart-bar"></i> BPS Banyuwangi</a></li>
+                <li><a href="https://bpbd.banyuwangikab.go.id" target="_blank"><i class="fas fa-life-ring"></i> BPBD Banyuwangi</a></li>
+                <li><a href="https://www.bmkg.go.id" target="_blank"><i class="fas fa-cloud-sun-rain"></i> BMKG</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+</script>
+</body>
+</html>
