@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Pertemuan 7: 3 Pendekatan Geografi - Keruangan (Spasial), Kelingkungan (Ekologi), dan Kompleks Wilayah (Regional) dengan Studi Kasus Banjir, Kemacetan, dan Alih Fungsi Lahan.">
+<title>Pertemuan 7: Pendekatan Geografi | Geografi Kelas X</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+:root {
+--primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+--light: #f8f9fa; --dark: #212529; --gray: #6c757d;
+--success: #4ade80; --warning: #fbbf24; --danger: #f87171;
+--bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+--gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+--header-height: 70px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Poppins', sans-serif;
+background: var(--bg-gradient);
+color: var(--dark);
+line-height: 1.7;
+overflow-x: hidden;
+padding-bottom: 60px;
+}
+body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: #f8f9fa; }
+body.dark-mode .content-card, body.dark-mode .approach-card, body.dark-mode .case-study, body.dark-mode .case-analysis, body.dark-mode .comparison-box { background: #2d2d2d; border-color: #444; color: #e5e7eb; }
+body.dark-mode .approach-card h3, body.dark-mode .case-analysis h4 { color: var(--accent); }
+body.dark-mode table { background: #2d2d2d; }
+body.dark-mode th { background: #374151; color: white; }
+body.dark-mode td { border-color: #444; }
+
+.navbar {
+background: linear-gradient(120deg, var(--primary), var(--secondary));
+color: white; padding: 0.8rem 1.5rem;
+position: sticky; top: 0; z-index: 1000;
+box-shadow: var(--shadow);
+display: flex; justify-content: space-between; align-items: center;
+height: var(--header-height);
+}
+.navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+.navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); object-fit: cover; }
+.nav-container { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: all 0.3s ease; display: flex; align-items: center; gap: 5px; font-size: 0.92rem; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; background: rgba(255,255,255,0.95); min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 8px; top: 100%; left: 0; z-index: 1001; flex-direction: column; padding: 10px 0; backdrop-filter: blur(10px); }
+.dropdown-content a { color: var(--dark); padding: 10px 16px; text-decoration: none; display: block; border-radius: 8px; margin: 0 5px; }
+.dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+.dropdown:hover .dropdown-content { display: flex; }
+.hamburger { display: none; cursor: pointer; background: none; border: none; color: white; font-size: 1.5rem; z-index: 1001; }
+.theme-toggle, .lang-switch { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; }
+.lang-switch { font-size: 0.85rem; font-weight: 600; }
+
+header {
+background: var(--gradient-primary);
+background-size: 300% 300%;
+animation: gradientBG 8s ease infinite;
+color: white; padding: 3rem 1.5rem 2rem;
+text-align: center; position: relative; overflow: hidden;
+}
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+header::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%); animation: rotate 15s linear infinite; z-index: 1; }
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.header-icon { width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; z-index: 2; position: relative; border: 3px solid rgba(255,255,255,0.3); font-size: 2.5rem; }
+header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+header .subtitle { font-weight: 300; opacity: 0.95; z-index: 2; position: relative; font-size: 1rem; }
+
+.breadcrumb { max-width: 1000px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+.content-wrapper { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+.content-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: var(--shadow); margin-bottom: 2rem; }
+.content-card h2 { color: var(--primary); font-size: 1.6rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; }
+.content-card h3 { color: var(--secondary); font-size: 1.25rem; margin: 1.5rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+.content-card p { margin-bottom: 1rem; text-align: justify; }
+.content-card ul, .content-card ol { margin: 1rem 0 1rem 1.5rem; }
+.content-card li { margin-bottom: 0.5rem; }
+
+/* KEY POINT */
+.key-point {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+color: white; padding: 1.2rem 1.5rem; border-radius: 12px;
+margin: 1rem 0; display: flex; align-items: flex-start; gap: 1rem;
+box-shadow: var(--shadow);
+}
+.key-point i { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.key-point p { margin: 0; }
+
+/* APPROACH CARDS */
+.approach-card {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 20px;
+padding: 2rem;
+margin: 1.5rem 0;
+box-shadow: var(--shadow);
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+border-left: 7px solid var(--primary);
+}
+.approach-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.approach-card::before {
+content: '';
+position: absolute;
+top: -50px; right: -50px;
+width: 180px; height: 180px;
+border-radius: 50%;
+opacity: 0.08;
+}
+.approach-card h3 {
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.8rem;
+font-size: 1.35rem;
+position: relative; z-index: 2;
+}
+.approach-number {
+width: 55px; height: 55px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center; justify-content: center;
+font-size: 1.5rem;
+color: white;
+font-weight: 700;
+flex-shrink: 0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+position: relative;
+z-index: 2;
+}
+.approach-english {
+display: inline-block;
+background: rgba(255,255,255,0.7);
+padding: 3px 12px;
+border-radius: 20px;
+font-size: 0.78rem;
+font-weight: 600;
+margin-left: 0.5rem;
+color: var(--gray);
+letter-spacing: 0.5px;
+}
+body.dark-mode .approach-english { background: rgba(255,255,255,0.1); color: #9ca3af; }
+.approach-definition {
+background: rgba(255,255,255,0.7);
+padding: 1rem 1.2rem;
+border-radius: 12px;
+margin: 1rem 0;
+font-style: italic;
+border-left: 4px solid;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .approach-definition { background: rgba(255,255,255,0.05); }
+.approach-questions {
+background: rgba(255,255,255,0.5);
+padding: 0.8rem 1rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .approach-questions { background: rgba(255,255,255,0.03); }
+.approach-questions strong { color: var(--primary); }
+body.dark-mode .approach-questions strong { color: var(--accent); }
+.approach-tools {
+background: rgba(255,255,255,0.5);
+padding: 1rem;
+border-radius: 10px;
+margin: 0.8rem 0;
+position: relative;
+z-index: 2;
+}
+body.dark-mode .approach-tools { background: rgba(255,255,255,0.03); }
+.approach-tools strong { color: var(--primary); }
+body.dark-mode .approach-tools strong { color: var(--accent); }
+
+/* Warna khusus tiap pendekatan */
+.approach-card.a1 { border-left-color: #4361ee; }
+.approach-card.a1::before { background: #4361ee; }
+.approach-card.a1 .approach-number { background: linear-gradient(120deg, #4361ee, #3f37c9); }
+.approach-card.a1 .approach-definition { border-left-color: #4361ee; }
+.approach-card.a1 h3 { color: #3f37c9; }
+
+.approach-card.a2 { border-left-color: #2ecc71; }
+.approach-card.a2::before { background: #2ecc71; }
+.approach-card.a2 .approach-number { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.approach-card.a2 .approach-definition { border-left-color: #2ecc71; }
+.approach-card.a2 h3 { color: #27ae60; }
+
+.approach-card.a3 { border-left-color: #e67e22; }
+.approach-card.a3::before { background: #e67e22; }
+.approach-card.a3 .approach-number { background: linear-gradient(120deg, #f39c12, #e67e22); }
+.approach-card.a3 .approach-definition { border-left-color: #e67e22; }
+.approach-card.a3 h3 { color: #e67e22; }
+
+body.dark-mode .approach-card h3 { color: var(--accent) !important; }
+
+/* TRIANGLE DIAGRAM */
+.triangle-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 2rem 0;
+gap: 1rem;
+}
+.triangle-svg {
+max-width: 400px;
+width: 100%;
+}
+.triangle-labels {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+margin-top: 1rem;
+width: 100%;
+}
+.triangle-label {
+text-align: center;
+padding: 0.8rem;
+border-radius: 10px;
+color: white;
+font-weight: 600;
+font-size: 0.9rem;
+box-shadow: var(--shadow);
+}
+.triangle-label.spasial { background: linear-gradient(120deg, #4361ee, #3f37c9); }
+.triangle-label.ekologi { background: linear-gradient(120deg, #2ecc71, #27ae60); }
+.triangle-label.regional { background: linear-gradient(120deg, #f39c12, #e67e22); }
+
+/* CASE STUDY */
+.case-study {
+background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+border-radius: 16px;
+padding: 1.8rem;
+margin: 1.5rem 0;
+border: 2px dashed #0077b6;
+position: relative;
+}
+body.dark-mode .case-study { background: linear-gradient(135deg, #004d6d, #006080); }
+.case-study-label {
+position: absolute;
+top: -12px;
+left: 20px;
+background: #0077b6;
+color: white;
+padding: 4px 14px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 1px;
+}
+.case-study h3 { color: #0077b6; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+body.dark-mode .case-study h3 { color: var(--accent); }
+
+/* CASE ANALYSIS */
+.case-analysis {
+background: linear-gradient(135deg, #fff9e6, #fff3cc);
+border-radius: 14px;
+padding: 1.3rem;
+margin: 1rem 0;
+box-shadow: var(--shadow);
+border-left: 5px solid var(--primary);
+}
+body.dark-mode .case-analysis { background: linear-gradient(135deg, #3d2817, #5a3a1f); }
+.case-analysis h4 {
+color: var(--primary);
+margin: 0 0 0.5rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+font-size: 1.05rem;
+}
+body.dark-mode .case-analysis h4 { color: var(--accent); }
+.case-analysis p { margin: 0; font-size: 0.95rem; }
+.case-analysis.spasial { border-left-color: #4361ee; }
+.case-analysis.spasial h4 { color: #3f37c9; }
+.case-analysis.ekologi { border-left-color: #2ecc71; }
+.case-analysis.ekologi h4 { color: #27ae60; }
+.case-analysis.regional { border-left-color: #e67e22; }
+.case-analysis.regional h4 { color: #e67e22; }
+body.dark-mode .case-analysis h4 { color: var(--accent) !important; }
+
+/* COMPARISON BOX */
+.comparison-box {
+background: linear-gradient(135deg, #f8f9fa, #e4edf9);
+border-radius: 16px;
+padding: 1.5rem;
+margin: 1rem 0;
+box-shadow: var(--shadow);
+border-top: 5px solid var(--primary);
+}
+body.dark-mode .comparison-box { background: #2d2d2d; }
+.comparison-box h4 {
+color: var(--primary);
+margin: 0 0 0.8rem 0;
+display: flex; align-items: center; gap: 0.5rem;
+}
+body.dark-mode .comparison-box h4 { color: var(--accent); }
+
+.comparison-table { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: var(--gradient-primary); color: white; padding: 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; }
+td { padding: 0.8rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; font-size: 0.92rem; }
+tr:hover td { background: #f8f9fa; }
+
+.nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.nav-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: var(--shadow); }
+.nav-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.nav-btn.prev { background: linear-gradient(120deg, #6c757d, #495057); }
+
+footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 60px 20px 30px; margin-top: 60px; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; color: white; }
+.footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: var(--primary); border-radius: 3px; }
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section li { margin: 10px 0; }
+.footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.footer-section a:hover { color: var(--primary); transform: translateX(5px); }
+.footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+.copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; grid-column: span 4; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
+
+@media (max-width: 768px) {
+.navbar { padding: 0.8rem 1rem; }
+.hamburger { display: block; }
+.nav-links { display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary)); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; max-height: calc(100vh - var(--header-height)); overflow-y: auto; }
+.nav-links.active { display: flex; }
+.nav-links li { width: 100%; }
+.nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+.dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
+.dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+.dropdown-content a { padding-left: 40px; color: white; }
+header { padding: 2.5rem 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.content-card { padding: 1.5rem; }
+.content-card h2 { font-size: 1.3rem; }
+.nav-buttons { grid-template-columns: 1fr; }
+.footer-container { grid-template-columns: 1fr; gap: 30px; }
+.copyright { grid-column: span 1; }
+.approach-card { padding: 1.3rem; }
+.approach-card h3 { font-size: 1.1rem; flex-wrap: wrap; }
+.approach-number { width: 45px; height: 45px; font-size: 1.2rem; }
+.approach-english { margin-left: 0; margin-top: 5px; }
+th, td { padding: 0.6rem; font-size: 0.82rem; }
+.triangle-labels { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <button class="lang-switch" id="langToggle"><span id="langText">EN</span></button>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+        <li><a href="../geografi-kelas-x.html" class="active"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+        <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+        <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+        <li class="dropdown">
+            <a href="../galery.html" class="dropdown-toggle"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-content">
+                <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header>
+    <div class="header-icon"><i class="fas fa-sitemap"></i></div>
+    <h1>Pertemuan 7: Pendekatan Geografi</h1>
+    <p class="subtitle">Bab 1: Hakikat Ilmu Geografi • Fase E Kurikulum Merdeka</p>
+</header>
+
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../geografi-kelas-x.html">Geografi Kelas X</a>
+    <span>›</span>
+    <span>Pertemuan 7</span>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- CAPAIAN & TUJUAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-info-circle"></i> Capaian Pembelajaran</h2>
+        <p>Pada pertemuan ini, peserta didik diharapkan mampu <strong>memahami dan menerapkan 3 pendekatan geografi</strong> dalam menganalisis fenomena geosfer, khususnya banjir, kemacetan, dan alih fungsi lahan di Banyuwangi.</p>
+        
+        <h3><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h3>
+        <ol>
+            <li>Menjelaskan 3 pendekatan geografi: keruangan (spasial), kelingkungan (ekologi), dan kompleks wilayah (regional).</li>
+            <li>Membedakan karakteristik dan fokus analisis masing-masing pendekatan.</li>
+            <li>Menerapkan 3 pendekatan untuk menganalisis fenomena banjir di Banyuwangi.</li>
+            <li>Menganalisis fenomena kemacetan dengan pendekatan spasial dan alih fungsi lahan dengan pendekatan ekologi.</li>
+        </ol>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Mengapa Pendekatan Penting?</strong> Jika <em>konsep esensial</em> adalah "kata kunci" dan <em>prinsip</em> adalah "aturan main", maka <strong>pendekatan</strong> adalah <em>"strategi"</em> atau <em>"sudut pandang"</em> yang digunakan geograf untuk membedah fenomena. Pendekatan menentukan <strong>cara kita melihat masalah</strong>!</p>
+        </div>
+    </div>
+
+    <!-- PENGANTAR 3 PENDEKATAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-list-ol"></i> 3 Pendekatan Utama Geografi</h2>
+        <p>Menurut <strong>Biggs et al.</strong> dan para ahli geografi, terdapat <strong>3 pendekatan utama</strong> yang menjadi landasan analisis geografi. Ketiga pendekatan ini saling melengkapi dan dapat digunakan secara terpisah maupun terpadu:</p>
+
+        <!-- TRIANGLE DIAGRAM -->
+        <h3><i class="fas fa-draw-polygon"></i> Segitiga Pendekatan Geografi</h3>
+        <div class="triangle-container">
+            <svg class="triangle-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gradSpasial" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#4361ee;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3f37c9;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="gradEkologi" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="gradRegional" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#e67e22;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <polygon points="200,30 370,250 30,250" fill="none" stroke="#4361ee" stroke-width="3"/>
+                <circle cx="200" cy="30" r="35" fill="url(#gradSpasial)"/>
+                <text x="200" y="37" text-anchor="middle" fill="white" font-size="14" font-weight="bold">SPASIAL</text>
+                <circle cx="370" cy="250" r="35" fill="url(#gradEkologi)"/>
+                <text x="370" y="257" text-anchor="middle" fill="white" font-size="14" font-weight="bold">EKOLOGI</text>
+                <circle cx="30" cy="250" r="35" fill="url(#gradRegional)"/>
+                <text x="30" y="257" text-anchor="middle" fill="white" font-size="14" font-weight="bold">REGIONAL</text>
+            </svg>
+            <div class="triangle-labels">
+                <div class="triangle-label regional">
+                    <i class="fas fa-globe-asia"></i><br>
+                    Kompleks Wilayah
+                </div>
+                <div class="triangle-label spasial">
+                    <i class="fas fa-map-marked-alt"></i><br>
+                    Keruangan
+                </div>
+                <div class="triangle-label ekologi">
+                    <i class="fas fa-recycle"></i><br>
+                    Kelingkungan
+                </div>
+            </div>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-layer-group"></i>
+            <p><strong>Analogi Kacamata:</strong> Bayangkan 3 pendekatan sebagai <em>3 kacamata berbeda</em>. Dengan kacamata spasial, kamu melihat <strong>pola dan lokasi</strong>. Dengan kacamata ekologi, kamu melihat <strong>hubungan sebab-akibat</strong>. Dengan kacamata regional, kamu melihat <strong>karakteristik unik wilayah</strong>. Fenomena yang sama akan terlihat berbeda tergantung kacamata yang kamu pakai!</p>
+        </div>
+    </div>
+
+    <!-- PENDEKATAN 1: KERUANGAN -->
+    <div class="content-card">
+        <div class="approach-card a1">
+            <h3>
+                <span class="approach-number">1</span>
+                <i class="fas fa-map-marked-alt"></i>
+                Pendekatan Keruangan <span class="approach-english">Spatial Approach</span>
+            </h3>
+            
+            <div class="approach-definition">
+                <strong>Definisi:</strong> Pendekatan yang menitikberatkan analisis pada <strong>aspek keruangan</strong> suatu fenomena, meliputi <strong>lokasi, persebaran, pola, morfologi, dan keterjangkauan</strong>. Pendekatan ini berfokus pada <em>"di mana"</em> dan <em>"bagaimana pola"</em> fenomena di permukaan bumi.
+            </div>
+
+            <div class="approach-questions">
+                <strong>🔍 Pertanyaan Kunci:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><em>"Di mana fenomena ini terjadi?"</em></li>
+                    <li><em>"Bagaimana pola persebarannya?"</em></li>
+                    <li><em>"Mengapa lokasinya di situ?"</em></li>
+                    <li><em>"Apa hubungan antar-ruang?"</em></li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>🛠️ Alat Analisis:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Peta tematik:</strong> Peta persebaran, pola, dan jaringan.</li>
+                    <li><strong>SIG (Sistem Informasi Geografis):</strong> Analisis spasial digital.</li>
+                    <li><strong>Penginderaan jauh:</strong> Citra satelit untuk melihat pola.</li>
+                    <li><strong>Statistik spasial:</strong> Analisis titik, garis, dan area.</li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>📍 Contoh Penerapan:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Persebaran penduduk:</strong> Mengapa penduduk terkonsentrasi di dataran rendah?</li>
+                    <li><strong>Pola permukiman:</strong> Mengapa permukiman memanjang mengikuti jalan raya?</li>
+                    <li><strong>Jaringan transportasi:</strong> Mengapa jalan tol dibangun di koridor tertentu?</li>
+                    <li><strong>Zonasi wilayah:</strong> Mengapa kawasan industri dipisahkan dari permukiman?</li>
+                </ul>
+            </div>
+
+            <div class="key-point" style="background: linear-gradient(135deg, #4361ee, #3f37c9);">
+                <i class="fas fa-star"></i>
+                <p><strong>Ciri Khas:</strong> Pendekatan keruangan adalah <em>paling khas</em> dalam geografi — inilah yang membedakan geografi dari ilmu lain! Analisis spasial adalah <strong>"DNA"</strong> geografi.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PENDEKATAN 2: KELINGKUNGAN -->
+    <div class="content-card">
+        <div class="approach-card a2">
+            <h3>
+                <span class="approach-number">2</span>
+                <i class="fas fa-recycle"></i>
+                Pendekatan Kelingkungan <span class="approach-english">Ecological Approach</span>
+            </h3>
+            
+            <div class="approach-definition">
+                <strong>Definisi:</strong> Pendekatan yang menitikberatkan analisis pada <strong>hubungan timbal balik</strong> antara organisme (termasuk manusia) dengan lingkungannya. Pendekatan ini melihat fenomena sebagai bagian dari <em>sistem ekologi</em> yang saling memengaruhi.
+            </div>
+
+            <div class="approach-questions">
+                <strong>🔍 Pertanyaan Kunci:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><em>"Bagaimana hubungan manusia dengan lingkungan?"</em></li>
+                    <li><em>"Apa dampak aktivitas manusia terhadap alam?"</em></li>
+                    <li><em>"Bagaimana alam memengaruhi kehidupan manusia?"</em></li>
+                    <li><em>"Apakah lingkungannya masih seimbang?"</em></li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>🛠️ Alat Analisis:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Diagram alir:</strong> Rantai sebab-akibat dalam sistem ekologi.</li>
+                    <li><strong>Analisis daya dukung:</strong> Kemampuan lingkungan menopang kehidupan.</li>
+                    <li><strong>Studi ekosistem:</strong> Rantai makanan, siklus energi, aliran materi.</li>
+                    <li><strong>Analisis dampak:</strong> AMDAL (Analisis Mengenai Dampak Lingkungan).</li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>📍 Contoh Penerapan:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Alih fungsi lahan:</strong> Bagaimana perubahan sawah menjadi perumahan memengaruhi ekosistem?</li>
+                    <li><strong>Pencemaran sungai:</strong> Bagaimana limbah pabrik memengaruhi kehidupan akuatik?</li>
+                    <li><strong>Deforestasi:</strong> Bagaimana penebangan hutan memengaruhi siklus air dan biodiversitas?</li>
+                    <li><strong>Urbanisasi:</strong> Bagaimana pertumbuhan kota memengaruhi lingkungan sekitarnya?</li>
+                </ul>
+            </div>
+
+            <div class="key-point" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                <i class="fas fa-star"></i>
+                <p><strong>Ciri Khas:</strong> Pendekatan ekologi menekankan <em>keseimbangan sistem</em>. Setiap perubahan pada satu komponen akan <strong>berdampak pada komponen lain</strong> — seperti efek domino dalam jaring kehidupan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PENDEKATAN 3: KOMPLEKS WILAYAH -->
+    <div class="content-card">
+        <div class="approach-card a3">
+            <h3>
+                <span class="approach-number">3</span>
+                <i class="fas fa-globe-asia"></i>
+                Pendekatan Kompleks Wilayah <span class="approach-english">Regional Complex Approach</span>
+            </h3>
+            
+            <div class="approach-definition">
+                <strong>Definisi:</strong> Pendekatan yang <strong>menggabungkan pendekatan keruangan dan kelingkungan</strong> dalam analisis suatu wilayah secara <em>komprehensif</em>. Pendekatan ini mengkaji <strong>karakteristik khas</strong> suatu wilayah sebagai hasil interaksi kompleks antara aspek fisik dan sosial.
+            </div>
+
+            <div class="approach-questions">
+                <strong>🔍 Pertanyaan Kunci:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><em>"Apa yang khas dari wilayah ini?"</em></li>
+                    <li><em>"Bagaimana karakteristik wilayah ini secara menyeluruh?"</em></li>
+                    <li><em>"Apa yang membedakan wilayah ini dari wilayah lain?"</em></li>
+                    <li><em>"Bagaimana potensi dan masalah wilayah ini?"</em></li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>🛠️ Alat Analisis:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Profil wilayah:</strong> Deskripsi komprehensif karakteristik wilayah.</li>
+                    <li><strong>Analisis SWOT:</strong> Strength, Weakness, Opportunity, Threat.</li>
+                    <li><strong>Perbandingan antarwilayah:</strong> Komparasi karakteristik.</li>
+                    <li><strong>Pembangunan wilayah:</strong> Rencana tata ruang dan pengembangan.</li>
+                </ul>
+            </div>
+
+            <div class="approach-tools">
+                <strong>📍 Contoh Penerapan:</strong>
+                <ul style="margin: 0.5rem 0 0 1.2rem;">
+                    <li><strong>Profil Banyuwangi:</strong> Mengkaji aspek fisik, demografi, ekonomi, budaya, dan pariwisata secara terpadu.</li>
+                    <li><strong>Kawasan Ijen:</strong> Analisis potensi geowisata, konservasi, dan masyarakat lokal.</li>
+                    <li><strong>Pembangunan kawasan:</strong> Rencana pengembangan kawasan ekonomi khusus.</li>
+                    <li><strong>Regional planning:</strong> Perencanaan wilayah berbasis karakteristik lokal.</li>
+                </ul>
+            </div>
+
+            <div class="key-point" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                <i class="fas fa-crown"></i>
+                <p><strong>Ciri Khas:</strong> Pendekatan kompleks wilayah adalah <em>paling komprehensif</em> — menggabungkan kekuatan pendekatan spasial dan ekologi. Inilah pendekatan yang paling sering digunakan dalam <strong>perencanaan pembangunan wilayah</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABEL RINGKASAN 3 PENDEKATAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-table"></i> Tabel Perbandingan 3 Pendekatan Geografi</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>🗺️ Keruangan (Spasial)</th>
+                        <th>🌿 Kelingkungan (Ekologi)</th>
+                        <th>🌍 Kompleks Wilayah (Regional)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fokus Analisis</strong></td>
+                        <td>Lokasi, persebaran, pola, jaringan</td>
+                        <td>Hubungan organisme-lingkungan</td>
+                        <td>Karakteristik khas wilayah</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pertanyaan Kunci</strong></td>
+                        <td><em>"Di mana? Bagaimana polanya?"</em></td>
+                        <td><em>"Bagaimana hubungannya?"</em></td>
+                        <td><em>"Apa yang khas?"</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alat Utama</strong></td>
+                        <td>Peta, SIG, penginderaan jauh</td>
+                        <td>Diagram alir, analisis ekosistem</td>
+                        <td>Profil wilayah, SWOT</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sifat Analisis</strong></td>
+                        <td>Deskriptif-spasial</td>
+                        <td>Kausalitas-ekologis</td>
+                        <td>Komprehensif-terpadu</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contoh Fenomena</strong></td>
+                        <td>Persebaran penduduk, pola permukiman</td>
+                        <td>Alih fungsi lahan, pencemaran</td>
+                        <td>Profil wilayah, perencanaan</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kekuatan</strong></td>
+                        <td>Visualisasi spasial yang kuat</td>
+                        <td>Memahami sebab-akibat</td>
+                        <td>Analisis menyeluruh</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Keterbatasan</strong></td>
+                        <td>Kurang menjelaskan "mengapa"</td>
+                        <td>Kurang memperhatikan aspek spasial</td>
+                        <td>Memerlukan data yang kompleks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Penerapan Utama</strong></td>
+                        <td>Pemetaan, zonasi, tata ruang</td>
+                        <td>AMDAL, konservasi, mitigasi</td>
+                        <td>Perencanaan wilayah, pembangunan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-puzzle-piece"></i>
+            <p><strong>Kesimpulan:</strong> Ketiga pendekatan ini <strong>saling melengkapi</strong>, bukan bersaing. Analisis geografi yang baik seringkali menggunakan <em>ketiga pendekatan secara terpadu</em> untuk mendapatkan pemahaman yang utuh tentang fenomena.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STUDI KASUS 1: BANJIR BANYUWANGI -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-water"></i> Studi Kasus 1: Banjir di Banyuwangi</h2>
+        
+        <div class="case-study">
+            <span class="case-study-label">FENOMENA HIDROSFER</span>
+            <h3><i class="fas fa-cloud-rain"></i> Analisis Banjir dengan 3 Pendekatan Geografi</h3>
+            <p>Setiap musim hujan, Banyuwangi dilanda banjir di berbagai titik. Mari kita bedah fenomena ini menggunakan <strong>3 pendekatan geografi</strong> untuk mendapatkan pemahaman yang komprehensif!</p>
+        </div>
+
+        <h3><i class="fas fa-map-marked-alt"></i> Analisis dengan Pendekatan Keruangan</h3>
+        <div class="case-analysis spasial">
+            <h4><i class="fas fa-map-pin"></i> Fokus: Lokasi, Persebaran, dan Pola</h4>
+            <p><strong>Pertanyaan:</strong> Di mana banjir terjadi dan bagaimana polanya?</p>
+            <p><strong>Analisis:</strong></p>
+            <ul>
+                <li><strong>Lokasi:</strong> Banjir terkonsentrasi di dataran rendah bagian timur (Banyuwangi Kota, Kalipuro, Wongsorejo) dan sepanjang DAS Badeng.</li>
+                <li><strong>Pola:</strong> Pola genangan <strong>linear</strong> mengikuti alur sungai dan jalan nasional. Titik rawan membentuk klaster di kawasan cekungan.</li>
+                <li><strong>Persebaran:</strong> Wilayah pesisir dan bantaran sungai paling terdampak, sedangkan wilayah pegunungan relatif aman.</li>
+                <li><strong>Keterjangkauan:</strong> Saat banjir, akses jalan terputus — tim rescue sulit menjangkau warga di titik-titik tertentu.</li>
+            </ul>
+            <p><strong>Kesimpulan Spasial:</strong> Banjir memiliki <strong>pola keruangan yang jelas</strong> — terkonsentrasi di dataran rendah dengan morfologi cekungan dan dekat sungai.</p>
+        </div>
+
+        <h3><i class="fas fa-recycle"></i> Analisis dengan Pendekatan Kelingkungan</h3>
+        <div class="case-analysis ekologi">
+            <h4><i class="fas fa-exchange-alt"></i> Fokus: Hubungan Sebab-Akibat</h4>
+            <p><strong>Pertanyaan:</strong> Mengapa banjir terjadi dan apa hubungannya dengan aktivitas manusia?</p>
+            <p><strong>Analisis:</strong></p>
+            <ul>
+                <li><strong>Faktor Alam:</strong> Curah hujan tinggi (2.000–3.000 mm/tahun) + topografi curam di hulu → aliran air deras ke hilir.</li>
+                <li><strong>Faktor Manusia:</strong> Alih fungsi lahan di hulu (hutan → perkebunan) → berkurangnya daerah resapan → meningkatnya limpasan permukaan.</li>
+                <li><strong>Rantai Sebab-Akibat:</strong> Penebangan hutan → erosi tanah → sedimentasi di sungai → pendangkalan → kapasitas sungai menurun → banjir saat hujan deras.</li>
+                <li><strong>Dampak Ekologis:</strong> Banjir merusak ekosistem sungai, mencemari air bersih, dan mengganggu kehidupan akuatik.</li>
+            </ul>
+            <p><strong>Kesimpulan Ekologis:</strong> Banjir adalah <strong>hasil interaksi kompleks</strong> antara faktor alam (hujan, topografi) dan faktor manusia (alih fungsi lahan, sedimentasi). Perubahan di hulu berdampak di hilir.</p>
+        </div>
+
+        <h3><i class="fas fa-globe-asia"></i> Analisis dengan Pendekatan Kompleks Wilayah</h3>
+        <div class="case-analysis regional">
+            <h4><i class="fas fa-crown"></i> Fokus: Karakteristik Wilayah secara Menyeluruh</h4>
+            <p><strong>Pertanyaan:</strong> Bagaimana karakteristik wilayah rawan banjir di Banyuwangi secara komprehensif?</p>
+            <p><strong>Analisis:</strong></p>
+            <ul>
+                <li><strong>Karakteristik Fisik:</strong> Dataran rendah dengan morfologi cekungan, dekat sungai, tanah aluvial subur, curah hujan tinggi.</li>
+                <li><strong>Karakteristik Sosial:</strong> Kepadatan penduduk tinggi, aktivitas ekonomi padat (perdagangan, jasa), infrastruktur vital (jalan nasional, pelabuhan).</li>
+                <li><strong>Karakteristik Ekonomi:</strong> Wilayah ini merupakan pusat pertumbuhan Banyuwangi — kerugian banjir sangat besar (miliaran rupiah per kejadian).</li>
+                <li><strong>Karakteristik Budaya:</strong> Masyarakat sudah teradaptasi dengan banjir (membangun rumah panggung di beberapa area), tetapi urbanisasi memperparah kerentanan.</li>
+                <li><strong>Potensi & Masalah:</strong> Potensi ekonomi tinggi, tetapi kerentanan bencana juga tinggi → diperlukan <em>pembangunan berbasis mitigasi</em>.</li>
+            </ul>
+            <p><strong>Kesimpulan Regional:</strong> Wilayah rawan banjir di Banyuwangi memiliki <strong>karakteristik khas</strong>: pusat pertumbuhan ekonomi dengan kerentanan bencana tinggi. Solusinya memerlukan pendekatan terpadu: <em>tata ruang berbasis mitigasi + konservasi hulu + adaptasi masyarakat</em>.</p>
+        </div>
+
+        <div class="key-point">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Refleksi:</strong> Dengan menggunakan 3 pendekatan, kita mendapatkan pemahaman yang <strong>jauh lebih kaya</strong> tentang banjir Banyuwangi. Pendekatan spasial menunjukkan <em>di mana</em>, ekologi menjelaskan <em>mengapa</em>, dan regional memberikan <em>solusi komprehensif</em>.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STUDI KASUS 2: KEMACETAN KOTA -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-car"></i> Studi Kasus 2: Kemacetan Lalu Lintas</h2>
+        
+        <div class="case-study">
+            <span class="case-study-label">FENOMENA ANTROPOSFER</span>
+            <h3><i class="fas fa-traffic-light"></i> Analisis Kemacetan dengan Pendekatan Spasial</h3>
+            <p>Pusat Kota Banyuwangi mengalami kemacetan kronis, terutama pada jam sibuk. Mari kita analisis dengan <strong>pendekatan keruangan (spasial)</strong>!</p>
+        </div>
+
+        <div class="case-analysis spasial">
+            <h4><i class="fas fa-map-marked-alt"></i> Analisis Spasial Kemacetan</h4>
+            <p><strong>Pertanyaan:</strong> Di mana kemacetan terjadi dan bagaimana polanya?</p>
+            <p><strong>Analisis:</strong></p>
+            <ul>
+                <li><strong>Lokasi:</strong> Kemacetan terkonsentrasi di <strong>pusat kota</strong> — kawasan Jl. A. Yani, Jl. Jend. Sudirman, dan sekitar Pasar Banyuwangi.</li>
+                <li><strong>Pola:</strong> Pola kemacetan <strong>linear</strong> mengikuti jalan utama, dengan <strong>titik simpul</strong> (node) di persimpangan besar (simpang empat, bundaran).</li>
+                <li><strong>Persebaran:</strong> Kemacetan paling parah di kawasan aglomerasi perdagangan dan perkantoran. Wilayah pinggiran relatif lancar.</li>
+                <li><strong>Jaringan:</strong> Jalan utama menjadi "pembuluh darah" yang tersumbat. Tidak ada jalan alternatif yang memadai untuk分流 (diversi) arus kendaraan.</li>
+                <li><strong>Keterjangkauan:</strong> Jarak absolut tetap, tetapi <strong>jarak relatif (waktu tempuh)</strong> membengkak: 15 menit bisa jadi 1 jam saat macet.</li>
+            </ul>
+            <p><strong>Kesimpulan Spasial:</strong> Kemacetan memiliki <strong>pola keruangan yang jelas</strong> — terkonsentrasi di pusat kota akibat aglomerasi aktivitas ekonomi dan kurangnya jaringan jalan alternatif. Solusi spasial: <em>pembangunan jalan lingkar (ring road), pengembangan pusat pertumbuhan baru, dan perbaikan sistem transportasi umum</em>.</p>
+        </div>
+
+        <div class="comparison-box">
+            <h4><i class="fas fa-lightbulb"></i> Mengapa Hanya Pendekatan Spasial?</h4>
+            <p>Kemacetan pada dasarnya adalah <strong>masalah keruangan</strong> — ketidakseimbangan antara kapasitas jalan (ruang) dan volume kendaraan. Meskipun aspek ekologi (polusi udara) dan regional (karakteristik kota) juga relevan, pendekatan spasial adalah yang <strong>paling dominan</strong> karena inti masalahnya ada pada <em>pola dan jaringan</em>.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STUDI KASUS 3: ALIH FUNGSI LAHAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-seedling"></i> Studi Kasus 3: Alih Fungsi Lahan</h2>
+        
+        <div class="case-study">
+            <span class="case-study-label">FENOMENA BIOSFER & ANTROPOSFER</span>
+            <h3><i class="fas fa-home"></i> Analisis Alih Fungsi Lahan dengan Pendekatan Ekologi</h3>
+            <p>Kecamatan Purwoharjo mengalami alih fungsi lahan pertanian menjadi permukiman. Mari kita analisis dengan <strong>pendekatan kelingkungan (ekologi)</strong>!</p>
+        </div>
+
+        <div class="case-analysis ekologi">
+            <h4><i class="fas fa-recycle"></i> Analisis Ekologis Alih Fungsi Lahan</h4>
+            <p><strong>Pertanyaan:</strong> Bagaimana hubungan antara alih fungsi lahan dengan lingkungan?</p>
+            <p><strong>Analisis:</strong></p>
+            <ul>
+                <li><strong>Perubahan Komponen Ekosistem:</strong> Sawah (ekosistem buatan) → Perumahan (ekosistem urban). Perubahan ini mengubah <em>struktur dan fungsi</em> ekosistem.</li>
+                <li><strong>Dampak pada Siklus Air:</strong> Sawah = daerah resapan air tinggi. Perumahan = permukaan kedap air (beton, aspal) → limpasan permukaan meningkat → banjir lokal.</li>
+                <li><strong>Dampak pada Tanah:</strong> Hilangnya vegetasi → erosi meningkat → kesuburan tanah menurun → produktivitas pertanian turun.</li>
+                <li><strong>Dampak pada Biodiversitas:</strong> Hilangnya habitat bagi organisme tanah (cacing, mikroba) dan hewan kecil (burung, serangga).</li>
+                <li><strong>Dampak pada Iklim Mikro:</strong> Berkurangnya vegetasi → suhu udara meningkat (efek pulau panas lokal) → kelembapan menurun.</li>
+                <li><strong>Rantai Dampak:</strong> Alih fungsi lahan → berkurangnya produksi beras → ketergantungan pada beras luar → ketahanan pangan lokal terancam.</li>
+            </ul>
+            <p><strong>Kesimpulan Ekologis:</strong> Alih fungsi lahan di Purwoharjo adalah <strong>gangguan terhadap keseimbangan ekosistem</strong>. Perubahan satu komponen (lahan) berdampak pada komponen lain (air, tanah, biodiversitas, iklim, ketahanan pangan). Solusi ekologis: <em>penetapan lahan sawah dilindungi (LSM), pembangunan vertikal (rumah susun), dan kompensasi ekologis (taman kota, biopori)</em>.</p>
+        </div>
+
+        <div class="comparison-box">
+            <h4><i class="fas fa-lightbulb"></i> Mengapa Pendekatan Ekologi?</h4>
+            <p>Alih fungsi lahan pada dasarnya adalah <strong>masalah ekologis</strong> — perubahan hubungan antara manusia dengan lingkungan. Meskipun aspek spasial (pola perubahan) dan regional (karakteristik Purwoharjo) juga relevan, pendekatan ekologi adalah yang <strong>paling dominan</strong> karena inti masalahnya ada pada <em>hubungan sebab-akibat dalam sistem ekologi</em>.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- RANGKUMAN -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-clipboard-list"></i> Rangkuman Pertemuan 7</h2>
+        <ul>
+            <li><strong>3 Pendekatan Utama Geografi:</strong> Keruangan (spasial), Kelingkungan (ekologi), dan Kompleks Wilayah (regional).</li>
+            <li><strong>Pendekatan Keruangan</strong> berfokus pada lokasi, persebaran, dan pola — paling khas dalam geografi.</li>
+            <li><strong>Pendekatan Kelingkungan</strong> berfokus pada hubungan sebab-akibat antara organisme dan lingkungan.</li>
+            <li><strong>Pendekatan Kompleks Wilayah</strong> menggabungkan keduanya untuk analisis komprehensif suatu wilayah.</li>
+            <li>Studi kasus <strong>banjir Banyuwangi</strong> menunjukkan bagaimana 3 pendekatan saling melengkapi dalam analisis.</li>
+            <li><strong>Kemacetan</strong> paling tepat dianalisis dengan pendekatan spasial (masalah jaringan jalan).</li>
+            <li><strong>Alih fungsi lahan</strong> paling tepat dianalisis dengan pendekatan ekologi (masalah keseimbangan ekosistem).</li>
+            <li>Pemilihan pendekatan yang tepat bergantung pada <strong>sifat fenomena</strong> yang dikaji.</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LATIHAN SOAL -->
+    <!-- ============================================ -->
+    <div class="content-card">
+        <h2><i class="fas fa-pencil-alt"></i> Latihan Soal</h2>
+        <ol>
+            <li>Jelaskan <strong>3 pendekatan geografi</strong> beserta perbedaannya! Berikan masing-masing 1 contoh fenomena yang tepat dianalisis dengan pendekatan tersebut!</li>
+            <li>Mengapa pendekatan keruangan disebut sebagai <strong>"DNA" geografi</strong>? Jelaskan alasanmu!</li>
+            <li>Pilih satu fenomena di lingkungan sekitarmu (misalnya: sampah, polusi, atau pembangunan). Analisis fenomena tersebut menggunakan <strong>3 pendekatan geografi</strong> secara berurutan!</li>
+            <li>Berdasarkan studi kasus banjir Banyuwangi, jelaskan bagaimana <strong>3 pendekatan saling melengkapi</strong> dalam memberikan pemahaman yang utuh!</li>
+            <li>Mengapa kemacetan lebih tepat dianalisis dengan <strong>pendekatan spasial</strong> daripada pendekatan ekologi? Jelaskan!</li>
+            <li>Mengapa alih fungsi lahan lebih tepat dianalisis dengan <strong>pendekatan ekologi</strong> daripada pendekatan spasial? Jelaskan!</li>
+            <li>Jika kamu diminta menganalisis <strong>pariwisata di Kawah Ijen</strong>, pendekatan mana yang paling tepat digunakan? Jelaskan alasanmu dan berikan contoh analisisnya!</li>
+            <li>Buatlah <strong>diagram segitiga</strong> yang menunjukkan hubungan antara 3 pendekatan geografi! Jelaskan mengapa ketiganya saling melengkapi!</li>
+        </ol>
+    </div>
+
+    <!-- NAVIGATION BUTTONS -->
+    <div class="nav-buttons">
+        <a href="pertemuan-6-prinsip-geografi.html" class="nav-btn prev">
+            <i class="fas fa-arrow-left"></i> Pertemuan 6
+        </a>
+        <a href="pertemuan-8-manfaat-proyek.html" class="nav-btn">
+            Pertemuan 8 <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+                <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+                <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+                <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+                <li><a href="../galery.html"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
+            <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br>0333-713297</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br>Jl. Huzaini, Benculuk,<br>Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong></p>
+        <p>Semua hak dilindungi undang-undang.</p>
+    </div>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.toggle('active');
+    hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdowns.forEach(other => { if (other !== dropdown) other.classList.remove('active'); });
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        if (navLinks.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+            navLinks.classList.remove('active');
+            hamburger.textContent = '☰';
+        }
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active') && !e.target.closest('.dropdown')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const icon = themeToggle.querySelector('i');
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+}
+</script>
+</body>
+</html>
