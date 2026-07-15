@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bab 1.G — Persamaan + Laporan Keuangan + Simulator | Ekonomi XII</title>
+<title>Bab 1.G — Siklus Akuntansi Lengkap | Ekonomi XII</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -21,6 +21,7 @@ header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:
 .header-icon i{font-size:2.2rem;color:white}
 h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
 .subtitle{opacity:.9;font-size:1rem}
+.case-banner{background:rgba(255,255,255,.2);padding:8px 15px;border-radius:20px;display:inline-block;margin-top:10px;font-size:.85rem;backdrop-filter:blur(10px)}
 .container{max-width:1100px;margin:30px auto;padding:0 20px}
 .breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
 .breadcrumb a{color:var(--primary);text-decoration:none}
@@ -34,8 +35,6 @@ body.dark-mode .card h3{color:var(--accent)}
 body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
 ul,ol{margin:10px 0 15px 25px}
 li{margin-bottom:8px}
-
-/* ====== SIMULATOR 2 STYLES ====== */
 .simulator{background:linear-gradient(135deg,#f093fb,#f5576c);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(245,87,108,.3)}
 .simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
 .simulator h3{color:#fef3c7!important;border-bottom:none}
@@ -50,13 +49,14 @@ li{margin-bottom:8px}
 .sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
 .sim-btn.reset{background:var(--danger);color:white}
 .sim-btn.example{background:var(--warning);color:#78350f}
-.report-box{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px;font-family:'Courier New',monospace}
+.report-box{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px}
 .report-box h4{text-align:center;color:var(--primary);margin-bottom:5px;font-family:'Poppins',sans-serif}
 .report-box .sub{text-align:center;color:var(--gray);font-size:.85rem;margin-bottom:15px;font-family:'Poppins',sans-serif}
 .report-box table{width:100%;border-collapse:collapse;font-size:.9rem}
 .report-box td{padding:5px 8px}
-.report-box .total{border-top:1px solid #333;font-weight:700}
-.report-box .grand{background:var(--primary);color:white;padding:8px;font-weight:700;text-align:center;margin-top:10px;border-radius:5px}
+.report-box td:last-child{text-align:right;font-weight:500}
+.report-box .total{border-top:2px solid var(--primary);font-weight:700;color:var(--primary)}
+.report-box .grand{background:var(--primary);color:white;padding:10px;font-weight:700;text-align:center;margin-top:10px;border-radius:5px}
 .report-box .laba{background:var(--success);color:#064e3b}
 .report-box .rugi{background:var(--danger);color:white}
 .nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
@@ -77,8 +77,9 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 
 <header>
 <div class="header-icon"><i class="fas fa-chart-line"></i></div>
-<h1>Bab 1.G — Persamaan Dasar & Laporan Keuangan</h1>
-<p class="subtitle">Integrasi persamaan dasar dengan laporan keuangan + Simulator Siklus Lengkap 🎮</p>
+<h1>Bab 1.G — Siklus Akuntansi Lengkap</h1>
+<p class="subtitle">Langkah 3: Melihat Transformasi Utuh dari Transaksi ke Laporan</p>
+<div class="case-banner">📌 Studi Kasus Berkelanjutan: <strong>PT. Bersih Cemerlang</strong> (Jasa Laundry)</div>
 </header>
 
 <div class="container">
@@ -88,7 +89,7 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 
 <div class="card">
 <h2><i class="fas fa-link"></i> Hubungan Persamaan Dasar & Laporan Keuangan</h2>
-<p>Persamaan dasar akuntansi dan laporan keuangan saling <strong>terkait erat</strong>:</p>
+<p>Persamaan dasar akuntansi (Bab 1.E) dan laporan keuangan (Bab 1.F) saling <strong>terkait erat</strong>. Di bab ini, kita akan melihat <strong>transformasi utuh</strong> dalam satu tampilan.</p>
 
 <div class="highlight-box">
 <strong>🔗 Alur Keterkaitan:</strong><br>
@@ -99,14 +100,14 @@ Laba/Rugi → dimasukkan ke <strong>Laporan Perubahan Modal</strong><br>
 Modal Akhir → dimasukkan ke <strong>Neraca</strong> (Harta = Utang + Modal)
 </div>
 
-<h3>📊 Contoh Integrasi (Laundry Bersih)</h3>
-<p>Dari persamaan dasar kita peroleh saldo akhir:</p>
+<h3>📊 Contoh Integrasi (PT. Bersih Cemerlang)</h3>
+<p>Dari 8 transaksi yang sama dengan Bab 1.E dan 1.F, kita peroleh saldo akhir:</p>
 <ul>
-  <li><strong>Harta:</strong> Kas (Rp 4.200.000), Perlengkapan (Rp 500.000), Peralatan (Rp 1.500.000), Piutang (Rp 1.000.000) = <strong>Rp 7.200.000</strong></li>
-  <li><strong>Kewajiban:</strong> Utang Usaha = <strong>Rp 300.000</strong></li>
-  <li><strong>Ekuitas:</strong> Modal Awal (Rp 5.000.000) + Laba (Rp 2.000.000) − Prive (Rp 100.000) = <strong>Rp 6.900.000</strong></li>
+  <li><strong>Harta:</strong> Kas (Rp 3.800.000) + Perlengkapan (Rp 500.000) + Peralatan (Rp 1.500.000) + Piutang (Rp 300.000) = <strong>Rp 6.100.000</strong></li>
+  <li><strong>Kewajiban:</strong> Sisa Utang Usaha (Rp 500.000 − Rp 200.000) = <strong>Rp 300.000</strong></li>
+  <li><strong>Ekuitas:</strong> Modal Awal (Rp 5.000.000) + Laba Bersih (Rp 900.000) − Prive (Rp 100.000) = <strong>Rp 5.800.000</strong></li>
 </ul>
-<p>Total Kewajiban + Ekuitas = Rp 300.000 + Rp 6.900.000 = <strong>Rp 7.200.000</strong>. <em>(Seimbang! ✅)</em></p>
+<p><strong>Verifikasi:</strong> Rp 300.000 + Rp 5.800.000 = <strong>Rp 6.100.000</strong> ✅ Seimbang!</p>
 </div>
 
 <div class="card">
@@ -120,12 +121,12 @@ Modal Akhir → dimasukkan ke <strong>Neraca</strong> (Harta = Utang + Modal)
 </ol>
 </div>
 
-<!-- ============ SIMULATOR 2 ============ -->
+<!-- ============ SIMULATOR ============ -->
 <div class="simulator">
 <h2><i class="fas fa-rocket"></i> 🎮 SIMULATOR: Siklus Akuntansi Lengkap</h2>
 <div class="sim-intro">
-<strong>Selamat datang di Simulator Siklus Akuntansi!</strong> 🚀<br>
-Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <strong>persamaan dasar</strong>, lalu secara otomatis menghasilkan <strong>laporan keuangan</strong> yang saling terhubung. Pilih tab di bawah untuk melihat hasilnya!
+<strong>Saksikan transformasi utuh!</strong> 🚀<br>
+Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 transaksi yang sama dengan Bab 1.E & 1.F berubah menjadi persamaan dasar, lalu secara otomatis menjadi 3 laporan keuangan. Pilih tab di bawah untuk melihat hasilnya!
 </div>
 
 <div class="sim-tabs">
@@ -137,15 +138,15 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 </div>
 
 <div style="margin-bottom:15px">
-<button class="sim-btn example" onclick="loadFullExample()"><i class="fas fa-magic"></i> Muat Contoh Lengkap</button>
+<button class="sim-btn example" onclick="loadFullExample()"><i class="fas fa-magic"></i> Muat 8 Transaksi Lengkap</button>
 <button class="sim-btn reset" onclick="resetAll()"><i class="fas fa-redo"></i> Reset Semua</button>
 </div>
 
 <!-- Panel 1: Transaksi -->
 <div class="sim-panel active" id="panel1">
-<h3><i class="fas fa-list"></i> Daftar Transaksi "Laundry Bersih" - Januari 2025</h3>
+<h3><i class="fas fa-list"></i> Daftar Transaksi PT. Bersih Cemerlang - Januari 2025</h3>
 <div id="transList" style="background:rgba(255,255,255,.15);padding:15px;border-radius:10px">
-<p style="opacity:.8;font-style:italic">Klik "Muat Contoh Lengkap" untuk melihat transaksi.</p>
+<p style="opacity:.8;font-style:italic">Klik "Muat 8 Transaksi Lengkap" untuk melihat transaksi.</p>
 </div>
 </div>
 
@@ -159,9 +160,7 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 <th style="padding:10px">Akun</th><th style="padding:10px">Saldo</th>
 </tr>
 </thead>
-<tbody id="eqBody">
-<!-- Diisi oleh JavaScript -->
-</tbody>
+<tbody id="eqBody"></tbody>
 </table>
 </div>
 </div>
@@ -170,7 +169,7 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 <div class="sim-panel" id="panel3">
 <h3><i class="fas fa-file-invoice-dollar"></i> Laporan Laba/Rugi</h3>
 <div class="report-box" id="reportLR">
-<h4>LAUNDRY BERSIH</h4>
+<h4>PT. BERSIH CEMERLANG</h4>
 <div class="sub">Laporan Laba Rugi<br>Per 31 Januari 2025</div>
 <p style="text-align:center;color:var(--gray);font-style:italic">Muat contoh untuk melihat laporan</p>
 </div>
@@ -180,7 +179,7 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 <div class="sim-panel" id="panel4">
 <h3><i class="fas fa-chart-line"></i> Laporan Perubahan Modal</h3>
 <div class="report-box" id="reportModal">
-<h4>LAUNDRY BERSIH</h4>
+<h4>PT. BERSIH CEMERLANG</h4>
 <div class="sub">Laporan Perubahan Modal<br>Per 31 Januari 2025</div>
 <p style="text-align:center;color:var(--gray);font-style:italic">Muat contoh untuk melihat laporan</p>
 </div>
@@ -190,7 +189,7 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 <div class="sim-panel" id="panel5">
 <h3><i class="fas fa-university"></i> Laporan Posisi Keuangan (Neraca)</h3>
 <div class="report-box" id="reportNeraca">
-<h4>LAUNDRY BERSIH</h4>
+<h4>PT. BERSIH CEMERLANG</h4>
 <div class="sub">Laporan Posisi Keuangan<br>Per 31 Januari 2025</div>
 <p style="text-align:center;color:var(--gray);font-style:italic">Muat contoh untuk melihat laporan</p>
 </div>
@@ -198,67 +197,63 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 </div>
 
 <div class="card">
-<h2><i class="fas fa-star"></i> Kesimpulan</h2>
+<h2><i class="fas fa-star"></i> Kesimpulan Bab 1.G</h2>
 <ul>
 <li>✅ Persamaan dasar & laporan keuangan <strong>saling terkait dan harus seimbang</strong></li>
 <li>✅ Urutan: <strong>Laba/Rugi → Perubahan Modal → Neraca</strong></li>
-<li>✅ Gunakan <strong>simulator</strong> di atas untuk melihat alur lengkap secara nyata!</li>
+<li>✅ Gunakan simulator di atas untuk melihat alur lengkap secara nyata!</li>
+<li>✅ <strong>Angka di semua tab selalu konsisten</strong> — bukti bahwa akuntansi adalah sistem yang logis.</li>
 </ul>
 </div>
 
 <div class="nav-bab">
 <a href="bab1-f.html"><i class="fas fa-arrow-left"></i> Laporan Keuangan</a>
-<a href="../ekonomi-kelas-xii.html">Kembali ke Bab <i class="fas fa-arrow-right"></i></a>
+<a href="../ekonomi-kelas-xii.html">Kembali ke Daftar Bab <i class="fas fa-arrow-right"></i></a>
 </div>
 </div>
 
-<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Studi Kasus: PT. Bersih Cemerlang</p></footer>
 
 <script>
-// DATA DISINKRONKAN 100% DENGAN BAB 1E DAN 1F 
-// Agar siswa tidak bingung dengan perubahan angka
-let data = {
-  kas: 0, perleng: 0, peralatan: 0, piutang: 0, 
-  utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0
-};
+let data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
 
-// 8 Transaksi yang SAMA PERSIS dengan Bab 1E dan 1F
+// 8 Transaksi SAMA PERSIS dengan Bab 1.E dan 1.F
 const transactions = [
-  {no:1, tgl:'01 Jan', ket:'Andi menyetor uang tunai sebagai modal', kas:5000000, modal:5000000},
-  {no:2, tgl:'03 Jan', ket:'Membeli peralatan laundry tunai', kas:-1500000, peralatan:1500000},
-  {no:3, tgl:'05 Jan', ket:'Membeli perlengkapan secara kredit', perleng:500000, utang:500000},
-  {no:4, tgl:'10 Jan', ket:'Menerima pendapatan jasa laundry tunai', kas:800000, pendapatan:800000},
-  {no:5, tgl:'15 Jan', ket:'Menerima pendapatan jasa secara kredit', piutang:300000, pendapatan:300000},
-  {no:6, tgl:'20 Jan', ket:'Membayar beban listrik dan air', kas:-200000, beban:200000},
-  {no:7, tgl:'25 Jan', ket:'Membayar sebagian utang usaha', kas:-200000, utang:-200000},
-  {no:8, tgl:'30 Jan', ket:'Andi mengambil uang untuk pribadi (prive)', kas:-100000, prive:100000}
+  { no: 1, tgl: '01 Jan', ket: 'Andi menyetor uang tunai sebagai modal', kas: 5000000, modal: 5000000 },
+  { no: 2, tgl: '03 Jan', ket: 'Membeli peralatan laundry tunai', kas: -1500000, peralatan: 1500000 },
+  { no: 3, tgl: '05 Jan', ket: 'Membeli perlengkapan secara kredit', perleng: 500000, utang: 500000 },
+  { no: 4, tgl: '10 Jan', ket: 'Menerima pendapatan jasa laundry tunai', kas: 800000, pendapatan: 800000 },
+  { no: 5, tgl: '15 Jan', ket: 'Menerima pendapatan jasa secara kredit', piutang: 300000, pendapatan: 300000 },
+  { no: 6, tgl: '20 Jan', ket: 'Membayar beban listrik & air', kas: -200000, beban: 200000 },
+  { no: 7, tgl: '25 Jan', ket: 'Membayar sebagian utang usaha', kas: -200000, utang: -200000 },
+  { no: 8, tgl: '30 Jan', ket: 'Andi mengambil uang untuk pribadi (prive)', kas: -100000, prive: 100000 }
 ];
 
-function fmt(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
+function fmt(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
 
-function showPanel(id, btn){
+function showPanel(id, btn) {
   document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.sim-tab').forEach(t => t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
 
-function loadFullExample(){
-  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, beban:0, prive:0};
+function loadFullExample() {
+  data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
   transactions.forEach(t => {
     Object.keys(t).forEach(k => {
-      if(data.hasOwnProperty(k)) data[k] += t[k];
+      if (data.hasOwnProperty(k)) data[k] += t[k];
     });
   });
   renderAll();
 }
 
-function resetAll(){
-  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, beban:0, prive:0};
+function resetAll() {
+  data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
   renderAll();
 }
 
-function renderAll(){
+function renderAll() {
   renderTrans();
   renderEquation();
   renderLabaRugi();
@@ -266,7 +261,7 @@ function renderAll(){
   renderNeraca();
 }
 
-function renderTrans(){
+function renderTrans() {
   const el = document.getElementById('transList');
   let html = '<table style="width:100%;border-collapse:collapse;color:white;font-size:.9rem">';
   html += '<tr style="border-bottom:1px solid rgba(255,255,255,.3)"><th style="padding:8px;text-align:left">No</th><th style="padding:8px;text-align:left">Tanggal</th><th style="padding:8px;text-align:left">Keterangan</th></tr>';
@@ -281,12 +276,12 @@ function renderTrans(){
   el.innerHTML = html;
 }
 
-function renderEquation(){
+function renderEquation() {
   const harta = data.kas + data.perleng + data.peralatan + data.piutang;
   const modalAkhir = data.modal + data.pendapatan - data.beban - data.prive;
   const kanan = data.utang + modalAkhir;
   const seimbang = (harta === kanan);
-  
+
   const el = document.getElementById('eqBody');
   el.innerHTML = `
     <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Kas</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(data.kas)}</td></tr>
@@ -294,8 +289,8 @@ function renderEquation(){
     <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Peralatan</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(data.peralatan)}</td></tr>
     <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Piutang</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(data.piutang)}</td></tr>
     <tr style="background:#e0e7ff;font-weight:700"><td style="padding:10px">TOTAL HARTA</td><td style="padding:10px;text-align:right">${fmt(harta)}</td></tr>
-    <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Utang</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(data.utang)}</td></tr>
-    <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Modal (Akhir)</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(modalAkhir)}</td></tr>
+    <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Utang Usaha</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(data.utang)}</td></tr>
+    <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb">Modal Akhir</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;text-align:right">${fmt(modalAkhir)}</td></tr>
     <tr style="background:#fef3c7;font-weight:700"><td style="padding:10px">TOTAL UTANG + MODAL</td><td style="padding:10px;text-align:right">${fmt(kanan)}</td></tr>
     <tr style="background:${seimbang ? '#d1fae5' : '#fee2e2'}; font-weight:700; color:${seimbang ? '#065f46' : '#991b1b'}">
       <td style="padding:10px">STATUS PERSAMAAN</td>
@@ -304,69 +299,65 @@ function renderEquation(){
   `;
 }
 
-function renderLabaRugi(){
+function renderLabaRugi() {
   const laba = data.pendapatan - data.beban;
   const el = document.getElementById('reportLR');
   const kelas = laba >= 0 ? 'laba' : 'rugi';
   const label = laba >= 0 ? 'LABA BERSIH' : 'RUGI BERSIH';
-  
+
   el.innerHTML = `
-    <h4>LAUNDRY BERSIH</h4>
+    <h4>PT. BERSIH CEMERLANG</h4>
     <div class="sub">Laporan Laba Rugi<br>Per 31 Januari 2025</div>
     <table>
-      <tr><td><strong>Pendapatan Jasa</strong></td><td style="text-align:right">${fmt(data.pendapatan)}</td></tr>
-      <tr><td colspan="2" style="padding-top:10px"><strong>Beban-beban:</strong></td></tr>
-      <tr><td style="padding-left:20px">Beban Listrik dan Air</td><td style="text-align:right">${fmt(data.beban)}</td></tr>
-      <tr class="total"><td><strong>Total Beban</strong></td><td style="text-align:right">${fmt(data.beban)}</td></tr>
-      <tr><td colspan="2" style="padding:10px 0"></td></tr>
+      <tr><td><strong>Pendapatan Jasa</strong></td><td>${fmt(data.pendapatan)}</td></tr>
+      <tr><td><strong>Beban Listrik & Air</strong></td><td>${fmt(data.beban)}</td></tr>
+      <tr class="total"><td><strong>LABA BERSIH</strong></td><td><strong>${fmt(laba)}</strong></td></tr>
     </table>
     <div class="grand ${kelas}">${label}: ${fmt(laba)}</div>
   `;
 }
 
-function renderPerubahanModal(){
+function renderPerubahanModal() {
   const laba = data.pendapatan - data.beban;
   const modalAkhir = data.modal + laba - data.prive;
   const el = document.getElementById('reportModal');
-  
+
   el.innerHTML = `
-    <h4>LAUNDRY BERSIH</h4>
+    <h4>PT. BERSIH CEMERLANG</h4>
     <div class="sub">Laporan Perubahan Modal<br>Per 31 Januari 2025</div>
     <table>
-      <tr><td>Modal Awal (1 Januari 2025)</td><td style="text-align:right">${fmt(data.modal)}</td></tr>
-      <tr><td>Ditambah: Laba Bersih</td><td style="text-align:right">${fmt(laba)}</td></tr>
-      <tr><td><strong>Jumlah</strong></td><td style="text-align:right">${fmt(data.modal + laba)}</td></tr>
-      <tr><td>Dikurangi: Prive</td><td style="text-align:right">(${fmt(data.prive)})</td></tr>
-      <tr><td colspan="2" style="padding:10px 0"></td></tr>
+      <tr><td>Modal Awal (1 Januari 2025)</td><td>${fmt(data.modal)}</td></tr>
+      <tr><td>Ditambah: Laba Bersih</td><td>${fmt(laba)}</td></tr>
+      <tr><td><strong>Jumlah</strong></td><td>${fmt(data.modal + laba)}</td></tr>
+      <tr><td>Dikurangi: Prive</td><td>(${fmt(data.prive)})</td></tr>
     </table>
     <div class="grand">MODAL AKHIR (31 Januari 2025): ${fmt(modalAkhir)}</div>
   `;
 }
 
-function renderNeraca(){
+function renderNeraca() {
   const laba = data.pendapatan - data.beban;
   const modalAkhir = data.modal + laba - data.prive;
   const harta = data.kas + data.perleng + data.peralatan + data.piutang;
   const totalKanan = data.utang + modalAkhir;
   const seimbang = (harta === totalKanan);
   const el = document.getElementById('reportNeraca');
-  
+
   el.innerHTML = `
-    <h4>LAUNDRY BERSIH</h4>
+    <h4>PT. BERSIH CEMERLANG</h4>
     <div class="sub">Laporan Posisi Keuangan (Neraca)<br>Per 31 Januari 2025</div>
     <table>
       <tr><td colspan="2"><strong>ASET (HARTA):</strong></td></tr>
-      <tr><td style="padding-left:20px">Kas</td><td style="text-align:right">${fmt(data.kas)}</td></tr>
-      <tr><td style="padding-left:20px">Piutang Usaha</td><td style="text-align:right">${fmt(data.piutang)}</td></tr>
-      <tr><td style="padding-left:20px">Perlengkapan</td><td style="text-align:right">${fmt(data.perleng)}</td></tr>
-      <tr><td style="padding-left:20px">Peralatan</td><td style="text-align:right">${fmt(data.peralatan)}</td></tr>
-      <tr class="total"><td><strong>Total Aset</strong></td><td style="text-align:right">${fmt(harta)}</td></tr>
+      <tr><td style="padding-left:20px">Kas</td><td>${fmt(data.kas)}</td></tr>
+      <tr><td style="padding-left:20px">Piutang Usaha</td><td>${fmt(data.piutang)}</td></tr>
+      <tr><td style="padding-left:20px">Perlengkapan</td><td>${fmt(data.perleng)}</td></tr>
+      <tr><td style="padding-left:20px">Peralatan</td><td>${fmt(data.peralatan)}</td></tr>
+      <tr class="total"><td><strong>Total Aset</strong></td><td><strong>${fmt(harta)}</strong></td></tr>
       <tr><td colspan="2" style="padding:10px 0"></td></tr>
       <tr><td colspan="2"><strong>KEWAJIBAN & EKUITAS:</strong></td></tr>
-      <tr><td style="padding-left:20px">Utang Usaha</td><td style="text-align:right">${fmt(data.utang)}</td></tr>
-      <tr><td colspan="2" style="padding:5px 0"><strong>Ekuitas:</strong></td></tr>
-      <tr><td style="padding-left:20px">Modal Akhir</td><td style="text-align:right">${fmt(modalAkhir)}</td></tr>
-      <tr class="total"><td><strong>Total Kewajiban + Ekuitas</strong></td><td style="text-align:right">${fmt(totalKanan)}</td></tr>
+      <tr><td style="padding-left:20px">Utang Usaha</td><td>${fmt(data.utang)}</td></tr>
+      <tr><td style="padding-left:20px">Modal Akhir</td><td>${fmt(modalAkhir)}</td></tr>
+      <tr class="total"><td><strong>Total Kewajiban + Ekuitas</strong></td><td><strong>${fmt(totalKanan)}</strong></td></tr>
     </table>
     <div class="grand" style="background:${seimbang ? 'var(--success)' : 'var(--danger)'}; color:${seimbang ? '#064e3b' : 'white'}">
       ${seimbang ? '✅ TOTAL ASET = TOTAL KEWAJIBAN + EKUITAS (Rp 6.100.000)' : '❌ NERACA TIDAK SEIMBANG'}
@@ -374,7 +365,6 @@ function renderNeraca(){
   `;
 }
 
-// Inisialisasi tampilan awal
 renderAll();
 </script>
 </body>
