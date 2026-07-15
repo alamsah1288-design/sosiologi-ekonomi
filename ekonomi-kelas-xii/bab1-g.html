@@ -215,23 +215,23 @@ Kamu akan melihat bagaimana <strong>9 transaksi nyata</strong> berubah menjadi <
 <footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
 
 <script>
-// Data state diperluas agar laporan lebih detail dan tidak ambigu
+// DATA DISINKRONKAN 100% DENGAN BAB 1E DAN 1F 
+// Agar siswa tidak bingung dengan perubahan angka
 let data = {
   kas: 0, perleng: 0, peralatan: 0, piutang: 0, 
-  utang: 0, modal: 0, pendapatan: 0, 
-  bebanGaji: 0, bebanListrik: 0, prive: 0
+  utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0
 };
 
+// 8 Transaksi yang SAMA PERSIS dengan Bab 1E dan 1F
 const transactions = [
   {no:1, tgl:'01 Jan', ket:'Andi menyetor uang tunai sebagai modal', kas:5000000, modal:5000000},
   {no:2, tgl:'03 Jan', ket:'Membeli peralatan laundry tunai', kas:-1500000, peralatan:1500000},
   {no:3, tgl:'05 Jan', ket:'Membeli perlengkapan secara kredit', perleng:500000, utang:500000},
-  {no:4, tgl:'10 Jan', ket:'Menerima pendapatan jasa laundry tunai', kas:2000000, pendapatan:2000000},
-  {no:5, tgl:'15 Jan', ket:'Menerima pendapatan jasa secara kredit', piutang:1000000, pendapatan:1000000},
-  {no:6, tgl:'20 Jan', ket:'Membayar beban gaji karyawan', kas:-800000, bebanGaji:800000},
-  {no:7, tgl:'22 Jan', ket:'Membayar beban listrik dan air', kas:-200000, bebanListrik:200000},
-  {no:8, tgl:'25 Jan', ket:'Membayar sebagian utang usaha', kas:-200000, utang:-200000},
-  {no:9, tgl:'30 Jan', ket:'Andi mengambil uang untuk pribadi (prive)', kas:-100000, prive:100000}
+  {no:4, tgl:'10 Jan', ket:'Menerima pendapatan jasa laundry tunai', kas:800000, pendapatan:800000},
+  {no:5, tgl:'15 Jan', ket:'Menerima pendapatan jasa secara kredit', piutang:300000, pendapatan:300000},
+  {no:6, tgl:'20 Jan', ket:'Membayar beban listrik dan air', kas:-200000, beban:200000},
+  {no:7, tgl:'25 Jan', ket:'Membayar sebagian utang usaha', kas:-200000, utang:-200000},
+  {no:8, tgl:'30 Jan', ket:'Andi mengambil uang untuk pribadi (prive)', kas:-100000, prive:100000}
 ];
 
 function fmt(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
@@ -244,7 +244,7 @@ function showPanel(id, btn){
 }
 
 function loadFullExample(){
-  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, bebanGaji:0, bebanListrik:0, prive:0};
+  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, beban:0, prive:0};
   transactions.forEach(t => {
     Object.keys(t).forEach(k => {
       if(data.hasOwnProperty(k)) data[k] += t[k];
@@ -254,7 +254,7 @@ function loadFullExample(){
 }
 
 function resetAll(){
-  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, bebanGaji:0, bebanListrik:0, prive:0};
+  data = {kas:0, perleng:0, peralatan:0, piutang:0, utang:0, modal:0, pendapatan:0, beban:0, prive:0};
   renderAll();
 }
 
@@ -283,8 +283,7 @@ function renderTrans(){
 
 function renderEquation(){
   const harta = data.kas + data.perleng + data.peralatan + data.piutang;
-  const totalBeban = data.bebanGaji + data.bebanListrik;
-  const modalAkhir = data.modal + data.pendapatan - totalBeban - data.prive;
+  const modalAkhir = data.modal + data.pendapatan - data.beban - data.prive;
   const kanan = data.utang + modalAkhir;
   const seimbang = (harta === kanan);
   
@@ -300,14 +299,13 @@ function renderEquation(){
     <tr style="background:#fef3c7;font-weight:700"><td style="padding:10px">TOTAL UTANG + MODAL</td><td style="padding:10px;text-align:right">${fmt(kanan)}</td></tr>
     <tr style="background:${seimbang ? '#d1fae5' : '#fee2e2'}; font-weight:700; color:${seimbang ? '#065f46' : '#991b1b'}">
       <td style="padding:10px">STATUS PERSAMAAN</td>
-      <td style="padding:10px;text-align:right">${seimbang ? '✅ SEIMBANG' : '❌ TIDAK SEIMBANG'}</td>
+      <td style="padding:10px;text-align:right">${seimbang ? '✅ SEIMBANG (Rp 6.100.000)' : '❌ TIDAK SEIMBANG'}</td>
     </tr>
   `;
 }
 
 function renderLabaRugi(){
-  const totalBeban = data.bebanGaji + data.bebanListrik;
-  const laba = data.pendapatan - totalBeban;
+  const laba = data.pendapatan - data.beban;
   const el = document.getElementById('reportLR');
   const kelas = laba >= 0 ? 'laba' : 'rugi';
   const label = laba >= 0 ? 'LABA BERSIH' : 'RUGI BERSIH';
@@ -318,9 +316,8 @@ function renderLabaRugi(){
     <table>
       <tr><td><strong>Pendapatan Jasa</strong></td><td style="text-align:right">${fmt(data.pendapatan)}</td></tr>
       <tr><td colspan="2" style="padding-top:10px"><strong>Beban-beban:</strong></td></tr>
-      <tr><td style="padding-left:20px">Beban Gaji</td><td style="text-align:right">${fmt(data.bebanGaji)}</td></tr>
-      <tr><td style="padding-left:20px">Beban Listrik dan Air</td><td style="text-align:right">${fmt(data.bebanListrik)}</td></tr>
-      <tr class="total"><td><strong>Total Beban</strong></td><td style="text-align:right">${fmt(totalBeban)}</td></tr>
+      <tr><td style="padding-left:20px">Beban Listrik dan Air</td><td style="text-align:right">${fmt(data.beban)}</td></tr>
+      <tr class="total"><td><strong>Total Beban</strong></td><td style="text-align:right">${fmt(data.beban)}</td></tr>
       <tr><td colspan="2" style="padding:10px 0"></td></tr>
     </table>
     <div class="grand ${kelas}">${label}: ${fmt(laba)}</div>
@@ -328,8 +325,7 @@ function renderLabaRugi(){
 }
 
 function renderPerubahanModal(){
-  const totalBeban = data.bebanGaji + data.bebanListrik;
-  const laba = data.pendapatan - totalBeban;
+  const laba = data.pendapatan - data.beban;
   const modalAkhir = data.modal + laba - data.prive;
   const el = document.getElementById('reportModal');
   
@@ -348,8 +344,7 @@ function renderPerubahanModal(){
 }
 
 function renderNeraca(){
-  const totalBeban = data.bebanGaji + data.bebanListrik;
-  const laba = data.pendapatan - totalBeban;
+  const laba = data.pendapatan - data.beban;
   const modalAkhir = data.modal + laba - data.prive;
   const harta = data.kas + data.perleng + data.peralatan + data.piutang;
   const totalKanan = data.utang + modalAkhir;
@@ -374,7 +369,7 @@ function renderNeraca(){
       <tr class="total"><td><strong>Total Kewajiban + Ekuitas</strong></td><td style="text-align:right">${fmt(totalKanan)}</td></tr>
     </table>
     <div class="grand" style="background:${seimbang ? 'var(--success)' : 'var(--danger)'}; color:${seimbang ? '#064e3b' : 'white'}">
-      ${seimbang ? '✅ TOTAL ASET = TOTAL KEWAJIBAN + EKUITAS' : '❌ NERACA TIDAK SEIMBANG'}
+      ${seimbang ? '✅ TOTAL ASET = TOTAL KEWAJIBAN + EKUITAS (Rp 6.100.000)' : '❌ NERACA TIDAK SEIMBANG'}
     </div>
   `;
 }
