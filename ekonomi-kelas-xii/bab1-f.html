@@ -181,8 +181,7 @@
             margin-bottom: 8px;
             font-size: .85rem;
         }
-        ul,
-        ol {
+        ul, ol {
             margin: 10px 0 15px 25px;
         }
         li {
@@ -225,8 +224,7 @@
             margin-bottom: 8px;
             font-weight: 500;
         }
-        .sim-controls select,
-        .sim-controls input {
+        .sim-controls select, .sim-controls input {
             width: 100%;
             padding: 10px;
             border-radius: 8px;
@@ -309,9 +307,13 @@
         }
         .sim-table .bg-change {
             background: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
         }
         .sim-table .bg-change-neg {
             background: #fee2e2;
+            color: #991b1b;
+            font-weight: 600;
         }
         .balance-status {
             padding: 12px;
@@ -349,13 +351,15 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .transaction-item .badge {
             background: rgba(255, 255, 255, .25);
-            padding: 0 10px;
+            padding: 2px 10px;
             border-radius: 20px;
-            font-size: .7rem;
+            font-size: .75rem;
             white-space: nowrap;
+            font-weight: 600;
         }
         .table-wrap {
             overflow-x: auto;
@@ -413,13 +417,6 @@
             font-weight: 700;
             color: var(--primary);
         }
-        .report-card .grand-total {
-            background: var(--primary);
-            color: white;
-            padding: 6px 10px;
-            font-weight: 700;
-            border-radius: 4px;
-        }
         .report-card ul {
             margin: 5px 0 5px 20px;
             font-size: .85rem;
@@ -466,34 +463,14 @@
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.4rem;
-            }
-            .card {
-                padding: 20px;
-            }
-            .sim-table {
-                font-size: .68rem;
-            }
-            .sim-table th,
-            .sim-table td {
-                padding: 4px 3px;
-            }
-            .sim-table .desc {
-                max-width: 80px;
-            }
-            .sim-btn {
-                padding: 8px 16px;
-                font-size: .8rem;
-                margin-right: 4px;
-                margin-top: 6px;
-            }
-            .sim-controls {
-                padding: 12px;
-            }
-            .report-grid {
-                grid-template-columns: 1fr;
-            }
+            h1 { font-size: 1.4rem; }
+            .card { padding: 20px; }
+            .sim-table { font-size: .68rem; }
+            .sim-table th, .sim-table td { padding: 4px 3px; }
+            .sim-table .desc { max-width: 80px; }
+            .sim-btn { padding: 8px 16px; font-size: .8rem; margin-right: 4px; margin-top: 6px; }
+            .sim-controls { padding: 12px; }
+            .report-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -532,7 +509,6 @@
         <div class="card">
             <h2><i class="fas fa-layer-group"></i> 5 Jenis Laporan Keuangan</h2>
 
-            <!-- Laba Rugi -->
             <div class="report-card">
                 <div class="header-report">
                     <strong>1. LAPORAN LABA RUGI</strong>
@@ -542,19 +518,8 @@
                 <p>Menyajikan <strong>pendapatan dan beban</strong> selama periode tertentu untuk mengetahui laba/rugi.</p>
                 <h4>📐 Rumus:</h4>
                 <div class="highlight-box" style="text-align:center"><strong>LABA = PENDAPATAN − BEBAN</strong></div>
-                <h4>📋 Contoh:</h4>
-                <table>
-                    <tr><td>Pendapatan Jasa</td><td>Rp 3.000.000</td></tr>
-                    <tr><td><strong>Beban:</strong></td><td></td></tr>
-                    <tr><td style="padding-left:20px">Beban Gaji</td><td>Rp 800.000</td></tr>
-                    <tr><td style="padding-left:20px">Beban Listrik</td><td>Rp 200.000</td></tr>
-                    <tr><td style="padding-left:20px">Beban Perlengkapan</td><td>Rp 150.000</td></tr>
-                    <tr><td><strong>Total Beban</strong></td><td>Rp 1.150.000</td></tr>
-                    <tr class="total"><td><strong>LABA BERSIH</strong></td><td><strong>Rp 1.850.000</strong></td></tr>
-                </table>
             </div>
 
-            <!-- Perubahan Modal -->
             <div class="report-card">
                 <div class="header-report">
                     <strong>2. LAPORAN PERUBAHAN MODAL</strong>
@@ -564,16 +529,8 @@
                 <p>Menyajikan <strong>perubahan modal</strong> selama periode tertentu.</p>
                 <h4>📐 Rumus:</h4>
                 <div class="highlight-box" style="text-align:center"><strong>MODAL AKHIR = MODAL AWAL + LABA − PRIVE</strong></div>
-                <h4>📋 Contoh:</h4>
-                <table>
-                    <tr><td>Modal Awal 1 Januari 2025</td><td>Rp 5.000.000</td></tr>
-                    <tr><td>Ditambah: Laba Bersih</td><td>Rp 1.850.000</td></tr>
-                    <tr><td>Dikurangi: Prive</td><td>(Rp 100.000)</td></tr>
-                    <tr class="total"><td><strong>Modal Akhir 31 Januari 2025</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-                </table>
             </div>
 
-            <!-- Neraca -->
             <div class="report-card">
                 <div class="header-report">
                     <strong>3. LAPORAN POSISI KEUANGAN (NERACA)</strong>
@@ -583,35 +540,15 @@
                 <p>Menyajikan posisi <strong>Harta, Utang, dan Modal</strong> pada tanggal tertentu.</p>
                 <h4>📐 Rumus:</h4>
                 <div class="highlight-box" style="text-align:center"><strong>HARTA = UTANG + MODAL</strong></div>
-                <h4>📋 Contoh:</h4>
-                <table>
-                    <tr><td><strong>HARTA:</strong></td><td></td></tr>
-                    <tr><td style="padding-left:20px">Kas</td><td>Rp 4.300.000</td></tr>
-                    <tr><td style="padding-left:20px">Perlengkapan</td><td>Rp 350.000</td></tr>
-                    <tr><td style="padding-left:20px">Peralatan</td><td>Rp 1.500.000</td></tr>
-                    <tr><td style="padding-left:20px">Piutang</td><td>Rp 600.000</td></tr>
-                    <tr class="total"><td><strong>Total Harta</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-                    <tr><td><strong>UTANG & MODAL:</strong></td><td></td></tr>
-                    <tr><td style="padding-left:20px">Utang Usaha</td><td>Rp 300.000</td></tr>
-                    <tr><td style="padding-left:20px">Modal</td><td>Rp 6.450.000</td></tr>
-                    <tr class="total"><td><strong>Total Utang + Modal</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-                </table>
             </div>
 
-            <!-- Arus Kas & CaLK -->
             <div class="report-card">
                 <div class="header-report">
                     <strong>4. LAPORAN ARUS KAS</strong>
                     <small>(Cash Flow Statement)</small>
                 </div>
                 <h4>📝 Fungsi:</h4>
-                <p>Menyajikan <strong>aliran kas masuk dan keluar</strong> selama periode tertentu.</p>
-                <h4>📊 3 Aktivitas:</h4>
-                <ul>
-                    <li><strong>Operasi</strong> — kas dari kegiatan utama (pendapatan, beban)</li>
-                    <li><strong>Investasi</strong> — kas dari pembelian/penjualan aset tetap</li>
-                    <li><strong>Pendanaan</strong> — kas dari modal, utang, prive</li>
-                </ul>
+                <p>Menyajikan <strong>aliran kas masuk dan keluar</strong> selama periode tertentu (Aktivitas Operasi, Investasi, dan Pendanaan).</p>
             </div>
 
             <div class="report-card">
@@ -620,7 +557,7 @@
                     <small>(Notes to Financial Statements)</small>
                 </div>
                 <h4>📝 Fungsi:</h4>
-                <p>Memberikan <strong>informasi tambahan</strong> dan penjelasan rinci atas angka-angka dalam laporan keuangan. Misalnya: kebijakan akuntansi yang digunakan, rincian aset tetap, dll.</p>
+                <p>Memberikan <strong>informasi tambahan</strong> dan penjelasan rinci atas angka-angka dalam laporan keuangan.</p>
             </div>
         </div>
 
@@ -629,21 +566,21 @@
             <h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR + LAPORAN KEUANGAN</h2>
             <div class="sim-intro">
                 <strong>Selamat datang di Simulator terintegrasi!</strong> 🎉<br />
-                Masukkan transaksi seperti pada Bab 1.E, lalu klik <strong>"Tampilkan Laporan"</strong> untuk melihat laporan laba rugi, perubahan modal, dan neraca secara otomatis berdasarkan data yang Anda buat.
+                Pilih transaksi di bawah ini. Perhatikan petunjuk <strong>(Harta +, Modal +)</strong> untuk memahami pengaruhnya terhadap persamaan akuntansi. Setelah itu, klik <strong>"Tampilkan Laporan"</strong>.
             </div>
 
             <div class="sim-controls">
                 <label>📋 Pilih Transaksi:</label>
                 <select id="transactionSelect">
                     <option value="">-- Pilih transaksi --</option>
-                    <option value="1">1. Setor modal tunai Rp 5.000.000</option>
-                    <option value="2">2. Beli peralatan tunai Rp 1.500.000</option>
-                    <option value="3">3. Beli perlengkapan kredit Rp 500.000</option>
-                    <option value="4">4. Pendapatan jasa tunai Rp 800.000</option>
-                    <option value="5">5. Bayar beban listrik Rp 200.000</option>
-                    <option value="6">6. Terima piutang Rp 300.000</option>
-                    <option value="7">7. Bayar sebagian utang Rp 200.000</option>
-                    <option value="8">8. Prive pemilik Rp 100.000</option>
+                    <option value="1">1. Setor modal tunai Rp 5.000.000 (Kas +, Modal +)</option>
+                    <option value="2">2. Beli peralatan tunai Rp 1.500.000 (Kas -, Peralatan +)</option>
+                    <option value="3">3. Beli perlengkapan secara kredit Rp 500.000 (Perlengkapan +, Utang +)</option>
+                    <option value="4">4. Pendapatan jasa tunai Rp 800.000 (Kas +, Pendapatan +)</option>
+                    <option value="5">5. Bayar beban listrik Rp 200.000 (Kas -, Beban +)</option>
+                    <option value="6">6. Pendapatan jasa secara kredit Rp 300.000 (Piutang +, Pendapatan +)</option>
+                    <option value="7">7. Bayar sebagian utang Rp 200.000 (Kas -, Utang -)</option>
+                    <option value="8">8. Prive pemilik Rp 100.000 (Kas -, Prive +)</option>
                 </select>
 
                 <button class="sim-btn" onclick="addTransaction()"><i class="fas fa-plus"></i> Tambah Transaksi</button>
@@ -670,9 +607,7 @@
                             <th style="background:#7c2d12;">Prive</th>
                         </tr>
                     </thead>
-                    <tbody id="simBody">
-                        <!-- rows by JS -->
-                    </tbody>
+                    <tbody id="simBody"></tbody>
                     <tfoot id="simFoot"></tfoot>
                 </table>
             </div>
@@ -719,7 +654,7 @@
 
     <script>
         // ============================================================
-        //  DATA TRANSAKSI (sama dengan Bab 1.E)
+        //  DATA TRANSAKSI (Disinkronkan agar tidak ambigu/negatif palsu)
         // ============================================================
         const transData = {
             1: { desc: "Setor modal tunai", kas: 5000000, modal: 5000000 },
@@ -727,9 +662,15 @@
             3: { desc: "Beli perlengkapan kredit", perleng: 500000, utang: 500000 },
             4: { desc: "Pendapatan jasa tunai", kas: 800000, pendapatan: 800000 },
             5: { desc: "Bayar beban listrik", kas: -200000, beban: 200000 },
-            6: { desc: "Terima piutang", kas: 300000, piutang: -300000 },
+            6: { desc: "Pendapatan jasa secara kredit", piutang: 300000, pendapatan: 300000 }, // DIPERBAIKI: Bukan "Terima piutang" agar tidak minus
             7: { desc: "Bayar sebagian utang", kas: -200000, utang: -200000 },
             8: { desc: "Prive pemilik", kas: -100000, prive: 100000 }
+        };
+
+        // Pemetaan nama variabel ke istilah akuntansi yang ramah siswa
+        const accountNames = {
+            kas: 'Kas', perleng: 'Perleng.', peralatan: 'Peralatan', piutang: 'Piutang',
+            utang: 'Utang', modal: 'Modal', pendapatan: 'Pendapatan', beban: 'Beban', prive: 'Prive'
         };
 
         // ============================================================
@@ -737,15 +678,8 @@
         // ============================================================
         let transactions = [];
         let running = {
-            kas: 0,
-            perleng: 0,
-            peralatan: 0,
-            piutang: 0,
-            utang: 0,
-            modal: 0,
-            pendapatan: 0,
-            beban: 0,
-            prive: 0
+            kas: 0, perleng: 0, peralatan: 0, piutang: 0, 
+            utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0
         };
 
         // ============================================================
@@ -802,9 +736,7 @@
                         }
                     });
 
-                    const keys = ['kas', 'perleng', 'peralatan', 'piutang', 'utang', 'modal', 'pendapatan', 'beban',
-                        'prive'
-                    ];
+                    const keys = ['kas', 'perleng', 'peralatan', 'piutang', 'utang', 'modal', 'pendapatan', 'beban', 'prive'];
                     let cells = keys.map(k => {
                         let val = cum[k];
                         let change = d[k] || 0;
@@ -843,7 +775,7 @@
             <tr style="background:#f1f5f9;font-size:.75rem;">
                 <td colspan="2"><strong>VERIFIKASI</strong></td>
                 <td colspan="4" style="text-align:right;"><strong>HARTA = ${fmt(a)}</strong></td>
-                <td colspan="5" style="text-align:left;"><strong>UTANG+MODAL+PEND−BEBAN−PRIVE = ${fmt(e)}</strong> &nbsp; ${bal ? '✅' : '❌'} ${!bal ? `(selisih ${fmt(diffVal)})` : ''}</td>
+                <td colspan="5" style="text-align:left;"><strong>UTANG+MODAL+PEND−BEBAN−PRIVE = ${fmt(e)}</strong> &nbsp; ${bal ? '✅' : '❌'} ${!bal ? `(selisih ${fmt(Math.abs(diffVal))})` : ''}</td>
             </tr>`;
 
             tbody.innerHTML = html;
@@ -854,19 +786,17 @@
                 status.innerHTML = '✅ <strong>SEIMBANG!</strong> Harta = Utang + Modal + (Pendapatan − Beban − Prive)';
             } else {
                 status.className = 'balance-status error';
-                status.innerHTML =
-                    `❌ <strong>TIDAK SEIMBANG!</strong> Selisih Rp ${fmt(Math.abs(diffVal))}. Periksa kembali pencatatan!`;
+                status.innerHTML = `❌ <strong>TIDAK SEIMBANG!</strong> Selisih Rp ${fmt(Math.abs(diffVal))}. Periksa kembali pencatatan!`;
             }
 
             if (transactions.length === 0) {
-                list.innerHTML =
-                    `<h4>📜 Riwayat Transaksi:</h4><p style="opacity:.7;font-style:italic">Belum ada transaksi. Pilih transaksi di atas untuk mulai!</p>`;
+                list.innerHTML = `<h4>📜 Riwayat Transaksi:</h4><p style="opacity:.7;font-style:italic">Belum ada transaksi. Pilih transaksi di atas untuk mulai!</p>`;
             } else {
                 let items = transactions.map((t, i) => {
                     let effects = Object.keys(t.data)
                         .filter(k => k !== 'desc' && t.data[k] !== 0)
-                        .map(k => `${k}: ${t.data[k] > 0 ? '+' : ''}${fmt(t.data[k])}`)
-                        .join(' ');
+                        .map(k => `${accountNames[k]}: ${t.data[k] > 0 ? '+' : ''}${fmt(t.data[k])}`)
+                        .join(' | ');
                     return `<div class="transaction-item">
                         <span><strong>#${i+1}</strong> ${t.desc}</span>
                         <span class="badge">${effects}</span>
@@ -876,7 +806,6 @@
                 list.scrollTop = list.scrollHeight;
             }
 
-            // Sembunyikan laporan jika tidak ada transaksi
             if (transactions.length === 0) {
                 document.getElementById('reportContent').innerHTML =
                     `<div class="report-placeholder">💡 Tambahkan transaksi lalu klik "Tampilkan Laporan" untuk melihat laporan keuangan.</div>`;
@@ -924,8 +853,7 @@
 
         function resetSim() {
             transactions = [];
-            running = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0,
-                prive: 0 };
+            running = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
             render();
             document.getElementById('reportContent').innerHTML =
                 `<div class="report-placeholder">💡 Tambahkan transaksi lalu klik "Tampilkan Laporan" untuk melihat laporan keuangan.</div>`;
@@ -938,20 +866,15 @@
             const container = document.getElementById('reportContent');
 
             if (transactions.length === 0) {
-                container.innerHTML =
-                    `<div class="report-placeholder">⚠️ Belum ada transaksi. Masukkan transaksi terlebih dahulu!</div>`;
+                container.innerHTML = `<div class="report-placeholder">⚠️ Belum ada transaksi. Masukkan transaksi terlebih dahulu!</div>`;
                 return;
             }
 
-            // Hitung laba
             const laba = running.pendapatan - running.beban;
-            const modalAwal = running.modal; // modal yang disetor (belum termasuk laba)
+            const modalAwal = running.modal; 
             const modalAkhir = modalAwal + laba - running.prive;
-
-            // Aset
             const totalAset = sumAsset();
             const totalUtang = running.utang;
-            // verifikasi: totalAset === totalUtang + modalAkhir (seharusnya)
 
             // --- Laporan Laba Rugi ---
             let labaRugiHtml = `
@@ -1005,7 +928,7 @@
                         <tr><td style="padding-left:20px;">Modal</td><td>Rp ${fmt(modalAkhir)}</td></tr>
                         <tr class="total"><td><strong>Total Utang + Modal</strong></td><td><strong>Rp ${fmt(totalUtang + modalAkhir)}</strong></td></tr>
                     </table>
-                    ${totalAset === (totalUtang + modalAkhir) ? '<p style="text-align:center;color:green;margin-top:6px;">✅ SEIMBANG</p>' : '<p style="text-align:center;color:red;margin-top:6px;">❌ TIDAK SEIMBANG</p>'}
+                    ${totalAset === (totalUtang + modalAkhir) ? '<p style="text-align:center;color:#065f46;margin-top:8px;font-weight:600;">✅ NERACA SEIMBANG</p>' : '<p style="text-align:center;color:#991b1b;margin-top:8px;font-weight:600;">❌ NERACA TIDAK SEIMBANG</p>'}
                 </div>
             `;
 
@@ -1017,12 +940,12 @@
                     ${neracaHtml}
                     <div class="report-card" style="grid-column:1/-1;">
                         <div class="header-report">
-                            <strong>📌 CATATAN</strong>
+                            <strong>📌 CATATAN ANALISIS</strong>
                         </div>
                         <ul>
-                            <li><strong>Laba bersih</strong> Rp ${fmt(laba)} menambah modal.</li>
-                            <li><strong>Prive</strong> Rp ${fmt(running.prive)} mengurangi modal.</li>
-                            <li><strong>Total Aset</strong> Rp ${fmt(totalAset)} = <strong>Total Utang + Modal</strong> Rp ${fmt(totalUtang + modalAkhir)} ${totalAset === (totalUtang + modalAkhir) ? '✅' : '❌'}</li>
+                            <li><strong>Laba bersih</strong> sebesar Rp ${fmt(laba)} akan menambah posisi Modal.</li>
+                            <li><strong>Prive</strong> sebesar Rp ${fmt(running.prive)} mengurangi posisi Modal.</li>
+                            <li><strong>Total Aset</strong> (Rp ${fmt(totalAset)}) <strong>sama dengan</strong> <strong>Total Utang + Modal</strong> (Rp ${fmt(totalUtang + modalAkhir)}). ${totalAset === (totalUtang + modalAkhir) ? '✅' : '❌'}</li>
                         </ul>
                     </div>
                 </div>
@@ -1030,7 +953,7 @@
         }
 
         // ============================================================
-        //  KEYBOARD SHORTCUT
+        //  KEYBOARD SHORTCUT & INIT
         // ============================================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && document.activeElement === document.getElementById('transactionSelect')) {
@@ -1039,9 +962,6 @@
             }
         });
 
-        // ============================================================
-        //  INIT
-        // ============================================================
         render();
     </script>
 
