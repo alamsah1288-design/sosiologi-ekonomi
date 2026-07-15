@@ -1,196 +1,1049 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bab 1.F — Laporan Keuangan | Ekonomi XII</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d;--border-radius:12px;--shadow:0 10px 30px rgba(0,0,0,0.08)}
-.dark-mode{--light:#1a1a1a;--dark:#f8f9fa;--gray:#a0aec0}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.7}
-body.dark-mode{background:linear-gradient(135deg,#121212,#1e1e1e)}
-.navbar{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;height:70px}
-.navbar-brand{font-weight:700;text-decoration:none;color:white;display:flex;align-items:center;gap:8px}
-.navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
-.theme-toggle{background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;width:40px;height:40px;border-radius:50%}
-header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:white;padding:3rem 1rem 2rem;text-align:center}
-.header-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid rgba(255,255,255,.3)}
-.header-icon i{font-size:2.2rem;color:white}
-h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
-.subtitle{opacity:.9;font-size:1rem}
-.container{max-width:1000px;margin:30px auto;padding:0 20px}
-.breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
-.breadcrumb a{color:var(--primary);text-decoration:none}
-.card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
-body.dark-mode .card{background:#2d2d2d}
-.card h2{color:var(--primary);font-size:1.4rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
-.card h3{color:var(--secondary);font-size:1.15rem;margin:20px 0 10px;border-bottom:2px solid var(--accent);padding-bottom:5px}
-body.dark-mode .card h3{color:var(--accent)}
-.card p{margin-bottom:12px;text-align:justify}
-.highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
-body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
-.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
-body.dark-mode .example-box{background:rgba(251,191,36,.1)}
-.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
-ul,ol{margin:10px 0 15px 25px}
-li{margin-bottom:8px}
-.report-card{background:white;padding:20px;border-radius:10px;margin:15px 0;border:2px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.05)}
-body.dark-mode .report-card{background:#1e1e1e}
-.report-card h4{color:var(--primary);margin-bottom:10px;font-size:1.05rem}
-.report-card .header-report{text-align:center;border-bottom:2px double var(--primary);padding-bottom:10px;margin-bottom:15px}
-.report-card .header-report strong{display:block;font-size:1.1rem;color:var(--primary)}
-.report-card .header-report small{color:var(--gray)}
-.report-card table{width:100%;border-collapse:collapse}
-.report-card td{padding:6px 10px}
-.report-card td:last-child{text-align:right;font-weight:500}
-.report-card .total{border-top:2px solid var(--primary);font-weight:700;color:var(--primary)}
-.report-card .grand-total{background:var(--primary);color:white;padding:8px 10px;font-weight:700}
-.nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
-.nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
-.nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
-footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
-@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bab 1.F — Laporan Keuangan + Simulator | Ekonomi XII</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ===== GLOBAL ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .dark-mode {
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #e4e9f2);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+        }
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: .8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, .3);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+        }
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 3px solid rgba(255, 255, 255, .3);
+        }
+        .header-icon i {
+            font-size: 2.2rem;
+            color: white;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+        }
+        .subtitle {
+            opacity: .9;
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: .9rem;
+            color: var(--gray);
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+        body.dark-mode .card {
+            background: #2d2d2d;
+        }
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h3 {
+            color: var(--secondary);
+            font-size: 1.15rem;
+            margin: 20px 0 10px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+        body.dark-mode .card h3 {
+            color: var(--accent);
+        }
+        .card p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e0e7ff, #f0f4ff);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        body.dark-mode .highlight-box {
+            background: rgba(67, 97, 238, .1);
+        }
+        .example-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        body.dark-mode .example-box {
+            background: rgba(251, 191, 36, .1);
+        }
+        .example-box::before {
+            content: "💡 CONTOH NYATA";
+            display: block;
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 8px;
+            font-size: .85rem;
+        }
+        ul,
+        ol {
+            margin: 10px 0 15px 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* ===== SIMULATOR ===== */
+        .simulator {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            margin: 25px 0;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, .3);
+        }
+        .simulator h2 {
+            color: white !important;
+            border-bottom: 2px solid rgba(255, 255, 255, .3);
+            padding-bottom: 10px;
+        }
+        .simulator h3 {
+            color: #fef3c7 !important;
+            border-bottom: none;
+        }
+        .sim-intro {
+            background: rgba(255, 255, 255, .15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .sim-controls {
+            background: rgba(255, 255, 255, .1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .sim-controls label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .sim-controls select,
+        .sim-controls input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 10px;
+            font-size: .95rem;
+        }
+        .sim-btn {
+            background: var(--success);
+            color: #064e3b;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: .95rem;
+            transition: .3s;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .sim-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+        }
+        .sim-btn.reset {
+            background: var(--danger);
+            color: white;
+        }
+        .sim-btn.example {
+            background: var(--warning);
+            color: #78350f;
+        }
+        .sim-btn.report {
+            background: #0ea5e9;
+            color: white;
+        }
+        .sim-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            color: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+            font-size: .82rem;
+        }
+        .sim-table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 6px;
+            text-align: center;
+            font-size: .8rem;
+            white-space: nowrap;
+        }
+        .sim-table td {
+            padding: 8px 6px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: .8rem;
+        }
+        .sim-table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        .sim-table .desc {
+            text-align: left;
+            font-style: italic;
+            max-width: 140px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sim-table .row-total {
+            font-weight: 600;
+            background: #e0e7ff !important;
+        }
+        .sim-table .row-total td {
+            border-top: 2px solid var(--primary);
+        }
+        .sim-table .bg-change {
+            background: #dbeafe;
+        }
+        .sim-table .bg-change-neg {
+            background: #fee2e2;
+        }
+        .balance-status {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .balance-status.ok {
+            background: var(--success);
+            color: #064e3b;
+        }
+        .balance-status.error {
+            background: var(--danger);
+            color: white;
+        }
+        .transaction-list {
+            background: rgba(255, 255, 255, .1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .transaction-list h4 {
+            margin-bottom: 10px;
+        }
+        .transaction-item {
+            background: rgba(255, 255, 255, .15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin: 4px 0;
+            font-size: .82rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .transaction-item .badge {
+            background: rgba(255, 255, 255, .25);
+            padding: 0 10px;
+            border-radius: 20px;
+            font-size: .7rem;
+            white-space: nowrap;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        /* ===== LAPORAN KEUANGAN ===== */
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .report-card {
+            background: white;
+            padding: 18px 20px;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+            color: var(--dark);
+            font-size: .9rem;
+        }
+        body.dark-mode .report-card {
+            background: #1e1e1e;
+        }
+        .report-card .header-report {
+            text-align: center;
+            border-bottom: 2px double var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .report-card .header-report strong {
+            display: block;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+        .report-card .header-report small {
+            color: var(--gray);
+            font-size: .75rem;
+        }
+        .report-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .report-card td {
+            padding: 4px 8px;
+            font-size: .85rem;
+        }
+        .report-card td:last-child {
+            text-align: right;
+            font-weight: 500;
+        }
+        .report-card .total {
+            border-top: 2px solid var(--primary);
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .report-card .grand-total {
+            background: var(--primary);
+            color: white;
+            padding: 6px 10px;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+        .report-card ul {
+            margin: 5px 0 5px 20px;
+            font-size: .85rem;
+        }
+        .report-card ul li {
+            margin-bottom: 4px;
+        }
+        .report-placeholder {
+            text-align: center;
+            padding: 20px;
+            opacity: .6;
+            font-style: italic;
+        }
+
+        .nav-bab {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav-bab a {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-bab a:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            .card {
+                padding: 20px;
+            }
+            .sim-table {
+                font-size: .68rem;
+            }
+            .sim-table th,
+            .sim-table td {
+                padding: 4px 3px;
+            }
+            .sim-table .desc {
+                max-width: 80px;
+            }
+            .sim-btn {
+                padding: 8px 16px;
+                font-size: .8rem;
+                margin-right: 4px;
+                margin-top: 6px;
+            }
+            .sim-controls {
+                padding: 12px;
+            }
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar">
-<a href="../ekonomi-kelas-xii.html" class="navbar-brand">
-<img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
-<span>SMAN 1 Cluring</span>
-</a>
-<button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
-</nav>
 
-<header>
-<div class="header-icon"><i class="fas fa-file-invoice"></i></div>
-<h1>Bab 1.F — Laporan Keuangan</h1>
-<p class="subtitle">Output akhir dari proses akuntansi</p>
-</header>
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo" />
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode');this.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙'">🌙</button>
+    </nav>
 
-<div class="container">
-<div class="breadcrumb">
-<a href="../ekonomi-kelas-xii.html"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="../ekonomi-kelas-xii.html#semester1">Semester 1</a> › Bab 1.F
-</div>
+    <header>
+        <div class="header-icon"><i class="fas fa-file-invoice"></i></div>
+        <h1>Bab 1.F — Laporan Keuangan</h1>
+        <p class="subtitle">Output akhir dari proses akuntansi + Simulator terintegrasi</p>
+    </header>
 
-<div class="card">
-<h2><i class="fas fa-file-alt"></i> Pengertian Laporan Keuangan</h2>
-<p><strong>Laporan keuangan</strong> adalah hasil akhir dari proses akuntansi yang menyajikan informasi keuangan perusahaan pada periode tertentu.</p>
+    <div class="container">
 
-<div class="highlight-box">
-<strong>📊 Tujuan Laporan Keuangan:</strong><br>
-Memberikan informasi yang <strong>relevan, dapat dipercaya, dan dapat dibandingkan</strong> untuk pengambilan keputusan ekonomi.
-</div>
-</div>
+        <div class="breadcrumb">
+            <a href="#"><i class="fas fa-home"></i> Ekonomi XII</a> › <a href="#">Semester 1</a> › Bab 1.F
+        </div>
 
-<div class="card">
-<h2><i class="fas fa-layer-group"></i> 5 Jenis Laporan Keuangan</h2>
+        <!-- ===== MATERI ===== -->
+        <div class="card">
+            <h2><i class="fas fa-file-alt"></i> Pengertian Laporan Keuangan</h2>
+            <p><strong>Laporan keuangan</strong> adalah hasil akhir dari proses akuntansi yang menyajikan informasi keuangan perusahaan pada periode tertentu.</p>
+            <div class="highlight-box">
+                <strong>📊 Tujuan Laporan Keuangan:</strong><br />
+                Memberikan informasi yang <strong>relevan, dapat dipercaya, dan dapat dibandingkan</strong> untuk pengambilan keputusan ekonomi.
+            </div>
+        </div>
 
-<div class="report-card">
-<div class="header-report">
-<strong>1. LAPORAN LABA RUGI</strong>
-<small>(Income Statement)</small>
-</div>
-<h4>📝 Fungsi:</h4>
-<p>Menyajikan <strong>pendapatan dan beban</strong> selama periode tertentu untuk mengetahui laba/rugi.</p>
-<h4>📐 Rumus:</h4>
-<div class="highlight-box" style="text-align:center"><strong>LABA = PENDAPATAN − BEBAN</strong></div>
-<h4>📋 Contoh:</h4>
-<table>
-<tr><td>Pendapatan Jasa</td><td>Rp 3.000.000</td></tr>
-<tr><td><strong>Beban:</strong></td><td></td></tr>
-<tr><td style="padding-left:20px">Beban Gaji</td><td>Rp 800.000</td></tr>
-<tr><td style="padding-left:20px">Beban Listrik</td><td>Rp 200.000</td></tr>
-<tr><td style="padding-left:20px">Beban Perlengkapan</td><td>Rp 150.000</td></tr>
-<tr><td><strong>Total Beban</strong></td><td>Rp 1.150.000</td></tr>
-<tr class="total"><td><strong>LABA BERSIH</strong></td><td><strong>Rp 1.850.000</strong></td></tr>
-</table>
-</div>
+        <div class="card">
+            <h2><i class="fas fa-layer-group"></i> 5 Jenis Laporan Keuangan</h2>
 
-<div class="report-card">
-<div class="header-report">
-<strong>2. LAPORAN PERUBAHAN MODAL</strong>
-<small>(Capital Statement)</small>
-</div>
-<h4>📝 Fungsi:</h4>
-<p>Menyajikan <strong>perubahan modal</strong> selama periode tertentu.</p>
-<h4>📐 Rumus:</h4>
-<div class="highlight-box" style="text-align:center"><strong>MODAL AKHIR = MODAL AWAL + LABA − PRIVE</strong></div>
-<h4>📋 Contoh:</h4>
-<table>
-<tr><td>Modal Awal 1 Januari 2025</td><td>Rp 5.000.000</td></tr>
-<tr><td>Ditambah: Laba Bersih</td><td>Rp 1.850.000</td></tr>
-<tr><td>Dikurangi: Prive</td><td>(Rp 100.000)</td></tr>
-<tr class="total"><td><strong>Modal Akhir 31 Januari 2025</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-</table>
-</div>
+            <!-- Laba Rugi -->
+            <div class="report-card">
+                <div class="header-report">
+                    <strong>1. LAPORAN LABA RUGI</strong>
+                    <small>(Income Statement)</small>
+                </div>
+                <h4>📝 Fungsi:</h4>
+                <p>Menyajikan <strong>pendapatan dan beban</strong> selama periode tertentu untuk mengetahui laba/rugi.</p>
+                <h4>📐 Rumus:</h4>
+                <div class="highlight-box" style="text-align:center"><strong>LABA = PENDAPATAN − BEBAN</strong></div>
+                <h4>📋 Contoh:</h4>
+                <table>
+                    <tr><td>Pendapatan Jasa</td><td>Rp 3.000.000</td></tr>
+                    <tr><td><strong>Beban:</strong></td><td></td></tr>
+                    <tr><td style="padding-left:20px">Beban Gaji</td><td>Rp 800.000</td></tr>
+                    <tr><td style="padding-left:20px">Beban Listrik</td><td>Rp 200.000</td></tr>
+                    <tr><td style="padding-left:20px">Beban Perlengkapan</td><td>Rp 150.000</td></tr>
+                    <tr><td><strong>Total Beban</strong></td><td>Rp 1.150.000</td></tr>
+                    <tr class="total"><td><strong>LABA BERSIH</strong></td><td><strong>Rp 1.850.000</strong></td></tr>
+                </table>
+            </div>
 
-<div class="report-card">
-<div class="header-report">
-<strong>3. LAPORAN POSISI KEUANGAN (NERACA)</strong>
-<small>(Balance Sheet)</small>
-</div>
-<h4>📝 Fungsi:</h4>
-<p>Menyajikan posisi <strong>Harta, Utang, dan Modal</strong> pada tanggal tertentu.</p>
-<h4>📐 Rumus:</h4>
-<div class="highlight-box" style="text-align:center"><strong>HARTA = UTANG + MODAL</strong></div>
-<h4>📋 Contoh:</h4>
-<table>
-<tr><td><strong>HARTA:</strong></td><td></td></tr>
-<tr><td style="padding-left:20px">Kas</td><td>Rp 4.300.000</td></tr>
-<tr><td style="padding-left:20px">Perlengkapan</td><td>Rp 350.000</td></tr>
-<tr><td style="padding-left:20px">Peralatan</td><td>Rp 1.500.000</td></tr>
-<tr><td style="padding-left:20px">Piutang</td><td>Rp 600.000</td></tr>
-<tr class="total"><td><strong>Total Harta</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-<tr><td><strong>UTANG & MODAL:</strong></td><td></td></tr>
-<tr><td style="padding-left:20px">Utang Usaha</td><td>Rp 300.000</td></tr>
-<tr><td style="padding-left:20px">Modal</td><td>Rp 6.450.000</td></tr>
-<tr class="total"><td><strong>Total Utang + Modal</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
-</table>
-</div>
+            <!-- Perubahan Modal -->
+            <div class="report-card">
+                <div class="header-report">
+                    <strong>2. LAPORAN PERUBAHAN MODAL</strong>
+                    <small>(Capital Statement)</small>
+                </div>
+                <h4>📝 Fungsi:</h4>
+                <p>Menyajikan <strong>perubahan modal</strong> selama periode tertentu.</p>
+                <h4>📐 Rumus:</h4>
+                <div class="highlight-box" style="text-align:center"><strong>MODAL AKHIR = MODAL AWAL + LABA − PRIVE</strong></div>
+                <h4>📋 Contoh:</h4>
+                <table>
+                    <tr><td>Modal Awal 1 Januari 2025</td><td>Rp 5.000.000</td></tr>
+                    <tr><td>Ditambah: Laba Bersih</td><td>Rp 1.850.000</td></tr>
+                    <tr><td>Dikurangi: Prive</td><td>(Rp 100.000)</td></tr>
+                    <tr class="total"><td><strong>Modal Akhir 31 Januari 2025</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
+                </table>
+            </div>
 
-<div class="report-card">
-<div class="header-report">
-<strong>4. LAPORAN ARUS KAS</strong>
-<small>(Cash Flow Statement)</small>
-</div>
-<h4>📝 Fungsi:</h4>
-<p>Menyajikan <strong>aliran kas masuk dan keluar</strong> selama periode tertentu.</p>
-<h4>📊 3 Aktivitas:</h4>
-<ul>
-<li><strong>Operasi</strong> — kas dari kegiatan utama (pendapatan, beban)</li>
-<li><strong>Investasi</strong> — kas dari pembelian/penjualan aset tetap</li>
-<li><strong>Pendanaan</strong> — kas dari modal, utang, prive</li>
-</ul>
-</div>
+            <!-- Neraca -->
+            <div class="report-card">
+                <div class="header-report">
+                    <strong>3. LAPORAN POSISI KEUANGAN (NERACA)</strong>
+                    <small>(Balance Sheet)</small>
+                </div>
+                <h4>📝 Fungsi:</h4>
+                <p>Menyajikan posisi <strong>Harta, Utang, dan Modal</strong> pada tanggal tertentu.</p>
+                <h4>📐 Rumus:</h4>
+                <div class="highlight-box" style="text-align:center"><strong>HARTA = UTANG + MODAL</strong></div>
+                <h4>📋 Contoh:</h4>
+                <table>
+                    <tr><td><strong>HARTA:</strong></td><td></td></tr>
+                    <tr><td style="padding-left:20px">Kas</td><td>Rp 4.300.000</td></tr>
+                    <tr><td style="padding-left:20px">Perlengkapan</td><td>Rp 350.000</td></tr>
+                    <tr><td style="padding-left:20px">Peralatan</td><td>Rp 1.500.000</td></tr>
+                    <tr><td style="padding-left:20px">Piutang</td><td>Rp 600.000</td></tr>
+                    <tr class="total"><td><strong>Total Harta</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
+                    <tr><td><strong>UTANG & MODAL:</strong></td><td></td></tr>
+                    <tr><td style="padding-left:20px">Utang Usaha</td><td>Rp 300.000</td></tr>
+                    <tr><td style="padding-left:20px">Modal</td><td>Rp 6.450.000</td></tr>
+                    <tr class="total"><td><strong>Total Utang + Modal</strong></td><td><strong>Rp 6.750.000</strong></td></tr>
+                </table>
+            </div>
 
-<div class="report-card">
-<div class="header-report">
-<strong>5. CATATAN ATAS LAPORAN KEUANGAN (CaLK)</strong>
-<small>(Notes to Financial Statements)</small>
-</div>
-<h4>📝 Fungsi:</h4>
-<p>Memberikan <strong>informasi tambahan</strong> dan penjelasan rinci atas angka-angka dalam laporan keuangan. Misalnya: kebijakan akuntansi yang digunakan, rincian aset tetap, dll.</p>
-</div>
-</div>
+            <!-- Arus Kas & CaLK -->
+            <div class="report-card">
+                <div class="header-report">
+                    <strong>4. LAPORAN ARUS KAS</strong>
+                    <small>(Cash Flow Statement)</small>
+                </div>
+                <h4>📝 Fungsi:</h4>
+                <p>Menyajikan <strong>aliran kas masuk dan keluar</strong> selama periode tertentu.</p>
+                <h4>📊 3 Aktivitas:</h4>
+                <ul>
+                    <li><strong>Operasi</strong> — kas dari kegiatan utama (pendapatan, beban)</li>
+                    <li><strong>Investasi</strong> — kas dari pembelian/penjualan aset tetap</li>
+                    <li><strong>Pendanaan</strong> — kas dari modal, utang, prive</li>
+                </ul>
+            </div>
 
-<div class="card">
-<h2><i class="fas fa-star"></i> Kesimpulan</h2>
-<ul>
-<li>✅ 5 laporan keuangan: <strong>Laba/Rugi, Perubahan Modal, Neraca, Arus Kas, CaLK</strong></li>
-<li>✅ Urutan penyusunan: <strong>Laba/Rugi → Perubahan Modal → Neraca → Arus Kas</strong></li>
-<li>✅ Semua laporan harus <strong>saling terkait dan seimbang</strong></li>
-</ul>
-</div>
+            <div class="report-card">
+                <div class="header-report">
+                    <strong>5. CATATAN ATAS LAPORAN KEUANGAN (CaLK)</strong>
+                    <small>(Notes to Financial Statements)</small>
+                </div>
+                <h4>📝 Fungsi:</h4>
+                <p>Memberikan <strong>informasi tambahan</strong> dan penjelasan rinci atas angka-angka dalam laporan keuangan. Misalnya: kebijakan akuntansi yang digunakan, rincian aset tetap, dll.</p>
+            </div>
+        </div>
 
-<div class="nav-bab">
-<a href="bab1-e.html"><i class="fas fa-arrow-left"></i> Persamaan Dasar + Simulator</a>
-<a href="bab1-g.html">Persamaan + Laporan + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
-</div>
-</div>
+        <!-- ===== SIMULATOR + LAPORAN ===== -->
+        <div class="simulator" id="simulator">
+            <h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR + LAPORAN KEUANGAN</h2>
+            <div class="sim-intro">
+                <strong>Selamat datang di Simulator terintegrasi!</strong> 🎉<br />
+                Masukkan transaksi seperti pada Bab 1.E, lalu klik <strong>"Tampilkan Laporan"</strong> untuk melihat laporan laba rugi, perubahan modal, dan neraca secara otomatis berdasarkan data yang Anda buat.
+            </div>
 
-<footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
+            <div class="sim-controls">
+                <label>📋 Pilih Transaksi:</label>
+                <select id="transactionSelect">
+                    <option value="">-- Pilih transaksi --</option>
+                    <option value="1">1. Setor modal tunai Rp 5.000.000</option>
+                    <option value="2">2. Beli peralatan tunai Rp 1.500.000</option>
+                    <option value="3">3. Beli perlengkapan kredit Rp 500.000</option>
+                    <option value="4">4. Pendapatan jasa tunai Rp 800.000</option>
+                    <option value="5">5. Bayar beban listrik Rp 200.000</option>
+                    <option value="6">6. Terima piutang Rp 300.000</option>
+                    <option value="7">7. Bayar sebagian utang Rp 200.000</option>
+                    <option value="8">8. Prive pemilik Rp 100.000</option>
+                </select>
+
+                <button class="sim-btn" onclick="addTransaction()"><i class="fas fa-plus"></i> Tambah Transaksi</button>
+                <button class="sim-btn example" onclick="loadExample()"><i class="fas fa-magic"></i> Muat Contoh Lengkap</button>
+                <button class="sim-btn reset" onclick="resetSim()"><i class="fas fa-redo"></i> Reset</button>
+                <button class="sim-btn report" onclick="generateReports()"><i class="fas fa-file-invoice"></i> Tampilkan Laporan</button>
+            </div>
+
+            <h3><i class="fas fa-table"></i> Tabel Persamaan Akuntansi</h3>
+            <div class="table-wrap">
+                <table class="sim-table" id="simTable">
+                    <thead>
+                        <tr>
+                            <th style="width:36px;">No</th>
+                            <th class="desc" style="min-width:120px;">Keterangan</th>
+                            <th>Kas</th>
+                            <th>Perleng.</th>
+                            <th>Peralatan</th>
+                            <th>Piutang</th>
+                            <th style="background:#b91c1c;">Utang</th>
+                            <th style="background:#1e40af;">Modal</th>
+                            <th style="background:#065f46;">Pendapatan</th>
+                            <th style="background:#92400e;">Beban</th>
+                            <th style="background:#7c2d12;">Prive</th>
+                        </tr>
+                    </thead>
+                    <tbody id="simBody">
+                        <!-- rows by JS -->
+                    </tbody>
+                    <tfoot id="simFoot"></tfoot>
+                </table>
+            </div>
+
+            <div class="balance-status ok" id="balanceStatus">
+                ✅ <strong>SEIMBANG!</strong> Harta = Utang + Modal + (Pendapatan − Beban − Prive)
+            </div>
+
+            <div class="transaction-list" id="transactionList">
+                <h4>📜 Riwayat Transaksi:</h4>
+                <p style="opacity:.7;font-style:italic">Belum ada transaksi. Pilih transaksi di atas untuk mulai!</p>
+            </div>
+
+            <!-- ===== LAPORAN KEUANGAN (dinamis) ===== -->
+            <div id="reportArea" style="margin-top:25px;">
+                <h3><i class="fas fa-file-alt"></i> 📊 Laporan Keuangan</h3>
+                <div id="reportContent">
+                    <div class="report-placeholder">💡 Tambahkan transaksi lalu klik "Tampilkan Laporan" untuk melihat laporan keuangan.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== KESIMPULAN ===== -->
+        <div class="card">
+            <h2><i class="fas fa-star"></i> Kesimpulan</h2>
+            <ul>
+                <li>✅ 5 laporan keuangan: <strong>Laba/Rugi, Perubahan Modal, Neraca, Arus Kas, CaLK</strong></li>
+                <li>✅ Urutan penyusunan: <strong>Laba/Rugi → Perubahan Modal → Neraca → Arus Kas</strong></li>
+                <li>✅ Semua laporan harus <strong>saling terkait dan seimbang</strong></li>
+                <li>✅ Gunakan <strong>simulator di atas</strong> untuk memahami hubungan antara transaksi dan laporan keuangan.</li>
+            </ul>
+        </div>
+
+        <div class="nav-bab">
+            <a href="bab1-e.html"><i class="fas fa-arrow-left"></i> Persamaan Dasar + Simulator</a>
+            <a href="bab1-g.html">Persamaan + Laporan + Simulator 🎮 <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 <strong>SMAN 1 Cluring</strong></p>
+    </footer>
+
+    <script>
+        // ============================================================
+        //  DATA TRANSAKSI (sama dengan Bab 1.E)
+        // ============================================================
+        const transData = {
+            1: { desc: "Setor modal tunai", kas: 5000000, modal: 5000000 },
+            2: { desc: "Beli peralatan tunai", kas: -1500000, peralatan: 1500000 },
+            3: { desc: "Beli perlengkapan kredit", perleng: 500000, utang: 500000 },
+            4: { desc: "Pendapatan jasa tunai", kas: 800000, pendapatan: 800000 },
+            5: { desc: "Bayar beban listrik", kas: -200000, beban: 200000 },
+            6: { desc: "Terima piutang", kas: 300000, piutang: -300000 },
+            7: { desc: "Bayar sebagian utang", kas: -200000, utang: -200000 },
+            8: { desc: "Prive pemilik", kas: -100000, prive: 100000 }
+        };
+
+        // ============================================================
+        //  STATE
+        // ============================================================
+        let transactions = [];
+        let running = {
+            kas: 0,
+            perleng: 0,
+            peralatan: 0,
+            piutang: 0,
+            utang: 0,
+            modal: 0,
+            pendapatan: 0,
+            beban: 0,
+            prive: 0
+        };
+
+        // ============================================================
+        //  HELPERS
+        // ============================================================
+        function fmt(n) { return n.toLocaleString('id-ID'); }
+
+        function sumAsset() {
+            return running.kas + running.perleng + running.peralatan + running.piutang;
+        }
+
+        function sumEquity() {
+            return running.utang + running.modal + running.pendapatan - running.beban - running.prive;
+        }
+
+        function isBalanced() {
+            return sumAsset() === sumEquity();
+        }
+
+        function diff() { return sumAsset() - sumEquity(); }
+
+        // ============================================================
+        //  RENDER TABEL & RIWAYAT
+        // ============================================================
+        function render() {
+            const tbody = document.getElementById('simBody');
+            const tfoot = document.getElementById('simFoot');
+            const status = document.getElementById('balanceStatus');
+            const list = document.getElementById('transactionList');
+
+            let html = '';
+            let cum = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
+
+            if (transactions.length === 0) {
+                html += `<tr>
+                    <td>—</td>
+                    <td class="desc">SALDO AWAL</td>
+                    <td>0</td><td>0</td><td>0</td><td>0</td>
+                    <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                </tr>`;
+            } else {
+                html += `<tr style="background:#f0f4ff;font-weight:500;">
+                    <td>0</td>
+                    <td class="desc">SALDO AWAL</td>
+                    <td>0</td><td>0</td><td>0</td><td>0</td>
+                    <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                </tr>`;
+
+                transactions.forEach((t, idx) => {
+                    const d = t.data;
+                    Object.keys(d).forEach(k => {
+                        if (k !== 'desc' && cum.hasOwnProperty(k)) {
+                            cum[k] += d[k];
+                        }
+                    });
+
+                    const keys = ['kas', 'perleng', 'peralatan', 'piutang', 'utang', 'modal', 'pendapatan', 'beban',
+                        'prive'
+                    ];
+                    let cells = keys.map(k => {
+                        let val = cum[k];
+                        let change = d[k] || 0;
+                        let cls = '';
+                        if (change > 0) cls = 'bg-change';
+                        else if (change < 0) cls = 'bg-change-neg';
+                        return `<td class="${cls}">${fmt(val)}</td>`;
+                    }).join('');
+
+                    html += `<tr>
+                        <td>${idx + 1}</td>
+                        <td class="desc" title="${t.desc}">${t.desc}</td>
+                        ${cells}
+                    </tr>`;
+                });
+            }
+
+            const tot = running;
+            const a = sumAsset();
+            const e = sumEquity();
+            const bal = isBalanced();
+            const diffVal = diff();
+
+            let footHtml = `<tr class="row-total">
+                <td colspan="2"><strong>TOTAL</strong></td>
+                <td>${fmt(tot.kas)}</td>
+                <td>${fmt(tot.perleng)}</td>
+                <td>${fmt(tot.peralatan)}</td>
+                <td>${fmt(tot.piutang)}</td>
+                <td>${fmt(tot.utang)}</td>
+                <td>${fmt(tot.modal)}</td>
+                <td>${fmt(tot.pendapatan)}</td>
+                <td>${fmt(tot.beban)}</td>
+                <td>${fmt(tot.prive)}</td>
+            </tr>
+            <tr style="background:#f1f5f9;font-size:.75rem;">
+                <td colspan="2"><strong>VERIFIKASI</strong></td>
+                <td colspan="4" style="text-align:right;"><strong>HARTA = ${fmt(a)}</strong></td>
+                <td colspan="5" style="text-align:left;"><strong>UTANG+MODAL+PEND−BEBAN−PRIVE = ${fmt(e)}</strong> &nbsp; ${bal ? '✅' : '❌'} ${!bal ? `(selisih ${fmt(diffVal)})` : ''}</td>
+            </tr>`;
+
+            tbody.innerHTML = html;
+            tfoot.innerHTML = footHtml;
+
+            if (bal) {
+                status.className = 'balance-status ok';
+                status.innerHTML = '✅ <strong>SEIMBANG!</strong> Harta = Utang + Modal + (Pendapatan − Beban − Prive)';
+            } else {
+                status.className = 'balance-status error';
+                status.innerHTML =
+                    `❌ <strong>TIDAK SEIMBANG!</strong> Selisih Rp ${fmt(Math.abs(diffVal))}. Periksa kembali pencatatan!`;
+            }
+
+            if (transactions.length === 0) {
+                list.innerHTML =
+                    `<h4>📜 Riwayat Transaksi:</h4><p style="opacity:.7;font-style:italic">Belum ada transaksi. Pilih transaksi di atas untuk mulai!</p>`;
+            } else {
+                let items = transactions.map((t, i) => {
+                    let effects = Object.keys(t.data)
+                        .filter(k => k !== 'desc' && t.data[k] !== 0)
+                        .map(k => `${k}: ${t.data[k] > 0 ? '+' : ''}${fmt(t.data[k])}`)
+                        .join(' ');
+                    return `<div class="transaction-item">
+                        <span><strong>#${i+1}</strong> ${t.desc}</span>
+                        <span class="badge">${effects}</span>
+                    </div>`;
+                }).join('');
+                list.innerHTML = `<h4>📜 Riwayat Transaksi (${transactions.length})</h4>${items}`;
+                list.scrollTop = list.scrollHeight;
+            }
+
+            // Sembunyikan laporan jika tidak ada transaksi
+            if (transactions.length === 0) {
+                document.getElementById('reportContent').innerHTML =
+                    `<div class="report-placeholder">💡 Tambahkan transaksi lalu klik "Tampilkan Laporan" untuk melihat laporan keuangan.</div>`;
+            }
+        }
+
+        // ============================================================
+        //  ACTIONS
+        // ============================================================
+        function addTransaction() {
+            const sel = document.getElementById('transactionSelect');
+            const num = sel.value;
+            if (!num) { alert('Pilih transaksi dulu ya! 😊'); return; }
+            const data = transData[num];
+            if (!data) return;
+
+            transactions.push({ num: parseInt(num), desc: data.desc, data: { ...data } });
+
+            Object.keys(data).forEach(k => {
+                if (k !== 'desc' && running.hasOwnProperty(k)) {
+                    running[k] += data[k];
+                }
+            });
+
+            render();
+            sel.value = '';
+        }
+
+        function loadExample() {
+            resetSim();
+            const order = [1, 2, 3, 4, 5, 6, 7, 8];
+            order.forEach(n => {
+                const data = transData[n];
+                if (!data) return;
+                transactions.push({ num: n, desc: data.desc, data: { ...data } });
+                Object.keys(data).forEach(k => {
+                    if (k !== 'desc' && running.hasOwnProperty(k)) {
+                        running[k] += data[k];
+                    }
+                });
+            });
+            render();
+            generateReports(); // langsung tampilkan laporan
+        }
+
+        function resetSim() {
+            transactions = [];
+            running = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0,
+                prive: 0 };
+            render();
+            document.getElementById('reportContent').innerHTML =
+                `<div class="report-placeholder">💡 Tambahkan transaksi lalu klik "Tampilkan Laporan" untuk melihat laporan keuangan.</div>`;
+        }
+
+        // ============================================================
+        //  GENERATE LAPORAN KEUANGAN
+        // ============================================================
+        function generateReports() {
+            const container = document.getElementById('reportContent');
+
+            if (transactions.length === 0) {
+                container.innerHTML =
+                    `<div class="report-placeholder">⚠️ Belum ada transaksi. Masukkan transaksi terlebih dahulu!</div>`;
+                return;
+            }
+
+            // Hitung laba
+            const laba = running.pendapatan - running.beban;
+            const modalAwal = running.modal; // modal yang disetor (belum termasuk laba)
+            const modalAkhir = modalAwal + laba - running.prive;
+
+            // Aset
+            const totalAset = sumAsset();
+            const totalUtang = running.utang;
+            // verifikasi: totalAset === totalUtang + modalAkhir (seharusnya)
+
+            // --- Laporan Laba Rugi ---
+            let labaRugiHtml = `
+                <div class="report-card">
+                    <div class="header-report">
+                        <strong>LAPORAN LABA RUGI</strong>
+                        <small>Periode Berjalan</small>
+                    </div>
+                    <table>
+                        <tr><td><strong>Pendapatan</strong></td><td></td></tr>
+                        <tr><td style="padding-left:20px;">Pendapatan Jasa</td><td>Rp ${fmt(running.pendapatan)}</td></tr>
+                        <tr><td><strong>Beban</strong></td><td></td></tr>
+                        <tr><td style="padding-left:20px;">Beban Listrik</td><td>Rp ${fmt(running.beban)}</td></tr>
+                        <tr class="total"><td><strong>LABA BERSIH</strong></td><td><strong>Rp ${fmt(laba)}</strong></td></tr>
+                    </table>
+                </div>
+            `;
+
+            // --- Laporan Perubahan Modal ---
+            let modalHtml = `
+                <div class="report-card">
+                    <div class="header-report">
+                        <strong>LAPORAN PERUBAHAN MODAL</strong>
+                        <small>Periode Berjalan</small>
+                    </div>
+                    <table>
+                        <tr><td>Modal Awal</td><td>Rp ${fmt(modalAwal)}</td></tr>
+                        <tr><td>Ditambah: Laba Bersih</td><td>Rp ${fmt(laba)}</td></tr>
+                        <tr><td>Dikurangi: Prive</td><td>(Rp ${fmt(running.prive)})</td></tr>
+                        <tr class="total"><td><strong>MODAL AKHIR</strong></td><td><strong>Rp ${fmt(modalAkhir)}</strong></td></tr>
+                    </table>
+                </div>
+            `;
+
+            // --- Neraca ---
+            let neracaHtml = `
+                <div class="report-card">
+                    <div class="header-report">
+                        <strong>NERACA</strong>
+                        <small>Per Tanggal</small>
+                    </div>
+                    <table>
+                        <tr><td><strong>HARTA</strong></td><td></td></tr>
+                        <tr><td style="padding-left:20px;">Kas</td><td>Rp ${fmt(running.kas)}</td></tr>
+                        <tr><td style="padding-left:20px;">Perlengkapan</td><td>Rp ${fmt(running.perleng)}</td></tr>
+                        <tr><td style="padding-left:20px;">Peralatan</td><td>Rp ${fmt(running.peralatan)}</td></tr>
+                        <tr><td style="padding-left:20px;">Piutang</td><td>Rp ${fmt(running.piutang)}</td></tr>
+                        <tr class="total"><td><strong>Total Harta</strong></td><td><strong>Rp ${fmt(totalAset)}</strong></td></tr>
+                        <tr><td><strong>UTANG & MODAL</strong></td><td></td></tr>
+                        <tr><td style="padding-left:20px;">Utang Usaha</td><td>Rp ${fmt(running.utang)}</td></tr>
+                        <tr><td style="padding-left:20px;">Modal</td><td>Rp ${fmt(modalAkhir)}</td></tr>
+                        <tr class="total"><td><strong>Total Utang + Modal</strong></td><td><strong>Rp ${fmt(totalUtang + modalAkhir)}</strong></td></tr>
+                    </table>
+                    ${totalAset === (totalUtang + modalAkhir) ? '<p style="text-align:center;color:green;margin-top:6px;">✅ SEIMBANG</p>' : '<p style="text-align:center;color:red;margin-top:6px;">❌ TIDAK SEIMBANG</p>'}
+                </div>
+            `;
+
+            // Gabungkan
+            container.innerHTML = `
+                <div class="report-grid">
+                    ${labaRugiHtml}
+                    ${modalHtml}
+                    ${neracaHtml}
+                    <div class="report-card" style="grid-column:1/-1;">
+                        <div class="header-report">
+                            <strong>📌 CATATAN</strong>
+                        </div>
+                        <ul>
+                            <li><strong>Laba bersih</strong> Rp ${fmt(laba)} menambah modal.</li>
+                            <li><strong>Prive</strong> Rp ${fmt(running.prive)} mengurangi modal.</li>
+                            <li><strong>Total Aset</strong> Rp ${fmt(totalAset)} = <strong>Total Utang + Modal</strong> Rp ${fmt(totalUtang + modalAkhir)} ${totalAset === (totalUtang + modalAkhir) ? '✅' : '❌'}</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ============================================================
+        //  KEYBOARD SHORTCUT
+        // ============================================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.activeElement === document.getElementById('transactionSelect')) {
+                e.preventDefault();
+                addTransaction();
+            }
+        });
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        render();
+    </script>
+
 </body>
 </html>
