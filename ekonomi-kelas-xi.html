@@ -825,7 +825,7 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       display: flex; align-items: center; justify-content: center;
       z-index: 9999;
-      transition: opacity 0.5s ease-out;
+      transition: opacity 0.3s ease-out; /* Dipercepat transisinya */
     }
     .loader {
       width: 50px; height: 50px;
@@ -1716,13 +1716,15 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== LOADER =====
-    window.addEventListener('load', () => {
+    // ===== LOADER (DIPERCEPAT DRASTIS) =====
+    window.addEventListener('DOMContentLoaded', () => {
         const loader = document.getElementById('loader');
-        setTimeout(() => {
+        if (loader) {
+            // Dipercepat drastis (50ms) agar siswa tidak perlu menunggu loading lama
+            // Mengganti 'load' dengan 'DOMContentLoaded' agar tidak menunggu gambar/iklan selesai dimuat
             loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 500);
-        }, 800);
+            setTimeout(() => { loader.style.display = 'none'; }, 50);
+        }
     });
 
     // ===== INIT =====
