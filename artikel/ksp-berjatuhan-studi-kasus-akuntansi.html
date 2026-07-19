@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSP Berjatuhan: Peran Akuntansi & Akuntan Publik | Ekonomi XII</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #059669;
+            --accent: #d97706;
+            --light: #f0f9ff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        /* Header Accounting Theme */
+        .header-accounting {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header-accounting::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-accounting h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .header-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Navigation Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .breadcrumb-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Article Sections */
+        .article-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .article-section.warning {
+            border-left-color: var(--danger);
+            background: linear-gradient(to right, #fef2f2, white);
+        }
+
+        .article-section.success {
+            border-left-color: var(--success);
+            background: linear-gradient(to right, #f0fdf4, white);
+        }
+
+        .article-section.info {
+            border-left-color: var(--secondary);
+            background: linear-gradient(to right, #ecfdf5, white);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        /* Case Cards */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .case-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--danger);
+        }
+
+        .case-card.success::before {
+            background: var(--success);
+        }
+
+        .case-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .case-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .case-card .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--danger);
+            margin: 0.5rem 0;
+        }
+
+        .case-card.success .amount {
+            color: var(--success);
+        }
+
+        /* Ratio Tables */
+        .ratio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .ratio-table th {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .ratio-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .ratio-table tr:hover {
+            background: var(--light);
+        }
+
+        .ratio-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-ratio {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-ratio.good {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-ratio.bad {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Accounting Journal Box */
+        .journal-box {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        .journal-box::before {
+            content: 'JURNAL AKUNTANSI';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .journal-entry {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .journal-entry .debit {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .journal-entry .credit {
+            color: var(--secondary);
+            font-weight: 600;
+            padding-left: 2rem;
+        }
+
+        /* Auditor Section Specific */
+        .auditor-highlight {
+            background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auditor-highlight::before {
+            content: '\f518';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+        }
+
+        .auditor-highlight h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .opinion-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .opinion-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .opinion-badge h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .opinion-badge .type {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .opinion-badge.wtp { border-color: #10b981; }
+        .opinion-badge.wdp { border-color: #f59e0b; }
+        .opinion-badge.tw { border-color: #ef4444; }
+
+        /* Flowchart */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '\f063';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .flow-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .flow-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Comparison Box */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-box {
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .comparison-box.fail {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid var(--danger);
+        }
+
+        .comparison-box.success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid var(--success);
+        }
+
+        .comparison-box h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comparison-box.fail h3 {
+            color: #991b1b;
+        }
+
+        .comparison-box.success h3 {
+            color: #065f46;
+        }
+
+        .comparison-box ul {
+            list-style: none;
+        }
+
+        .comparison-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .comparison-box.fail li::before {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--danger);
+        }
+
+        .comparison-box.success li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+
+        /* Call to Action */
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .article-footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .article-footer .signature {
+            font-style: italic;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-accounting h1 {
+                font-size: 1.8rem;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-section {
+                padding: 1.5rem;
+            }
+
+            .flowchart {
+                padding: 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header-accounting {
+                background: var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .article-section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article-section {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .article-section:nth-child(2) { animation-delay: 0.1s; }
+        .article-section:nth-child(3) { animation-delay: 0.2s; }
+        .article-section:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header-accounting">
+        <div class="header-content">
+            <span class="badge"><i class="fas fa-graduation-cap"></i> Materi Ekonomi Kelas XII</span>
+            <h1>KSP Berjatuhan: Ketika Prinsip Akuntansi Diabaikan, Nasib Nasabah Jadi Taruhan</h1>
+            <div class="header-meta">
+                <span><i class="fas fa-chart-line"></i> Studi Kasus Akuntansi & Audit</span>
+                <span><i class="fas fa-clock"></i> 15 Menit Baca</span>
+                <span><i class="fas fa-user-tie"></i> Peran Akuntan Publik</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+            <span>›</span>
+            <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a>
+            <span>›</span>
+            <span>Artikel Studi Kasus</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Introduction -->
+        <section class="article-section warning">
+            <h2 class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Fenomena: Gelombang Kebangkrutan KSP
+            </h2>
+            <p>Dalam beberapa tahun terakhir, Indonesia dikejutkan dengan berita runtuhnya berbagai <strong>Koperasi Simpan Pinjam (KSP)</strong> dan lembaga keuangan mikro. Ribuan nasabah kehilangan dana simpanan mereka, beberapa bahkan mencapai miliaran rupiah.</p>
+            
+            <div class="case-grid">
+                <div class="case-card">
+                    <h3><i class="fas fa-building"></i> KSP Sejahtera Bersama</h3>
+                    <p>Jawa Barat</p>
+                    <div class="amount">Rp 50 Miliar</div>
+                    <p><small>Kerugian Nasabah</small></p>
+                </div>
+                <div class="case-card">
+                    <h3><i class="fas fa-building"></i> KSP Mitra Mandiri</h3>
+                    <p>Jawa Timur</p>
+                    <div class="amount">Rp 30 Miliar</div>
+                    <p><small>Gagal Bayar</small></p>
+                </div>
+                <div class="case-card">
+                    <h3><i class="fas fa-building"></i> KSP Artha Prima</h3>
+                    <p>Jakarta</p>
+                    <div class="amount">Rp 75 Miliar</div>
+                    <p><small>Likuidasi</small></p>
+                </div>
+            </div>
+
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--danger); text-align: center; margin-top: 2rem;">
+                <i class="fas fa-question-circle"></i> Mengapa fenomena ini terus berulang? Di mana letak kegagalan sistemiknya?
+            </p>
+        </section>
+
+        <!-- 7 Causes -->
+        <section class="article-section">
+            <h2 class="section-title">
+                <i class="fas fa-search"></i>
+                Analisis: 7 Penyebab Utama KSP Tumbang
+            </h2>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">1</span>
+                    Pencatatan Akuntansi yang Buruk
+                </h3>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li>Tidak mencatat transaksi secara real-time</li>
+                    <li>Pembukuan manual dan tidak terstandarisasi</li>
+                    <li>Tidak ada pemisahan aset pribadi dan aset koperasi</li>
+                    <li>Laporan keuangan tidak sesuai SAK</li>
+                </ul>
+                <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1rem; border-radius: 4px;">
+                    <strong>Contoh Kasus:</strong> KSP "X" di Jawa Tengah mencatat pinjaman macet hanya 5%, padahal realitanya mencapai 35%.
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">2</span>
+                    Tidak Ada Sistem Pengendalian Internal
+                </h3>
+                <ul style="margin-left: 2rem;">
+                    <li>Tidak ada pemisahan tugas (segregation of duties)</li>
+                    <li>Satu orang bisa mencatat, menyetujui, dan mencairkan dana</li>
+                    <li>Tidak ada audit internal berkala</li>
+                </ul>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">3</span>
+                    Manajemen Likuiditas yang Lemah
+                </h3>
+                <p>LDR (Loan to Deposit Ratio) melebihi 100% - memberikan pinjaman lebih besar dari dana simpanan yang ada.</p>
+            </div>
+        </section>
+
+        <!-- Rasio Keuangan -->
+        <section class="article-section info">
+            <h2 class="section-title">
+                <i class="fas fa-calculator"></i>
+                Rasio Kesehatan KSP yang Wajib Dipantau
+            </h2>
+            
+            <table class="ratio-table">
+                <thead>
+                    <tr>
+                        <th>Rasio Keuangan</th>
+                        <th>Rumus</th>
+                        <th>Standar Sehat</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Likuiditas</strong></td>
+                        <td>Kas / Kewajiban Jangka Pendek</td>
+                        <td>Minimal 10%</td>
+                        <td><span class="badge-ratio good"><i class="fas fa-check"></i> Aman</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>NPL (Non-Performing Loan)</strong></td>
+                        <td>Pinjaman Macet / Total Pinjaman</td>
+                        <td>Maksimal 5%</td>
+                        <td><span class="badge-ratio bad"><i class="fas fa-exclamation"></i> Waspada</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CAR (Capital Adequacy)</strong></td>
+                        <td>Modal / Aset Tertimbang Risiko</td>
+                        <td>Minimal 8%</td>
+                        <td><span class="badge-ratio good"><i class="fas fa-check"></i> Aman</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>LDR</strong></td>
+                        <td>Total Pinjaman / Total Simpanan</td>
+                        <td>Maksimal 92%</td>
+                        <td><span class="badge-ratio bad"><i class="fas fa-exclamation"></i> Berisiko</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contoh Jurnal -->
+        <section class="article-section">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i>
+                Contoh Pencatatan yang Benar
+            </h2>
+            
+            <div class="journal-box">
+                <div class="journal-entry">
+                    <strong>Ketika nasabah menyetor tabungan Rp 1.000.000:</strong><br>
+                    <span class="debit">Kas (Debit) Rp 1.000.000</span><br>
+                    <span class="credit">Simpanan Anggota (Kredit) Rp 1.000.000</span>
+                </div>
+                <div class="journal-entry">
+                    <strong>Ketika menyalurkan pinjaman Rp 5.000.000:</strong><br>
+                    <span class="debit">Piutang Pinjaman (Debit) Rp 5.000.000</span><br>
+                    <span class="credit">Kas (Kredit) Rp 5.000.000</span>
+                </div>
+                <div class="journal-entry">
+                    <strong>Ketika menerima angsuran Rp 600.000:</strong><br>
+                    <span class="debit">Kas (Debit) Rp 600.000</span><br>
+                    <span class="credit">Piutang Pinjaman (Kredit) Rp 500.000</span><br>
+                    <span class="credit">Pendapatan Bunga (Kredit) Rp 100.000</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERAN AKUNTAN PUBLIK - NEW SECTION -->
+        <section class="article-section success">
+            <h2 class="section-title" style="color: var(--secondary);">
+                <i class="fas fa-user-tie"></i>
+                Peran Krusial Akuntan Publik: Garda Terakhir Penjaga Kepercayaan
+            </h2>
+            
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                Salah satu benang merah dari kasus KSP yang tumbang adalah <strong>tidak adanya verifikasi independen</strong> terhadap laporan keuangan yang disajikan pengurus. Di sinilah peran <strong>Akuntan Publik (Auditor Eksternal)</strong> menjadi sangat vital.
+            </p>
+
+            <div class="auditor-highlight">
+                <h3><i class="fas fa-shield-alt"></i> Apa Itu Akuntan Publik?</h3>
+                <p>Akuntan publik adalah profesional independen (pihak ketiga) yang ditunjuk untuk memberikan opini atas kewajaran laporan keuangan suatu entitas. Mereka bekerja berdasarkan standar audit yang ketat dan kode etik profesi.</p>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.3rem;">
+                <i class="fas fa-tasks"></i> 4 Peran Strategis Akuntan Publik untuk KSP
+            </h3>
+
+            <div class="flowchart">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div class="flow-content">
+                        <h4>Verifikasi Keberadaan dan Penilaian Aset</h4>
+                        <p>Melakukan <em>konfirmasi eksternal</em> kepada debitur dan memeriksa dokumen jaminan untuk mencegah <em>ghost loans</em> (pinjaman fiktif).</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div class="flow-content">
+                        <h4>Mendeteksi Red Flags dan Indikasi Fraud</h4>
+                        <p>Menggunakan <em>professional skepticism</em> dan <em>analytical procedures</em> untuk menemukan transaksi tidak wajar atau <em>related party transactions</em>.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div class="flow-content">
+                        <h4>Memberikan Opini Independen yang Objektif</h4>
+                        <p>Memberikan "stempel" kredibilitas melalui opini audit yang menjadi sinyal bagi nasabah dan regulator.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <div class="flow-content">
+                        <h4>Memastikan Kepatuhan SAK ETAP dan Regulasi</h4>
+                        <p>Memeriksa apakah CKPN sudah dihitung benar, pendapatan diakui tepat waktu, dan pengungkapan di CaLK transparan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem;">
+                <i class="fas fa-certificate"></i> Jenis-Jenis Opini Audit
+            </h3>
+
+            <div class="opinion-badges">
+                <div class="opinion-badge wtp">
+                    <h4><i class="fas fa-check-circle"></i> WTP</h4>
+                    <div class="type">Wajar Tanpa Pengecualian</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan akurat & sesuai SAK - Sinyal hijau ✅</p>
+                </div>
+                <div class="opinion-badge wdp">
+                    <h4><i class="fas fa-exclamation-circle"></i> WDP</h4>
+                    <div class="type">Wajar Dengan Pengecualian</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Ada kesalahan material tertentu ⚠️</p>
+                </div>
+                <div class="opinion-badge tw">
+                    <h4><i class="fas fa-times-circle"></i> TW/TMP</h4>
+                    <div class="type">Tidak Wajar / Tidak Memberi Pendapat</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan penuh manipulasi - Bahaya! </p>
+                </div>
+            </div>
+
+            <div style="background: white; border-radius: 8px; padding: 1.5rem; margin-top: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-lightbulb"></i> Studi Kasus Mini: "Apa yang Terjadi Jika Ada Akuntan Publik?"</h4>
+                
+                <div class="comparison-container">
+                    <div class="comparison-box fail">
+                        <h3><i class="fas fa-times-circle"></i> Tanpa Audit Eksternal</h3>
+                        <ul>
+                            <li>Pengurus laporkan laba Rp 2 Miliar</li>
+                            <li>Nasabah percaya & menabung lebih banyak</li>
+                            <li>Ternyata Rp 1,5 Miliar adalah piutang macet</li>
+                            <li><strong>Hasil:</strong> KSP kolaps saat rush money</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box success">
+                        <h3><i class="fas fa-check-circle"></i> Dengan Audit Eksternal</h3>
+                        <ul>
+                            <li>Auditor temukan 40% piutang tak bisa dikonfirmasi</li>
+                            <li>Opini WDP diberikan</li>
+                            <li>Wajib bentuk cadangan Rp 1,5 Miliar</li>
+                            <li><strong>Hasil:</strong> OJK turun tangan, dana nasabah terselamatkan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1.5rem; border-radius: 4px; margin-top: 2rem;">
+                <h4 style="color: #92400e; margin-bottom: 0.5rem;"><i class="fas fa-question-circle"></i> Mengapa Banyak KSP Menghindari Akuntan Publik?</h4>
+                <ul style="margin-left: 1.5rem; color: #78350f;">
+                    <li><strong>Biaya:</strong> Dianggap beban, bukan investasi</li>
+                    <li><strong>Ketakutan:</strong> Takut "kesalahan" masa lalu terbongkar</li>
+                    <li><strong>Mindset Salah:</strong> Menganggap laporan hanya formalitas</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Solusi -->
+        <section class="article-section success">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i>
+                Solusi: Peran Strategis Akuntansi dalam Menyelamatkan KSP
+            </h2>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-laptop-code"></i> A. Penerapan Sistem Akuntansi Komprehensif</h3>
+                <ul style="margin-left: 2rem;">
+                    <li>Sistem pencatatan <em>double-entry</em> yang disiplin</li>
+                    <li>Penyusunan laporan keuangan lengkap setiap bulan</li>
+                    <li>Analisis rasio keuangan berkala</li>
+                    <li>Digitalisasi dengan software akuntansi (Zahir, Accurate, Koperasi Plus)</li>
+                </ul>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-user-shield"></i> B. Penguatan Tata Kelola</h3>
+                <ul style="margin-left: 2rem;">
+                    <li>Rekrut tenaga akuntansi kompeten (minimal D3 Akuntansi)</li>
+                    <li><strong>Wajib audit internal bulanan</strong></li>
+                    <li><strong>Wajib audit eksternal tahunan oleh Akuntan Publik</strong></li>
+                    <li>Pembentukan cadangan kerugian pinjaman secara disiplin</li>
+                </ul>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-gavel"></i> C. Rekomendasi Kebijakan</h3>
+                <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--success);">
+                    <p><strong>Untuk Regulator:</strong> Wajibkan KSP dengan aset >Rp 10 Miliar untuk diaudit Akuntan Publik terdaftar dan hasilnya dipublikasikan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="article-section">
+            <h2 class="section-title">
+                <i class="fas fa-flag-checkered"></i>
+                Kesimpulan
+            </h2>
+            
+            <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;"><i class="fas fa-quote-left"></i> Pelajaran Penting</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    <strong>KSP tumbang bukan karena bisnisnya yang buruk, tapi karena:</strong><br><br>
+                    1️⃣ <strong>Akuntansi yang buruk</strong> = Buta finansial<br>
+                    2️⃣ <strong>Pengendalian lemah</strong> = Rawan fraud<br>
+                    3️⃣ <strong>Manajemen risiko nol</strong> = Bom waktu<br>
+                    4️⃣ <strong>Tanpa audit independen</strong> = Tidak ada early warning system
+                </p>
+            </div>
+
+            <div style="background: #eff6ff; border: 2px solid var(--primary); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-graduation-cap"></i> Untuk Siswa Kelas XII:</h3>
+                <p style="font-style: italic; font-size: 1.1rem;">
+                    "Mempelajari akuntansi bukan hanya untuk lulus ujian, tapi untuk membekali diri dengan kemampuan mengelola keuangan yang bertanggung jawab. Entah nanti kalian mendirikan koperasi, UMKM, atau bekerja di perusahaan, prinsip akuntansi yang baik adalah fondasi kesuksesan jangka panjang."
+                </p>
+            </div>
+        </section>
+
+        <!-- Tugas -->
+        <section class="article-section info">
+            <h2 class="section-title">
+                <i class="fas fa-tasks"></i>
+                Tugas untuk Siswa
+            </h2>
+            <ol style="margin-left: 2rem; line-height: 2;">
+                <li>Analisis laporan keuangan KSP/UMKM di sekitarmu</li>
+                <li>Hitung rasio likuiditas, solvabilitas, dan profitabilitas</li>
+                <li>Identifikasi kelemahan sistem pengendalian internal</li>
+                <li>Berikan rekomendasi perbaikan berbasis prinsip akuntansi</li>
+                <li><strong>Diskusi:</strong> Mengapa audit oleh Akuntan Publik penting untuk koperasi?</li>
+            </ol>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h3><i class="fas fa-book-reader"></i> Ingin Belajar Lebih Dalam?</h3>
+            <p>Pelajari materi lengkap Akuntansi Kelas XII tentang Siklus Akuntansi, Laporan Keuangan, dan Analisis Rasio.</p>
+            <a href="../ekonomi-kelas-xii.html" class="cta-button">
+                <i class="fas fa-arrow-right"></i> Kembali ke Materi
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-university"></i> SMAN 1 Cluring</h3>
+            <p>Platform Pembelajaran Digital Ekonomi & Akuntansi</p>
+            <div class="signature">
+                <p>Guru Pengampu: <strong>Zuli Astutik, S.Pd.</strong></p>
+                <p>Tanggal: Juli 2026</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-heart"></i> Dibuat untuk Pendidikan Indonesia
+                </p>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.7;">
+                <p>&copy; 2026 SMAN 1 Cluring. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animasi saat scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.article-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
