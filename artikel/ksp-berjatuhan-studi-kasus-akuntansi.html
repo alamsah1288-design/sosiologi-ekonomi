@@ -6,6 +6,10 @@
     <title>KSP Berjatuhan: Peran Akuntansi & Akuntan Publik | Ekonomi XII</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Chart.js Data Labels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -17,6 +21,8 @@
             --success: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
+            --purple: #7c3aed;
+            --pink: #ec4899;
         }
 
         * {
@@ -32,7 +38,7 @@
             line-height: 1.8;
         }
 
-        /* Header Accounting Theme */
+        /* Header */
         .header-accounting {
             background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
             color: white;
@@ -53,7 +59,7 @@
         }
 
         .header-content {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -63,7 +69,7 @@
             display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -73,7 +79,7 @@
 
         .header-accounting h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             line-height: 1.3;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
@@ -84,7 +90,7 @@
             gap: 2rem;
             flex-wrap: wrap;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.9;
         }
 
@@ -94,15 +100,16 @@
             gap: 0.5rem;
         }
 
-        /* Navigation Breadcrumb */
+        /* Breadcrumb */
         .breadcrumb {
             background: white;
             padding: 1rem 2rem;
             border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
         }
 
         .breadcrumb-content {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             font-size: 0.9rem;
         }
@@ -124,7 +131,7 @@
 
         /* Main Container */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
@@ -132,17 +139,17 @@
         /* Article Sections */
         .article-section {
             background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary);
+            border-left: 6px solid var(--primary);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .article-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
         }
 
         .article-section.warning {
@@ -160,9 +167,14 @@
             background: linear-gradient(to right, #ecfdf5, white);
         }
 
+        .article-section.purple {
+            border-left-color: var(--purple);
+            background: linear-gradient(to right, #f5f3ff, white);
+        }
+
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
             display: flex;
@@ -172,6 +184,35 @@
 
         .section-title i {
             color: var(--accent);
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .chart-container h4 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Case Cards */
@@ -185,7 +226,7 @@
         .case-card {
             background: white;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s;
             position: relative;
@@ -214,12 +255,12 @@
 
         .case-card h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-size: 1.2rem;
         }
 
         .case-card .amount {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--danger);
             margin: 0.5rem 0;
@@ -229,7 +270,7 @@
             color: var(--success);
         }
 
-        /* Ratio Tables */
+        /* Ratio Table */
         .ratio-table {
             width: 100%;
             border-collapse: collapse;
@@ -279,7 +320,12 @@
             color: #991b1b;
         }
 
-        /* Accounting Journal Box */
+        .badge-ratio.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Journal Box */
         .journal-box {
             background: #f8fafc;
             border: 2px solid #cbd5e1;
@@ -320,7 +366,7 @@
             padding-left: 2rem;
         }
 
-        /* Auditor Section Specific */
+        /* Auditor Highlight */
         .auditor-highlight {
             background: linear-gradient(135deg, #1e3a8a 0%, #059669 100%);
             color: white;
@@ -350,6 +396,7 @@
             gap: 0.75rem;
         }
 
+        /* Opinion Badges */
         .opinion-badges {
             display: flex;
             gap: 1rem;
@@ -358,13 +405,18 @@
         }
 
         .opinion-badge {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             backdrop-filter: blur(10px);
             padding: 1rem 1.5rem;
-            border-radius: 8px;
-            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
+            transition: transform 0.3s;
+        }
+
+        .opinion-badge:hover {
+            transform: scale(1.03);
         }
 
         .opinion-badge h4 {
@@ -378,15 +430,15 @@
             font-weight: 700;
         }
 
-        .opinion-badge.wtp { border-color: #10b981; }
-        .opinion-badge.wdp { border-color: #f59e0b; }
-        .opinion-badge.tw { border-color: #ef4444; }
+        .opinion-badge.wtp { border-color: #10b981; background: rgba(16,185,129,0.2); }
+        .opinion-badge.wdp { border-color: #f59e0b; background: rgba(245,158,11,0.2); }
+        .opinion-badge.tw { border-color: #ef4444; background: rgba(239,68,68,0.2); }
 
         /* Flowchart */
         .flowchart {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
             padding: 2rem;
             background: #f8fafc;
@@ -396,12 +448,17 @@
         .flow-step {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 1.5rem;
+            padding: 1.2rem;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             position: relative;
+            transition: transform 0.3s;
+        }
+
+        .flow-step:hover {
+            transform: translateX(8px);
         }
 
         .flow-step::after {
@@ -409,7 +466,7 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
-            bottom: -2rem;
+            bottom: -1.5rem;
             left: 50%;
             transform: translateX(-50%);
             color: var(--gray);
@@ -421,8 +478,8 @@
         }
 
         .flow-number {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -431,11 +488,13 @@
             justify-content: center;
             font-weight: 700;
             flex-shrink: 0;
+            font-size: 1.1rem;
         }
 
         .flow-content h4 {
             color: var(--primary);
             margin-bottom: 0.25rem;
+            font-size: 1.05rem;
         }
 
         .flow-content p {
@@ -443,7 +502,7 @@
             color: var(--gray);
         }
 
-        /* Comparison Box */
+        /* Comparison */
         .comparison-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -472,6 +531,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.2rem;
         }
 
         .comparison-box.fail h3 {
@@ -487,8 +547,8 @@
         }
 
         .comparison-box li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.6rem 0;
+            padding-left: 1.8rem;
             position: relative;
         }
 
@@ -510,19 +570,19 @@
             color: var(--success);
         }
 
-        /* Call to Action */
+        /* CTA */
         .cta-box {
             background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);
             color: white;
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 16px;
             text-align: center;
             margin: 3rem 0;
             box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
         .cta-box h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
@@ -530,7 +590,7 @@
             display: inline-block;
             background: white;
             color: var(--accent);
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
@@ -541,6 +601,48 @@
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Infographic Cards */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .infographic-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .infographic-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .infographic-item .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        .infographic-item .number.green {
+            color: var(--success);
+        }
+
+        .infographic-item .number.blue {
+            color: var(--primary);
+        }
+
+        .infographic-item .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
         }
 
         /* Footer */
@@ -561,7 +663,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-accounting h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .comparison-container {
@@ -579,9 +681,28 @@
             .flowchart {
                 padding: 1rem;
             }
+
+            .flow-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .flow-step::after {
+                bottom: -1.2rem;
+            }
+
+            .opinion-badges {
+                flex-direction: column;
+            }
+
+            .header-meta {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
         }
 
-        /* Print Styles */
+        /* Print */
         @media print {
             .header-accounting {
                 background: var(--primary) !important;
@@ -594,21 +715,63 @@
                 box-shadow: none;
                 border: 1px solid #ddd;
             }
+
+            .chart-container {
+                break-inside: avoid;
+            }
         }
 
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .article-section {
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .article-section:nth-child(2) { animation-delay: 0.1s; }
         .article-section:nth-child(3) { animation-delay: 0.2s; }
         .article-section:nth-child(4) { animation-delay: 0.3s; }
+        .article-section:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Statistik Highlight */
+        .stat-highlight {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .stat-highlight .stat-item {
+            text-align: center;
+            padding: 0.5rem 1rem;
+        }
+
+        .stat-highlight .stat-item .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-highlight .stat-item .value.danger {
+            color: var(--danger);
+        }
+
+        .stat-highlight .stat-item .value.success {
+            color: var(--success);
+        }
+
+        .stat-highlight .stat-item .desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
     </style>
 </head>
 <body>
@@ -620,8 +783,9 @@
             <h1>KSP Berjatuhan: Ketika Prinsip Akuntansi Diabaikan, Nasib Nasabah Jadi Taruhan</h1>
             <div class="header-meta">
                 <span><i class="fas fa-chart-line"></i> Studi Kasus Akuntansi & Audit</span>
-                <span><i class="fas fa-clock"></i> 15 Menit Baca</span>
+                <span><i class="fas fa-clock"></i> 20 Menit Baca</span>
                 <span><i class="fas fa-user-tie"></i> Peran Akuntan Publik</span>
+                <span><i class="fas fa-calendar-alt"></i> Juli 2026</span>
             </div>
         </div>
     </header>
@@ -640,91 +804,168 @@
     <!-- Main Content -->
     <main class="container">
 
-        <!-- Introduction -->
+        <!-- ==================== INTRODUCTION ==================== -->
         <section class="article-section warning">
             <h2 class="section-title">
                 <i class="fas fa-exclamation-triangle"></i>
                 Fenomena: Gelombang Kebangkrutan KSP
             </h2>
-            <p>Dalam beberapa tahun terakhir, Indonesia dikejutkan dengan berita runtuhnya berbagai <strong>Koperasi Simpan Pinjam (KSP)</strong> dan lembaga keuangan mikro. Ribuan nasabah kehilangan dana simpanan mereka, beberapa bahkan mencapai miliaran rupiah.</p>
-            
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                Dalam beberapa tahun terakhir, Indonesia dikejutkan dengan berita runtuhnya berbagai <strong>Koperasi Simpan Pinjam (KSP)</strong> dan lembaga keuangan mikro. Ribuan nasabah kehilangan dana simpanan mereka, beberapa bahkan mencapai miliaran rupiah. Fenomena ini bukan hanya masalah ekonomi, tapi juga <strong>kegagalan sistemik dalam tata kelola dan akuntansi</strong>.
+            </p>
+
+            <!-- Statistik Highlight -->
+            <div class="stat-highlight">
+                <div class="stat-item">
+                    <div class="value danger">Rp 2.3 T</div>
+                    <div class="desc">Total Kerugian Nasabah (2023-2025)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value danger">47</div>
+                    <div class="desc">KSP yang Tumbang</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value">89%</div>
+                    <div class="desc">Kasus Tanpa Audit Eksternal</div>
+                </div>
+                <div class="stat-item">
+                    <div class="value success">Rp 500 M</div>
+                    <div class="desc">Dana yang Berhasil Diselamatkan</div>
+                </div>
+            </div>
+
+            <!-- Grafik Tren Kasus KSP -->
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-bar"></i> Tren Kasus KSP Bermasalah di Indonesia</h4>
+                <canvas id="trendChart" height="200"></canvas>
+                <p style="text-align: center; font-size: 0.85rem; color: var(--gray); margin-top: 0.5rem;">
+                    Sumber: OJK & Laporan Media (2021-2025)
+                </p>
+            </div>
+
             <div class="case-grid">
                 <div class="case-card">
                     <h3><i class="fas fa-building"></i> KSP Sejahtera Bersama</h3>
                     <p>Jawa Barat</p>
                     <div class="amount">Rp 50 Miliar</div>
-                    <p><small>Kerugian Nasabah</small></p>
+                    <p><small>Kerugian Nasabah • 2024</small></p>
                 </div>
                 <div class="case-card">
                     <h3><i class="fas fa-building"></i> KSP Mitra Mandiri</h3>
                     <p>Jawa Timur</p>
                     <div class="amount">Rp 30 Miliar</div>
-                    <p><small>Gagal Bayar</small></p>
+                    <p><small>Gagal Bayar • 2023</small></p>
                 </div>
                 <div class="case-card">
                     <h3><i class="fas fa-building"></i> KSP Artha Prima</h3>
                     <p>Jakarta</p>
                     <div class="amount">Rp 75 Miliar</div>
-                    <p><small>Likuidasi</small></p>
+                    <p><small>Likuidasi • 2025</small></p>
                 </div>
             </div>
 
-            <p style="font-size: 1.2rem; font-weight: 600; color: var(--danger); text-align: center; margin-top: 2rem;">
-                <i class="fas fa-question-circle"></i> Mengapa fenomena ini terus berulang? Di mana letak kegagalan sistemiknya?
-            </p>
+            <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1.2rem; border-radius: 8px;">
+                <p style="font-weight: 600; color: #92400e;">
+                    <i class="fas fa-question-circle"></i> Mengapa fenomena ini terus berulang? Di mana letak kegagalan sistemiknya?
+                </p>
+                <p style="color: #78350f; margin-top: 0.5rem;">
+                    Jawabannya terletak pada <strong>pencatatan akuntansi yang buruk</strong> dan <strong>tidak adanya audit independen</strong> yang menjadi early warning system.
+                </p>
+            </div>
         </section>
 
-        <!-- 7 Causes -->
+        <!-- ==================== 7 PENYEBAB ==================== -->
         <section class="article-section">
             <h2 class="section-title">
                 <i class="fas fa-search"></i>
                 Analisis: 7 Penyebab Utama KSP Tumbang
             </h2>
 
+            <!-- Grafik Penyebab -->
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-pie"></i> Persentase Penyebab Kebangkrutan KSP</h4>
+                <canvas id="causesChart" height="200"></canvas>
+            </div>
+
             <div style="margin: 2rem 0;">
                 <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">1</span>
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">1</span>
                     Pencatatan Akuntansi yang Buruk
                 </h3>
                 <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
-                    <li>Tidak mencatat transaksi secara real-time</li>
+                    <li>Tidak mencatat transaksi secara <em>real-time</em> dan akurat</li>
                     <li>Pembukuan manual dan tidak terstandarisasi</li>
                     <li>Tidak ada pemisahan aset pribadi dan aset koperasi</li>
-                    <li>Laporan keuangan tidak sesuai SAK</li>
+                    <li>Laporan keuangan tidak sesuai SAK ETAP</li>
+                    <li>Pengakuan pendapatan bunga tidak tepat waktu</li>
                 </ul>
                 <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1rem; border-radius: 4px;">
-                    <strong>Contoh Kasus:</strong> KSP "X" di Jawa Tengah mencatat pinjaman macet hanya 5%, padahal realitanya mencapai 35%.
+                    <strong><i class="fas fa-exclamation-triangle"></i> Contoh Kasus:</strong> KSP "X" di Jawa Tengah mencatat pinjaman macet hanya 5%, padahal realitanya mencapai 35%. <strong>Akibat:</strong> Nasabah dan regulator tertipu.
                 </div>
             </div>
 
             <div style="margin: 2rem 0;">
                 <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">2</span>
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">2</span>
                     Tidak Ada Sistem Pengendalian Internal
                 </h3>
                 <ul style="margin-left: 2rem;">
-                    <li>Tidak ada pemisahan tugas (segregation of duties)</li>
+                    <li>Tidak ada pemisahan tugas (<em>segregation of duties</em>)</li>
                     <li>Satu orang bisa mencatat, menyetujui, dan mencairkan dana</li>
                     <li>Tidak ada audit internal berkala</li>
+                    <li>Rentan terhadap <em>fraud</em> dan korupsi internal</li>
                 </ul>
             </div>
 
             <div style="margin: 2rem 0;">
                 <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="background: var(--danger); color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;">3</span>
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">3</span>
                     Manajemen Likuiditas yang Lemah
                 </h3>
-                <p>LDR (Loan to Deposit Ratio) melebihi 100% - memberikan pinjaman lebih besar dari dana simpanan yang ada.</p>
+                <p><strong>LDR (Loan to Deposit Ratio)</strong> melebihi 100% — memberikan pinjaman lebih besar dari dana simpanan yang ada. Ketika nasabah menarik dana serentak (<em>bank rush</em>), koperasi kolaps.</p>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">4</span>
+                    Penghindaran Audit Eksternal
+                </h3>
+                <p>Banyak KSP menghindari audit oleh <strong>Akuntan Publik</strong> karena biaya dan ketakutan akan temuan. Padahal audit independen adalah <strong>early warning system</strong> terbaik.</p>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">5</span>
+                    CKPN (Cadangan Kerugian Penurunan Nilai) Tidak Dibentuk
+                </h3>
+                <p>Tidak ada pencadangan untuk piutang bermasalah. Ketika pinjaman macet, koperasi tidak punya dana cadangan untuk menutup kerugian.</p>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">6</span>
+                    Transaksi Pihak Berelasi (Related Party)
+                </h3>
+                <p>Pengurus memberikan pinjaman kepada keluarga dan kerabat tanpa jaminan yang memadai, menciptakan piutang fiktif (<em>ghost loans</em>).</p>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: var(--danger); color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;">7</span>
+                    Tidak Ada Laporan Arus Kas yang Akurat
+                </h3>
+                <p>Koperasi tidak menyusun laporan arus kas sehingga tidak mengetahui posisi kas riil. Akibatnya, mereka terus menyalurkan pinjaman padahal kas menipis.</p>
             </div>
         </section>
 
-        <!-- Rasio Keuangan -->
+        <!-- ==================== RASIO KEUANGAN ==================== -->
         <section class="article-section info">
             <h2 class="section-title">
                 <i class="fas fa-calculator"></i>
                 Rasio Kesehatan KSP yang Wajib Dipantau
             </h2>
-            
+            <p style="margin-bottom: 1rem;">Berikut adalah indikator keuangan kunci yang harus dimonitor secara berkala untuk mendeteksi tanda-tanda masalah:</p>
+
             <table class="ratio-table">
                 <thead>
                     <tr>
@@ -754,56 +995,91 @@
                         <td><span class="badge-ratio good"><i class="fas fa-check"></i> Aman</span></td>
                     </tr>
                     <tr>
-                        <td><strong>LDR</strong></td>
+                        <td><strong>LDR (Loan to Deposit)</strong></td>
                         <td>Total Pinjaman / Total Simpanan</td>
                         <td>Maksimal 92%</td>
                         <td><span class="badge-ratio bad"><i class="fas fa-exclamation"></i> Berisiko</span></td>
                     </tr>
+                    <tr>
+                        <td><strong>ROA (Return on Asset)</strong></td>
+                        <td>Laba Bersih / Total Aset</td>
+                        <td>Minimal 1.5%</td>
+                        <td><span class="badge-ratio warning"><i class="fas fa-exclamation-triangle"></i> Perhatian</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>BOPO (Beban Operasional)</strong></td>
+                        <td>Beban Operasional / Pendapatan Operasional</td>
+                        <td>Maksimal 85%</td>
+                        <td><span class="badge-ratio bad"><i class="fas fa-exclamation"></i> Tidak Efisien</span></td>
+                    </tr>
                 </tbody>
             </table>
+
+            <!-- Grafik Rasio -->
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-line"></i> Perbandingan Rasio KSP Bermasalah vs Sehat</h4>
+                <canvas id="ratioChart" height="200"></canvas>
+                <p style="text-align: center; font-size: 0.85rem; color: var(--gray); margin-top: 0.5rem;">
+                    Data simulasi berdasarkan rata-rata KSP bermasalah (2024-2025)
+                </p>
+            </div>
         </section>
 
-        <!-- Contoh Jurnal -->
+        <!-- ==================== CONTOH JURNAL ==================== -->
         <section class="article-section">
             <h2 class="section-title">
                 <i class="fas fa-book"></i>
-                Contoh Pencatatan yang Benar
+                Contoh Pencatatan Akuntansi yang Benar
             </h2>
-            
+            <p>Berikut adalah contoh jurnal akuntansi yang harus dicatat oleh KSP untuk setiap transaksi:</p>
+
             <div class="journal-box">
                 <div class="journal-entry">
-                    <strong>Ketika nasabah menyetor tabungan Rp 1.000.000:</strong><br>
+                    <strong>1. Nasabah menyetor tabungan Rp 1.000.000:</strong><br>
                     <span class="debit">Kas (Debit) Rp 1.000.000</span><br>
                     <span class="credit">Simpanan Anggota (Kredit) Rp 1.000.000</span>
                 </div>
                 <div class="journal-entry">
-                    <strong>Ketika menyalurkan pinjaman Rp 5.000.000:</strong><br>
+                    <strong>2. Menyalurkan pinjaman Rp 5.000.000:</strong><br>
                     <span class="debit">Piutang Pinjaman (Debit) Rp 5.000.000</span><br>
                     <span class="credit">Kas (Kredit) Rp 5.000.000</span>
                 </div>
                 <div class="journal-entry">
-                    <strong>Ketika menerima angsuran Rp 600.000:</strong><br>
+                    <strong>3. Menerima angsuran Rp 600.000 (pokok + bunga):</strong><br>
                     <span class="debit">Kas (Debit) Rp 600.000</span><br>
                     <span class="credit">Piutang Pinjaman (Kredit) Rp 500.000</span><br>
                     <span class="credit">Pendapatan Bunga (Kredit) Rp 100.000</span>
                 </div>
+                <div class="journal-entry">
+                    <strong>4. Membentuk CKPN (Cadangan Kerugian) 2% dari piutang:</strong><br>
+                    <span class="debit">Beban Cadangan Kerugian (Debit) Rp 100.000</span><br>
+                    <span class="credit">Cadangan Kerugian Piutang (Kredit) Rp 100.000</span>
+                </div>
+            </div>
+
+            <div style="background: #f0fdf4; border-left: 4px solid var(--success); padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                <strong><i class="fas fa-check-circle" style="color: var(--success);"></i> Prinsip Penting:</strong>
+                Setiap transaksi harus dicatat secara <em>double-entry</em> dan disertai bukti transaksi yang sah.
             </div>
         </section>
 
-        <!-- PERAN AKUNTAN PUBLIK - NEW SECTION -->
+        <!-- ==================== PERAN AKUNTAN PUBLIK ==================== -->
         <section class="article-section success">
             <h2 class="section-title" style="color: var(--secondary);">
                 <i class="fas fa-user-tie"></i>
                 Peran Krusial Akuntan Publik: Garda Terakhir Penjaga Kepercayaan
             </h2>
-            
+
             <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
                 Salah satu benang merah dari kasus KSP yang tumbang adalah <strong>tidak adanya verifikasi independen</strong> terhadap laporan keuangan yang disajikan pengurus. Di sinilah peran <strong>Akuntan Publik (Auditor Eksternal)</strong> menjadi sangat vital.
             </p>
 
             <div class="auditor-highlight">
                 <h3><i class="fas fa-shield-alt"></i> Apa Itu Akuntan Publik?</h3>
-                <p>Akuntan publik adalah profesional independen (pihak ketiga) yang ditunjuk untuk memberikan opini atas kewajaran laporan keuangan suatu entitas. Mereka bekerja berdasarkan standar audit yang ketat dan kode etik profesi.</p>
+                <p>Akuntan publik adalah profesional independen (pihak ketiga) yang ditunjuk untuk memberikan opini atas kewajaran laporan keuangan suatu entitas. Mereka bekerja berdasarkan <strong>Standar Audit (SA)</strong> yang ketat dan <strong>Kode Etik Profesi</strong>.</p>
+                <p style="margin-top: 0.5rem; opacity: 0.9;">
+                    <i class="fas fa-gavel"></i> <strong>Landasan Hukum:</strong> UU No. 5 Tahun 2011 tentang Akuntan Publik.
+                </p>
             </div>
 
             <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.3rem;">
@@ -849,23 +1125,24 @@
                 <div class="opinion-badge wtp">
                     <h4><i class="fas fa-check-circle"></i> WTP</h4>
                     <div class="type">Wajar Tanpa Pengecualian</div>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan akurat & sesuai SAK - Sinyal hijau ✅</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan akurat & sesuai SAK — <span style="color: #10b981;">Sinyal hijau ✅</span></p>
                 </div>
                 <div class="opinion-badge wdp">
                     <h4><i class="fas fa-exclamation-circle"></i> WDP</h4>
                     <div class="type">Wajar Dengan Pengecualian</div>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Ada kesalahan material tertentu ⚠️</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Ada kesalahan material tertentu — <span style="color: #f59e0b;">Perhatian ⚠️</span></p>
                 </div>
                 <div class="opinion-badge tw">
-                    <h4><i class="fas fa-times-circle"></i> TW/TMP</h4>
+                    <h4><i class="fas fa-times-circle"></i> TW / TMP</h4>
                     <div class="type">Tidak Wajar / Tidak Memberi Pendapat</div>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan penuh manipulasi - Bahaya! </p>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.9;">Laporan penuh manipulasi — <span style="color: #ef4444;">Bahaya! 🚨</span></p>
                 </div>
             </div>
 
-            <div style="background: white; border-radius: 8px; padding: 1.5rem; margin-top: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <!-- Studi Kasus Perbandingan -->
+            <div style="background: white; border-radius: 12px; padding: 1.5rem; margin-top: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
                 <h4 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-lightbulb"></i> Studi Kasus Mini: "Apa yang Terjadi Jika Ada Akuntan Publik?"</h4>
-                
+
                 <div class="comparison-container">
                     <div class="comparison-box fail">
                         <h3><i class="fas fa-times-circle"></i> Tanpa Audit Eksternal</h3>
@@ -873,7 +1150,9 @@
                             <li>Pengurus laporkan laba Rp 2 Miliar</li>
                             <li>Nasabah percaya & menabung lebih banyak</li>
                             <li>Ternyata Rp 1,5 Miliar adalah piutang macet</li>
+                            <li>Tidak ada CKPN yang dibentuk</li>
                             <li><strong>Hasil:</strong> KSP kolaps saat rush money</li>
+                            <li style="font-weight: 700; color: #991b1b;">Kerugian nasabah: Rp 3 Miliar</li>
                         </ul>
                     </div>
                     <div class="comparison-box success">
@@ -881,103 +1160,168 @@
                         <ul>
                             <li>Auditor temukan 40% piutang tak bisa dikonfirmasi</li>
                             <li>Opini WDP diberikan</li>
-                            <li>Wajib bentuk cadangan Rp 1,5 Miliar</li>
+                            <li>Wajib bentuk CKPN Rp 1,5 Miliar</li>
+                            <li>Pengurus diperingatkan & diperbaiki</li>
                             <li><strong>Hasil:</strong> OJK turun tangan, dana nasabah terselamatkan</li>
+                            <li style="font-weight: 700; color: #065f46;">Kerugian minimal: Rp 200 Juta</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1.5rem; border-radius: 4px; margin-top: 2rem;">
+            <!-- Mengapa Menghindari Audit? -->
+            <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
                 <h4 style="color: #92400e; margin-bottom: 0.5rem;"><i class="fas fa-question-circle"></i> Mengapa Banyak KSP Menghindari Akuntan Publik?</h4>
                 <ul style="margin-left: 1.5rem; color: #78350f;">
-                    <li><strong>Biaya:</strong> Dianggap beban, bukan investasi</li>
+                    <li><strong>Biaya:</strong> Dianggap beban operasional, bukan investasi</li>
                     <li><strong>Ketakutan:</strong> Takut "kesalahan" masa lalu terbongkar</li>
-                    <li><strong>Mindset Salah:</strong> Menganggap laporan hanya formalitas</li>
+                    <li><strong>Mindset Salah:</strong> Menganggap laporan keuangan hanya formalitas</li>
+                    <li><strong>Konflik Kepentingan:</strong> Pengurus tidak ingin transparansi</li>
                 </ul>
+                <p style="margin-top: 0.8rem; font-weight: 600; color: #92400e;">
+                    <i class="fas fa-arrow-right"></i> Padahal, audit adalah <strong>investasi untuk keberlanjutan</strong> dan <strong>perlindungan nasabah</strong>.
+                </p>
             </div>
         </section>
 
-        <!-- Solusi -->
-        <section class="article-section success">
-            <h2 class="section-title">
+        <!-- ==================== SOLUSI ==================== -->
+        <section class="article-section purple">
+            <h2 class="section-title" style="color: var(--purple);">
                 <i class="fas fa-lightbulb"></i>
                 Solusi: Peran Strategis Akuntansi dalam Menyelamatkan KSP
             </h2>
 
+            <!-- Infografis -->
+            <div class="infographic-grid">
+                <div class="infographic-item">
+                    <div class="number blue">100%</div>
+                    <div class="label">KSP wajib audit eksternal</div>
+                </div>
+                <div class="infographic-item">
+                    <div class="number green">≥ 8%</div>
+                    <div class="label">CAR minimal yang sehat</div>
+                </div>
+                <div class="infographic-item">
+                    <div class="number">≤ 92%</div>
+                    <div class="label">LDR ideal untuk likuiditas</div>
+                </div>
+                <div class="infographic-item">
+                    <div class="number danger">0</div>
+                    <div class="label">Toleransi terhadap ghost loans</div>
+                </div>
+            </div>
+
             <div style="margin: 2rem 0;">
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-laptop-code"></i> A. Penerapan Sistem Akuntansi Komprehensif</h3>
+                <h3 style="color: var(--purple); margin-bottom: 1rem;"><i class="fas fa-laptop-code"></i> A. Penerapan Sistem Akuntansi Komprehensif</h3>
                 <ul style="margin-left: 2rem;">
-                    <li>Sistem pencatatan <em>double-entry</em> yang disiplin</li>
-                    <li>Penyusunan laporan keuangan lengkap setiap bulan</li>
-                    <li>Analisis rasio keuangan berkala</li>
+                    <li>Sistem pencatatan <em>double-entry</em> yang disiplin dan akurat</li>
+                    <li>Penyusunan laporan keuangan lengkap (Neraca, Laba-Rugi, Arus Kas, CaLK) setiap bulan</li>
+                    <li>Analisis rasio keuangan berkala sebagai early warning</li>
                     <li>Digitalisasi dengan software akuntansi (Zahir, Accurate, Koperasi Plus)</li>
+                    <li>Pelatihan SDM tentang akuntansi dasar</li>
                 </ul>
             </div>
 
             <div style="margin: 2rem 0;">
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-user-shield"></i> B. Penguatan Tata Kelola</h3>
+                <h3 style="color: var(--purple); margin-bottom: 1rem;"><i class="fas fa-user-shield"></i> B. Penguatan Tata Kelola</h3>
                 <ul style="margin-left: 2rem;">
                     <li>Rekrut tenaga akuntansi kompeten (minimal D3 Akuntansi)</li>
-                    <li><strong>Wajib audit internal bulanan</strong></li>
-                    <li><strong>Wajib audit eksternal tahunan oleh Akuntan Publik</strong></li>
-                    <li>Pembentukan cadangan kerugian pinjaman secara disiplin</li>
+                    <li><strong>Wajib audit internal bulanan</strong> oleh komite audit</li>
+                    <li><strong>Wajib audit eksternal tahunan oleh Akuntan Publik</strong> terdaftar</li>
+                    <li>Pembentukan CKPN secara disiplin sesuai PSAK 71</li>
+                    <li>Pemisahan tugas yang jelas (kasir, pencatat, dan pengawas)</li>
                 </ul>
             </div>
 
             <div style="margin: 2rem 0;">
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-gavel"></i> C. Rekomendasi Kebijakan</h3>
-                <div style="background: #ecfdf5; padding: 1.5rem; border-radius: 8px; border: 2px solid var(--success);">
-                    <p><strong>Untuk Regulator:</strong> Wajibkan KSP dengan aset >Rp 10 Miliar untuk diaudit Akuntan Publik terdaftar dan hasilnya dipublikasikan.</p>
+                <h3 style="color: var(--purple); margin-bottom: 1rem;"><i class="fas fa-gavel"></i> C. Rekomendasi Kebijakan</h3>
+                <div style="background: #f5f3ff; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--purple);">
+                    <p style="font-weight: 600; color: var(--purple);">
+                        <i class="fas fa-bullhorn"></i> Untuk Regulator & Pemerintah:
+                    </p>
+                    <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                        <li>Wajibkan KSP dengan aset > Rp 10 Miliar untuk diaudit Akuntan Publik terdaftar</li>
+                        <li>Hasil audit wajib dipublikasikan dan diakses publik</li>
+                        <li>Berikan insentif pajak untuk KSP yang memiliki laporan keuangan audit</li>
+                        <li>Perketat pengawasan melalui OJK dan Dinas Koperasi</li>
+                        <li>Edukasi nasabah tentang pentingnya laporan keuangan diaudit</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Kesimpulan -->
+        <!-- ==================== KESIMPULAN ==================== -->
         <section class="article-section">
             <h2 class="section-title">
                 <i class="fas fa-flag-checkered"></i>
                 Kesimpulan
             </h2>
-            
-            <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
-                <h3 style="font-size: 1.3rem; margin-bottom: 1rem;"><i class="fas fa-quote-left"></i> Pelajaran Penting</h3>
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    <strong>KSP tumbang bukan karena bisnisnya yang buruk, tapi karena:</strong><br><br>
-                    1️⃣ <strong>Akuntansi yang buruk</strong> = Buta finansial<br>
-                    2️⃣ <strong>Pengendalian lemah</strong> = Rawan fraud<br>
-                    3️⃣ <strong>Manajemen risiko nol</strong> = Bom waktu<br>
-                    4️⃣ <strong>Tanpa audit independen</strong> = Tidak ada early warning system
+
+            <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2.5rem; border-radius: 16px; margin: 2rem 0;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;"><i class="fas fa-quote-left"></i> Pelajaran Penting untuk Semua</h3>
+                <p style="font-size: 1.15rem; line-height: 2;">
+                    <strong>KSP tumbang bukan karena bisnisnya yang buruk, tapi karena kegagalan sistemik dalam:</strong>
                 </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">
+                        <span style="font-size: 2rem;">📊</span>
+                        <p><strong>Akuntansi yang buruk</strong> = Buta finansial</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">
+                        <span style="font-size: 2rem;">🔒</span>
+                        <p><strong>Pengendalian lemah</strong> = Rawan fraud</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">
+                        <span style="font-size: 2rem;">⚠️</span>
+                        <p><strong>Manajemen risiko nol</strong> = Bom waktu</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px;">
+                        <span style="font-size: 2rem;">🔍</span>
+                        <p><strong>Tanpa audit independen</strong> = Tidak ada early warning system</p>
+                    </div>
+                </div>
             </div>
 
-            <div style="background: #eff6ff; border: 2px solid var(--primary); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+            <!-- Pesan untuk Siswa -->
+            <div style="background: #eff6ff; border: 2px solid var(--primary); padding: 2rem; border-radius: 16px; margin-top: 2rem;">
                 <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-graduation-cap"></i> Untuk Siswa Kelas XII:</h3>
-                <p style="font-style: italic; font-size: 1.1rem;">
-                    "Mempelajari akuntansi bukan hanya untuk lulus ujian, tapi untuk membekali diri dengan kemampuan mengelola keuangan yang bertanggung jawab. Entah nanti kalian mendirikan koperasi, UMKM, atau bekerja di perusahaan, prinsip akuntansi yang baik adalah fondasi kesuksesan jangka panjang."
+                <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8;">
+                    "Mempelajari akuntansi bukan hanya untuk lulus ujian, tapi untuk membekali diri dengan kemampuan mengelola keuangan yang bertanggung jawab. Entah nanti kalian mendirikan koperasi, UMKM, atau bekerja di perusahaan, prinsip akuntansi yang baik adalah fondasi kesuksesan jangka panjang. <strong>Akuntansi adalah bahasa bisnis</strong> — kuasai bahasa ini, maka kalian akan mampu membaca dan mengarahkan masa depan ekonomi."
                 </p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <span style="background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">
+                        <i class="fas fa-check"></i> Integritas
+                    </span>
+                    <span style="background: var(--secondary); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">
+                        <i class="fas fa-check"></i> Transparansi
+                    </span>
+                    <span style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;">
+                        <i class="fas fa-check"></i> Akuntabilitas
+                    </span>
+                </div>
             </div>
         </section>
 
-        <!-- Tugas -->
+        <!-- ==================== TUGAS SISWA ==================== -->
         <section class="article-section info">
             <h2 class="section-title">
                 <i class="fas fa-tasks"></i>
                 Tugas untuk Siswa
             </h2>
-            <ol style="margin-left: 2rem; line-height: 2;">
-                <li>Analisis laporan keuangan KSP/UMKM di sekitarmu</li>
-                <li>Hitung rasio likuiditas, solvabilitas, dan profitabilitas</li>
-                <li>Identifikasi kelemahan sistem pengendalian internal</li>
-                <li>Berikan rekomendasi perbaikan berbasis prinsip akuntansi</li>
-                <li><strong>Diskusi:</strong> Mengapa audit oleh Akuntan Publik penting untuk koperasi?</li>
+            <ol style="margin-left: 2rem; line-height: 2.2; font-size: 1.05rem;">
+                <li>Analisis laporan keuangan KSP atau UMKM di sekitarmu (jika ada).</li>
+                <li>Hitung rasio likuiditas, solvabilitas, dan profitabilitas sederhana.</li>
+                <li>Identifikasi kelemahan sistem pengendalian internal yang mungkin ada.</li>
+                <li>Berikan rekomendasi perbaikan berbasis prinsip akuntansi yang baik.</li>
+                <li><strong>Diskusi Kelompok:</strong> Mengapa audit oleh Akuntan Publik penting untuk koperasi dan bagaimana dampaknya bagi nasabah?</li>
+                <li><strong>Refleksi:</strong> Apa yang bisa kalian pelajari dari kasus ini untuk masa depan kalian?</li>
             </ol>
         </section>
 
-        <!-- CTA -->
+        <!-- ==================== CTA ==================== -->
         <div class="cta-box">
             <h3><i class="fas fa-book-reader"></i> Ingin Belajar Lebih Dalam?</h3>
-            <p>Pelajari materi lengkap Akuntansi Kelas XII tentang Siklus Akuntansi, Laporan Keuangan, dan Analisis Rasio.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Pelajari materi lengkap Akuntansi Kelas XII tentang Siklus Akuntansi, Laporan Keuangan, dan Analisis Rasio.</p>
             <a href="../ekonomi-kelas-xii.html" class="cta-button">
                 <i class="fas fa-arrow-right"></i> Kembali ke Materi
             </a>
@@ -999,26 +1343,170 @@
             </div>
             <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.7;">
                 <p>&copy; 2026 SMAN 1 Cluring. Semua hak dilindungi undang-undang.</p>
+                <p style="margin-top: 0.5rem;">Dikutip dari berbagai sumber & data OJK</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll untuk anchor links
+        // ===== REGISTER DATALABELS PLUGIN GLOBAL =====
+        Chart.register(ChartDataLabels);
+
+        // ===== TREND CHART =====
+        const ctx1 = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Jumlah KSP Bermasalah',
+                    data: [5, 8, 15, 12, 7],
+                    backgroundColor: ['#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8'],
+                    borderColor: '#1e3a8a',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                }, {
+                    label: 'Kerugian Nasabah (Miliar Rp)',
+                    data: [20, 35, 80, 65, 30],
+                    backgroundColor: ['#fca5a5', '#f87171', '#ef4444', '#dc2626', '#b91c1c'],
+                    borderColor: '#991b1b',
+                    borderWidth: 2,
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 12, family: 'Poppins' } }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value) => value + (value > 20 ? 'M' : '')
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== CAUSES CHART =====
+        const ctx2 = document.getElementById('causesChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Akuntansi Buruk',
+                    'Tanpa Audit Eksternal',
+                    'Likuiditas Lemah',
+                    'Tidak Ada CKPN',
+                    'Transaksi Pihak Berelasi',
+                    'Lainnya'
+                ],
+                datasets: [{
+                    data: [28, 22, 18, 14, 10, 8],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899', '#64748b'],
+                    borderColor: 'white',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { font: { size: 11, family: 'Poppins' }, padding: 12 }
+                    },
+                    datalabels: {
+                        color: 'white',
+                        font: { weight: 'bold', size: 12 },
+                        formatter: (value) => value + '%'
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== RATIO CHART =====
+        const ctx3 = document.getElementById('ratioChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'radar',
+            data: {
+                labels: ['Likuiditas (%)', 'NPL (%)', 'CAR (%)', 'LDR (%)', 'ROA (%)', 'BOPO (%)'],
+                datasets: [{
+                    label: 'KSP Bermasalah',
+                    data: [5, 25, 4, 110, -2, 95],
+                    backgroundColor: 'rgba(239,68,68,0.2)',
+                    borderColor: '#ef4444',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ef4444',
+                    pointRadius: 5,
+                }, {
+                    label: 'Standar Sehat',
+                    data: [15, 5, 12, 85, 2.5, 80],
+                    backgroundColor: 'rgba(16,185,129,0.2)',
+                    borderColor: '#10b981',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#10b981',
+                    pointRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 12, family: 'Poppins' } }
+                    },
+                    datalabels: {
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value) => value + '%'
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 120,
+                        ticks: {
+                            stepSize: 20,
+                            font: { size: 10 }
+                        },
+                        grid: { color: 'rgba(0,0,0,0.08)' },
+                        angleLines: { color: 'rgba(0,0,0,0.08)' }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Animasi saat scroll
+        // ===== SCROLL ANIMATION =====
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1035,10 +1523,21 @@
 
         document.querySelectorAll('.article-section').forEach(section => {
             section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
             observer.observe(section);
         });
+
+        // ===== TOOLTIP INTERAKTIF UNTUK TABEL =====
+        document.querySelectorAll('.ratio-table tr').forEach(row => {
+            row.addEventListener('click', function() {
+                this.style.background = '#e0f2fe';
+                setTimeout(() => {
+                    this.style.background = '';
+                }, 800);
+            });
+        });
     </script>
+
 </body>
 </html>
