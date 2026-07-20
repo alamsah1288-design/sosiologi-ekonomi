@@ -8,15 +8,14 @@
     <title>Ekonomi Kelas XII — SMAN 1 Cluring</title>
     
     <!-- Google AdSense Library -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
     
     <!-- Google Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== CSS DASAR (SAMA DENGAN INDEX) ===== */
+        /* ===== CSS DASAR ===== */
         :root {
             --primary: #4361ee;
             --secondary: #3f37c9;
@@ -188,9 +187,7 @@
             background: rgba(255,255,255,0.25);
         }
 
-        .header-icon i {
-            font-size: 2.5rem; color: white;
-        }
+        .header-icon i { font-size: 2.5rem; color: white; }
 
         h1 {
             font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;
@@ -208,11 +205,7 @@
             font-size: 0.9rem; color: var(--gray);
         }
 
-        .breadcrumb a {
-            color: var(--primary); text-decoration: none;
-            transition: var(--transition);
-        }
-
+        .breadcrumb a { color: var(--primary); text-decoration: none; transition: var(--transition); }
         .breadcrumb a:hover { text-decoration: underline; }
         .breadcrumb span { margin: 0 8px; opacity: 0.6; }
 
@@ -254,18 +247,11 @@
         .stat-card.progress .stat-icon { background: var(--success); }
         .stat-card.bab .stat-icon { background: var(--accent); }
 
-        .stat-info h3 {
-            font-size: 1.5rem; font-weight: 700; color: var(--dark);
-            line-height: 1;
-        }
-
+        .stat-info h3 { font-size: 1.5rem; font-weight: 700; color: var(--dark); line-height: 1; }
         body.dark-mode .stat-info h3 { color: #f8f9fa; }
+        .stat-info p { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
 
-        .stat-info p {
-            font-size: 0.85rem; color: var(--gray); margin-top: 4px;
-        }
-
-        /* ===== KARTU AKSI CEPAT (ABSENSI & ARTIKEL) ===== */
+        /* ===== KARTU AKSI CEPAT & ARTIKEL ===== */
         .quick-action-container {
             max-width: 1200px;
             margin: 30px auto;
@@ -281,7 +267,7 @@
             padding: 25px;
             box-shadow: var(--shadow);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 20px;
             transition: var(--transition);
             text-decoration: none;
@@ -289,24 +275,15 @@
             border-top: 5px solid var(--primary);
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
 
-        body.dark-mode .action-card {
-            background: #2d2d2d;
-            color: #f8f9fa;
-        }
+        body.dark-mode .action-card { background: #2d2d2d; color: #f8f9fa; }
 
         .action-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: rgba(0,0,0,0.02);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-            transition: var(--transition);
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 100px; height: 100px; background: rgba(0,0,0,0.02);
+            border-radius: 50%; transform: translate(30%, -30%); transition: var(--transition);
         }
 
         .action-card:hover {
@@ -314,154 +291,65 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
-        .action-card:hover::before {
-            transform: translate(20%, -20%) scale(1.5);
-        }
+        .action-card:hover::before { transform: translate(20%, -20%) scale(1.5); }
 
-        .action-card.absensi {
-            border-top-color: #10b981;
-        }
-
-        .action-card.artikel {
-            border-top-color: #f59e0b;
-        }
+        .action-card.absensi { border-top-color: #10b981; }
+        .action-card.artikel-1 { border-top-color: #f59e0b; }
+        .action-card.artikel-2 { border-top-color: #4361ee; }
+        .action-card.artikel-3 { border-top-color: #10b981; }
 
         .action-icon-wrapper {
-            width: 65px;
-            height: 65px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
+            width: 55px; height: 55px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: white; flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: var(--transition);
         }
 
-        .action-card:hover .action-icon-wrapper {
-            transform: rotate(10deg) scale(1.1);
-        }
+        .action-card:hover .action-icon-wrapper { transform: rotate(10deg) scale(1.1); }
+        .action-card.absensi .action-icon-wrapper { background: linear-gradient(135deg, #10b981, #059669); }
+        .action-card.artikel-1 .action-icon-wrapper { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .action-card.artikel-2 .action-icon-wrapper { background: linear-gradient(135deg, #4361ee, #3f37c9); }
+        .action-card.artikel-3 .action-icon-wrapper { background: linear-gradient(135deg, #10b981, #059669); }
 
-        .action-card.absensi .action-icon-wrapper {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .action-card.artikel .action-icon-wrapper {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .action-info {
-            flex: 1;
-            position: relative;
-            z-index: 2;
-        }
-
-        .action-info h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--dark);
-        }
-
+        .action-info { flex: 1; position: relative; z-index: 2; width: 100%; }
+        .action-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
         body.dark-mode .action-info h3 { color: #f8f9fa; }
-
-        .action-info p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
+        .action-info p { font-size: 0.85rem; color: var(--gray); margin-bottom: 12px; line-height: 1.5; }
 
         .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.8rem; font-weight: 600; padding: 6px 14px;
+            border-radius: 50px; color: white; text-decoration: none; transition: var(--transition);
         }
 
-        .action-card.absensi .action-btn {
-            background: #10b981;
-        }
+        .action-card.absensi .action-btn { background: #10b981; }
+        .action-card.artikel-1 .action-btn { background: #f59e0b; }
+        .action-card.artikel-2 .action-btn { background: #4361ee; }
+        .action-card.artikel-3 .action-btn { background: #10b981; }
 
-        .action-card.artikel .action-btn {
-            background: #f59e0b;
-        }
-
-        .action-btn:hover {
-            filter: brightness(1.1);
-            transform: translateX(3px);
-        }
-
-        .action-arrow {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            font-size: 1.3rem;
-            color: var(--gray);
-            opacity: 0.3;
-            transition: var(--transition);
-        }
-
-        .action-card:hover .action-arrow {
-            opacity: 0.8;
-            color: var(--primary);
-            transform: translateY(-50%) translateX(5px);
-        }
+        .action-btn:hover { filter: brightness(1.1); transform: translateX(3px); }
 
         /* ===== ADSENSE CONTAINER ===== */
         .ads-container {
-            max-width: 1200px;
-            margin: 25px auto;
-            padding: 0 20px;
-            text-align: center;
-            min-height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 1200px; margin: 25px auto; padding: 0 20px;
+            text-align: center; min-height: 90px;
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .ads-container.footer-ads {
-            margin: 40px auto 20px;
-        }
-
+        .ads-container.footer-ads { margin: 40px auto 20px; }
         .ads-wrapper {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 15px;
-            box-shadow: var(--shadow);
-            width: 100%;
-            min-height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: white; border-radius: var(--border-radius); padding: 15px;
+            box-shadow: var(--shadow); width: 100%; min-height: 90px;
+            display: flex; align-items: center; justify-content: center;
             border: 1px dashed rgba(0,0,0,0.08);
         }
-
-        body.dark-mode .ads-wrapper {
-            background: #2d2d2d;
-            border-color: rgba(255,255,255,0.08);
-        }
+        body.dark-mode .ads-wrapper { background: #2d2d2d; border-color: rgba(255,255,255,0.08); }
 
         /* TAB SWITCHER */
-        .tab-container {
-            max-width: 1200px; margin: 30px auto 20px; padding: 0 20px;
-        }
-
+        .tab-container { max-width: 1200px; margin: 30px auto 20px; padding: 0 20px; }
         .tab-switcher {
             display: flex; background: white; border-radius: 50px;
-            padding: 6px; box-shadow: var(--shadow);
-            max-width: 500px; margin: 0 auto;
-            position: relative;
+            padding: 6px; box-shadow: var(--shadow); max-width: 500px; margin: 0 auto; position: relative;
         }
-
         body.dark-mode .tab-switcher { background: #2d2d2d; }
 
         .tab-btn {
@@ -471,394 +359,159 @@
             transition: var(--transition); position: relative; z-index: 2;
             display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-
-        .tab-btn.active {
-            color: white;
-        }
-
+        .tab-btn.active { color: white; }
         .tab-btn.active.semester-1 { background: var(--semester1); }
         .tab-btn.active.semester-2 { background: var(--semester2); }
-
-        .tab-btn:hover:not(.active) {
-            color: var(--dark);
-            background: rgba(0,0,0,0.03);
-        }
-
-        body.dark-mode .tab-btn:hover:not(.active) {
-            background: rgba(255,255,255,0.05);
-            color: #f8f9fa;
-        }
+        .tab-btn:hover:not(.active) { color: var(--dark); background: rgba(0,0,0,0.03); }
+        body.dark-mode .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.05); color: #f8f9fa; }
 
         /* BAB CONTENT */
-        .bab-container {
-            max-width: 1200px; margin: 0 auto; padding: 20px;
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
+        .bab-container { max-width: 1200px; margin: 0 auto; padding: 20px; display: none; animation: fadeIn 0.4s ease; }
         .bab-container.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .semester-title {
             text-align: center; font-size: 1.5rem; font-weight: 700;
             margin-bottom: 25px; color: var(--dark);
             display: flex; align-items: center; justify-content: center; gap: 12px;
         }
-
         body.dark-mode .semester-title { color: #f8f9fa; }
-
         .semester-title.semester-1 { color: var(--semester1); }
         .semester-title.semester-2 { color: var(--semester2); }
-
-        body.dark-mode .semester-title.semester-1,
-        body.dark-mode .semester-title.semester-2 { color: inherit; }
-
-        .semester-title i {
-            font-size: 1.3rem;
-        }
+        .semester-title i { font-size: 1.3rem; }
 
         /* BAB CARD */
         .bab-card {
             background: white; border-radius: var(--border-radius);
             margin-bottom: 20px; box-shadow: var(--shadow);
-            overflow: hidden; transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+            overflow: hidden; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
         }
-
-        body.dark-mode .bab-card {
-            background: #2d2d2d; border-color: #444;
-        }
-
-        .bab-card:hover {
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
+        body.dark-mode .bab-card { background: #2d2d2d; border-color: #444; }
+        .bab-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 
         .bab-header {
             padding: 20px 25px; cursor: pointer;
-            display: flex; align-items: center; gap: 18px;
-            transition: var(--transition);
-            position: relative;
+            display: flex; align-items: center; gap: 18px; transition: var(--transition); position: relative;
         }
-
-        .bab-card.semester-1 .bab-header {
-            background: linear-gradient(135deg, var(--semester1-light), transparent);
-            border-left: 5px solid var(--semester1);
-        }
-
-        .bab-card.semester-2 .bab-header {
-            background: linear-gradient(135deg, var(--semester2-light), transparent);
-            border-left: 5px solid var(--semester2);
-        }
-
-        body.dark-mode .bab-card.semester-1 .bab-header,
-        body.dark-mode .bab-card.semester-2 .bab-header {
-            background: rgba(255,255,255,0.03);
-        }
-
-        .bab-header:hover {
-            background: rgba(67, 97, 238, 0.08);
-        }
+        .bab-card.semester-1 .bab-header { background: linear-gradient(135deg, var(--semester1-light), transparent); border-left: 5px solid var(--semester1); }
+        .bab-card.semester-2 .bab-header { background: linear-gradient(135deg, var(--semester2-light), transparent); border-left: 5px solid var(--semester2); }
+        body.dark-mode .bab-card.semester-1 .bab-header, body.dark-mode .bab-card.semester-2 .bab-header { background: rgba(255,255,255,0.03); }
+        .bab-header:hover { background: rgba(67, 97, 238, 0.08); }
 
         .bab-number {
             width: 55px; height: 55px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; color: white; flex-shrink: 0;
-            font-weight: 700;
+            font-size: 1.4rem; color: white; flex-shrink: 0; font-weight: 700;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
-
         .bab-card.semester-1 .bab-number { background: var(--semester1); }
         .bab-card.semester-2 .bab-number { background: var(--semester2); }
 
         .bab-info { flex: 1; }
-
-        .bab-info h3 {
-            font-size: 1.15rem; font-weight: 600; color: var(--dark);
-            margin-bottom: 4px;
-        }
-
+        .bab-info h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
         body.dark-mode .bab-info h3 { color: #f8f9fa; }
+        .bab-info p { font-size: 0.85rem; color: var(--gray); display: flex; align-items: center; gap: 6px; }
 
-        .bab-info p {
-            font-size: 0.85rem; color: var(--gray);
-            display: flex; align-items: center; gap: 6px;
-        }
-
-        .bab-toggle {
-            font-size: 1.2rem; color: var(--gray);
-            transition: transform 0.3s ease;
-            margin-left: auto;
-        }
-
-        .bab-card.open .bab-toggle {
-            transform: rotate(180deg);
-            color: var(--primary);
-        }
+        .bab-toggle { font-size: 1.2rem; color: var(--gray); transition: transform 0.3s ease; margin-left: auto; }
+        .bab-card.open .bab-toggle { transform: rotate(180deg); color: var(--primary); }
 
         /* MATERI LIST */
-        .materi-list {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.4s ease;
-            background: rgba(0,0,0,0.02);
-        }
-
-        body.dark-mode .materi-list {
-            background: rgba(0,0,0,0.2);
-        }
-
-        .bab-card.open .materi-list {
-            max-height: 1000px;
-        }
-
-        .materi-list ul {
-            list-style: none; padding: 10px 25px 20px;
-        }
-
+        .materi-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: rgba(0,0,0,0.02); }
+        body.dark-mode .materi-list { background: rgba(0,0,0,0.2); }
+        .bab-card.open .materi-list { max-height: 1000px; }
+        .materi-list ul { list-style: none; padding: 10px 25px 20px; }
         .materi-list li {
-            padding: 12px 15px; margin: 6px 0;
-            background: white; border-radius: 10px;
-            display: flex; align-items: center; gap: 12px;
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+            padding: 12px 15px; margin: 6px 0; background: white; border-radius: 10px;
+            display: flex; align-items: center; gap: 12px; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
         }
-
-        body.dark-mode .materi-list li {
-            background: #1e1e1e; border-color: #444;
-        }
-
-        .materi-list li:hover {
-            transform: translateX(5px);
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
-        }
+        body.dark-mode .materi-list li { background: #1e1e1e; border-color: #444; }
+        .materi-list li:hover { transform: translateX(5px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1); }
 
         .materi-checkbox {
-            width: 22px; height: 22px; border-radius: 6px;
-            border: 2px solid var(--gray); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); flex-shrink: 0;
-            background: white;
+            width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--gray); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; background: white;
         }
-
         body.dark-mode .materi-checkbox { background: #2d2d2d; }
-
-        .materi-checkbox.checked {
-            background: var(--success); border-color: var(--success);
-            color: white;
-        }
-
-        .materi-checkbox i {
-            font-size: 0.75rem; opacity: 0;
-            transition: opacity 0.2s;
-        }
-
+        .materi-checkbox.checked { background: var(--success); border-color: var(--success); color: white; }
+        .materi-checkbox i { font-size: 0.75rem; opacity: 0; transition: opacity 0.2s; }
         .materi-checkbox.checked i { opacity: 1; }
 
-        .materi-content {
-            flex: 1; display: flex; align-items: center; gap: 10px;
-            text-decoration: none; color: var(--dark);
-        }
-
+        .materi-content { flex: 1; display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--dark); }
         body.dark-mode .materi-content { color: #f8f9fa; }
-
         .materi-letter {
-            width: 30px; height: 30px; border-radius: 50%;
-            background: var(--primary); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+            width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
         }
-
-        .bab-card.semester-2 .materi-letter {
-            background: var(--semester2);
-        }
-
-        .materi-text {
-            flex: 1; font-size: 0.95rem;
-        }
-
-        .materi-list li.completed .materi-text {
-            text-decoration: line-through;
-            opacity: 0.6;
-        }
-
-        .materi-arrow {
-            color: var(--gray); font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .materi-list li:hover .materi-arrow {
-            color: var(--primary);
-            transform: translateX(3px);
-        }
+        .bab-card.semester-2 .materi-letter { background: var(--semester2); }
+        .materi-text { flex: 1; font-size: 0.95rem; }
+        .materi-list li.completed .materi-text { text-decoration: line-through; opacity: 0.6; }
+        .materi-arrow { color: var(--gray); font-size: 0.9rem; transition: var(--transition); }
+        .materi-list li:hover .materi-arrow { color: var(--primary); transform: translateX(3px); }
 
         /* PROGRESS BAR */
-        .progress-section {
-            max-width: 1200px; margin: 30px auto; padding: 0 20px;
-        }
-
-        .progress-card {
-            background: white; border-radius: var(--border-radius);
-            padding: 25px; box-shadow: var(--shadow);
-        }
-
+        .progress-section { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .progress-card { background: white; border-radius: var(--border-radius); padding: 25px; box-shadow: var(--shadow); }
         body.dark-mode .progress-card { background: #2d2d2d; }
-
-        .progress-header {
-            display: flex; justify-content: space-between;
-            align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;
-        }
-
-        .progress-header h3 {
-            font-size: 1.1rem; color: var(--dark);
-            display: flex; align-items: center; gap: 10px;
-        }
-
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .progress-header h3 { font-size: 1.1rem; color: var(--dark); display: flex; align-items: center; gap: 10px; }
         body.dark-mode .progress-header h3 { color: #f8f9fa; }
-
-        .progress-percentage {
-            font-size: 1.3rem; font-weight: 700; color: var(--success);
-        }
-
-        .progress-bar {
-            width: 100%; height: 12px; background: rgba(0,0,0,0.08);
-            border-radius: 50px; overflow: hidden;
-        }
-
+        .progress-percentage { font-size: 1.3rem; font-weight: 700; color: var(--success); }
+        .progress-bar { width: 100%; height: 12px; background: rgba(0,0,0,0.08); border-radius: 50px; overflow: hidden; }
         body.dark-mode .progress-bar { background: rgba(255,255,255,0.1); }
-
-        .progress-fill {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--success), var(--accent));
-            border-radius: 50px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-info {
-            margin-top: 10px; font-size: 0.85rem; color: var(--gray);
-            display: flex; justify-content: space-between;
-        }
-
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--success), var(--accent)); border-radius: 50px; transition: width 0.5s ease; }
+        .progress-info { margin-top: 10px; font-size: 0.85rem; color: var(--gray); display: flex; justify-content: space-between; }
         .reset-btn {
-            margin-top: 15px; padding: 8px 16px;
-            background: transparent; border: 1px solid var(--danger);
-            color: var(--danger); border-radius: 50px;
-            cursor: pointer; font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem; transition: var(--transition);
-            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 15px; padding: 8px 16px; background: transparent; border: 1px solid var(--danger);
+            color: var(--danger); border-radius: 50px; cursor: pointer; font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px;
         }
+        .reset-btn:hover { background: var(--danger); color: white; }
 
-        .reset-btn:hover {
-            background: var(--danger); color: white;
-        }
-
-        /* FOOTER (SAMA DENGAN INDEX) */
+        /* FOOTER */
         footer {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            color: white; padding: 60px 20px 30px; margin-top: 60px;
-            font-family: 'Poppins', sans-serif; transition: background 0.4s;
+            background: linear-gradient(135deg, #1e293b, #334155); color: white;
+            padding: 60px 20px 30px; margin-top: 60px; font-family: 'Poppins', sans-serif; transition: background 0.4s;
         }
-
-        body.dark-mode footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-        }
-
+        body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
         .footer-container {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
         }
-
-        .footer-section h3 {
-            font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px;
-        }
-
-        .footer-section h3::after {
-            content: ''; position: absolute; left: 0; bottom: 0;
-            width: 50px; height: 3px; background: #4361ee; border-radius: 3px;
-        }
-
+        .footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 8px; }
+        .footer-section h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 50px; height: 3px; background: #4361ee; border-radius: 3px; }
         .footer-section ul { list-style: none; padding: 0; }
         .footer-section li { margin: 10px 0; }
-
-        .footer-section a {
-            color: #e2e8f0; text-decoration: none; transition: all 0.3s ease;
-            display: flex; align-items: center; gap: 8px;
-        }
-
-        .footer-section a:hover {
-            color: #4361ee; transform: translateX(5px);
-        }
-
-        .footer-section p {
-            line-height: 1.6; margin: 8px 0; color: #e2e8f0;
-        }
-
-        .footer-legal-links {
-            display: flex; flex-direction: column; gap: 8px;
-        }
-        
+        .footer-section a { color: #e2e8f0; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .footer-section a:hover { color: #4361ee; transform: translateX(5px); }
+        .footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+        .footer-legal-links { display: flex; flex-direction: column; gap: 8px; }
         .footer-legal-links a { font-size: 0.9rem; padding: 4px 0; }
         .footer-legal-links i { width: 18px; text-align: center; font-size: 0.85rem; opacity: 0.8; }
-
         .footer-legal-bar {
-            display: none; text-align: center; padding: 15px 10px;
-            margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: none; text-align: center; padding: 15px 10px; margin: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);
             flex-wrap: wrap; gap: 5px; justify-content: center; font-size: 0.8rem;
         }
-        
-        .footer-legal-bar a {
-            color: #94a3b8; text-decoration: none; transition: color 0.3s; padding: 3px 8px;
-        }
-        
+        .footer-legal-bar a { color: #94a3b8; text-decoration: none; transition: color 0.3s; padding: 3px 8px; }
         .footer-legal-bar a:hover { color: #4361ee; }
         .footer-legal-bar .separator { color: rgba(255,255,255,0.2); margin: 0 3px; }
-
-        .visitor-counter {
-            text-align: center; padding: 15px;
-            background: rgba(255,255,255,0.05); border-radius: 8px; margin-top: 10px;
-        }
-
+        .visitor-counter { text-align: center; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-top: 10px; }
         .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
         .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
-
-        .copyright {
-            text-align: center; grid-column: span 4; padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px;
-        }
-
-        .footer-bottom {
-            text-align: center; padding-top: 20px; margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.9rem; color: #94a3b8;
-        }
-
+        .copyright { text-align: center; grid-column: span 4; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; }
+        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; color: #94a3b8; }
         body.dark-mode .footer-bottom { border-color: rgba(255,255,255,0.03); }
 
         /* UI UTILITIES */
-        .scroll-indicator {
-            position: fixed; top: 0; left: 0; width: 100%; height: 4px;
-            background: rgba(0,0,0,0.1); z-index: 9999;
-        }
-
-        .scroll-indicator span {
-            position: absolute; top: 0; left: 0; height: 100%;
-            background: var(--primary); width: 0%; transition: width 0.2s ease;
-        }
-
+        .scroll-indicator { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(0,0,0,0.1); z-index: 9999; }
+        .scroll-indicator span { position: absolute; top: 0; left: 0; height: 100%; background: var(--primary); width: 0%; transition: width 0.2s ease; }
         .back-to-top {
             position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px;
             border-radius: 50%; background: var(--primary); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; transition: var(--transition);
             opacity: 0; visibility: hidden; z-index: 999;
         }
-
         .back-to-top.visible { opacity: 1; visibility: visible; }
         .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
 
@@ -869,20 +522,13 @@
             .nav-links {
                 display: none; position: fixed; top: var(--header-height); left: 0;
                 width: 100%; background: linear-gradient(120deg, var(--primary), var(--secondary));
-                flex-direction: column; gap: 0; padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000;
+                flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000;
             }
             .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
             .nav-links li { width: 100%; }
             .nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; display: flex; align-items: center; }
-            .dropdown-content {
-                position: static; background: rgba(0,0,0,0.1); box-shadow: none;
-                width: 100%; display: none; padding: 0;
-            }
+            .dropdown-content { position: static; background: rgba(0,0,0,0.1); box-shadow: none; width: 100%; display: none; padding: 0; }
             .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
             .dropdown-content a { padding-left: 40px; color: white; }
             .dropdown-content a:hover { background: rgba(255,255,255,0.1); }
@@ -902,7 +548,7 @@
             .ads-container { margin: 15px auto; }
             .ads-wrapper { min-height: 60px; padding: 10px; }
             .action-card { padding: 20px 18px; gap: 15px; }
-            .action-icon-wrapper { width: 55px; height: 55px; font-size: 1.5rem; }
+            .action-icon-wrapper { width: 50px; height: 50px; font-size: 1.3rem; }
             .action-info h3 { font-size: 1.05rem; }
             .action-info p { font-size: 0.8rem; }
         }
@@ -922,14 +568,10 @@
 </head>
 <body>
     <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator">
-        <span id="scrollProgress"></span>
-    </div>
+    <div class="scroll-indicator"><span id="scrollProgress"></span></div>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -960,9 +602,7 @@
 
     <!-- HEADER -->
     <header>
-        <div class="header-icon">
-            <i class="fas fa-chart-line"></i>
-        </div>
+        <div class="header-icon"><i class="fas fa-chart-line"></i></div>
         <h1>Ekonomi Kelas XII</h1>
         <p class="subtitle">Akuntansi, Kebijakan Fiskal, Perpajakan & Ekonomi Internasional</p>
     </header>
@@ -978,95 +618,84 @@
     <div class="stats-bar">
         <div class="stat-card semester-1">
             <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-            <div class="stat-info">
-                <h3>Semester 1</h3>
-                <p>4 Bab • Akuntansi</p>
-            </div>
+            <div class="stat-info"><h3>Semester 1</h3><p>4 Bab • Akuntansi</p></div>
         </div>
         <div class="stat-card semester-2">
             <div class="stat-icon"><i class="fas fa-landmark"></i></div>
-            <div class="stat-info">
-                <h3>Semester 2</h3>
-                <p>3 Bab • Makroekonomi</p>
-            </div>
+            <div class="stat-info"><h3>Semester 2</h3><p>3 Bab • Makroekonomi</p></div>
         </div>
         <div class="stat-card bab">
             <div class="stat-icon"><i class="fas fa-book-open"></i></div>
-            <div class="stat-info">
-                <h3>7</h3>
-                <p>Total Bab</p>
-            </div>
+            <div class="stat-info"><h3>7</h3><p>Total Bab</p></div>
         </div>
         <div class="stat-card progress">
             <div class="stat-icon"><i class="fas fa-tasks"></i></div>
-            <div class="stat-info">
-                <h3 id="totalMateri">41</h3>
-                <p>Sub Materi</p>
-            </div>
+            <div class="stat-info"><h3 id="totalMateri">41</h3><p>Sub Materi</p></div>
         </div>
     </div>
 
-    <!-- ===== KARTU AKSI CEPAT (ABSENSI & ARTIKEL) ===== -->
+    <!-- ===== KARTU AKSI CEPAT & ARTIKEL (DIPERBARUI) ===== -->
     <div class="quick-action-container">
         <!-- Kartu Absensi -->
         <a href="https://forms.gle/J2dkJLCZbJnFCirG8" target="_blank" rel="noopener noreferrer" class="action-card absensi">
-            <div class="action-icon-wrapper">
-                <i class="fas fa-clipboard-check"></i>
-            </div>
+            <div class="action-icon-wrapper"><i class="fas fa-clipboard-check"></i></div>
             <div class="action-info">
                 <h3>Absensi Kehadiran</h3>
-                <p>Isi daftar hadir pelajaran Ekonomi Kelas XII</p>
+                <p>Isi daftar hadir pelajaran Ekonomi Kelas XII hari ini.</p>
                 <span class="action-btn"><i class="fas fa-pen-to-square"></i> Isi Absen</span>
             </div>
-            <i class="fas fa-arrow-right action-arrow"></i>
         </a>
 
-        <!-- Kartu Artikel -->
-        <a href="artikel/ksp-berjatuhan-studi-kasus-akuntansi.html" class="action-card artikel">
-            <div class="action-icon-wrapper">
-                <i class="fas fa-newspaper"></i>
-            </div>
+        <!-- Kartu Artikel 1 -->
+        <a href="artikel/ksp-berjatuhan-studi-kasus-akuntansi.html" class="action-card artikel-1">
+            <div class="action-icon-wrapper"><i class="fas fa-building-columns"></i></div>
             <div class="action-info">
-                <h3>Artikel & Bacaan</h3>
-                <p>Materi tambahan dan artikel ekonomi terkini</p>
+                <h3>Studi Kasus: KSP Berjatuhan</h3>
+                <p>Analisis mendalam kegagalan Koperasi Simpan Pinjan ditinjau dari prinsip akuntansi dan tata kelola.</p>
                 <span class="action-btn"><i class="fas fa-book-reader"></i> Baca Artikel</span>
             </div>
-            <i class="fas fa-arrow-right action-arrow"></i>
+        </a>
+
+        <!-- Kartu Artikel 2 -->
+        <a href="artikel/motor-listrik-vs-bensin-penyusutan.html" class="action-card artikel-2">
+            <div class="action-icon-wrapper"><i class="fas fa-motorcycle"></i></div>
+            <div class="action-info">
+                <h3>Motor Listrik vs Bensin</h3>
+                <p>Perhitungan nilai penyusutan aset dan analisis kelayakan ekonomi jangka panjang kendaraan.</p>
+                <span class="action-btn"><i class="fas fa-book-reader"></i> Baca Artikel</span>
+            </div>
+        </a>
+
+        <!-- Kartu Artikel 3 -->
+        <a href="artikel/rumah-vs-motor-penyusutan.html" class="action-card artikel-3">
+            <div class="action-icon-wrapper"><i class="fas fa-house-chimney"></i></div>
+            <div class="action-info">
+                <h3>Rumah vs Motor: Penyusutan</h3>
+                <p>Studi komparatif konsep penyusutan (depresiasi) dan apresiasi pada properti dibanding kendaraan.</p>
+                <span class="action-btn"><i class="fas fa-book-reader"></i> Baca Artikel</span>
+            </div>
         </a>
     </div>
 
-    <!-- ===== ADSENSE AD UNIT 1 (Setelah Stats Bar) ===== -->
+    <!-- ===== ADSENSE AD UNIT 1 ===== -->
     <div class="ads-container">
         <div class="ads-wrapper">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1234355696976048"
-                 data-ad-slot="1173523004"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="1173523004" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </div>
 
     <!-- TAB SWITCHER -->
     <div class="tab-container">
         <div class="tab-switcher">
-            <button class="tab-btn semester-1 active" data-tab="semester1">
-                <i class="fas fa-sun"></i> Semester 1
-            </button>
-            <button class="tab-btn semester-2" data-tab="semester2">
-                <i class="fas fa-snowflake"></i> Semester 2
-            </button>
+            <button class="tab-btn semester-1 active" data-tab="semester1"><i class="fas fa-sun"></i> Semester 1</button>
+            <button class="tab-btn semester-2" data-tab="semester2"><i class="fas fa-snowflake"></i> Semester 2</button>
         </div>
     </div>
 
     <!-- SEMESTER 1 -->
     <div class="bab-container active" id="semester1">
-        <h2 class="semester-title semester-1">
-            <i class="fas fa-calculator"></i> Semester 1 — Akuntansi Perusahaan Jasa
-        </h2>
+        <h2 class="semester-title semester-1"><i class="fas fa-calculator"></i> Semester 1 — Akuntansi Perusahaan Jasa</h2>
 
         <!-- BAB 1 -->
         <div class="bab-card semester-1">
@@ -1080,62 +709,13 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b1a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Akuntansi sebagai Sistem Informasi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Proses Akuntansi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Konsep Dasar Akuntansi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1d">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-d.html" class="materi-content">
-                            <span class="materi-letter">D</span>
-                            <span class="materi-text">Kebijakan Akuntansi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1e">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-e.html" class="materi-content">
-                            <span class="materi-letter">E</span>
-                            <span class="materi-text">Persamaan Dasar Akuntansi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1f">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-f.html" class="materi-content">
-                            <span class="materi-letter">F</span>
-                            <span class="materi-text">Laporan Keuangan (Financial Statement)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b1g">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab1-g.html" class="materi-content">
-                            <span class="materi-letter">G</span>
-                            <span class="materi-text">Persamaan Dasar Akuntansi dan Laporan Keuangan</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b1a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Akuntansi sebagai Sistem Informasi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Proses Akuntansi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Konsep Dasar Akuntansi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1d"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-d.html" class="materi-content"><span class="materi-letter">D</span><span class="materi-text">Kebijakan Akuntansi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1e"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-e.html" class="materi-content"><span class="materi-letter">E</span><span class="materi-text">Persamaan Dasar Akuntansi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1f"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-f.html" class="materi-content"><span class="materi-letter">F</span><span class="materi-text">Laporan Keuangan (Financial Statement)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b1g"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab1-g.html" class="materi-content"><span class="materi-letter">G</span><span class="materi-text">Persamaan Dasar Akuntansi dan Laporan Keuangan</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1152,54 +732,12 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b2a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Bukti Transaksi atau Sumber Pencatatan Akuntansi</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b2b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Klasifikasi Akun atau Rekening atau Perkiraan</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b2c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Analisis Transaksi terhadap Akun atau Mekanisme Debit dan Kredit</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b2d">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-d.html" class="materi-content">
-                            <span class="materi-letter">D</span>
-                            <span class="materi-text">Akun/Buku Besar</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b2e">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-e.html" class="materi-content">
-                            <span class="materi-letter">E</span>
-                            <span class="materi-text">Jurnal</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b2f">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab2-f.html" class="materi-content">
-                            <span class="materi-letter">F</span>
-                            <span class="materi-text">Pencatatan ke Buku Besar (Posting)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b2a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Bukti Transaksi atau Sumber Pencatatan Akuntansi</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b2b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Klasifikasi Akun atau Rekening atau Perkiraan</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b2c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Analisis Transaksi terhadap Akun atau Mekanisme Debit dan Kredit</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b2d"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-d.html" class="materi-content"><span class="materi-letter">D</span><span class="materi-text">Akun/Buku Besar</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b2e"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-e.html" class="materi-content"><span class="materi-letter">E</span><span class="materi-text">Jurnal</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b2f"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab2-f.html" class="materi-content"><span class="materi-letter">F</span><span class="materi-text">Pencatatan ke Buku Besar (Posting)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1216,62 +754,13 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b3a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Daftar Saldo atau Neraca Saldo (Trial Balance)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Jurnal Penyesuaian (Adjustment Journal)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Neraca Lajur atau Kertas Kerja (Worksheet)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3d">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-d.html" class="materi-content">
-                            <span class="materi-letter">D</span>
-                            <span class="materi-text">Laporan Laba/Rugi (Income Statement)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3e">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-e.html" class="materi-content">
-                            <span class="materi-letter">E</span>
-                            <span class="materi-text">Laporan Perubahan Ekuitas atau Modal (Capital Statement)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3f">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-f.html" class="materi-content">
-                            <span class="materi-letter">F</span>
-                            <span class="materi-text">Laporan Posisi Keuangan atau Neraca (Balance Sheet)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b3g">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab3-g.html" class="materi-content">
-                            <span class="materi-letter">G</span>
-                            <span class="materi-text">Laporan Arus Kas (Cash Flow Statement)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b3a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Daftar Saldo atau Neraca Saldo (Trial Balance)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Jurnal Penyesuaian (Adjustment Journal)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Neraca Lajur atau Kertas Kerja (Worksheet)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3d"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-d.html" class="materi-content"><span class="materi-letter">D</span><span class="materi-text">Laporan Laba/Rugi (Income Statement)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3e"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-e.html" class="materi-content"><span class="materi-letter">E</span><span class="materi-text">Laporan Perubahan Ekuitas atau Modal (Capital Statement)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3f"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-f.html" class="materi-content"><span class="materi-letter">F</span><span class="materi-text">Laporan Posisi Keuangan atau Neraca (Balance Sheet)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b3g"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab3-g.html" class="materi-content"><span class="materi-letter">G</span><span class="materi-text">Laporan Arus Kas (Cash Flow Statement)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1288,30 +777,9 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b4a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab4-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Jurnal Penutup (Closing Entry)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b4b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab4-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Daftar Saldo Setelah Penutupan (After Closing Trial Balance)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b4c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="ekonomi-kelas-xii/bab4-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Jurnal Pembalik (Reversing Entry)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b4a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab4-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Jurnal Penutup (Closing Entry)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b4b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab4-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Daftar Saldo Setelah Penutupan (After Closing Trial Balance)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b4c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="ekonomi-kelas-xii/bab4-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Jurnal Pembalik (Reversing Entry)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1319,9 +787,7 @@
 
     <!-- SEMESTER 2 -->
     <div class="bab-container" id="semester2">
-        <h2 class="semester-title semester-2">
-            <i class="fas fa-landmark"></i> Semester 2 — Kebijakan Ekonomi & Internasional
-        </h2>
+        <h2 class="semester-title semester-2"><i class="fas fa-landmark"></i> Semester 2 — Kebijakan Ekonomi & Internasional</h2>
 
         <!-- BAB 5 -->
         <div class="bab-card semester-2">
@@ -1335,30 +801,9 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b5a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab5-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Kebijakan Fiskal</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b5b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab5-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Anggaran Pendapatan dan Belanja Negara (APBN)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b5c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab5-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Anggaran Pendapatan dan Belanja Daerah (APBD)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b5a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab5-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Kebijakan Fiskal</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b5b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab5-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Anggaran Pendapatan dan Belanja Negara (APBN)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b5c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab5-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Anggaran Pendapatan dan Belanja Daerah (APBD)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1375,54 +820,12 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b6a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Pengertian Pajak, Fungsi, dan Manfaat Pajak</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b6b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Asas Pemungutan Pajak dan Tarif Pajak</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b6c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Jenis-Jenis Pajak atau Penggolongan Pajak</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b6d">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-d.html" class="materi-content">
-                            <span class="materi-letter">D</span>
-                            <span class="materi-text">Sistem Pemungutan Pajak di Indonesia</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b6e">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-e.html" class="materi-content">
-                            <span class="materi-letter">E</span>
-                            <span class="materi-text">Cara Pengenaan Pajak atau Sistem Perpajakan di Indonesia</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b6f">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab6-f.html" class="materi-content">
-                            <span class="materi-letter">F</span>
-                            <span class="materi-text">Tantangan Pemungutan Pajak</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b6a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Pengertian Pajak, Fungsi, dan Manfaat Pajak</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b6b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Asas Pemungutan Pajak dan Tarif Pajak</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b6c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Jenis-Jenis Pajak atau Penggolongan Pajak</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b6d"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-d.html" class="materi-content"><span class="materi-letter">D</span><span class="materi-text">Sistem Pemungutan Pajak di Indonesia</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b6e"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-e.html" class="materi-content"><span class="materi-letter">E</span><span class="materi-text">Cara Pengenaan Pajak atau Sistem Perpajakan di Indonesia</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b6f"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab6-f.html" class="materi-content"><span class="materi-letter">F</span><span class="materi-text">Tantangan Pemungutan Pajak</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1439,70 +842,14 @@
             </div>
             <div class="materi-list">
                 <ul>
-                    <li data-id="b7a">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-a.html" class="materi-content">
-                            <span class="materi-letter">A</span>
-                            <span class="materi-text">Pengertian dan Manfaat Perdagangan Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7b">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-b.html" class="materi-content">
-                            <span class="materi-letter">B</span>
-                            <span class="materi-text">Faktor Pendorong dan Penghambat Perdagangan Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7c">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-c.html" class="materi-content">
-                            <span class="materi-letter">C</span>
-                            <span class="materi-text">Teori Perdagangan Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7d">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-d.html" class="materi-content">
-                            <span class="materi-letter">D</span>
-                            <span class="materi-text">Kebijakan Perdagangan Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7e">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-e.html" class="materi-content">
-                            <span class="materi-letter">E</span>
-                            <span class="materi-text">Pembayaran Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7f">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-f.html" class="materi-content">
-                            <span class="materi-letter">F</span>
-                            <span class="materi-text">Neraca Pembayaran Internasional dan Neraca Perdagangan</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7g">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-g.html" class="materi-content">
-                            <span class="materi-letter">G</span>
-                            <span class="materi-text">Devisa (Alat Pembayaran Luar Negeri)</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
-                    <li data-id="b7h">
-                        <div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div>
-                        <a href="bab7-h.html" class="materi-content">
-                            <span class="materi-letter">H</span>
-                            <span class="materi-text">Kerja Sama Ekonomi Internasional</span>
-                        </a>
-                        <i class="fas fa-arrow-right materi-arrow"></i>
-                    </li>
+                    <li data-id="b7a"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-a.html" class="materi-content"><span class="materi-letter">A</span><span class="materi-text">Pengertian dan Manfaat Perdagangan Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7b"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-b.html" class="materi-content"><span class="materi-letter">B</span><span class="materi-text">Faktor Pendorong dan Penghambat Perdagangan Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7c"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-c.html" class="materi-content"><span class="materi-letter">C</span><span class="materi-text">Teori Perdagangan Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7d"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-d.html" class="materi-content"><span class="materi-letter">D</span><span class="materi-text">Kebijakan Perdagangan Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7e"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-e.html" class="materi-content"><span class="materi-letter">E</span><span class="materi-text">Pembayaran Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7f"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-f.html" class="materi-content"><span class="materi-letter">F</span><span class="materi-text">Neraca Pembayaran Internasional dan Neraca Perdagangan</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7g"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-g.html" class="materi-content"><span class="materi-letter">G</span><span class="materi-text">Devisa (Alat Pembayaran Luar Negeri)</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
+                    <li data-id="b7h"><div class="materi-checkbox" onclick="toggleCheck(event, this)"><i class="fas fa-check"></i></div><a href="bab7-h.html" class="materi-content"><span class="materi-letter">H</span><span class="materi-text">Kerja Sama Ekonomi Internasional</span></a><i class="fas fa-arrow-right materi-arrow"></i></li>
                 </ul>
             </div>
         </div>
@@ -1520,25 +867,16 @@
             </div>
             <div class="progress-info">
                 <span id="progressText">0 dari 41 materi telah dipelajari</span>
-                <button class="reset-btn" onclick="resetProgress()">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
+                <button class="reset-btn" onclick="resetProgress()"><i class="fas fa-redo"></i> Reset</button>
             </div>
         </div>
     </div>
 
-    <!-- ===== ADSENSE AD UNIT 2 (Sebelum Footer) ===== -->
+    <!-- ===== ADSENSE AD UNIT 2 ===== -->
     <div class="ads-container footer-ads">
         <div class="ads-wrapper">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1234355696976048"
-                 data-ad-slot="1173523004"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="1173523004" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </div>
 
@@ -1591,14 +929,10 @@
             </div>
         </div>
         <div class="footer-legal-bar">
-            <a href="../legal-info.html#about">Tentang</a>
-            <span class="separator">•</span>
-            <a href="../legal-info.html#disclaimer">Disclaimer</a>
-            <span class="separator">•</span>
-            <a href="../legal-info.html#terms">Syarat</a>
-            <span class="separator">•</span>
-            <a href="../privacy-policy.html">Privasi</a>
-            <span class="separator">•</span>
+            <a href="../legal-info.html#about">Tentang</a><span class="separator">•</span>
+            <a href="../legal-info.html#disclaimer">Disclaimer</a><span class="separator">•</span>
+            <a href="../legal-info.html#terms">Syarat</a><span class="separator">•</span>
+            <a href="../privacy-policy.html">Privasi</a><span class="separator">•</span>
             <a href="../contact.html">Kontak</a>
         </div>
         <div class="copyright">
