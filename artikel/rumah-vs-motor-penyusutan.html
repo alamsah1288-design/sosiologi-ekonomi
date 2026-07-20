@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumah vs Motor: Aset yang Menyusut vs Menggelembung | Ekonomi XII</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #059669;
+            --accent: #d97706;
+            --light: #f0f9ff;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --purple: #7c3aed;
+            --pink: #ec4899;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        .header-article {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+            color: white;
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .header-article::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(120deg, var(--accent), #f59e0b);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+
+        .header-article h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .header-article .subhead {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .header-meta span { display: flex; align-items: center; gap: 0.6rem; }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .breadcrumb-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--secondary); text-decoration: underline; }
+        .breadcrumb span { margin: 0 0.5rem; color: var(--gray); }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ===== ARTICLE SECTIONS ===== */
+        .article-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.7s ease-out forwards;
+            opacity: 0;
+        }
+
+        .article-section:nth-child(1) { animation-delay: 0.05s; }
+        .article-section:nth-child(2) { animation-delay: 0.15s; }
+        .article-section:nth-child(3) { animation-delay: 0.25s; }
+        .article-section:nth-child(4) { animation-delay: 0.35s; }
+        .article-section:nth-child(5) { animation-delay: 0.45s; }
+        .article-section:nth-child(6) { animation-delay: 0.55s; }
+        .article-section:nth-child(7) { animation-delay: 0.65s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article-section:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-section.warning { border-left-color: var(--danger); }
+        .article-section.success { border-left-color: var(--success); }
+        .article-section.purple { border-left-color: var(--purple); }
+        .article-section.info { border-left-color: var(--secondary); }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i { color: var(--accent); font-size: 1.8rem; }
+
+        /* ===== ASSET COMPARISON CARDS ===== */
+        .asset-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .asset-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .asset-card.motor::before { background: linear-gradient(90deg, var(--danger), #f87171); }
+        .asset-card.rumah::before { background: linear-gradient(90deg, var(--success), #34d399); }
+
+        .asset-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .asset-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .asset-card.motor .asset-icon { color: var(--danger); }
+        .asset-card.rumah .asset-icon { color: var(--success); }
+
+        .asset-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .asset-card .subtitle {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .value-change {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .value-change.down {
+            color: var(--danger);
+            background: #fef2f2;
+        }
+
+        .value-change.up {
+            color: var(--success);
+            background: #ecfdf5;
+        }
+
+        .asset-card .detail-list {
+            text-align: left;
+            list-style: none;
+            margin-top: 1rem;
+            padding: 0;
+        }
+
+        .asset-card .detail-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .asset-card.motor .detail-list li::before {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--danger);
+        }
+
+        .asset-card.rumah .detail-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+
+        /* ===== CHART CONTAINERS ===== */
+        .chart-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .chart-container h4 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* ===== CALCULATION BOX ===== */
+        .calc-box {
+            background: #f1f5f9;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+
+        .calc-box:hover { border-color: var(--primary); }
+
+        .calc-box::before {
+            content: 'SIMULASI AKUNTANSI';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1.2rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-box.motor-box::before { background: var(--danger); }
+        .calc-box.rumah-box::before { background: var(--success); }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0;
+            border-bottom: 1px dashed #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .calc-row:last-child { border-bottom: none; }
+        .calc-row.total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-top: 2px solid var(--primary);
+            margin-top: 0.5rem;
+            padding-top: 0.7rem;
+        }
+
+        .calc-row.total.negative { color: var(--danger); border-color: var(--danger); }
+        .calc-row.total.positive { color: var(--success); border-color: var(--success); }
+
+        .calc-row.negative { color: var(--danger); }
+        .calc-row.positive { color: var(--success); }
+
+        /* ===== TABLE ===== */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: var(--light); }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag.green { background: #d1fae5; color: #065f46; }
+        .tag.red { background: #fee2e2; color: #991b1b; }
+        .tag.blue { background: #dbeafe; color: #1e40af; }
+
+        /* ===== HIGHLIGHT BOX ===== */
+        .highlight-box {
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 5px solid var(--success);
+        }
+
+        .highlight-box.red {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 5px solid var(--danger);
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 5px solid var(--primary);
+        }
+
+        .highlight-box h4 {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box ul { margin-left: 1.5rem; }
+
+        /* ===== INFOGRAPHIC ===== */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .infographic-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .infographic-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .infographic-item .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .infographic-item .number.danger { color: var(--danger); }
+        .infographic-item .number.success { color: var(--success); }
+        .infographic-item .number.blue { color: var(--primary); }
+        .infographic-item .number.purple { color: var(--purple); }
+
+        .infographic-item .label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== OPPORTUNITY COST ===== */
+        .opportunity-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .opp-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem 1.2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: transform 0.3s;
+        }
+
+        .opp-step:hover { transform: translateX(8px); }
+
+        .opp-step .num {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .opp-step .arrow {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        /* ===== CTA ===== */
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.3);
+        }
+
+        .cta-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cta-box p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .article-footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .article-footer .signature {
+            font-style: italic;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .article-footer .footer-divider {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .header-article h1 { font-size: 2rem; }
+            .header-article .subhead { font-size: 1rem; }
+            .asset-comparison { grid-template-columns: 1fr; }
+            .article-section { padding: 1.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+            .calc-box { padding: 1.2rem; }
+            .calc-box::before { font-size: 0.6rem; padding: 0.2rem 0.8rem; left: 15px; }
+            .header-meta { gap: 1rem; font-size: 0.8rem; }
+            .infographic-grid { grid-template-columns: repeat(2, 1fr); }
+            .opp-step { flex-direction: column; text-align: center; gap: 0.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .infographic-grid { grid-template-columns: 1fr; }
+            .header-article h1 { font-size: 1.6rem; }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            .breadcrumb, .cta-box { display: none; }
+            .article-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            .header-article { background: var(--primary) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .chart-container { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-article">
+        <div class="header-content">
+            <span class="badge"><i class="fas fa-graduation-cap"></i> Literasi Keuangan & Akuntansi</span>
+            <h1>Rumah vs Motor: Aset yang Menyusut vs Aset yang Menggelembung</h1>
+            <p class="subhead">Pelajaran Akuntansi Penting untuk Perencanaan Keuangan Keluarga Muda — Mengapa 1 Motor Bisa Setara dengan 3 Rumah?</p>
+            <div class="header-meta">
+                <span><i class="fas fa-clock"></i> 15 Menit Baca</span>
+                <span><i class="fas fa-chart-pie"></i> Konsep: Depresiasi & Apresiasi</span>
+                <span><i class="fas fa-users"></i> Target: Keluarga Muda & Siswa</span>
+                <span><i class="fas fa-calendar-alt"></i> Juli 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+            <span>›</span>
+            <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a>
+            <span>›</span>
+            <span>Artikel: Penyusutan Aset</span>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container">
+
+        <!-- ===== 1. INTRODUKSI ===== -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Dilema Klasik Keluarga Muda</h2>
+            <p style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 1rem;">
+                "Lebih baik beli motor dulu biar gampang cari kerja, atau nabung dulu buat DP rumah?"
+            </p>
+            <p>Ini adalah pertanyaan yang dihadapi hampir setiap pasangan muda di Indonesia. Secara emosional, motor memberikan kebebasan bergerak segera dan status sosial instan. Namun, secara <strong>akuntansi dan keuangan jangka panjang</strong>, kedua pilihan ini memiliki karakteristik yang bertolak belakang.</p>
+            <p style="margin-top: 1rem;">Dalam dunia akuntansi, kita mengenal dua konsep kunci: <strong>Depresiasi (Penyusutan)</strong> dan <strong>Apresiasi (Kenaikan Nilai)</strong>. Memahami perbedaan ini bukan hanya untuk lulus ujian, tapi untuk <strong>mencegah Anda dari jebakan kemiskinan struktural</strong> di masa depan.</p>
+
+            <!-- Infografis: Fakta Cepat -->
+            <div class="infographic-grid">
+                <div class="infographic-item">
+                    <span class="number danger">-20%</span>
+                    <div class="label">Penurunan nilai motor di tahun pertama</div>
+                </div>
+                <div class="infographic-item">
+                    <span class="number success">+8-12%</span>
+                    <div class="label">Apresiasi tanah per tahun (rata-rata)</div>
+                </div>
+                <div class="infographic-item">
+                    <span class="number blue">5-7 tahun</span>
+                    <div class="label">Waktu yang dibutuhkan rumah untuk naik 2x lipat</div>
+                </div>
+                <div class="infographic-item">
+                    <span class="number purple">Rp 0</span>
+                    <div class="label">Nilai sisa motor setelah 10 tahun</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. THE SHOWDOWN ===== -->
+        <section class="article-section warning">
+            <h2 class="section-title"><i class="fas fa-balance-scale"></i> Pertandingan Dua Aset</h2>
+            <p style="margin-bottom: 1.5rem;">Mari kita bandingkan dua aset ini secara objektif menggunakan prinsip akuntansi:</p>
+
+            <div class="asset-comparison">
+                <!-- Motor Card -->
+                <div class="asset-card motor">
+                    <span class="asset-icon"><i class="fas fa-motorcycle"></i></span>
+                    <h3>Sepeda Motor</h3>
+                    <p class="subtitle">Aset Tetap Berwujud (Kendaraan)</p>
+                    <div class="value-change down">
+                        <i class="fas fa-arrow-trend-down"></i> Menyusut (Depresiasi)
+                    </div>
+                    <ul class="detail-list">
+                        <li>Nilai turun 15-25% di tahun pertama</li>
+                        <li>Biaya perawatan meningkat seiring usia</li>
+                        <li>Tidak menghasilkan pendapatan (kecuali untuk usaha)</li>
+                        <li>Nilai residu sangat rendah setelah 10 tahun</li>
+                    </ul>
+                </div>
+
+                <!-- Rumah Card -->
+                <div class="asset-card rumah">
+                    <span class="asset-icon"><i class="fas fa-house-chimney"></i></span>
+                    <h3>Rumah (Tanah)</h3>
+                    <p class="subtitle">Aset Tetap Berwujud (Properti)</p>
+                    <div class="value-change up">
+                        <i class="fas fa-arrow-trend-up"></i> Menggelembung (Apresiasi)
+                    </div>
+                    <ul class="detail-list">
+                        <li>Nilai tanah cenderung naik 5-10% per tahun</li>
+                        <li>Dapat disewakan (menghasilkan passive income)</li>
+                        <li>Bangunan menyusut, tetapi tanah mengapresiasi</li>
+                        <li>Aset yang dapat diwariskan dan dijaminkan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Grafik Perbandingan Nilai -->
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-line"></i> Perbandingan Nilai Aset: Motor vs Rumah (10 Tahun)</h4>
+                <canvas id="comparisonChart" height="220"></canvas>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">
+                    *Asumsi: Motor Rp 30 juta, Rumah Rp 300 juta dengan apresiasi 8%/tahun
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 3. SIMULASI AKUNTANSI ===== -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> Simulasi Akuntansi: 5 Tahun Kemudian</h2>
+            <p style="margin-bottom: 1rem;">Mari kita lihat angka sebenarnya. Asumsikan Anda memiliki dana tunai <strong>Rp 30.000.000</strong> dan membandingkan dua keputusan:</p>
+
+            <div class="chart-grid">
+                <!-- Skenario Motor -->
+                <div class="calc-box motor-box">
+                    <h4 style="margin-bottom: 1rem; color: var(--danger);"><i class="fas fa-motorcycle"></i> Skenario A: Membeli Motor Baru</h4>
+                    <div class="calc-row">
+                        <span>Harga Beli Awal</span>
+                        <span><strong>Rp 30.000.000</strong></span>
+                    </div>
+                    <div class="calc-row negative">
+                        <span>Penyusutan (Garis Lurus, 5 thn, nilai sisa Rp 5 jt)</span>
+                        <span>- Rp 5.000.000 / thn</span>
+                    </div>
+                    <div class="calc-row negative">
+                        <span>Biaya Perawatan & Pajak (5 tahun)</span>
+                        <span>- Rp 7.500.000</span>
+                    </div>
+                    <div class="calc-row negative">
+                        <span>Bensin & Operasional (5 tahun)</span>
+                        <span>- Rp 15.000.000</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>Nilai Buku Akhir Tahun ke-5</span>
+                        <span><strong>Rp 5.000.000</strong></span>
+                    </div>
+                    <div class="calc-row total negative">
+                        <span>Total Biaya + Penyusutan (Kerugian)</span>
+                        <span><strong>- Rp 52.500.000</strong></span>
+                    </div>
+                </div>
+
+                <!-- Skenario Rumah -->
+                <div class="calc-box rumah-box">
+                    <h4 style="margin-bottom: 1rem; color: var(--success);"><i class="fas fa-house-chimney"></i> Skenario B: Menabung untuk DP Rumah</h4>
+                    <div class="calc-row">
+                        <span>Dana Awal (Reksadana Pasar Uang, return 6%/thn)</span>
+                        <span><strong>Rp 30.000.000</strong></span>
+                    </div>
+                    <div class="calc-row positive">
+                        <span>Bunga Majemuk (5 tahun, 6%/thn)</span>
+                        <span>+ Rp 10.150.000</span>
+                    </div>
+                    <div class="calc-row negative">
+                        <span>Inflasi Properti (asumsi harga rumah naik 8%/thn)</span>
+                        <span><em>(Daya beli DP tergerus ~15%)</em></span>
+                    </div>
+                    <div class="calc-row">
+                        <span>Total Dana Setelah 5 Tahun</span>
+                        <span><strong>Rp 40.150.000</strong></span>
+                    </div>
+                    <div class="calc-row total positive">
+                        <span>Pertumbuhan Kekayaan (Sebelum Inflasi)</span>
+                        <span><strong>+ Rp 10.150.000</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box red">
+                <h4><i class="fas fa-exclamation-triangle"></i> Realita yang Tidak Nyaman</h4>
+                <p>Setelah 5 tahun, <strong>pembeli motor kehilangan sekitar Rp 52,5 juta</strong> (termasuk biaya operasional), sementara penabung untuk rumah <strong>mengumpulkan dana tambahan Rp 10,1 juta</strong> dari bunga. Perbedaan totalnya mencapai <strong>Rp 62,6 juta</strong> — cukup untuk DP rumah di banyak kota!</p>
+            </div>
+        </section>
+
+        <!-- ===== 4. NUANSA AKUNTANSI: BANGUNAN vs TANAH ===== -->
+        <section class="article-section success">
+            <h2 class="section-title"><i class="fas fa-microscope"></i> Nuansa Akuntansi: Rumah Juga Menyusut?</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 1rem;"><strong>Jawabannya: YA! Tapi tidak seluruhnya.</strong></p>
+            <p>Ini adalah konsep yang sering disalahpahami. Dalam akuntansi, properti terdiri dari dua komponen dengan perlakuan berbeda:</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Perlakuan Akuntansi</th>
+                        <th>Alasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tanah</strong></td>
+                        <td><span class="tag green">Tidak Disusutkan</span></td>
+                        <td>Tanah memiliki umur ekonomis tidak terbatas dan cenderung mengalami apresiasi karena keterbatasan lahan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bangunan</strong></td>
+                        <td><span class="tag red">Disusutkan</span></td>
+                        <td>Bangunan mengalami keausan fisik, kerusakan, dan keusangan teknologi seiring waktu (umur ekonomis 20-50 tahun).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pagar, Taman, Aksesoris</strong></td>
+                        <td><span class="tag red">Disusutkan (Lebih Cepat)</span></td>
+                        <td>Komponen tambahan memiliki umur lebih pendek (5-10 tahun) dan membutuhkan perawatan.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Grafik Komposisi Nilai Properti -->
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-pie"></i> Komposisi Nilai Properti (Tanah vs Bangunan)</h4>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <canvas id="propertyCompositionChart" height="200"></canvas>
+                </div>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">
+                    Ilustrasi: Properti Rp 500 Juta di kota sedang
+                </p>
+            </div>
+
+            <div class="highlight-box green">
+                <h4><i class="fas fa-lightbulb"></i> Kunci Mempertahankan Nilai Rumah</h4>
+                <p><strong>Biaya pemeliharaan (maintenance)</strong> yang rutin adalah kunci untuk memperlambat laju penyusutan bangunan. Sisihkan <strong>1-2% dari nilai properti per tahun</strong> untuk perawatan — ini bukan beban, melainkan <em>capital expenditure</em> yang mempertahankan nilai aset Anda.</p>
+            </div>
+        </section>
+
+        <!-- ===== 5. OPPORTUNITY COST ===== -->
+        <section class="article-section purple">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Konsep "Opportunity Cost" (Biaya Peluang)</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">Dalam akuntansi manajerial, setiap keputusan memiliki <strong>opportunity cost</strong> — nilai dari alternatif terbaik yang Anda korbankan.</p>
+
+            <div class="opportunity-flow">
+                <div class="opp-step">
+                    <span class="num">1</span>
+                    <div>
+                        <h4 style="color: var(--primary); font-size: 1rem;">Keputusan: Membeli Motor Rp 25 Juta</h4>
+                        <p style="font-size: 0.9rem; color: var(--gray);">Biaya eksplisit: Rp 25 Juta</p>
+                    </div>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="opp-step">
+                    <span class="num">2</span>
+                    <div>
+                        <h4 style="color: var(--primary); font-size: 1rem;">Biaya Peluang Tersembunyi</h4>
+                        <ul style="font-size: 0.9rem; color: var(--gray); margin-left: 1.2rem;">
+                            <li>DP rumah tertunda 3-4 tahun</li>
+                            <li>Kenaikan harga properti (8%/thn) yang dilewatkan</li>
+                            <li>Bunga majemuk dari investasi alternatif</li>
+                        </ul>
+                    </div>
+                    <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="opp-step" style="border-left: 4px solid var(--danger);">
+                    <span class="num" style="background: var(--danger);">3</span>
+                    <div>
+                        <h4 style="color: var(--danger); font-size: 1rem;">Total Biaya Peluang (5 Tahun)</h4>
+                        <p style="font-size: 1.1rem; font-weight: 700; color: var(--danger);">≈ Rp 50-80 Juta</p>
+                        <p style="font-size: 0.85rem; color: var(--gray);">Cukup untuk DP rumah di banyak daerah</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box blue">
+                <h4><i class="fas fa-chart-line"></i> Ilustrasi Sederhana</h4>
+                <p>Jika Anda memilih motor daripada menabung untuk rumah, <strong>biaya peluangnya</strong> bukan hanya Rp 25 juta yang Anda keluarkan. Biaya peluangnya adalah:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Rp 25 juta</strong> (harga motor) + <strong>Rp 15 juta</strong> (bunga yang hilang) + <strong>Rp 20 juta</strong> (kenaikan harga rumah yang terlewat) = <strong>Rp 60 juta</strong> kerugian total dalam 5 tahun.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 6. GRAFIK DEPRESIASI ===== -->
+        <section class="article-section info">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Visualisasi Depresiasi: Motor vs Rumah</h2>
+            <p style="margin-bottom: 1.5rem;">Berikut adalah perbandingan visual bagaimana nilai motor menyusut drastis sementara rumah (tanah) terus mengapresiasi:</p>
+
+            <div class="chart-container">
+                <h4><i class="fas fa-chart-area"></i> Depresiasi Motor & Apresiasi Rumah (10 Tahun)</h4>
+                <canvas id="depreciationChart" height="220"></canvas>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">
+                    *Asumsi: Motor Rp 30 juta (depresiasi 20%/thn di tahun pertama, 10%/thn berikutnya), Rumah Rp 200 juta (apresiasi 8%/thn)
+                </p>
+            </div>
+
+            <!-- Dampak Inflasi -->
+            <div style="background: #fef3c7; border: 2px solid var(--accent); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem;">
+                <h4 style="color: #92400e;"><i class="fas fa-exclamation-triangle"></i> Efek Ganda: Inflasi + Depresiasi = Bencana</h4>
+                <p style="color: #78350f;">Motor tidak hanya kehilangan nilai nominal, tetapi <strong>daya beli uang Anda juga tergerus inflasi</strong>. Jika inflasi 4%/tahun, motor Rp 30 juta setelah 5 tahun nilainya setara dengan Rp 24,6 juta — dan <strong>nilai jualnya hanya Rp 10 juta</strong>. Total kerugian riil: <strong>50% dari nilai awal</strong>.</p>
+            </div>
+        </section>
+
+        <!-- ===== 7. PANDUAN PRAKTIS ===== -->
+        <section class="article-section success">
+            <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Panduan Akuntansi untuk Keluarga Muda</h2>
+            <p style="margin-bottom: 1.5rem;">Terapkan prinsip akuntansi dalam kehidupan sehari-hari untuk membangun kekayaan jangka panjang:</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--success);">
+                    <h4 style="color: var(--success); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-arrow-trend-up"></i> 1. Prioritaskan Aset Apresiasi
+                    </h4>
+                    <p style="font-size: 0.95rem; color: var(--gray);">Jika dana terbatas, fokuskan pada pengumpulan DP properti atau instrumen investasi <em>sebelum</em> membeli aset depresiasi tinggi seperti kendaraan baru.</p>
+                </div>
+
+                <div style="background: #fef2f2; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--danger);">
+                    <h4 style="color: var(--danger); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-arrow-trend-down"></i> 2. Beli Kendaraan Bekas Berkualitas
+                    </h4>
+                    <p style="font-size: 0.95rem; color: var(--gray);">Kurva depresiasi paling curam di tahun pertama (20-30%). Membiarkan orang lain menanggung depresiasi tahun pertama adalah <strong>strategi cerdas</strong>.</p>
+                </div>
+
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--primary);">
+                    <h4 style="color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-file-invoice"></i> 3. Pisahkan Pencatatan
+                    </h4>
+                    <p style="font-size: 0.95rem; color: var(--gray);">Perlakukan rumah sebagai "investasi" dan motor sebagai "alat transportasi/beban". Jangan campuradukkan emosi (gengsi) dengan perhitungan nilai buku.</p>
+                </div>
+
+                <div style="background: #f5f3ff; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--purple);">
+                    <h4 style="color: var(--purple); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-tools"></i> 4. Anggaran Pemeliharaan
+                    </h4>
+                    <p style="font-size: 0.95rem; color: var(--gray);">Sisihkan 1-2% dari nilai properti per tahun untuk perawatan. Ini bukan beban, melainkan <em>capital expenditure</em> yang mempertahankan nilai aset.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. TUGAS SISWA ===== -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Tantangan untuk Siswa Kelas XII</h2>
+            <p>Terapkan ilmu Akuntansi Bab 2 & 3 (Aset Tetap & Penyusutan) pada kehidupan nyata:</p>
+
+            <div style="background: var(--light); padding: 1.5rem 2rem; border-radius: 12px; margin-top: 1.5rem; border: 1px solid #cbd5e1;">
+                <p><strong><i class="fas fa-tasks"></i> Tugas Kelompok (Kerjakan dalam 3-4 orang):</strong></p>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 2.2;">
+                    <li>Wawancarai orang tua atau tetangga tentang harga beli motor/rumah mereka 5-10 tahun lalu.</li>
+                    <li>Cari tahu harga pasar aset tersebut saat ini (bisa cek OLX, Rumah123, atau tanya agen properti).</li>
+                    <li>Hitung laju depresiasi/apresiasi rata-rata per tahunnya menggunakan metode garis lurus atau saldo menurun.</li>
+                    <li>Buat laporan singkat: <strong>"Apakah keputusan pembelian aset tersebut sudah efisien secara akuntansi?"</strong></li>
+                    <li>Presentasikan hasil analisis di kelas!</li>
+                </ol>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding: 1rem 1.5rem; background: #fef3c7; border-radius: 8px;">
+                <p style="font-size: 0.95rem; color: #92400e;">
+                    <i class="fas fa-question-circle"></i> <strong>Pertanyaan Refleksi:</strong> Bagaimana keputusan finansial orang tuamu mempengaruhi kondisi keuangan keluarga sekarang? Apa yang akan kamu lakukan berbeda?
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <div class="cta-box">
+            <h3><i class="fas fa-book-open"></i> Kuasai Konsep Aset & Penyusutan</h3>
+            <p>Pelajari lebih dalam tentang Metode Garis Lurus, Saldo Menurun, dan pencatatan Jurnal Aset Tetap di materi Ekonomi Kelas XII.</p>
+            <a href="../ekonomi-kelas-xii.html" class="cta-button">
+                <i class="fas fa-arrow-left"></i> Kembali ke Materi Bab 2 & 3
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="article-footer">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 0.5rem;"><i class="fas fa-university"></i> SMAN 1 Cluring</h3>
+            <p>Platform Pembelajaran Digital Ekonomi & Akuntansi</p>
+            <div class="signature">
+                <p>Guru Pengampu: <strong>Alamsah, SE.</strong></p>
+                <p>Materi Pendukung Kurikulum Merdeka / K13</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-heart" style="color: #ef4444;"></i> Membangun Literasi Keuangan Generasi Muda Indonesia
+                </p>
+            </div>
+            <div class="footer-divider">
+                <p>&copy; 2026 SMAN 1 Cluring. Semua hak dilindungi undang-undang.</p>
+                <p style="margin-top: 0.3rem;">Dikutip dari berbagai sumber & data Bank Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== REGISTER DATALABELS =====
+        Chart.register(ChartDataLabels);
+
+        // ===== 1. COMPARISON CHART (Motor vs Rumah) =====
+        const ctx1 = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Tahun 0', 'Tahun 2', 'Tahun 4', 'Tahun 6', 'Tahun 8', 'Tahun 10'],
+                datasets: [{
+                    label: 'Motor (Nilai Jual)',
+                    data: [30, 22, 16, 12, 9, 7],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239,68,68,0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#ef4444',
+                    pointRadius: 5,
+                }, {
+                    label: 'Rumah (Nilai)',
+                    data: [300, 350, 408, 476, 556, 648],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16,185,129,0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#10b981',
+                    pointRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 12, family: 'Poppins' } }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 9 },
+                        formatter: (value) => {
+                            if (value >= 100) return 'Rp ' + (value / 10).toFixed(0) + ' Jt';
+                            return 'Rp ' + value + ' Jt';
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        ticks: {
+                            callback: (value) => {
+                                if (value >= 100) return 'Rp ' + (value / 10).toFixed(0) + ' Jt';
+                                return 'Rp ' + value + ' Jt';
+                            }
+                        }
+                    },
+                    x: { grid: { display: false } }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== 2. PROPERTY COMPOSITION CHART =====
+        const ctx2 = document.getElementById('propertyCompositionChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Tanah (Apresiasi)', 'Bangunan (Depresiasi)', 'Fasilitas Tambahan'],
+                datasets: [{
+                    data: [350, 120, 30],
+                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b'],
+                    borderColor: 'white',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { font: { size: 11, family: 'Poppins' }, padding: 15 }
+                    },
+                    datalabels: {
+                        color: 'white',
+                        font: { weight: 'bold', size: 12 },
+                        formatter: (value) => 'Rp ' + value + ' Jt'
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== 3. DEPRECIATION CHART =====
+        const ctx3 = document.getElementById('depreciationChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Thn 0', 'Thn 1', 'Thn 2', 'Thn 3', 'Thn 4', 'Thn 5', 'Thn 6', 'Thn 7', 'Thn 8', 'Thn 9', 'Thn 10'],
+                datasets: [{
+                    label: 'Motor (Juta Rp)',
+                    data: [30, 24, 21.6, 19.4, 17.5, 15.7, 14.1, 12.7, 11.4, 10.3, 9.3],
+                    backgroundColor: 'rgba(239,68,68,0.7)',
+                    borderColor: '#ef4444',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                }, {
+                    label: 'Rumah (Juta Rp)',
+                    data: [200, 216, 233, 252, 272, 294, 317, 342, 370, 399, 431],
+                    backgroundColor: 'rgba(16,185,129,0.7)',
+                    borderColor: '#10b981',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 12, family: 'Poppins' } }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 8 },
+                        formatter: (value) => 'Rp ' + value + ' Jt'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        ticks: { callback: (value) => 'Rp ' + value + ' Jt' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 9 } }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== SCROLL ANIMATION OBSERVER =====
+        const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.article-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Listrik vs Bensin: Perang Penyusutan | Ekonomi XII</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #059669;
+            --accent: #d97706;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --ev-color: #0ea5e9;
+            --ice-color: #f97316;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        /* Header */
+        .header-article {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+            color: white;
+            padding: 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .header-article::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--ev-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-article h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .header-meta span { display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 0.5rem; color: var(--gray); }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Sections */
+        .article-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .article-section.ev-focus { border-left-color: var(--ev-color); }
+        .article-section.ice-focus { border-left-color: var(--ice-color); }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i { color: var(--accent); }
+
+        /* Comparison Cards */
+        .asset-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .asset-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .asset-card.ev { border-top: 5px solid var(--ev-color); }
+        .asset-card.ice { border-top: 5px solid var(--ice-color); }
+
+        .asset-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .asset-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .asset-card.ev .asset-icon { color: var(--ev-color); }
+        .asset-card.ice .asset-icon { color: var(--ice-color); }
+
+        .asset-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        
+        .value-tag {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .value-tag.ev { background: #e0f2fe; color: #0369a1; }
+        .value-tag.ice { background: #fff7ed; color: #c2410c; }
+
+        /* Calculation Box */
+        .calc-box {
+            background: #f1f5f9;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .calc-box::before {
+            content: 'ANALISIS TOTAL COST OF OWNERSHIP (5 TAHUN)';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .calc-row:last-child { border-bottom: none; font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .calc-row.expense { color: var(--danger); }
+        .calc-row.saving { color: var(--success); }
+        .calc-row.residual { color: var(--accent); font-style: italic; }
+
+        /* Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table tr:hover { background: var(--light); }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 5px solid var(--ev-color);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border-left-color: var(--ice-color);
+        }
+
+        .highlight-box h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Battery Warning */
+        .battery-warning {
+            background: #fef2f2;
+            border: 2px solid var(--danger);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .battery-warning i {
+            font-size: 2rem;
+            color: var(--danger);
+            margin-top: 0.2rem;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, var(--ev-color) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--ev-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .article-footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .article-footer .signature {
+            font-style: italic;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-article h1 { font-size: 1.6rem; }
+            .asset-comparison { grid-template-columns: 1fr; }
+            .article-section { padding: 1.5rem; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+            .battery-warning { flex-direction: column; text-align: center; align-items: center; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article-section {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .article-section:nth-child(1) { animation-delay: 0.1s; }
+        .article-section:nth-child(2) { animation-delay: 0.2s; }
+        .article-section:nth-child(3) { animation-delay: 0.3s; }
+        .article-section:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header-article">
+        <div class="header-content">
+            <span class="badge"><i class="fas fa-bolt"></i> Studi Kasus Akuntansi Modern</span>
+            <h1>Motor Listrik vs Motor Bensin: Perang Penyusutan yang Belum Dimenangkan Siapa-siapa</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem;">Analisis Total Cost of Ownership (TCO) dan Nilai Residu dari Kacamata Akuntansi</p>
+            <div class="header-meta">
+                <span><i class="fas fa-clock"></i> 12 Menit Baca</span>
+                <span><i class="fas fa-calculator"></i> Konsep: Depresiasi & TCO</span>
+                <span><i class="fas fa-users"></i> Target: Konsumen & Siswa XII</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+            <span>›</span>
+            <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a>
+            <span>›</span>
+            <span>Artikel: Penyusutan Aset</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Introduction -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-fire"></i> Hype vs Realitas Akuntansi</h2>
+            <p>Di era transisi energi ini, motor listrik (EV) digadang-gadang sebagai solusi hemat dan ramah lingkungan. Iklan menjanjikan "hemat hingga 80% biaya bahan bakar". Namun, sebagai calon akuntan atau konsumen cerdas, kita harus melihat melampaui iklan.</p>
+            <p style="margin-top: 1rem;">Dalam akuntansi, keputusan pembelian aset tidak hanya dilihat dari <strong>Harga Perolehan (Acquisition Cost)</strong>, tetapi dari <strong>Total Cost of Ownership (TCO)</strong> selama umur ekonomisnya, serta <strong>Nilai Residu (Residual Value)</strong> di akhir masa pakai. Di sinilah "perang penyusutan" antara motor listrik dan motor bensin (ICE) menjadi sangat menarik.</p>
+        </section>
+
+        <!-- The Showdown -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-balance-scale"></i> Dua Kontestan, Dua Karakter Aset</h2>
+            
+            <div class="asset-comparison">
+                <div class="asset-card ev">
+                    <div class="asset-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Motor Listrik (EV)</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem;">Aset Teknologi Tinggi</p>
+                    <div class="value-tag ev">
+                        <i class="fas fa-arrow-trend-down"></i> Depresiasi Cepat di Awal
+                    </div>
+                    <p style="font-size: 0.9rem;">Harga beli tinggi, biaya operasional rendah, tapi nilai jual kembali (residu) sangat tidak pasti karena degradasi baterai.</p>
+                </div>
+
+                <div class="asset-card ice">
+                    <div class="asset-icon"><i class="fas fa-gas-pump"></i></div>
+                    <h3>Motor Bensin (ICE)</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem;">Aset Konvensional Mapan</p>
+                    <div class="value-tag ice">
+                        <i class="fas fa-minus"></i> Depresiasi Stabil & Terprediksi
+                    </div>
+                    <p style="font-size: 0.9rem;">Harga beli lebih rendah, biaya operasional (bensin) tinggi, tapi pasar bekasnya matang dan nilai residunya mudah diprediksi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TCO Simulation -->
+        <section class="article-section ev-focus">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> Simulasi Akuntansi: TCO 5 Tahun</h2>
+            <p>Mari kita hitung menggunakan asumsi realistis pasar Indonesia saat ini. Jarak tempuh: 30 km/hari (±900 km/bulan).</p>
+
+            <div class="calc-box">
+                <h4 style="margin-bottom: 1rem; color: var(--ev-color);"><i class="fas fa-bolt"></i> Skenario A: Motor Listrik (Harga Rp 30.000.000)</h4>
+                <div class="calc-row">
+                    <span>Harga Perolehan Awal</span>
+                    <span>Rp 30.000.000</span>
+                </div>
+                <div class="calc-row expense">
+                    <span>Biaya Listrik (5 tahun)</span>
+                    <span>- Rp 2.700.000</span>
+                </div>
+                <div class="calc-row expense">
+                    <span>Servis & Perawatan (5 tahun)</span>
+                    <span>- Rp 1.500.000</span>
+                </div>
+                <div class="calc-row residual">
+                    <span>Estimasi Nilai Residu (Tahun ke-5, kondisi baterai 70%)</span>
+                    <span>+ Rp 12.000.000</span>
+                </div>
+                <div class="calc-row" style="border-top: 2px solid var(--ev-color); margin-top: 0.5rem; padding-top: 0.5rem;">
+                    <span><strong>Total Biaya Bersih (Net Cost) 5 Tahun</strong></span>
+                    <span><strong>Rp 22.200.000</strong></span>
+                </div>
+            </div>
+
+            <div class="calc-box" style="border-color: var(--ice-color);">
+                <h4 style="margin-bottom: 1rem; color: var(--ice-color);"><i class="fas fa-gas-pump"></i> Skenario B: Motor Bensin 125cc (Harga Rp 18.000.000)</h4>
+                <div class="calc-row">
+                    <span>Harga Perolehan Awal</span>
+                    <span>Rp 18.000.000</span>
+                </div>
+                <div class="calc-row expense">
+                    <span>Biaya Bensin (5 tahun, asumsi Rp 10.000/L)</span>
+                    <span>- Rp 13.500.000</span>
+                </div>
+                <div class="calc-row expense">
+                    <span>Servis Rutin & Ganti Oli (5 tahun)</span>
+                    <span>- Rp 3.000.000</span>
+                </div>
+                <div class="calc-row residual">
+                    <span>Estimasi Nilai Residu (Tahun ke-5, kondisi baik)</span>
+                    <span>+ Rp 9.000.000</span>
+                </div>
+                <div class="calc-row" style="border-top: 2px solid var(--ice-color); margin-top: 0.5rem; padding-top: 0.5rem;">
+                    <span><strong>Total Biaya Bersih (Net Cost) 5 Tahun</strong></span>
+                    <span><strong>Rp 25.500.000</strong></span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4><i class="fas fa-lightbulb"></i> Temuan Akuntansi:</h4>
+                <p>Dalam skenario 5 tahun, <strong>Motor Listrik memang lebih hemat sekitar Rp 3,3 juta</strong>. <em>Namun</em>, kemenangan ini sangat tipis dan bergantung pada satu asumsi kritis: <strong>Nilai Residu Baterai</strong>. Jika baterai rusak di tahun ke-4 dan harus diganti (biaya Rp 8-10 juta), motor listrik langsung menjadi <strong>lebih mahal</strong> daripada motor bensin.</p>
+            </div>
+        </section>
+
+        <!-- The Battery Dilemma -->
+        <section class="article-section ice-focus">
+            <h2 class="section-title"><i class="fas fa-car-battery"></i> Dilema Baterai: "Jantung" yang Menyusut</h2>
+            <p>Dalam akuntansi, baterai motor listrik adalah komponen unik. Ia bukan sekadar suku cadang, melainkan <strong>aset utama dengan umur ekonomis terbatas</strong> yang mengalami degradasi kapasitas (State of Health / SoH) setiap siklus pengisian.</p>
+            
+            <div class="battery-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h4 style="color: var(--danger); margin-bottom: 0.5rem;">Risiko Biaya Penggantian (Replacement Cost)</h4>
+                    <p>Sebagian besar garansi baterai EV adalah 5-8 tahun atau 50.000 km. Setelah itu, jika kapasitas baterai turun di bawah 70%, performanya anjlok. Biaya penggantian baterai baru bisa mencapai <strong>40-50% dari harga motor baru</strong>. Dalam pencatatan akuntansi, ini adalah <em>Capital Expenditure</em> (belanja modal) besar yang tiba-tiba yang menghancurkan nilai buku aset.</p>
+                </div>
+            </div>
+
+            <p>Sebaliknya, mesin motor bensin sudah matang teknologinya. Biaya perawatannya terdistribusi merata (ganti oli, kampas rem, ban), dan pasar suku cadang bekas sangat likuid, membuat <strong>nilai residunya lebih stabil dan mudah diprediksi</strong>.</p>
+        </section>
+
+        <!-- Decision Matrix -->
+        <section class="article-section">
+            <h2 class="section-title"><i class="fas fa-chess"></i> Matriks Keputusan: Kapan Harus Memilih Apa?</h2>
+            <p>Sebagai konsumen atau analis keuangan, gunakan panduan ini berdasarkan profil penggunaan:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Profil Pengguna</th>
+                        <th>Rekomendasi Aset</th>
+                        <th>Alasan Akuntansi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Driver Ojol / High Usage</strong><br><small>(>60 km/hari)</small></td>
+                        <td><span style="color: var(--ev-color); font-weight: 600;">✅ Motor Listrik</span></td>
+                        <td>Penghematan biaya operasional (listrik vs bensin) akan cepat menutupi selisih harga beli (Break-Even Point tercapai dalam 2-3 tahun).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pemakai Harian Ringan</strong><br><small>(<20 km/hari)</small></td>
+                        <td><span style="color: var(--ice-color); font-weight: 600;">✅ Motor Bensin</span></td>
+                        <td>Selisih harga beli tidak akan tertutup oleh penghematan bensin yang kecil. Risiko depresiasi baterai EV tidak sepadan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rencana Jual Cepat</strong><br><small>(< 3 tahun)</small></td>
+                        <td><span style="color: var(--ice-color); font-weight: 600;">✅ Motor Bensin</span></td>
+                        <td>Nilai residu motor bensin bekas 3 tahun masih sangat tinggi dan pasar likuid. EV bekas 3 tahun mengalami "cliff depreciation" (penurunan nilai tebing curam).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Student Task -->
+        <section class="article-section ev-focus">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Tantangan untuk Siswa Kelas XII</h2>
+            <p>Terapkan konsep <strong>Metode Penyusutan</strong> (Bab 2 & 3 Ekonomi XII) pada kasus nyata ini:</p>
+            <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #cbd5e1;">
+                <p><strong>Tugas Proyek Kelompok:</strong></p>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Pilih 1 merk motor listrik dan 1 merk motor bensin dengan kelas yang setara.</li>
+                    <li>Tentukan <strong>Harga Perolehan</strong>, <strong>Umur Ekonomis</strong> (misal: 5 tahun), dan estimasi <strong>Nilai Residu</strong>.</li>
+                    <li>Hitung beban penyusutan tahunan menggunakan <strong>Metode Garis Lurus</strong> dan <strong>Metode Saldo Menurun Ganda</strong>.</li>
+                    <li>Buatlah grafik perbandingan "Nilai Buku" kedua motor tersebut dari Tahun 1 hingga Tahun 5.</li>
+                    <li>Kesimpulan: Metode mana yang lebih menggambarkan realitas penurunan nilai motor listrik? Jelaskan alasannya!</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h3><i class="fas fa-file-excel"></i> Ingin Menghitung Sendiri?</h3>
+            <p>Unduh template Excel sederhana untuk menghitung Total Cost of Ownership (TCO) dan Penyusutan aset kendaraan Anda sendiri.</p>
+            <a href="#" class="cta-button" onclick="alert('Fitur download akan segera tersedia! Hubungi guru Anda untuk template Excel.'); return false;">
+                <i class="fas fa-download"></i> Download Template Kalkulator TCO
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="article-footer">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 1rem;"><i class="fas fa-university"></i> SMAN 1 Cluring</h3>
+            <p>Platform Pembelajaran Digital Ekonomi & Akuntansi</p>
+            <div class="signature">
+                <p>Guru Pengampu: <strong>Zuli Astutik, S.Pd.</strong></p>
+                <p>Materi Pendukung Kurikulum Merdeka / K13</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-heart"></i> Membangun Literasi Keuangan & Teknologi Generasi Muda
+                </p>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; opacity: 0.7;">
+                <p>&copy; 2026 SMAN 1 Cluring. Semua hak dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.article-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
