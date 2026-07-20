@@ -313,30 +313,87 @@
   function nextQuestion() { if(currentQuestion < quizData.length-1 && !quizEnded) { currentQuestion++; renderQuestion(); renderProgress(); } }
   function prevQuestion() { if(currentQuestion > 0 && !quizEnded) { currentQuestion--; renderQuestion(); renderProgress(); } }
 
-  function endQuiz(securityTerminate = false) {
-    if(quizEnded) return; quizEnded = true; clearInterval(timer);
+    async function endQuiz(securityTerminate = false) {
+    if(quizEnded) return; 
+    quizEnded = true; 
+    clearInterval(timer);
     loadingScreen.classList.add('active');
-    setTimeout(() => {
-      let correct = 0; quizData.forEach((q,i)=>{ if(userAnswers[i]===q.correct) correct++; });
-      let wrong = quizData.length - correct - userAnswers.filter(a=>a===null).length;
-      let unanswered = userAnswers.filter(a=>a===null).length;
-      let score = securityTerminate ? 0 : Math.round((correct/20)*100);
-      document.getElementById('finalScore').innerText = score;
-      document.getElementById('correctCount').innerText = correct;
-      document.getElementById('wrongCount').innerText = wrong;
-      document.getElementById('unansweredCount').innerText = unanswered;
-      let used = 35*60 - timeRemaining; document.getElementById('timeUsed').innerText = `${Math.floor(used/60)}:${(used%60).toString().padStart(2,'0')}`;
-      let gradeEl = document.getElementById('scoreGrade'), msgEl = document.getElementById('scoreMessage');
-      if(securityTerminate) { gradeEl.innerHTML = '⚠️ TERMINASI'; gradeEl.style.background='#fee2e2'; gradeEl.style.color='#b91c1c'; msgEl.innerText = 'Quiz dihentikan karena pelanggaran keamanan.'; }
-      else if(score>=85) { gradeEl.innerHTML='🏆 OUTSTANDING (A)'; gradeEl.className='grade-a'; msgEl.innerText='Luar biasa! Siap menuju OSN!'; canvasConfetti({particleCount:150, spread:70, origin:{y:0.6}}); }
-      else if(score>=70) { gradeEl.innerHTML='✅ EXCELLENT (B)'; msgEl.innerText='Pemahaman kuat, tingkatkan analisis kasus.'; }
-      else if(score>=50) gradeEl.innerHTML='📘 GOOD (C)'; else gradeEl.innerHTML='📌 PERLU BELAJAR LAGI';
-      loadingScreen.classList.remove('active');
-      quizScreen.style.display = 'none'; resultsScreen.style.display = 'block';
-      if(document.fullscreenElement) document.exitFullscreen();
-    }, 800);
-  }
 
+    // 1. Hitung Nilai Lokal (Instan)
+    let correct = 0; 
+    quizData.forEach((q,i) => { if(userAnswers[i] === q.correct) correct++; });
+    let wrong = quizData.length - correct - userAnswers.filter(a => a === null).length;
+    let unanswered = userAnswers.filter(a => a === null).length;
+    let score = securityTerminate ? 0 : Math.round((correct/20)*100);
+    let used = 35*60 - timeRemaining;
+    let timeUsedStr = `${Math.floor(used/60)}:${(used%60).toString().padStart(2,'0')}`;
+
+    // 2. PENGIRIMAN DATA DENGAN PROTEKSI TIMEOUT (Anti-Hang)
+    // Ganti URL ini dengan endpoint Google Apps Script / API backend Anda
+    const SERVER_URL = "https://script.google.com/macros/s/AKfycbx.../exec"; 
+    
+    try {
+      const controller = new AbortController();
+      // Paksa batal jika server tidak merespons dalam 5 detik (mencegah loading selamanya)
+      const timeoutId = setTimeout(() => controller.abort(), 5000); 
+
+      // UNCOMMENT blok di bawah ini jika endpoint server sudah siap:
+      /*
+      const response = await fetch(SERVER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Penting untuk Google Apps Script
+        body: JSON.stringify({
+          timestamp: new Date().toISOString(),
+          skor: score,
+          benar: correct,
+          waktu: timeUsedStr,
+          jawaban: userAnswers.join(',')
+        }),
+        signal: controller.signal
+      });
+      */
+      
+      clearTimeout(timeoutId);
+    } catch (error) {
+      console.warn("Server timeout/overload. Data disimpan lokal sebagai cadangan.", error);
+      // Fallback: Simpan ke localStorage agar nilai siswa tidak hilang jika internet buruk
+      localStorage.setItem('quiz_backup_' + Date.now(), JSON.stringify({score, correct, timeUsedStr}));
+    }
+
+    // 3. Tampilkan Hasil (Langsung, hapus setTimeout 800ms yang memperlambat)
+    loadingScreen.classList.remove('active');
+    quizScreen.style.display = 'none'; 
+    resultsScreen.style.display = 'block';
+    
+    // Update UI
+    document.getElementById('finalScore').innerText = score;
+    document.getElementById('correctCount').innerText = correct;
+    document.getElementById('wrongCount').innerText = wrong;
+    document.getElementById('unansweredCount').innerText = unanswered;
+    document.getElementById('timeUsed').innerText = timeUsedStr;
+    
+    let gradeEl = document.getElementById('scoreGrade'), msgEl = document.getElementById('scoreMessage');
+    if(securityTerminate) { 
+      gradeEl.innerHTML = '⚠️ TERMINASI'; 
+      gradeEl.style.background='#fee2e2'; gradeEl.style.color='#b91c1c'; 
+      msgEl.innerText = 'Quiz dihentikan karena pelanggaran keamanan.'; 
+    } else if(score>=85) { 
+      gradeEl.innerHTML='🏆 OUTSTANDING (A)'; 
+      gradeEl.className='grade-a'; 
+      msgEl.innerText='Luar biasa! Siap menuju OSN!'; 
+      // OPTIMASI: Kurangi particleCount agar HP low-end tidak lag/panas
+      canvasConfetti({particleCount: 60, spread: 60, origin:{y:0.6}}); 
+    } else if(score>=70) { 
+      gradeEl.innerHTML='✅ EXCELLENT (B)'; 
+      msgEl.innerText='Pemahaman kuat, tingkatkan analisis kasus.'; 
+    } else if(score>=50) {
+      gradeEl.innerHTML='📘 GOOD (C)'; 
+    } else {
+      gradeEl.innerHTML='📌 PERLU BELAJAR LAGI';
+    }
+
+    if(document.fullscreenElement) document.exitFullscreen();
+  }
   function startQuiz() {
     if(quizStarted) return;
     quizStarted = true; quizEnded = false; userAnswers.fill(null); currentQuestion=0; timeRemaining=35*60; securityViolations=0;
