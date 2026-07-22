@@ -33,6 +33,31 @@ body.dark-mode .card h3{color:var(--accent)}
 .card p{margin-bottom:12px;text-align:justify}
 .highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
 body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
+
+/* Kotak Konsep Penting */
+.concept-box{background:linear-gradient(135deg,#fef3c7,#fde68a);padding:25px;border-radius:12px;margin:20px 0;border-left:5px solid #f59e0b;box-shadow:0 5px 15px rgba(245,158,11,.2)}
+body.dark-mode .concept-box{background:linear-gradient(135deg,#422006,#78350f);border-left-color:#fbbf24}
+.concept-box h3{color:#92400e;border-bottom:2px solid #f59e0e;margin-bottom:15px}
+body.dark-mode .concept-box h3{color:#fcd34d;border-bottom-color:#fbbf24}
+.concept-box .concept-item{background:rgba(255,255,255,.6);padding:15px;border-radius:8px;margin:10px 0;border-left:3px solid #f59e0e}
+body.dark-mode .concept-box .concept-item{background:rgba(255,255,255,.1)}
+.concept-box .concept-item h4{color:#b45309;margin-bottom:8px;font-size:1rem}
+body.dark-mode .concept-box .concept-item h4{color:#fbbf24}
+.concept-box .concept-item p{margin:0;font-size:0.95rem;color:#78350f}
+body.dark-mode .concept-box .concept-item p{color:#fef3c7}
+
+/* Gaya Khusus untuk Kotak Penjelasan Akuntansi */
+.info-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);padding:20px;border-radius:10px;margin:15px 0;border-left:5px solid var(--warning);display:none;animation:fadeIn 0.5s}
+body.dark-mode .info-box{background:linear-gradient(135deg,#422006,#713f12);border-left-color:#fcd34d}
+.info-box h4{color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:8px;font-size:1.1rem}
+body.dark-mode .info-box h4{color:#fcd34d}
+.info-box p{margin:0;font-size:0.95rem;color:#78350f}
+body.dark-mode .info-box p{color:#fef3c7}
+.info-box strong{color:#b45309}
+body.dark-mode .info-box strong{color:#fbbf24}
+
+@keyframes fadeIn {from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
 ul,ol{margin:10px 0 15px 25px}
 li{margin-bottom:8px}
 .simulator{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(102,126,234,.3)}
@@ -66,7 +91,7 @@ li{margin-bottom:8px}
 .nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
 .nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
 footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
-@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.sim-table{font-size:.68rem}.sim-table th,.sim-table td{padding:4px 3px}.sim-table .desc{max-width:80px}.sim-btn{padding:8px 16px;font-size:.8rem;margin-right:4px;margin-top:6px}}
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.sim-table{font-size:.68rem}.sim-table th,.sim-table td{padding:4px 3px}.sim-table .desc{max-width:80px}.sim-btn{padding:8px 16px;font-size:.8rem;margin-right:4px;margin-top:6px}.concept-box{padding:15px}}
 </style>
 </head>
 <body>
@@ -107,6 +132,29 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 </div>
 </div>
 
+<!-- ============ KONSEP PENTING ============ -->
+<div class="concept-box">
+<h3><i class="fas fa-lightbulb"></i> 💡 Konsep Penting yang Harus Dipahami</h3>
+
+<div class="concept-item">
+<h4>1️⃣ Modal Awal vs Modal Akhir</h4>
+<p><strong>Modal Awal</strong> adalah fakta sejarah yang <strong>TIDAK PERNAH BERUBAH</strong>. Jika Andi menyetor Rp 5.000.000 di awal, angka ini tetap 5 juta selamanya dalam catatan.<br>
+<strong>Modal Akhir</strong> adalah hasil perhitungan di akhir periode setelah memperhitungkan Laba/Rugi dan Prive.<br>
+<em>Contoh: Modal Awal 5.000.000 + Laba 900.000 - Prive 100.000 = Modal Akhir 5.800.000</em></p>
+</div>
+
+<div class="concept-item">
+<h4>2️⃣ Prive Mengurangi Modal, BUKAN Pendapatan</h4>
+<p>Prive adalah <strong>pengambilan pribadi pemilik</strong> yang tidak ada hubungannya dengan kinerja operasional bisnis. Oleh karena itu, Prive langsung memotong Modal, bukan Pendapatan.<br>
+<strong>Mengapa?</strong> Karena jika Prive dikurangkan dari Pendapatan, Laporan Laba Rugi akan menunjukkan kinerja bisnis yang lebih buruk dari kenyataan. Ini menyesatkan!</p>
+</div>
+
+<div class="concept-item">
+<h4>3️⃣ Transaksi Kredit ≠ Kas</h4>
+<p>Kata <strong>"kredit"</strong> berarti transaksi terjadi sekarang, tetapi pembayaran dilakukan di masa depan. Jika pendapatan diterima secara kredit, uang <strong>TIDAK MASUK KAS</strong>, melainkan dicatat sebagai <strong>Piutang</strong> (hak menagih).</p>
+</div>
+</div>
+
 <div class="card">
 <h2><i class="fas fa-building"></i> Profil PT. Bersih Cemerlang</h2>
 <p><strong>PT. Bersih Cemerlang</strong> adalah perusahaan jasa laundry milik <strong>Andi</strong> yang berdiri pada <strong>1 Januari 2025</strong>. Sepanjang bulan Januari 2025, terjadi <strong>8 transaksi</strong> yang akan kita bedah satu per satu menggunakan persamaan dasar akuntansi.</p>
@@ -117,7 +165,8 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 <h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Persamaan Dasar Akuntansi</h2>
 <div class="sim-intro">
 <strong>Mari bedah transaksi PT. Bersih Cemerlang!</strong> 🎉<br>
-Pilih transaksi di bawah ini. Perhatikan petunjuk <strong>(Kas +, Modal +)</strong> untuk memahami pengaruhnya terhadap persamaan akuntansi.
+Pilih transaksi di bawah ini. Perhatikan penjelasan yang muncul untuk memahami logika di balik setiap angka.<br>
+<span style="font-size:0.85rem; opacity:0.9;">💡 <em>Coba pilih transaksi no 5 dan no 8 untuk melihat penjelasan spesial!</em></span>
 </div>
 
 <div class="sim-controls">
@@ -137,6 +186,12 @@ Pilih transaksi di bawah ini. Perhatikan petunjuk <strong>(Kas +, Modal +)</stro
 <button class="sim-btn" onclick="addTransaction()"><i class="fas fa-plus"></i> Tambah Transaksi</button>
 <button class="sim-btn example" onclick="loadExample()"><i class="fas fa-magic"></i> Muat 8 Transaksi Lengkap</button>
 <button class="sim-btn reset" onclick="resetSim()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+
+<!-- Kotak Penjelasan Akuntansi (Dinamis) -->
+<div id="transactionInfo" class="info-box">
+  <h4><i class="fas fa-lightbulb"></i> Catatan Akuntansi:</h4>
+  <p id="infoText"></p>
 </div>
 
 <h3><i class="fas fa-table"></i> Tabel Persamaan Akuntansi — PT. Bersih Cemerlang</h3>
@@ -178,6 +233,8 @@ Pilih transaksi di bawah ini. Perhatikan petunjuk <strong>(Kas +, Modal +)</stro
 <li>✅ Persamaan dasar: <strong>HARTA = UTANG + MODAL</strong></li>
 <li>✅ Setiap transaksi harus menjaga <strong>keseimbangan</strong></li>
 <li>✅ Perluasan: Harta = Utang + Modal + (Pendapatan − Beban − Prive)</li>
+<li>✅ <strong>Modal Awal</strong> tetap 5 juta, <strong>Modal Akhir</strong> = Modal Awal + Laba - Prive</li>
+<li>✅ <strong>Prive</strong> mengurangi Modal, BUKAN Pendapatan</li>
 <li>✅ <strong>Lanjut ke Bab 1.F</strong> untuk mengubah data persamaan ini menjadi laporan keuangan!</li>
 </ul>
 </div>
@@ -192,14 +249,46 @@ Pilih transaksi di bawah ini. Perhatikan petunjuk <strong>(Kas +, Modal +)</stro
 
 <script>
 const transData = {
-  1: { desc: "Andi menyetor modal tunai", kas: 5000000, modal: 5000000 },
-  2: { desc: "Beli peralatan laundry tunai", kas: -1500000, peralatan: 1500000 },
-  3: { desc: "Beli perlengkapan secara kredit", perleng: 500000, utang: 500000 },
-  4: { desc: "Pendapatan jasa laundry tunai", kas: 800000, pendapatan: 800000 },
-  5: { desc: "Pendapatan jasa secara kredit", piutang: 300000, pendapatan: 300000 },
-  6: { desc: "Bayar beban listrik & air", kas: -200000, beban: 200000 },
-  7: { desc: "Bayar sebagian utang usaha", kas: -200000, utang: -200000 },
-  8: { desc: "Andi mengambil prive", kas: -100000, prive: 100000 }
+  1: { 
+    desc: "Andi menyetor modal tunai", 
+    kas: 5000000, modal: 5000000,
+    info: "Modal awal disetor dalam bentuk uang tunai. <strong>Kas</strong> (Harta) bertambah, dan <strong>Modal</strong> (Ekuitas) juga bertambah secara seimbang. Ini adalah <strong>Modal Awal = Rp 5.000.000</strong> yang tidak akan pernah berubah dalam catatan sejarah."
+  },
+  2: { 
+    desc: "Beli peralatan laundry tunai", 
+    kas: -1500000, peralatan: 1500000,
+    info: "Terjadi <strong>pertukaran aset</strong>. Kas berkurang karena dibayarkan, tetapi nilai Harta tetap utuh karena berpindah bentuk menjadi <strong>Peralatan</strong>."
+  },
+  3: { 
+    desc: "Beli perlengkapan secara kredit", 
+    perleng: 500000, utang: 500000,
+    info: "Barang diterima sekarang, bayar nanti. Harta (<strong>Perlengkapan</strong>) bertambah, dan di sisi lain kewajiban (<strong>Utang</strong>) juga bertambah."
+  },
+  4: { 
+    desc: "Pendapatan jasa laundry tunai", 
+    kas: 800000, pendapatan: 800000,
+    info: "Jasa selesai dan uang langsung diterima. <strong>Kas</strong> bertambah, dan <strong>Pendapatan</strong> meningkat (yang akan menambah Modal)."
+  },
+  5: { 
+    desc: "Pendapatan jasa secara kredit", 
+    piutang: 300000, pendapatan: 300000,
+    info: "💡 <strong>Kenapa Kas tidak bertambah?</strong> Karena transaksi dilakukan <em>secara kredit</em> (uang belum diterima). Namun, karena jasa sudah selesai, perusahaan berhak mencatat <strong>Pendapatan</strong>. Hak menagih ini dicatat sebagai aset baru bernama <strong>Piutang</strong>. Jadi, Harta tetap bertambah (lewat Piutang), bukan Kas!"
+  },
+  6: { 
+    desc: "Bayar beban listrik & air", 
+    kas: -200000, beban: 200000,
+    info: "Kas berkurang untuk membayar kewajiban operasional. <strong>Beban</strong> bertambah, yang pada akhirnya akan mengurangi saldo Modal akhir."
+  },
+  7: { 
+    desc: "Bayar sebagian utang usaha", 
+    kas: -200000, utang: -200000,
+    info: "Kas berkurang karena digunakan untuk melunasi kewajiban. Secara bersamaan, <strong>Utang</strong> perusahaan juga ikut berkurang."
+  },
+  8: { 
+    desc: "Andi mengambil prive", 
+    kas: -100000, prive: 100000,
+    info: "💡 <strong>PENTING:</strong> Pengambilan pribadi oleh pemilik untuk keperluan di luar bisnis. <strong>Kas</strong> berkurang, dan <strong>Prive</strong> bertambah.<br><br>⚠️ <strong>Mengapa Prive mengurangi Modal, bukan Pendapatan?</strong><br>Karena Prive bukan beban operasional! Jika Prive dikurangkan dari Pendapatan, Laporan Laba Rugi akan menunjukkan kinerja bisnis yang lebih buruk dari kenyataan. Prive langsung memotong Modal karena ini adalah transaksi antara pemilik dengan perusahaannya, bukan transaksi operasional bisnis."
+  }
 };
 
 const accountNames = {
@@ -215,6 +304,18 @@ function sumAsset() { return running.kas + running.perleng + running.peralatan +
 function sumEquity() { return running.utang + running.modal + running.pendapatan - running.beban - running.prive; }
 function isBalanced() { return sumAsset() === sumEquity(); }
 function diff() { return sumAsset() - sumEquity(); }
+
+function showInfo(num) {
+  const infoBox = document.getElementById('transactionInfo');
+  const infoText = document.getElementById('infoText');
+  if (transData[num] && transData[num].info) {
+    infoText.innerHTML = transData[num].info;
+    infoBox.style.display = 'block';
+    infoBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    infoBox.style.display = 'none';
+  }
+}
 
 function render() {
   const tbody = document.getElementById('simBody');
@@ -318,6 +419,8 @@ function addTransaction() {
   Object.keys(data).forEach(k => {
     if (k !== 'desc' && running.hasOwnProperty(k)) running[k] += data[k];
   });
+  
+  showInfo(num);
   render();
   sel.value = '';
 }
@@ -332,11 +435,13 @@ function loadExample() {
     });
   }
   render();
+  showInfo(5);
 }
 
 function resetSim() {
   transactions = [];
   running = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
+  document.getElementById('transactionInfo').style.display = 'none';
   render();
 }
 
