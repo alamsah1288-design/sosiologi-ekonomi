@@ -75,7 +75,7 @@ li{margin-bottom:8px}
 .sim-table th{background:var(--primary);color:white;padding:10px 6px;text-align:center;font-size:.8rem;white-space:nowrap}
 .sim-table td{padding:8px 6px;text-align:center;border-bottom:1px solid #e5e7eb;font-size:.8rem}
 .sim-table tr:nth-child(even){background:#f9fafb}
-.sim-table .desc{text-align:left;font-style:italic;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sim-table .desc{text-align:left;font-style:italic;max-width:160px;white-space:normal;overflow:visible;text-overflow:unset;line-height:1.4}
 .sim-table .row-total{font-weight:600;background:#e0e7ff!important}
 .sim-table .row-total td{border-top:2px solid var(--primary)}
 .sim-table .bg-change{background:#dbeafe;color:#1e40af;font-weight:600}
@@ -85,15 +85,14 @@ li{margin-bottom:8px}
 .balance-status.error{background:var(--danger);color:white}
 .transaction-list{background:rgba(255,255,255,.1);padding:15px;border-radius:10px;margin-top:15px;max-height:200px;overflow-y:auto}
 .transaction-list h4{margin-bottom:10px}
-.transaction-item{background:rgba(255,255,255,.15);padding:6px 12px;border-radius:6px;margin:4px 0;font-size:.82rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.transaction-item{background:rgba(255,255,255,.15);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:.82rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .transaction-item .badge{background:rgba(255,255,255,.25);padding:2px 10px;border-radius:20px;font-size:.75rem;white-space:nowrap;font-weight:600}
 .nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
 .nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
 .nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
 footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30px 20px;text-align:center;margin-top:50px}
-@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.sim-table{font-size:.68rem}.sim-table th,.sim-table td{padding:4px 3px}.sim-table .desc{max-width:80px}.sim-btn{padding:8px 16px;font-size:.8rem;margin-right:4px;margin-top:6px}.concept-box{padding:15px}}
-</style>
-</head>
+@media(max-width:768px){h1{font-size:1.4rem}.card{padding:20px}.sim-table{font-size:.68rem}.sim-table th,.sim-table td{padding:4px 3px}.sim-table .desc{max-width:100px}.sim-btn{padding:8px 16px;font-size:.8rem;margin-right:4px;margin-top:6px}.concept-box{padding:15px}}
+</style></head>
 <body>
 <nav class="navbar">
 <a href="../ekonomi-kelas-xii.html" class="navbar-brand">
@@ -157,7 +156,7 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 
 <div class="card">
 <h2><i class="fas fa-building"></i> Profil PT. Bersih Cemerlang</h2>
-<p><strong>PT. Bersih Cemerlang</strong> adalah perusahaan jasa laundry milik <strong>Andi</strong> yang berdiri pada <strong>1 Januari 2025</strong>. Sepanjang bulan Januari 2025, terjadi <strong>8 transaksi</strong> yang akan kita bedah satu per satu menggunakan persamaan dasar akuntansi.</p>
+<p><strong>PT. Bersih Cemerlang</strong> adalah perusahaan jasa laundry milik <strong>Andi</strong> yang berdiri pada <strong>1 Januari 2025</strong>. Sepanjang bulan Januari 2025, terjadi <strong>8 transaksi berurutan</strong> yang akan kita bedah satu per satu. Perhatikan bagaimana setiap transaksi saling berkaitan!</p>
 </div>
 
 <!-- ============ SIMULATOR ============ -->
@@ -165,22 +164,22 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 <h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Persamaan Dasar Akuntansi</h2>
 <div class="sim-intro">
 <strong>Mari bedah transaksi PT. Bersih Cemerlang!</strong> 🎉<br>
-Pilih transaksi di bawah ini. Perhatikan penjelasan yang muncul untuk memahami logika di balik setiap angka.<br>
-<span style="font-size:0.85rem; opacity:0.9;">💡 <em>Coba pilih transaksi no 5 dan no 8 untuk melihat penjelasan spesial!</em></span>
+Pilih transaksi di bawah ini secara berurutan. Perhatikan penjelasan yang muncul untuk memahami logika di balik setiap angka.<br>
+<span style="font-size:0.85rem; opacity:0.9;">💡 <em>Perhatikan khusus Transaksi no 5 dan no 7 untuk melihat hubungan antar transaksi!</em></span>
 </div>
 
 <div class="sim-controls">
-<label>📋 Pilih Transaksi:</label>
+<label>📋 Pilih Transaksi (Secara Berurutan):</label>
 <select id="transactionSelect">
 <option value="">-- Pilih transaksi --</option>
-<option value="1">1. Andi menyetor modal tunai Rp 5.000.000 (Kas +, Modal +)</option>
-<option value="2">2. Beli peralatan laundry tunai Rp 1.500.000 (Kas −, Peralatan +)</option>
-<option value="3">3. Beli perlengkapan secara kredit Rp 500.000 (Perleng +, Utang +)</option>
-<option value="4">4. Pendapatan jasa laundry tunai Rp 800.000 (Kas +, Pendapatan +)</option>
-<option value="5">5. Pendapatan jasa secara kredit Rp 300.000 (Piutang +, Pendapatan +)</option>
-<option value="6">6. Bayar beban listrik & air Rp 200.000 (Kas −, Beban +)</option>
-<option value="7">7. Bayar sebagian utang usaha Rp 200.000 (Kas −, Utang −)</option>
-<option value="8">8. Andi mengambil prive Rp 100.000 (Kas −, Prive +)</option>
+<option value="1">1. Modal awal: Andi menyetor tunai Rp 5.000.000</option>
+<option value="2">2. Beli peralatan laundry (mesin cuci) tunai Rp 1.500.000</option>
+<option value="3">3. Beli perlengkapan (deterjen) kredit dari Toko Sejahtera Rp 500.000</option>
+<option value="4">4. Terima pembayaran tunai jasa laundry Rp 800.000</option>
+<option value="5">5. Selesaikan jasa laundry, TOTAL Rp 300.000 (kredit, bayar bulan depan)</option>
+<option value="6">6. Bayar tagihan listrik & air operasional Januari Rp 200.000</option>
+<option value="7">7. Lunasi SEBAGIAN utang ke Toko Sejahtera (dari transaksi no.3) Rp 200.000</option>
+<option value="8">8. Andi mengambil prive untuk keperluan pribadi Rp 100.000</option>
 </select>
 
 <button class="sim-btn" onclick="addTransaction()"><i class="fas fa-plus"></i> Tambah Transaksi</button>
@@ -200,7 +199,7 @@ Pilih transaksi di bawah ini. Perhatikan penjelasan yang muncul untuk memahami l
 <thead>
 <tr>
 <th style="width:36px;">No</th>
-<th class="desc" style="min-width:120px;">Keterangan</th>
+<th class="desc" style="min-width:140px;">Keterangan</th>
 <th>Kas</th>
 <th>Perleng.</th>
 <th>Peralatan</th>
@@ -230,12 +229,11 @@ Pilih transaksi di bawah ini. Perhatikan penjelasan yang muncul untuk memahami l
 <div class="card">
 <h2><i class="fas fa-star"></i> Kesimpulan Bab 1.E</h2>
 <ul>
-<li>✅ Persamaan dasar: <strong>HARTA = UTANG + MODAL</strong></li>
-<li>✅ Setiap transaksi harus menjaga <strong>keseimbangan</strong></li>
-<li>✅ Perluasan: Harta = Utang + Modal + (Pendapatan − Beban − Prive)</li>
-<li>✅ <strong>Modal Awal</strong> tetap 5 juta, <strong>Modal Akhir</strong> = Modal Awal + Laba - Prive</li>
-<li>✅ <strong>Prive</strong> mengurangi Modal, BUKAN Pendapatan</li>
-<li>✅ <strong>Lanjut ke Bab 1.F</strong> untuk mengubah data persamaan ini menjadi laporan keuangan!</li>
+<li>✅ Persamaan dasar: <strong>HARTA = UTANG + MODAL</strong> (Selalu seimbang!)</li>
+<li>✅ <strong>Modal Awal</strong> adalah fakta sejarah (Rp 5.000.000), sedangkan <strong>Modal Akhir</strong> adalah hasil perhitungan (Modal Awal + Laba - Prive).</li>
+<li>✅ <strong>Prive</strong> langsung mengurangi Modal, BUKAN Pendapatan, karena bukan beban operasional.</li>
+<li>✅ Transaksi <strong>kredit</strong> menciptakan Piutang (jika pendapatan) atau Utang (jika pembelian), bukan Kas.</li>
+<li>✅ <strong>Lanjut ke Bab 1.F</strong> untuk mengubah data persamaan ini menjadi Laporan Keuangan!</li>
 </ul>
 </div>
 
@@ -250,44 +248,44 @@ Pilih transaksi di bawah ini. Perhatikan penjelasan yang muncul untuk memahami l
 <script>
 const transData = {
   1: { 
-    desc: "Andi menyetor modal tunai", 
+    desc: "Modal awal: Andi menyetor tunai", 
     kas: 5000000, modal: 5000000,
-    info: "Modal awal disetor dalam bentuk uang tunai. <strong>Kas</strong> (Harta) bertambah, dan <strong>Modal</strong> (Ekuitas) juga bertambah secara seimbang. Ini adalah <strong>Modal Awal = Rp 5.000.000</strong> yang tidak akan pernah berubah dalam catatan sejarah."
+    info: "📅 <strong>1 Januari 2025:</strong> Andi menyetor uang tunai sebagai <strong>MODAL AWAL</strong>. <br>• <strong>Kas</strong> bertambah Rp 5.000.000<br>• <strong>Modal</strong> bertambah Rp 5.000.000<br><em>Ini adalah titik start perusahaan. Modal Awal = Rp 5.000.000 (fakta sejarah, tidak akan berubah).</em>"
   },
   2: { 
     desc: "Beli peralatan laundry tunai", 
     kas: -1500000, peralatan: 1500000,
-    info: "Terjadi <strong>pertukaran aset</strong>. Kas berkurang karena dibayarkan, tetapi nilai Harta tetap utuh karena berpindah bentuk menjadi <strong>Peralatan</strong>."
+    info: "Perusahaan membeli mesin cuci & setrika secara tunai. Terjadi <strong>pertukaran aset</strong>:<br>• <strong>Kas</strong> berkurang Rp 1.500.000<br>• <strong>Peralatan</strong> bertambah Rp 1.500.000<br><em>Total harta TETAP, hanya berubah bentuk dari uang menjadi barang.</em>"
   },
   3: { 
-    desc: "Beli perlengkapan secara kredit", 
+    desc: "Beli perlengkapan kredit dari Toko Sejahtera", 
     perleng: 500000, utang: 500000,
-    info: "Barang diterima sekarang, bayar nanti. Harta (<strong>Perlengkapan</strong>) bertambah, dan di sisi lain kewajiban (<strong>Utang</strong>) juga bertambah."
+    info: "Perusahaan membeli deterjen & pewangi dari <strong>Toko Sejahtera</strong>. Barang diterima, pembayaran ditunda:<br>• <strong>Perlengkapan</strong> bertambah Rp 500.000<br>• <strong>Utang Usaha</strong> bertambah Rp 500.000<br>⚠️ <em>CATAT: Sekarang perusahaan punya utang Rp 500.000 ke Toko Sejahtera. Utang ini akan dicicil di transaksi no. 7!</em>"
   },
   4: { 
-    desc: "Pendapatan jasa laundry tunai", 
+    desc: "Terima pembayaran tunai jasa laundry", 
     kas: 800000, pendapatan: 800000,
-    info: "Jasa selesai dan uang langsung diterima. <strong>Kas</strong> bertambah, dan <strong>Pendapatan</strong> meningkat (yang akan menambah Modal)."
+    info: "Pelanggan membayar tunai atas jasa laundry yang <strong>sudah selesai</strong> dikerjakan:<br>• <strong>Kas</strong> bertambah Rp 800.000<br>• <strong>Pendapatan</strong> bertambah Rp 800.000<br><em>Ini adalah pendapatan operasional yang menambah kinerja bisnis.</em>"
   },
   5: { 
-    desc: "Pendapatan jasa secara kredit", 
+    desc: "Selesaikan jasa laundry (kredit)", 
     piutang: 300000, pendapatan: 300000,
-    info: "💡 <strong>Kenapa Kas tidak bertambah?</strong> Karena transaksi dilakukan <em>secara kredit</em> (uang belum diterima). Namun, karena jasa sudah selesai, perusahaan berhak mencatat <strong>Pendapatan</strong>. Hak menagih ini dicatat sebagai aset baru bernama <strong>Piutang</strong>. Jadi, Harta tetap bertambah (lewat Piutang), bukan Kas!"
+    info: "💡 <strong>LOGIKA PENTING:</strong> Jasa laundry <strong>TELAH SELESAI</strong> dikerjakan dengan <strong>TOTAL nilai transaksi Rp 300.000</strong> (bukan uang muka dari jumlah lebih besar). Pembayaran baru diterima bulan depan, sehingga:<br>• <strong>Piutang</strong> bertambah Rp 300.000 (hak menagih)<br>• <strong>Pendapatan</strong> bertambah Rp 300.000<br>• <strong>Kas TIDAK berubah</strong> karena uang belum diterima."
   },
   6: { 
-    desc: "Bayar beban listrik & air", 
+    desc: "Bayar tagihan listrik & air", 
     kas: -200000, beban: 200000,
-    info: "Kas berkurang untuk membayar kewajiban operasional. <strong>Beban</strong> bertambah, yang pada akhirnya akan mengurangi saldo Modal akhir."
+    info: "Perusahaan membayar tagihan listrik & air untuk operasional bulan Januari:<br>• <strong>Kas</strong> berkurang Rp 200.000<br>• <strong>Beban</strong> bertambah Rp 200.000<br><em>Beban ini akan mengurangi Laba Bersih di akhir periode.</em>"
   },
   7: { 
-    desc: "Bayar sebagian utang usaha", 
+    desc: "Lunasi sebagian utang ke Toko Sejahtera", 
     kas: -200000, utang: -200000,
-    info: "Kas berkurang karena digunakan untuk melunasi kewajiban. Secara bersamaan, <strong>Utang</strong> perusahaan juga ikut berkurang."
+    info: "💡 <strong>HUBUNGAN DENGAN TRANSAKSI NO. 3:</strong><br>Perusahaan melunasi SEBAGIAN utang pembelian perlengkapan dari Toko Sejahtera:<br>• <strong>Kas</strong> berkurang Rp 200.000<br>• <strong>Utang</strong> berkurang Rp 200.000<br><br>🧮 <strong>Hitung Sisa Utang:</strong><br>Utang awal (Transaksi 3) = Rp 500.000<br>Dibayar sekarang = Rp 200.000<br><strong>Sisa utang = Rp 300.000</strong> (Lihat kolom Utang di tabel!)"
   },
   8: { 
     desc: "Andi mengambil prive", 
     kas: -100000, prive: 100000,
-    info: "💡 <strong>PENTING:</strong> Pengambilan pribadi oleh pemilik untuk keperluan di luar bisnis. <strong>Kas</strong> berkurang, dan <strong>Prive</strong> bertambah.<br><br>⚠️ <strong>Mengapa Prive mengurangi Modal, bukan Pendapatan?</strong><br>Karena Prive bukan beban operasional! Jika Prive dikurangkan dari Pendapatan, Laporan Laba Rugi akan menunjukkan kinerja bisnis yang lebih buruk dari kenyataan. Prive langsung memotong Modal karena ini adalah transaksi antara pemilik dengan perusahaannya, bukan transaksi operasional bisnis."
+    info: "💡 <strong>PENTING:</strong> Andi mengambil uang untuk keperluan PRIBADI (di luar bisnis):<br>• <strong>Kas</strong> berkurang Rp 100.000<br>• <strong>Prive</strong> bertambah Rp 100.000<br><br>⚠️ <strong>Mengapa Prive mengurangi Modal, bukan Pendapatan?</strong><br>Karena ini BUKAN beban operasional. Jika dikurangkan dari Pendapatan, Laporan Laba Rugi akan menyesatkan. Prive langsung memotong Modal karena ini adalah transaksi antara pemilik & perusahaan."
   }
 };
 
@@ -435,7 +433,8 @@ function loadExample() {
     });
   }
   render();
-  showInfo(5);
+  // Tampilkan info transaksi 7 sebagai highlight hubungan antar transaksi
+  showInfo(7);
 }
 
 function resetSim() {
