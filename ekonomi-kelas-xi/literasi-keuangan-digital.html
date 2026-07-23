@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Materi Literasi Ekonomi dan Keuangan Digital Kelas XI SMA. Memahami konsep dasar, instrumen keuangan digital, dan keamanan transaksi online sesuai CP 2026-2027.">
+  <meta name="keywords" content="literasi keuangan digital, ekonomi kelas XI, fintech, QRIS, e-wallet, keamanan transaksi digital, SMAN 1 Cluring">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Zuli Astutik, S.Pd. - SMAN 1 Cluring">
+  <meta name="theme-color" content="#4361ee">
+  
+  <title>Literasi Ekonomi & Keuangan Digital | Ekonomi Kelas XI - SMAN 1 Cluring</title>
+  
+  <!-- Preconnect & Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --success: #4ade80;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --neon-pink: #ff00c8;
+      --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+      --gradient-accent: linear-gradient(120deg, var(--accent), var(--primary));
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+      --header-height: 70px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+      color: var(--dark);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark-mode {
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      color: #f8f9fa;
+    }
+    body.dark-mode .content-card, body.dark-mode .quiz-container, body.dark-mode .info-box { 
+      background: #2d2d2d; border-color: #444; color: #f8f9fa; 
+    }
+    body.dark-mode .content-card h2, body.dark-mode .content-card h3 { color: #f8f9fa; }
+    body.dark-mode .content-card p, body.dark-mode .content-card li { color: #d1d5db; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.8rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: var(--header-height);
+    }
+    .navbar-brand {
+      font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .navbar-brand img {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3); object-fit: cover;
+    }
+    .nav-container { display: flex; align-items: center; gap: 10px; }
+    .theme-toggle {
+      background: rgba(255,255,255,0.15); border: none; color: white;
+      font-size: 1.1rem; cursor: pointer; transition: transform 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+    }
+    .theme-toggle:hover { transform: rotate(15deg); background: rgba(255,255,255,0.25); }
+    .btn-back {
+      background: rgba(255,255,255,0.2); color: white; border: none;
+      padding: 8px 16px; border-radius: 50px; cursor: pointer;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      display: flex; align-items: center; gap: 6px; transition: var(--transition);
+    }
+    .btn-back:hover { background: rgba(255,255,255,0.3); transform: translateX(-3px); }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--gradient-primary);
+      background-size: 300% 300%;
+      animation: gradientBG 8s ease infinite;
+      color: white;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; position: relative; z-index: 2; }
+    header .subtitle { font-weight: 300; opacity: 0.95; position: relative; z-index: 2; font-size: 1rem; }
+    
+    .breadcrumb {
+      max-width: 1000px; margin: 20px auto 0; padding: 0 20px;
+      font-size: 0.9rem; color: var(--gray);
+    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 8px; opacity: 0.6; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    .content-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+    .content-card h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 0.5rem;
+    }
+    body.dark-mode .content-card h2 { border-bottom-color: #444; }
+    .content-card h3 {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      margin: 1.5rem 0 0.8rem;
+    }
+    .content-card p { margin-bottom: 1rem; color: var(--dark); }
+    body.dark-mode .content-card p { color: #d1d5db; }
+    .content-card ul, .content-card ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      color: var(--dark);
+    }
+    body.dark-mode .content-card ul, body.dark-mode .content-card ol { color: #d1d5db; }
+    .content-card li { margin-bottom: 0.5rem; }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: #eef2ff;
+      border-left: 4px solid var(--primary);
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    body.dark-mode .info-box { background: #1e293b; border-left-color: var(--accent); }
+    .info-box.warning {
+      background: #fffbeb;
+      border-left-color: var(--warning);
+    }
+    body.dark-mode .info-box.warning { background: #422006; }
+    .info-box-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    body.dark-mode .info-box-title { color: var(--accent); }
+    .info-box.warning .info-box-title { color: #b45309; }
+
+    /* ===== GRID CARDS FOR INSTRUMENTS ===== */
+    .instrument-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .instrument-card {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid #e5e7eb;
+    }
+    body.dark-mode .instrument-card { background: #374151; border-color: #4b5563; }
+    .instrument-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .instrument-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .instrument-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--dark); }
+    body.dark-mode .instrument-card h4 { color: #f8f9fa; }
+    .instrument-card p { font-size: 0.9rem; color: var(--gray); margin: 0; }
+
+    /* ===== QUIZ CONTAINER ===== */
+    .quiz-container {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .quiz-option {
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark-mode .quiz-option { border-color: #4b5563; background: #374151; color: #f8f9fa; }
+    .quiz-option:hover { border-color: var(--primary); background: #eef2ff; }
+    body.dark-mode .quiz-option:hover { background: #1e293b; }
+    .quiz-option.correct { border-color: var(--success); background: #dcfce7; color: #166534; }
+    body.dark-mode .quiz-option.correct { background: #064e3b; color: #6ee7b7; }
+    .quiz-option.wrong { border-color: var(--danger); background: #fee2e2; color: #991b1b; }
+    body.dark-mode .quiz-option.wrong { background: #450a0a; color: #fca5a5; }
+    
+    .quiz-feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.wrong { background: #fee2e2; color: #991b1b; }
+
+    /* ===== PROGRESS & UTILS ===== */
+    .progress-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: var(--light);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    body.dark-mode .progress-check { background: #374151; }
+    .progress-check:hover { background: #e5e7eb; }
+    body.dark-mode .progress-check:hover { background: #4b5563; }
+    .checkbox-custom {
+      width: 24px; height: 24px;
+      border: 2px solid var(--primary);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .progress-check.completed .checkbox-custom {
+      background: var(--success);
+      border-color: var(--success);
+    }
+    .checkbox-custom i { color: white; font-size: 0.8rem; opacity: 0; transition: var(--transition); }
+    .progress-check.completed .checkbox-custom i { opacity: 1; }
+    .progress-check span { font-weight: 600; color: var(--dark); }
+    body.dark-mode .progress-check span { color: #f8f9fa; }
+    .progress-check.completed span { color: var(--success); text-decoration: line-through; }
+
+    .back-to-top {
+      position: fixed; bottom: 25px; right: 25px;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--primary); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer; transition: var(--transition);
+      opacity: 0; visibility: hidden; z-index: 999;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white; padding: 40px 20px 20px; margin-top: 60px;
+      text-align: center; font-size: 0.9rem;
+    }
+    body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
+    .footer-bottom {
+      padding-top: 20px; margin-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.5rem; }
+      .content-card { padding: 1.5rem; }
+      .instrument-grid { grid-template-columns: 1fr; }
+      .navbar { padding: 0.8rem 1rem; }
+      .navbar-brand span { display: none; }
+    }
+    
+    /* ===== PRINT ===== */
+    @media print {
+      .navbar, header, .breadcrumb, .back-to-top, .progress-check, .quiz-container, footer { display: none !important; }
+      body { background: white; color: black; font-size: 12pt; }
+      .main-container { margin: 0; padding: 0; max-width: 100%; }
+      .content-card { box-shadow: none; border: 1px solid #000; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <a href="../ekonomi-kelas-xi.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+        <span>SMAN 1 Cluring</span>
+    </a>
+    <div class="nav-container">
+        <a href="../ekonomi-kelas-xi.html#materi" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Kembali ke Materi
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1><i class="fas fa-laptop-code"></i> Literasi Ekonomi & Keuangan Digital</h1>
+    <p class="subtitle">Ekonomi Kelas XI | Semester Ganjil (CP 2026-2027)</p>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+    <a href="../index.html"><i class="fas fa-home"></i> Beranda</a>
+    <span>›</span>
+    <a href="../ekonomi-kelas-xi.html">Ekonomi Kelas XI</a>
+    <span>›</span>
+    <span>Literasi Keuangan Digital</span>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-container">
+
+    <!-- TUJUAN PEMBELAJARAN -->
+    <div class="content-card">
+        <h2><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h2>
+        <p>Setelah mempelajari materi ini, siswa diharapkan mampu:</p>
+        <ol>
+            <li>Menjelaskan konsep dasar literasi ekonomi dan literasi keuangan.</li>
+            <li>Mengidentifikasi berbagai instrumen keuangan digital (Fintech, E-wallet, Mobile Banking, dll).</li>
+            <li>Menerapkan prinsip manajemen keuangan pribadi yang sehat di era digital.</li>
+            <li>Menganalisis risiko dan menerapkan langkah keamanan dalam bertransaksi digital.</li>
+        </ol>
+    </div>
+
+    <!-- MATERI 1: KONSEP DASAR -->
+    <div class="content-card">
+        <h2><i class="fas fa-book-open"></i> 1. Konsep Dasar Literasi Keuangan</h2>
+        <p><strong>Literasi Keuangan</strong> adalah pengetahuan, keterampilan, dan keyakinan yang memengaruhi sikap dan perilaku untuk meningkatkan kualitas pengambilan keputusan dan pengelolaan keuangan dalam rangka mencapai kesejahteraan.</p>
+        
+        <div class="info-box">
+            <div class="info-box-title"><i class="fas fa-lightbulb"></i> Tahapan Literasi Keuangan (OJK)</div>
+            <ul>
+                <li><strong>Not Well Literate:</strong> Tidak memiliki pengetahuan dan keyakinan tentang institusi, produk, dan jasa keuangan.</li>
+                <li><strong>Less Well Literate:</strong> Memiliki pengetahuan dan keyakinan terbatas tentang institusi, produk, dan jasa keuangan.</li>
+                <li><strong>Well Literate:</strong> Memiliki pengetahuan, keyakinan, dan keterampilan tentang institusi, produk, dan jasa keuangan.</li>
+                <li><strong>Very Well Literate:</strong> Memiliki pengetahuan, keyakinan, keterampilan, dan perilaku keuangan yang sangat baik.</li>
+            </ul>
+        </div>
+        <p>Di era modern, literasi keuangan tidak lagi hanya tentang menabung di bank, tetapi telah bertransformasi menjadi <strong>Literasi Keuangan Digital</strong>, yaitu kemampuan untuk memahami dan menggunakan produk keuangan yang disediakan melalui platform digital secara aman dan bertanggung jawab.</p>
+    </div>
+
+    <!-- MATERI 2: INSTRUMEN KEUANGAN DIGITAL -->
+    <div class="content-card">
+        <h2><i class="fas fa-mobile-alt"></i> 2. Instrumen Keuangan Digital</h2>
+        <p>Revolusi industri 4.0 dan society 5.0 melahirkan berbagai inovasi layanan keuangan (Financial Technology / Fintech). Berikut adalah instrumen utamanya:</p>
+        
+        <div class="instrument-grid">
+            <div class="instrument-card">
+                <i class="fas fa-wallet"></i>
+                <h4>E-Wallet (Dompet Digital)</h4>
+                <p>Penyimpanan nilai elektronik (GoPay, OVO, Dana, ShopeePay) untuk transaksi cepat tanpa uang tunai.</p>
+            </div>
+            <div class="instrument-card">
+                <i class="fas fa-qrcode"></i>
+                <h4>QRIS</h4>
+                <p>Quick Response Code Indonesian Standard. Standar QR pembayaran nasional yang terintegrasi antar penyelenggara.</p>
+            </div>
+            <div class="instrument-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h4>P2P Lending</h4>
+                <p>Pinjaman online berbasis teknologi yang menghubungkan pemberi pinjaman (lender) dengan penerima pinjaman (borrower).</p>
+            </div>
+            <div class="instrument-card">
+                <i class="fas fa-chart-pie"></i>
+                <h4>Investasi Digital</h4>
+                <p>Aplikasi untuk membeli reksadana, saham, atau emas dengan modal kecil (Bibit, Ajaib, Pluang, dll).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MATERI 3: PRINSIP KEUANGAN SEHAT -->
+    <div class="content-card">
+        <h2><i class="fas fa-piggy-bank"></i> 3. Prinsip Keuangan Sehat (4P)</h2>
+        <p>Agar tidak terjebak dalam gaya hidup hedonis dan utang pinjol ilegal, terapkan prinsip 4P dalam manajemen keuangan pribadi:</p>
+        <ul>
+            <li><strong>Planning (Perencanaan):</strong> Buat anggaran bulanan. Gunakan metode <em>50/30/20</em> (50% Kebutuhan, 30% Keinginan, 20% Tabungan/Investasi).</li>
+            <li><strong>Protecting (Perlindungan):</strong> Miliki dana darurat (3-6x pengeluaran bulanan) dan asuransi untuk melindungi diri dari risiko tak terduga.</li>
+            <li><strong>Saving (Penabungan):</strong> Biasakan menabung secara otomatis di awal bulan (<em>pay yourself first</em>), bukan menabung dari sisa belanja.</li>
+            <li><strong>Investing (Investasi):</strong> Kembangkan uang agar nilainya tidak tergerus inflasi. Sesuaikan dengan profil risiko (Konservatif, Moderat, Agresif).</li>
+        </ul>
+    </div>
+
+    <!-- MATERI 4: KEAMANAN DIGITAL -->
+    <div class="content-card">
+        <h2><i class="fas fa-shield-alt"></i> 4. Keamanan & Risiko Transaksi Digital</h2>
+        <p>Kemudahan transaksi digital berbanding lurus dengan risiko kejahatan siber (<em>cyber crime</em>). Berikut adalah ancaman dan cara mencegahnya:</p>
+        
+        <div class="info-box warning">
+            <div class="info-box-title"><i class="fas fa-exclamation-triangle"></i> Ancaman Umum</div>
+            <ul>
+                <li><strong>Phishing:</strong> Tautan palsu yang mengatasnamakan bank/e-wallet untuk mencuri data login.</li>
+                <li><strong>Scam/Penipuan:</strong> Modus hadiah palsu, investasi bodong, atau panggilan telepon mengatasnamakan pihak resmi.</li>
+                <li><strong>Data Breach:</strong> Kebocoran data pribadi akibat penggunaan aplikasi tidak resmi atau WiFi publik.</li>
+            </ul>
+        </div>
+
+        <h3><i class="fas fa-check-circle" style="color:var(--success)"></i> Tips Keamanan Digital (Cybersecurity)</h3>
+        <ol>
+            <li><strong>Aktifkan 2FA (Two-Factor Authentication):</strong> Selalu gunakan verifikasi dua langkah (SMS/Email/Authenticator App).</li>
+            <li><strong>Jangan Pernah Membagikan OTP/PIN:</strong> Pihak bank atau e-wallet resmi <em>tidak akan pernah</em> meminta OTP atau PIN Anda.</li>
+            <li><strong>Cek Legalitas:</strong> Pastikan aplikasi fintech terdaftar dan diawasi oleh <strong>OJK</strong> (Otoritas Jasa Keuangan) dan <strong>Bank Indonesia</strong>.</li>
+            <li><strong>Gunakan Password Kuat:</strong> Kombinasi huruf besar, kecil, angka, dan simbol. Jangan gunakan tanggal lahir.</li>
+        </ol>
+    </div>
+
+    <!-- INTERACTIVE QUIZ -->
+    <div class="quiz-container">
+        <h2 style="color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-brain"></i> Kuis Formatif Singkat
+        </h2>
+        <p style="margin-bottom: 1.5rem; color: var(--gray);">Uji pemahamanmu tentang materi di atas. Pilih jawaban yang paling tepat!</p>
+        
+        <div class="quiz-question">
+            1. Metode anggaran yang menyarankan 50% untuk kebutuhan, 30% untuk keinginan, dan 20% untuk tabungan/investasi disebut...
+        </div>
+        <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'Kurang tepat. Metode ini tidak umum digunakan dalam literasi keuangan dasar.')">
+                <i class="far fa-circle"></i> <span>Metode 70/20/10</span>
+            </div>
+            <div class="quiz-option" onclick="checkAnswer(this, true, 'Benar! Metode 50/30/20 adalah panduan anggaran populer yang diperkenalkan oleh Elizabeth Warren.')">
+                <i class="far fa-circle"></i> <span>Metode 50/30/20</span>
+            </div>
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'Kurang tepat. Meskipun terdengar bagus, ini bukan nama metode anggaran yang baku.')">
+                <i class="far fa-circle"></i> <span>Metode Zero-Based</span>
+            </div>
+        </div>
+        <div class="quiz-feedback" id="feedback-1"></div>
+
+        <div class="quiz-question" style="margin-top: 2rem;">
+            2. Manakah di bawah ini yang merupakan ciri utama dari modus penipuan <em>Phishing</em>?
+        </div>
+        <div class="quiz-options">
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'Kurang tepat. Hadiah undian bisa saja nyata, meski sering dijadikan modus, tapi bukan definisi inti phishing.')">
+                <i class="far fa-circle"></i> <span>Mendapatkan panggilan telepon penawaran hadiah undian</span>
+            </div>
+            <div class="quiz-option" onclick="checkAnswer(this, true, 'Tepat sekali! Phishing adalah upaya memperoleh informasi sensitif (seperti password/OTP) dengan menyamar sebagai entitas tepercaya melalui tautan palsu.')">
+                <i class="far fa-circle"></i> <span>Menerima tautan (link) yang mengatasnamakan bank untuk memverifikasi data</span>
+            </div>
+            <div class="quiz-option" onclick="checkAnswer(this, false, 'Kurang tepat. Aplikasi tidak terdaftar OJK lebih mengarah ke investasi ilegal atau pinjol ilegal.')">
+                <i class="far fa-circle"></i> <span>Menggunakan aplikasi investasi yang tidak terdaftar di OJK</span>
+            </div>
+        </div>
+        <div class="quiz-feedback" id="feedback-2"></div>
+    </div>
+
+    <!-- PROGRESS CHECKER -->
+    <div class="progress-check" id="pageProgress" onclick="togglePageProgress()">
+        <div class="checkbox-custom"><i class="fas fa-check"></i></div>
+        <span id="progressText">Tandai materi ini sebagai "Selesai Dipelajari"</span>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2026 <strong>SMA Negeri 1 Cluring</strong> | Dibuat oleh Zuli Astutik, S.Pd.</p>
+    <p style="margin-top: 8px; opacity: 0.8; font-size: 0.85rem;">Portal Pembelajaran Ekonomi Kelas XI (CP 2026-2027)</p>
+    <div class="footer-bottom">
+        <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+    </div>
+</footer>
+
+<script>
+    // ===== DARK MODE =====
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    function setTheme(isDark) {
+        if (isDark) {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    themeToggle.addEventListener('click', () => setTheme(!body.classList.contains('dark-mode')));
+    
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) setTheme(true);
+
+    // ===== BACK TO TOP =====
+    window.onscroll = function() {
+        const backToTop = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    };
+
+    // ===== QUIZ LOGIC =====
+    function checkAnswer(element, isCorrect, feedbackText) {
+        // Reset siblings
+        const parent = element.parentElement;
+        const options = parent.querySelectorAll('.quiz-option');
+        options.forEach(opt => {
+            opt.classList.remove('correct', 'wrong');
+            opt.querySelector('i').className = 'far fa-circle';
+            opt.style.pointerEvents = 'none'; // Disable further clicks
+        });
+
+        // Set current
+        if (isCorrect) {
+            element.classList.add('correct');
+            element.querySelector('i').className = 'fas fa-check-circle';
+        } else {
+            element.classList.add('wrong');
+            element.querySelector('i').className = 'fas fa-times-circle';
+        }
+
+        // Show feedback
+        const feedbackId = parent.nextElementSibling.id;
+        const feedbackEl = document.getElementById(feedbackId);
+        feedbackEl.textContent = feedbackText;
+        feedbackEl.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+    }
+
+    // ===== PROGRESS TRACKER (LOCAL) =====
+    function togglePageProgress() {
+        const el = document.getElementById('pageProgress');
+        const text = document.getElementById('progressText');
+        el.classList.toggle('completed');
+        
+        if (el.classList.contains('completed')) {
+            text.textContent = '✓ Materi Selesai Dipelajari';
+            localStorage.setItem('materi_literasi_selesai', 'true');
+        } else {
+            text.textContent = 'Tandai materi ini sebagai "Selesai Dipelajari"';
+            localStorage.setItem('materi_literasi_selesai', 'false');
+        }
+    }
+
+    // Load progress on start
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('materi_literasi_selesai') === 'true') {
+            document.getElementById('pageProgress').classList.add('completed');
+            document.getElementById('progressText').textContent = '✓ Materi Selesai Dipelajari';
+        }
+    });
+</script>
+</body>
+</html>
