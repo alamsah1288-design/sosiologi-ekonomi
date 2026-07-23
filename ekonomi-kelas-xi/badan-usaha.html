@@ -25,12 +25,12 @@
     
     <title>Mengenal Badan Usaha di Lingkungan Sekitar — Ekonomi Kelas XI | SMAN 1 Cluring</title>
     
-    <!-- Google Fonts & Icons (SAMA DENGAN TEMPLATE) -->
+    <!-- Google Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ===== VARIABEL WARNA (SAMA DENGAN TEMPLATE EKONOMI XII) ===== */
+        /* ===== VARIABEL WARNA ===== */
         :root {
             --primary: #4361ee;
             --secondary: #3f37c9;
@@ -83,7 +83,7 @@
             color: var(--dark);
         }
 
-        /* ===== NAVBAR (SAMA DENGAN TEMPLATE) ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -524,7 +524,7 @@
 
         .lang-btn:not(.active):hover { background: var(--light); }
 
-        /* ===== FOOTER (SAMA DENGAN TEMPLATE) ===== */
+        /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
             color: white; padding: 60px 20px 30px; margin-top: 60px;
@@ -646,6 +646,87 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ===== KHUSUS UNTUK TABEL KOMPOSISI POPULASI ===== */
+        .population-table {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            border: 2px solid var(--danger);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .population-table {
+            background: linear-gradient(135deg, #2d1f1f 0%, #3d2a2a 100%);
+            border-color: #f87171;
+        }
+
+        .population-table h3 {
+            color: var(--danger);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-box {
+            background: rgba(248, 113, 113, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, var(--bumn-light), var(--bums-light));
+            border: 2px dashed var(--primary);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        body.dark-mode .question-box {
+            background: linear-gradient(135deg, #1e293b, #0f2e1f);
+            border-color: #93c5fd;
+        }
+
+        .question-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .question-box ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .question-box li {
+            margin: 8px 0;
+            padding-left: 8px;
+        }
+
+        .bridge-section {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .bridge-section h2 {
+            color: white;
+            margin-bottom: 15px;
+            border: none;
+        }
+
+        .bridge-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .content-grid { grid-template-columns: 1fr; }
@@ -715,7 +796,7 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- NAVBAR (SAMA DENGAN TEMPLATE EKONOMI XII) -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="../index.html" class="navbar-brand">
             <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
@@ -798,16 +879,113 @@
             <!-- MAIN CONTENT -->
             <div class="main-content">
 
+                <!-- SECTION BARU: REALITAS EKONOMI INDONESIA -->
+                <section class="card">
+                    <h2><i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i> Realitas Ekonomi Indonesia: Sebuah Tantangan</h2>
+                    
+                    <div class="population-table">
+                        <h3><i class="fas fa-table"></i> Tabel Komposisi Populasi per Kelas Ekonomi</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Kelompok Ekonomi</th>
+                                        <th>Jumlah Populasi (Jiwa)</th>
+                                        <th>Persentase Populasi (%)</th>
+                                        <th>Status Keuangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: rgba(67, 97, 238, 0.1);">
+                                        <td><strong>Golongan Atas (Kaya)</strong></td>
+                                        <td>~1,1 - 1,29 juta</td>
+                                        <td><strong>0,38% - 0,46%</strong></td>
+                                        <td>Sangat aman, aset terus tumbuh pesat</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Golongan Menengah</strong></td>
+                                        <td>~46,7 juta</td>
+                                        <td><strong>16,6%</strong></td>
+                                        <td>Menyusut (turun dari 21,4% pada 2019)</td>
+                                    </tr>
+                                    <tr style="background: rgba(251, 191, 36, 0.1);">
+                                        <td><strong>Menuju Kelas Menengah</strong></td>
+                                        <td>~142 juta</td>
+                                        <td><strong>50,4%</strong></td>
+                                        <td>Kelompok terbesar, rentan turun kelas</td>
+                                    </tr>
+                                    <tr style="background: rgba(248, 113, 113, 0.1);">
+                                        <td><strong>Rentan Miskin</strong></td>
+                                        <td>~67,9 juta</td>
+                                        <td><strong>24,1%</strong></td>
+                                        <td>Membengkak akibat perpindahan dari kelas atasnya</td>
+                                    </tr>
+                                    <tr style="background: rgba(248, 113, 113, 0.2);">
+                                        <td><strong>Golongan Bawah (Miskin)</strong></td>
+                                        <td>~23,3 juta</td>
+                                        <td><strong>8,25%</strong></td>
+                                        <td>Berada di bawah garis kemiskinan nasional</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="alert-box">
+                            <strong><i class="fas fa-info-circle"></i> Fakta Penting:</strong>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Kelas menengah Indonesia <strong>menyusut</strong> dari 21,4% (2019) menjadi 16,6%</li>
+                                <li>Sebanyak <strong>50,4% populasi</strong> (142 juta jiwa) berada dalam posisi rentan</li>
+                                <li>Kelompok miskin dan rentan miskin mencapai <strong>32,35%</strong> dari total populasi</li>
+                                <li>Hanya <strong>0,46%</strong> populasi yang asetnya terus tumbuh pesat</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="question-box">
+                        <h3><i class="fas fa-question-circle"></i> Pertanyaan Kritis untuk Dipikirkan</h3>
+                        <p>Berdasarkan data di atas, coba renungkan pertanyaan-pertanyaan berikut:</p>
+                        <ul>
+                            <li><strong>Mengapa kelas menengah menyusut?</strong> Apa dampaknya terhadap perekonomian?</li>
+                            <li><strong>Apa yang dimaksud dengan "iklim ekonomi tidak stabil"?</strong> Bagaimana ciri-cirinya?</li>
+                            <li><strong>Dalam kondisi seperti ini, apakah badan usaha bisa tumbuh?</strong> Jenis badan usaha seperti apa yang mampu bertahan?</li>
+                            <li><strong>Mengapa 50,4% populasi rentan turun kelas?</strong> Apa peran badan usaha dalam mencegah hal ini?</li>
+                            <li><strong>Bagaimana hubungan antara struktur kelas ekonomi dengan jenis-jenis badan usaha?</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <i class="fas fa-lightbulb"></i> <strong>Refleksi:</strong> Data ini menunjukkan bahwa Indonesia menghadapi tantangan besar dalam stabilitas ekonomi. Ketimpangan yang ekstrem dan kelas menengah yang menyusut menciptakan lingkungan bisnis yang tidak stabil. Pertanyaannya: <strong>bagaimana badan usaha dapat berperan dalam mengatasi masalah ini?</strong>
+                    </div>
+                </section>
+
+                <!-- BRIDGE SECTION -->
+                <section class="bridge-section">
+                    <h2><i class="fas fa-arrow-right"></i> Dari Masalah ke Solusi</h2>
+                    <p>Data di atas menunjukkan realitas ekonomi yang menantang. Namun, di sinilah <strong>badan usaha</strong> memainkan peran krusial. Dengan memahami berbagai jenis badan usaha, kita dapat menemukan solusi untuk menciptakan lapangan kerja, mengurangi kemiskinan, dan memperkuat kelas menengah.</p>
+                    <p style="font-size: 1.2rem; font-weight: 600; margin-top: 15px;">Mari kita pelajari bersama!</p>
+                </section>
+
                 <!-- Card: Pengertian -->
                 <section class="card">
-                    <h2><i class="fas fa-info-circle bumN-color"></i> Apa Itu Badan Usaha?</h2>
+                    <h2><i class="fas fa-info-circle bumn-color"></i> Bab 1: Apa Itu Badan Usaha?</h2>
                     <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800" 
                          alt="Berbagai jenis badan usaha" 
                          class="featured-image" loading="lazy">
                     <p class="image-caption">Berbagai jenis badan usaha di sekitar kita</p>
                     <p><strong>Badan usaha</strong> adalah kesatuan organisasi yang didirikan untuk menghasilkan barang atau jasa dengan tujuan memperoleh keuntungan atau memberikan pelayanan kepada masyarakat.</p>
+                    
+                    <div class="alert-box">
+                        <strong><i class="fas fa-link"></i> Koneksi dengan Data:</strong>
+                        <p style="margin-top: 8px;">Dalam kondisi ekonomi yang tidak stabil (seperti yang terlihat di tabel), badan usaha bukan sekadar organisasi pencari laba, tetapi juga <strong>aktor penting</strong> yang dapat:</p>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Menciptakan lapangan kerja untuk 50,4% populasi yang rentan</li>
+                            <li>Meningkatkan pendapatan masyarakat agar tidak turun kelas</li>
+                            <li>Memperkuat kelas menengah yang sedang menyusut</li>
+                        </ul>
+                    </div>
+
                     <div class="highlight-box">
-                        <i class="fas fa-lightbulb"></i> <strong>Catatan:</strong> Badan usaha berbeda dengan perusahaan. Badan usaha adalah lembaga, sedangkan perusahaan adalah tempat di mana faktor produksi digabungkan untuk menghasilkan barang/jasa.
+                        <i class="fas fa-lightbulb"></i> <strong>Catatan Penting:</strong> Badan usaha berbeda dengan perusahaan. Badan usaha adalah lembaga, sedangkan perusahaan adalah tempat di mana faktor produksi digabungkan untuk menghasilkan barang/jasa.
                     </div>
                 </section>
 
@@ -841,6 +1019,17 @@
                             <h4><i class="fas fa-people-carry koperasi-color"></i> Koperasi</h4>
                             <p>Dimiliki bersama oleh anggota, berasas kekeluargaan. Contoh: Koperasi Sekolah, KUD.</p>
                         </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <strong><i class="fas fa-chart-line"></i> Relevansi dengan Kondisi Ekonomi:</strong>
+                        <p style="margin-top: 8px;">Setiap jenis badan usaha memiliki peran berbeda dalam menghadapi ketidakstabilan ekonomi:</p>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li><strong>Usaha Perseorangan & CV:</strong> Menyerap tenaga kerja informal yang rentan</li>
+                            <li><strong>PT:</strong> Menciptakan lapangan kerja formal dan stabil</li>
+                            <li><strong>BUMN:</strong> Menjaga stabilitas layanan publik di tengah krisis</li>
+                            <li><strong>Koperasi:</strong> Melindungi masyarakat dari eksploitasi dan membantu yang rentan</li>
+                        </ul>
                     </div>
                 </section>
 
@@ -909,6 +1098,12 @@
                 <section class="card bumn-border">
                     <h2><i class="fas fa-landmark bumn-color"></i> Badan Usaha Milik Negara (BUMN)</h2>
                     <p><strong>BUMN</strong> adalah badan usaha yang seluruh atau sebagian besar modalnya dimiliki oleh pemerintah. BUMN berperan sebagai agen pembangunan (agent of development) dan penyedia layanan publik.</p>
+                    
+                    <div class="alert-box">
+                        <strong><i class="fas fa-shield-alt"></i> Peran BUMN dalam Ketidakstabilan Ekonomi:</strong>
+                        <p style="margin-top: 8px;">Dengan 32,35% populasi miskin dan rentan miskin, BUMN menjadi <strong>penyangga utama</strong> yang menjaga akses layanan dasar (listrik, BBM, transportasi) tetap terjangkau.</p>
+                    </div>
+
                     <h3>Jenis-jenis BUMN:</h3>
                     <div class="bu-grid">
                         <div class="bu-card bumn-card">
@@ -930,11 +1125,17 @@
                 <section class="card bums-border">
                     <h2><i class="fas fa-store bums-color"></i> Badan Usaha Milik Swasta (BUMS)</h2>
                     <p><strong>BUMS</strong> adalah badan usaha yang dimiliki oleh pihak swasta (individu atau kelompok). BUMS berperan dalam menggerakkan roda perekonomian dan menciptakan lapangan kerja.</p>
+                    
+                    <div class="alert-box">
+                        <strong><i class="fas fa-briefcase"></i> BUMS dan Penciptaan Lapangan Kerja:</strong>
+                        <p style="margin-top: 8px;">Dengan 50,4% populasi yang rentan turun kelas, BUMS (terutama UMKM) menjadi <strong>harapan utama</strong> untuk menciptakan lapangan kerja dan meningkatkan pendapatan masyarakat.</p>
+                    </div>
+
                     <h3>Bentuk-bentuk BUMS:</h3>
                     <div class="bu-grid">
                         <div class="bu-card bums-card">
                             <h4><i class="fas fa-user bums-color"></i> Usaha Perseorangan</h4>
-                            <td>Paling sederhana, dimiliki satu orang. Mudah didirikan, tanggung jawab tidak terbatas.</td>
+                            <p>Paling sederhana, dimiliki satu orang. Mudah didirikan, tanggung jawab tidak terbatas.</p>
                         </div>
                         <div class="bu-card bums-card">
                             <h4><i class="fas fa-handshake bums-color"></i> Persekutuan Firma</h4>
@@ -955,6 +1156,12 @@
                 <section class="card koperasi-border">
                     <h2><i class="fas fa-people-carry koperasi-color"></i> Koperasi</h2>
                     <p><strong>Koperasi</strong> adalah badan usaha yang beranggotakan orang-seorang atau badan hukum koperasi dengan melandaskan kegiatannya berdasarkan prinsip koperasi sekaligus sebagai gerakan ekonomi rakyat yang berdasar atas asas kekeluargaan.</p>
+                    
+                    <div class="alert-box">
+                        <strong><i class="fas fa-heart"></i> Koperasi: Solusi untuk yang Rentan:</strong>
+                        <p style="margin-top: 8px;">Dengan prinsip kekeluargaan, koperasi menjadi <strong>jaring pengaman</strong> bagi 50,4% populasi yang rentan turun kelas, melindungi dari eksploitasi dan memberikan akses keadilan ekonomi.</p>
+                    </div>
+
                     <h3>Prinsip Koperasi:</h3>
                     <div class="highlight-box">
                         <ul style="margin-left: 20px;">
@@ -973,11 +1180,13 @@
                         <div class="case-title"><i class="fas fa-file-signature"></i> Kasus: CV Kopi Banyuwangi</div>
                         <div class="case-content">
                             <p><strong>Latar Belakang:</strong> Pak Ahmad dan Bu Siti ingin mendirikan usaha ekspor kopi dari Banyuwangi. Mereka mengumpulkan modal Rp 500 juta, dengan Pak Ahmad sebagai pengelola aktif dan Bu Siti sebagai pemodal pasif.</p>
+                            <p><strong>Konteks Ekonomi:</strong> Dalam kondisi di mana 50,4% populasi rentan turun kelas, usaha seperti ini bisa menjadi solusi untuk menciptakan lapangan kerja dan meningkatkan pendapatan masyarakat.</p>
                             <p><strong>Pertanyaan:</strong></p>
                             <ul style="margin-left: 20px;">
                                 <li>Mengapa mereka memilih bentuk CV, bukan PT?</li>
                                 <li>Apa risiko yang dihadapi Pak Ahmad sebagai sekutu aktif?</li>
                                 <li>Bagaimana tanggung jawab Bu Siti sebagai sekutu pasif?</li>
+                                <li>Bagaimana usaha ini dapat membantu mengurangi kerentanan ekonomi di masyarakat?</li>
                             </ul>
                         </div>
                         <button class="toggle-btn" onclick="toggleAnswer('cv-answer')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
@@ -986,6 +1195,7 @@
                             <p>1. <strong>Alasan memilih CV:</strong> Proses pendirian lebih sederhana dan murah dibanding PT, cocok untuk usaha skala menengah. Tidak perlu modal minimal seperti PT.</p>
                             <p>2. <strong>Risiko Pak Ahmad:</strong> Sebagai sekutu aktif (komanditer), ia bertanggung jawab penuh atas seluruh utang CV hingga harta pribadi.</p>
                             <p>3. <strong>Tanggung jawab Bu Siti:</strong> Sebagai sekutu pasif, tanggung jawabnya hanya terbatas pada modal yang disetor (misal Rp 300 juta).</p>
+                            <p>4. <strong>Dampak sosial:</strong> Usaha ini dapat menyerap tenaga kerja lokal, meningkatkan pendapatan petani kopi, dan membantu mencegah masyarakat turun ke kelas miskin.</p>
                         </div>
                     </div>
                 </section>
@@ -993,6 +1203,17 @@
                 <!-- Card: Evaluasi -->
                 <section class="card">
                     <h2><i class="fas fa-pen"></i> Evaluasi Pemahaman</h2>
+                    
+                    <div class="question-box">
+                        <h3><i class="fas fa-graduation-cap"></i> Soal Analisis Berbasis Data</h3>
+                        <ol style="margin-left: 20px;">
+                            <li>Berdasarkan tabel komposisi populasi, jelaskan mengapa kelas menengah yang menyusut dapat menghambat pertumbuhan badan usaha!</li>
+                            <li>Dalam kondisi di mana 50,4% populasi rentan turun kelas, jenis badan usaha apa yang paling efektif untuk menciptakan stabilitas ekonomi? Jelaskan alasanmu!</li>
+                            <li>Bagaimana peran BUMN, BUMS, dan Koperasi dalam mengatasi ketimpangan ekonomi yang terlihat dari data tabel?</li>
+                        </ol>
+                    </div>
+
+                    <h3 style="margin-top: 20px;">Soal Pemahaman Konsep:</h3>
                     <ol style="margin:18px 0 18px 25px;">
                         <li>Jelaskan perbedaan antara badan usaha dan perusahaan!</li>
                         <li>Sebutkan 3 perbedaan utama antara CV dan PT!</li>
@@ -1013,6 +1234,16 @@
 
             <!-- SIDEBAR -->
             <aside class="sidebar">
+                <div class="sidebar-card" style="background: linear-gradient(135deg, #fee2e2, #fecaca); border: 2px solid var(--danger);">
+                    <h3 style="color: var(--danger);"><i class="fas fa-exclamation-triangle"></i> Fakta Kritis</h3>
+                    <ul>
+                        <li><i class="fas fa-chart-line" style="color: var(--danger);"></i> Kelas menengah turun dari 21,4% ke 16,6%</li>
+                        <li><i class="fas fa-users" style="color: var(--danger);"></i> 50,4% populasi rentan turun kelas</li>
+                        <li><i class="fas fa-percentage" style="color: var(--danger);"></i> 32,35% miskin & rentan miskin</li>
+                        <li><i class="fas fa-coins" style="color: var(--danger);"></i> Hanya 0,46% yang asetnya tumbuh pesat</li>
+                    </ul>
+                </div>
+
                 <div class="sidebar-card">
                     <h3><i class="fas fa-lightbulb"></i> Fakta Menarik</h3>
                     <ul>
@@ -1059,7 +1290,7 @@
         </div>
     </div>
 
-    <!-- FOOTER (SAMA DENGAN TEMPLATE) -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -1130,7 +1361,7 @@
     </footer>
 
     <script>
-        // ===== DARK MODE (SAMA DENGAN TEMPLATE) =====
+        // ===== DARK MODE =====
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
@@ -1150,7 +1381,7 @@
             }
         });
 
-        // ===== NAVBAR MOBILE (SAMA DENGAN TEMPLATE) =====
+        // ===== NAVBAR MOBILE =====
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -1178,7 +1409,7 @@
             }
         });
 
-        // ===== SCROLL & BACK TO TOP (SAMA DENGAN TEMPLATE) =====
+        // ===== SCROLL & BACK TO TOP =====
         window.onscroll = function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1197,7 +1428,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ===== LOADER (SAMA DENGAN TEMPLATE) =====
+        // ===== LOADER =====
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
