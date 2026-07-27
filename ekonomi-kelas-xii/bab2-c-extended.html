@@ -96,8 +96,12 @@ body.dark-mode .logic-box{background:#1e1e1e}
 .trans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin:15px 0}
 .trans-card{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:4px solid var(--primary)}
 body.dark-mode .trans-card{background:#1e1e1e}
+.trans-card.extended{border-left-color:var(--success);background:linear-gradient(135deg, rgba(74,222,128,0.05), white);}
+body.dark-mode .trans-card.extended{background:linear-gradient(135deg, rgba(74,222,128,0.1), #1e1e1e);}
+.trans-card .badge-new{display:inline-block;background:var(--success);color:#064e3b;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:700;margin-bottom:5px;}
 .trans-card .trans-title{font-weight:700;color:var(--primary);margin-bottom:8px;font-size:.95rem}
 .trans-card .journal{font-family:'Courier New',monospace;font-size:.85rem;background:#f9fafb;padding:10px;border-radius:6px;margin-top:8px}
+body.dark-mode .trans-card .journal{background:#2d2d2d;}
 .trans-card .journal .debit-line{color:var(--success);font-weight:700}
 .trans-card .journal .kredit-line{color:var(--danger);font-weight:700;padding-left:20px}
 .trans-card .reason{font-size:.85rem;color:var(--gray);margin-top:8px;font-style:italic}
@@ -121,7 +125,7 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 <header>
 <div class="header-icon"><i class="fas fa-balance-scale"></i></div>
 <h1>Bab 2.C (Extended) — Klasifikasi Debit & Kredit</h1>
-<p class="subtitle">Memahami LOGIKA di balik posisi Debit dan Kredit</p>
+<p class="subtitle">Memahami LOGIKA di balik posisi Debit dan Kredit (Lanjutan Bab 1.F)</p>
 </header>
 
 <div class="container">
@@ -131,13 +135,13 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 
 <div class="card">
 <h2><i class="fas fa-brain"></i> LOGIKA DASAR: Mengapa Ada Debit & Kredit?</h2>
-<p>Sebelum menghafal aturan, pahami dulu <strong>logika</strong> di baliknya!</p>
+<p>Sebelum menghafal aturan, pahami dulu <strong>logika</strong> di baliknya! Materi ini adalah pengembangan langsung dari 8 transaksi di Bab 1.F, ditambah 2 transaksi lanjutan untuk menyempurnakan siklus.</p>
 
 <h3>🧠 Analogi "Neraca Timbangan"</h3>
 <p>Bayangkan sebuah <strong>timbangan</strong>:</p>
 <div class="highlight-box" style="text-align:center;font-size:1.2rem">
 <strong>👈 SISI KIRI = DEBIT</strong> &nbsp;&nbsp;⚖️&nbsp;&nbsp; <strong>SISI KANAN = KREDIT 👉</strong><br>
-<small>Agar timbangan seimbang, kedua sisi harus sama beratnya</small>
+<small>Agar timbangan seimbang, kedua sisi harus sama beratnya (Total Debit = Total Kredit)</small>
 </div>
 
 <h3>📖 Asal Kata</h3>
@@ -252,65 +256,6 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 </div>
 
 <div class="card">
-<h2><i class="fas fa-table"></i> TABEL MASTER: SEMUA AKUN + POSISI + ALASAN</h2>
-<p>Tabel lengkap 36 akun yang sering muncul di perusahaan jasa:</p>
-
-<div style="overflow-x:auto">
-<table class="master-table">
-<thead>
-<tr>
-<th>No</th>
-<th>Nama Akun</th>
-<th>Kelompok</th>
-<th>Bertambah</th>
-<th>Berkurang</th>
-<th>Saldo Normal</th>
-<th>Alasan Logis</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>1</td><td>Kas</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Uang masuk ke perusahaan</td></tr>
-<tr><td>2</td><td>Bank</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Uang di bank bertambah</td></tr>
-<tr><td>3</td><td>Piutang Usaha</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak tagih ke pelanggan</td></tr>
-<tr><td>4</td><td>Piutang Lain-lain</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak tagih lain</td></tr>
-<tr><td>5</td><td>Perlengkapan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Barang habis pakai masuk</td></tr>
-<tr><td>6</td><td>Sewa Dibayar Dimuka</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak atas sewa yang sudah dibayar</td></tr>
-<tr><td>7</td><td>Asuransi Dibayar Dimuka</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Hak atas asuransi</td></tr>
-<tr><td>8</td><td>Peralatan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
-<tr><td>9</td><td>Gedung</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
-<tr><td>10</td><td>Tanah</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
-<tr><td>11</td><td>Kendaraan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Aset tetap masuk</td></tr>
-<tr class="kontra"><td>12</td><td>⚠️ Akum. Peny. Peralatan</td><td>Harta</td><td class="debit">Debit</td><td class="kredit"><strong>Kredit</strong></td><td><strong>Kredit</strong></td><td>Pengurang harta</td></tr>
-<tr class="kontra"><td>13</td><td>⚠️ Akum. Peny. Gedung</td><td>Harta</td><td class="debit">Debit</td><td class="kredit"><strong>Kredit</strong></td><td><strong>Kredit</strong></td><td>Pengurang harta</td></tr>
-<tr><td>14</td><td>Utang Usaha</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban ke supplier</td></tr>
-<tr><td>15</td><td>Utang Bank</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban ke bank</td></tr>
-<tr><td>16</td><td>Utang Gaji</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban gaji</td></tr>
-<tr><td>17</td><td>Utang Bunga</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban bunga</td></tr>
-<tr><td>18</td><td>Utang Pajak</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban pajak</td></tr>
-<tr><td>19</td><td>Pendapatan Diterima Dimuka</td><td>Utang</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Kewajiban memberikan jasa</td></tr>
-<tr><td>20</td><td>Modal Pemilik</td><td>Modal</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Hak pemilik</td></tr>
-<tr><td>21</td><td>Laba Ditahan</td><td>Modal</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Laba tidak dibagi</td></tr>
-<tr class="kontra"><td>22</td><td>⚠️ Prive</td><td>Modal</td><td class="debit"><strong>Debit</strong></td><td class="kredit">Kredit</td><td><strong>Debit</strong></td><td>Pengurang modal</td></tr>
-<tr><td>23</td><td>Pendapatan Jasa</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
-<tr><td>24</td><td>Pendapatan Sewa</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
-<tr><td>25</td><td>Pendapatan Bunga</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
-<tr><td>26</td><td>Pendapatan Komisi</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
-<tr><td>27</td><td>Pendapatan Lain-lain</td><td>Pendapatan</td><td class="kredit">Kredit</td><td class="debit">Debit</td><td>Kredit</td><td>Sumber pemasukan</td></tr>
-<tr><td>28</td><td>Beban Gaji</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>29</td><td>Beban Sewa</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>30</td><td>Beban Listrik</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>31</td><td>Beban Air</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>32</td><td>Beban Perlengkapan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>33</td><td>Beban Penyusutan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>34</td><td>Beban Iklan</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>35</td><td>Beban Transportasi</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-<tr><td>36</td><td>Beban Lain-lain</td><td>Beban</td><td class="debit">Debit</td><td class="kredit">Kredit</td><td>Debit</td><td>Pengorbanan</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div class="card">
 <h2><i class="fas fa-exclamation-triangle"></i> PENGECUALIAN: AKUN KONTRA</h2>
 
 <div class="warning-box">
@@ -330,9 +275,7 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 <tr class="kontra"><td><strong>Akumulasi Penyusutan</strong></td><td>Harta</td><td><strong>KREDIT</strong></td><td>Pengurang nilai harta</td></tr>
 <tr class="kontra"><td><strong>Prive</strong></td><td>Modal</td><td><strong>DEBIT</strong></td><td>Pengurang modal pemilik</td></tr>
 <tr class="kontra"><td><strong>Retur Penjualan</strong></td><td>Pendapatan</td><td><strong>DEBIT</strong></td><td>Pengurang pendapatan</td></tr>
-<tr class="kontra"><td><strong>Diskon Penjualan</strong></td><td>Pendapatan</td><td><strong>DEBIT</strong></td><td>Pengurang pendapatan</td></tr>
-<tr class="kontra"><td><strong>Retur Pembelian</strong></td><td>Beban</td><td><strong>KREDIT</strong></td><td>Pengurang beban</td></tr>
-<tr class="kontra"><td><strong>Diskon Pembelian</strong></td><td>Beban</td><td><strong>KREDIT</strong></td><td>Pengurang beban</td></tr>
+<tr class="kontra"><td><strong>Retur Pembelian</strong></td><td>Beban (Pembelian)</td><td><strong>KREDIT</strong></td><td>Pengurang beban pembelian</td></tr>
 </tbody>
 </table>
 
@@ -343,98 +286,103 @@ Karena ia <strong>mengurangi nilai peralatan</strong>. Peralatan sendiri bertamb
 </div>
 
 <div class="card">
-<h2><i class="fas fa-exchange-alt"></i> 10 CONTOH TRANSAKSI LENGKAP</h2>
+<h2><i class="fas fa-exchange-alt"></i> 10 CONTOH TRANSAKSI LENGKAP (PT. Bersih Cemerlang)</h2>
+<p style="margin-bottom:15px;font-size:0.95rem;color:var(--gray);">
+  <i class="fas fa-info-circle"></i> <strong>Catatan Guru:</strong> Transaksi 1-8 identik dengan Bab 1.F agar pemahaman siswa linear. Transaksi 9 & 10 adalah pengembangan logis untuk menutup siklus (pelunasan piutang) dan menambah variasi beban.
+</p>
 
 <div class="trans-grid">
-<div class="trans-card">
-<div class="trans-title">1. Pemilik menyetor modal Rp 10.000.000</div>
-<div class="journal">
-<div class="debit-line">(D) Kas ........................ Rp 10.000.000</div>
-<div class="kredit-line">(K) Modal ...................... Rp 10.000.000</div>
-</div>
-<div class="reason">💡 Uang masuk (kiri), sumber dari pemilik (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">1. Setor modal awal tunai Rp 5.000.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Kas ........................ Rp 5.000.000</div>
+      <div class="kredit-line">(K) Modal ...................... Rp 5.000.000</div>
+    </div>
+    <div class="reason">💡 Harta (Kas) masuk → Debit | Sumber dari pemilik → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">2. Beli peralatan tunai Rp 3.000.000</div>
-<div class="journal">
-<div class="debit-line">(D) Peralatan ................... Rp 3.000.000</div>
-<div class="kredit-line">(K) Kas ........................ Rp 3.000.000</div>
-</div>
-<div class="reason">💡 Peralatan masuk (kiri), kas keluar (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">2. Beli peralatan laundry tunai Rp 1.500.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Peralatan ................... Rp 1.500.000</div>
+      <div class="kredit-line">(K) Kas ........................ Rp 1.500.000</div>
+    </div>
+    <div class="reason">💡 Harta (Peralatan) bertambah → Debit | Harta (Kas) berkurang → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">3. Beli perlengkapan kredit Rp 500.000</div>
-<div class="journal">
-<div class="debit-line">(D) Perlengkapan ................ Rp 500.000</div>
-<div class="kredit-line">(K) Utang Usaha ................ Rp 500.000</div>
-</div>
-<div class="reason">💡 Barang masuk (kiri), sumber dari utang (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">3. Beli perlengkapan kredit Rp 500.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Perlengkapan ................ Rp 500.000</div>
+      <div class="kredit-line">(K) Utang Usaha ................ Rp 500.000</div>
+    </div>
+    <div class="reason">💡 Harta (Perlengkapan) bertambah → Debit | Utang bertambah → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">4. Terima pendapatan jasa Rp 2.000.000</div>
-<div class="journal">
-<div class="debit-line">(D) Kas ........................ Rp 2.000.000</div>
-<div class="kredit-line">(K) Pendapatan Jasa ............ Rp 2.000.000</div>
-</div>
-<div class="reason">💡 Uang masuk (kiri), sumber dari jasa (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">4. Terima pendapatan jasa tunai Rp 800.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Kas ........................ Rp 800.000</div>
+      <div class="kredit-line">(K) Pendapatan Jasa ............ Rp 800.000</div>
+    </div>
+    <div class="reason">💡 Harta (Kas) bertambah → Debit | Pendapatan bertambah → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">5. Bayar beban gaji Rp 800.000</div>
-<div class="journal">
-<div class="debit-line">(D) Beban Gaji .................. Rp 800.000</div>
-<div class="kredit-line">(K) Kas ........................ Rp 800.000</div>
-</div>
-<div class="reason">💡 Pengorbanan (kiri), kas keluar (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">5. Selesaikan jasa laundry secara kredit Rp 300.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Piutang Usaha ............... Rp 300.000</div>
+      <div class="kredit-line">(K) Pendapatan Jasa ............ Rp 300.000</div>
+    </div>
+    <div class="reason">💡 Hak tagih (Piutang) bertambah → Debit | Pendapatan bertambah → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">6. Terima pelunasan piutang Rp 1.000.000</div>
-<div class="journal">
-<div class="debit-line">(D) Kas ........................ Rp 1.000.000</div>
-<div class="kredit-line">(K) Piutang Usaha .............. Rp 1.000.000</div>
-</div>
-<div class="reason">💡 Uang masuk (kiri), hak tagih hilang (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">6. Bayar tagihan listrik & air Rp 200.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Beban Listrik & Air ......... Rp 200.000</div>
+      <div class="kredit-line">(K) Kas ........................ Rp 200.000</div>
+    </div>
+    <div class="reason">💡 Beban bertambah → Debit | Harta (Kas) berkurang → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">7. Bayar sebagian utang Rp 300.000</div>
-<div class="journal">
-<div class="debit-line">(D) Utang Usaha ................. Rp 300.000</div>
-<div class="kredit-line">(K) Kas ........................ Rp 300.000</div>
-</div>
-<div class="reason">💡 Kewajiban hilang (kiri), kas keluar (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">7. Lunasi sebagian utang (dari trans no.3) Rp 200.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Utang Usaha ................. Rp 200.000</div>
+      <div class="kredit-line">(K) Kas ........................ Rp 200.000</div>
+    </div>
+    <div class="reason">💡 Utang berkurang → Debit | Harta (Kas) berkurang → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">8. Pemilik ambil uang pribadi Rp 200.000</div>
-<div class="journal">
-<div class="debit-line">(D) Prive ....................... Rp 200.000</div>
-<div class="kredit-line">(K) Kas ........................ Rp 200.000</div>
-</div>
-<div class="reason">💡 Pengambilan (kiri), kas keluar (kanan)</div>
-</div>
+  <div class="trans-card">
+    <div class="trans-title">8. Pemilik ambil uang pribadi (Prive) Rp 100.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Prive ....................... Rp 100.000</div>
+      <div class="kredit-line">(K) Kas ........................ Rp 100.000</div>
+    </div>
+    <div class="reason">💡 Prive (pengurang modal) bertambah → Debit | Kas berkurang → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">9. Perlengkapan terpakai Rp 150.000</div>
-<div class="journal">
-<div class="debit-line">(D) Beban Perlengkapan .......... Rp 150.000</div>
-<div class="kredit-line">(K) Perlengkapan ............... Rp 150.000</div>
-</div>
-<div class="reason">💡 Pengorbanan (kiri), aset berkurang (kanan)</div>
-</div>
+  <div class="trans-card extended">
+    <span class="badge-new">LANJUTAN SIKLUS</span>
+    <div class="trans-title">9. Pelanggan lunasi piutang (dari trans no.5) Rp 300.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Kas ........................ Rp 300.000</div>
+      <div class="kredit-line">(K) Piutang Usaha .............. Rp 300.000</div>
+    </div>
+    <div class="reason">💡 Harta (Kas) bertambah → Debit | Harta (Piutang) berkurang → Kredit</div>
+  </div>
 
-<div class="trans-card">
-<div class="trans-title">10. Penyusutan peralatan Rp 100.000</div>
-<div class="journal">
-<div class="debit-line">(D) Beban Penyusutan ............ Rp 100.000</div>
-<div class="kredit-line">(K) Akum. Peny. Peralatan ...... Rp 100.000</div>
-</div>
-<div class="reason">💡 Pengorbanan (kiri), pengurang aset (kanan)</div>
-</div>
+  <div class="trans-card extended">
+    <span class="badge-new">TRANSAKSI BARU</span>
+    <div class="trans-title">10. Bayar beban promosi/iklan laundry tunai Rp 150.000</div>
+    <div class="journal">
+      <div class="debit-line">(D) Beban Iklan ................. Rp 150.000</div>
+      <div class="kredit-line">(K) Kas ........................ Rp 150.000</div>
+    </div>
+    <div class="reason">💡 Beban bertambah → Debit | Harta (Kas) berkurang → Kredit</div>
+  </div>
 </div>
 </div>
 
@@ -443,7 +391,7 @@ Karena ia <strong>mengurangi nilai peralatan</strong>. Peralatan sendiri bertamb
 <h2><i class="fas fa-gamepad"></i> 🎮 KUIS: Debit atau Kredit?</h2>
 <div class="sim-intro">
 <strong>Uji Pemahamanmu!</strong> 🎯<br>
-Untuk setiap transaksi, tentukan posisi akun yang <strong>ditanyakan</strong>. Klik jawaban yang tepat. Ada 10 soal acak dari 20 bank soal!
+Untuk setiap transaksi di bawah ini, tentukan posisi akun yang <strong>ditanyakan</strong>. Klik jawaban yang tepat. Ada 10 soal acak dari bank soal di bawah!
 </div>
 
 <div id="quizContainer"></div>
@@ -484,40 +432,35 @@ Untuk setiap transaksi, tentukan posisi akun yang <strong>ditanyakan</strong>. K
 <li>✅ <strong>H-B-P</strong> bertambah di Debit | <strong>U-M-P</strong> bertambah di Kredit</li>
 <li>✅ Akun kontra <strong>selalu berlawanan</strong> dengan kelompok aslinya</li>
 <li>✅ Total Debit <strong>harus = Total Kredit</strong> (prinsip keseimbangan)</li>
-<li>✅ Latih pemahaman dengan <strong>kuis interaktif</strong> di atas!</li>
+<li>✅ Transaksi 9 membuktikan bahwa pertukaran antar Harta (Kas & Piutang) tetap menjaga keseimbangan neraca.</li>
 </ul>
 </div>
 
 <div class="nav-bab">
 <a href="bab2-c.html"><i class="fas fa-arrow-left"></i> Kembali ke Bab 2.C</a>
-<a href="bab2-d.html">Lanjut ke Bab 2.D <i class="fas fa-arrow-right"></i></a>
+<a href="bab2-d.html">Lanjut ke Bab 2.D (Jurnal) <i class="fas fa-arrow-right"></i></a>
 </div>
 </div>
 
-<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Materi Ekonomi Kelas XII</p></footer>
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Materi Ekonomi Kelas XII (Disusun oleh: Zuli Astutik, S.Pd.)</p></footer>
 
 <script>
+// Bank soal disesuaikan dengan 10 Transaksi PT. Bersih Cemerlang
 const questions = [
-  {trans:"Pemilik menyetor modal tunai Rp 10.000.000",acc:"Kas",a:"Debit",explain:"Kas (Harta) bertambah → DEBIT"},
-  {trans:"Pemilik menyetor modal tunai Rp 10.000.000",acc:"Modal",a:"Kredit",explain:"Modal (Modal) bertambah → KREDIT"},
-  {trans:"Membeli peralatan tunai Rp 3.000.000",acc:"Peralatan",a:"Debit",explain:"Peralatan (Harta) bertambah → DEBIT"},
-  {trans:"Membeli peralatan tunai Rp 3.000.000",acc:"Kas",a:"Kredit",explain:"Kas (Harta) berkurang → KREDIT"},
-  {trans:"Membeli perlengkapan secara kredit Rp 500.000",acc:"Perlengkapan",a:"Debit",explain:"Perlengkapan (Harta) bertambah → DEBIT"},
-  {trans:"Membeli perlengkapan secara kredit Rp 500.000",acc:"Utang Usaha",a:"Kredit",explain:"Utang (Utang) bertambah → KREDIT"},
-  {trans:"Menerima pendapatan jasa tunai Rp 2.000.000",acc:"Kas",a:"Debit",explain:"Kas (Harta) bertambah → DEBIT"},
-  {trans:"Menerima pendapatan jasa tunai Rp 2.000.000",acc:"Pendapatan Jasa",a:"Kredit",explain:"Pendapatan bertambah → KREDIT"},
-  {trans:"Membayar beban gaji Rp 800.000",acc:"Beban Gaji",a:"Debit",explain:"Beban bertambah → DEBIT"},
-  {trans:"Membayar beban gaji Rp 800.000",acc:"Kas",a:"Kredit",explain:"Kas (Harta) berkurang → KREDIT"},
-  {trans:"Membayar sebagian utang Rp 300.000",acc:"Utang Usaha",a:"Debit",explain:"Utang berkurang → DEBIT"},
-  {trans:"Membayar sebagian utang Rp 300.000",acc:"Kas",a:"Kredit",explain:"Kas berkurang → KREDIT"},
-  {trans:"Pemilik mengambil uang untuk pribadi Rp 200.000",acc:"Prive",a:"Debit",explain:"Prive (pengurang modal) bertambah → DEBIT"},
-  {trans:"Pemilik mengambil uang untuk pribadi Rp 200.000",acc:"Kas",a:"Kredit",explain:"Kas berkurang → KREDIT"},
-  {trans:"Pencatatan penyusutan peralatan Rp 100.000",acc:"Beban Penyusutan",a:"Debit",explain:"Beban bertambah → DEBIT"},
-  {trans:"Pencatatan penyusutan peralatan Rp 100.000",acc:"Akumulasi Penyusutan",a:"Kredit",explain:"Akumulasi Penyusutan (kontra harta) bertambah → KREDIT"},
-  {trans:"Menerima pelunasan piutang Rp 1.000.000",acc:"Kas",a:"Debit",explain:"Kas bertambah → DEBIT"},
-  {trans:"Menerima pelunasan piutang Rp 1.000.000",acc:"Piutang Usaha",a:"Kredit",explain:"Piutang (Harta) berkurang → KREDIT"},
-  {trans:"Perlengkapan terpakai Rp 150.000",acc:"Beban Perlengkapan",a:"Debit",explain:"Beban bertambah → DEBIT"},
-  {trans:"Perlengkapan terpakai Rp 150.000",acc:"Perlengkapan",a:"Kredit",explain:"Perlengkapan (Harta) berkurang → KREDIT"}
+  {trans:"Andi menyetor modal awal tunai Rp 5.000.000", acc:"Kas", a:"Debit", explain:"Kas (Harta) bertambah → DEBIT"},
+  {trans:"Andi menyetor modal awal tunai Rp 5.000.000", acc:"Modal", a:"Kredit", explain:"Modal (Ekuitas) bertambah → KREDIT"},
+  {trans:"Membeli peralatan laundry tunai Rp 1.500.000", acc:"Peralatan", a:"Debit", explain:"Peralatan (Harta) bertambah → DEBIT"},
+  {trans:"Membeli peralatan laundry tunai Rp 1.500.000", acc:"Kas", a:"Kredit", explain:"Kas (Harta) berkurang → KREDIT"},
+  {trans:"Membeli perlengkapan secara kredit Rp 500.000", acc:"Utang Usaha", a:"Kredit", explain:"Utang (Liabilitas) bertambah → KREDIT"},
+  {trans:"Menerima pendapatan jasa tunai Rp 800.000", acc:"Pendapatan Jasa", a:"Kredit", explain:"Pendapatan (Sumber dana) bertambah → KREDIT"},
+  {trans:"Menyelesaikan jasa laundry secara kredit Rp 300.000", acc:"Piutang Usaha", a:"Debit", explain:"Piutang (Hak tagih/Harta) bertambah → DEBIT"},
+  {trans:"Membayar tagihan listrik & air Rp 200.000", acc:"Beban Listrik & Air", a:"Debit", explain:"Beban (Pengorbanan) bertambah → DEBIT"},
+  {trans:"Melunasi sebagian utang ke Toko Sejahtera Rp 200.000", acc:"Utang Usaha", a:"Debit", explain:"Utang (Liabilitas) berkurang → DEBIT"},
+  {trans:"Pemilik mengambil uang untuk pribadi (Prive) Rp 100.000", acc:"Prive", a:"Debit", explain:"Prive (Pengurang Modal) bertambah → DEBIT"},
+  {trans:"Menerima pelunasan piutang dari pelanggan Rp 300.000", acc:"Kas", a:"Debit", explain:"Kas (Harta) bertambah → DEBIT"},
+  {trans:"Menerima pelunasan piutang dari pelanggan Rp 300.000", acc:"Piutang Usaha", a:"Kredit", explain:"Piutang (Harta) berkurang karena sudah dibayar → KREDIT"},
+  {trans:"Membayar beban promosi/iklan laundry tunai Rp 150.000", acc:"Beban Iklan", a:"Debit", explain:"Beban bertambah → DEBIT"},
+  {trans:"Membayar beban promosi/iklan laundry tunai Rp 150.000", acc:"Kas", a:"Kredit", explain:"Kas (Harta) berkurang → KREDIT"}
 ];
 
 let current = 0, score = 0, answered = false, shuffled = [];
@@ -532,7 +475,7 @@ function shuffle(arr){
 }
 
 function initQuiz(){
-  shuffled = shuffle(questions).slice(0,10);
+  shuffled = shuffle(questions).slice(0,10); // Ambil 10 soal acak
   current = 0; score = 0;
   document.getElementById('score').textContent = 0;
   document.getElementById('total').textContent = shuffled.length;
@@ -545,7 +488,7 @@ function showQuestion(){
       <div class="sim-question" style="text-align:center">
         <h3>🎉 Kuis Selesai!</h3>
         <p style="font-size:1.3rem;margin:15px 0">Skor kamu: <strong>${score} / ${shuffled.length}</strong></p>
-        <p>${score>=9?'🏆 LUAR BIASA! Kamu sudah menguasai Debit-Kredit!':score>=7?'👍 Bagus! Terus berlatih ya!':score>=5?'💪 Lumayan, coba lagi yuk!':'📚 Pelajari kembali materi di atas'}</p>
+        <p>${score>=9?'🏆 LUAR BIASA! Kamu sudah menguasai logika Debit-Kredit!':score>=7?'👍 Bagus! Terus berlatih ya!':score>=5?'💪 Lumayan, coba pelajari lagi tabel di atas!':'📚 Pelajari kembali materi dan analogi timbangan di atas'}</p>
       </div>`;
     return;
   }
@@ -595,7 +538,9 @@ function nextQuestion(){
 }
 
 function resetQuiz(){initQuiz()}
-initQuiz();
+
+// Mulai kuis saat halaman dimuat
+document.addEventListener('DOMContentLoaded', initQuiz);
 </script>
 </body>
 </html>
