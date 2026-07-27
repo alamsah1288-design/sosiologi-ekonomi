@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LKPD Bab 1.G — Siklus Akuntansi Lengkap (Terproteksi)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4361ee;--secondary:#3f37c9;--accent:#4cc9f0;--light:#f8f9fa;--dark:#212529;--success:#4ade80;--warning:#fbbf24;--danger:#f87171;--gray:#6c757d}
+*{margin:0;padding:0;box-sizing:border-box; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4e9f2);color:var(--dark);line-height:1.6; overflow-x: hidden;}
+
+/* PROTEKSI VISUAL */
+.blur-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); z-index: 9999; display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    color: white; text-align: center; padding: 20px;
+}
+.blur-overlay i { font-size: 4rem; color: var(--danger); margin-bottom: 20px; }
+
+/* CONTAINER */
+.container{max-width:900px;margin:30px auto;padding:0 20px; display: none;}
+.container.active{display: block;}
+
+/* CARD & FORM */
+.card{background:white;border-radius:12px;padding:30px;margin-bottom:25px;box-shadow:0 10px 30px rgba(0,0,0,0.08);border-left:5px solid var(--primary);}
+.header-exam{text-align:center; margin-bottom: 30px;}
+.header-exam img{width:80px; margin-bottom: 10px;}
+.form-group{margin-bottom:15px;}
+.form-group label{display:block;margin-bottom:5px;font-weight:600;}
+.form-group input, .form-group select{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-family:'Poppins',sans-serif; font-size: 1rem;}
+.form-group input:focus{border-color:var(--primary);outline:none;}
+
+/* TIMER */
+.timer-box{position:sticky; top: 10px; z-index: 100; background: var(--danger); color: white; padding: 10px 20px; border-radius: 50px; text-align: center; font-weight: 700; font-size: 1.2rem; box-shadow: 0 5px 15px rgba(248,113,113,0.4); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;}
+.timer-box.warning{background: var(--warning); color: #78350f; animation: pulse 1s infinite;}
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
+/* SOAL */
+.question-card{background:white;padding:20px;border-radius:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--accent);}
+.q-header{display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.85rem; color:var(--gray); font-weight:600;}
+.q-text{font-size:1.05rem; margin-bottom:15px; font-weight:500;}
+.options label{display:block; padding:10px; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:8px; cursor:pointer; transition:0.2s;}
+.options label:hover{background:#f0f4ff; border-color:var(--primary);}
+.options input[type="radio"], .options input[type="checkbox"]{margin-right:10px;}
+.options label.selected{background:#e0e7ff; border-color:var(--primary); font-weight:600;}
+
+/* BUTTONS */
+.btn{padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:1rem;transition:.3s; display:inline-flex; align-items:center; gap:8px;}
+.btn-primary{background:var(--primary);color:white;}
+.btn-primary:hover{background:var(--secondary); transform:translateY(-2px);}
+.btn-success{background:var(--success);color:#064e3b;}
+.btn-danger{background:var(--danger);color:white;}
+.btn:disabled{opacity:0.5; cursor:not-allowed; transform:none !important;}
+
+/* ============================================ */
+/* HASIL & REKAP - OPTIMIZED FOR PDF */
+/* ============================================ */
+.result-header{
+    text-align:center; 
+    padding:30px 20px; 
+    background:linear-gradient(135deg, var(--success), #22c55e); 
+    color:white; 
+    border-radius:15px; 
+    margin-bottom:25px;
+    box-shadow: 0 10px 30px rgba(74,222,128,0.3);
+}
+.result-header h2{font-size:2rem; margin-bottom:10px;}
+.result-header p{font-size:1rem; opacity:0.95;}
+.score-display{
+    font-size:4.5rem; 
+    font-weight:800;
+    margin:15px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+.score-label{font-size:1.2rem; font-weight:600;}
+
+/* Analisis Hasil Box */
+.analysis-box{
+    background:linear-gradient(135deg, #fef3c7, #fde68a);
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:25px;
+    border-left:5px solid var(--warning);
+}
+.analysis-box h3{color:#92400e; margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+.analysis-box .grade{
+    display:inline-block;
+    background:#92400e;
+    color:#fef3c7;
+    padding:5px 15px;
+    border-radius:20px;
+    font-weight:700;
+    font-size:0.9rem;
+    margin-top:10px;
+}
+
+/* Identitas Table */
+.identity-table{width:100%; margin-top:10px; font-size:0.95rem;}
+.identity-table td{padding:8px 5px; vertical-align:top;}
+.identity-table td:first-child{width:180px; font-weight:600; color:var(--gray);}
+
+/* Rekap Table - OPTIMIZED */
+.rekap-table{
+    width:100%; 
+    border-collapse:collapse; 
+    margin-top:20px; 
+    font-size:0.85rem;
+    table-layout: fixed;
+}
+.rekap-table th, .rekap-table td{
+    padding:10px 8px; 
+    border:1px solid #e5e7eb; 
+    text-align:left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    vertical-align: top;
+}
+.rekap-table th{
+    background:var(--primary); 
+    color:white;
+    font-weight:600;
+    text-align:center;
+}
+.rekap-table th:nth-child(1){width:5%;}
+.rekap-table th:nth-child(2){width:12%;}
+.rekap-table th:nth-child(3){width:30%;}
+.rekap-table th:nth-child(4){width:30%;}
+.rekap-table th:nth-child(5){width:10%;}
+.rekap-table td:nth-child(1){text-align:center; font-weight:600;}
+.rekap-table td:nth-child(2){text-align:center;}
+.rekap-table td:nth-child(5){text-align:center; font-weight:700;}
+.rekap-table .correct{color:var(--success);}
+.rekap-table .wrong{color:var(--danger);}
+.rekap-table tr:nth-child(even){background:#f9fafb;}
+
+/* Tanda Tangan Section */
+.signature-section{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+    padding:20px 0;
+}
+.signature-box{
+    text-align:center;
+    width:45%;
+}
+.signature-line{
+    border-bottom:2px solid var(--dark);
+    height:60px;
+    margin:10px 0;
+}
+.signature-name{font-weight:700; margin-top:5px;}
+.signature-nip{font-size:0.85rem; color:var(--gray);}
+
+/* Footer PDF */
+.pdf-footer{
+    text-align:center; 
+    margin-top:30px; 
+    padding-top:20px;
+    border-top:2px solid var(--primary);
+    font-size:0.8rem; 
+    color:var(--gray);
+}
+
+/* CETAK / PDF SPECIFIC */
+@media print {
+    .no-print { display: none !important; }
+    body { background: white; color: black; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+    .result-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .rekap-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* PDF Generation Specific */
+.pdf-content {
+    background: white;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+<!-- OVERLAY PERINGATAN KEAMANAN -->
+<div id="securityOverlay" class="blur-overlay">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h2>⚠️ PERINGATAN KEAMANAN!</h2>
+    <p>Anda terdeteksi mencoba keluar dari tab, membuka tab baru, atau melakukan screenshot.</p>
+    <p>Ini adalah pelanggaran ke-<span id="violationCount">0</span>/3.</p>
+    <p>Jika mencapai 3 kali, ujian akan dikumpulkan secara otomatis dan Anda dianggap gagal.</p>
+    <button class="btn btn-primary" onclick="returnToExam()" style="margin-top:20px;">Kembali ke Ujian</button>
+</div>
+
+<!-- HALAMAN IDENTITAS -->
+<div class="container active" id="loginSection">
+    <div class="card">
+        <div class="header-exam">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <h2>LKPD DIGITAL TERPROTEKSI</h2>
+            <p>Bab 1.G — Siklus Akuntansi Lengkap (Persamaan ke Laporan Keuangan)</p>
+            <p style="color:var(--danger); font-weight:600;"><i class="fas fa-shield-alt"></i> Mode Ujian: Anti-Copy, Anti-Tab Baru, Waktu 40 Menit</p>
+        </div>
+        <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="studentName" placeholder="Masukkan nama lengkap..." required>
+        </div>
+        <div class="form-group">
+            <label>Kelas</label>
+            <select id="studentClass" required>
+                <option value="">Pilih Kelas</option>
+                <option value="XII MIPA 1">XII MIPA 1</option>
+                <option value="XII MIPA 2">XII MIPA 2</option>
+                <option value="XII IPS 1">XII IPS 1</option>
+                <option value="XII IPS 2">XII IPS 2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Tanggal Pengerjaan</label>
+            <input type="date" id="examDate" required>
+        </div>
+        <button class="btn btn-primary" onclick="startExam()" style="width:100%; justify-content:center; margin-top:10px;">
+            <i class="fas fa-play"></i> Mulai Ujian (Full Screen)
+        </button>
+        <p style="text-align:center; margin-top:15px; font-size:0.85rem; color:var(--gray);">
+            *Dengan memulai, Anda menyetujui aturan anti-kecurangan. Pastikan koneksi internet stabil.
+        </p>
+    </div>
+</div>
+
+<!-- HALAMAN UJIAN -->
+<div class="container" id="examSection">
+    <div class="timer-box" id="timerBox">
+        <span><i class="fas fa-user"></i> <span id="displayName">Siswa</span></span>
+        <span><i class="fas fa-clock"></i> <span id="timeDisplay">40:00</span></span>
+    </div>
+
+    <div id="questionsContainer"></div>
+
+    <div style="text-align:center; margin-top:30px; margin-bottom:50px;">
+        <button class="btn btn-success" onclick="confirmSubmit()">
+            <i class="fas fa-paper-plane"></i> Kumpulkan Jawaban Sekarang
+        </button>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--gray);">
+            *Tombol unduh PDF hanya akan aktif setelah waktu habis atau Anda mengumpulkan jawaban.
+        </p>
+    </div>
+</div>
+
+<!-- HALAMAN HASIL & REKAP (Target PDF) -->
+<div class="container" id="resultSection">
+    <div id="pdfContent" class="pdf-content">
+        <!-- Header -->
+        <div style="text-align:center; margin-bottom:20px; border-bottom:3px double var(--primary); padding-bottom:15px;">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo" style="width:70px;">
+            <h2 style="color:var(--primary); margin:10px 0 5px 0;">SMAN 1 CLURING</h2>
+            <p style="font-size:0.9rem; color:var(--gray);">Jl. Raya Cluring, Banyuwangi, Jawa Timur</p>
+        </div>
+
+        <!-- Result Header -->
+        <div class="result-header">
+            <h2><i class="fas fa-check-circle"></i> UJIAN SELESAI</h2>
+            <p>Lembar Hasil Pengerjaan LKPD Bab 1.G — Siklus Akuntansi Lengkap</p>
+            <div class="score-display"><span id="finalScore">0</span><span style="font-size:2rem;">/100</span></div>
+            <div class="score-label">Skor Akhir</div>
+        </div>
+        
+        <!-- Identitas Siswa -->
+        <div class="card">
+            <h3 style="color:var(--primary); margin-bottom:15px;"><i class="fas fa-user-graduate"></i> Identitas Siswa</h3>
+            <table class="identity-table">
+                <tr><td>Nama</td><td>: <strong id="resName">-</strong></td></tr>
+                <tr><td>Kelas</td><td>: <strong id="resClass">-</strong></td></tr>
+                <tr><td>Tanggal Pengerjaan</td><td>: <strong id="resDate">-</strong></td></tr>
+                <tr><td>Waktu Selesai</td><td>: <strong id="resTime">-</strong></td></tr>
+                <tr><td>Jumlah Pelanggaran</td><td>: <strong id="resViolations" style="color:var(--danger)">0</strong> kali</td></tr>
+                <tr><td>Status Kelulusan</td><td>: <strong id="resStatus">-</strong></td></tr>
+            </table>
+        </div>
+
+        <!-- Analisis Hasil -->
+        <div class="analysis-box" id="analysisBox">
+            <h3><i class="fas fa-chart-bar"></i> Analisis Hasil Pengerjaan</h3>
+            <p id="analysisText">-</p>
+            <span class="grade" id="gradeBadge">-</span>
+        </div>
+
+        <!-- Rekapitulasi Jawaban -->
+        <div class="card">
+            <h3 style="color:var(--primary); margin-bottom:15px;"><i class="fas fa-list-ol"></i> Rekapitulasi Jawaban (30 Soal)</h3>
+            <div style="overflow-x:auto;">
+                <table class="rekap-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tipe</th>
+                            <th>Jawaban Siswa</th>
+                            <th>Kunci Jawaban</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rekapBody"></tbody>
+                </table>
+            </div>
+            
+            <!-- Statistik -->
+            <div style="margin-top:20px; padding:15px; background:#f0f4ff; border-radius:8px; display:flex; justify-content:space-around; text-align:center;">
+                <div>
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--success);" id="statBenar">0</div>
+                    <div style="font-size:0.85rem; color:var(--gray);">Benar</div>
+                </div>
+                <div>
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--danger);" id="statSalah">0</div>
+                    <div style="font-size:0.85rem; color:var(--gray);">Salah</div>
+                </div>
+                <div>
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--gray);" id="statKosong">0</div>
+                    <div style="font-size:0.85rem; color:var(--gray);">Tidak Dijawab</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tanda Tangan -->
+        <div class="signature-section">
+            <div class="signature-box">
+                <p style="font-weight:600;">Mengetahui,</p>
+                <p style="font-size:0.9rem;">Guru Pengampu</p>
+                <div class="signature-line"></div>
+                <p class="signature-name">Zuli Astutik, S.Pd.</p>
+                <p class="signature-nip">NIP. 197508122005012008</p>
+            </div>
+            <div class="signature-box">
+                <p style="font-weight:600;">Cluring, <span id="signDate">-</span></p>
+                <p style="font-size:0.9rem;">Siswa yang bersangkutan</p>
+                <div class="signature-line"></div>
+                <p class="signature-name" id="signName">-</p>
+                <p class="signature-nip" id="signClass">-</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="pdf-footer">
+            <p><strong>Dokumen ini dihasilkan secara otomatis oleh Sistem LKPD Digital SMAN 1 Cluring</strong></p>
+            <p>Dokumen ini sah dan valid sebagai bukti pengerjaan ujian. Dilarang memalsukan atau mengubah isi dokumen.</p>
+            <p style="margin-top:10px;">© 2025 SMAN 1 Cluring | Guru Pengampu: Zuli Astutik, S.Pd.</p>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;" class="no-print">
+        <button class="btn btn-primary" id="downloadBtn" onclick="downloadPDF()" disabled>
+            <i class="fas fa-file-pdf"></i> Unduh Hasil (PDF)
+        </button>
+        <p id="downloadMsg" style="color:var(--danger); font-size:0.85rem; margin-top:5px;">
+            <i class="fas fa-lock"></i> Tunggu waktu habis atau kumpulkan jawaban untuk membuka kunci unduh.
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 SMAN 1 Cluring | Dikembangkan untuk Pembelajaran Ekonomi Kelas XII</p>
+</footer>
+
+<script>
+// ==========================================
+// 1. DATA SOAL (30 SOAL HOTS: C4, C5, C6)
+// ==========================================
+const questions = [
+    // --- C4: MENGANALISIS (1-10) ---
+    { id:1, type:'mc', q:'<strong>Studi Kasus (C4):</strong> PT. Bersih Cemerlang mencatat pembelian perlengkapan Rp500.000 secara tunai. Namun, saat penyusunan neraca, akun Perlengkapan tidak berubah, sedangkan Kas berkurang Rp500.000 dan Beban Perlengkapan bertambah Rp500.000. Analisis dampak kesalahan ini terhadap Laporan Keuangan adalah...', options:['Laba Rugi: Laba understated, Neraca: Total Aset understated','Laba Rugi: Laba overstated, Neraca: Total Aset overstated','Laba Rugi: Tidak terdampak, Neraca: Total Aset benar','Laba Rugi: Laba understated, Neraca: Total Utang understated','Laba Rugi: Laba benar, Neraca: Komposisi Aset benar'], ans:'Laba Rugi: Laba understated, Neraca: Total Aset understated' },
+    { id:2, type:'complex', q:'<strong>Studi Kasus (C4):</strong> Ditemukan selisih antara Total Debit dan Total Kredit di Neraca Saldo sebesar Rp1.000.000 (Sisi Debit lebih besar). Analisis penyebab yang MUNGKIN terjadi adalah... (Pilih DUA)', options:['Salah mencatat penambahan Kas sebagai pengurang (Kredit) padahal seharusnya Debit','Lupa mencatat penambahan Utang Usaha sebesar Rp1.000.000','Salah mencatat penambahan Modal sebagai Debit','Lupa mencatat pendapatan jasa secara tunai','Mencatat pelunasan piutang sebagai penambahan Kas dua kali'], ans:['Salah mencatat penambahan Kas sebagai pengurang (Kredit) padahal seharusnya Debit', 'Lupa mencatat penambahan Utang Usaha sebesar Rp1.000.000'] },
+    { id:3, type:'matching', q:'<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi "Dibayar beban sewa tunai" terhadap persamaan akuntansi adalah...', options:['Harta berkurang, Modal berkurang','Harta tetap, Modal tetap','Harta bertambah, Utang bertambah','Harta berkurang, Utang berkurang','Harta tetap, Utang bertambah'], ans:'Harta berkurang, Modal berkurang' },
+    { id:4, type:'matching', q:'<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi "Diterima pelunasan piutang dari pelanggan" terhadap total Harta adalah...', options:['Harta tetap (hanya mutasi antar akun aset)','Harta bertambah','Harta berkurang','Modal bertambah','Utang berkurang'], ans:'Harta tetap (hanya mutasi antar akun aset)' },
+    { id:5, type:'mc', q:'<strong>Studi Kasus (C4):</strong> Modal Awal PT. X adalah Rp10.000.000. Selama periode berjalan, terjadi Prive Rp1.000.000. Jika Modal Akhir dilaporkan sebesar Rp12.000.000, berapakah analisis nilai Laba Bersih yang seharusnya dicatat?', options:['Rp1.000.000','Rp2.000.000','Rp3.000.000','Rp4.000.000','Rp5.000.000'], ans:'Rp3.000.000' },
+    { id:6, type:'tf', q:'<strong>Studi Kasus (C4):</strong> Sebuah perusahaan jasa mencatat "Pendapatan Diterima Dimuka" sebagai Pendapatan saat uang diterima. Pada akhir periode, jasa belum sepenuhnya diberikan. Analisis: Jika tidak dilakukan penyesuaian, maka Laba Bersih akan overstated (tercatat lebih besar) dan Utang akan understated.', ans:'Benar' },
+    { id:7, type:'complex', q:'<strong>Studi Kasus (C4):</strong> Neraca PT. Y menunjukkan Total Aset Rp50.000.000 dan Total Utang Rp20.000.000. Analisis komponen yang pasti membentuk ekuitas/modal sebesar Rp30.000.000 tersebut adalah... (Pilih DUA)', options:['Modal Awal','Laba Bersih periode berjalan','Pendapatan Jasa','Beban Operasional','Kas di Bank'], ans:['Modal Awal', 'Laba Bersih periode berjalan'] },
+    { id:8, type:'mc', q:'<strong>Studi Kasus (C4):</strong> Transaksi "Dibeli peralatan secara kredit Rp5.000.000" salah dicatat sebagai "Dibeli peralatan secara tunai". Analisis kesalahan ini terhadap posisi keuangan adalah...', options:['Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated','Total Aset salah, Total Utang benar','Total Aset dan Utang keduanya benar','Modal Akhir menjadi lebih besar','Tidak ada dampak pada persamaan akuntansi'], ans:'Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated' },
+    { id:9, type:'mc', q:'<strong>Studi Kasus (C4):</strong> Laporan Perubahan Modal menunjukkan angka negatif pada "Laba Ditahan" awal (defisit), namun Modal Akhir positif dan lebih besar dari Modal Awal. Analisis kondisi ini menunjukkan bahwa...', options:['Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive','Perusahaan tidak memiliki utang sama sekali','Pemilik terus-menerus menyetor modal tanpa batas','Perusahaan mengalami kerugian operasional yang masif','Semua aset perusahaan telah dilikuidasi'], ans:'Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive' },
+    { id:10, type:'tf', q:'<strong>Studi Kasus (C4):</strong> Jika sebuah transaksi dicatat dengan mendebit Beban dan mengkredit Kas, analisisnya adalah transaksi tersebut mengurangi ekuitas pemilik dan mengurangi aset lancar perusahaan.', ans:'Benar' },
+
+    // --- C5: MENGEVALUASI (11-20) ---
+    { id:11, type:'mc', q:'<strong>Studi Kasus (C5):</strong> Manajer PT. Bersih Cemerlang ingin menunjukkan kinerja keuangan yang baik kepada investor. Ia mengusulkan untuk mencatat pembelian mesin laundry (umur ekonomis 5 tahun) langsung sebagai "Beban Operasional" tahun ini. Evaluasi usulan tersebut berdasarkan prinsip akuntansi adalah...', options:['Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material','Dapat diterima, karena prinsip konservatisme mengizinkan pengakuan beban segera','Dapat diterima, karena akan mengurangi beban pajak perusahaan tahun ini','Tidak dapat diterima, hanya karena mesin laundry bukan aset berharga','Dapat diterima, asalkan disetujui oleh pemilik perusahaan'], ans:'Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material' },
+    { id:12, type:'complex', q:'<strong>Studi Kasus (C5):</strong> Evaluasi laporan keuangan berikut: Total Aset = Rp100jt, Utang = Rp40jt, Modal = Rp60jt. Pendapatan = Rp50jt, Beban = Rp20jt. Evaluasi pernyataan berikut yang VALID adalah... (Pilih DUA)', options:['Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat','Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik','Perusahaan mengalami kerugian bersih sebesar Rp30jt','Total ekuitas lebih kecil dari total kewajiban, menunjukkan risiko kebangkrutan tinggi','Pendapatan tidak cukup untuk menutupi beban operasional'], ans:['Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat', 'Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik'] },
+    { id:13, type:'matching', q:'<strong>Studi Kasus (C5):</strong> Evaluasi dampak kesalahan: "Lupa mencatat jurnal penyesuaian penyusutan peralatan" akan menyebabkan...', options:['Aset overstated dan Beban understated (Laba overstated)','Aset understated dan Beban overstated','Utang overstated dan Modal understated','Kas overstated dan Pendapatan understated','Tidak ada dampak pada laporan keuangan'], ans:'Aset overstated dan Beban understated (Laba overstated)' },
+    { id:14, type:'matching', q:'<strong>Studi Kasus (C5):</strong> Evaluasi keputusan: "Pemilik mengambil prive besar-besaran saat perusahaan mengalami kerugian" akan menyebabkan...', options:['Memperparah defisit modal dan menggerus harta perusahaan','Meningkatkan likuiditas perusahaan','Menstabilkan posisi ekuitas','Menambah nilai aset tetap','Tidak berdampak pada neraca'], ans:'Memperparah defisit modal dan menggerus harta perusahaan' },
+    { id:15, type:'mc', q:'<strong>Studi Kasus (C5):</strong> Seorang akuntan junior menyusun Neraca dengan urutan: Tanah, Bangunan, Peralatan, Kas, Piutang. Evaluasi penyajian ini berdasarkan standar akuntansi yang berlaku umum (SAK) adalah...', options:['Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid','Tepat, karena mengurutkan berdasarkan nilai moneter tertinggi','Tepat, karena mengurutkan berdasarkan umur ekonomis terpanjang','Tidak tepat, karena seharusnya diurutkan secara alfabetis','Tepat, karena tanah adalah aset paling penting'], ans:'Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid' },
+    { id:16, type:'tf', q:'<strong>Studi Kasus (C5):</strong> Dalam mengevaluasi Laporan Laba Rugi, jika Pendapatan Jasa lebih kecil dari Total Beban, maka evaluator harus menyimpulkan bahwa perusahaan mengalami defisit modal yang pasti dan langsung menyebabkan kebangkrutan.', ans:'Salah' },
+    { id:17, type:'complex', q:'<strong>Studi Kasus (C5):</strong> Perusahaan menerima uang muka dari pelanggan sebesar Rp5.000.000 untuk jasa yang akan dikerjakan bulan depan. Evaluasi perlakuan akuntansi yang BENAR adalah... (Pilih DUA)', options:['Mencatat sebagai "Pendapatan Diterima Dimuka" (Kewajiban/Utang)','Tidak boleh langsung diakui sebagai "Pendapatan Jasa" karena prinsip pengakuan pendapatan belum terpenuhi','Langsung mencatat sebagai Pendapatan Jasa untuk meningkatkan laba','Mencatat sebagai pengurangan Beban Operasional','Mencatat sebagai penambahan Modal Pemilik'], ans:['Mencatat sebagai "Pendapatan Diterima Dimuka" (Kewajiban/Utang)', 'Tidak boleh langsung diakui sebagai "Pendapatan Jasa" karena prinsip pengakuan pendapatan belum terpenuhi'] },
+    { id:18, type:'mc', q:'<strong>Studi Kasus (C5):</strong> Ditemukan selisih Rp500.000 di Neraca Saldo. Manajer meminta akuntan untuk memaksakan angka agar seimbang dengan menambahkannya ke akun "Beban Lain-lain" tanpa investigasi. Evaluasi tindakan manajer ini adalah...', options:['Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi','Sangat efisien, karena menghemat waktu pencarian kesalahan','Dapat diterima, karena nominalnya relatif kecil (immaterial)','Merupakan praktik standar dalam penyusunan laporan keuangan','Diperbolehkan asalkan disetujui oleh pemilik'], ans:'Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi' },
+    { id:19, type:'mc', q:'<strong>Studi Kasus (C5):</strong> Laporan Perubahan Modal PT. Z menunjukkan: Modal Awal Rp20jt, Laba Bersih Rp5jt, Prive Rp8jt, Modal Akhir Rp17jt. Evaluasi kebijakan pengambilan prive oleh pemilik adalah...', options:['Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal','Sangat bijaksana, karena pemilik berhak atas seluruh laba','Tepat, karena menjaga keseimbangan neraca','Tidak relevan, karena prive tidak mempengaruhi modal','Sangat baik, karena menunjukkan likuiditas perusahaan yang tinggi'], ans:'Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal' },
+    { id:20, type:'tf', q:'<strong>Studi Kasus (C5):</strong> Seorang auditor mengevaluasi jurnal penyesuaian dan menemukan bahwa beban asuransi dibayar dimuka tidak disesuaikan. Auditor menyimpulkan bahwa aset akan overstated dan beban understated. Evaluasi kesimpulan auditor ini adalah benar.', ans:'Benar' },
+
+    // --- C6: MENCIPTA/MENGONSTRUKSI (21-30) ---
+    { id:21, type:'mc', q:'<strong>Studi Kasus (C6):</strong> Anda diminta menyusun jurnal penyesuaian untuk perlengkapan. Data: Saldo awal Perlengkapan Rp2.000.000, pembelian selama periode Rp1.000.000, hasil inventarisasi fisik sisa perlengkapan Rp500.000. Konstruksi jurnal penyesuaian yang tepat adalah...', options:['(D) Beban Perlengkapan Rp2.500.000, (K) Perlengkapan Rp2.500.000','(D) Perlengkapan Rp500.000, (K) Beban Perlengkapan Rp500.000','(D) Beban Perlengkapan Rp1.000.000, (K) Perlengkapan Rp1.000.000','(D) Perlengkapan Rp2.500.000, (K) Kas Rp2.500.000','(D) Beban Perlengkapan Rp500.000, (K) Utang Usaha Rp500.000'], ans:'(D) Beban Perlengkapan Rp2.500.000, (K) Perlengkapan Rp2.500.000' },
+    { id:22, type:'complex', q:'<strong>Studi Kasus (C6):</strong> Anda diminta merancang struktur Laporan Laba Rugi yang sederhana untuk jasa laundry. Komponen yang HARUS ada dalam konstruksi laporan tersebut adalah... (Pilih DUA)', options:['Pendapatan Jasa','Beban Operasional (Gaji, Listrik, Perlengkapan)','Utang Usaha','Piutang Dagang','Modal Pemilik'], ans:['Pendapatan Jasa', 'Beban Operasional (Gaji, Listrik, Perlengkapan)'] },
+    { id:23, type:'matching', q:'<strong>Studi Kasus (C6):</strong> Konstruksi dampak transaksi "Investasi tambahan pemilik berupa peralatan" terhadap laporan keuangan adalah...', options:['Neraca (Aset & Ekuitas bertambah), Perubahan Modal (Modal bertambah)','Neraca (Aset & Kewajiban bertambah), Laba Rugi (Pendapatan bertambah)','Neraca (Aset berkurang, Kewajiban berkurang)','Laba Rugi (Beban bertambah), Neraca (Aset berkurang)','Hanya mempengaruhi Laporan Arus Kas'], ans:'Neraca (Aset & Ekuitas bertambah), Perubahan Modal (Modal bertambah)' },
+    { id:24, type:'matching', q:'<strong>Studi Kasus (C6):</strong> Konstruksi akun yang tepat untuk transaksi: "Membayar asuransi untuk 2 tahun ke depan" adalah...', options:['Aset (Asuransi Dibayar Dimuka)','Beban (Beban Asuransi)','Kewajiban (Utang Asuransi)','Ekuitas (Prive)','Pendapatan (Pendapatan Asuransi)'], ans:'Aset (Asuransi Dibayar Dimuka)' },
+    { id:25, type:'mc', q:'<strong>Studi Kasus (C6):</strong> Perusahaan belum mencatat gaji karyawan yang masih harus dibayar sebesar Rp1.500.000 pada akhir periode. Jika Anda sebagai akuntan diminta menyusun ayat jurnal penyesuaian untuk menciptakan laporan yang wajar, jurnal yang Anda buat adalah...', options:['(D) Beban Gaji Rp1.500.000, (K) Utang Gaji Rp1.500.000','(D) Utang Gaji Rp1.500.000, (K) Kas Rp1.500.000','(D) Beban Gaji Rp1.500.000, (K) Kas Rp1.500.000','(D) Perlengkapan Rp1.500.000, (K) Utang Gaji Rp1.500.000','Tidak perlu dibuat jurnal, cukup dicatat di memo'], ans:'(D) Beban Gaji Rp1.500.000, (K) Utang Gaji Rp1.500.000' },
+    { id:26, type:'tf', q:'<strong>Studi Kasus (C6):</strong> Untuk menciptakan Laporan Arus Kas metode langsung, Anda harus mengonstruksi data dengan mengelompokkan penerimaan dan pembayaran kas ke dalam aktivitas operasi, investasi, dan pendanaan.', ans:'Benar' },
+    { id:27, type:'complex', q:'<strong>Studi Kasus (C6):</strong> Anda diminta merumuskan kebijakan akuntansi untuk perusahaan jasa baru. Kebijakan yang sesuai dengan prinsip akuntansi berterima umum untuk dicantumkan adalah... (Pilih DUA)', options:['Menggunakan basis akrual untuk pengakuan pendapatan dan beban','Menyusutkan aset tetap (kecuali tanah) selama umur ekonomisnya','Mencatat semua pembelian aset langsung sebagai beban','Mengabaikan transaksi kecil agar neraca seimbang','Mengakui pendapatan sebelum jasa diberikan'], ans:['Menggunakan basis akrual untuk pengakuan pendapatan dan beban', 'Menyusutkan aset tetap (kecuali tanah) selama umur ekonomisnya'] },
+    { id:28, type:'mc', q:'<strong>Studi Kasus (C6):</strong> Diketahui: Kas Rp10jt, Piutang Rp5jt, Perlengkapan Rp2jt, Peralatan Rp20jt, Utang Usaha Rp7jt, Utang Bank Rp10jt. Anda diminta mengonstruksi nilai Modal Awal jika diketahui Laba Bersih periode ini Rp4jt dan Prive Rp1jt.', options:['Rp15.000.000','Rp17.000.000','Rp20.000.000','Rp23.000.000','Rp24.000.000'], ans:'Rp17.000.000' },
+    { id:29, type:'mc', q:'<strong>Studi Kasus (C6):</strong> Pembelian perlengkapan secara kredit sebesar Rp1.000.000 salah dicatat sebagai pembayaran beban perlengkapan secara tunai. Konstruksi jurnal koreksi yang tepat untuk memulihkan kondisi akun adalah...', options:['(D) Perlengkapan 1.000.000, (D) Kas 1.000.000 / (K) Beban Perlengkapan 1.000.000, (K) Utang Usaha 1.000.000','(D) Perlengkapan 1.000.000, (K) Beban Perlengkapan 1.000.000','(D) Beban Perlengkapan 1.000.000, (K) Kas 1.000.000','(D) Utang Usaha 1.000.000, (K) Kas 1.000.000','(D) Kas 1.000.000, (K) Perlengkapan 1.000.000'], ans:'(D) Perlengkapan 1.000.000, (D) Kas 1.000.000 / (K) Beban Perlengkapan 1.000.000, (K) Utang Usaha 1.000.000' },
+    { id:30, type:'complex', q:'<strong>Studi Kasus (C6):</strong> Anda diminta menyusun ayat penutup (closing entries) untuk akun Pendapatan Jasa Rp10.000.000 dan Beban Gaji Rp4.000.000. Konstruksi jurnal penutup yang BENAR adalah... (Pilih DUA)', options:['(D) Pendapatan Jasa Rp10.000.000, (K) Ikhtisar Laba Rugi Rp10.000.000','(D) Ikhtisar Laba Rugi Rp4.000.000, (K) Beban Gaji Rp4.000.000','(D) Beban Gaji Rp4.000.000, (K) Kas Rp4.000.000','(D) Modal Rp6.000.000, (K) Ikhtisar Laba Rugi Rp6.000.000','(D) Ikhtisar Laba Rugi Rp10.000.000, (K) Pendapatan Jasa Rp10.000.000'], ans:['(D) Pendapatan Jasa Rp10.000.000, (K) Ikhtisar Laba Rugi Rp10.000.000', '(D) Ikhtisar Laba Rugi Rp4.000.000, (K) Beban Gaji Rp4.000.000'] }
+];
+
+// ==========================================
+// 2. VARIABEL GLOBAL & KEAMANAN
+// ==========================================
+let timeLeft = 40 * 60;
+let timerInterval;
+let violationCount = 0;
+let studentAnswers = {};
+let isSubmitted = false;
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')) {
+        e.preventDefault();
+        alert('Aksi diblokir demi keamanan ujian!');
+    }
+    if (e.key === 'F12' || e.key === 'PrintScreen') {
+        e.preventDefault();
+        triggerViolation('Mencoba membuka Developer Tool atau Screenshot');
+    }
+});
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden && !isSubmitted && document.getElementById('examSection').classList.contains('active')) {
+        triggerViolation('Meninggalkan tab ujian');
+    }
+});
+
+function triggerViolation(reason) {
+    violationCount++;
+    document.getElementById('violationCount').innerText = violationCount;
+    document.getElementById('securityOverlay').style.display = 'flex';
+    document.body.style.filter = 'blur(10px)';
+    if (violationCount >= 3) {
+        alert('Anda telah melakukan 3 pelanggaran. Ujian akan dikumpulkan secara otomatis!');
+        submitExam(true);
+    }
+}
+
+function returnToExam() {
+    document.getElementById('securityOverlay').style.display = 'none';
+    document.body.style.filter = 'none';
+    document.documentElement.requestFullscreen().catch(err => {});
+}
+
+// ==========================================
+// 3. LOGIKA UJIAN
+// ==========================================
+function startExam() {
+    const name = document.getElementById('studentName').value;
+    const cls = document.getElementById('studentClass').value;
+    const date = document.getElementById('examDate').value;
+
+    if (!name || !cls || !date) {
+        alert('Harap lengkapi semua data identitas!');
+        return;
+    }
+
+    document.getElementById('displayName').innerText = name;
+    document.getElementById('resName').innerText = name;
+    document.getElementById('resClass').innerText = cls;
+    document.getElementById('resDate').innerText = date;
+    document.getElementById('signName').innerText = name;
+    document.getElementById('signClass').innerText = cls;
+    
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+    document.getElementById('signDate').innerText = dateStr;
+
+    document.getElementById('loginSection').classList.remove('active');
+    document.getElementById('examSection').classList.add('active');
+
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+
+    renderQuestions();
+    startTimer();
+}
+
+function renderQuestions() {
+    const container = document.getElementById('questionsContainer');
+    let html = '';
+
+    questions.forEach((q, index) => {
+        let qHtml = `<div class="question-card" id="qcard-${q.id}">`;
+        qHtml += `<div class="q-header"><span>Soal No. ${index + 1}</span><span class="badge" style="background:var(--primary);color:white;padding:2px 8px;border-radius:4px;font-size:0.75rem;">${q.type.toUpperCase()}</span></div>`;
+        qHtml += `<div class="q-text">${q.q}</div>`;
+        qHtml += `<div class="options">`;
+
+        if (q.type === 'mc' || q.type === 'tf') {
+            let opts = q.type === 'tf' ? ['Benar', 'Salah'] : q.options;
+            opts.forEach(opt => {
+                qHtml += `<label onclick="selectOption(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
+                    <input type="radio" name="q${q.id}" value="${opt.replace(/'/g, "\\'")}"> ${opt}
+                </label>`;
+            });
+        } else if (q.type === 'complex') {
+            q.options.forEach(opt => {
+                qHtml += `<label onclick="toggleComplex(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
+                    <input type="checkbox" name="q${q.id}" value="${opt.replace(/'/g, "\\'")}"> ${opt}
+                </label>`;
+            });
+        } else if (q.type === 'matching') {
+            qHtml += `<select id="match-${q.id}" onchange="saveMatch(${q.id}, this.value)" style="width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;font-family:'Poppins',sans-serif;">
+                <option value="">-- Pilih Jawaban --</option>`;
+            q.options.forEach(opt => {
+                qHtml += `<option value="${opt.replace(/'/g, "\\'")}">${opt}</option>`;
+            });
+            qHtml += `</select>`;
+        }
+
+        qHtml += `</div></div>`;
+        html += qHtml;
+    });
+
+    container.innerHTML = html;
+}
+
+function selectOption(el, qId, value) {
+    const labels = el.parentElement.querySelectorAll('label');
+    labels.forEach(l => l.classList.remove('selected'));
+    el.classList.add('selected');
+    studentAnswers[qId] = value;
+}
+
+function toggleComplex(el, qId, value) {
+    if (!studentAnswers[qId]) studentAnswers[qId] = [];
+    if (el.classList.contains('selected')) {
+        el.classList.remove('selected');
+        studentAnswers[qId] = studentAnswers[qId].filter(v => v !== value);
+    } else {
+        el.classList.add('selected');
+        studentAnswers[qId].push(value);
+    }
+}
+
+function saveMatch(qId, value) {
+    studentAnswers[qId] = value;
+}
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        document.getElementById('timeDisplay').innerText = `${m}:${s}`;
+
+        if (timeLeft <= 300) {
+            document.getElementById('timerBox').classList.add('warning');
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert('Waktu Habis! Jawaban akan dikumpulkan otomatis.');
+            submitExam(true);
+        }
+    }, 1000);
+}
+
+function confirmSubmit() {
+    if (confirm('Yakin ingin mengumpulkan jawaban? Anda TIDAK DAPAT mengubah jawaban setelah ini, dan tombol unduh PDF akan aktif.')) {
+        submitExam(false);
+    }
+}
+
+function submitExam(auto = false) {
+    if (isSubmitted) return;
+    isSubmitted = true;
+    clearInterval(timerInterval);
+    
+    let correctCount = 0;
+    let wrongCount = 0;
+    let emptyCount = 0;
+    let rekapHtml = '';
+
+    questions.forEach((q, index) => {
+        let userAns = studentAnswers[q.id] || (q.type === 'complex' ? [] : 'Tidak dijawab');
+        let isCorrect = false;
+        let isEmpty = false;
+
+        if (q.type === 'complex') {
+            if (!userAns || userAns.length === 0) {
+                isEmpty = true;
+            }
+            let sortedUser = [...userAns].sort();
+            let sortedKey = [...q.ans].sort();
+            isCorrect = JSON.stringify(sortedUser) === JSON.stringify(sortedKey);
+        } else {
+            if (!userAns || userAns === 'Tidak dijawab') {
+                isEmpty = true;
+            }
+            isCorrect = userAns === q.ans;
+        }
+
+        if (isEmpty) emptyCount++;
+        else if (isCorrect) correctCount++;
+        else wrongCount++;
+
+        let statusClass = isCorrect ? 'correct' : 'wrong';
+        let statusText = isCorrect ? '✅ Benar' : (isEmpty ? '⚠️ Kosong' : '❌ Salah');
+        let displayUserAns = Array.isArray(userAns) ? userAns.join(', ') : userAns;
+        let displayKeyAns = Array.isArray(q.ans) ? q.ans.join(', ') : q.ans;
+
+        rekapHtml += `<tr>
+            <td>${index + 1}</td>
+            <td>${q.type.toUpperCase()}</td>
+            <td>${displayUserAns}</td>
+            <td>${displayKeyAns}</td>
+            <td class="${statusClass}">${statusText}</td>
+        </tr>`;
+    });
+
+    let finalScore = Math.round((correctCount / questions.length) * 100);
+    
+    // Analisis Hasil
+    let analysisText = '';
+    let gradeBadge = '';
+    let statusText = '';
+    
+    if (finalScore >= 85) {
+        analysisText = '🌟 <strong>Sangat Baik!</strong> Anda telah menguasai materi Siklus Akuntansi dengan sangat baik. Kemampuan analisis (C4), evaluasi (C5), dan konstruksi (C6) Anda luar biasa. Pertahankan prestasi ini!';
+        gradeBadge = 'GRADE: A (Sangat Baik)';
+        statusText = 'LULUS DENGAN PREDIKAT SANGAT BAIK';
+    } else if (finalScore >= 70) {
+        analysisText = '👍 <strong>Baik!</strong> Anda memahami konsep dasar dengan baik, namun masih perlu pendalaman pada beberapa aspek analisis dan evaluasi. Terus berlatih!';
+        gradeBadge = 'GRADE: B (Baik)';
+        statusText = 'LULUS';
+    } else if (finalScore >= 55) {
+        analysisText = '💪 <strong>Cukup.</strong> Anda memahami sebagian konsep, namun perlu remedial pada materi Persamaan Dasar Akuntansi dan penyusunan Laporan Keuangan. Diskusikan dengan guru!';
+        gradeBadge = 'GRADE: C (Cukup)';
+        statusText = 'LULUS DENGAN CATATAN';
+    } else {
+        analysisText = '📚 <strong>Perlu Remedial.</strong> Anda perlu mempelajari kembali materi Bab 1.E (Persamaan Dasar), Bab 1.F (Laporan Keuangan), dan Bab 1.G (Siklus Lengkap). Jangan menyerah, coba lagi!';
+        gradeBadge = 'GRADE: D (Perlu Remedial)';
+        statusText = 'TIDAK LULUS - PERLU REMEDIAL';
+    }
+
+    document.getElementById('analysisText').innerHTML = analysisText;
+    document.getElementById('gradeBadge').innerText = gradeBadge;
+    document.getElementById('resStatus').innerText = statusText;
+    document.getElementById('statBenar').innerText = correctCount;
+    document.getElementById('statSalah').innerText = wrongCount;
+    document.getElementById('statKosong').innerText = emptyCount;
+
+    document.getElementById('examSection').classList.remove('active');
+    document.getElementById('resultSection').classList.add('active');
+    document.getElementById('finalScore').innerText = finalScore;
+    document.getElementById('resTime').innerText = new Date().toLocaleString('id-ID');
+    document.getElementById('resViolations').innerText = violationCount;
+    document.getElementById('rekapBody').innerHTML = rekapHtml;
+
+    const dlBtn = document.getElementById('downloadBtn');
+    dlBtn.disabled = false;
+    document.getElementById('downloadMsg').innerHTML = '<i class="fas fa-unlock"></i> Unduh hasil ujian Anda sekarang.';
+    document.getElementById('downloadMsg').style.color = 'var(--success)';
+
+    if (auto) {
+        alert('Ujian dikumpulkan otomatis karena waktu habis atau pelanggaran.');
+    } else {
+        alert('Jawaban berhasil dikumpulkan! Silakan unduh hasil dalam format PDF.');
+    }
+}
+
+// ==========================================
+// 4. GENERATE PDF - OPTIMIZED
+// ==========================================
+function downloadPDF() {
+    const element = document.getElementById('pdfContent');
+    const name = document.getElementById('studentName').value || 'Siswa';
+    
+    const opt = {
+        margin:       [0.3, 0.3, 0.3, 0.3],
+        filename:     `Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    const btn = document.getElementById('downloadBtn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
+    btn.disabled = true;
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('File PDF berhasil diunduh!');
+    }).catch(err => {
+        console.error(err);
+        alert('Gagal membuat PDF. Pastikan browser Anda mendukung.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
+
+document.getElementById('examDate').valueAsDate = new Date();
+</script>
+</body>
+</html>
