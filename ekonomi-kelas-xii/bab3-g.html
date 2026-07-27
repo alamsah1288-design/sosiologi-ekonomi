@@ -21,7 +21,7 @@ header{background:linear-gradient(120deg,var(--primary),var(--secondary));color:
 .header-icon i{font-size:2.2rem;color:white}
 h1{font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
 .subtitle{opacity:.9;font-size:1rem}
-.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.container{max-width:1000px;margin:30px auto;padding:0 20px}
 .breadcrumb{margin-bottom:20px;font-size:.9rem;color:var(--gray)}
 .breadcrumb a{color:var(--primary);text-decoration:none}
 .card{background:white;border-radius:var(--border-radius);padding:30px;margin-bottom:25px;box-shadow:var(--shadow);border-left:5px solid var(--primary)}
@@ -32,39 +32,53 @@ body.dark-mode .card h3{color:var(--accent)}
 .card p{margin-bottom:12px;text-align:justify}
 .highlight-box{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--primary)}
 body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
-.example-box{background:#fef3c7;padding:20px;border-radius:10px;margin:15px 0;border-left:4px solid var(--warning)}
-body.dark-mode .example-box{background:rgba(251,191,36,.1)}
-.example-box::before{content:"💡 CONTOH NYATA";display:block;font-weight:700;color:#b45309;margin-bottom:8px;font-size:.85rem}
 ul,ol{margin:10px 0 15px 25px}
 li{margin-bottom:8px}
-.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin:15px 0}
-.act-item{background:white;padding:18px;border-radius:10px;border-top:4px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+
+/* Grid Aktivitas */
+.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:15px 0}
+.act-item{background:white;padding:20px;border-radius:10px;border-top:4px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.05);transition:.3s}
 body.dark-mode .act-item{background:#1e1e1e}
+.act-item:hover{transform:translateY(-3px)}
 .act-item i{font-size:2rem;color:var(--primary);margin-bottom:10px}
 .act-item h4{color:var(--primary);margin-bottom:8px}
-.act-item p{font-size:.9rem;margin:0}
+.act-item p{font-size:.9rem;margin:0;color:var(--gray)}
+body.dark-mode .act-item p{color:var(--gray)}
+
+/* Format Laporan */
+.report{background:white;padding:25px;border-radius:10px;margin:15px 0;border:2px solid var(--primary);font-family:'Courier New',monospace}
+.report .header{text-align:center;border-bottom:2px double var(--primary);padding-bottom:12px;margin-bottom:15px}
+.report .header strong{display:block;font-size:1.1rem;color:var(--primary);font-family:'Poppins',sans-serif}
+.report .header small{color:var(--gray);font-family:'Poppins',sans-serif}
+.report table{width:100%;border-collapse:collapse;font-size:.9rem}
+.report td{padding:6px 8px}
+.report td:last-child{text-align:right}
+.report .indent{padding-left:25px}
+.report .subtotal{border-top:1px solid #333;font-weight:700;background:rgba(67,97,238,0.05)}
+.report .total{border-top:2px solid #333;font-weight:700;font-size:1rem}
+.report .grand{background:var(--success);color:#064e3b;padding:12px;font-weight:700;text-align:center;margin-top:15px;border-radius:5px;font-family:'Poppins',sans-serif}
 
 /* ====== SIMULATOR STYLES ====== */
-.simulator{background:linear-gradient(135deg,#fc466b,#3f5efb);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(252,70,107,.3)}
+.simulator{background:linear-gradient(135deg,#4361ee,#3f37c9);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(67,97,238,.3)}
 .simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
-.simulator h3{color:#fef3c7!important;border-bottom:none}
-.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.sim-intro{background:rgba(255,255,255,.15);padding:15px;border-radius:10px;margin-bottom:20px;backdrop-filter:blur(10px);font-size:.95rem}
 .sim-question{background:rgba(255,255,255,.1);padding:20px;border-radius:10px;margin-bottom:15px;backdrop-filter:blur(10px)}
-.sim-question .q-text{font-size:1.05rem;margin-bottom:15px;font-weight:500}
+.sim-question .q-text{font-size:1.05rem;margin-bottom:15px;font-weight:500;line-height:1.5}
 .sim-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:600px){.sim-options{grid-template-columns:1fr}}
 .sim-option{background:rgba(255,255,255,.2);padding:12px;border-radius:8px;text-align:center;cursor:pointer;transition:.3s;border:2px solid transparent;font-weight:500}
 .sim-option:hover{background:rgba(255,255,255,.3);transform:translateY(-2px)}
 .sim-option.correct{background:var(--success);color:#064e3b;border-color:var(--success)}
 .sim-option.wrong{background:var(--danger);color:white;border-color:var(--danger)}
-.sim-btn{background:white;color:#3f5efb;padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
+.sim-btn{background:white;color:var(--primary);padding:12px 25px;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;font-size:.95rem;transition:.3s;margin-right:10px;margin-top:10px}
 .sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
 .sim-btn.reset{background:var(--danger);color:white}
 .sim-score{background:rgba(255,255,255,.2);padding:15px;border-radius:10px;margin-top:15px;text-align:center;font-size:1.1rem;font-weight:700}
-.sim-feedback{margin-top:10px;padding:10px;border-radius:8px;font-size:.9rem;display:none}
+.sim-feedback{margin-top:15px;padding:12px;border-radius:8px;font-size:.9rem;display:none;line-height:1.5}
 .sim-feedback.show{display:block}
-.sim-feedback.ok{background:rgba(74,222,128,.3)}
-.sim-feedback.no{background:rgba(248,113,113,.3)}
+.sim-feedback.ok{background:rgba(74,222,128,.2);border:1px solid var(--success)}
+.sim-feedback.no{background:rgba(248,113,113,.2);border:1px solid var(--danger)}
+
 .nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
 .nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
 .nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
@@ -93,42 +107,79 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 </div>
 
 <div class="card">
-<h2><i class="fas fa-money-bill-wave"></i> Pengertian Laporan Arus Kas</h2>
-<p><strong>Laporan Arus Kas (Cash Flow Statement)</strong> adalah laporan yang menyajikan <strong>aliran kas masuk dan kas keluar</strong> selama periode tertentu, dikelompokkan berdasarkan <strong>3 aktivitas</strong>.</p>
+<h2><i class="fas fa-link"></i> Kaitan dengan Bab Sebelumnya</h2>
+<p>Di Bab 3.F (Neraca), kita melihat saldo <strong>Kas</strong> perusahaan. Namun, Neraca hanya menunjukkan <em>posisi akhir</em>. Laporan Arus Kas menjawab pertanyaan: <strong>"Dari mana kas itu berasal, dan untuk apa kas itu digunakan selama periode ini?"</strong></p>
+</div>
 
+<div class="card">
+<h2><i class="fas fa-money-bill-wave"></i> Pengertian Laporan Arus Kas</h2>
+<p><strong>Laporan Arus Kas (Cash Flow Statement)</strong> adalah laporan keuangan yang menyajikan informasi tentang <strong>penerimaan (kas masuk)</strong> dan <strong>pengeluaran (kas keluar)</strong> tunai selama periode tertentu.</p>
 <div class="highlight-box">
-<strong>🎯 Tujuan:</strong><br>
-Menunjukkan dari mana kas <strong>berasal</strong> dan untuk apa kas <strong>digunakan</strong>.
+<strong>🎯 Tujuan Utama:</strong><br>
+Mengevaluasi kemampuan perusahaan dalam menghasilkan kas dan setara kas, serta kebutuhan perusahaan untuk menggunakan arus kas tersebut.
 </div>
 </div>
 
 <div class="card">
 <h2><i class="fas fa-layer-group"></i> 3 Aktivitas Arus Kas</h2>
+<p>Agar tidak ambigu, setiap transaksi kas <strong>wajib</strong> dikelompokkan ke dalam satu dari tiga aktivitas berikut:</p>
 
 <div class="act-grid">
 <div class="act-item">
 <i class="fas fa-cogs"></i>
 <h4>1. Aktivitas Operasi</h4>
-<p>Kas dari kegiatan <strong>utama</strong> perusahaan. Contoh: penerimaan dari pelanggan, pembayaran gaji, pembayaran beban.</p>
+<p>Kas yang berasal dari kegiatan <strong>utama/penghasil pendapatan</strong> perusahaan. <br><em>(Contoh: Terima kas dari pelanggan, bayar gaji, bayar beban listrik).</em></p>
 </div>
 <div class="act-item">
 <i class="fas fa-building"></i>
 <h4>2. Aktivitas Investasi</h4>
-<p>Kas dari pembelian/penjualan <strong>aset tetap</strong> & investasi jangka panjang. Contoh: beli peralatan, jual tanah.</p>
+<p>Kas yang berkaitan dengan pembelian atau penjualan <strong>aset tetap</strong> dan investasi jangka panjang. <br><em>(Contoh: Beli mesin cuci tunai, jual tanah).</em></p>
 </div>
 <div class="act-item">
 <i class="fas fa-hand-holding-usd"></i>
 <h4>3. Aktivitas Pendanaan</h4>
-<p>Kas dari <strong>modal pemilik</strong> & utang jangka panjang. Contoh: setoran modal, pinjaman bank, prive.</p>
+<p>Kas yang berkaitan dengan perubahan <strong>modal pemilik</strong> dan <strong>utang jangka panjang</strong>. <br><em>(Contoh: Setoran modal awal, ambil prive, pinjam bank).</em></p>
 </div>
 </div>
 </div>
 
 <div class="card">
-<h2><i class="fas fa-calculator"></i> Rumus Akhir</h2>
-<div class="highlight-box" style="text-align:center">
-<strong>KAS AKHIR PERIODE</strong> = Kas Awal + Kas Operasi + Kas Investasi + Kas Pendanaan
+<h2><i class="fas fa-file-alt"></i> Contoh Laporan Arus Kas (Metode Langsung)</h2>
+<p>Berikut adalah contoh sederhana bagaimana data dikelompokkan dalam laporan resmi:</p>
+
+<div class="report">
+<div class="header">
+<strong>LAUNDRY BERSIH</strong>
+<small>Laporan Arus Kas<br>Periode Januari 2025</small>
 </div>
+<table>
+<tr><td colspan="2"><strong>ARUS KAS DARI AKTIVITAS OPERASI</strong></td></tr>
+<tr><td class="indent">Penerimaan kas dari pelanggan</td><td>Rp 2.500.000</td></tr>
+<tr><td class="indent">Pembayaran kas kepada karyawan</td><td>(Rp 1.000.000)</td></tr>
+<tr><td class="indent">Pembayaran beban listrik & air</td><td>(Rp 300.000)</td></tr>
+<tr class="subtotal"><td><strong>Kas Bersih dari Operasi</strong></td><td><strong>Rp 1.200.000</strong></td></tr>
+
+<tr><td colspan="2" style="padding:10px 0"></td></tr>
+
+<tr><td colspan="2"><strong>ARUS KAS DARI AKTIVITAS INVESTASI</strong></td></tr>
+<tr><td class="indent">Pembelian peralatan laundry (tunai)</td><td>(Rp 2.000.000)</td></tr>
+<tr class="subtotal"><td><strong>Kas Bersih dari Investasi</strong></td><td><strong>(Rp 2.000.000)</strong></td></tr>
+
+<tr><td colspan="2" style="padding:10px 0"></td></tr>
+
+<tr><td colspan="2"><strong>ARUS KAS DARI AKTIVITAS PENDANAAN</strong></td></tr>
+<tr><td class="indent">Setoran modal awal oleh Tuan Andi</td><td>Rp 5.000.000</td></tr>
+<tr><td class="indent">Pengambilan prive (tunai)</td><td>(Rp 100.000)</td></tr>
+<tr class="subtotal"><td><strong>Kas Bersih dari Pendanaan</strong></td><td><strong>Rp 4.900.000</strong></td></tr>
+
+<tr><td colspan="2" style="padding:10px 0"></td></tr>
+
+<tr class="total"><td><strong>KENAIKAN BERSIH KAS</strong></td><td><strong>Rp 4.100.000</strong></td></tr>
+<tr><td class="indent">Saldo Kas Awal Periode</td><td>Rp 0</td></tr>
+<tr class="grand">SALDO KAS AKHIR PERIODE: Rp 4.100.000</td></tr>
+</table>
+</div>
+<p style="font-size:.85rem; color:var(--gray); margin-top:10px;"><i class="fas fa-info-circle"></i> <em>Angka ini akan masuk ke akun "Kas" di Laporan Posisi Keuangan (Neraca).</em></p>
 </div>
 
 <!-- ============ SIMULATOR ============ -->
@@ -136,7 +187,7 @@ Menunjukkan dari mana kas <strong>berasal</strong> dan untuk apa kas <strong>dig
 <h2><i class="fas fa-gamepad"></i> 🎮 SIMULATOR: Klasifikasi Arus Kas</h2>
 <div class="sim-intro">
 <strong>Uji Pemahamanmu!</strong> 🎯<br>
-Klik kategori yang <strong>tepat</strong> untuk setiap transaksi: <strong>Operasi</strong>, <strong>Investasi</strong>, atau <strong>Pendanaan</strong>. Yuk kita coba!
+Baca transaksi "Laundry Bersih" berikut, lalu klik kategori yang <strong>TEPAT</strong>: <strong>Operasi</strong>, <strong>Investasi</strong>, atau <strong>Pendanaan</strong>.
 </div>
 
 <div id="quizContainer"></div>
@@ -154,35 +205,72 @@ Klik kategori yang <strong>tepat</strong> untuk setiap transaksi: <strong>Operas
 <div class="card">
 <h2><i class="fas fa-star"></i> Kesimpulan</h2>
 <ul>
-<li>✅ Laporan Arus Kas = aliran kas masuk & keluar</li>
-<li>✅ 3 aktivitas: <strong>Operasi, Investasi, Pendanaan</strong></li>
-<li>✅ Kas Akhir = Kas Awal ± semua aktivitas</li>
-<li>✅ Latih pemahamanmu dengan <strong>simulator di atas</strong>!</li>
+<li>✅ Laporan Arus Kas menjelaskan <strong>pergerakan uang tunai</strong> (masuk dan keluar).</li>
+<li>✅ Setiap transaksi kas <strong>hanya masuk ke satu</strong> dari 3 kategori: Operasi, Investasi, atau Pendanaan.</li>
+<li>✅ <strong>Saldo Kas Akhir</strong> di laporan ini <strong>wajib sama</strong> dengan saldo Kas di Neraca (Bab 3.F).</li>
+<li>✅ Gunakan simulator di atas untuk melatih kepekaan mengklasifikasikan transaksi!</li>
 </ul>
 </div>
 
 <div class="nav-bab">
 <a href="bab3-f.html"><i class="fas fa-arrow-left"></i> Laporan Posisi Keuangan</a>
-<a href="../ekonomi-kelas-xii.html">Kembali ke Bab <i class="fas fa-arrow-right"></i></a>
+<a href="../ekonomi-kelas-xii.html">Kembali ke Beranda <i class="fas fa-arrow-right"></i></a>
 </div>
 </div>
 
 <footer><p>© 2025 <strong>SMAN 1 Cluring</strong></p></footer>
 
 <script>
+// Data soal dirancang spesifik dan tidak ambigu, terkait konteks Laundry Bersih
 const questions = [
-  {q:"Menerima kas dari pelanggan atas jasa laundry",a:"Operasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Membeli peralatan laundry tunai Rp 2.000.000",a:"Investasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Pemilik menyetor modal awal Rp 10.000.000",a:"Pendanaan",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Membayar gaji karyawan Rp 1.500.000",a:"Operasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Meminjam uang ke bank Rp 5.000.000",a:"Pendanaan",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Membayar beban listrik & air Rp 300.000",a:"Operasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Menjual peralatan bekas Rp 500.000",a:"Investasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Pemilik mengambil uang untuk pribadi Rp 200.000",a:"Pendanaan",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Membayar utang ke supplier Rp 400.000",a:"Operasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Membeli tanah untuk ekspansi usaha Rp 50.000.000",a:"Investasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Menerima pendapatan sewa dari sublet Rp 1.000.000",a:"Operasi",opts:["Operasi","Investasi","Pendanaan"]},
-  {q:"Melunasi pinjaman bank jangka panjang Rp 3.000.000",a:"Pendanaan",opts:["Operasi","Investasi","Pendanaan"]}
+  {
+    q: "Menerima uang tunai dari pelanggan atas jasa cuci setrika.",
+    a: "Operasi",
+    why: "Ini adalah kegiatan utama penghasil pendapatan bisnis laundry.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Membeli mesin cuci baru secara tunai untuk menambah kapasitas.",
+    a: "Investasi",
+    why: "Pembelian aset tetap (peralatan) jangka panjang termasuk aktivitas investasi.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Tuan Andi menyetorkan uang tunai pribadi sebagai tambahan modal usaha.",
+    a: "Pendanaan",
+    why: "Transaksi yang mengubah jumlah ekuitas/modal pemilik adalah aktivitas pendanaan.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Membayar gaji karyawan laundry bulan ini secara tunai.",
+    a: "Operasi",
+    why: "Pembayaran beban operasional sehari-hari termasuk arus kas keluar dari aktivitas operasi.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Tuan Andi mengambil uang kas perusahaan untuk keperluan liburan pribadi (Prive).",
+    a: "Pendanaan",
+    why: "Prive mengurangi modal pemilik, sehingga diklasifikasikan sebagai arus kas keluar dari aktivitas pendanaan.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Menjual peralatan laundry lama yang sudah rusak secara tunai.",
+    a: "Investasi",
+    why: "Pelepasan/penjualan aset tetap perusahaan termasuk arus kas masuk dari aktivitas investasi.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Membayar utang tunai kepada supplier deterjen.",
+    a: "Operasi",
+    why: "Pembayaran kepada pemasok untuk kebutuhan operasional harian adalah aktivitas operasi.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  },
+  {
+    q: "Menerima pinjaman tunai dari bank untuk ekspansi cabang.",
+    a: "Pendanaan",
+    why: "Penerimaan dana dari utang jangka panjang (bank) adalah sumber kas dari aktivitas pendanaan.",
+    opts: ["Operasi", "Investasi", "Pendanaan"]
+  }
 ];
 
 let current = 0, score = 0, answered = false, shuffled = [];
@@ -197,7 +285,7 @@ function shuffle(arr){
 }
 
 function initQuiz(){
-  shuffled = shuffle(questions).slice(0,8);
+  shuffled = shuffle(questions).slice(0, 6); // Ambil 6 soal acak setiap sesi
   current = 0; score = 0;
   document.getElementById('score').textContent = 0;
   document.getElementById('total').textContent = shuffled.length;
@@ -206,53 +294,70 @@ function initQuiz(){
 
 function showQuestion(){
   if(current >= shuffled.length){
+    const percentage = (score / shuffled.length) * 100;
+    let message = percentage >= 80 ? '🏆 Luar biasa! Kamu sudah sangat paham klasifikasi arus kas!' : 
+                  percentage >= 60 ? '👍 Bagus! Tingkatkan lagi pemahamanmu.' : 
+                  '💪 Jangan menyerah, pelajari lagi contoh laporan di atas dan coba lagi!';
+    
     document.getElementById('quizContainer').innerHTML = `
       <div class="sim-question" style="text-align:center">
-        <h3>🎉 Kuis Selesai!</h3>
-        <p style="font-size:1.3rem;margin:15px 0">Skor kamu: <strong>${score} / ${shuffled.length}</strong></p>
-        <p>${score>=7?'🏆 Luar biasa! Kamu paham klasifikasi arus kas!':score>=5?'👍 Bagus, terus berlatih!':'💪 Ayo coba lagi!'}</p>
+        <h3>🎉 Sesi Latihan Selesai!</h3>
+        <p style="font-size:1.4rem;margin:15px 0">Skor kamu: <strong>${score} / ${shuffled.length}</strong></p>
+        <p>${message}</p>
       </div>`;
     return;
   }
+  
   const q = shuffled[current];
   const opts = shuffle(q.opts);
   let html = `<div class="sim-question">
-    <div class="q-text">📌 Soal ${current+1}: "<strong>${q.q}</strong>" termasuk aktivitas apa?</div>
+    <div class="q-text">📌 <strong>Soal ${current+1}:</strong> "${q.q}"<br><small style="opacity:0.8">Termasuk aktivitas arus kas apa?</small></div>
     <div class="sim-options">`;
+  
   opts.forEach(o=>{
-    html+=`<div class="sim-option" onclick="selectAnswer(this,'${o}','${q.a}')">${o}</div>`;
+    html += `<div class="sim-option" onclick="selectAnswer(this, '${o}', '${q.a}', '${q.why}')">${o}</div>`;
   });
-  html+=`</div><div class="sim-feedback" id="feedback"></div></div>`;
+  
+  html += `</div><div class="sim-feedback" id="feedback"></div></div>`;
   document.getElementById('quizContainer').innerHTML = html;
   answered = false;
 }
 
-function selectAnswer(el,selected,correct){
+function selectAnswer(el, selected, correct, why){
   if(answered) return;
   answered = true;
   const feedback = document.getElementById('feedback');
+  
   document.querySelectorAll('.sim-option').forEach(o=>{
     if(o.textContent === correct) o.classList.add('correct');
     else if(o === el && selected !== correct) o.classList.add('wrong');
   });
+  
   if(selected === correct){
     score++;
     document.getElementById('score').textContent = score;
     feedback.className = 'sim-feedback show ok';
-    feedback.innerHTML = `✅ <strong>Benar!</strong> Transaksi ini termasuk aktivitas <strong>${correct}</strong>.`;
+    feedback.innerHTML = `✅ <strong>Benar!</strong><br>${why}`;
   } else {
     feedback.className = 'sim-feedback show no';
-    feedback.innerHTML = `❌ <strong>Kurang tepat.</strong> Seharusnya masuk aktivitas <strong>${correct}</strong>.`;
+    feedback.innerHTML = `❌ <strong>Kurang tepat.</strong><br>${why}`;
   }
 }
 
 function nextQuestion(){
-  if(!answered){alert('Pilih jawaban dulu ya! 😊');return}
+  if(!answered){
+    alert('Silakan pilih jawaban terlebih dahulu! 😊');
+    return;
+  }
   current++;
   showQuestion();
 }
 
-function resetQuiz(){initQuiz()}
+function resetQuiz(){
+  initQuiz();
+}
+
+// Mulai kuis saat halaman dimuat
 initQuiz();
 </script>
 </body>
