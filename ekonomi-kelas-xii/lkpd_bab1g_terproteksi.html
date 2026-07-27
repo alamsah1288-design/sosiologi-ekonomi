@@ -219,6 +219,13 @@
             background: var(--success);
             color: #064e3b;
         }
+        .btn-secondary {
+            background: var(--gray);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
         .btn-danger {
             background: var(--danger);
             color: white;
@@ -649,12 +656,15 @@
             </div>
         </div>
 
-        <!-- TOMBOL UNDUH -->
-        <div style="text-align:center; margin-top:20px;" class="no-print">
+        <!-- TOMBOL UNDUH + CETAK CEPAT -->
+        <div style="text-align:center; margin-top:20px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap;" class="no-print">
             <button class="btn btn-primary" id="downloadBtn" onclick="downloadPDF()" disabled>
                 <i class="fas fa-file-pdf"></i> Unduh Hasil (PDF)
             </button>
-            <p id="downloadMsg" style="color:var(--danger); font-size:0.85rem; margin-top:5px;">
+            <button class="btn btn-secondary" onclick="window.print()">
+                <i class="fas fa-print"></i> Cetak / Simpan sebagai PDF (Cepat)
+            </button>
+            <p id="downloadMsg" style="color:var(--danger); font-size:0.85rem; margin-top:5px; width:100%;">
                 <i class="fas fa-lock"></i> Tunggu waktu habis atau kumpulkan jawaban untuk membuka kunci unduh.
             </p>
         </div>
@@ -1122,76 +1132,47 @@
         }
 
         // ==========================================================
-        // 4. GENERATE PDF — MULTI-HALAMAN dengan html2canvas + jsPDF
+        // 4. GENERATE PDF — CEPAT DENGAN html2pdf.js
         // ==========================================================
-       function downloadPDF() {
-    const element = document.getElementById('pdfContent');
-    const name = document.getElementById('studentName').value || 'Siswa';
-    const btn = document.getElementById('downloadBtn');
-    const originalText = btn.innerHTML;
+        function downloadPDF() {
+            const element = document.getElementById('pdfContent');
+            const name = document.getElementById('studentName').value || 'Siswa';
+            const btn = document.getElementById('downloadBtn');
+            const originalText = btn.innerHTML;
 
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
-    btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
+            btn.disabled = true;
 
-    // Gunakan skala lebih rendah untuk kecepatan
-    html2canvas(element, {
-        scale: 1.2,
-        dpi: 150,
-        useCORS: true,
-        logging: false,
-        windowHeight: element.scrollHeight,
-        height: element.scrollHeight,
-        width: element.scrollWidth,
-        backgroundColor: '#ffffff'
-    }).then(canvas => {
-        const imgData = canvas.toDataURL('image/jpeg', 0.85); // kualitas cukup
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
+            // Konfigurasi ringan untuk kecepatan
+            const opt = {
+                margin: [0.3, 0.3, 0.3, 0.3],
+                filename: `Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.6 },
+                html2canvas: {
+                    scale: 0.8,
+                    dpi: 120,
+                    useCORS: true,
+                    logging: false,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight
+                },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
 
-        const pageWidth = 595.28;
-        const pageHeight = 841.89;
-        const margin = 20;
-        const contentWidth = pageWidth - 2 * margin;
-        const contentHeight = pageHeight - 2 * margin;
-
-        const ratio = contentWidth / imgWidth;
-        const scaledHeight = imgHeight * ratio;
-        const totalPages = Math.ceil(scaledHeight / contentHeight);
-
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'pt', 'a4');
-
-        for (let page = 0; page < totalPages; page++) {
-            if (page > 0) pdf.addPage();
-
-            const yOffset = page * contentHeight / ratio;
-            const srcH = Math.min(contentHeight / ratio, imgHeight - yOffset);
-
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = imgWidth;
-            tempCanvas.height = srcH;
-            const ctx = tempCanvas.getContext('2d');
-            ctx.drawImage(canvas, 0, yOffset, imgWidth, srcH, 0, 0, imgWidth, srcH);
-
-            const pageImgData = tempCanvas.toDataURL('image/jpeg', 0.85);
-            const imgWidthPt = contentWidth;
-            const imgHeightPt = srcH * ratio;
-
-            pdf.addImage(pageImgData, 'JPEG', margin, margin, imgWidthPt, imgHeightPt);
+            html2pdf().set(opt).from(element).save()
+                .then(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert('File PDF berhasil diunduh!');
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Gagal membuat PDF. Gunakan tombol "Cetak / Simpan sebagai PDF" sebagai alternatif.');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
         }
-
-        pdf.save(`Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`);
-
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        alert('File PDF berhasil diunduh!');
-    }).catch(err => {
-        console.error(err);
-        alert('Gagal membuat PDF. Coba lagi atau gunakan browser lain.');
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    });
-}
 
         // Set tanggal default
         document.getElementById('examDate').valueAsDate = new Date();
