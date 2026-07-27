@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LKPD Bab 1.G — Siklus Akuntansi Lengkap (Terproteksi)</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
-    </script>
+    <title>LKPD Bab 1.G — Persamaan Dasar & Laporan Keuangan (Terproteksi)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
@@ -137,15 +136,9 @@
             animation: pulse 1s infinite;
         }
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         /* ===== SOAL ===== */
@@ -207,38 +200,14 @@
             align-items: center;
             gap: 8px;
         }
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        .btn-primary:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-        .btn-success {
-            background: var(--success);
-            color: #064e3b;
-        }
-        .btn-secondary {
-            background: var(--gray);
-            color: white;
-        }
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--secondary); transform: translateY(-2px); }
+        .btn-success { background: var(--success); color: #064e3b; }
+        .btn-secondary { background: var(--gray); color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
-        /* ============================================
-                   HASIL & REKAP — KHUSUS PDF
-                   ============================================ */
+        /* ===== PDF CONTENT ===== */
         .pdf-content {
             background: white;
             padding: 20px 25px;
@@ -246,7 +215,6 @@
             margin: 0 auto;
             font-size: 0.82rem;
         }
-        /* ukuran lebih kecil agar muat di PDF */
         .pdf-content .result-header {
             text-align: center;
             padding: 20px 15px;
@@ -256,46 +224,14 @@
             margin-bottom: 18px;
             box-shadow: 0 6px 20px rgba(74, 222, 128, 0.25);
         }
-        .pdf-content .result-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        .pdf-content .result-header .score-display {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin: 8px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .pdf-content .result-header .score-label {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .pdf-content .card {
-            padding: 18px 20px;
-            margin-bottom: 16px;
-            border-left-width: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .pdf-content .card h3 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .pdf-content .identity-table {
-            width: 100%;
-            font-size: 0.85rem;
-        }
-        .pdf-content .identity-table td {
-            padding: 4px 5px;
-            vertical-align: top;
-        }
-        .pdf-content .identity-table td:first-child {
-            width: 140px;
-            font-weight: 600;
-            color: var(--gray);
-        }
-
+        .pdf-content .result-header h2 { font-size: 1.5rem; margin-bottom: 5px; }
+        .pdf-content .result-header .score-display { font-size: 3.2rem; font-weight: 800; margin: 8px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
+        .pdf-content .result-header .score-label { font-size: 1rem; font-weight: 600; }
+        .pdf-content .card { padding: 18px 20px; margin-bottom: 16px; border-left-width: 4px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+        .pdf-content .card h3 { font-size: 1rem; margin-bottom: 10px; }
+        .pdf-content .identity-table { width: 100%; font-size: 0.85rem; }
+        .pdf-content .identity-table td { padding: 4px 5px; vertical-align: top; }
+        .pdf-content .identity-table td:first-child { width: 140px; font-weight: 600; color: var(--gray); }
         .pdf-content .analysis-box {
             background: linear-gradient(135deg, #fef3c7, #fde68a);
             padding: 16px 18px;
@@ -304,14 +240,7 @@
             border-left: 4px solid var(--warning);
             font-size: 0.85rem;
         }
-        .pdf-content .analysis-box h3 {
-            font-size: 1rem;
-            color: #92400e;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .pdf-content .analysis-box h3 { font-size: 1rem; color: #92400e; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
         .pdf-content .analysis-box .grade {
             display: inline-block;
             background: #92400e;
@@ -322,173 +251,41 @@
             font-size: 0.8rem;
             margin-top: 6px;
         }
+        .pdf-content .rekap-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; table-layout: fixed; }
+        .pdf-content .rekap-table th, .pdf-content .rekap-table td { padding: 5px 4px; border: 1px solid #d1d5db; text-align: left; word-wrap: break-word; vertical-align: middle; }
+        .pdf-content .rekap-table th { background: var(--primary); color: white; font-weight: 600; text-align: center; font-size: 0.7rem; }
+        .pdf-content .rekap-table th:nth-child(1) { width: 5%; }
+        .pdf-content .rekap-table th:nth-child(2) { width: 10%; }
+        .pdf-content .rekap-table th:nth-child(3) { width: 32%; }
+        .pdf-content .rekap-table th:nth-child(4) { width: 32%; }
+        .pdf-content .rekap-table th:nth-child(5) { width: 11%; }
+        .pdf-content .rekap-table td:nth-child(1) { text-align: center; font-weight: 600; }
+        .pdf-content .rekap-table td:nth-child(2) { text-align: center; }
+        .pdf-content .rekap-table td:nth-child(5) { text-align: center; font-weight: 700; }
+        .pdf-content .rekap-table .correct { color: #16a34a; }
+        .pdf-content .rekap-table .wrong { color: #dc2626; }
+        .pdf-content .rekap-table tr:nth-child(even) { background: #f9fafb; }
+        .pdf-content .stats-row { display: flex; justify-content: space-around; text-align: center; margin-top: 14px; padding: 10px; background: #f0f4ff; border-radius: 8px; font-size: 0.8rem; }
+        .pdf-content .stats-row .num { font-size: 1.4rem; font-weight: 700; }
+        .pdf-content .stats-row .num.green { color: var(--success); }
+        .pdf-content .stats-row .num.red { color: var(--danger); }
+        .pdf-content .stats-row .num.gray { color: var(--gray); }
+        .pdf-content .signature-section { display: flex; justify-content: space-between; margin-top: 28px; padding: 10px 0; }
+        .pdf-content .signature-box { text-align: center; width: 45%; font-size: 0.8rem; }
+        .pdf-content .signature-line { border-bottom: 2px solid var(--dark); height: 50px; margin: 6px 0; }
+        .pdf-content .signature-name { font-weight: 700; margin-top: 4px; }
+        .pdf-content .signature-nip { font-size: 0.75rem; color: var(--gray); }
+        .pdf-content .pdf-footer { text-align: center; margin-top: 22px; padding-top: 14px; border-top: 2px solid var(--primary); font-size: 0.7rem; color: var(--gray); }
+        .page-break-inside-avoid { page-break-inside: avoid; }
 
-        /* Tabel rekap — KOMPAK */
-        .pdf-content .rekap-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.72rem;
-            table-layout: fixed;
-        }
-        .pdf-content .rekap-table th,
-        .pdf-content .rekap-table td {
-            padding: 5px 4px;
-            border: 1px solid #d1d5db;
-            text-align: left;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            vertical-align: middle;
-        }
-        .pdf-content .rekap-table th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.7rem;
-        }
-        .pdf-content .rekap-table th:nth-child(1) {
-            width: 5%;
-        }
-        .pdf-content .rekap-table th:nth-child(2) {
-            width: 10%;
-        }
-        .pdf-content .rekap-table th:nth-child(3) {
-            width: 32%;
-        }
-        .pdf-content .rekap-table th:nth-child(4) {
-            width: 32%;
-        }
-        .pdf-content .rekap-table th:nth-child(5) {
-            width: 11%;
-        }
-        .pdf-content .rekap-table td:nth-child(1) {
-            text-align: center;
-            font-weight: 600;
-        }
-        .pdf-content .rekap-table td:nth-child(2) {
-            text-align: center;
-        }
-        .pdf-content .rekap-table td:nth-child(5) {
-            text-align: center;
-            font-weight: 700;
-        }
-        .pdf-content .rekap-table .correct {
-            color: #16a34a;
-        }
-        .pdf-content .rekap-table .wrong {
-            color: #dc2626;
-        }
-        .pdf-content .rekap-table tr:nth-child(even) {
-            background: #f9fafb;
-        }
-
-        /* Statistik ringkas */
-        .pdf-content .stats-row {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin-top: 14px;
-            padding: 10px;
-            background: #f0f4ff;
-            border-radius: 8px;
-            font-size: 0.8rem;
-        }
-        .pdf-content .stats-row .num {
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        .pdf-content .stats-row .num.green {
-            color: var(--success);
-        }
-        .pdf-content .stats-row .num.red {
-            color: var(--danger);
-        }
-        .pdf-content .stats-row .num.gray {
-            color: var(--gray);
-        }
-
-        /* Tanda tangan */
-        .pdf-content .signature-section {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 28px;
-            padding: 10px 0;
-        }
-        .pdf-content .signature-box {
-            text-align: center;
-            width: 45%;
-            font-size: 0.8rem;
-        }
-        .pdf-content .signature-line {
-            border-bottom: 2px solid var(--dark);
-            height: 50px;
-            margin: 6px 0;
-        }
-        .pdf-content .signature-name {
-            font-weight: 700;
-            margin-top: 4px;
-        }
-        .pdf-content .signature-nip {
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        .pdf-content .pdf-footer {
-            text-align: center;
-            margin-top: 22px;
-            padding-top: 14px;
-            border-top: 2px solid var(--primary);
-            font-size: 0.7rem;
-            color: var(--gray);
-        }
-
-        /* ===== PAGE BREAK HINTS (untuk PDF multi-halaman) ===== */
-        .page-break-before {
-            page-break-before: always;
-        }
-        .page-break-after {
-            page-break-after: always;
-        }
-        .page-break-inside-avoid {
-            page-break-inside: avoid;
-        }
-
-        /* ===== PRINT ===== */
         @media print {
-            .no-print {
-                display: none !important;
-            }
-            body {
-                background: white;
-                color: black;
-            }
-            .pdf-content .card {
-                box-shadow: none;
-                border: 1px solid #ccc;
-            }
-            .pdf-content .result-header {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .pdf-content .rekap-table th {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .pdf-content .analysis-box {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .pdf-content .card { box-shadow: none; border: 1px solid #ccc; }
+            .pdf-content .result-header, .pdf-content .rekap-table th, .pdf-content .analysis-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--gray);
-            font-size: 0.85rem;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 40px;
-        }
+        footer { text-align: center; padding: 20px; color: var(--gray); font-size: 0.85rem; border-top: 1px solid #e5e7eb; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -509,7 +306,7 @@
             <div class="header-exam">
                 <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo" />
                 <h2>LKPD DIGITAL TERPROTEKSI</h2>
-                <p>Bab 1.G — Siklus Akuntansi Lengkap (Persamaan ke Laporan Keuangan)</p>
+                <p>Bab 1.G — Persamaan Dasar Akuntansi & Laporan Keuangan</p>
                 <p style="color:var(--danger); font-weight:600;"><i class="fas fa-shield-alt"></i> Mode Ujian: Anti-Copy, Anti-Tab Baru, Waktu 40 Menit</p>
             </div>
             <div class="form-group">
@@ -559,23 +356,19 @@
     <!-- ===== HALAMAN HASIL & REKAP (Target PDF) ===== -->
     <div class="container" id="resultSection">
         <div id="pdfContent" class="pdf-content">
-
-            <!-- HEADER SEKOLAH -->
             <div style="text-align:center; margin-bottom:16px; border-bottom:3px double var(--primary); padding-bottom:12px;">
                 <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo" style="width:60px;" />
                 <h2 style="color:var(--primary); margin:6px 0 2px 0; font-size:1.4rem;">SMAN 1 CLURING</h2>
                 <p style="font-size:0.8rem; color:var(--gray);">Jl. Raya Cluring, Banyuwangi, Jawa Timur</p>
             </div>
 
-            <!-- RESULT HEADER -->
             <div class="result-header">
                 <h2><i class="fas fa-check-circle"></i> UJIAN SELESAI</h2>
-                <p style="font-size:0.85rem;">Lembar Hasil Pengerjaan LKPD Bab 1.G — Siklus Akuntansi Lengkap</p>
+                <p style="font-size:0.85rem;">Lembar Hasil Pengerjaan LKPD Bab 1.G — Persamaan Dasar & Laporan Keuangan</p>
                 <div class="score-display"><span id="finalScore">0</span><span style="font-size:1.8rem;">/100</span></div>
                 <div class="score-label">Skor Akhir</div>
             </div>
 
-            <!-- IDENTITAS SISWA -->
             <div class="card">
                 <h3 style="color:var(--primary); margin-bottom:10px; font-size:1rem;"><i class="fas fa-user-graduate"></i> Identitas Siswa</h3>
                 <table class="identity-table">
@@ -588,14 +381,12 @@
                 </table>
             </div>
 
-            <!-- ANALISIS HASIL -->
             <div class="analysis-box" id="analysisBox">
                 <h3><i class="fas fa-chart-bar"></i> Analisis Hasil Pengerjaan</h3>
                 <p id="analysisText">-</p>
                 <span class="grade" id="gradeBadge">-</span>
             </div>
 
-            <!-- REKAPITULASI JAWABAN (30 SOAL) -->
             <div class="card page-break-inside-avoid">
                 <h3 style="color:var(--primary); margin-bottom:10px; font-size:1rem;"><i class="fas fa-list-ol"></i> Rekapitulasi Jawaban (30 Soal)</h3>
                 <div style="overflow-x:auto;">
@@ -612,25 +403,13 @@
                         <tbody id="rekapBody"></tbody>
                     </table>
                 </div>
-
-                <!-- STATISTIK -->
                 <div class="stats-row">
-                    <div>
-                        <div class="num green" id="statBenar">0</div>
-                        <div style="font-size:0.75rem; color:var(--gray);">Benar</div>
-                    </div>
-                    <div>
-                        <div class="num red" id="statSalah">0</div>
-                        <div style="font-size:0.75rem; color:var(--gray);">Salah</div>
-                    </div>
-                    <div>
-                        <div class="num gray" id="statKosong">0</div>
-                        <div style="font-size:0.75rem; color:var(--gray);">Tidak Dijawab</div>
-                    </div>
+                    <div><div class="num green" id="statBenar">0</div><div style="font-size:0.75rem; color:var(--gray);">Benar</div></div>
+                    <div><div class="num red" id="statSalah">0</div><div style="font-size:0.75rem; color:var(--gray);">Salah</div></div>
+                    <div><div class="num gray" id="statKosong">0</div><div style="font-size:0.75rem; color:var(--gray);">Tidak Dijawab</div></div>
                 </div>
             </div>
 
-            <!-- TANDA TANGAN -->
             <div class="signature-section">
                 <div class="signature-box">
                     <p style="font-weight:600;">Mengetahui,</p>
@@ -648,7 +427,6 @@
                 </div>
             </div>
 
-            <!-- FOOTER -->
             <div class="pdf-footer">
                 <p><strong>Dokumen ini dihasilkan secara otomatis oleh Sistem LKPD Digital SMAN 1 Cluring</strong></p>
                 <p>Dokumen ini sah dan valid sebagai bukti pengerjaan ujian. Dilarang memalsukan atau mengubah isi dokumen.</p>
@@ -656,7 +434,6 @@
             </div>
         </div>
 
-        <!-- TOMBOL UNDUH + CETAK CEPAT -->
         <div style="text-align:center; margin-top:20px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap;" class="no-print">
             <button class="btn btn-primary" id="downloadBtn" onclick="downloadPDF()" disabled>
                 <i class="fas fa-file-pdf"></i> Unduh Hasil (PDF)
@@ -674,189 +451,199 @@
         <p>© 2025 SMAN 1 Cluring | Dikembangkan untuk Pembelajaran Ekonomi Kelas XII</p>
     </footer>
 
-    <!-- ========================================================== -->
-    <!-- JAVASCRIPT                                                  -->
-    <!-- ========================================================== -->
     <script>
         // ==========================================
         // 1. DATA SOAL (30 SOAL HOTS: C4, C5, C6)
+        // FOKUS: Persamaan Dasar, Laporan Keuangan, Analisis (TANPA Jurnal/Penyesuaian)
         // ==========================================
         const questions = [
             // --- C4: MENGANALISIS (1-10) ---
-            { id: 1, type: 'mc', q: '<strong>Studi Kasus (C4):</strong> PT. Bersih Cemerlang mencatat pembelian perlengkapan Rp500.000 secara tunai. Namun, saat penyusunan neraca, akun Perlengkapan tidak berubah, sedangkan Kas berkurang Rp500.000 dan Beban Perlengkapan bertambah Rp500.000. Analisis dampak kesalahan ini terhadap Laporan Keuangan adalah...',
-                options: ['Laba Rugi: Laba understated, Neraca: Total Aset understated',
-                    'Laba Rugi: Laba overstated, Neraca: Total Aset overstated',
-                    'Laba Rugi: Tidak terdampak, Neraca: Total Aset benar',
-                    'Laba Rugi: Laba understated, Neraca: Total Utang understated',
-                    'Laba Rugi: Laba benar, Neraca: Komposisi Aset benar'
-                ], ans: 'Laba Rugi: Laba understated, Neraca: Total Aset understated' },
-            { id: 2, type: 'complex', q: '<strong>Studi Kasus (C4):</strong> Ditemukan selisih antara Total Debit dan Total Kredit di Neraca Saldo sebesar Rp1.000.000 (Sisi Debit lebih besar). Analisis penyebab yang MUNGKIN terjadi adalah... (Pilih DUA)',
-                options: ['Salah mencatat penambahan Kas sebagai pengurang (Kredit) padahal seharusnya Debit',
-                    'Lupa mencatat penambahan Utang Usaha sebesar Rp1.000.000',
-                    'Salah mencatat penambahan Modal sebagai Debit', 'Lupa mencatat pendapatan jasa secara tunai',
-                    'Mencatat pelunasan piutang sebagai penambahan Kas dua kali'
-                ], ans: ['Salah mencatat penambahan Kas sebagai pengurang (Kredit) padahal seharusnya Debit',
-                    'Lupa mencatat penambahan Utang Usaha sebesar Rp1.000.000'
-                ] },
-            { id: 3, type: 'matching', q: '<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi "Dibayar beban sewa tunai" terhadap persamaan akuntansi adalah...',
-                options: ['Harta berkurang, Modal berkurang', 'Harta tetap, Modal tetap',
-                    'Harta bertambah, Utang bertambah', 'Harta berkurang, Utang berkurang',
-                    'Harta tetap, Utang bertambah'
-                ], ans: 'Harta berkurang, Modal berkurang' },
-            { id: 4, type: 'matching', q: '<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi "Diterima pelunasan piutang dari pelanggan" terhadap total Harta adalah...',
-                options: ['Harta tetap (hanya mutasi antar akun aset)', 'Harta bertambah', 'Harta berkurang',
-                    'Modal bertambah', 'Utang berkurang'
-                ], ans: 'Harta tetap (hanya mutasi antar akun aset)' },
-            { id: 5, type: 'mc', q: '<strong>Studi Kasus (C4):</strong> Modal Awal PT. X adalah Rp10.000.000. Selama periode berjalan, terjadi Prive Rp1.000.000. Jika Modal Akhir dilaporkan sebesar Rp12.000.000, berapakah analisis nilai Laba Bersih yang seharusnya dicatat?',
-                options: ['Rp1.000.000', 'Rp2.000.000', 'Rp3.000.000', 'Rp4.000.000', 'Rp5.000.000'],
-                ans: 'Rp3.000.000' },
-            { id: 6, type: 'tf', q: '<strong>Studi Kasus (C4):</strong> Sebuah perusahaan jasa mencatat "Pendapatan Diterima Dimuka" sebagai Pendapatan saat uang diterima. Pada akhir periode, jasa belum sepenuhnya diberikan. Analisis: Jika tidak dilakukan penyesuaian, maka Laba Bersih akan overstated (tercatat lebih besar) dan Utang akan understated.',
-                ans: 'Benar' },
-            { id: 7, type: 'complex', q: '<strong>Studi Kasus (C4):</strong> Neraca PT. Y menunjukkan Total Aset Rp50.000.000 dan Total Utang Rp20.000.000. Analisis komponen yang pasti membentuk ekuitas/modal sebesar Rp30.000.000 tersebut adalah... (Pilih DUA)',
-                options: ['Modal Awal', 'Laba Bersih periode berjalan', 'Pendapatan Jasa', 'Beban Operasional',
-                    'Kas di Bank'
-                ], ans: ['Modal Awal', 'Laba Bersih periode berjalan'] },
-            { id: 8, type: 'mc', q: '<strong>Studi Kasus (C4):</strong> Transaksi "Dibeli peralatan secara kredit Rp5.000.000" salah dicatat sebagai "Dibeli peralatan secara tunai". Analisis kesalahan ini terhadap posisi keuangan adalah...',
-                options: [
-                    'Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated',
-                    'Total Aset salah, Total Utang benar', 'Total Aset dan Utang keduanya benar',
-                    'Modal Akhir menjadi lebih besar', 'Tidak ada dampak pada persamaan akuntansi'
-                ], ans: 'Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated' },
-            { id: 9, type: 'mc', q: '<strong>Studi Kasus (C4):</strong> Laporan Perubahan Modal menunjukkan angka negatif pada "Laba Ditahan" awal (defisit), namun Modal Akhir positif dan lebih besar dari Modal Awal. Analisis kondisi ini menunjukkan bahwa...',
-                options: [
-                    'Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive',
-                    'Perusahaan tidak memiliki utang sama sekali', 'Pemilik terus-menerus menyetor modal tanpa batas',
-                    'Perusahaan mengalami kerugian operasional yang masif',
-                    'Semua aset perusahaan telah dilikuidasi'
-                ], ans: 'Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive' },
-            { id: 10, type: 'tf', q: '<strong>Studi Kasus (C4):</strong> Jika sebuah transaksi dicatat dengan mendebit Beban dan mengkredit Kas, analisisnya adalah transaksi tersebut mengurangi ekuitas pemilik dan mengurangi aset lancar perusahaan.',
-                ans: 'Benar' },
+            { id: 1, type: 'mc', q: "<strong>Studi Kasus (C4):</strong> Transaksi pembelian perlengkapan tunai dicatat sebagai penambahan beban. Dampak terhadap persamaan akuntansi dan Laporan Laba Rugi adalah...",
+                options: ["Total Aset understated, Beban overstated, dan Laba understated",
+                    "Total Aset overstated, Beban understated, dan Laba overstated",
+                    "Total Aset tetap, Beban tetap, dan Laba tetap",
+                    "Total Kewajiban understated dan Modal overstated",
+                    "Hanya mempengaruhi Laporan Arus Kas"],
+                ans: "Total Aset understated, Beban overstated, dan Laba understated" },
+                
+            { id: 2, type: 'complex', q: "<strong>Studi Kasus (C4):</strong> Analisis penyebab ketidakseimbangan persamaan akuntansi: Total Aset tercatat Rp50.000.000, Total Kewajiban Rp20.000.000, dan Total Ekuitas Rp25.000.000. Penyebab yang MUNGKIN adalah... (Pilih DUA)",
+                options: ["Lupa mencatat penambahan Utang Usaha sebesar Rp5.000.000",
+                    "Mencatat pelunasan piutang sebagai penambahan Kas dua kali",
+                    "Salah mengklasifikasikan pembelian peralatan sebagai beban",
+                    "Mencatat pengambilan prive sebagai penambahan beban",
+                    "Lupa mencatat pengambilan prive oleh pemilik"],
+                ans: ["Lupa mencatat penambahan Utang Usaha sebesar Rp5.000.000", "Mencatat pelunasan piutang sebagai penambahan Kas dua kali"] },
+                
+            { id: 3, type: 'matching', q: "<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi 'Dibayar beban sewa tunai' terhadap persamaan akuntansi adalah...",
+                options: ["Harta berkurang, Modal berkurang", "Harta tetap, Modal tetap",
+                    "Harta bertambah, Utang bertambah", "Harta berkurang, Utang berkurang",
+                    "Harta tetap, Utang bertambah"],
+                ans: "Harta berkurang, Modal berkurang" },
+                
+            { id: 4, type: 'matching', q: "<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi 'Diterima pelunasan piutang dari pelanggan' terhadap total Harta adalah...",
+                options: ["Harta tetap (hanya mutasi antar akun aset)", "Harta bertambah", "Harta berkurang",
+                    "Modal bertambah", "Utang berkurang"],
+                ans: "Harta tetap (hanya mutasi antar akun aset)" },
+                
+            { id: 5, type: 'mc', q: "<strong>Studi Kasus (C4):</strong> Modal Awal PT. X adalah Rp10.000.000. Selama periode berjalan, terjadi Prive Rp1.000.000. Jika Modal Akhir dilaporkan sebesar Rp12.000.000, berapakah analisis nilai Laba Bersih yang seharusnya dicatat?",
+                options: ["Rp1.000.000", "Rp2.000.000", "Rp3.000.000", "Rp4.000.000", "Rp5.000.000"],
+                ans: "Rp3.000.000" },
+                
+            { id: 6, type: 'matching', q: "<strong>Studi Kasus (C4):</strong> Analisis dampak transaksi 'Menerima pendapatan jasa secara tunai' terhadap persamaan akuntansi adalah...",
+                options: ["Harta bertambah, Modal bertambah", "Harta bertambah, Utang bertambah",
+                    "Harta tetap, Modal bertambah", "Harta berkurang, Modal berkurang",
+                    "Harta tetap, Utang berkurang"],
+                ans: "Harta bertambah, Modal bertambah" },
+                
+            { id: 7, type: 'mc', q: "<strong>Studi Kasus (C4):</strong> Neraca PT. Y menunjukkan Total Aset Rp50.000.000 dan Total Utang Rp20.000.000. Analisis komponen yang membentuk ekuitas/modal sebesar Rp30.000.000 tersebut secara konseptual adalah...",
+                options: ["Selisih antara Total Aset dan Total Kewajiban", "Jumlah seluruh Pendapatan dikurangi Beban", 
+                    "Total Kas dan Total Piutang", "Jumlah Utang Usaha dan Utang Bank", "Total Beban Operasional"],
+                ans: "Selisih antara Total Aset dan Total Kewajiban" },
+                
+            { id: 8, type: 'mc', q: "<strong>Studi Kasus (C4):</strong> Transaksi 'Dibeli peralatan secara kredit Rp5.000.000' salah dicatat sebagai 'Dibeli peralatan secara tunai'. Analisis kesalahan ini terhadap posisi keuangan adalah...",
+                options: ["Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated",
+                    "Total Aset salah, Total Utang benar", "Total Aset dan Utang keduanya benar",
+                    "Modal Akhir menjadi lebih besar", "Tidak ada dampak pada persamaan akuntansi"],
+                ans: "Total Aset benar, tetapi Komposisi Aset salah (Kas understated) dan Utang understated" },
+                
+            { id: 9, type: 'mc', q: "<strong>Studi Kasus (C4):</strong> Laporan Perubahan Modal menunjukkan angka negatif pada 'Modal Awal' (defisit), namun Modal Akhir positif dan lebih besar dari Modal Awal. Analisis kondisi ini menunjukkan bahwa...",
+                options: ["Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive",
+                    "Perusahaan tidak memiliki utang sama sekali", "Pemilik terus-menerus menyetor modal tanpa batas",
+                    "Perusahaan mengalami kerugian operasional yang masif", "Semua aset perusahaan telah dilikuidasi"],
+                ans: "Perusahaan menghasilkan Laba Bersih periode ini yang sangat besar, melebihi defisit awal dan prive" },
+                
+            { id: 10, type: 'tf', q: "<strong>Studi Kasus (C4):</strong> Jika sebuah transaksi dicatat dengan mendebit Beban dan mengkredit Kas, analisisnya adalah transaksi tersebut mengurangi ekuitas pemilik dan mengurangi aset lancar perusahaan.",
+                ans: "Benar" },
 
             // --- C5: MENGEVALUASI (11-20) ---
-            { id: 11, type: 'mc', q: '<strong>Studi Kasus (C5):</strong> Manajer PT. Bersih Cemerlang ingin menunjukkan kinerja keuangan yang baik kepada investor. Ia mengusulkan untuk mencatat pembelian mesin laundry (umur ekonomis 5 tahun) langsung sebagai "Beban Operasional" tahun ini. Evaluasi usulan tersebut berdasarkan prinsip akuntansi adalah...',
-                options: [
-                    'Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material',
-                    'Dapat diterima, karena prinsip konservatisme mengizinkan pengakuan beban segera',
-                    'Dapat diterima, karena akan mengurangi beban pajak perusahaan tahun ini',
-                    'Tidak dapat diterima, hanya karena mesin laundry bukan aset berharga',
-                    'Dapat diterima, asalkan disetujui oleh pemilik perusahaan'
-                ], ans: 'Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material' },
-            { id: 12, type: 'complex', q: '<strong>Studi Kasus (C5):</strong> Evaluasi laporan keuangan berikut: Total Aset = Rp100jt, Utang = Rp40jt, Modal = Rp60jt. Pendapatan = Rp50jt, Beban = Rp20jt. Evaluasi pernyataan berikut yang VALID adalah... (Pilih DUA)',
-                options: [
-                    'Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat',
-                    'Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik',
-                    'Perusahaan mengalami kerugian bersih sebesar Rp30jt',
-                    'Total ekuitas lebih kecil dari total kewajiban, menunjukkan risiko kebangkrutan tinggi',
-                    'Pendapatan tidak cukup untuk menutupi beban operasional'
-                ], ans: ['Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat',
-                    'Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik'
-                ] },
-            { id: 13, type: 'matching', q: '<strong>Studi Kasus (C5):</strong> Evaluasi dampak kesalahan: "Lupa mencatat jurnal penyesuaian penyusutan peralatan" akan menyebabkan...',
-                options: ['Aset overstated dan Beban understated (Laba overstated)',
-                    'Aset understated dan Beban overstated', 'Utang overstated dan Modal understated',
-                    'Kas overstated dan Pendapatan understated', 'Tidak ada dampak pada laporan keuangan'
-                ], ans: 'Aset overstated dan Beban understated (Laba overstated)' },
-            { id: 14, type: 'matching', q: '<strong>Studi Kasus (C5):</strong> Evaluasi keputusan: "Pemilik mengambil prive besar-besaran saat perusahaan mengalami kerugian" akan menyebabkan...',
-                options: ['Memperparah defisit modal dan menggerus harta perusahaan', 'Meningkatkan likuiditas perusahaan',
-                    'Menstabilkan posisi ekuitas', 'Menambah nilai aset tetap', 'Tidak berdampak pada neraca'
-                ], ans: 'Memperparah defisit modal dan menggerus harta perusahaan' },
-            { id: 15, type: 'mc', q: '<strong>Studi Kasus (C5):</strong> Seorang akuntan junior menyusun Neraca dengan urutan: Tanah, Bangunan, Peralatan, Kas, Piutang. Evaluasi penyajian ini berdasarkan standar akuntansi yang berlaku umum (SAK) adalah...',
-                options: [
-                    'Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid',
-                    'Tepat, karena mengurutkan berdasarkan nilai moneter tertinggi',
-                    'Tepat, karena mengurutkan berdasarkan umur ekonomis terpanjang',
-                    'Tidak tepat, karena seharusnya diurutkan secara alfabetis',
-                    'Tepat, karena tanah adalah aset paling penting'
-                ], ans: 'Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid' },
-            { id: 16, type: 'tf', q: '<strong>Studi Kasus (C5):</strong> Dalam mengevaluasi Laporan Laba Rugi, jika Pendapatan Jasa lebih kecil dari Total Beban, maka evaluator harus menyimpulkan bahwa perusahaan mengalami defisit modal yang pasti dan langsung menyebabkan kebangkrutan.',
-                ans: 'Salah' },
-            { id: 17, type: 'complex', q: '<strong>Studi Kasus (C5):</strong> Perusahaan menerima uang muka dari pelanggan sebesar Rp5.000.000 untuk jasa yang akan dikerjakan bulan depan. Evaluasi perlakuan akuntansi yang BENAR adalah... (Pilih DUA)',
-                options: ['Mencatat sebagai "Pendapatan Diterima Dimuka" (Kewajiban/Utang)',
-                    'Tidak boleh langsung diakui sebagai "Pendapatan Jasa" karena prinsip pengakuan pendapatan belum terpenuhi',
-                    'Langsung mencatat sebagai Pendapatan Jasa untuk meningkatkan laba',
-                    'Mencatat sebagai pengurangan Beban Operasional', 'Mencatat sebagai penambahan Modal Pemilik'
-                ], ans: ['Mencatat sebagai "Pendapatan Diterima Dimuka" (Kewajiban/Utang)',
-                    'Tidak boleh langsung diakui sebagai "Pendapatan Jasa" karena prinsip pengakuan pendapatan belum terpenuhi'
-                ] },
-            { id: 18, type: 'mc', q: '<strong>Studi Kasus (C5):</strong> Ditemukan selisih Rp500.000 di Neraca Saldo. Manajer meminta akuntan untuk memaksakan angka agar seimbang dengan menambahkannya ke akun "Beban Lain-lain" tanpa investigasi. Evaluasi tindakan manajer ini adalah...',
-                options: [
-                    'Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi',
-                    'Sangat efisien, karena menghemat waktu pencarian kesalahan',
-                    'Dapat diterima, karena nominalnya relatif kecil (immaterial)',
-                    'Merupakan praktik standar dalam penyusunan laporan keuangan',
-                    'Diperbolehkan asalkan disetujui oleh pemilik'
-                ], ans: 'Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi' },
-            { id: 19, type: 'mc', q: '<strong>Studi Kasus (C5):</strong> Laporan Perubahan Modal PT. Z menunjukkan: Modal Awal Rp20jt, Laba Bersih Rp5jt, Prive Rp8jt, Modal Akhir Rp17jt. Evaluasi kebijakan pengambilan prive oleh pemilik adalah...',
-                options: [
-                    'Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal',
-                    'Sangat bijaksana, karena pemilik berhak atas seluruh laba',
-                    'Tepat, karena menjaga keseimbangan neraca',
-                    'Tidak relevan, karena prive tidak mempengaruhi modal',
-                    'Sangat baik, karena menunjukkan likuiditas perusahaan yang tinggi'
-                ], ans: 'Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal' },
-            { id: 20, type: 'tf', q: '<strong>Studi Kasus (C5):</strong> Seorang auditor mengevaluasi jurnal penyesuaian dan menemukan bahwa beban asuransi dibayar dimuka tidak disesuaikan. Auditor menyimpulkan bahwa aset akan overstated dan beban understated. Evaluasi kesimpulan auditor ini adalah benar.',
-                ans: 'Benar' },
+            { id: 11, type: 'mc', q: "<strong>Studi Kasus (C5):</strong> Manajer mengusulkan untuk mencatat pembelian mesin (umur ekonomis 5 tahun) langsung sebagai 'Beban Operasional' tahun ini. Evaluasi usulan tersebut berdasarkan prinsip akuntansi adalah...",
+                options: ["Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material",
+                    "Dapat diterima, karena prinsip konservatisme mengizinkan pengakuan beban segera",
+                    "Dapat diterima, karena akan mengurangi beban pajak perusahaan tahun ini",
+                    "Tidak dapat diterima, hanya karena mesin bukan aset berharga",
+                    "Dapat diterima, asalkan disetujui oleh pemilik perusahaan"],
+                ans: "Tidak dapat diterima, karena melanggar prinsip matching dan akan membuat laba tahun ini understated secara material" },
+                
+            { id: 12, type: 'complex', q: "<strong>Studi Kasus (C5):</strong> Evaluasi laporan keuangan berikut: Total Aset = Rp100jt, Utang = Rp40jt, Modal = Rp60jt. Pendapatan = Rp50jt, Beban = Rp20jt. Evaluasi pernyataan berikut yang VALID adalah... (Pilih DUA)",
+                options: ["Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat",
+                    "Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik",
+                    "Perusahaan mengalami kerugian bersih sebesar Rp30jt",
+                    "Total ekuitas lebih kecil dari total kewajiban, menunjukkan risiko kebangkrutan tinggi",
+                    "Pendapatan tidak cukup untuk menutupi beban operasional"],
+                ans: ["Rasio utang terhadap ekuitas (DER) adalah 0,67, menunjukkan struktur modal yang relatif sehat", "Margin laba bersih adalah 60%, menunjukkan efisiensi operasional yang baik"] },
+                
+            { id: 13, type: 'matching', q: "<strong>Studi Kasus (C5):</strong> Evaluasi dampak kesalahan: 'Mencatat pembayaran utang usaha sebagai penambahan beban' akan menyebabkan...",
+                options: ["Aset berkurang benar, namun Utang tidak berkurang sehingga Beban overstated dan Laba understated",
+                    "Aset overstated dan Utang understated", "Tidak ada dampak pada Laporan Laba Rugi",
+                    "Modal bertambah dan Kas bertambah", "Hanya mempengaruhi Laporan Arus Kas"],
+                ans: "Aset berkurang benar, namun Utang tidak berkurang sehingga Beban overstated dan Laba understated" },
+                
+            { id: 14, type: 'matching', q: "<strong>Studi Kasus (C5):</strong> Evaluasi keputusan: 'Pemilik mengambil prive besar-besaran saat perusahaan mengalami kerugian' akan menyebabkan...",
+                options: ["Memperparah defisit modal dan menggerus harta perusahaan", "Meningkatkan likuiditas perusahaan",
+                    "Menstabilkan posisi ekuitas", "Menambah nilai aset tetap", "Tidak berdampak pada neraca"],
+                ans: "Memperparah defisit modal dan menggerus harta perusahaan" },
+                
+            { id: 15, type: 'mc', q: "<strong>Studi Kasus (C5):</strong> Seorang akuntan junior menyusun Neraca dengan urutan: Tanah, Bangunan, Peralatan, Kas, Piutang. Evaluasi penyajian ini berdasarkan standar akuntansi adalah...",
+                options: ["Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid",
+                    "Tepat, karena mengurutkan berdasarkan nilai moneter tertinggi",
+                    "Tepat, karena mengurutkan berdasarkan umur ekonomis terpanjang",
+                    "Tidak tepat, karena seharusnya diurutkan secara alfabetis",
+                    "Tepat, karena tanah adalah aset paling penting"],
+                ans: "Tidak tepat, karena melanggar prinsip likuiditas. Aset harus diurutkan dari yang paling likuid (Kas) hingga yang paling tidak likuid" },
+                
+            { id: 16, type: 'tf', q: "<strong>Studi Kasus (C5):</strong> Dalam mengevaluasi Laporan Laba Rugi, jika Pendapatan Jasa lebih kecil dari Total Beban, maka evaluator harus menyimpulkan bahwa perusahaan mengalami defisit modal yang pasti dan langsung menyebabkan kebangkrutan.",
+                ans: "Salah" },
+                
+            { id: 17, type: 'matching', q: "<strong>Studi Kasus (C5):</strong> Perusahaan menerima uang muka dari pelanggan sebesar Rp5.000.000 untuk jasa yang akan dikerjakan bulan depan. Evaluasi perlakuan akuntansi yang BENAR adalah...",
+                options: ["Mencatat sebagai Pendapatan Diterima Dimuka (Kewajiban), bukan sebagai Pendapatan Jasa",
+                    "Langsung diakui sebagai Pendapatan Jasa", "Mencatat sebagai pengurangan Beban Operasional",
+                    "Mencatat sebagai penambahan Modal Pemilik", "Tidak perlu dicatat sampai jasa diberikan"],
+                ans: "Mencatat sebagai Pendapatan Diterima Dimuka (Kewajiban), bukan sebagai Pendapatan Jasa" },
+                
+            { id: 18, type: 'mc', q: "<strong>Studi Kasus (C5):</strong> Ditemukan ketidaksesuaian antara Total Aset dan Total Kewajiban+Ekuitas di Neraca. Manajer meminta menambahkan selisih ke akun 'Beban Lain-lain' tanpa investigasi. Evaluasi tindakan manajer ini adalah...",
+                options: ["Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi",
+                    "Sangat efisien, karena menghemat waktu pencarian kesalahan",
+                    "Dapat diterima, karena nominalnya relatif kecil (immaterial)",
+                    "Merupakan praktik standar dalam penyusunan laporan keuangan",
+                    "Diperbolehkan asalkan disetujui oleh pemilik"],
+                ans: "Tidak etis dan melanggar prinsip keandalan, karena menyembunyikan kesalahan dan mendistorsi laporan laba rugi" },
+                
+            { id: 19, type: 'mc', q: "<strong>Studi Kasus (C5):</strong> Laporan Perubahan Modal PT. Z menunjukkan: Modal Awal Rp20jt, Laba Bersih Rp5jt, Prive Rp8jt, Modal Akhir Rp17jt. Evaluasi kebijakan pengambilan prive oleh pemilik adalah...",
+                options: ["Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal",
+                    "Sangat bijaksana, karena pemilik berhak atas seluruh laba",
+                    "Tepat, karena menjaga keseimbangan neraca",
+                    "Tidak relevan, karena prive tidak mempengaruhi modal",
+                    "Sangat baik, karena menunjukkan likuiditas perusahaan yang tinggi"],
+                ans: "Tidak bijaksana, karena pengambilan prive (Rp8jt) melebihi laba yang dihasilkan (Rp5jt), sehingga menggerus modal awal" },
+                
+            { id: 20, type: 'tf', q: "<strong>Studi Kasus (C5):</strong> Seorang analis melihat Beban sangat tinggi dan Pendapatan rendah, namun perusahaan tetap memiliki Kas yang besar karena adanya investasi pemilik baru. Evaluasi kesimpulan bahwa perusahaan 'pasti bangkrut' adalah salah, karena likuiditas perusahaan masih terjaga akibat suntikan modal.",
+                ans: "Benar" },
 
             // --- C6: MENCIPTA/MENGONSTRUKSI (21-30) ---
-            { id: 21, type: 'mc', q: '<strong>Studi Kasus (C6):</strong> Anda diminta menyusun jurnal penyesuaian untuk perlengkapan. Data: Saldo awal Perlengkapan Rp2.000.000, pembelian selama periode Rp1.000.000, hasil inventarisasi fisik sisa perlengkapan Rp500.000. Konstruksi jurnal penyesuaian yang tepat adalah...',
-                options: ['(D) Beban Perlengkapan Rp2.500.000, (K) Perlengkapan Rp2.500.000',
-                    '(D) Perlengkapan Rp500.000, (K) Beban Perlengkapan Rp500.000',
-                    '(D) Beban Perlengkapan Rp1.000.000, (K) Perlengkapan Rp1.000.000',
-                    '(D) Perlengkapan Rp2.500.000, (K) Kas Rp2.500.000',
-                    '(D) Beban Perlengkapan Rp500.000, (K) Utang Usaha Rp500.000'
-                ], ans: '(D) Beban Perlengkapan Rp2.500.000, (K) Perlengkapan Rp2.500.000' },
-            { id: 22, type: 'complex', q: '<strong>Studi Kasus (C6):</strong> Anda diminta merancang struktur Laporan Laba Rugi yang sederhana untuk jasa laundry. Komponen yang HARUS ada dalam konstruksi laporan tersebut adalah... (Pilih DUA)',
-                options: ['Pendapatan Jasa', 'Beban Operasional (Gaji, Listrik, Perlengkapan)', 'Utang Usaha',
-                    'Piutang Dagang', 'Modal Pemilik'
-                ], ans: ['Pendapatan Jasa', 'Beban Operasional (Gaji, Listrik, Perlengkapan)'] },
-            { id: 23, type: 'matching', q: '<strong>Studi Kasus (C6):</strong> Konstruksi dampak transaksi "Investasi tambahan pemilik berupa peralatan" terhadap laporan keuangan adalah...',
-                options: ['Neraca (Aset & Ekuitas bertambah), Perubahan Modal (Modal bertambah)',
-                    'Neraca (Aset & Kewajiban bertambah), Laba Rugi (Pendapatan bertambah)',
-                    'Neraca (Aset berkurang, Kewajiban berkurang)', 'Laba Rugi (Beban bertambah), Neraca (Aset berkurang)',
-                    'Hanya mempengaruhi Laporan Arus Kas'
-                ], ans: 'Neraca (Aset & Ekuitas bertambah), Perubahan Modal (Modal bertambah)' },
-            { id: 24, type: 'matching', q: '<strong>Studi Kasus (C6):</strong> Konstruksi akun yang tepat untuk transaksi: "Membayar asuransi untuk 2 tahun ke depan" adalah...',
-                options: ['Aset (Asuransi Dibayar Dimuka)', 'Beban (Beban Asuransi)', 'Kewajiban (Utang Asuransi)',
-                    'Ekuitas (Prive)', 'Pendapatan (Pendapatan Asuransi)'
-                ], ans: 'Aset (Asuransi Dibayar Dimuka)' },
-            { id: 25, type: 'mc', q: '<strong>Studi Kasus (C6):</strong> Perusahaan belum mencatat gaji karyawan yang masih harus dibayar sebesar Rp1.500.000 pada akhir periode. Jika Anda sebagai akuntan diminta menyusun ayat jurnal penyesuaian untuk menciptakan laporan yang wajar, jurnal yang Anda buat adalah...',
-                options: ['(D) Beban Gaji Rp1.500.000, (K) Utang Gaji Rp1.500.000',
-                    '(D) Utang Gaji Rp1.500.000, (K) Kas Rp1.500.000',
-                    '(D) Beban Gaji Rp1.500.000, (K) Kas Rp1.500.000',
-                    '(D) Perlengkapan Rp1.500.000, (K) Utang Gaji Rp1.500.000',
-                    'Tidak perlu dibuat jurnal, cukup dicatat di memo'
-                ], ans: '(D) Beban Gaji Rp1.500.000, (K) Utang Gaji Rp1.500.000' },
-            { id: 26, type: 'tf', q: '<strong>Studi Kasus (C6):</strong> Untuk menciptakan Laporan Arus Kas metode langsung, Anda harus mengonstruksi data dengan mengelompokkan penerimaan dan pembayaran kas ke dalam aktivitas operasi, investasi, dan pendanaan.',
-                ans: 'Benar' },
-            { id: 27, type: 'complex', q: '<strong>Studi Kasus (C6):</strong> Anda diminta merumuskan kebijakan akuntansi untuk perusahaan jasa baru. Kebijakan yang sesuai dengan prinsip akuntansi berterima umum untuk dicantumkan adalah... (Pilih DUA)',
-                options: ['Menggunakan basis akrual untuk pengakuan pendapatan dan beban',
-                    'Menyusutkan aset tetap (kecuali tanah) selama umur ekonomisnya',
-                    'Mencatat semua pembelian aset langsung sebagai beban',
-                    'Mengabaikan transaksi kecil agar neraca seimbang',
-                    'Mengakui pendapatan sebelum jasa diberikan'
-                ], ans: ['Menggunakan basis akrual untuk pengakuan pendapatan dan beban',
-                    'Menyusutkan aset tetap (kecuali tanah) selama umur ekonomisnya'
-                ] },
-            { id: 28, type: 'mc', q: '<strong>Studi Kasus (C6):</strong> Diketahui: Kas Rp10jt, Piutang Rp5jt, Perlengkapan Rp2jt, Peralatan Rp20jt, Utang Usaha Rp7jt, Utang Bank Rp10jt. Anda diminta mengonstruksi nilai Modal Awal jika diketahui Laba Bersih periode ini Rp4jt dan Prive Rp1jt.',
-                options: ['Rp15.000.000', 'Rp17.000.000', 'Rp20.000.000', 'Rp23.000.000', 'Rp24.000.000'],
-                ans: 'Rp17.000.000' },
-            { id: 29, type: 'mc', q: '<strong>Studi Kasus (C6):</strong> Pembelian perlengkapan secara kredit sebesar Rp1.000.000 salah dicatat sebagai pembayaran beban perlengkapan secara tunai. Konstruksi jurnal koreksi yang tepat untuk memulihkan kondisi akun adalah...',
-                options: [
-                    '(D) Perlengkapan 1.000.000, (D) Kas 1.000.000 / (K) Beban Perlengkapan 1.000.000, (K) Utang Usaha 1.000.000',
-                    '(D) Perlengkapan 1.000.000, (K) Beban Perlengkapan 1.000.000',
-                    '(D) Beban Perlengkapan 1.000.000, (K) Kas 1.000.000',
-                    '(D) Utang Usaha 1.000.000, (K) Kas 1.000.000',
-                    '(D) Kas 1.000.000, (K) Perlengkapan 1.000.000'
-                ], ans: '(D) Perlengkapan 1.000.000, (D) Kas 1.000.000 / (K) Beban Perlengkapan 1.000.000, (K) Utang Usaha 1.000.000' },
-            { id: 30, type: 'complex', q: '<strong>Studi Kasus (C6):</strong> Anda diminta menyusun ayat penutup (closing entries) untuk akun Pendapatan Jasa Rp10.000.000 dan Beban Gaji Rp4.000.000. Konstruksi jurnal penutup yang BENAR adalah... (Pilih DUA)',
-                options: ['(D) Pendapatan Jasa Rp10.000.000, (K) Ikhtisar Laba Rugi Rp10.000.000',
-                    '(D) Ikhtisar Laba Rugi Rp4.000.000, (K) Beban Gaji Rp4.000.000',
-                    '(D) Beban Gaji Rp4.000.000, (K) Kas Rp4.000.000',
-                    '(D) Modal Rp6.000.000, (K) Ikhtisar Laba Rugi Rp6.000.000',
-                    '(D) Ikhtisar Laba Rugi Rp10.000.000, (K) Pendapatan Jasa Rp10.000.000'
-                ], ans: ['(D) Pendapatan Jasa Rp10.000.000, (K) Ikhtisar Laba Rugi Rp10.000.000',
-                    '(D) Ikhtisar Laba Rugi Rp4.000.000, (K) Beban Gaji Rp4.000.000'
-                ] }
+            { id: 21, type: 'mc', q: "<strong>Studi Kasus (C6):</strong> Anda diminta menganalisis transaksi: 'Pemilik menyetorkan uang pribadi ke kas perusahaan sebesar Rp5.000.000 sebagai tambahan modal'. Konstruksi dampak transaksi ini terhadap persamaan akuntansi adalah...",
+                options: ["Total Aset bertambah dan Total Ekuitas bertambah",
+                    "Total Aset bertambah dan Total Kewajiban bertambah",
+                    "Total Aset tetap dan Total Ekuitas bertambah",
+                    "Total Aset berkurang dan Total Ekuitas berkurang",
+                    "Hanya mempengaruhi Laporan Arus Kas"],
+                ans: "Total Aset bertambah dan Total Ekuitas bertambah" },
+                
+            { id: 22, type: 'complex', q: "<strong>Studi Kasus (C6):</strong> Anda diminta merancang struktur Laporan Laba Rugi yang sederhana untuk perusahaan jasa. Komponen yang HARUS ada dalam konstruksi laporan tersebut adalah... (Pilih DUA)",
+                options: ["Pendapatan Jasa", "Beban Operasional (Gaji, Listrik, Perlengkapan)", "Utang Usaha",
+                    "Piutang Dagang", "Modal Pemilik"],
+                ans: ["Pendapatan Jasa", "Beban Operasional (Gaji, Listrik, Perlengkapan)"] },
+                
+            { id: 23, type: 'matching', q: "<strong>Studi Kasus (C6):</strong> Konstruksi dampak transaksi 'Investasi tambahan pemilik berupa peralatan' terhadap laporan keuangan adalah...",
+                options: ["Neraca (Aset & Ekuitas bertambah), Laporan Perubahan Modal (Modal bertambah)",
+                    "Neraca (Aset & Kewajiban bertambah), Laba Rugi (Pendapatan bertambah)",
+                    "Neraca (Aset berkurang, Kewajiban berkurang)", "Laba Rugi (Beban bertambah), Neraca (Aset berkurang)",
+                    "Hanya mempengaruhi Laporan Arus Kas"],
+                ans: "Neraca (Aset & Ekuitas bertambah), Laporan Perubahan Modal (Modal bertambah)" },
+                
+            { id: 24, type: 'matching', q: "<strong>Studi Kasus (C6):</strong> Konstruksi dampak transaksi 'Membeli perlengkapan secara kredit' terhadap persamaan akuntansi adalah...",
+                options: ["Total Aset bertambah dan Total Kewajiban bertambah", "Total Aset bertambah dan Total Ekuitas bertambah",
+                    "Total Aset berkurang dan Total Kewajiban berkurang", "Total Aset tetap dan Total Kewajiban bertambah",
+                    "Total Ekuitas bertambah dan Total Kewajiban berkurang"],
+                ans: "Total Aset bertambah dan Total Kewajiban bertambah" },
+                
+            { id: 25, type: 'mc', q: "<strong>Studi Kasus (C6):</strong> Anda diminta menyusun Laporan Perubahan Modal. Data: Modal Awal Rp10.000.000, Laba Bersih Rp3.000.000, Prive Rp1.000.000. Konstruksi perhitungan Modal Akhir yang tepat adalah...",
+                options: ["Rp10.000.000 + Rp3.000.000 - Rp1.000.000 = Rp12.000.000",
+                    "Rp10.000.000 - Rp3.000.000 + Rp1.000.000 = Rp8.000.000",
+                    "Rp10.000.000 + Rp3.000.000 + Rp1.000.000 = Rp14.000.000",
+                    "Rp10.000.000 - Rp3.000.000 - Rp1.000.000 = Rp6.000.000",
+                    "Rp10.000.000 saja, karena laba dan prive tidak mempengaruhi modal"],
+                ans: "Rp10.000.000 + Rp3.000.000 - Rp1.000.000 = Rp12.000.000" },
+                
+            { id: 26, type: 'tf', q: "<strong>Studi Kasus (C6):</strong> Untuk menciptakan Laporan Laba Rugi yang wajar, Anda harus mengonstruksi data dengan memisahkan secara jelas antara Pendapatan dan Beban operasional.",
+                ans: "Benar" },
+                
+            { id: 27, type: 'matching', q: "<strong>Studi Kasus (C6):</strong> Anda diminta merumuskan format penyajian Neraca yang baik untuk perusahaan jasa. Kebijakan penyajian yang sesuai dengan prinsip akuntansi adalah...",
+                options: ["Mengurutkan aset berdasarkan tingkat likuiditas (dari yang paling cair ke yang paling tidak cair)",
+                    "Mengurutkan aset berdasarkan nilai moneter tertinggi",
+                    "Mengurutkan aset berdasarkan umur ekonomis terpanjang",
+                    "Mengurutkan aset secara alfabetis",
+                    "Mengelompokkan aset berdasarkan warna"],
+                ans: "Mengurutkan aset berdasarkan tingkat likuiditas (dari yang paling cair ke yang paling tidak cair)" },
+                
+            { id: 28, type: 'mc', q: "<strong>Studi Kasus (C6):</strong> Diketahui: Kas Rp10jt, Piutang Rp5jt, Perlengkapan Rp2jt, Peralatan Rp20jt, Utang Usaha Rp7jt, Utang Bank Rp10jt. Jika Laba Bersih periode ini Rp4jt dan Prive Rp1jt, konstruksilah nilai Modal Awal!",
+                options: ["Rp15.000.000", "Rp17.000.000", "Rp20.000.000", "Rp23.000.000", "Rp24.000.000"],
+                ans: "Rp17.000.000" },
+                
+            { id: 29, type: 'mc', q: "<strong>Studi Kasus (C6):</strong> Transaksi 'Menerima pelunasan piutang usaha sebesar Rp2.000.000' salah dicatat sebagai 'Menerima pendapatan jasa tunai sebesar Rp2.000.000'. Analisis dampak kesalahan ini terhadap Laporan Keuangan adalah...",
+                options: ["Total Aset overstated dan Laba Bersih overstated",
+                    "Total Aset tetap dan Laba Bersih tetap",
+                    "Total Kewajiban overstated dan Laba Bersih understated",
+                    "Total Aset understated dan Laba Bersih understated",
+                    "Tidak ada dampak pada Laporan Keuangan"],
+                ans: "Total Aset overstated dan Laba Bersih overstated" },
+                
+            { id: 30, type: 'complex', q: "<strong>Studi Kasus (C6):</strong> Menganalisis hubungan antar Laporan Keuangan. Konstruksi alur data yang BENAR dari Laporan Laba Rugi ke Laporan Perubahan Modal adalah... (Pilih DUA)",
+                options: ["Laba Bersih dari Laporan Laba Rugi dipindahkan ke Laporan Perubahan Modal",
+                    "Total Aset dari Neraca dipindahkan ke Laporan Laba Rugi",
+                    "Saldo Kas dipindahkan ke Laporan Perubahan Modal",
+                    "Total Utang dipindahkan ke Laporan Laba Rugi",
+                    "Pendapatan dipindahkan langsung ke Neraca"],
+                ans: ["Laba Bersih dari Laporan Laba Rugi dipindahkan ke Laporan Perubahan Modal"] }
         ];
 
         // ==========================================
@@ -881,8 +668,7 @@
         });
 
         document.addEventListener('visibilitychange', function() {
-            if (document.hidden && !isSubmitted && document.getElementById('examSection').classList.contains(
-                'active')) {
+            if (document.hidden && !isSubmitted && document.getElementById('examSection').classList.contains('active')) {
                 triggerViolation('Meninggalkan tab ujian');
             }
         });
@@ -945,29 +731,25 @@
 
             questions.forEach((q, index) => {
                 let qHtml = `<div class="question-card" id="qcard-${q.id}">`;
-                qHtml +=
-                    `<div class="q-header"><span>Soal No. ${index + 1}</span><span class="badge" style="background:var(--primary);color:white;padding:2px 8px;border-radius:4px;font-size:0.75rem;">${q.type.toUpperCase()}</span></div>`;
+                qHtml += `<div class="q-header"><span>Soal No. ${index + 1}</span><span class="badge" style="background:var(--primary);color:white;padding:2px 8px;border-radius:4px;font-size:0.75rem;">${q.type.toUpperCase()}</span></div>`;
                 qHtml += `<div class="q-text">${q.q}</div>`;
                 qHtml += `<div class="options">`;
 
                 if (q.type === 'mc' || q.type === 'tf') {
                     let opts = q.type === 'tf' ? ['Benar', 'Salah'] : q.options;
                     opts.forEach(opt => {
-                        qHtml +=
-                            `<label onclick="selectOption(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
+                        qHtml += `<label onclick="selectOption(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
                                     <input type="radio" name="q${q.id}" value="${opt.replace(/'/g, "\\'")}"> ${opt}
                                 </label>`;
                     });
                 } else if (q.type === 'complex') {
                     q.options.forEach(opt => {
-                        qHtml +=
-                            `<label onclick="toggleComplex(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
+                        qHtml += `<label onclick="toggleComplex(this, ${q.id}, '${opt.replace(/'/g, "\\'")}')">
                                     <input type="checkbox" name="q${q.id}" value="${opt.replace(/'/g, "\\'")}"> ${opt}
                                 </label>`;
                     });
                 } else if (q.type === 'matching') {
-                    qHtml +=
-                        `<select id="match-${q.id}" onchange="saveMatch(${q.id}, this.value)" style="width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;font-family:'Poppins',sans-serif;">
+                    qHtml += `<select id="match-${q.id}" onchange="saveMatch(${q.id}, this.value)" style="width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;font-family:'Poppins',sans-serif;">
                                 <option value="">-- Pilih Jawaban --</option>`;
                     q.options.forEach(opt => {
                         qHtml += `<option value="${opt.replace(/'/g, "\\'")}">${opt}</option>`;
@@ -1078,29 +860,24 @@
 
             let finalScore = Math.round((correctCount / questions.length) * 100);
 
-            // Analisis Hasil
             let analysisText = '';
             let gradeBadge = '';
             let statusText = '';
 
             if (finalScore >= 85) {
-                analysisText =
-                    '🌟 <strong>Sangat Baik!</strong> Anda telah menguasai materi Siklus Akuntansi dengan sangat baik. Kemampuan analisis (C4), evaluasi (C5), dan konstruksi (C6) Anda luar biasa. Pertahankan prestasi ini!';
+                analysisText = '🌟 <strong>Sangat Baik!</strong> Anda telah menguasai materi Persamaan Dasar dan Laporan Keuangan dengan sangat baik. Kemampuan analisis (C4), evaluasi (C5), dan konstruksi (C6) Anda luar biasa. Pertahankan prestasi ini!';
                 gradeBadge = 'GRADE: A (Sangat Baik)';
                 statusText = 'LULUS DENGAN PREDIKAT SANGAT BAIK';
             } else if (finalScore >= 70) {
-                analysisText =
-                    '👍 <strong>Baik!</strong> Anda memahami konsep dasar dengan baik, namun masih perlu pendalaman pada beberapa aspek analisis dan evaluasi. Terus berlatih!';
+                analysisText = '👍 <strong>Baik!</strong> Anda memahami konsep dasar dengan baik, namun masih perlu pendalaman pada beberapa aspek analisis dan evaluasi laporan keuangan. Terus berlatih!';
                 gradeBadge = 'GRADE: B (Baik)';
                 statusText = 'LULUS';
             } else if (finalScore >= 55) {
-                analysisText =
-                    '💪 <strong>Cukup.</strong> Anda memahami sebagian konsep, namun perlu remedial pada materi Persamaan Dasar Akuntansi dan penyusunan Laporan Keuangan. Diskusikan dengan guru!';
+                analysisText = '💪 <strong>Cukup.</strong> Anda memahami sebagian konsep, namun perlu remedial pada materi Persamaan Dasar Akuntansi dan penyusunan Laporan Keuangan. Diskusikan dengan guru!';
                 gradeBadge = 'GRADE: C (Cukup)';
                 statusText = 'LULUS DENGAN CATATAN';
             } else {
-                analysisText =
-                    '📚 <strong>Perlu Remedial.</strong> Anda perlu mempelajari kembali materi Bab 1.E (Persamaan Dasar), Bab 1.F (Laporan Keuangan), dan Bab 1.G (Siklus Lengkap). Jangan menyerah, coba lagi!';
+                analysisText = '📚 <strong>Perlu Remedial.</strong> Anda perlu mempelajari kembali materi Persamaan Dasar Akuntansi dan hubungan antar Laporan Keuangan. Jangan menyerah, coba lagi!';
                 gradeBadge = 'GRADE: D (Perlu Remedial)';
                 statusText = 'TIDAK LULUS - PERLU REMEDIAL';
             }
@@ -1132,7 +909,7 @@
         }
 
         // ==========================================================
-        // 4. GENERATE PDF — CEPAT DENGAN html2pdf.js
+        // 4. GENERATE PDF
         // ==========================================================
         function downloadPDF() {
             const element = document.getElementById('pdfContent');
@@ -1143,7 +920,6 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
             btn.disabled = true;
 
-            // Konfigurasi ringan untuk kecepatan
             const opt = {
                 margin: [0.3, 0.3, 0.3, 0.3],
                 filename: `Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`,
@@ -1174,7 +950,6 @@
                 });
         }
 
-        // Set tanggal default
         document.getElementById('examDate').valueAsDate = new Date();
     </script>
 </body>
