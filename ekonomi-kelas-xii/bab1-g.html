@@ -35,6 +35,8 @@ body.dark-mode .card h3{color:var(--accent)}
 body.dark-mode .highlight-box{background:rgba(67,97,238,.1)}
 ul,ol{margin:10px 0 15px 25px}
 li{margin-bottom:8px}
+
+/* Simulator Styles */
 .simulator{background:linear-gradient(135deg,#f093fb,#f5576c);border-radius:15px;padding:25px;color:white;margin:25px 0;box-shadow:0 15px 40px rgba(245,87,108,.3)}
 .simulator h2{color:white!important;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:10px}
 .simulator h3{color:#fef3c7!important;border-bottom:none}
@@ -49,6 +51,9 @@ li{margin-bottom:8px}
 .sim-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}
 .sim-btn.reset{background:var(--danger);color:white}
 .sim-btn.example{background:var(--warning);color:#78350f}
+.sim-btn.info{background:#0ea5e9;color:white}
+
+/* Report Box Styles */
 .report-box{background:white;color:var(--dark);padding:20px;border-radius:10px;margin-top:15px}
 .report-box h4{text-align:center;color:var(--primary);margin-bottom:5px;font-family:'Poppins',sans-serif}
 .report-box .sub{text-align:center;color:var(--gray);font-size:.85rem;margin-bottom:15px;font-family:'Poppins',sans-serif}
@@ -59,6 +64,15 @@ li{margin-bottom:8px}
 .report-box .grand{background:var(--primary);color:white;padding:10px;font-weight:700;text-align:center;margin-top:10px;border-radius:5px}
 .report-box .laba{background:var(--success);color:#064e3b}
 .report-box .rugi{background:var(--danger);color:white}
+
+/* Pembahasan Styles */
+.pembahasan-step{background:var(--light);padding:15px;border-radius:8px;margin-bottom:15px;border-left:4px solid var(--accent)}
+body.dark-mode .pembahasan-step{background:#1e1e1e}
+.pembahasan-step h4{color:var(--secondary);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+body.dark-mode .pembahasan-step h4{color:var(--accent)}
+.pembahasan-step .rumus{background:white;padding:10px;border-radius:6px;font-family:'Courier New',monospace;font-size:.9rem;margin-top:8px;border:1px dashed var(--gray)}
+body.dark-mode .pembahasan-step .rumus{background:#2d2d2d;color:#f8f9fa}
+
 .nav-bab{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
 .nav-bab a{background:var(--primary);color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
 .nav-bab a:hover{background:var(--secondary);transform:translateY(-2px)}
@@ -92,33 +106,13 @@ footer{background:linear-gradient(135deg,#1e293b,#334155);color:white;padding:30
 <p>Persamaan dasar akuntansi (Bab 1.E) dan laporan keuangan (Bab 1.F) saling <strong>terkait erat</strong>. Di bab ini, kita akan melihat <strong>transformasi utuh</strong> dalam satu tampilan.</p>
 
 <div class="highlight-box">
-<strong>🔗 Alur Keterkaitan:</strong><br>
+<strong>🔗 Alur Keterkaitan Data:</strong><br>
 <strong>Persamaan Dasar</strong> → menghasilkan data → <strong>Laporan Laba/Rugi</strong> (Pendapatan − Beban)<br>
 ↓<br>
 Laba/Rugi → dimasukkan ke <strong>Laporan Perubahan Modal</strong><br>
 ↓<br>
 Modal Akhir → dimasukkan ke <strong>Neraca</strong> (Harta = Utang + Modal)
 </div>
-
-<h3>📊 Contoh Integrasi (PT. Bersih Cemerlang)</h3>
-<p>Dari 8 transaksi yang sama dengan Bab 1.E dan 1.F, kita peroleh saldo akhir:</p>
-<ul>
-  <li><strong>Harta:</strong> Kas (Rp 3.800.000) + Perlengkapan (Rp 500.000) + Peralatan (Rp 1.500.000) + Piutang (Rp 300.000) = <strong>Rp 6.100.000</strong></li>
-  <li><strong>Kewajiban:</strong> Sisa Utang Usaha (Rp 500.000 − Rp 200.000) = <strong>Rp 300.000</strong></li>
-  <li><strong>Ekuitas:</strong> Modal Awal (Rp 5.000.000) + Laba Bersih (Rp 900.000) − Prive (Rp 100.000) = <strong>Rp 5.800.000</strong></li>
-</ul>
-<p><strong>Verifikasi:</strong> Rp 300.000 + Rp 5.800.000 = <strong>Rp 6.100.000</strong> ✅ Seimbang!</p>
-</div>
-
-<div class="card">
-<h2><i class="fas fa-list-ol"></i> Urutan Penyusunan Laporan</h2>
-<ol>
-<li><strong>Laporan Laba/Rugi</strong> — hitung laba/rugi dulu</li>
-<li><strong>Laporan Perubahan Modal</strong> — butuh laba/rugi</li>
-<li><strong>Neraca</strong> — butuh modal akhir</li>
-<li><strong>Laporan Arus Kas</strong> — butuh data kas</li>
-<li><strong>Catatan atas Laporan Keuangan</strong> — pelengkap</li>
-</ol>
 </div>
 
 <!-- ============ SIMULATOR ============ -->
@@ -126,7 +120,7 @@ Modal Akhir → dimasukkan ke <strong>Neraca</strong> (Harta = Utang + Modal)
 <h2><i class="fas fa-rocket"></i> 🎮 SIMULATOR: Siklus Akuntansi Lengkap</h2>
 <div class="sim-intro">
 <strong>Saksikan transformasi utuh!</strong> 🚀<br>
-Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 transaksi yang sama dengan Bab 1.E & 1.F berubah menjadi persamaan dasar, lalu secara otomatis menjadi 3 laporan keuangan. Pilih tab di bawah untuk melihat hasilnya!
+Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana data berubah menjadi persamaan dasar, lalu secara otomatis menjadi 3 laporan keuangan. Gunakan tombol <strong>"Lihat Pembahasan"</strong> untuk memahami alur perhitungannya!
 </div>
 
 <div class="sim-tabs">
@@ -138,15 +132,16 @@ Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 trans
 </div>
 
 <div style="margin-bottom:15px">
-<button class="sim-btn example" onclick="loadFullExample()"><i class="fas fa-magic"></i> Muat 8 Transaksi Lengkap</button>
+<button class="sim-btn example" onclick="loadFullExample()"><i class="fas fa-magic"></i> Muat 8 Transaksi</button>
 <button class="sim-btn reset" onclick="resetAll()"><i class="fas fa-redo"></i> Reset Semua</button>
+<button class="sim-btn info" onclick="togglePembahasan()"><i class="fas fa-book-open"></i> Lihat Pembahasan Soal</button>
 </div>
 
 <!-- Panel 1: Transaksi -->
 <div class="sim-panel active" id="panel1">
 <h3><i class="fas fa-list"></i> Daftar Transaksi PT. Bersih Cemerlang - Januari 2025</h3>
 <div id="transList" style="background:rgba(255,255,255,.15);padding:15px;border-radius:10px">
-<p style="opacity:.8;font-style:italic">Klik "Muat 8 Transaksi Lengkap" untuk melihat transaksi.</p>
+<p style="opacity:.8;font-style:italic">Klik "Muat 8 Transaksi" untuk melihat data.</p>
 </div>
 </div>
 
@@ -157,7 +152,7 @@ Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 trans
 <table style="width:100%;border-collapse:collapse;background:white;color:var(--dark);border-radius:10px;overflow:hidden">
 <thead>
 <tr style="background:var(--primary);color:white">
-<th style="padding:10px">Akun</th><th style="padding:10px">Saldo</th>
+<th style="padding:10px">Akun</th><th style="padding:10px">Saldo Akhir</th>
 </tr>
 </thead>
 <tbody id="eqBody"></tbody>
@@ -196,13 +191,70 @@ Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 trans
 </div>
 </div>
 
+<!-- ============ PEMBAHASAN SOAL (Hidden by default) ============ -->
+<div id="pembahasanSection" class="card" style="display:none; border-left-color: var(--accent);">
+<h2><i class="fas fa-chalkboard-teacher"></i> Pembahasan Langkah demi Langkah</h2>
+<p style="margin-bottom:20px;">Berikut adalah alur logika bagaimana 8 transaksi di atas diolah menjadi laporan keuangan yang seimbang:</p>
+
+<div class="pembahasan-step">
+<h4><i class="fas fa-calculator"></i> Langkah 1: Menghitung Saldo Akun (Persamaan Dasar)</h4>
+<p>Dari 8 transaksi, kita jumlahkan setiap kolom akun:</p>
+<div class="rumus">
+• Kas = 5.000.000 - 1.500.000 + 800.000 - 200.000 - 200.000 - 100.000 = <strong>Rp 3.800.000</strong><br>
+• Perlengkapan = <strong>Rp 500.000</strong><br>
+• Peralatan = <strong>Rp 1.500.000</strong><br>
+• Piutang = <strong>Rp 300.000</strong><br>
+• Utang = 500.000 - 200.000 = <strong>Rp 300.000</strong><br>
+• Modal Awal = <strong>Rp 5.000.000</strong><br>
+• Pendapatan = 800.000 + 300.000 = <strong>Rp 1.100.000</strong><br>
+• Beban = <strong>Rp 200.000</strong><br>
+• Prive = <strong>Rp 100.000</strong>
+</div>
+</div>
+
+<div class="pembahasan-step">
+<h4><i class="fas fa-file-invoice-dollar"></i> Langkah 2: Menyusun Laporan Laba Rugi</h4>
+<p>Tujuan: Mencari Laba atau Rugi Bersih.</p>
+<div class="rumus">
+Pendapatan Jasa (Rp 1.100.000) − Beban Listrik & Air (Rp 200.000) = <strong>Laba Bersih Rp 900.000</strong>
+</div>
+<p><em>*Angka Laba Bersih (Rp 900.000) ini akan "mengalir" ke Laporan Perubahan Modal.</em></p>
+</div>
+
+<div class="pembahasan-step">
+<h4><i class="fas fa-chart-line"></i> Langkah 3: Menyusun Laporan Perubahan Modal</h4>
+<p>Tujuan: Mencari Modal Akhir per 31 Januari.</p>
+<div class="rumus">
+Modal Awal (Rp 5.000.000) <br>
++ Laba Bersih (Rp 900.000) <br>
+− Prive (Rp 100.000) <br>
+= <strong>Modal Akhir Rp 5.800.000</strong>
+</div>
+<p><em>*Angka Modal Akhir (Rp 5.800.000) ini akan "mengalir" ke bagian Ekuitas di Neraca.</em></p>
+</div>
+
+<div class="pembahasan-step">
+<h4><i class="fas fa-university"></i> Langkah 4: Menyusun Neraca & Verifikasi Keseimbangan</h4>
+<p>Tujuan: Membuktikan Hukum Persamaan Akuntansi (Harta = Utang + Modal).</p>
+<div class="rumus">
+<strong>TOTAL HARTA (Aset):</strong><br>
+Kas (3.800.000) + Perlengkapan (500.000) + Peralatan (1.500.000) + Piutang (300.000) = <strong>Rp 6.100.000</strong><br><br>
+<strong>TOTAL UTANG + MODAL:</strong><br>
+Utang Usaha (300.000) + Modal Akhir (5.800.000) = <strong>Rp 6.100.000</strong>
+</div>
+<div style="background:var(--success);color:#064e3b;padding:10px;border-radius:6px;text-align:center;font-weight:700;margin-top:10px;">
+✅ VERIFIKASI BERHASIL: Rp 6.100.000 = Rp 6.100.000 (SEIMBANG!)
+</div>
+</div>
+</div>
+<!-- ========================================================== -->
+
 <div class="card">
 <h2><i class="fas fa-star"></i> Kesimpulan Bab 1.G</h2>
 <ul>
 <li>✅ Persamaan dasar & laporan keuangan <strong>saling terkait dan harus seimbang</strong></li>
-<li>✅ Urutan: <strong>Laba/Rugi → Perubahan Modal → Neraca</strong></li>
-<li>✅ Gunakan simulator di atas untuk melihat alur lengkap secara nyata!</li>
-<li>✅ <strong>Angka di semua tab selalu konsisten</strong> — bukti bahwa akuntansi adalah sistem yang logis.</li>
+<li>✅ Urutan penyusunan wajib: <strong>Laba/Rugi → Perubahan Modal → Neraca</strong></li>
+<li>✅ Angka di semua tab simulator selalu konsisten — bukti bahwa akuntansi adalah sistem yang logis dan saling berkait.</li>
 </ul>
 </div>
 
@@ -212,7 +264,7 @@ Klik <strong>"Muat 8 Transaksi Lengkap"</strong> untuk melihat bagaimana 8 trans
 </div>
 </div>
 
-<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Studi Kasus: PT. Bersih Cemerlang</p></footer>
+<footer><p>© 2025 <strong>SMAN 1 Cluring</strong> — Disusun oleh: Zuli Astutik, S.Pd.<br>Studi Kasus: PT. Bersih Cemerlang</p></footer>
 
 <script>
 let data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
@@ -238,6 +290,19 @@ function showPanel(id, btn) {
   btn.classList.add('active');
 }
 
+function togglePembahasan() {
+  const el = document.getElementById('pembahasanSection');
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    // Smooth scroll ke bagian pembahasan
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  } else {
+    el.style.display = 'none';
+  }
+}
+
 function loadFullExample() {
   data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
   transactions.forEach(t => {
@@ -251,6 +316,7 @@ function loadFullExample() {
 function resetAll() {
   data = { kas: 0, perleng: 0, peralatan: 0, piutang: 0, utang: 0, modal: 0, pendapatan: 0, beban: 0, prive: 0 };
   renderAll();
+  document.getElementById('pembahasanSection').style.display = 'none';
 }
 
 function renderAll() {
