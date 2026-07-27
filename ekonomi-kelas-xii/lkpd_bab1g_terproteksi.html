@@ -1124,92 +1124,74 @@
         // ==========================================================
         // 4. GENERATE PDF — MULTI-HALAMAN dengan html2canvas + jsPDF
         // ==========================================================
-        function downloadPDF() {
-            const element = document.getElementById('pdfContent');
-            const name = document.getElementById('studentName').value || 'Siswa';
-            const btn = document.getElementById('downloadBtn');
-            const originalText = btn.innerHTML;
+       function downloadPDF() {
+    const element = document.getElementById('pdfContent');
+    const name = document.getElementById('studentName').value || 'Siswa';
+    const btn = document.getElementById('downloadBtn');
+    const originalText = btn.innerHTML;
 
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
-            btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses PDF...';
+    btn.disabled = true;
 
-            // Gunakan html2canvas untuk merender seluruh konten
-            html2canvas(element, {
-                scale: 1.8,
-                useCORS: true,
-                logging: false,
-                windowHeight: element.scrollHeight,
-                height: element.scrollHeight,
-                width: element.scrollWidth,
-                backgroundColor: '#ffffff'
-            }).then(canvas => {
-                // Konversi canvas ke image data
-                const imgData = canvas.toDataURL('image/jpeg', 0.92);
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
+    // Gunakan skala lebih rendah untuk kecepatan
+    html2canvas(element, {
+        scale: 1.2,
+        dpi: 150,
+        useCORS: true,
+        logging: false,
+        windowHeight: element.scrollHeight,
+        height: element.scrollHeight,
+        width: element.scrollWidth,
+        backgroundColor: '#ffffff'
+    }).then(canvas => {
+        const imgData = canvas.toDataURL('image/jpeg', 0.85); // kualitas cukup
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
 
-                // Ukuran halaman A4 dalam pixel (dengan scale)
-                const pageWidth = 595.28; // A4 width in points (72 dpi)
-                const pageHeight = 841.89; // A4 height in points
-                const margin = 20; // margin dalam points
+        const pageWidth = 595.28;
+        const pageHeight = 841.89;
+        const margin = 20;
+        const contentWidth = pageWidth - 2 * margin;
+        const contentHeight = pageHeight - 2 * margin;
 
-                const contentWidth = pageWidth - 2 * margin;
-                const contentHeight = pageHeight - 2 * margin;
+        const ratio = contentWidth / imgWidth;
+        const scaledHeight = imgHeight * ratio;
+        const totalPages = Math.ceil(scaledHeight / contentHeight);
 
-                // Hitung rasio agar gambar muat lebar penuh
-                const ratio = contentWidth / imgWidth;
-                const scaledHeight = imgHeight * ratio;
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'pt', 'a4');
 
-                // Jumlah halaman yang dibutuhkan
-                const totalPages = Math.ceil(scaledHeight / contentHeight);
+        for (let page = 0; page < totalPages; page++) {
+            if (page > 0) pdf.addPage();
 
-                // Inisialisasi jsPDF
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'pt', 'a4');
+            const yOffset = page * contentHeight / ratio;
+            const srcH = Math.min(contentHeight / ratio, imgHeight - yOffset);
 
-                // Potong gambar per halaman
-                for (let page = 0; page < totalPages; page++) {
-                    if (page > 0) {
-                        pdf.addPage();
-                    }
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = imgWidth;
+            tempCanvas.height = srcH;
+            const ctx = tempCanvas.getContext('2d');
+            ctx.drawImage(canvas, 0, yOffset, imgWidth, srcH, 0, 0, imgWidth, srcH);
 
-                    const yOffset = page * contentHeight / ratio;
+            const pageImgData = tempCanvas.toDataURL('image/jpeg', 0.85);
+            const imgWidthPt = contentWidth;
+            const imgHeightPt = srcH * ratio;
 
-                    // Ambil bagian gambar yang sesuai
-                    const srcX = 0;
-                    const srcY = yOffset;
-                    const srcW = imgWidth;
-                    const srcH = Math.min(contentHeight / ratio, imgHeight - yOffset);
-
-                    // Buat canvas sementara untuk potongan
-                    const tempCanvas = document.createElement('canvas');
-                    tempCanvas.width = imgWidth;
-                    tempCanvas.height = srcH;
-                    const ctx = tempCanvas.getContext('2d');
-                    ctx.drawImage(canvas, srcX, srcY, srcW, srcH, 0, 0, imgWidth, srcH);
-
-                    const pageImgData = tempCanvas.toDataURL('image/jpeg', 0.92);
-
-                    // Tambahkan ke PDF
-                    const imgWidthPt = contentWidth;
-                    const imgHeightPt = srcH * ratio;
-
-                    pdf.addImage(pageImgData, 'JPEG', margin, margin, imgWidthPt, imgHeightPt);
-                }
-
-                // Simpan PDF
-                pdf.save(`Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`);
-
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                alert('File PDF berhasil diunduh!');
-            }).catch(err => {
-                console.error('Gagal generate PDF:', err);
-                alert('Gagal membuat PDF. Pastikan browser Anda mendukung dan coba lagi.');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            });
+            pdf.addImage(pageImgData, 'JPEG', margin, margin, imgWidthPt, imgHeightPt);
         }
+
+        pdf.save(`Hasil_LKPD_Bab1G_${name.replace(/\s+/g, '_')}.pdf`);
+
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('File PDF berhasil diunduh!');
+    }).catch(err => {
+        console.error(err);
+        alert('Gagal membuat PDF. Coba lagi atau gunakan browser lain.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
 
         // Set tanggal default
         document.getElementById('examDate').valueAsDate = new Date();
