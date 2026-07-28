@@ -295,32 +295,114 @@
             margin-top: 0.2rem;
         }
 
-        /* CTA */
-        .cta-box {
-            background: linear-gradient(135deg, var(--ev-color) 0%, var(--secondary) 100%);
+        /* ===== INTERACTIVE CALCULATOR STYLES ===== */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group small {
+            display: block;
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--ev-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--ev-color));
             color: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 3rem 0;
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: var(--ev-color);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
             margin-top: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #86efac;
+            font-size: 1.05rem;
+        }
+
+        .result-row.total {
+            border-bottom: none;
+            border-top: 2px solid var(--success);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .result-highlight {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .result-highlight .label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-highlight .value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
         /* Footer */
@@ -346,6 +428,7 @@
             .comparison-table { font-size: 0.85rem; }
             .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
             .battery-warning { flex-direction: column; text-align: center; align-items: center; }
+            .result-row { flex-direction: column; gap: 0.25rem; }
         }
 
         /* Animations */
@@ -567,14 +650,39 @@
             </div>
         </section>
 
-        <!-- CTA -->
-        <div class="cta-box">
-            <h3><i class="fas fa-file-excel"></i> Ingin Menghitung Sendiri?</h3>
-            <p>Unduh template Excel sederhana untuk menghitung Total Cost of Ownership (TCO) dan Penyusutan aset kendaraan Anda sendiri.</p>
-            <a href="#" class="cta-button" onclick="alert('Fitur download akan segera tersedia! Hubungi guru Anda untuk template Excel.'); return false;">
-                <i class="fas fa-download"></i> Download Template Kalkulator TCO
-            </a>
-        </div>
+        <!-- Interactive Calculator (REPLACED CTA) -->
+        <section class="article-section" id="kalkulator-tco" style="border-left-color: var(--accent); background: linear-gradient(to bottom right, #ffffff, #fffbeb);">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> Kalkulator Interaktif: Hitung TCO Kendaraan Anda</h2>
+            <p style="margin-bottom: 1.5rem;">Masukkan data estimasi kendaraan yang Anda minati untuk melihat perbandingan Total Cost of Ownership (TCO) secara real-time.</p>
+            
+            <div class="calculator-grid">
+                <div class="form-group">
+                    <label><i class="fas fa-tag"></i> Harga Beli Kendaraan (Rp)</label>
+                    <input type="number" id="hargaBeli" value="30000000" class="form-input" placeholder="Contoh: 30000000">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-gas-pump"></i> Biaya Operasional per Bulan (Rp)</label>
+                    <input type="number" id="biayaOperasional" value="150000" class="form-input" placeholder="Listrik/Bensin + Servis">
+                    <small>Termasuk biaya energi dan perawatan rutin bulanan</small>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-hourglass-half"></i> Lama Pemakaian (Tahun)</label>
+                    <input type="number" id="lamaTahun" value="5" min="1" max="15" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-coins"></i> Estimasi Nilai Jual Kembali / Residu (Rp)</label>
+                    <input type="number" id="nilaiResidu" value="12000000" class="form-input" placeholder="Contoh: 12000000">
+                </div>
+            </div>
+
+            <button onclick="hitungTCO()" class="calc-button">
+                <i class="fas fa-calculator"></i> Hitung Total Cost of Ownership
+            </button>
+
+            <div id="hasilTCO" class="result-box" style="display: none;">
+                <!-- Results will be injected here by JavaScript -->
+            </div>
+        </section>
 
     </main>
 
@@ -584,7 +692,7 @@
             <h3 style="margin-bottom: 1rem;"><i class="fas fa-university"></i> SMAN 1 Cluring</h3>
             <p>Platform Pembelajaran Digital Ekonomi & Akuntansi</p>
             <div class="signature">
-                <p>Guru Pengampu: <strong>Zuli Astutik, S.Pd.</strong></p>
+                <p>Guru Pengampu: <strong>Alamsah, S.E.</strong></p>
                 <p>Materi Pendukung Kurikulum Merdeka / K13</p>
                 <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
                     <i class="fas fa-heart"></i> Membangun Literasi Keuangan & Teknologi Generasi Muda
@@ -626,6 +734,66 @@
         document.querySelectorAll('.article-section').forEach(section => {
             observer.observe(section);
         });
+
+        // ===== INTERACTIVE CALCULATOR LOGIC =====
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { 
+                style: 'currency', 
+                currency: 'IDR', 
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(angka);
+        }
+
+        function hitungTCO() {
+            // Ambil nilai dari input, default ke 0 jika kosong
+            const hargaBeli = parseFloat(document.getElementById('hargaBeli').value) || 0;
+            const biayaOperasional = parseFloat(document.getElementById('biayaOperasional').value) || 0;
+            const lamaTahun = parseFloat(document.getElementById('lamaTahun').value) || 5;
+            const nilaiResidu = parseFloat(document.getElementById('nilaiResidu').value) || 0;
+
+            // Perhitungan Akuntansi
+            const totalBulan = lamaTahun * 12;
+            const totalOperasional = biayaOperasional * totalBulan;
+            const depresiasiTotal = hargaBeli - nilaiResidu;
+            const totalBiayaBersih = hargaBeli + totalOperasional - nilaiResidu;
+            const biayaPerBulan = totalBiayaBersih / totalBulan;
+
+            // Tampilkan hasil
+            const hasilDiv = document.getElementById('hasilTCO');
+            hasilDiv.style.display = 'block';
+            hasilDiv.innerHTML = `
+                <h3 style="color: var(--success); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-check-circle"></i> Hasil Analisis Total Cost of Ownership (TCO)
+                </h3>
+                <div class="result-row">
+                    <span>Total Biaya Operasional (${lamaTahun} Tahun)</span>
+                    <span style="color: var(--danger); font-weight: 600;">${formatRupiah(totalOperasional)}</span>
+                </div>
+                <div class="result-row">
+                    <span>Total Depresiasi Aset (Hilang Nilai)</span>
+                    <span style="color: var(--accent); font-weight: 600;">${formatRupiah(depresiasiTotal)}</span>
+                </div>
+                <div class="result-row">
+                    <span>Nilai Residu (Dikembalikan saat dijual)</span>
+                    <span style="color: var(--success); font-weight: 600;">+ ${formatRupiah(nilaiResidu)}</span>
+                </div>
+                <div class="result-row total">
+                    <span>Total Biaya Bersih (Net Cost)</span>
+                    <span>${formatRupiah(totalBiayaBersih)}</span>
+                </div>
+                <div class="result-highlight">
+                    <p class="label">Biaya Rata-rata per Bulan (Setelah memperhitungkan nilai residu)</p>
+                    <p class="value">${formatRupiah(biayaPerBulan)}</p>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                    <i class="fas fa-info-circle"></i> Angka ini adalah estimasi. Pastikan untuk menambahkan biaya tak terduga (asuransi, pajak, penggantian komponen besar) sebesar 10-15% untuk simulasi yang lebih konservatif.
+                </p>
+            `;
+            
+            // Scroll halus ke hasil
+            hasilDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     </script>
 </body>
 </html>
