@@ -3,432 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bab 5: Ragam Gejala Sosial dalam Masyarakat Multikultural</title>
+    <title>Bab 5: Masyarakat Multikultural | SMA Negeri 1 Cluring</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        /* --- Reset & Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABEL PORTAL UTAMA ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #ecfdf5;
-            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-bottom: 4rem;
+            transition: background 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+
+        /* ===== HEADER & NAVIGASI ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .header-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; border: 3px solid rgba(255,255,255,0.3);
+            font-size: 2rem; backdrop-filter: blur(10px);
+        }
+        .page-header h1 { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem; 
+            color: white;
+        }
+        .page-header p { 
+            opacity: 0.95; 
+            font-size: 1rem; 
+            color: white;
+            font-weight: 400;
+        }
+
+        /* ===== CONTAINER UTAMA ===== */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 2.5rem 3rem;
+            margin: -3rem auto 0;
+            background: white;
+            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
+        body.dark-mode .container { background: #1e1e1e; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
 
-        /* --- Typography --- */
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #0f172a;
-            border-bottom: 4px solid #10b981;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-
+        /* ===== TYPOGRAPHY ===== */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 2.8rem;
-            margin-bottom: 1.2rem;
-            color: #1e293b;
-            border-left: 6px solid #10b981;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        body.dark-mode h2 { color: var(--accent); border-left-color: var(--accent); }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        body.dark-mode h3 { color: #f8f9fa; }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
+        body.dark-mode h4 { color: var(--accent); }
 
-        p {
-            margin-bottom: 1.2rem;
-        }
+        p { margin-bottom: 1.2rem; color: var(--gray); }
+        body.dark-mode p { color: #cbd5e1; }
 
-        ul,
-        ol {
-            margin: 0.8rem 0 1.2rem 1.8rem;
-        }
+        ul, ol { margin: 0.8rem 0 1.5rem 1.5rem; color: var(--gray); }
+        body.dark-mode ul, body.dark-mode ol { color: #cbd5e1; }
+        li { margin-bottom: 0.6rem; }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
-
-        strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            background: #d1fae5;
-            border-left: 5px solid #10b981;
-            padding: 1rem 1.8rem;
-            margin: 1.4rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        /* --- Tables --- */
-        table {
+        /* ===== IMAGES ===== */
+        .content-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1.6rem 0;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        th {
-            background: #1e293b;
-            color: #f8fafc;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            background: #ffffff;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) td {
-            background: #ecfdf5;
-        }
-
-        /* --- Cards --- */
-        .card {
-            background: #f0fdf4;
+            height: 250px;
+            object-fit: cover;
             border-radius: 16px;
-            padding: 1.6rem 2rem;
-            margin: 1.8rem 0;
-            border: 1px solid #a7f3d0;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .content-image:hover { transform: scale(1.01); }
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .card h4 {
-            margin-top: 0;
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
         }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; }
 
         .highlight-box {
-            background: #ecfdf5;
-            border-left: 6px solid #059669;
-            padding: 1.2rem 1.8rem;
-            border-radius: 8px;
-            margin: 1.6rem 0;
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .highlight-box { background: rgba(67, 97, 238, 0.15); }
+        .highlight-box strong { color: var(--primary); }
+        body.dark-mode .highlight-box strong { color: var(--accent); }
 
-        .highlight-box strong {
-            color: #047857;
-        }
-
-        /* --- Assessment & Aktivitas --- */
-        .question-block {
-            margin: 1.8rem 0;
-            padding: 1rem 0;
-            border-bottom: 1px dashed #cbd5e1;
-        }
-
-        .question-block:last-child {
-            border-bottom: none;
-        }
-
-        .soal-pilihan {
-            list-style: lower-alpha;
-            margin-left: 1.8rem;
-        }
-
-        .soal-pilihan li {
-            margin-bottom: 0.2rem;
-        }
-
-        .aktivitas {
-            background: #ecfdf5;
-            border-radius: 12px;
-            padding: 1.4rem 2rem;
-            margin: 1.6rem 0;
-            border: 1px solid #6ee7b7;
-        }
-
-        .aktivitas h4 {
-            margin-top: 0;
-            color: #1e293b;
-        }
-
-        /* --- Rangkuman --- */
         .rangkuman {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 16px;
-            padding: 1.8rem 2.2rem;
-            margin: 2.4rem 0;
+            padding: 2rem;
+            margin: 3rem 0 1rem;
         }
+        body.dark-mode .rangkuman { background: rgba(74, 222, 128, 0.1); border-color: #22c55e; }
+        .rangkuman h2 { border-left-color: var(--success); color: #15803d; margin-top: 0; }
+        body.dark-mode .rangkuman h2 { color: var(--success); }
 
-        .rangkuman ul {
-            list-style-type: disc;
-            margin-left: 1.6rem;
+        .aktivitas {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .aktivitas { background: rgba(251, 191, 36, 0.1); border-color: #f59e0b; }
+        .aktivitas h4 { margin-top: 0; color: #92400e; display: flex; align-items: center; gap: 8px; }
+        body.dark-mode .aktivitas h4 { color: var(--warning); }
 
-        .rangkuman li {
-            margin-bottom: 0.6rem;
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--dark);
+        }
+        body.dark-mode td { background: #2d2d2d; border-bottom-color: #444; color: #f8f9fa; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        body.dark-mode tr:nth-child(even) td { background: #374151; }
 
-        /* --- Responsive --- */
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.5rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            h3 {
-                font-size: 1.2rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            th,
-            td {
-                padding: 8px 10px;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                padding: 1rem 1.2rem;
-            }
-            blockquote {
-                padding: 0.8rem 1.2rem;
-            }
+        /* ===== ASSESSMENT ===== */
+        .question-block {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        body.dark-mode .question-block { background: #2d2d2d; }
+        .soal-pilihan { list-style: lower-alpha; margin-left: 1.5rem; margin-top: 0.8rem; }
+        .soal-pilihan li { margin-bottom: 0.4rem; cursor: pointer; transition: var(--transition); padding: 4px 8px; border-radius: 6px; }
+        .soal-pilihan li:hover { background: rgba(67, 97, 238, 0.1); }
+
+        /* ===== UTILITIES ===== */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        .print-btn:hover { transform: translateY(-3px); }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 140px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        body.dark-mode .theme-toggle { background: #2d2d2d; color: white; border-color: #444; }
+        .theme-toggle:hover { transform: rotate(15deg); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; margin-top: -2rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .page-header p { font-size: 0.9rem; }
+            .back-btn { top: 15px; left: 15px; padding: 8px 14px; font-size: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            .content-image { height: 180px; }
+            .print-btn { bottom: 20px; right: 20px; padding: 10px 16px; font-size: 0.85rem; }
+            .theme-toggle { bottom: 20px; right: 110px; width: 40px; height: 40px; }
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0.5in;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                border: 1px solid #ccc;
-                background: #f9f9f9;
-            }
+            .page-header, .print-btn, .theme-toggle, .back-btn { display: none !important; }
+            body { background: white; color: black; }
+            .container { margin: 0; box-shadow: none; padding: 0; max-width: 100%; }
+            .card, .aktivitas, .rangkuman, .question-block { border: 1px solid #ccc; background: #f9f9f9 !important; break-inside: avoid; }
+            h2 { color: black !important; border-left-color: black !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header class="page-header">
+        <a href="../sosiologi-kelas-x.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali ke Sosiologi Kelas X
+        </a>
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-earth-asia"></i></div>
+            <h1>Bab 5: Ragam Gejala Sosial dalam Masyarakat Multikultural</h1>
+            <p>Memahami perbedaan sosial, karakteristik masyarakat multikultural, serta tantangan dan peluang dalam mengelola keberagaman.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- ======== MAIN TITLE ======== -->
-        <h1>Bab 5: Ragam Gejala Sosial dalam Masyarakat Multikultural</h1>
-
-        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Capaian Pembelajaran Bab</h2>
-        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
-        <ol>
-            <li>Menjelaskan konsep perbedaan sosial dan mengidentifikasi berbagai bentuknya (horizontal dan vertikal) sebagai gejala sosial</li>
-            <li>Menganalisis faktor-faktor penyebab terjadinya perbedaan sosial dalam masyarakat</li>
-            <li>Memahami konsep masyarakat multikultural, karakteristik, dan nilai-nilai yang mendasarinya</li>
-            <li>Mengidentifikasi tantangan dan peluang dalam masyarakat multikultural serta mengembangkan sikap toleransi dan inklusivitas</li>
-        </ol>
-
-        <!-- ======== 5.1 PERBEDAAN SOSIAL SEBAGAI GEJALA SOSIAL ======== -->
-        <h2>5.1 Perbedaan Sosial sebagai Gejala Sosial dalam Masyarakat</h2>
-
-        <h3>A. Pengertian Perbedaan Sosial</h3>
-        <p><strong>Perbedaan sosial</strong> adalah variasi atau keberagaman yang terdapat dalam masyarakat, baik yang bersifat horizontal (sejajar) maupun vertikal (bertingkat). Perbedaan sosial merupakan gejala alamiah yang muncul karena setiap individu dan kelompok memiliki latar belakang, karakteristik, dan kepentingan yang berbeda-beda.</p>
-        <p>Perbedaan sosial tidak selalu menimbulkan masalah. Justru, dalam konteks yang positif, perbedaan sosial dapat menjadi sumber kekayaan budaya, inovasi, dan dinamika masyarakat. Namun, apabila tidak dikelola dengan baik, perbedaan sosial dapat memicu konflik, diskriminasi, dan ketimpangan.</p>
-
-        <h3>B. Bentuk-bentuk Perbedaan Sosial</h3>
-        <p>Secara sosiologis, perbedaan sosial dibedakan menjadi dua jenis utama:</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Jenis Perbedaan</th>
-                    <th>Penjelasan</th>
-                    <th>Karakteristik</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Perbedaan Horizontal</strong></td>
-                    <td>Perbedaan yang bersifat <strong>sejajar</strong> atau setara, tidak menunjukkan tingkatan atau hierarki. Setiap kelompok memiliki nilai yang sama, hanya berbeda secara kultural atau identitas.</td>
-                    <td>Tidak ada superioritas/inferioritas; perbedaan bersifat kultural dan identitas</td>
-                    <td>Perbedaan suku bangsa (Jawa, Sunda, Batak), perbedaan agama, perbedaan bahasa daerah, perbedaan jenis kelamin</td>
-                </tr>
-                <tr>
-                    <td><strong>Perbedaan Vertikal</strong></td>
-                    <td>Perbedaan yang bersifat <strong>bertingkat</strong> atau hierarkis, menunjukkan adanya lapisan-lapisan dalam masyarakat berdasarkan akses terhadap sumber daya, kekuasaan, atau prestise.</td>
-                    <td>Adanya status sosial yang berbeda (tinggi-rendah); menimbulkan stratifikasi sosial</td>
-                    <td>Perbedaan kelas sosial (kaya-miskin), perbedaan pendidikan (sarjana-SD), perbedaan jabatan (atasan-bawahan), perbedaan kasta (dalam masyarakat Hindu Bali)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="highlight-box">
-            <p><strong>Ilustrasi:</strong> Perbedaan suku Jawa dan Sunda di Indonesia adalah <strong>perbedaan horizontal</strong> — keduanya setara, hanya berbeda budaya. Sedangkan perbedaan antara pengusaha kaya dan buruh pabrik adalah <strong>perbedaan vertikal</strong> — ada ketimpangan akses ekonomi dan kekuasaan.</p>
+        <!-- CAPAIAN PEMBELAJARAN -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: none; border-radius: 16px;">
+            <h3 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> Capaian Pembelajaran Bab</h3>
+            <p style="margin-bottom: 0.5rem;">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            <ol style="margin-bottom: 0;">
+                <li>Menjelaskan konsep perbedaan sosial dan mengidentifikasi bentuknya (horizontal dan vertikal).</li>
+                <li>Menganalisis faktor-faktor penyebab terjadinya perbedaan sosial dalam masyarakat.</li>
+                <li>Memahami konsep masyarakat multikultural, karakteristik, dan nilai-nilai yang mendasarinya.</li>
+                <li>Mengidentifikasi tantangan dan peluang dalam masyarakat multikultural serta mengembangkan sikap toleransi.</li>
+            </ol>
         </div>
 
-        <h3>C. Faktor-faktor Penyebab Perbedaan Sosial</h3>
-        <p>Beberapa faktor utama yang menyebabkan munculnya perbedaan sosial dalam masyarakat:</p>
+        <!-- 5.1 PERBEDAAN SOSIAL -->
+        <h2><i class="fas fa-diagram-project"></i> 5.1 Perbedaan Sosial sebagai Gejala Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Keberagaman Sosial" class="content-image">
+        <p class="image-caption">Perbedaan sosial adalah gejala alamiah yang muncul karena keberagaman latar belakang individu dan kelompok.</p>
 
-        <ul>
-            <li><strong>Faktor Geografis dan Lingkungan:</strong> Kondisi alam yang berbeda (dataran tinggi, pesisir, perkotaan) melahirkan corak kehidupan dan budaya yang berbeda. Masyarakat pesisir cenderung berprofesi sebagai nelayan, sementara masyarakat dataran tinggi sebagai petani.</li>
-            <li><strong>Faktor Sejarah dan Migrasi:</strong> Perpindahan penduduk (migrasi) dan peristiwa sejarah seperti kolonialisme, perdagangan, dan penyebaran agama menyebabkan percampuran budaya dan terbentuknya masyarakat majemuk.</li>
-            <li><strong>Faktor Agama dan Kepercayaan:</strong> Perbedaan sistem keyakinan menghasilkan perbedaan nilai, norma, dan ritual dalam masyarakat.</li>
-            <li><strong>Faktor Ras dan Etnis:</strong> Perbedaan ciri fisik (ras) dan warisan budaya (etnis) menciptakan keberagaman identitas yang membedakan satu kelompok dengan lainnya.</li>
-            <li><strong>Faktor Pendidikan dan Pekerjaan:</strong> Tingkat pendidikan dan jenis pekerjaan yang berbeda menempatkan seseorang pada lapisan sosial yang berbeda pula.</li>
-            <li><strong>Faktor Ekonomi:</strong> Kepemilikan sumber daya ekonomi (tanah, modal, teknologi) menciptakan perbedaan kelas dan status sosial.</li>
-        </ul>
+        <h3>A. Pengertian Perbedaan Sosial</h3>
+        <p><strong>Perbedaan sosial</strong> adalah variasi atau keberagaman yang terdapat dalam masyarakat, baik yang bersifat horizontal (sejajar) maupun vertikal (bertingkat). Perbedaan ini merupakan gejala alamiah karena setiap individu dan kelompok memiliki latar belakang, karakteristik, dan kepentingan yang berbeda.</p>
+        <p>Dalam konteks positif, perbedaan sosial dapat menjadi sumber kekayaan budaya dan inovasi. Namun, jika tidak dikelola dengan baik, dapat memicu konflik, diskriminasi, dan ketimpangan.</p>
+
+        <h3>B. Dua Bentuk Perbedaan Sosial</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-top: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-arrows-left-right"></i> Perbedaan Horizontal</h4>
+                <p style="font-size: 0.9rem;"><strong>Sifat:</strong> Sejajar/setara, tidak ada hierarki. <br><strong>Karakteristik:</strong> Tidak ada superioritas/inferioritas; perbedaan kultural. <br><strong>Contoh:</strong> Suku (Jawa, Sunda, Batak), agama, bahasa daerah, jenis kelamin.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-layer-group"></i> Perbedaan Vertikal</h4>
+                <p style="font-size: 0.9rem;"><strong>Sifat:</strong> Bertingkat/hierarkis, menunjukkan lapisan sosial. <br><strong>Karakteristik:</strong> Ada status sosial berbeda (tinggi-rendah); menimbulkan stratifikasi. <br><strong>Contoh:</strong> Kelas sosial (kaya-miskin), pendidikan, jabatan, kasta.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong><i class="fas fa-lightbulb"></i> Ilustrasi:</strong><br>
+            Perbedaan suku Jawa dan Sunda adalah <strong>horizontal</strong> — keduanya setara, hanya berbeda budaya. Sedangkan perbedaan antara pengusaha kaya dan buruh pabrik adalah <strong>vertikal</strong> — ada ketimpangan akses ekonomi dan kekuasaan.</p>
+        </div>
+
+        <h3>C. Faktor Penyebab Perbedaan Sosial</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary); font-size: 1rem;"><i class="fas fa-mountain"></i> Geografis</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Kondisi alam berbeda melahirkan budaya berbeda (pesisir = nelayan, dataran tinggi = petani).</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent); font-size: 1rem;"><i class="fas fa-ship"></i> Sejarah & Migrasi</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Perpindahan penduduk dan peristiwa sejarah menyebabkan percampuran budaya.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success); font-size: 1rem;"><i class="fas fa-mosque"></i> Agama & Kepercayaan</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Perbedaan sistem keyakinan menghasilkan nilai, norma, dan ritual yang berbeda.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning); font-size: 1rem;"><i class="fas fa-users"></i> Ras & Etnis</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Perbedaan ciri fisik (ras) dan warisan budaya (etnis) menciptakan identitas berbeda.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--secondary);">
+                <h4 style="margin-top: 0; color: var(--secondary); font-size: 1rem;"><i class="fas fa-graduation-cap"></i> Pendidikan & Pekerjaan</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Tingkat pendidikan dan jenis pekerjaan menempatkan seseorang pada lapisan sosial berbeda.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-left: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger); font-size: 1rem;"><i class="fas fa-coins"></i> Ekonomi</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Kepemilikan sumber daya ekonomi menciptakan perbedaan kelas dan status sosial.</p>
+            </div>
+        </div>
 
         <h3>D. Dampak Perbedaan Sosial</h3>
-        <p>Perbedaan sosial memiliki dua sisi dampak, yaitu <strong>positif</strong> dan <strong>negatif</strong>:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-top: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-thumbs-up"></i> Dampak Positif</h4>
+                <ul style="font-size: 0.9rem; margin-bottom: 0;">
+                    <li>Memperkaya khazanah budaya dan tradisi</li>
+                    <li>Mendorong inovasi dan kreativitas</li>
+                    <li>Meningkatkan toleransi dan wawasan kebangsaan</li>
+                    <li>Menjadi daya tarik pariwisata dan ekonomi kreatif</li>
+                </ul>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-thumbs-down"></i> Dampak Negatif</h4>
+                <ul style="font-size: 0.9rem; margin-bottom: 0;">
+                    <li>Menimbulkan stereotip, prasangka, dan diskriminasi</li>
+                    <li>Memicu konflik antarkelompok (horizontal)</li>
+                    <li>Menciptakan kesenjangan sosial dan ketimpangan</li>
+                    <li>Mengganggu integrasi nasional dan kohesi sosial</li>
+                </ul>
+            </div>
+        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Dampak Positif</th>
-                    <th>Dampak Negatif</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1. Memperkaya khazanah budaya dan tradisi<br>
-                        2. Mendorong inovasi dan kreativitas melalui pertukaran ide<br>
-                        3. Meningkatkan toleransi dan wawasan kebangsaan<br>
-                        4. Menjadi daya tarik pariwisata dan ekonomi kreatif</td>
-                    <td>1. Menimbulkan stereotip, prasangka, dan diskriminasi<br>
-                        2. Memicu konflik antarkelompok (konflik horizontal)<br>
-                        3. Menciptakan kesenjangan sosial dan ketimpangan ekonomi<br>
-                        4. Mengganggu integrasi nasional dan kohesi sosial</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ======== 5.2 MASYARAKAT MULTIKULTURAL ======== -->
-        <h2>5.2 Masyarakat Multikultural</h2>
+        <!-- 5.2 MASYARAKAT MULTIKULTURAL -->
+        <h2><i class="fas fa-people-group"></i> 5.2 Masyarakat Multikultural</h2>
+        
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Masyarakat Multikultural" class="content-image">
+        <p class="image-caption">Masyarakat multikultural merayakan keberagaman sebagai kekayaan, bukan ancaman.</p>
 
         <h3>A. Pengertian Masyarakat Multikultural</h3>
-        <p><strong>Masyarakat multikultural</strong> (<em>multicultural society</em>) adalah masyarakat yang terdiri dari berbagai kelompok budaya (suku, agama, ras, bahasa, dan adat istiadat) yang hidup berdampingan dan saling berinteraksi dalam satu kesatuan wilayah atau negara. Masyarakat multikultural tidak hanya mengakui adanya keberagaman, tetapi juga <strong>menghargai, merayakan, dan melindungi</strong> perbedaan-perbedaan tersebut sebagai bagian integral dari kehidupan bersama.</p>
-        <p>Konsep multikulturalisme menekankan bahwa perbedaan budaya bukanlah ancaman, melainkan <strong>kekayaan</strong> yang harus dijaga dan dikelola secara adil.</p>
+        <p><strong>Masyarakat multikultural</strong> (<em>multicultural society</em>) adalah masyarakat yang terdiri dari berbagai kelompok budaya (suku, agama, ras, bahasa, adat) yang hidup berdampingan dan saling berinteraksi dalam satu wilayah. Masyarakat ini tidak hanya mengakui keberagaman, tetapi juga <strong>menghargai, merayakan, dan melindungi</strong> perbedaan sebagai bagian integral dari kehidupan bersama.</p>
+
+        <div class="highlight-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); border-left-color: #f59e0b;">
+            <p style="margin-bottom: 0;"><strong><i class="fas fa-flag"></i> Indonesia sebagai Negara Multikultural:</strong><br>
+            Indonesia adalah salah satu negara paling multikultural di dunia: <strong>1.300+ suku bangsa</strong>, <strong>700+ bahasa daerah</strong>, dan <strong>6 agama resmi</strong>. Semboyan <strong>"Bhinneka Tunggal Ika"</strong> (Berbeda-beda tetapi tetap satu) menjadi filosofi kehidupan berbangsa.</p>
+        </div>
 
         <h3>B. Karakteristik Masyarakat Multikultural</h3>
-        <p>Menurut para sosiolog (seperti <strong>Pierre van den Berghe</strong> dan <strong>J.S. Furnivall</strong>), masyarakat multikultural memiliki ciri-ciri sebagai berikut:</p>
-        <ul>
-            <li><strong>Keberagaman Etnis, Agama, dan Budaya:</strong> Terdapat lebih dari satu kelompok etnis, agama, atau budaya yang hidup dalam satu wilayah.</li>
-            <li><strong>Segregasi Sosial yang Minim:</strong> Kelompok-kelompok yang berbeda berinteraksi secara sosial, ekonomi, dan politik, meskipun terkadang masih ada jarak sosial.</li>
-            <li><strong>Pluralisme Hukum dan Adat:</strong> Diakui adanya sistem hukum dan adat yang berbeda-beda sesuai dengan kelompok masing-masing, namun tetap berada di bawah naungan negara.</li>
-            <li><strong>Toleransi dan Respek terhadap Perbedaan:</strong> Adanya sikap saling menghormati dan menerima perbedaan sebagai sesuatu yang wajar.</li>
-            <li><strong>Integrasi Nasional:</strong> Terdapat kesadaran bersama untuk membangun identitas kebangsaan di atas keragaman.</li>
-        </ul>
-
-        <div class="card">
-            <h4>Indonesia sebagai Negara Multikultural</h4>
-            <p>Indonesia adalah salah satu contoh negara yang paling multikultural di dunia. Dengan lebih dari <strong>1.300 suku bangsa</strong>, <strong>700+ bahasa daerah</strong>, dan <strong>6 agama resmi</strong> yang diakui, Indonesia memiliki kekayaan budaya yang luar biasa. Semboyan <strong>"Bhinneka Tunggal Ika"</strong> (Berbeda-beda tetapi tetap satu) menjadi filosofi yang memandu kehidupan berbangsa dan bernegara.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--primary); font-size: 1rem;"><i class="fas fa-palette"></i> Keberagaman</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Terdapat lebih dari satu kelompok etnis, agama, atau budaya dalam satu wilayah.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--accent); font-size: 1rem;"><i class="fas fa-handshake"></i> Interaksi Sosial</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Kelompok berbeda berinteraksi secara sosial, ekonomi, dan politik.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--success); font-size: 1rem;"><i class="fas fa-scale-balanced"></i> Pluralisme Hukum</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Diakui adanya sistem hukum dan adat berbeda, tetap di bawah naungan negara.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--warning); font-size: 1rem;"><i class="fas fa-heart"></i> Toleransi</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Sikap saling menghormati dan menerima perbedaan sebagai sesuatu yang wajar.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--secondary); font-size: 1rem;"><i class="fas fa-flag"></i> Integrasi Nasional</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Kesadaran bersama membangun identitas kebangsaan di atas keragaman.</p>
+            </div>
         </div>
 
         <h3>C. Tantangan Masyarakat Multikultural</h3>
-        <p>Meskipun kaya akan keberagaman, masyarakat multikultural menghadapi berbagai tantangan serius, antara lain:</p>
-
         <table>
             <thead>
                 <tr>
-                    <th>Tantangan</th>
-                    <th>Penjelasan</th>
-                    <th>Contoh Nyata</th>
+                    <th width="25%">Tantangan</th>
+                    <th width="40%">Penjelasan</th>
+                    <th width="35%">Contoh Nyata</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><strong>Etnosentrisme</strong></td>
-                    <td>Pandangan yang menganggap budaya sendiri sebagai yang terbaik dan merendahkan budaya lain</td>
-                    <td>Menganggap adat istiadat daerah lain "aneh" atau "tidak beradab"</td>
+                    <td>Menganggap budaya sendiri terbaik, merendahkan budaya lain</td>
+                    <td>Menganggap adat daerah lain "aneh" atau "tidak beradab"</td>
                 </tr>
                 <tr>
-                    <td><strong>Stereotip dan Prasangka</strong></td>
-                    <td>Generalisasi negatif terhadap kelompok lain tanpa dasar yang kuat</td>
-                    <td>Anggapan bahwa suku tertentu pemarah, atau agama tertentu ekstremis</td>
+                    <td><strong>Stereotip & Prasangka</strong></td>
+                    <td>Generalisasi negatif terhadap kelompok lain tanpa dasar kuat</td>
+                    <td>Anggapan suku tertentu pemarah, atau agama tertentu ekstremis</td>
                 </tr>
                 <tr>
                     <td><strong>Diskriminasi</strong></td>
-                    <td>Perlakuan tidak adil terhadap kelompok minoritas dalam berbagai bidang (pekerjaan, pendidikan, layanan publik)</td>
-                    <td>Kesulitan bagi minoritas untuk mendapatkan pekerjaan atau akses pendidikan</td>
+                    <td>Perlakuan tidak adil terhadap minoritas</td>
+                    <td>Kesulitan minoritas mendapat pekerjaan atau akses pendidikan</td>
                 </tr>
                 <tr>
                     <td><strong>Konflik Antar-Kelompok</strong></td>
-                    <td>Bentrokan fisik atau non-fisik yang dipicu oleh sentimen SARA atau perebutan sumber daya</td>
-                    <td>Konflik antarsuku di Kalimantan, konflik agama di beberapa daerah</td>
+                    <td>Bentrokan dipicu sentimen SARA atau perebutan sumber daya</td>
+                    <td>Konflik antarsuku, konflik agama</td>
                 </tr>
                 <tr>
-                    <td><strong>Radikalisme dan Ekstremisme</strong></td>
-                    <td>Paham yang menginginkan perubahan dengan cara kekerasan dan menolak keberagaman</td>
-                    <td>Gerakan terorisme yang mengatasnamakan agama atau ideologi tertentu</td>
+                    <td><strong>Radikalisme</strong></td>
+                    <td>Paham menginginkan perubahan dengan kekerasan, menolak keberagaman</td>
+                    <td>Gerakan terorisme mengatasnamakan agama/ideologi</td>
                 </tr>
             </tbody>
         </table>
 
-        <h3>D. Peluang dan Solusi dalam Masyarakat Multikultural</h3>
-        <p>Untuk mengatasi tantangan di atas, masyarakat multikultural perlu mengembangkan strategi dan memperkuat nilai-nilai berikut:</p>
-
-        <ul>
-            <li><strong>Pendidikan Multikultural:</strong> Mengajarkan toleransi, empati, dan penghargaan terhadap perbedaan sejak dini di sekolah.</li>
-            <li><strong>Dialog Antar-Kelompok:</strong> Membangun ruang komunikasi yang terbuka antara kelompok yang berbeda untuk saling memahami dan mengurangi prasangka.</li>
-            <li><strong>Kebijakan Inklusif:</strong> Pemerintah perlu membuat kebijakan yang melindungi hak-hak minoritas dan memastikan kesetaraan akses terhadap sumber daya.</li>
-            <li><strong>Penguatan Identitas Nasional:</strong> Menanamkan rasa cinta tanah air dan kebanggaan sebagai bangsa Indonesia yang beragam.</li>
-            <li><strong>Pengembangan Ekonomi Berbasis Budaya:</strong> Memanfaatkan kekayaan budaya untuk pariwisata, kerajinan, dan ekonomi kreatif yang dapat meningkatkan kesejahteraan semua kelompok.</li>
-        </ul>
-
-        <div class="highlight-box">
-            <p><strong>Pesan Kunci:</strong> Masyarakat multikultural yang sukses bukanlah masyarakat yang menghapus perbedaan, melainkan masyarakat yang <strong>mampu mengelola perbedaan</strong> dengan adil dan bijaksana, sehingga keberagaman menjadi kekuatan, bukan kelemahan.</p>
+        <h3>D. Solusi dalam Masyarakat Multikultural</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-school"></i> Pendidikan Multikultural</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Mengajarkan toleransi, empati, dan penghargaan terhadap perbedaan sejak dini.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-comments"></i> Dialog Antar-Kelompok</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Membangun ruang komunikasi terbuka untuk saling memahami dan mengurangi prasangka.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-gavel"></i> Kebijakan Inklusif</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Kebijakan yang melindungi hak minoritas dan memastikan kesetaraan akses.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-flag"></i> Identitas Nasional</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Menanamkan cinta tanah air dan kebanggaan sebagai bangsa Indonesia yang beragam.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--secondary);">
+                <h4 style="margin-top: 0; color: var(--secondary);"><i class="fas fa-briefcase"></i> Ekonomi Berbasis Budaya</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Memanfaatkan kekayaan budaya untuk pariwisata dan ekonomi kreatif.</p>
+            </div>
         </div>
 
-        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Uji Capaian Pembelajaran Bab 5</h2>
+        <div class="highlight-box">
+            <p style="margin-bottom: 0;"><strong><i class="fas fa-key"></i> Pesan Kunci:</strong><br>
+            Masyarakat multikultural yang sukses bukanlah masyarakat yang menghapus perbedaan, melainkan masyarakat yang <strong>mampu mengelola perbedaan</strong> dengan adil dan bijaksana, sehingga keberagaman menjadi kekuatan, bukan kelemahan.</p>
+        </div>
+
+        <!-- UJI CAPAIAN PEMBELAJARAN -->
+        <h2><i class="fas fa-clipboard-check"></i> Uji Capaian Pembelajaran Bab 5</h2>
 
         <h3>A. Soal Pilihan Ganda</h3>
-
         <div class="question-block">
             <p><strong>1.</strong> Perbedaan sosial yang bersifat sejajar atau setara, tanpa adanya tingkatan hierarki disebut perbedaan...</p>
             <ul class="soal-pilihan">
@@ -436,7 +548,6 @@
                 <li>b. Horizontal</li>
                 <li>c. Struktural</li>
                 <li>d. Fungsional</li>
-                <li>e. Kultural</li>
             </ul>
         </div>
 
@@ -447,7 +558,6 @@
                 <li>b. Perbedaan agama</li>
                 <li>c. Perbedaan kelas sosial (kaya-miskin)</li>
                 <li>d. Perbedaan suku bangsa</li>
-                <li>e. Perbedaan warna kulit</li>
             </ul>
         </div>
 
@@ -458,7 +568,6 @@
                 <li>b. Stereotip</li>
                 <li>c. Prasangka</li>
                 <li>d. Etnosentrisme</li>
-                <li>e. Pluralisme</li>
             </ul>
         </div>
 
@@ -468,49 +577,35 @@
                 <li>a. Terdiri dari satu suku dan satu agama</li>
                 <li>b. Menghapus semua perbedaan budaya</li>
                 <li>c. Terdiri dari berbagai kelompok budaya yang hidup berdampingan dan saling menghargai</li>
-                <li>d. Hanya mengakui satu sistem hukum</li>
-                <li>e. Menolak interaksi antarkelompok</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>5.</strong> Salah satu cara untuk mengatasi konflik dalam masyarakat multikultural adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Menghilangkan perbedaan budaya</li>
-                <li>b. Membangun dialog antar-kelompok</li>
-                <li>c. Mengutamakan satu kelompok tertentu</li>
-                <li>d. Menutup akses bagi kelompok minoritas</li>
-                <li>e. Melarang perayaan budaya daerah</li>
+                <li>d. Menolak interaksi antarkelompok</li>
             </ul>
         </div>
 
         <h3>B. Soal Esai</h3>
-
         <div class="question-block">
-            <p><strong>1.</strong> Jelaskan perbedaan antara perbedaan sosial horizontal dan vertikal, serta berikan masing-masing tiga contoh yang Anda temui dalam kehidupan sehari-hari!</p>
+            <p><strong>1.</strong> Jelaskan perbedaan antara perbedaan sosial horizontal dan vertikal, serta berikan masing-masing tiga contoh!</p>
         </div>
         <div class="question-block">
-            <p><strong>2.</strong> Uraikan minimal empat faktor penyebab terjadinya perbedaan sosial dalam masyarakat, disertai dengan penjelasan yang mendalam!</p>
+            <p><strong>2.</strong> Uraikan minimal empat faktor penyebab terjadinya perbedaan sosial dalam masyarakat!</p>
         </div>
         <div class="question-block">
-            <p><strong>3.</strong> Apa yang dimaksud dengan masyarakat multikultural? Sebutkan dan jelaskan empat karakteristik utama masyarakat multikultural!</p>
+            <p><strong>3.</strong> Apa yang dimaksud dengan masyarakat multikultural? Sebutkan empat karakteristik utamanya!</p>
         </div>
         <div class="question-block">
-            <p><strong>4.</strong> Sebagai negara multikultural, Indonesia menghadapi berbagai tantangan. Identifikasi tiga tantangan utama dan tawarkan solusi untuk mengatasinya!</p>
+            <p><strong>4.</strong> Identifikasi tiga tantangan utama masyarakat multikultural Indonesia dan tawarkan solusi untuk mengatasinya!</p>
         </div>
 
         <h3>C. Aktivitas Pembelajaran Mendalam</h3>
 
-        <!-- Aktivitas 1 -->
         <div class="aktivitas">
-            <h4>Aktivitas 1: Observasi Perbedaan Sosial di Lingkungan Sekitar</h4>
-            <p>Amatilah lingkungan tempat tinggal atau sekolahmu. Identifikasi berbagai bentuk perbedaan sosial yang ada, baik horizontal maupun vertikal. Buatlah daftar dan klasifikasikan perbedaan-perbedaan tersebut ke dalam tabel berikut:</p>
+            <h4><i class="fas fa-search-location"></i> Aktivitas 1: Observasi Perbedaan Sosial</h4>
+            <p>Amatilah lingkungan tempat tinggal atau sekolahmu. Identifikasi berbagai bentuk perbedaan sosial (horizontal & vertikal). Buatlah tabel:</p>
             <table>
                 <thead>
                     <tr>
                         <th>Jenis Perbedaan</th>
                         <th>Contoh di Lingkunganku</th>
-                        <th>Dampak Positif/Negatif yang Terlihat</th>
+                        <th>Dampak Positif/Negatif</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -520,18 +615,17 @@
                     <tr><td>Vertikal</td><td></td><td></td></tr>
                 </tbody>
             </table>
-            <p>Setelah itu, tuliskan refleksi singkat bagaimana perbedaan-perbedaan tersebut memengaruhi interaksi sosial di lingkunganmu.</p>
+            <p>Tuliskan refleksi singkat bagaimana perbedaan-perbedaan tersebut memengaruhi interaksi sosial di lingkunganmu.</p>
         </div>
 
-        <!-- Aktivitas 2: Literasi Numerasi — Data Kemiskinan dan Kesenjangan -->
         <div class="aktivitas">
-            <h4>Aktivitas 2: Literasi Numerasi — Analisis Data Kesenjangan Sosial</h4>
-            <p>Perhatikan data persentase penduduk miskin dan Indeks Gini (ketimpangan pendapatan) di Indonesia berikut (data ilustratif berdasarkan BPS):</p>
+            <h4><i class="fas fa-chart-line"></i> Aktivitas 2: Literasi Numerasi — Data Kesenjangan Sosial</h4>
+            <p>Perhatikan data persentase penduduk miskin dan Indeks Gini di Indonesia:</p>
             <table>
                 <thead>
                     <tr>
                         <th>Tahun</th>
-                        <th>Persentase Penduduk Miskin (%)</th>
+                        <th>Penduduk Miskin (%)</th>
                         <th>Indeks Gini</th>
                     </tr>
                 </thead>
@@ -542,57 +636,115 @@
                     <tr><td>2022</td><td>9,36</td><td>0,379</td></tr>
                 </tbody>
             </table>
-            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <p><strong>Pertanyaan:</strong></p>
             <ol>
-                <li>Berapa rata-rata persentase penduduk miskin selama periode 2019–2022?</li>
-                <li>Bagaimana tren Indeks Gini dari tahun ke tahun? Apakah menunjukkan perbaikan atau pemburukan?</li>
-                <li>Jika jumlah penduduk Indonesia 275 juta jiwa, berapa perkiraan jumlah penduduk miskin pada tahun 2022?</li>
-                <li>Hubungkan data ini dengan konsep <strong>perbedaan sosial vertikal</strong>. Jelaskan bagaimana ketimpangan ekonomi dapat memengaruhi harmoni dalam masyarakat multikultural!</li>
+                <li>Berapa rata-rata persentase penduduk miskin selama 2019–2022?</li>
+                <li>Bagaimana tren Indeks Gini? Apakah menunjukkan perbaikan atau pemburukan?</li>
+                <li>Jika penduduk Indonesia 275 juta jiwa, berapa perkiraan jumlah penduduk miskin pada 2022?</li>
+                <li>Hubungkan data ini dengan konsep <strong>perbedaan sosial vertikal</strong>. Bagaimana ketimpangan ekonomi memengaruhi harmoni masyarakat multikultural?</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 3: Proyek Mini Riset - Keragaman Budaya -->
         <div class="aktivitas">
-            <h4>Aktivitas 3: Pembelajaran Mendalam — Eksplorasi Budaya Lokal</h4>
-            <p>Pilih <strong>satu kelompok etnis atau budaya</strong> yang ada di daerahmu (atau yang kamu kenal, misalnya suku Jawa, Sunda, Batak, Minang, Dayak, Papua, Tionghoa, dll.). Lakukan penelitian kecil dengan mewawancarai seorang tokoh atau anggota dari kelompok tersebut, atau mencari informasi dari berbagai sumber. Jawablah pertanyaan-pertanyaan berikut dalam laporan 1–2 halaman:</p>
+            <h4><i class="fas fa-masks-theater"></i> Aktivitas 3: Eksplorasi Budaya Lokal</h4>
+            <p>Pilih <strong>satu kelompok etnis/budaya</strong> di daerahmu (Jawa, Sunda, Batak, Minang, Dayak, Papua, Tionghoa, dll.). Wawancarai tokoh/anggotanya atau cari informasi dari berbagai sumber. Jawab dalam laporan 1–2 halaman:</p>
             <ol>
-                <li>Apa saja ciri khas budaya kelompok tersebut (bahasa, pakaian adat, makanan, upacara adat)?</li>
-                <li>Bagaimana kelompok tersebut berinteraksi dengan kelompok lain di sekitarnya?</li>
-                <li>Pernahkah terjadi konflik atau kesalahpahaman antarbudaya? Jika ya, bagaimana cara menyelesaikannya?</li>
-                <li>Menurutmu, apa yang bisa kita pelajari dari kelompok tersebut untuk memperkuat persatuan dalam keberagaman?</li>
+                <li>Apa ciri khas budayanya (bahasa, pakaian adat, makanan, upacara)?</li>
+                <li>Bagaimana kelompok tersebut berinteraksi dengan kelompok lain?</li>
+                <li>Pernahkah terjadi konflik antarbudaya? Bagaimana cara menyelesaikannya?</li>
+                <li>Apa yang bisa kita pelajari untuk memperkuat persatuan dalam keberagaman?</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 4: Literasi — Analisis Kasus Konflik SARA -->
         <div class="aktivitas">
-            <h4>Aktivitas 4: Literasi — Studi Kasus Konflik dan Rekonsiliasi di Indonesia</h4>
-            <p>Carilah sebuah artikel atau berita tentang konflik yang berkaitan dengan perbedaan sosial (misalnya konflik antarsuku, antaragama, atau konflik tenaga kerja). Bacalah dengan saksama, lalu jawablah pertanyaan berikut:</p>
+            <h4><i class="fas fa-newspaper"></i> Aktivitas 4: Studi Kasus Konflik & Rekonsiliasi</h4>
+            <p>Carilah artikel berita tentang konflik berkaitan dengan perbedaan sosial (antarsuku, antaragama, atau konflik tenaga kerja). Analisis:</p>
             <ol>
-                <li>Perbedaan sosial jenis apa (horizontal/vertikal) yang menjadi akar masalah dalam kasus tersebut?</li>
-                <li>Faktor-faktor apa yang memicu konflik tersebut?</li>
-                <li>Bagaimana dampak konflik terhadap hubungan sosial di masyarakat?</li>
-                <li>Upaya apa yang dilakukan untuk menyelesaikan konflik dan membangun kembali kerukunan?</li>
-                <li>Dari kasus ini, pelajaran apa yang bisa kita ambil untuk mencegah konflik serupa di masa depan?</li>
+                <li>Perbedaan sosial jenis apa (horizontal/vertikal) yang menjadi akar masalah?</li>
+                <li>Faktor-faktor apa yang memicu konflik?</li>
+                <li>Bagaimana dampak konflik terhadap hubungan sosial?</li>
+                <li>Upaya apa yang dilakukan untuk menyelesaikan konflik dan membangun kerukunan?</li>
+                <li>Pelajaran apa yang bisa diambil untuk mencegah konflik serupa?</li>
             </ol>
             <p>Buatlah analisis kritis dalam bentuk esai 2–3 paragraf.</p>
         </div>
 
-        <!-- ======== RANGKUMAN ======== -->
+        <!-- RANGKUMAN -->
         <div class="rangkuman">
-            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 5</h2>
-            <ul>
-                <li><strong>Perbedaan sosial</strong> adalah gejala alamiah dalam masyarakat yang terbagi menjadi <strong>horizontal</strong> (sejajar, misalnya suku dan agama) dan <strong>vertikal</strong> (bertingkat, misalnya kelas sosial dan pendidikan).</li>
-                <li>Faktor penyebab perbedaan sosial meliputi geografis, sejarah, agama, ras/etnis, pendidikan, pekerjaan, dan ekonomi.</li>
-                <li>Perbedaan sosial dapat membawa dampak positif (kekayaan budaya, inovasi) maupun negatif (stereotip, konflik, diskriminasi).</li>
-                <li><strong>Masyarakat multikultural</strong> adalah masyarakat yang terdiri dari beragam kelompok budaya yang hidup bersama dan saling menghargai.</li>
-                <li>Karakteristik masyarakat multikultural: keberagaman etnis/agama/budaya, interaksi sosial, pluralisme hukum, toleransi, dan integrasi nasional.</li>
-                <li>Tantangan utama masyarakat multikultural: etnosentrisme, stereotip, diskriminasi, konflik, dan radikalisme. Solusinya adalah pendidikan multikultural, dialog antarkelompok, kebijakan inklusif, penguatan identitas nasional, dan ekonomi berbasis budaya.</li>
-                <li>Kunci keberhasilan masyarakat multikultural adalah <strong>pengelolaan perbedaan</strong> secara adil dan bijaksana demi terciptanya persatuan dan kesejahteraan bersama.</li>
+            <h2><i class="fas fa-check-circle"></i> Rangkuman Bab 5</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Perbedaan sosial</strong> adalah gejala alamiah yang terbagi menjadi <strong>horizontal</strong> (sejajar: suku, agama) dan <strong>vertikal</strong> (bertingkat: kelas sosial, pendidikan).
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Faktor penyebab: geografis, sejarah/migrasi, agama, ras/etnis, pendidikan/pekerjaan, dan ekonomi.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Dampak positif: kekayaan budaya, inovasi. Dampak negatif: stereotip, konflik, diskriminasi.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Masyarakat multikultural</strong> adalah masyarakat beragam kelompok budaya yang hidup bersama dan saling menghargai.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Karakteristik: keberagaman, interaksi sosial, pluralisme hukum, toleransi, integrasi nasional.
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Tantangan: etnosentrisme, stereotip, diskriminasi, konflik, radikalisme. Solusi: pendidikan multikultural, dialog, kebijakan inklusif, identitas nasional, ekonomi berbasis budaya.
+                </li>
             </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <a href="../sosiologi-kelas-x.html" class="action-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portal Sosiologi Kelas X
+            </a>
         </div>
 
     </div>
     <!-- end container -->
 
+    <!-- Floating Action Buttons -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <button class="print-btn" onclick="window.print()" title="Cetak Materi">
+        <i class="fas fa-print"></i> Cetak
+    </button>
+
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
