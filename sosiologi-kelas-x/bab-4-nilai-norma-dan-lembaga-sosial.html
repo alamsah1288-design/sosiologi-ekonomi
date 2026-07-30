@@ -3,281 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bab 4: Lembaga Sosial</title>
+    <title>Bab 4: Nilai, Norma, dan Lembaga Sosial | SMA Negeri 1 Cluring</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        /* --- Reset & Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABEL PORTAL UTAMA ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f5f3ff;
-            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-bottom: 4rem;
+            transition: background 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+
+        /* ===== HEADER & NAVIGASI ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .header-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; border: 3px solid rgba(255,255,255,0.3);
+            font-size: 2rem; backdrop-filter: blur(10px);
+        }
+        .page-header h1 { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem; 
+            color: white;
+        }
+        .page-header p { 
+            opacity: 0.95; 
+            font-size: 1rem; 
+            color: white;
+            font-weight: 400;
+        }
+
+        /* ===== CONTAINER UTAMA ===== */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 2.5rem 3rem;
+            margin: -3rem auto 0;
+            background: white;
+            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
+        body.dark-mode .container { background: #1e1e1e; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
 
-        /* --- Typography --- */
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #0f172a;
-            border-bottom: 4px solid #6366f1;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-
+        /* ===== TYPOGRAPHY ===== */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 2.8rem;
-            margin-bottom: 1.2rem;
-            color: #1e293b;
-            border-left: 6px solid #6366f1;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        body.dark-mode h2 { color: var(--accent); border-left-color: var(--accent); }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        body.dark-mode h3 { color: #f8f9fa; }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
+        body.dark-mode h4 { color: var(--accent); }
 
-        p {
-            margin-bottom: 1.2rem;
-        }
+        p { margin-bottom: 1.2rem; color: var(--gray); }
+        body.dark-mode p { color: #cbd5e1; }
 
-        ul,
-        ol {
-            margin: 0.8rem 0 1.2rem 1.8rem;
-        }
+        ul, ol { margin: 0.8rem 0 1.5rem 1.5rem; color: var(--gray); }
+        body.dark-mode ul, body.dark-mode ol { color: #cbd5e1; }
+        li { margin-bottom: 0.6rem; }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
-
-        strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            background: #eef2ff;
-            border-left: 5px solid #6366f1;
-            padding: 1rem 1.8rem;
-            margin: 1.4rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        /* --- Tables --- */
-        table {
+        /* ===== IMAGES ===== */
+        .content-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1.6rem 0;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        th {
-            background: #1e293b;
-            color: #f8fafc;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            background: #ffffff;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) td {
-            background: #f8fafc;
-        }
-
-        /* --- Cards --- */
-        .card {
-            background: #f8fafc;
+            height: 250px;
+            object-fit: cover;
             border-radius: 16px;
-            padding: 1.6rem 2rem;
-            margin: 1.8rem 0;
-            border: 1px solid #e2e8f0;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .content-image:hover { transform: scale(1.01); }
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .card h4 {
-            margin-top: 0;
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
         }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; }
 
         .highlight-box {
-            background: #eef2ff;
-            border-left: 6px solid #4f46e5;
-            padding: 1.2rem 1.8rem;
-            border-radius: 8px;
-            margin: 1.6rem 0;
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .highlight-box { background: rgba(67, 97, 238, 0.15); }
+        .highlight-box strong { color: var(--primary); }
+        body.dark-mode .highlight-box strong { color: var(--accent); }
 
-        .highlight-box strong {
-            color: #4338ca;
-        }
-
-        /* --- Assessment & Aktivitas --- */
-        .question-block {
-            margin: 1.8rem 0;
-            padding: 1rem 0;
-            border-bottom: 1px dashed #cbd5e1;
-        }
-
-        .question-block:last-child {
-            border-bottom: none;
-        }
-
-        .soal-pilihan {
-            list-style: lower-alpha;
-            margin-left: 1.8rem;
-        }
-
-        .soal-pilihan li {
-            margin-bottom: 0.2rem;
-        }
-
-        .aktivitas {
-            background: #eef2ff;
-            border-radius: 12px;
-            padding: 1.4rem 2rem;
-            margin: 1.6rem 0;
-            border: 1px solid #a5b4fc;
-        }
-
-        .aktivitas h4 {
-            margin-top: 0;
-            color: #1e293b;
-        }
-
-        /* --- Rangkuman --- */
         .rangkuman {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 16px;
-            padding: 1.8rem 2.2rem;
-            margin: 2.4rem 0;
+            padding: 2rem;
+            margin: 3rem 0 1rem;
         }
+        body.dark-mode .rangkuman { background: rgba(74, 222, 128, 0.1); border-color: #22c55e; }
+        .rangkuman h2 { border-left-color: var(--success); color: #15803d; margin-top: 0; }
+        body.dark-mode .rangkuman h2 { color: var(--success); }
 
-        .rangkuman ul {
-            list-style-type: disc;
-            margin-left: 1.6rem;
+        .aktivitas {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .aktivitas { background: rgba(251, 191, 36, 0.1); border-color: #f59e0b; }
+        .aktivitas h4 { margin-top: 0; color: #92400e; display: flex; align-items: center; gap: 8px; }
+        body.dark-mode .aktivitas h4 { color: var(--warning); }
 
-        .rangkuman li {
-            margin-bottom: 0.6rem;
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--dark);
+        }
+        body.dark-mode td { background: #2d2d2d; border-bottom-color: #444; color: #f8f9fa; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        body.dark-mode tr:nth-child(even) td { background: #374151; }
 
-        /* --- Responsive --- */
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.5rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            h3 {
-                font-size: 1.2rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            th,
-            td {
-                padding: 8px 10px;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                padding: 1rem 1.2rem;
-            }
-            blockquote {
-                padding: 0.8rem 1.2rem;
-            }
+        /* ===== ASSESSMENT ===== */
+        .question-block {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        body.dark-mode .question-block { background: #2d2d2d; }
+        .soal-pilihan { list-style: lower-alpha; margin-left: 1.5rem; margin-top: 0.8rem; }
+        .soal-pilihan li { margin-bottom: 0.4rem; cursor: pointer; transition: var(--transition); padding: 4px 8px; border-radius: 6px; }
+        .soal-pilihan li:hover { background: rgba(67, 97, 238, 0.1); }
+
+        /* ===== UTILITIES ===== */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        .print-btn:hover { transform: translateY(-3px); }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 140px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        body.dark-mode .theme-toggle { background: #2d2d2d; color: white; border-color: #444; }
+        .theme-toggle:hover { transform: rotate(15deg); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; margin-top: -2rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .page-header p { font-size: 0.9rem; }
+            .back-btn { top: 15px; left: 15px; padding: 8px 14px; font-size: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            .content-image { height: 180px; }
+            .print-btn { bottom: 20px; right: 20px; padding: 10px 16px; font-size: 0.85rem; }
+            .theme-toggle { bottom: 20px; right: 110px; width: 40px; height: 40px; }
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0.5in;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                border: 1px solid #ccc;
-                background: #f9f9f9;
-            }
+            .page-header, .print-btn, .theme-toggle, .back-btn { display: none !important; }
+            body { background: white; color: black; }
+            .container { margin: 0; box-shadow: none; padding: 0; max-width: 100%; }
+            .card, .aktivitas, .rangkuman, .question-block { border: 1px solid #ccc; background: #f9f9f9 !important; break-inside: avoid; }
+            h2 { color: black !important; border-left-color: black !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header class="page-header">
+        <a href="sosiologi-kelas-x.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali ke Sosiologi Kelas X
+        </a>
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-landmark"></i></div>
+            <h1>Bab 4: Nilai, Norma, dan Lembaga Sosial</h1>
+            <p>Memahami sistem nilai dan norma yang mengatur masyarakat, serta peran lembaga sosial dalam mewujudkan ketertiban.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- ======== MAIN TITLE ======== -->
-        <h1>Bab 4: Lembaga Sosial</h1>
+        <!-- CAPAIAN PEMBELAJARAN -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: none; border-radius: 16px;">
+            <h3 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> Capaian Pembelajaran Bab</h3>
+            <p style="margin-bottom: 0.5rem;">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            <ol style="margin-bottom: 0;">
+                <li>Menjelaskan pengertian, ciri-ciri, dan jenis-jenis nilai dan norma sosial.</li>
+                <li>Menganalisis hubungan antara nilai sosial dan norma sosial dalam mengatur kehidupan bermasyarakat.</li>
+                <li>Memahami pengertian, karakteristik, dan tipe-tipe lembaga sosial (keluarga, agama, pendidikan, ekonomi, politik).</li>
+                <li>Menjelaskan peran lembaga sosial dalam mewujudkan ketertiban sosial dan mengintegrasikan fungsi-fungsi sosial.</li>
+            </ol>
+        </div>
 
-        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Capaian Pembelajaran Bab</h2>
-        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
-        <ol>
-            <li>Menjelaskan pengertian, ciri-ciri, dan jenis-jenis nilai dan norma sosial</li>
-            <li>Menganalisis hubungan antara nilai sosial dan norma sosial dalam mengatur kehidupan bermasyarakat</li>
-            <li>Memahami pengertian, karakteristik, dan tipe-tipe lembaga sosial (keluarga, agama, pendidikan, ekonomi, politik)</li>
-            <li>Menjelaskan peran lembaga sosial dalam mewujudkan ketertiban sosial dan mengintegrasikan fungsi-fungsi sosial</li>
-        </ol>
-
-        <!-- ======== 4.1 NILAI DAN NORMA SOSIAL ======== -->
-        <h2>4.1 Nilai dan Norma Sosial</h2>
+        <!-- 4.1 NILAI DAN NORMA SOSIAL -->
+        <h2><i class="fas fa-scale-balanced"></i> 4.1 Nilai dan Norma Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80" alt="Nilai dan Norma" class="content-image">
+        <p class="image-caption">Nilai dan norma adalah fondasi yang mengatur kehidupan bermasyarakat.</p>
 
         <h3>A. Nilai Sosial</h3>
-        <p><strong>Nilai sosial</strong> adalah konsep abstrak dalam diri manusia mengenai apa yang dianggap baik, benar, penting, dan diinginkan dalam kehidupan bermasyarakat. Nilai sosial menjadi dasar bagi individu atau kelompok untuk menentukan sikap dan perilaku terhadap sesuatu.</p>
-        <p>Menurut <strong>Clyde Kluckhohn</strong>, nilai sosial memiliki ciri-ciri sebagai berikut:</p>
+        <p><strong>Nilai sosial</strong> adalah konsep abstrak dalam diri manusia mengenai apa yang dianggap baik, benar, penting, dan diinginkan dalam kehidupan bermasyarakat. Nilai menjadi dasar bagi individu atau kelompok untuk menentukan sikap dan perilaku.</p>
+        
+        <p>Menurut <strong>Clyde Kluckhohn</strong>, nilai sosial memiliki ciri-ciri:</p>
         <ul>
             <li>Merupakan konstruksi mental yang abstrak</li>
             <li>Mempengaruhi tindakan manusia</li>
@@ -287,214 +374,157 @@
         </ul>
 
         <h4>Jenis-jenis Nilai Sosial</h4>
-        <p>Berdasarkan sumbernya, nilai sosial dapat dibagi menjadi:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Jenis Nilai</th>
-                    <th>Penjelasan</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Nilai Material</strong></td>
-                    <td>Berkaitan dengan kebutuhan fisik dan benda-benda konkret</td>
-                    <td>Pakaian, makanan, tempat tinggal, uang</td>
-                </tr>
-                <tr>
-                    <td><strong>Nilai Vital</strong></td>
-                    <td>Berkaitan dengan hal-hal yang diperlukan untuk kelangsungan hidup</td>
-                    <td>Kesehatan, keselamatan, keamanan</td>
-                </tr>
-                <tr>
-                    <td><strong>Nilai Kerohanian</strong></td>
-                    <td>Berkaitan dengan jiwa, akal, dan perasaan manusia (dibagi lagi menjadi nilai kebenaran, keindahan, kebaikan, dan religius)</td>
-                    <td>Kejujuran, keadilan, keindahan seni, ketakwaan</td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-top: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-box"></i> Nilai Material</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Berkaitan dengan kebutuhan fisik dan benda konkret. <br><strong>Contoh:</strong> Pakaian, makanan, uang.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-shield-heart"></i> Nilai Vital</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Berkaitan dengan kelangsungan hidup. <br><strong>Contoh:</strong> Kesehatan, keselamatan, keamanan.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-brain"></i> Nilai Kerohanian</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Berkaitan dengan jiwa, akal, dan perasaan. <br><strong>Contoh:</strong> Kejujuran, keadilan, keindahan, ketakwaan.</p>
+            </div>
+        </div>
 
         <h3>B. Norma Sosial</h3>
-        <p><strong>Norma sosial</strong> adalah aturan atau pedoman perilaku yang mengikat anggota masyarakat dalam berinteraksi. Norma sosial berisi <strong>perintah</strong> (apa yang harus dilakukan) dan <strong>larangan</strong> (apa yang tidak boleh dilakukan). Norma lahir dari nilai sosial yang dianut masyarakat dan berfungsi untuk mengatur serta mengendalikan perilaku.</p>
+        <p><strong>Norma sosial</strong> adalah aturan atau pedoman perilaku yang mengikat anggota masyarakat. Norma berisi <strong>perintah</strong> (apa yang harus dilakukan) dan <strong>larangan</strong> (apa yang tidak boleh dilakukan). Norma lahir dari nilai sosial dan berfungsi untuk mengatur serta mengendalikan perilaku.</p>
 
-        <h4>Tingkatan Norma Sosial (Dari yang Paling Lemah ke Paling Kuat)</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tingkatan</th>
-                    <th>Istilah Sosiologis</th>
-                    <th>Penjelasan</th>
-                    <th>Sanksi Pelanggaran</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>1. Cara</strong></td>
-                    <td><em>Usage</em></td>
-                    <td>Norma yang paling lemah, terkait dengan perilaku sehari-hari yang tidak penting</td>
-                    <td>Ejekan, cemoohan, atau teguran ringan</td>
-                </tr>
-                <tr>
-                    <td><strong>2. Kebiasaan</strong></td>
-                    <td><em>Folkways</em></td>
-                    <td>Perilaku yang dilakukan secara berulang-ulang dan menjadi pola tetap</td>
-                    <td>Kecaman sosial atau dikucilkan</td>
-                </tr>
-                <tr>
-                    <td><strong>3. Tata Kelakuan</strong></td>
-                    <td><em>Mores</em></td>
-                    <td>Norma yang dianggap penting dan berkaitan dengan moralitas serta kebaikan</td>
-                    <td>Hukuman sosial yang berat, pengucilan, atau kehilangan status</td>
-                </tr>
-                <tr>
-                    <td><strong>4. Adat Istiadat</strong></td>
-                    <td><em>Custom</em></td>
-                    <td>Norma yang sudah mengakar kuat dan dijaga secara turun-temurun</td>
-                    <td>Dicap sebagai orang yang tidak beradab atau dikeluarkan dari kelompok</td>
-                </tr>
-                <tr>
-                    <td><strong>5. Hukum</strong></td>
-                    <td><em>Law</em></td>
-                    <td>Norma yang paling kuat, bersifat formal dan tertulis, serta memiliki sanksi tegas dari negara</td>
-                    <td>Denda, penjara, atau hukuman pidana lainnya</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="highlight-box">
-            <p><strong>Contoh Kasus:</strong> Di suatu daerah, meludah di sembarang tempat dianggap sebagai pelanggaran <em>usage</em> (cara) yang hanya mendapat teguran. Namun, mencuri uang milik orang lain melanggar <em>law</em> (hukum) yang sanksinya tegas berupa pidana penjara.</p>
+        <h4>5 Tingkatan Norma Sosial (Dari Lemah ke Kuat)</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-left: 4px solid #94a3b8;">
+                <h4 style="margin-top: 0; color: #64748b;"><i class="fas fa-feather"></i> 1. Cara (Usage)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Norma paling lemah, terkait perilaku sehari-hari. <br><strong>Sanksi:</strong> Ejekan, teguran ringan.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-repeat"></i> 2. Kebiasaan (Folkways)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Perilaku berulang yang menjadi pola tetap. <br><strong>Sanksi:</strong> Kecaman sosial, dikucilkan.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-gavel"></i> 3. Tata Kelakuan (Mores)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Norma penting terkait moralitas. <br><strong>Sanksi:</strong> Hukuman berat, pengucilan.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid #f97316;">
+                <h4 style="margin-top: 0; color: #f97316;"><i class="fas fa-scroll"></i> 4. Adat Istiadat (Custom)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Norma mengakar kuat, dijaga turun-temurun. <br><strong>Sanksi:</strong> Dicap tidak beradab, dikeluarkan dari kelompok.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-scale-balanced"></i> 5. Hukum (Law)</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0;">Norma paling kuat, formal, tertulis. <br><strong>Sanksi:</strong> Denda, penjara, hukuman pidana.</p>
+            </div>
         </div>
 
-        <h4>C. Hubungan Nilai dan Norma Sosial</h4>
-        <p>Nilai sosial dan norma sosial merupakan dua konsep yang saling berkaitan erat:</p>
+        <div class="highlight-box">
+            <p><strong><i class="fas fa-lightbulb"></i> Hubungan Nilai dan Norma:</strong><br>
+            <strong>Nilai sosial</strong> adalah ide dasar/abstrak (misal: kejujuran). <strong>Norma sosial</strong> adalah perwujudan konkretnya (misal: "tidak boleh berbohong"). Norma adalah aturan yang lahir dari nilai.</p>
+        </div>
+
+        <!-- 4.2 LEMBAGA SOSIAL -->
+        <h2><i class="fas fa-building-columns"></i> 4.2 Lembaga Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Lembaga Sosial" class="content-image">
+        <p class="image-caption">Lembaga sosial adalah sistem norma untuk memenuhi kebutuhan pokok masyarakat.</p>
+
+        <h3>A. Pengertian & Karakteristik</h3>
+        <p><strong>Lembaga sosial</strong> (<em>social institution</em>) adalah sistem norma dan aturan yang terbentuk untuk memenuhi kebutuhan-kebutuhan pokok manusia. Lembaga sosial bukan benda fisik, melainkan <strong>sistem tata kelakuan</strong> yang terstruktur.</p>
+        
+        <p>Karakteristik lembaga sosial:</p>
         <ul>
-            <li><strong>Nilai sosial</strong> adalah <strong>ide dasar</strong> atau <strong>jiwa</strong> dari aturan-aturan yang ada. Nilai bersifat abstrak, universal, dan sulit diukur.</li>
-            <li><strong>Norma sosial</strong> adalah <strong>pengejawantahan</strong> (perwujudan konkret) dari nilai sosial. Norma bersifat lebih spesifik, terlihat, dan dapat diukur pelaksanaannya.</li>
-        </ul>
-        <p><em>Contoh:</em> Nilai kejujuran (abstrak) diwujudkan dalam norma "tidak boleh berbohong" dan "harus mengembalikan barang temuan".</p>
-
-        <!-- ======== 4.2 LEMBAGA SOSIAL ======== -->
-        <h2>4.2 Lembaga Sosial</h2>
-
-        <h3>A. Pengertian Lembaga Sosial</h3>
-        <p><strong>Lembaga sosial</strong> (<em>social institution</em>) adalah sistem norma dan aturan yang terbentuk untuk memenuhi kebutuhan-kebutuhan pokok manusia dalam kehidupan bermasyarakat. Lembaga sosial bukanlah benda fisik, melainkan suatu <strong>sistem tata kelakuan</strong> yang terstruktur dan memiliki kekuatan untuk memaksa individu agar bertindak sesuai dengan norma-norma yang berlaku.</p>
-        <p>Menurut <strong>Koentjaraningrat</strong>, lembaga sosial adalah suatu sistem tata kelakuan dan hubungan yang berpusat pada aktivitas-aktivitas untuk memenuhi kebutuhan khusus dalam kehidupan masyarakat.</p>
-
-        <h3>B. Karakteristik Lembaga Sosial</h3>
-        <p>Ciri-ciri atau karakteristik lembaga sosial antara lain:</p>
-        <ul>
-            <li><strong>Memiliki simbol</strong> — biasanya memiliki lambang, motto, atau simbol tertentu yang menjadi identitas.</li>
-            <li><strong>Memiliki tata tertib dan tradisi</strong> — memiliki aturan tertulis dan tidak tertulis yang mengatur anggota.</li>
-            <li><strong>Memiliki kekekalan tertentu</strong> — tidak mudah berubah dan cenderung bertahan lama.</li>
-            <li><strong>Memiliki tujuan tertentu</strong> — dibentuk untuk memenuhi kebutuhan dasar manusia.</li>
-            <li><strong>Memiliki alat perlengkapan</strong> — sarana fisik dan nonfisik untuk menjalankan fungsinya.</li>
+            <li><strong>Memiliki simbol</strong> — lambang, motto, atau identitas tertentu.</li>
+            <li><strong>Memiliki tata tertib dan tradisi</strong> — aturan tertulis dan tidak tertulis.</li>
+            <li><strong>Memiliki kekekalan tertentu</strong> — cenderung bertahan lama.</li>
+            <li><strong>Memiliki tujuan tertentu</strong> — memenuhi kebutuhan dasar manusia.</li>
+            <li><strong>Memiliki alat perlengkapan</strong> — sarana fisik dan nonfisik.</li>
         </ul>
 
-        <h3>C. Tipe-tipe Lembaga Sosial</h3>
-        <p>Berdasarkan fungsinya dalam memenuhi kebutuhan dasar manusia, lembaga sosial dibagi menjadi lima tipe utama:</p>
+        <h3>B. Lima Tipe Lembaga Sosial Utama</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-top: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-house-chimney"></i> Lembaga Keluarga</h4>
+                <p style="font-size: 0.9rem;"><strong>Kebutuhan:</strong> Reproduksi, perlindungan, kasih sayang. <br><strong>Fungsi:</strong> Sosialisasi primer, membentuk kepribadian. <br><strong>Contoh:</strong> Keluarga inti, keluarga besar.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-mosque"></i> Lembaga Agama</h4>
+                <p style="font-size: 0.9rem;"><strong>Kebutuhan:</strong> Spiritual dan makna hidup. <br><strong>Fungsi:</strong> Pedoman moral, ketenangan jiwa. <br><strong>Contoh:</strong> Masjid, gereja, pura, vihara.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-graduation-cap"></i> Lembaga Pendidikan</h4>
+                <p style="font-size: 0.9rem;"><strong>Kebutuhan:</strong> Transfer pengetahuan & nilai. <br><strong>Fungsi:</strong> Mencerdaskan bangsa, menyiapkan tenaga kerja. <br><strong>Contoh:</strong> Sekolah, universitas, kursus.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-store"></i> Lembaga Ekonomi</h4>
+                <p style="font-size: 0.9rem;"><strong>Kebutuhan:</strong> Sandang, pangan, papan. <br><strong>Fungsi:</strong> Produksi, distribusi, konsumsi. <br><strong>Contoh:</strong> Pasar, bank, perusahaan, koperasi.</p>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-landmark"></i> Lembaga Politik</h4>
+                <p style="font-size: 0.9rem;"><strong>Kebutuhan:</strong> Kekuasaan dan pengaturan. <br><strong>Fungsi:</strong> Menjaga ketertiban, keamanan, keadilan. <br><strong>Contoh:</strong> Pemerintah, DPR, partai politik.</p>
+            </div>
+        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Lembaga</th>
-                    <th>Kebutuhan Pokok</th>
-                    <th>Fungsi Utama</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Keluarga</strong></td>
-                    <td>Reproduksi, perlindungan, kasih sayang</td>
-                    <td>Membentuk kepribadian, sosialisasi primer, afeksi</td>
-                    <td>Keluarga inti, keluarga besar</td>
-                </tr>
-                <tr>
-                    <td><strong>Agama</strong></td>
-                    <td>Kebutuhan spiritual dan makna hidup</td>
-                    <td>Memberikan pedoman moral, ketenangan jiwa, dan ritual keagamaan</td>
-                    <td>Masjid, gereja, pura, vihara</td>
-                </tr>
-                <tr>
-                    <td><strong>Pendidikan</strong></td>
-                    <td>Transfer pengetahuan dan nilai budaya</td>
-                    <td>Mencerdaskan kehidupan bangsa, menyiapkan tenaga kerja</td>
-                    <td>Sekolah, universitas, kursus</td>
-                </tr>
-                <tr>
-                    <td><strong>Ekonomi</strong></td>
-                    <td>Kebutuhan sandang, pangan, dan papan</td>
-                    <td>Produksi, distribusi, dan konsumsi barang/jasa</td>
-                    <td>Pasar, bank, perusahaan, koperasi</td>
-                </tr>
-                <tr>
-                    <td><strong>Politik</strong></td>
-                    <td>Kebutuhan akan kekuasaan dan pengaturan</td>
-                    <td>Menjaga ketertiban, keamanan, dan keadilan</td>
-                    <td>Pemerintah, DPR, partai politik, kepolisian</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>D. Fungsi Lembaga Sosial</h3>
+        <h3>C. Fungsi Manifes dan Fungsi Laten</h3>
         <p>Menurut <strong>Robert K. Merton</strong>, setiap lembaga sosial memiliki dua jenis fungsi:</p>
-        <ol>
-            <li><strong>Fungsi Manifes</strong> — fungsi yang disadari dan diharapkan oleh anggota masyarakat. Contoh: fungsi manifes sekolah adalah mendidik siswa.</li>
-            <li><strong>Fungsi Laten</strong> — fungsi yang tidak disadari dan merupakan efek samping. Contoh: fungsi laten sekolah adalah menjadi tempat bertemunya calon pasangan suami-istri.</li>
-        </ol>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-eye"></i> Fungsi Manifes</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Fungsi yang <strong>disadari dan diharapkan</strong> oleh masyarakat. <br><strong>Contoh:</strong> Fungsi manifes sekolah adalah mendidik siswa.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-eye-slash"></i> Fungsi Laten</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Fungsi yang <strong>tidak disadari</strong> dan merupakan efek samping. <br><strong>Contoh:</strong> Fungsi laten sekolah adalah tempat bertemu calon pasangan.</p>
+            </div>
+        </div>
 
-        <!-- ======== 4.3 PERAN LEMBAGA SOSIAL UNTUK KETERTIBAN SOSIAL ======== -->
-        <h2>4.3 Peran Lembaga Sosial untuk Mewujudkan Ketertiban Sosial</h2>
+        <!-- 4.3 PERAN LEMBAGA SOSIAL -->
+        <h2><i class="fas fa-shield-halved"></i> 4.3 Peran Lembaga Sosial untuk Ketertiban</h2>
+        
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Ketertiban Sosial" class="content-image">
+        <p class="image-caption">Lembaga sosial bekerja bersama untuk menciptakan masyarakat yang harmonis.</p>
 
         <h3>A. Pengertian Ketertiban Sosial</h3>
-        <p><strong>Ketertiban sosial</strong> (<em>social order</em>) adalah kondisi di mana masyarakat berjalan dengan harmonis, setiap anggota menjalankan perannya sesuai dengan norma dan aturan yang berlaku, serta konflik dapat diminimalisasi. Ketertiban sosial merupakan tujuan utama dari terbentuknya lembaga-lembaga sosial.</p>
+        <p><strong>Ketertiban sosial</strong> (<em>social order</em>) adalah kondisi di mana masyarakat berjalan harmonis, setiap anggota menjalankan perannya sesuai norma, dan konflik dapat diminimalisasi. Ini adalah tujuan utama terbentuknya lembaga-lembaga sosial.</p>
 
-        <h3>B. Peran Lembaga Sosial dalam Menciptakan Ketertiban</h3>
-        <p>Lembaga sosial memiliki peran strategis dalam mewujudkan ketertiban sosial melalui berbagai cara:</p>
-
-        <div class="card">
-            <h4>1. Kontrol Sosial (<em>Social Control</em>)</h4>
-            <p>Lembaga sosial mengawasi perilaku anggota masyarakat melalui aturan dan sanksi. Misalnya, lembaga kepolisian menegakkan hukum, lembaga agama mengingatkan tentang dosa dan pahala, serta lembaga keluarga mengajarkan sopan santun sejak dini.</p>
-        </div>
-
-        <div class="card">
-            <h4>2. Internalisasi Nilai dan Norma</h4>
-            <p>Melalui proses sosialisasi, lembaga sosial menanamkan nilai-nilai dan norma-norma ke dalam diri individu (internalisasi) sehingga individu secara sadar mematuhi aturan tanpa paksaan. Keluarga dan pendidikan adalah dua lembaga utama dalam proses ini.</p>
-        </div>
-
-        <div class="card">
-            <h4>3. Mengatur Perilaku dan Peran</h4>
-            <p>Setiap lembaga memiliki peran-peran tertentu yang dijalankan oleh anggotanya. Misalnya, dalam lembaga ekonomi, ada peran produsen, konsumen, dan distributor. Dengan peran yang jelas, masyarakat terhindar dari kekacauan.</p>
-        </div>
-
-        <div class="card">
-            <h4>4. Menyelesaikan dan Mengelola Konflik</h4>
-            <p>Lembaga politik (seperti pengadilan) dan lembaga adat berfungsi sebagai mediator dalam menyelesaikan sengketa sehingga tidak berkembang menjadi konflik berkepanjangan.</p>
-        </div>
-
-        <div class="card">
-            <h4>5. Menjaga Stabilitas dan Integrasi Sosial</h4>
-            <p>Lembaga sosial mempertemukan berbagai kepentingan yang berbeda dalam masyarakat. Lembaga agama, misalnya, mengajarkan toleransi dan kerukunan, sementara lembaga pendidikan mengajarkan nasionalisme dan kebhinekaan.</p>
+        <h3>B. Lima Peran Lembaga Sosial</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-user-shield"></i> 1. Kontrol Sosial</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Mengawasi perilaku melalui aturan dan sanksi. <br><strong>Contoh:</strong> Polisi menegakkan hukum, keluarga mengajarkan sopan santun.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-seedling"></i> 2. Internalisasi Nilai</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Menanamkan nilai/norma ke dalam diri individu melalui sosialisasi. <br><strong>Contoh:</strong> Keluarga dan sekolah mengajarkan kejujuran.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-list-check"></i> 3. Mengatur Peran</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Setiap lembaga memiliki peran-peran tertentu. <br><strong>Contoh:</strong> Dalam ekonomi: produsen, konsumen, distributor.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-handshake"></i> 4. Menyelesaikan Konflik</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Berfungsi sebagai mediator dalam sengketa. <br><strong>Contoh:</strong> Pengadilan menyelesaikan kasus hukum.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-people-group"></i> 5. Menjaga Integrasi</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Mempertemukan berbagai kepentingan. <br><strong>Contoh:</strong> Agama mengajarkan toleransi, pendidikan mengajarkan nasionalisme.</p>
+            </div>
         </div>
 
         <div class="highlight-box">
-            <p><strong>Studi Kasus:</strong> Di tengah pandemi COVID-19, lembaga sosial memainkan peran besar dalam menjaga ketertiban. Lembaga kesehatan (puskesmas/rumah sakit) mengatur protokol kesehatan, lembaga agama mengimbau ibadah di rumah, lembaga pendidikan melaksanakan pembelajaran daring, dan lembaga politik mengeluarkan kebijakan PPKM. Semua bekerja bersama untuk melindungi masyarakat.</p>
+            <p><strong><i class="fas fa-virus-covid"></i> Studi Kasus: Pandemi COVID-19</strong><br>
+            Di tengah pandemi, lembaga sosial bekerja bersama menjaga ketertiban: <strong>Lembaga kesehatan</strong> mengatur protokol, <strong>agama</strong> mengimbau ibadah di rumah, <strong>pendidikan</strong> melaksanakan daring, dan <strong>politik</strong> mengeluarkan kebijakan PPKM. Semua bersinergi melindungi masyarakat.</p>
         </div>
 
-        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Uji Capaian Pembelajaran Bab 4</h2>
+        <!-- UJI CAPAIAN PEMBELAJARAN -->
+        <h2><i class="fas fa-clipboard-check"></i> Uji Capaian Pembelajaran Bab 4</h2>
 
         <h3>A. Soal Pilihan Ganda</h3>
-
         <div class="question-block">
-            <p><strong>1.</strong> Konsep abstrak dalam diri manusia mengenai apa yang dianggap baik dan penting dalam kehidupan bermasyarakat disebut...</p>
+            <p><strong>1.</strong> Konsep abstrak dalam diri manusia mengenai apa yang dianggap baik dan penting disebut...</p>
             <ul class="soal-pilihan">
                 <li>a. Norma sosial</li>
                 <li>b. Nilai sosial</li>
                 <li>c. Lembaga sosial</li>
                 <li>d. Hukum</li>
-                <li>e. Adat istiadat</li>
             </ul>
         </div>
 
@@ -504,19 +534,17 @@
                 <li>a. Cara (usage)</li>
                 <li>b. Kebiasaan (folkways)</li>
                 <li>c. Tata kelakuan (mores)</li>
-                <li>d. Adat istiadat (custom)</li>
-                <li>e. Hukum (law)</li>
+                <li>d. Hukum (law)</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>3.</strong> Lembaga sosial yang berfungsi untuk memenuhi kebutuhan spiritual dan memberikan pedoman moral kepada anggota masyarakat adalah...</p>
+            <p><strong>3.</strong> Lembaga sosial yang berfungsi untuk memenuhi kebutuhan spiritual dan memberikan pedoman moral adalah...</p>
             <ul class="soal-pilihan">
                 <li>a. Lembaga keluarga</li>
                 <li>b. Lembaga agama</li>
                 <li>c. Lembaga pendidikan</li>
                 <li>d. Lembaga ekonomi</li>
-                <li>e. Lembaga politik</li>
             </ul>
         </div>
 
@@ -527,23 +555,10 @@
                 <li>b. Laten</li>
                 <li>c. Struktural</li>
                 <li>d. Fungsional</li>
-                <li>e. Instrumental</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>5.</strong> Lembaga sosial berperan dalam mewujudkan ketertiban sosial. Berikut yang merupakan peran lembaga sosial dalam mengelola konflik adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Mengajarkan sopan santun</li>
-                <li>b. Menjadi mediator dalam sengketa</li>
-                <li>c. Menanamkan nilai kejujuran</li>
-                <li>d. Menerapkan protokol kesehatan</li>
-                <li>e. Memproduksi barang konsumsi</li>
             </ul>
         </div>
 
         <h3>B. Soal Esai</h3>
-
         <div class="question-block">
             <p><strong>1.</strong> Jelaskan perbedaan antara nilai sosial dan norma sosial, serta berikan contoh konkret yang menunjukkan hubungan keduanya!</p>
         </div>
@@ -551,87 +566,138 @@
             <p><strong>2.</strong> Uraikan lima tingkatan norma sosial dari yang paling lemah hingga paling kuat, disertai dengan contoh dan sanksi masing-masing!</p>
         </div>
         <div class="question-block">
-            <p><strong>3.</strong> Sebutkan dan jelaskan lima tipe lembaga sosial berdasarkan kebutuhan pokok yang dipenuhinya, serta berikan contoh fungsinya masing-masing!</p>
-        </div>
-        <div class="question-block">
-            <p><strong>4.</strong> Bagaimana lembaga sosial berperan dalam mewujudkan ketertiban sosial? Uraikan minimal empat peran dengan contoh nyata!</p>
+            <p><strong>3.</strong> Sebutkan dan jelaskan lima tipe lembaga sosial berdasarkan kebutuhan pokok yang dipenuhinya!</p>
         </div>
 
         <h3>C. Aktivitas Pembelajaran Mendalam</h3>
 
-        <!-- Aktivitas 1 -->
         <div class="aktivitas">
-            <h4>Aktivitas 1: Observasi Nilai dan Norma di Lingkungan Sekolah</h4>
-            <p>Amatilah aturan-aturan yang berlaku di sekolahmu (tata tertib, seragam, jam masuk, dan lain-lain). Identifikasi nilai sosial yang menjadi dasar dari aturan-aturan tersebut, serta klasifikasikan tingkat norma sosialnya (cara, kebiasaan, tata kelakuan, adat, atau hukum). Buatlah laporan singkat dalam bentuk tabel.</p>
+            <h4><i class="fas fa-school"></i> Aktivitas 1: Observasi Nilai dan Norma di Sekolah</h4>
+            <p>Amatilah aturan-aturan yang berlaku di sekolahmu (tata tertib, seragam, jam masuk). Identifikasi nilai sosial yang menjadi dasar aturan tersebut, serta klasifikasikan tingkat normanya (cara, kebiasaan, tata kelakuan, adat, atau hukum). Buatlah laporan singkat dalam bentuk tabel.</p>
         </div>
 
-        <!-- Aktivitas 2: Literasi Numerasi — Data Pendidikan dan Fungsi Lembaga -->
         <div class="aktivitas">
-            <h4>Aktivitas 2: Literasi Numerasi — Analisis Data Pendidikan</h4>
-            <p>Perhatikan data Angka Partisipasi Kasar (APK) Pendidikan di Indonesia berdasarkan jenjang pendidikan (data ilustratif):</p>
+            <h4><i class="fas fa-chart-line"></i> Aktivitas 2: Literasi Numerasi — Data Pendidikan</h4>
+            <p>Perhatikan data Angka Partisipasi Kasar (APK) Pendidikan di Indonesia:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Jenjang Pendidikan</th>
+                        <th>Jenjang</th>
                         <th>APK 2020 (%)</th>
                         <th>APK 2022 (%)</th>
-                        <th>Perubahan (poin)</th>
+                        <th>Perubahan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>SD / MI</td><td>98,5</td><td>98,7</td><td>+0,2</td></tr>
-                    <tr><td>SMP / MTs</td><td>85,2</td><td>86,8</td><td>+1,6</td></tr>
-                    <tr><td>SMA / SMK / MA</td><td>72,1</td><td>74,5</td><td>+2,4</td></tr>
+                    <tr><td>SD/MI</td><td>98,5</td><td>98,7</td><td>+0,2</td></tr>
+                    <tr><td>SMP/MTs</td><td>85,2</td><td>86,8</td><td>+1,6</td></tr>
+                    <tr><td>SMA/SMK/MA</td><td>72,1</td><td>74,5</td><td>+2,4</td></tr>
                     <tr><td>Perguruan Tinggi</td><td>28,3</td><td>30,1</td><td>+1,8</td></tr>
                 </tbody>
             </table>
-            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <p><strong>Pertanyaan:</strong></p>
             <ol>
-                <li>Jenjang pendidikan mana yang mengalami peningkatan APK tertinggi dan terendah?</li>
-                <li>Jika total penduduk usia sekolah (7–24 tahun) adalah 65 juta jiwa, perkirakan jumlah siswa di SMA/SMK/MA pada tahun 2022!</li>
-                <li>Bagaimana data ini mencerminkan peran lembaga pendidikan dalam masyarakat? Jelaskan fungsi manifes dan fungsi laten dari lembaga pendidikan berdasarkan data tersebut!</li>
+                <li>Jenjang mana yang mengalami peningkatan APK tertinggi dan terendah?</li>
+                <li>Jika total penduduk usia sekolah 65 juta jiwa, perkirakan jumlah siswa SMA/SMK/MA pada 2022!</li>
+                <li>Bagaimana data ini mencerminkan peran lembaga pendidikan? Jelaskan fungsi manifes dan laten berdasarkan data tersebut!</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 3: Proyek Mini Riset Lembaga Sosial -->
         <div class="aktivitas">
-            <h4>Aktivitas 3: Pembelajaran Mendalam — Wawancara Lembaga Sosial</h4>
-            <p>Pilih satu lembaga sosial yang ada di lingkunganmu (misalnya: pengurus masjid/gereja, karang taruna, koperasi desa, atau organisasi kemasyarakatan). Lakukan wawancara singkat dengan pengurusnya mengenai:</p>
+            <h4><i class="fas fa-microphone"></i> Aktivitas 3: Wawancara Lembaga Sosial</h4>
+            <p>Pilih satu lembaga sosial di lingkunganmu (pengurus masjid, karang taruna, koperasi desa). Wawancarai pengurusnya mengenai:</p>
             <ol>
-                <li>Apa tujuan utama lembaga tersebut?</li>
-                <li>Aturan/norma apa yang diterapkan?</li>
-                <li>Bagaimana lembaga tersebut menjaga ketertiban di lingkungannya?</li>
-                <li>Apa kendala yang dihadapi?</li>
+                <li>Tujuan utama lembaga tersebut.</li>
+                <li>Aturan/norma yang diterapkan.</li>
+                <li>Cara menjaga ketertiban di lingkungannya.</li>
+                <li>Kendala yang dihadapi.</li>
             </ol>
-            <p>Tuliskan hasil wawancara dalam laporan 1–2 halaman dan kaitkan dengan konsep lembaga sosial yang telah dipelajari.</p>
+            <p>Tuliskan hasil wawancara dalam laporan 1–2 halaman dan kaitkan dengan konsep lembaga sosial.</p>
         </div>
 
-        <!-- Aktivitas 4: Literasi — Studi Kasus Pelanggaran Norma -->
         <div class="aktivitas">
-            <h4>Aktivitas 4: Literasi — Analisis Berita Pelanggaran Norma</h4>
-            <p>Carilah sebuah artikel berita tentang pelanggaran norma sosial di Indonesia (misalnya: kasus korupsi, tawuran pelajar, pelanggaran lalu lintas, atau kasus asusila). Bacalah dengan saksama, lalu analisis:</p>
+            <h4><i class="fas fa-newspaper"></i> Aktivitas 4: Analisis Berita Pelanggaran Norma</h4>
+            <p>Carilah artikel berita tentang pelanggaran norma sosial (korupsi, tawuran, pelanggaran lalu lintas). Analisis:</p>
             <ol>
-                <li>Norma sosial apa yang dilanggar (masuk kategori mana)?</li>
-                <li>Nilai sosial apa yang diabaikan oleh pelaku?</li>
-                <li>Lembaga sosial mana yang terlibat dalam penanganan kasus tersebut? Bagaimana perannya?</li>
-                <li>Menurutmu, bagaimana kasus ini mempengaruhi ketertiban sosial di masyarakat?</li>
+                <li>Norma sosial apa yang dilanggar (kategori mana)?</li>
+                <li>Nilai sosial apa yang diabaikan pelaku?</li>
+                <li>Lembaga sosial mana yang terlibat dalam penanganan? Bagaimana perannya?</li>
+                <li>Bagaimana kasus ini mempengaruhi ketertiban sosial?</li>
             </ol>
         </div>
 
-        <!-- ======== RANGKUMAN ======== -->
+        <!-- RANGKUMAN -->
         <div class="rangkuman">
-            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 4</h2>
-            <ul>
-                <li><strong>Nilai sosial</strong> adalah konsep abstrak tentang baik-buruk, benar-salah yang menjadi pedoman hidup, sedangkan <strong>norma sosial</strong> adalah aturan konkret yang mengatur perilaku masyarakat. Norma adalah perwujudan dari nilai.</li>
-                <li>Norma memiliki tingkatan dari yang lemah hingga kuat: <strong>Cara (usage), Kebiasaan (folkways), Tata Kelakuan (mores), Adat Istiadat (custom), dan Hukum (law)</strong>.</li>
-                <li><strong>Lembaga sosial</strong> adalah sistem norma untuk memenuhi kebutuhan pokok masyarakat, terdiri dari lima tipe utama: <strong>keluarga, agama, pendidikan, ekonomi, dan politik</strong>.</li>
-                <li>Setiap lembaga memiliki fungsi <strong>manifes</strong> (disadari) dan <strong>laten</strong> (tidak disadari).</li>
-                <li>Lembaga sosial berperan penting dalam <strong>mewujudkan ketertiban sosial</strong> melalui kontrol sosial, internalisasi nilai/norma, pengaturan peran, penyelesaian konflik, dan menjaga integrasi sosial.</li>
+            <h2><i class="fas fa-check-circle"></i> Rangkuman Bab 4</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Nilai sosial</strong> adalah konsep abstrak tentang baik-buruk, sedangkan <strong>norma sosial</strong> adalah aturan konkret yang mengatur perilaku. Norma adalah perwujudan dari nilai.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Norma memiliki 5 tingkatan: <strong>Cara (usage), Kebiasaan (folkways), Tata Kelakuan (mores), Adat Istiadat (custom), dan Hukum (law)</strong>.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Lembaga sosial</strong> adalah sistem norma untuk memenuhi kebutuhan pokok, terdiri dari 5 tipe: <strong>keluarga, agama, pendidikan, ekonomi, dan politik</strong>.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Setiap lembaga memiliki fungsi <strong>manifes</strong> (disadari) dan <strong>laten</strong> (tidak disadari).
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Lembaga sosial berperan dalam <strong>mewujudkan ketertiban</strong> melalui kontrol sosial, internalisasi nilai, pengaturan peran, penyelesaian konflik, dan menjaga integrasi.
+                </li>
             </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <a href="sosiologi-kelas-x.html" class="action-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portal Sosiologi Kelas X
+            </a>
         </div>
 
     </div>
     <!-- end container -->
 
+    <!-- Floating Action Buttons -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <button class="print-btn" onclick="window.print()" title="Cetak Materi">
+        <i class="fas fa-print"></i> Cetak
+    </button>
+
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
