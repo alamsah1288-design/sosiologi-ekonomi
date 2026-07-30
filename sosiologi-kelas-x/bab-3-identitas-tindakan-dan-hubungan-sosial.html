@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 3: Identitas Sosial, Tindakan Sosial, dan Hubungan Sosial</title>
+    <style>
+        /* --- Reset & Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #fffbeb;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2.5rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- Typography --- */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            border-bottom: 4px solid #d97706;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: #1e293b;
+            border-left: 6px solid #d97706;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul,
+        ol {
+            margin: 0.8rem 0 1.2rem 1.8rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        blockquote {
+            background: #fef3c7;
+            border-left: 5px solid #d97706;
+            padding: 1rem 1.8rem;
+            margin: 1.4rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.6rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        th {
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        td {
+            background: #ffffff;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background: #fffbeb;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: #fefce8;
+            border-radius: 16px;
+            padding: 1.6rem 2rem;
+            margin: 1.8rem 0;
+            border: 1px solid #fde68a;
+        }
+
+        .card h4 {
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background: #fffbeb;
+            border-left: 6px solid #d97706;
+            padding: 1.2rem 1.8rem;
+            border-radius: 8px;
+            margin: 1.6rem 0;
+        }
+
+        .highlight-box strong {
+            color: #b45309;
+        }
+
+        /* --- Assessment & Aktivitas --- */
+        .question-block {
+            margin: 1.8rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .question-block:last-child {
+            border-bottom: none;
+        }
+
+        .soal-pilihan {
+            list-style: lower-alpha;
+            margin-left: 1.8rem;
+        }
+
+        .soal-pilihan li {
+            margin-bottom: 0.2rem;
+        }
+
+        .aktivitas {
+            background: #fefce8;
+            border-radius: 12px;
+            padding: 1.4rem 2rem;
+            margin: 1.6rem 0;
+            border: 1px solid #fde68a;
+        }
+
+        .aktivitas h4 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+
+        /* --- Rangkuman --- */
+        .rangkuman {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 16px;
+            padding: 1.8rem 2.2rem;
+            margin: 2.4rem 0;
+        }
+
+        .rangkuman ul {
+            list-style-type: disc;
+            margin-left: 1.6rem;
+        }
+
+        .rangkuman li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 8px 10px;
+            }
+            .card,
+            .aktivitas,
+            .rangkuman {
+                padding: 1rem 1.2rem;
+            }
+            blockquote {
+                padding: 0.8rem 1.2rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0.5in;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .card,
+            .aktivitas,
+            .rangkuman {
+                border: 1px solid #ccc;
+                background: #f9f9f9;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ======== MAIN TITLE ======== -->
+        <h1>Bab 3: Identitas Sosial, Tindakan Sosial, dan Hubungan Sosial</h1>
+
+        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
+        <h2>Capaian Pembelajaran Bab</h2>
+        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+        <ol>
+            <li>Menjelaskan konsep identitas sosial dan faktor-faktor yang mempengaruhinya</li>
+            <li>Menganalisis berbagai jenis tindakan sosial menurut Max Weber</li>
+            <li>Memahami dinamika hubungan sosial, termasuk bentuk-bentuk interaksi sosial asosiatif dan disosiatif</li>
+            <li>Mengaplikasikan konsep identitas, tindakan, dan hubungan sosial dalam menganalisis fenomena sehari-hari</li>
+        </ol>
+
+        <!-- ======== 3.1 IDENTITAS SOSIAL ======== -->
+        <h2>3.1 Identitas Sosial</h2>
+
+        <h3>A. Pengertian Identitas Sosial</h3>
+        <p><strong>Identitas sosial</strong> adalah pemahaman seseorang tentang dirinya sendiri yang berasal dari keanggotaannya dalam kelompok-kelompok sosial tertentu. Identitas sosial memberikan makna dan rasa kebanggaan atau penghargaan diri yang terkait dengan kelompok tempat individu tersebut menjadi bagian.</p>
+        <p>Konsep ini pertama kali dikembangkan secara sistematis oleh <strong>Henri Tajfel</strong> dan <strong>John Turner</strong> melalui <em>Teori Identitas Sosial</em> (<em>Social Identity Theory</em>). Menurut teori ini, identitas sosial terbentuk melalui tiga proses:</p>
+        <ol>
+            <li><strong>Kategorisasi Sosial</strong> — individu mengelompokkan dunia sosial ke dalam kategori-kategori (misalnya: agama, etnis, profesi) untuk memahami lingkungannya.</li>
+            <li><strong>Identifikasi Sosial</strong> — individu mengadopsi identitas dari kelompok yang dipilih dan merasa menjadi bagian dari kelompok tersebut.</li>
+            <li><strong>Perbandingan Sosial</strong> — individu membandingkan kelompoknya (<em>in-group</em>) dengan kelompok lain (<em>out-group</em>) untuk menilai status dan nilai kelompoknya.</li>
+        </ol>
+
+        <div class="highlight-box">
+            <p><strong>Contoh:</strong> Seorang siswa yang tergabung dalam klub sepak bola sekolah akan mengategorikan dirinya sebagai "anggota klub sepak bola", merasa bangga menjadi bagian dari klub tersebut, dan membandingkan klubnya dengan klub lain untuk menunjukkan keunggulan timnya.</p>
+        </div>
+
+        <h3>B. Faktor-faktor Pembentuk Identitas Sosial</h3>
+        <p>Identitas sosial tidak terbentuk dengan sendirinya, melainkan dipengaruhi oleh berbagai faktor:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Faktor</th>
+                    <th>Penjelasan</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Suku dan Etnis</strong></td>
+                    <td>Latar belakang keturunan dan budaya yang diwarisi</td>
+                    <td>Identitas sebagai suku Jawa, Batak, atau Dayak</td>
+                </tr>
+                <tr>
+                    <td><strong>Agama</strong></td>
+                    <td>Sistem keyakinan dan nilai-nilai keagamaan yang dianut</td>
+                    <td>Identitas sebagai Muslim, Kristen, Hindu, Buddha, dll.</td>
+                </tr>
+                <tr>
+                    <td><strong>Jenis Kelamin dan Gender</strong></td>
+                    <td>Peran sosial yang dikaitkan dengan laki-laki atau perempuan</td>
+                    <td>Identitas sebagai laki-laki, perempuan, atau non-biner</td>
+                </tr>
+                <tr>
+                    <td><strong>Status Sosial Ekonomi</strong></td>
+                    <td>Posisi dalam struktur kelas masyarakat</td>
+                    <td>Identitas sebagai kelas menengah, pekerja, atau elite</td>
+                </tr>
+                <tr>
+                    <td><strong>Profesi/Pekerjaan</strong></td>
+                    <td>Peran yang dijalani dalam dunia kerja</td>
+                    <td>Identitas sebagai guru, dokter, polisi, atau seniman</td>
+                </tr>
+                <tr>
+                    <td><strong>Daerah/Tempat Tinggal</strong></td>
+                    <td>Asal usul geografis dan budaya lokal</td>
+                    <td>Identitas sebagai warga Jakarta, Yogyakarta, atau Papua</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>C. Identitas Sosial dan Konflik</h3>
+        <p>Identitas sosial dapat menjadi sumber konflik apabila terjadi persaingan antar kelompok (<em>intergroup conflict</em>). Ketika suatu kelompok merasa identitasnya terancam, diskriminasi, prasangka, atau bahkan kekerasan dapat muncul. Sebaliknya, identitas sosial juga dapat menjadi perekat sosial yang kuat jika dikelola dengan baik melalui dialog dan penghargaan terhadap perbedaan.</p>
+
+        <h3>D. Interseksionalitas (Persilangan Identitas)</h3>
+        <p>Setiap individu memiliki <strong>lebih dari satu identitas sosial</strong> yang saling bersilangan (interseksionalitas). Misalnya, seorang perempuan, Jawa, Muslim, dan dari keluarga pekerja akan mengalami realitas sosial yang berbeda dari laki-laki, Batak, Kristen, dan dari keluarga kaya. Pemahaman interseksionalitas membantu kita melihat kompleksitas pengalaman sosial seseorang secara lebih utuh.</p>
+
+        <!-- ======== 3.2 TINDAKAN SOSIAL ======== -->
+        <h2>3.2 Tindakan Sosial</h2>
+
+        <h3>A. Pengertian Tindakan Sosial</h3>
+        <p>Konsep <strong>tindakan sosial</strong> (<em>social action</em>) diperkenalkan oleh <strong>Max Weber</strong>, salah satu tokoh pendiri sosiologi. Menurut Weber, tindakan sosial adalah tindakan yang dilakukan oleh individu dengan mempertimbangkan atau dipengaruhi oleh perilaku orang lain, serta memiliki makna subjektif bagi pelakunya.</p>
+        <p>Dengan kata lain, suatu tindakan dikatakan sebagai tindakan sosial jika:</p>
+        <ol>
+            <li>Memiliki makna atau tujuan bagi pelaku</li>
+            <li>Diarahkan atau dipengaruhi oleh tindakan orang lain</li>
+        </ol>
+
+        <div class="highlight-box">
+            <p><strong>Contoh:</strong> Seseorang mengantre untuk membeli tiket konser. Tindakan ini adalah tindakan sosial karena ia menyadari adanya orang lain di sekitarnya yang juga mengantre, dan ia menyesuaikan perilakunya dengan aturan antre yang berlaku.</p>
+        </div>
+
+        <h3>B. Tipe-tipe Tindakan Sosial Menurut Max Weber</h3>
+        <p>Weber membagi tindakan sosial menjadi empat tipe ideal (ideal type), yaitu:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipe Tindakan</th>
+                    <th>Ciri-ciri</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Rasional Instrumental</strong> <br> (<em>Zweckrational</em>)</td>
+                    <td>Tindakan yang dilakukan dengan perhitungan rasional untuk mencapai tujuan tertentu dengan cara yang paling efektif dan efisien.</td>
+                    <td>Seorang pengusaha menaikkan harga barang untuk mendapatkan keuntungan maksimal; siswa belajar keras untuk lulus ujian.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Rasional Berorientasi Nilai</strong> <br> (<em>Wertrational</em>)</td>
+                    <td>Tindakan yang didasarkan pada keyakinan atau nilai-nilai moral, etika, estetika, atau agama, terlepas dari konsekuensi praktisnya.</td>
+                    <td>Seseorang yang berjuang untuk keadilan meskipun tidak mendapat imbalan; orang yang berpuasa karena ketaatan agama.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Tindakan Afektif</strong> <br> (<em>Affectual</em>)</td>
+                    <td>Tindakan yang didominasi oleh perasaan atau emosi pelaku, bersifat spontan dan tidak direncanakan.</td>
+                    <td>Menangis karena sedih, berteriak karena marah, atau memeluk karena gembira.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Tindakan Tradisional</strong> <br> (<em>Traditional</em>)</td>
+                    <td>Tindakan yang dilakukan karena kebiasaan, adat istiadat, atau tradisi yang sudah mengakar, tanpa banyak pertimbangan rasional.</td>
+                    <td>Melakukan upacara adat, merayakan hari raya keagamaan dengan cara turun-temurun, atau memberi salam saat bertemu orang tua.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="card">
+            <h4>Catatan Penting tentang Tipologi Weber</h4>
+            <p>Dalam praktiknya, suatu tindakan sosial sering merupakan kombinasi dari beberapa tipe. Misalnya, seorang dokter yang merawat pasien (rasional instrumental) juga didorong oleh nilai-nilai kemanusiaan (rasional nilai) dan mungkin kadang bertindak karena emosi (afektif) terhadap pasiennya. Weber menggunakan tipe ideal ini sebagai alat analisis, bukan untuk mengkotak-kotakkan realitas secara kaku.</p>
+        </div>
+
+        <h3>C. Pentingnya Tindakan Sosial dalam Masyarakat</h3>
+        <p>Memahami tindakan sosial membantu kita menjelaskan mengapa orang berperilaku dengan cara tertentu dalam konteks sosial. Tindakan sosial menjadi dasar dari semua interaksi dan hubungan sosial. Tanpa tindakan sosial, tidak akan ada kehidupan bermasyarakat yang bermakna.</p>
+
+        <!-- ======== 3.3 HUBUNGAN SOSIAL ======== -->
+        <h2>3.3 Hubungan Sosial</h2>
+
+        <h3>A. Pengertian Hubungan Sosial</h3>
+        <p><strong>Hubungan sosial</strong> (<em>social relationship</em>) adalah jalinan interaksi yang berlangsung antara dua orang atau lebih, yang bersifat timbal balik dan berlangsung dalam waktu tertentu. Hubungan sosial terbentuk melalui serangkaian tindakan sosial yang saling merespons.</p>
+        <p>Hubungan sosial dapat bersifat <strong>langsung</strong> (tatap muka) maupun <strong>tidak langsung</strong> (melalui media), dan dapat berlangsung antara individu dengan individu, individu dengan kelompok, maupun antar kelompok.</p>
+
+        <h3>B. Proses Terbentuknya Hubungan Sosial</h3>
+        <p>Hubungan sosial terbentuk melalui dua proses utama:</p>
+        <ol>
+            <li><strong>Kontak Sosial</strong> — hubungan fisik atau komunikasi yang memungkinkan terjadinya interaksi. Kontak sosial dapat berupa kontak primer (tatap muka) atau sekunder (perantara).</li>
+            <li><strong>Komunikasi Sosial</strong> — proses penyampaian dan penerimaan pesan, simbol, atau makna antara pihak-pihak yang berinteraksi. Komunikasi efektif memerlukan interpretasi bersama (shared meaning).</li>
+        </ol>
+
+        <h3>C. Bentuk-bentuk Hubungan Sosial</h3>
+        <p>Hubungan sosial dapat dibedakan menjadi dua arah utama: <strong>asosiatif</strong> (mengarah pada persatuan) dan <strong>disosiatif</strong> (mengarah pada perpecahan).</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Bentuk</th>
+                    <th>Jenis</th>
+                    <th>Penjelasan</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4"><strong>Asosiatif</strong> (mempererat)</td>
+                    <td><strong>Kerja Sama</strong> <br> (Kooperasi)</td>
+                    <td>Usaha bersama untuk mencapai tujuan bersama</td>
+                    <td>Gotong royong membersihkan lingkungan, proyek tim di sekolah</td>
+                </tr>
+                <tr>
+                    <td><strong>Akomodasi</strong></td>
+                    <td>Proses penyesuaian diri untuk mengurangi konflik dan menciptakan keseimbangan</td>
+                    <td>Mediasi dalam sengketa, toleransi antarumat beragama</td>
+                </tr>
+                <tr>
+                    <td><strong>Asimilasi</strong></td>
+                    <td>Peleburan perbedaan budaya hingga menjadi satu kesatuan baru</td>
+                    <td>Perpaduan budaya Jawa dan Tionghoa dalam seni budaya</td>
+                </tr>
+                <tr>
+                    <td><strong>Akulturasi</strong></td>
+                    <td>Penerimaan unsur budaya asing tanpa menghilangkan budaya asli</td>
+                    <td>Penggunaan bahasa asing dalam komunikasi sehari-hari</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><strong>Disosiatif</strong> (memecah)</td>
+                    <td><strong>Persaingan</strong> <br> (Kompetisi)</td>
+                    <td>Perjuangan individu/kelompok untuk mencapai tujuan yang sama tanpa menggunakan ancaman</td>
+                    <td>Persaingan dalam lomba debat, kompetisi bisnis</td>
+                </tr>
+                <tr>
+                    <td><strong>Kontravensi</strong></td>
+                    <td>Sikap tidak setuju yang tersembunyi, dapat memicu konflik</td>
+                    <td>Gosip, fitnah, intimidasi halus</td>
+                </tr>
+                <tr>
+                    <td><strong>Konflik</strong></td>
+                    <td>Perjuangan terbuka dengan cara kekerasan atau ancaman untuk mencapai tujuan</td>
+                    <td>Perkelahian, demo anarkis, perang saudara</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>D. Faktor-faktor yang Mempengaruhi Hubungan Sosial</h3>
+        <ul>
+            <li><strong>Kesamaan latar belakang</strong> — orang dengan kesamaan budaya, agama, atau nilai cenderung membangun hubungan lebih erat.</li>
+            <li><strong>Tujuan bersama</strong> — adanya sasaran yang ingin dicapai bersama memperkuat kohesi.</li>
+            <li><strong>Komunikasi yang efektif</strong> — keterbukaan dan empati memperlancar hubungan.</li>
+            <li><strong>Struktur sosial</strong> — norma, aturan, dan hierarki dalam masyarakat membentuk pola hubungan.</li>
+            <li><strong>Perubahan sosial</strong> — modernisasi, urbanisasi, dan teknologi mengubah cara orang berinteraksi.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p><strong>Relevansi:</strong> Memahami hubungan sosial membantu kita menjadi warga masyarakat yang lebih baik, mampu bekerja sama, mengelola konflik, dan menghargai keberagaman.</p>
+        </div>
+
+        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
+        <h2>Uji Capaian Pembelajaran Bab 3</h2>
+
+        <h3>A. Soal Pilihan Ganda</h3>
+
+        <div class="question-block">
+            <p><strong>1.</strong> Teori Identitas Sosial dikembangkan oleh...</p>
+            <ul class="soal-pilihan">
+                <li>a. Max Weber</li>
+                <li>b. Karl Marx</li>
+                <li>c. Émile Durkheim</li>
+                <li>d. Henri Tajfel dan John Turner</li>
+                <li>e. George Ritzer</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>2.</strong> Proses di mana individu mengelompokkan dunia sosial ke dalam kategori-kategori disebut...</p>
+            <ul class="soal-pilihan">
+                <li>a. Identifikasi sosial</li>
+                <li>b. Kategorisasi sosial</li>
+                <li>c. Perbandingan sosial</li>
+                <li>d. Interseksionalitas</li>
+                <li>e. Akulturasi</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>3.</strong> Menurut Max Weber, tindakan seorang pedagang yang menaikkan harga barang untuk mendapatkan keuntungan sebanyak-banyaknya termasuk dalam tipe...</p>
+            <ul class="soal-pilihan">
+                <li>a. Rasional instrumental</li>
+                <li>b. Rasional berorientasi nilai</li>
+                <li>c. Afektif</li>
+                <li>d. Tradisional</li>
+                <li>e. Irrasional</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>4.</strong> Bentuk hubungan sosial yang bertujuan untuk mengurangi konflik dan menciptakan keseimbangan disebut...</p>
+            <ul class="soal-pilihan">
+                <li>a. Kerja sama</li>
+                <li>b. Akomodasi</li>
+                <li>c. Asimilasi</li>
+                <li>d. Akulturasi</li>
+                <li>e. Persaingan</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>5.</strong> Berikut yang termasuk faktor pembentuk identitas sosial adalah...</p>
+            <ul class="soal-pilihan">
+                <li>a. Letak geografis dan iklim</li>
+                <li>b. Suku, agama, dan status ekonomi</li>
+                <li>c. Ketinggian tempat dan vegetasi</li>
+                <li>d. Jenis tanah dan sumber daya alam</li>
+                <li>e. Jumlah penduduk dan kepadatan</li>
+            </ul>
+        </div>
+
+        <h3>B. Soal Esai</h3>
+
+        <div class="question-block">
+            <p><strong>1.</strong> Jelaskan tiga proses pembentukan identitas sosial menurut Teori Identitas Sosial (kategorisasi, identifikasi, perbandingan sosial) dengan memberikan contoh konkret!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>2.</strong> Bandingkan dan kontraskan keempat tipe tindakan sosial menurut Max Weber (rasional instrumental, rasional nilai, afektif, tradisional) dengan memberikan dua contoh untuk masing-masing tipe!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>3.</strong> Uraikan perbedaan antara hubungan sosial asosiatif dan disosiatif, serta jelaskan tiga bentuk dari masing-masing kategori!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>4.</strong> Mengapa identitas sosial yang beragam dapat menjadi sumber konflik sekaligus perekat sosial? Berikan analisis berdasarkan faktor-faktor yang mempengaruhinya!</p>
+        </div>
+
+        <h3>C. Aktivitas Pembelajaran Mendalam</h3>
+
+        <!-- Aktivitas 1 -->
+        <div class="aktivitas">
+            <h4>Aktivitas 1: Observasi Identitas Sosial di Lingkungan Sekitar</h4>
+            <p>Amatilah teman-teman di kelas atau di lingkungan tempat tinggalmu. Identifikasi berbagai identitas sosial yang mereka miliki (suku, agama, status ekonomi, hobi, dll.). Jawablah pertanyaan berikut:</p>
+            <ol>
+                <li>Identitas sosial apa yang paling menonjol dalam kelompokmu?</li>
+                <li>Bagaimana identitas-identitas tersebut memengaruhi interaksi sehari-hari?</li>
+                <li>Apakah ada stereotip atau prasangka yang muncul berdasarkan identitas sosial tertentu? Bagaimana cara mengatasinya?</li>
+            </ol>
+        </div>
+
+        <!-- Aktivitas 2: Literasi Numerasi — Data Keberagaman Indonesia -->
+        <div class="aktivitas">
+            <h4>Aktivitas 2: Literasi Numerasi — Analisis Data Keberagaman</h4>
+            <p>Perhatikan data komposisi penduduk Indonesia berdasarkan agama dan suku berikut (data ilustratif berdasarkan sensus):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Agama</th>
+                        <th>Persentase (%)</th>
+                        <th>Suku Utama</th>
+                        <th>Persentase (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Islam</td><td>87,2%</td><td>Jawa</td><td>40,2%</td></tr>
+                    <tr><td>Kristen Protestan</td><td>7,0%</td><td>Sunda</td><td>15,5%</td></tr>
+                    <tr><td>Katolik</td><td>2,9%</td><td>Batak</td><td>3,6%</td></tr>
+                    <tr><td>Hindu</td><td>1,7%</td><td>Madura</td><td>3,0%</td></tr>
+                    <tr><td>Buddha</td><td>0,7%</td><td>Lainnya</td><td>37,7%</td></tr>
+                    <tr><td>Konghucu &amp; Lainnya</td><td>0,5%</td><td></td><td></td></tr>
+                </tbody>
+            </table>
+            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <ol>
+                <li>Berapa jumlah total persentase agama? Apakah totalnya 100%? Jika tidak, jelaskan mengapa!</li>
+                <li>Jika jumlah penduduk Indonesia 270 juta jiwa, berapa perkiraan jumlah pemeluk Islam dan Kristen Protestan?</li>
+                <li>Berdasarkan data suku, kelompok suku mana yang menjadi mayoritas? Bagaimana keragaman suku ini memengaruhi identitas sosial dan hubungan sosial di Indonesia? Berikan analisis sosiologis!</li>
+            </ol>
+        </div>
+
+        <!-- Aktivitas 3: Proyek Mini Analisis Tindakan Sosial -->
+        <div class="aktivitas">
+            <h4>Aktivitas 3: Pembelajaran Mendalam — Analisis Tindakan Sosial di Media Sosial</h4>
+            <p>Amatilah salah satu unggahan atau percakapan di media sosial (misalnya Twitter, Instagram, atau TikTok). Pilih satu tindakan atau respons dari pengguna, lalu analisis menggunakan tipologi Max Weber:</p>
+            <ol>
+                <li>Apakah tindakan tersebut termasuk rasional instrumental, rasional nilai, afektif, atau tradisional? Berikan alasan!</li>
+                <li>Bagaimana tindakan tersebut memengaruhi hubungan sosial di antara para pengguna (misalnya memicu konflik, solidaritas, atau diskusi)?</li>
+                <li>Tulislah laporan singkat (1 halaman) tentang temuanmu.</li>
+            </ol>
+        </div>
+
+        <!-- Aktivitas 4: Literasi — Studi Kasus Konflik Sosial -->
+        <div class="aktivitas">
+            <h4>Aktivitas 4: Literasi — Studi Kasus Konflik dan Rekonsiliasi</h4>
+            <p>Carilah sebuah artikel berita tentang konflik sosial di Indonesia (misalnya konflik antarwarga, tawuran pelajar, atau konflik SARA). Bacalah dengan saksama, lalu jawablah:</p>
+            <ol>
+                <li>Identitas sosial apa yang menjadi latar belakang konflik?</li>
+                <li>Jenis tindakan sosial apa yang mendominasi dalam kasus tersebut?</li>
+                <li>Bagaimana hubungan sosial antara kelompok yang berkonflik?</li>
+                <li>Usaha apa yang dilakukan untuk menyelesaikan konflik dan membangun kembali hubungan sosial yang harmonis?</li>
+            </ol>
+            <p>Tuliskan analisis kritis dalam 2–3 paragraf.</p>
+        </div>
+
+        <!-- ======== RANGKUMAN ======== -->
+        <div class="rangkuman">
+            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 3</h2>
+            <ul>
+                <li><strong>Identitas sosial</strong> adalah pemahaman diri berdasarkan keanggotaan dalam kelompok, yang terbentuk melalui kategorisasi, identifikasi, dan perbandingan sosial. Faktor pembentuknya meliputi suku, agama, gender, status sosial, dan profesi.</li>
+                <li><strong>Interseksionalitas</strong> menunjukkan bahwa setiap orang memiliki banyak identitas yang saling bersilangan, menciptakan pengalaman sosial yang unik.</li>
+                <li><strong>Tindakan sosial</strong> menurut Max Weber terdiri dari empat tipe: <strong>rasional instrumental</strong> (berorientasi tujuan), <strong>rasional berorientasi nilai</strong> (berdasarkan keyakinan), <strong>afektif</strong> (emosional), dan <strong>tradisional</strong> (kebiasaan).</li>
+                <li><strong>Hubungan sosial</strong> adalah interaksi timbal balik yang dapat bersifat <strong>asosiatif</strong> (kerja sama, akomodasi, asimilasi, akulturasi) atau <strong>disosiatif</strong> (persaingan, kontravensi, konflik).</li>
+                <li>Ketiga konsep ini saling terkait: identitas sosial mempengaruhi jenis tindakan sosial yang dipilih, dan tindakan sosial membentuk pola hubungan sosial dalam masyarakat.</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- end container -->
+
+</body>
+</html>
