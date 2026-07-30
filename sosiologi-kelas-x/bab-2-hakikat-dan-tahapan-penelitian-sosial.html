@@ -3,310 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bab 2: Penelitian Sosial</title>
+    <title>Bab 2: Penelitian Sosial | SMA Negeri 1 Cluring</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        /* --- Reset & Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABEL PORTAL UTAMA ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f0f9ff;
-            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-bottom: 4rem;
+            transition: background 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+
+        /* ===== HEADER & NAVIGASI ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .header-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; border: 3px solid rgba(255,255,255,0.3);
+            font-size: 2rem; backdrop-filter: blur(10px);
+        }
+        .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { opacity: 0.9; font-size: 1rem; }
+
+        /* ===== CONTAINER UTAMA ===== */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 2.5rem 3rem;
+            margin: -3rem auto 0;
+            background: white;
+            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
+        body.dark-mode .container { background: #1e1e1e; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
 
-        /* --- Typography --- */
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #0f172a;
-            border-bottom: 4px solid #0891b2;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-
+        /* ===== TYPOGRAPHY ===== */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 2.8rem;
-            margin-bottom: 1.2rem;
-            color: #1e293b;
-            border-left: 6px solid #0891b2;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        body.dark-mode h2 { color: var(--accent); border-left-color: var(--accent); }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        body.dark-mode h3 { color: #f8f9fa; }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
+        body.dark-mode h4 { color: var(--accent); }
 
-        p {
-            margin-bottom: 1.2rem;
-        }
+        p { margin-bottom: 1.2rem; color: var(--gray); }
+        body.dark-mode p { color: #cbd5e1; }
 
-        ul,
-        ol {
-            margin: 0.8rem 0 1.2rem 1.8rem;
-        }
+        ul, ol { margin: 0.8rem 0 1.5rem 1.5rem; color: var(--gray); }
+        body.dark-mode ul, body.dark-mode ol { color: #cbd5e1; }
+        li { margin-bottom: 0.6rem; }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
-
-        strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            background: #f1f5f9;
-            border-left: 5px solid #0891b2;
-            padding: 1rem 1.8rem;
-            margin: 1.4rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        /* --- Tables --- */
-        table {
+        /* ===== IMAGES ===== */
+        .content-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1.6rem 0;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        th {
-            background: #0f172a;
-            color: #f8fafc;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            background: #ffffff;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) td {
-            background: #f8fafc;
-        }
-
-        /* --- Cards --- */
-        .card {
-            background: #f8fafc;
+            height: 250px;
+            object-fit: cover;
             border-radius: 16px;
-            padding: 1.6rem 2rem;
-            margin: 1.8rem 0;
-            border: 1px solid #e2e8f0;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .content-image:hover { transform: scale(1.01); }
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .card h4 {
-            margin-top: 0;
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
         }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; }
 
         .highlight-box {
-            background: #ecfdf5;
-            border-left: 6px solid #0d9488;
-            padding: 1.2rem 1.8rem;
-            border-radius: 8px;
-            margin: 1.6rem 0;
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .highlight-box { background: rgba(67, 97, 238, 0.15); }
+        .highlight-box strong { color: var(--primary); }
+        body.dark-mode .highlight-box strong { color: var(--accent); }
 
-        .highlight-box strong {
-            color: #0f766e;
-        }
-
-        /* --- Assessment & Aktivitas --- */
-        .question-block {
-            margin: 1.8rem 0;
-            padding: 1rem 0;
-            border-bottom: 1px dashed #cbd5e1;
-        }
-
-        .question-block:last-child {
-            border-bottom: none;
-        }
-
-        .soal-pilihan {
-            list-style: lower-alpha;
-            margin-left: 1.8rem;
-        }
-
-        .soal-pilihan li {
-            margin-bottom: 0.2rem;
-        }
-
-        .aktivitas {
-            background: #f1f5f9;
-            border-radius: 12px;
-            padding: 1.4rem 2rem;
-            margin: 1.6rem 0;
-        }
-
-        .aktivitas h4 {
-            margin-top: 0;
-            color: #1e293b;
-        }
-
-        /* --- Rangkuman --- */
         .rangkuman {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 16px;
-            padding: 1.8rem 2.2rem;
-            margin: 2.4rem 0;
+            padding: 2rem;
+            margin: 3rem 0 1rem;
         }
+        body.dark-mode .rangkuman { background: rgba(74, 222, 128, 0.1); border-color: #22c55e; }
+        .rangkuman h2 { border-left-color: var(--success); color: #15803d; margin-top: 0; }
+        body.dark-mode .rangkuman h2 { color: var(--success); }
 
-        .rangkuman ul {
-            list-style-type: disc;
-            margin-left: 1.6rem;
+        .aktivitas {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .aktivitas { background: rgba(251, 191, 36, 0.1); border-color: #f59e0b; }
+        .aktivitas h4 { margin-top: 0; color: #92400e; display: flex; align-items: center; gap: 8px; }
+        body.dark-mode .aktivitas h4 { color: var(--warning); }
 
-        .rangkuman li {
-            margin-bottom: 0.6rem;
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--dark);
+        }
+        body.dark-mode td { background: #2d2d2d; border-bottom-color: #444; color: #f8f9fa; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        body.dark-mode tr:nth-child(even) td { background: #374151; }
 
-        /* --- Responsive --- */
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.5rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            h3 {
-                font-size: 1.2rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            th,
-            td {
-                padding: 8px 10px;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                padding: 1rem 1.2rem;
-            }
-            blockquote {
-                padding: 0.8rem 1.2rem;
-            }
+        /* ===== ASSESSMENT ===== */
+        .question-block {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        body.dark-mode .question-block { background: #2d2d2d; }
+        .soal-pilihan { list-style: lower-alpha; margin-left: 1.5rem; margin-top: 0.8rem; }
+        .soal-pilihan li { margin-bottom: 0.4rem; cursor: pointer; transition: var(--transition); padding: 4px 8px; border-radius: 6px; }
+        .soal-pilihan li:hover { background: rgba(67, 97, 238, 0.1); }
+
+        /* ===== UTILITIES ===== */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        .print-btn:hover { transform: translateY(-3px); }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 140px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        body.dark-mode .theme-toggle { background: #2d2d2d; color: white; border-color: #444; }
+        .theme-toggle:hover { transform: rotate(15deg); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; margin-top: -2rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .back-btn { top: 15px; left: 15px; padding: 8px 14px; font-size: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            .content-image { height: 180px; }
+            .print-btn { bottom: 20px; right: 20px; padding: 10px 16px; font-size: 0.85rem; }
+            .theme-toggle { bottom: 20px; right: 110px; width: 40px; height: 40px; }
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0.5in;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                border: 1px solid #ccc;
-                background: #f9f9f9;
-            }
+            .page-header, .print-btn, .theme-toggle, .back-btn { display: none !important; }
+            body { background: white; color: black; }
+            .container { margin: 0; box-shadow: none; padding: 0; max-width: 100%; }
+            .card, .aktivitas, .rangkuman, .question-block { border: 1px solid #ccc; background: #f9f9f9 !important; break-inside: avoid; }
+            h2 { color: black !important; border-left-color: black !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header class="page-header">
+        <a href="sosiologi-kelas-x.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali ke Sosiologi Kelas X
+        </a>
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+            <h1>Bab 2: Hakikat dan Tahapan Penelitian Sosial</h1>
+            <p>Memahami proses ilmiah, metodologi, dan langkah-langkah sistematis dalam meneliti fenomena masyarakat.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- ======== MAIN TITLE ======== -->
-        <h1>Bab 2: Penelitian Sosial</h1>
+        <!-- CAPAIAN PEMBELAJARAN -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: none; border-radius: 16px;">
+            <h3 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> Capaian Pembelajaran Bab</h3>
+            <p style="margin-bottom: 0.5rem;">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            <ol style="margin-bottom: 0;">
+                <li>Menjelaskan hakikat penelitian sosial sebagai proses ilmiah.</li>
+                <li>Membedakan jenis-jenis penelitian sosial berdasarkan tujuan, pendekatan, dan metode.</li>
+                <li>Menguraikan tahapan-tahapan dalam penelitian sosial secara sistematis.</li>
+                <li>Merancang proposal penelitian sosial sederhana dengan menerapkan langkah-langkah ilmiah.</li>
+            </ol>
+        </div>
 
-        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Capaian Pembelajaran Bab</h2>
-        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
-        <ol>
-            <li>Menjelaskan hakikat penelitian sosial sebagai proses ilmiah</li>
-            <li>Membedakan jenis-jenis penelitian sosial berdasarkan tujuan, pendekatan, dan metode</li>
-            <li>Menguraikan tahapan-tahapan dalam penelitian sosial secara sistematis</li>
-            <li>Merancang proposal penelitian sosial sederhana dengan menerapkan langkah-langkah ilmiah</li>
-        </ol>
-
-        <!-- ======== 2.1 HAKIKAT PENELITIAN SOSIAL ======== -->
-        <h2>2.1 Hakikat Penelitian Sosial</h2>
+        <!-- 2.1 HAKIKAT PENELITIAN SOSIAL -->
+        <h2><i class="fas fa-flask"></i> 2.1 Hakikat Penelitian Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80" alt="Analisis Data Penelitian" class="content-image">
+        <p class="image-caption">Penelitian sosial mengubah data mentah menjadi pemahaman yang bermakna tentang masyarakat.</p>
 
         <h3>A. Pengertian Penelitian Sosial</h3>
-        <p><strong>Penelitian sosial</strong> adalah suatu kegiatan ilmiah yang dilakukan secara sistematis, terencana, dan terstruktur untuk memahami, menjelaskan, serta memecahkan berbagai fenomena atau masalah yang terjadi dalam kehidupan bermasyarakat. Penelitian sosial menggunakan metode ilmiah yang meliputi observasi, pengumpulan data, analisis, dan penarikan kesimpulan yang objektif.</p>
-        <p>Dengan kata lain, penelitian sosial merupakan upaya untuk mencari pengetahuan baru atau menguji pengetahuan yang sudah ada mengenai realitas sosial dengan menggunakan prosedur yang dapat dipertanggungjawabkan secara ilmiah.</p>
+        <p><strong>Penelitian sosial</strong> adalah suatu kegiatan ilmiah yang dilakukan secara sistematis, terencana, dan terstruktur untuk memahami, menjelaskan, serta memecahkan berbagai fenomena atau masalah yang terjadi dalam kehidupan bermasyarakat. Penelitian ini menggunakan metode ilmiah yang meliputi observasi, pengumpulan data, analisis, dan penarikan kesimpulan yang objektif.</p>
 
         <h3>B. Ciri-ciri Penelitian Sosial</h3>
-        <p>Sebagai bagian dari ilmu pengetahuan, penelitian sosial memiliki ciri-ciri sebagai berikut:</p>
-        <ul>
-            <li><strong>Sistematis</strong>: dilaksanakan mengikuti prosedur dan langkah-langkah yang jelas, logis, dan berurutan.</li>
-            <li><strong>Terencana</strong>: dirancang dengan matang sebelumnya, termasuk tujuan, metode, waktu, dan biaya.</li>
-            <li><strong>Mengikuti metode ilmiah</strong>: menggunakan pendekatan yang rasional, empiris, dan objektif.</li>
-            <li><strong>Objektif</strong>: bebas dari prasangka dan kepentingan pribadi peneliti.</li>
-            <li><strong>Empiris</strong>: berdasarkan pada fakta dan data yang dapat diamati atau diukur.</li>
-            <li><strong>Berlaku umum (generalisable)</strong>: hasilnya dapat diterapkan pada konteks yang lebih luas selama memenuhi syarat.</li>
-        </ul>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-list-ol"></i> Sistematis</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Mengikuti prosedur dan langkah-langkah yang jelas, logis, dan berurutan.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-calendar-check"></i> Terencana</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Dirancang dengan matang sebelumnya (tujuan, metode, waktu, biaya).</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-scale-balanced"></i> Objektif</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Bebas dari prasangka dan kepentingan pribadi peneliti.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem;">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-eye"></i> Empiris</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Berdasarkan pada fakta dan data yang dapat diamati atau diukur.</p>
+            </div>
+        </div>
 
-        <h3>C. Tujuan Penelitian Sosial</h3>
-        <p>Secara umum, penelitian sosial bertujuan untuk:</p>
-        <ol>
-            <li><strong>Eksploratif</strong> — menggali dan menemukan pengetahuan baru tentang fenomena yang belum banyak diketahui.</li>
-            <li><strong>Deskriptif</strong> — menggambarkan secara rinci karakteristik suatu fenomena atau kelompok sosial tertentu.</li>
-            <li><strong>Eksplanatif (penjelasan)</strong> — menjelaskan hubungan kausal (sebab-akibat) antara variabel-variabel sosial.</li>
-            <li><strong>Prediktif</strong> — meramalkan kemungkinan yang akan terjadi di masa depan berdasarkan data dan tren yang ada.</li>
-        </ol>
-
-        <h3>D. Jenis-jenis Penelitian Sosial</h3>
-        <p>Penelitian sosial dapat diklasifikasikan berdasarkan beberapa kriteria:</p>
-
+        <h3>C. Tujuan & Jenis Penelitian</h3>
         <table>
             <thead>
                 <tr>
-                    <th>Kriteria</th>
-                    <th>Jenis</th>
-                    <th>Penjelasan Singkat</th>
+                    <th width="25%">Kriteria</th>
+                    <th width="25%">Jenis</th>
+                    <th width="50%">Penjelasan Singkat</th>
                 </tr>
             </thead>
             <tbody>
@@ -321,10 +394,10 @@
                 </tr>
                 <tr>
                     <td>Eksplanatif</td>
-                    <td>Menguji hubungan antar variabel (kausalitas)</td>
+                    <td>Menguji hubungan sebab-akibat (kausalitas) antar variabel</td>
                 </tr>
                 <tr>
-                    <td rowspan="3"><strong>Pendekatan</strong></td>
+                    <td rowspan="2"><strong>Pendekatan</strong></td>
                     <td>Kuantitatif</td>
                     <td>Berbasis angka, statistik, dan pengukuran objektif</td>
                 </tr>
@@ -332,108 +405,72 @@
                     <td>Kualitatif</td>
                     <td>Berbasis makna, pemahaman mendalam, dan konteks</td>
                 </tr>
-                <tr>
-                    <td>Campuran (Mixed)</td>
-                    <td>Menggabungkan kuantitatif dan kualitatif</td>
-                </tr>
-                <tr>
-                    <td rowspan="2"><strong>Metode</strong></td>
-                    <td>Survei</td>
-                    <td>Menggunakan kuesioner pada sampel besar</td>
-                </tr>
-                <tr>
-                    <td>Studi Kasus</td>
-                    <td>Mendalami satu kasus tertentu secara mendalam</td>
-                </tr>
             </tbody>
         </table>
 
-        <h3>E. Manfaat Penelitian Sosial</h3>
-        <p>Penelitian sosial memberikan manfaat yang luas, antara lain:</p>
-        <ul>
-            <li>Memberikan pemahaman yang lebih baik tentang realitas sosial dan perilaku manusia.</li>
-            <li>Menjadi dasar pengambilan kebijakan publik yang lebih tepat dan berbasis bukti.</li>
-            <li>Membantu memecahkan berbagai masalah sosial seperti kemiskinan, konflik, dan kesenjangan.</li>
-            <li>Mengembangkan ilmu pengetahuan sosial itu sendiri melalui penemuan-penemuan baru.</li>
-        </ul>
-
-        <!-- ======== 2.2 TAHAPAN PENELITIAN SOSIAL ======== -->
-        <h2>2.2 Tahapan Penelitian Sosial</h2>
-
-        <p>Penelitian sosial yang baik harus dilakukan secara bertahap dan sistematis. Berikut adalah tahapan-tahapan umum dalam penelitian sosial:</p>
+        <!-- 2.2 TAHAPAN PENELITIAN SOSIAL -->
+        <h2><i class="fas fa-shoe-prints"></i> 2.2 Tahapan Penelitian Sosial</h2>
+        <p>Penelitian sosial yang baik harus dilakukan secara bertahap dan sistematis. Berikut adalah 10 tahapan umumnya:</p>
 
         <div class="card">
-            <h4>1. Identifikasi Masalah dan Perumusan Masalah</h4>
-            <p>Penelitian dimulai dengan adanya <strong>masalah</strong> atau pertanyaan yang ingin dijawab. Masalah dapat berasal dari pengamatan sehari-hari, ketimpangan data, atau ketidakkonsistenan teori. Masalah kemudian dirumuskan dalam bentuk pertanyaan penelitian yang jelas dan spesifik.</p>
-            <p><em>Contoh:</em> "Bagaimana pengaruh penggunaan media sosial terhadap tingkat kepercayaan diri remaja di Kota X?"</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-lightbulb" style="color: var(--warning);"></i> 1. Identifikasi & Perumusan Masalah</h4>
+            <p style="margin-bottom: 0;">Penelitian dimulai dengan adanya masalah atau pertanyaan yang ingin dijawab. Masalah dirumuskan dalam bentuk pertanyaan penelitian yang jelas dan spesifik. <br><em>Contoh: "Bagaimana pengaruh media sosial terhadap kepercayaan diri remaja?"</em></p>
         </div>
 
         <div class="card">
-            <h4>2. Studi Literatur (Kajian Pustaka)</h4>
-            <p>Peneliti mencari referensi yang relevan, seperti buku, jurnal, artikel, dan penelitian terdahulu untuk memahami teori-teori yang berkaitan, menemukan celah penelitian, dan menyusun kerangka berpikir. Studi literatur membantu peneliti tidak mengulang penelitian yang sudah ada dan memperkaya wawasan.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-book-open" style="color: var(--primary);"></i> 2. Studi Literatur (Kajian Pustaka)</h4>
+            <p style="margin-bottom: 0;">Mencari referensi relevan (buku, jurnal) untuk memahami teori, menemukan celah penelitian, dan menyusun kerangka berpikir agar tidak mengulang penelitian yang sudah ada.</p>
         </div>
 
         <div class="card">
-            <h4>3. Perumusan Hipotesis atau Pertanyaan Penelitian</h4>
-            <p>Untuk penelitian kuantitatif, peneliti merumuskan <strong>hipotesis</strong> (dugaan sementara) yang akan diuji. Untuk penelitian kualitatif, peneliti merumuskan <strong>pertanyaan penelitian</strong> utama yang akan dieksplorasi.</p>
-            <p><em>Contoh hipotesis:</em> "Terdapat hubungan negatif antara intensitas penggunaan media sosial dengan tingkat kepercayaan diri remaja."</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-bullseye" style="color: var(--danger);"></i> 3. Perumusan Hipotesis / Pertanyaan Penelitian</h4>
+            <p style="margin-bottom: 0;">Untuk kuantitatif: merumuskan <strong>hipotesis</strong> (dugaan sementara). Untuk kualitatif: merumuskan <strong>pertanyaan penelitian</strong> utama yang akan dieksplorasi.</p>
         </div>
 
         <div class="card">
-            <h4>4. Menentukan Metode dan Desain Penelitian</h4>
-            <p>Peneliti memilih metode yang paling sesuai dengan tujuan penelitian, misalnya survei, eksperimen, studi kasus, atau etnografi. Desain penelitian juga ditentukan, termasuk pendekatan (kuantitatif/kualitatif) dan strategi pengumpulan data.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-compass" style="color: var(--accent);"></i> 4. Menentukan Metode & Desain Penelitian</h4>
+            <p style="margin-bottom: 0;">Memilih metode yang sesuai (survei, studi kasus, etnografi) dan menentukan pendekatan (kuantitatif/kualitatif) serta strategi pengumpulan data.</p>
         </div>
 
         <div class="card">
-            <h4>5. Menentukan Populasi dan Sampel</h4>
-            <p><strong>Populasi</strong> adalah keseluruhan subjek yang menjadi sasaran penelitian. <strong>Sampel</strong> adalah bagian dari populasi yang dipilih untuk diteliti. Teknik pengambilan sampel harus tepat agar hasil penelitian dapat digeneralisasikan.</p>
-            <p><em>Contoh:</em> Populasi = seluruh remaja usia 15–18 tahun di Kota X. Sampel = 200 remaja yang dipilih secara acak dari 5 sekolah.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-users" style="color: var(--success);"></i> 5. Menentukan Populasi dan Sampel</h4>
+            <p style="margin-bottom: 0;"><strong>Populasi</strong> adalah keseluruhan subjek sasaran. <strong>Sampel</strong> adalah bagian dari populasi yang dipilih untuk diteliti secara representatif.</p>
         </div>
 
         <div class="card">
-            <h4>6. Menyusun Instrumen Penelitian</h4>
-            <p>Instrumen adalah alat yang digunakan untuk mengumpulkan data, seperti:</p>
-            <ul>
-                <li><strong>Kuesioner (angket)</strong> untuk data kuantitatif</li>
-                <li><strong>Pedoman wawancara</strong> untuk data kualitatif</li>
-                <li><strong>Lembar observasi</strong> untuk pengamatan langsung</li>
-            </ul>
-            <p>Instrumen harus diuji validitas dan reliabilitasnya sebelum digunakan.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-clipboard-list" style="color: var(--secondary);"></i> 6. Menyusun Instrumen Penelitian</h4>
+            <p style="margin-bottom: 0;">Membuat alat pengumpul data: <strong>Kuesioner</strong> (kuantitatif), <strong>Pedoman Wawancara</strong> (kualitatif), atau <strong>Lembar Observasi</strong>. Instrumen harus diuji validitas dan reliabilitasnya.</p>
         </div>
 
         <div class="card">
-            <h4>7. Pengumpulan Data (Kerja Lapangan)</h4>
-            <p>Pada tahap ini, peneliti mengumpulkan data dari responden atau sumber data sesuai dengan metode yang telah ditentukan. Proses ini harus dilakukan secara etis, dengan memperhatikan kerahasiaan dan persetujuan partisipan.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-person-digging" style="color: var(--warning);"></i> 7. Pengumpulan Data (Kerja Lapangan)</h4>
+            <p style="margin-bottom: 0;">Mengumpulkan data dari responden sesuai metode yang ditentukan, dengan memperhatikan etika penelitian, kerahasiaan, dan persetujuan partisipan.</p>
         </div>
 
         <div class="card">
-            <h4>8. Analisis Data</h4>
-            <p>Data yang terkumpul kemudian diolah dan dianalisis.</p>
-            <ul>
-                <li><strong>Analisis kuantitatif</strong>: menggunakan statistik deskriptif (rata-rata, persentase) dan inferensial (uji hipotesis).</li>
-                <li><strong>Analisis kualitatif</strong>: menggunakan reduksi data, kategorisasi, dan penarikan makna (misalnya analisis tematik).</li>
-            </ul>
+            <h4 style="margin-top: 0;"><i class="fas fa-chart-pie" style="color: var(--primary);"></i> 8. Analisis Data</h4>
+            <p style="margin-bottom: 0;"><strong>Kuantitatif:</strong> Statistik deskriptif & inferensial. <br><strong>Kualitatif:</strong> Reduksi data, kategorisasi, dan analisis tematik.</p>
         </div>
 
         <div class="card">
-            <h4>9. Penarikan Kesimpulan dan Saran</h4>
-            <p>Berdasarkan hasil analisis, peneliti menarik kesimpulan yang menjawab pertanyaan penelitian. Kesimpulan harus didukung oleh bukti. Peneliti juga dapat memberikan saran untuk kebijakan, praktik, atau penelitian selanjutnya.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-check-double" style="color: var(--success);"></i> 9. Penarikan Kesimpulan dan Saran</h4>
+            <p style="margin-bottom: 0;">Menjawab pertanyaan penelitian berdasarkan bukti analisis, disertai saran untuk kebijakan atau penelitian selanjutnya.</p>
         </div>
 
         <div class="card">
-            <h4>10. Publikasi atau Pelaporan</h4>
-            <p>Hasil penelitian ditulis dalam bentuk laporan ilmiah, artikel jurnal, atau skripsi/tesis. Laporan harus disusun secara sistematis: pendahuluan, tinjauan pustaka, metode, hasil, pembahasan, dan kesimpulan.</p>
+            <h4 style="margin-top: 0;"><i class="fas fa-file-pdf" style="color: var(--danger);"></i> 10. Publikasi atau Pelaporan</h4>
+            <p style="margin-bottom: 0;">Menulis hasil penelitian dalam bentuk laporan ilmiah, artikel jurnal, atau skripsi secara sistematis (Pendahuluan, Metode, Hasil, Pembahasan, Kesimpulan).</p>
         </div>
 
         <div class="highlight-box">
-            <p><strong>Penting!</strong> Tahapan penelitian tidak selalu bersifat linier. Dalam praktiknya, seorang peneliti sering harus kembali ke tahap sebelumnya (misalnya mengubah instrumen atau memperbaiki metode) berdasarkan temuan di lapangan.</p>
+            <p><strong><i class="fas fa-triangle-exclamation"></i> Penting!</strong><br>
+            Tahapan penelitian tidak selalu bersifat linier (lurus). Dalam praktiknya, peneliti sering harus kembali ke tahap sebelumnya (misalnya mengubah instrumen atau memperbaiki metode) berdasarkan temuan di lapangan.</p>
         </div>
 
-        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Uji Capaian Pembelajaran Bab 2</h2>
+        <!-- UJI CAPAIAN PEMBELAJARAN -->
+        <h2><i class="fas fa-clipboard-check"></i> Uji Capaian Pembelajaran Bab 2</h2>
 
         <h3>A. Soal Pilihan Ganda</h3>
-
         <div class="question-block">
             <p><strong>1.</strong> Penelitian sosial yang bertujuan untuk menggali fenomena baru yang belum banyak diketahui disebut penelitian...</p>
             <ul class="soal-pilihan">
@@ -441,7 +478,6 @@
                 <li>b. Eksplanatif</li>
                 <li>c. Eksploratif</li>
                 <li>d. Prediktif</li>
-                <li>e. Kualitatif</li>
             </ul>
         </div>
 
@@ -452,128 +488,128 @@
                 <li>b. Mengandalkan opini pribadi peneliti</li>
                 <li>c. Sistematis, terencana, dan objektif</li>
                 <li>d. Hanya menggunakan data kualitatif</li>
-                <li>e. Tidak memerlukan kajian pustaka</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>3.</strong> Tahap pertama dalam penelitian sosial adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Pengumpulan data</li>
-                <li>b. Analisis data</li>
-                <li>c. Identifikasi dan perumusan masalah</li>
-                <li>d. Menentukan sampel</li>
-                <li>e. Menyusun instrumen</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>4.</strong> Instrumen yang umum digunakan dalam penelitian kuantitatif adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Pedoman wawancara mendalam</li>
-                <li>b. Kuesioner terstruktur</li>
-                <li>c. Catatan lapangan</li>
-                <li>d. Observasi partisipatif</li>
-                <li>e. Analisis dokumen</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>5.</strong> Bagian dari populasi yang dipilih untuk diteliti disebut...</p>
+            <p><strong>3.</strong> Bagian dari populasi yang dipilih untuk diteliti disebut...</p>
             <ul class="soal-pilihan">
                 <li>a. Variabel</li>
                 <li>b. Sampel</li>
                 <li>c. Subjek</li>
                 <li>d. Responden</li>
-                <li>e. Unit analisis</li>
             </ul>
         </div>
 
         <h3>B. Soal Esai</h3>
-
         <div class="question-block">
             <p><strong>1.</strong> Jelaskan apa yang dimaksud dengan penelitian sosial dan sebutkan minimal tiga ciri-cirinya!</p>
         </div>
         <div class="question-block">
             <p><strong>2.</strong> Bedakan antara penelitian kuantitatif dan kualitatif berdasarkan tujuan, jenis data, dan teknik analisis!</p>
         </div>
-        <div class="question-block">
-            <p><strong>3.</strong> Uraikan secara lengkap tahapan-tahapan dalam penelitian sosial mulai dari identifikasi masalah hingga pelaporan!</p>
-        </div>
-        <div class="question-block">
-            <p><strong>4.</strong> Mengapa studi literatur (kajian pustaka) menjadi tahap yang sangat penting dalam penelitian sosial? Jelaskan dengan alasan!</p>
-        </div>
 
         <h3>C. Aktivitas Pembelajaran Mendalam</h3>
 
-        <!-- Aktivitas 1 -->
         <div class="aktivitas">
-            <h4>Aktivitas 1: Identifikasi Masalah Sosial</h4>
-            <p>Amatilah lingkungan sekitarmu (sekolah, rumah, atau masyarakat) dan temukan <strong>satu masalah sosial</strong> yang menarik perhatianmu. Kemudian rumuskan masalah tersebut menjadi:</p>
+            <h4><i class="fas fa-search-location"></i> Aktivitas 1: Identifikasi Masalah Sosial</h4>
+            <p>Amatilah lingkungan sekitarmu dan temukan <strong>satu masalah sosial</strong> yang menarik. Rumuskan menjadi:</p>
             <ol>
-                <li>Pertanyaan penelitian yang spesifik</li>
-                <li>Hipotesis (untuk pendekatan kuantitatif) atau pertanyaan penelitian utama (untuk kualitatif)</li>
-                <li>Jelaskan mengapa masalah ini penting untuk diteliti</li>
+                <li>Pertanyaan penelitian yang spesifik.</li>
+                <li>Hipotesis (kuantitatif) atau pertanyaan utama (kualitatif).</li>
+                <li>Alasan mengapa masalah ini penting untuk diteliti.</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 2: Literasi Numerasi — Menghitung Sampel -->
         <div class="aktivitas">
-            <h4>Aktivitas 2: Literasi Numerasi — Menentukan Ukuran Sampel</h4>
-            <p>Seorang peneliti ingin mengetahui tingkat kepuasan siswa terhadap layanan perpustakaan di sebuah sekolah. Jumlah total siswa di sekolah tersebut adalah <strong>1.200 orang</strong>. Peneliti menggunakan rumus Slovin untuk menentukan ukuran sampel dengan tingkat kesalahan (e) sebesar <strong>5%</strong>.</p>
-            <p><strong>Rumus Slovin:</strong> n = N / (1 + N·e²)</p>
-            <p>dengan n = ukuran sampel, N = ukuran populasi, e = margin of error (batas kesalahan).</p>
-            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <h4><i class="fas fa-calculator"></i> Aktivitas 2: Literasi Numerasi — Menghitung Sampel</h4>
+            <p>Seorang peneliti ingin mengetahui kepuasan siswa terhadap perpustakaan. Total siswa = <strong>1.200 orang</strong>. Gunakan <strong>Rumus Slovin</strong> dengan tingkat kesalahan (e) = <strong>5% (0,05)</strong>.</p>
+            <p style="background: white; padding: 10px; border-radius: 8px; font-family: monospace; text-align: center; margin: 10px 0;">n = N / (1 + N·e²)</p>
             <ol>
-                <li>Hitunglah ukuran sampel minimal yang dibutuhkan!</li>
-                <li>Jika peneliti hanya mengambil 200 sampel, apakah jumlah tersebut sudah representatif? Jelaskan!</li>
-                <li>Mengapa teknik pengambilan sampel (misalnya acak sederhana) penting untuk diperhatikan? Hubungkan dengan validitas penelitian!</li>
+                <li>Hitunglah ukuran sampel minimal (n) yang dibutuhkan!</li>
+                <li>Mengapa teknik pengambilan sampel (misalnya acak sederhana) penting untuk validitas penelitian?</li>
             </ol>
-            <p><em>Petunjuk: gunakan kalkulator untuk menghitung n.</em></p>
         </div>
 
-        <!-- Aktivitas 3: Proyek Mini Riset -->
         <div class="aktivitas">
-            <h4>Aktivitas 3: Pembelajaran Mendalam — Proyek Mini Proposal Penelitian</h4>
-            <p>Buatlah <strong>proposal penelitian sosial sederhana</strong> (1–2 halaman) dengan struktur berikut:</p>
+            <h4><i class="fas fa-file-pen"></i> Aktivitas 3: Proyek Mini Proposal Penelitian</h4>
+            <p>Buatlah <strong>proposal penelitian sosial sederhana</strong> (1–2 halaman) dengan struktur:</p>
             <ol>
-                <li><strong>Judul</strong> — topik yang kamu pilih</li>
-                <li><strong>Latar Belakang Masalah</strong> — mengapa topik ini penting</li>
-                <li><strong>Rumusan Masalah</strong> — minimal 2 pertanyaan penelitian</li>
-                <li><strong>Tujuan Penelitian</strong> — tujuan yang ingin dicapai</li>
-                <li><strong>Metode Penelitian</strong> — pendekatan (kualitatif/kuantitatif), teknik pengumpulan data, dan populasi/sampel</li>
+                <li><strong>Judul</strong></li>
+                <li><strong>Latar Belakang Masalah</strong></li>
+                <li><strong>Rumusan Masalah & Tujuan</strong></li>
+                <li><strong>Metode Penelitian</strong> (Pendekatan, teknik pengumpulan data, populasi/sampel)</li>
             </ol>
-            <p>Presentasikan proposalmu di kelas untuk mendapat masukan dari teman dan guru.</p>
         </div>
 
-        <!-- Aktivitas 4: Literasi — Membaca Artikel Penelitian -->
-        <div class="aktivitas">
-            <h4>Aktivitas 4: Literasi — Menganalisis Laporan Penelitian</h4>
-            <p>Carilah sebuah artikel atau laporan hasil penelitian sosial (dari jurnal, skripsi, atau internet). Bacalah dengan cermat, lalu identifikasi:</p>
-            <ol>
-                <li>Masalah dan tujuan penelitian</li>
-                <li>Metode dan pendekatan yang digunakan</li>
-                <li>Instrumen pengumpulan data</li>
-                <li>Bagaimana penulis menyajikan data dan menarik kesimpulan</li>
-            </ol>
-            <p>Tuliskan analisis singkat (minimal 1 paragraf) tentang kelebihan dan kelemahan penelitian tersebut.</p>
-        </div>
-
-        <!-- ======== RANGKUMAN ======== -->
+        <!-- RANGKUMAN -->
         <div class="rangkuman">
-            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 2</h2>
-            <ul>
-                <li><strong>Penelitian sosial</strong> adalah kegiatan ilmiah yang sistematis, terencana, dan objektif untuk memahami fenomena sosial.</li>
-                <li>Ciri-ciri penelitian sosial: sistematis, terencana, metodis, objektif, empiris, dan generalis.</li>
-                <li>Tujuan penelitian: eksploratif, deskriptif, eksplanatif, dan prediktif.</li>
-                <li>Jenis penelitian berdasarkan pendekatan: <strong>kuantitatif</strong> (berbasis angka dan statistik) dan <strong>kualitatif</strong> (berbasis makna dan konteks).</li>
-                <li><strong>Tahapan penelitian sosial</strong> meliputi: identifikasi masalah → studi literatur → rumusan hipotesis/pertanyaan → metode dan desain → populasi dan sampel → instrumen → pengumpulan data → analisis data → kesimpulan → publikasi.</li>
-                <li>Setiap tahapan saling berkaitan dan membutuhkan ketelitian agar hasil penelitian valid dan reliabel.</li>
+            <h2><i class="fas fa-check-circle"></i> Rangkuman Bab 2</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Penelitian sosial</strong> adalah kegiatan ilmiah yang sistematis, terencana, dan objektif untuk memahami fenomena sosial.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Tujuan penelitian:</strong> eksploratif, deskriptif, eksplanatif, dan prediktif.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Pendekatan utama:</strong> <strong>Kuantitatif</strong> (berbasis angka/statistik) dan <strong>Kualitatif</strong> (berbasis makna/konteks).
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Tahapan penelitian:</strong> Identifikasi masalah → Studi literatur → Hipotesis/Pertanyaan → Metode & Desain → Populasi & Sampel → Instrumen → Pengumpulan Data → Analisis Data → Kesimpulan → Publikasi.
+                </li>
             </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <a href="sosiologi-kelas-x.html" class="action-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portal Sosiologi Kelas X
+            </a>
         </div>
 
     </div>
     <!-- end container -->
 
+    <!-- Floating Action Buttons -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <button class="print-btn" onclick="window.print()" title="Cetak Materi">
+        <i class="fas fa-print"></i> Cetak
+    </button>
+
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
