@@ -3,294 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bab 3: Identitas Sosial, Tindakan Sosial, dan Hubungan Sosial</title>
+    <title>Bab 3: Identitas, Tindakan, dan Hubungan Sosial | SMA Negeri 1 Cluring</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        /* --- Reset & Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABEL PORTAL UTAMA ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #fffbeb;
-            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-bottom: 4rem;
+            transition: background 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+
+        /* ===== HEADER & NAVIGASI ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .header-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; border: 3px solid rgba(255,255,255,0.3);
+            font-size: 2rem; backdrop-filter: blur(10px);
+        }
+        .page-header h1 { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem; 
+            color: white; /* DIPERBAIKI: judul besar putih */
+        }
+        .page-header p { 
+            opacity: 0.95; 
+            font-size: 1rem; 
+            color: white; /* DIPERBAIKI: subtitle putih agar terlihat jelas */
+            font-weight: 400;
+        }
+
+        /* ===== CONTAINER UTAMA ===== */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 2.5rem 3rem;
+            margin: -3rem auto 0;
+            background: white;
+            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
+        body.dark-mode .container { background: #1e1e1e; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
 
-        /* --- Typography --- */
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #0f172a;
-            border-bottom: 4px solid #d97706;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-
+        /* ===== TYPOGRAPHY ===== */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 2.8rem;
-            margin-bottom: 1.2rem;
-            color: #1e293b;
-            border-left: 6px solid #d97706;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        body.dark-mode h2 { color: var(--accent); border-left-color: var(--accent); }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        body.dark-mode h3 { color: #f8f9fa; }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
+        body.dark-mode h4 { color: var(--accent); }
 
-        p {
-            margin-bottom: 1.2rem;
-        }
+        p { margin-bottom: 1.2rem; color: var(--gray); }
+        body.dark-mode p { color: #cbd5e1; }
 
-        ul,
-        ol {
-            margin: 0.8rem 0 1.2rem 1.8rem;
-        }
+        ul, ol { margin: 0.8rem 0 1.5rem 1.5rem; color: var(--gray); }
+        body.dark-mode ul, body.dark-mode ol { color: #cbd5e1; }
+        li { margin-bottom: 0.6rem; }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
-
-        strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            background: #fef3c7;
-            border-left: 5px solid #d97706;
-            padding: 1rem 1.8rem;
-            margin: 1.4rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        /* --- Tables --- */
-        table {
+        /* ===== IMAGES ===== */
+        .content-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1.6rem 0;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        th {
-            background: #1e293b;
-            color: #f8fafc;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            background: #ffffff;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) td {
-            background: #fffbeb;
-        }
-
-        /* --- Cards --- */
-        .card {
-            background: #fefce8;
+            height: 250px;
+            object-fit: cover;
             border-radius: 16px;
-            padding: 1.6rem 2rem;
-            margin: 1.8rem 0;
-            border: 1px solid #fde68a;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .content-image:hover { transform: scale(1.01); }
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .card h4 {
-            margin-top: 0;
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
         }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; }
 
         .highlight-box {
-            background: #fffbeb;
-            border-left: 6px solid #d97706;
-            padding: 1.2rem 1.8rem;
-            border-radius: 8px;
-            margin: 1.6rem 0;
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .highlight-box { background: rgba(67, 97, 238, 0.15); }
+        .highlight-box strong { color: var(--primary); }
+        body.dark-mode .highlight-box strong { color: var(--accent); }
 
-        .highlight-box strong {
-            color: #b45309;
-        }
-
-        /* --- Assessment & Aktivitas --- */
-        .question-block {
-            margin: 1.8rem 0;
-            padding: 1rem 0;
-            border-bottom: 1px dashed #cbd5e1;
-        }
-
-        .question-block:last-child {
-            border-bottom: none;
-        }
-
-        .soal-pilihan {
-            list-style: lower-alpha;
-            margin-left: 1.8rem;
-        }
-
-        .soal-pilihan li {
-            margin-bottom: 0.2rem;
-        }
-
-        .aktivitas {
-            background: #fefce8;
-            border-radius: 12px;
-            padding: 1.4rem 2rem;
-            margin: 1.6rem 0;
-            border: 1px solid #fde68a;
-        }
-
-        .aktivitas h4 {
-            margin-top: 0;
-            color: #1e293b;
-        }
-
-        /* --- Rangkuman --- */
         .rangkuman {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 16px;
-            padding: 1.8rem 2.2rem;
-            margin: 2.4rem 0;
+            padding: 2rem;
+            margin: 3rem 0 1rem;
         }
+        body.dark-mode .rangkuman { background: rgba(74, 222, 128, 0.1); border-color: #22c55e; }
+        .rangkuman h2 { border-left-color: var(--success); color: #15803d; margin-top: 0; }
+        body.dark-mode .rangkuman h2 { color: var(--success); }
 
-        .rangkuman ul {
-            list-style-type: disc;
-            margin-left: 1.6rem;
+        .aktivitas {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .aktivitas { background: rgba(251, 191, 36, 0.1); border-color: #f59e0b; }
+        .aktivitas h4 { margin-top: 0; color: #92400e; display: flex; align-items: center; gap: 8px; }
+        body.dark-mode .aktivitas h4 { color: var(--warning); }
 
-        .rangkuman li {
-            margin-bottom: 0.6rem;
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--dark);
+        }
+        body.dark-mode td { background: #2d2d2d; border-bottom-color: #444; color: #f8f9fa; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        body.dark-mode tr:nth-child(even) td { background: #374151; }
 
-        /* --- Responsive --- */
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.5rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            h3 {
-                font-size: 1.2rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            th,
-            td {
-                padding: 8px 10px;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                padding: 1rem 1.2rem;
-            }
-            blockquote {
-                padding: 0.8rem 1.2rem;
-            }
+        /* ===== ASSESSMENT ===== */
+        .question-block {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        body.dark-mode .question-block { background: #2d2d2d; }
+        .soal-pilihan { list-style: lower-alpha; margin-left: 1.5rem; margin-top: 0.8rem; }
+        .soal-pilihan li { margin-bottom: 0.4rem; cursor: pointer; transition: var(--transition); padding: 4px 8px; border-radius: 6px; }
+        .soal-pilihan li:hover { background: rgba(67, 97, 238, 0.1); }
+
+        /* ===== UTILITIES ===== */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        .print-btn:hover { transform: translateY(-3px); }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 140px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        body.dark-mode .theme-toggle { background: #2d2d2d; color: white; border-color: #444; }
+        .theme-toggle:hover { transform: rotate(15deg); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; margin-top: -2rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .page-header p { font-size: 0.9rem; }
+            .back-btn { top: 15px; left: 15px; padding: 8px 14px; font-size: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            .content-image { height: 180px; }
+            .print-btn { bottom: 20px; right: 20px; padding: 10px 16px; font-size: 0.85rem; }
+            .theme-toggle { bottom: 20px; right: 110px; width: 40px; height: 40px; }
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0.5in;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                border: 1px solid #ccc;
-                background: #f9f9f9;
-            }
+            .page-header, .print-btn, .theme-toggle, .back-btn { display: none !important; }
+            body { background: white; color: black; }
+            .container { margin: 0; box-shadow: none; padding: 0; max-width: 100%; }
+            .card, .aktivitas, .rangkuman, .question-block { border: 1px solid #ccc; background: #f9f9f9 !important; break-inside: avoid; }
+            h2 { color: black !important; border-left-color: black !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header class="page-header">
+        <a href="sosiologi-kelas-x.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali ke Sosiologi Kelas X
+        </a>
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-people-arrows"></i></div>
+            <h1>Bab 3: Identitas, Tindakan, dan Hubungan Sosial</h1>
+            <p>Memahami bagaimana identitas terbentuk, jenis tindakan sosial menurut Max Weber, serta dinamika hubungan sosial asosiatif dan disosiatif.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- ======== MAIN TITLE ======== -->
-        <h1>Bab 3: Identitas Sosial, Tindakan Sosial, dan Hubungan Sosial</h1>
+        <!-- CAPAIAN PEMBELAJARAN -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: none; border-radius: 16px;">
+            <h3 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> Capaian Pembelajaran Bab</h3>
+            <p style="margin-bottom: 0.5rem;">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            <ol style="margin-bottom: 0;">
+                <li>Menjelaskan konsep identitas sosial dan faktor-faktor yang mempengaruhinya.</li>
+                <li>Menganalisis berbagai jenis tindakan sosial menurut Max Weber.</li>
+                <li>Memahami dinamika hubungan sosial (asosiatif dan disosiatif).</li>
+                <li>Mengaplikasikan konsep identitas, tindakan, dan hubungan sosial dalam menganalisis fenomena sehari-hari.</li>
+            </ol>
+        </div>
 
-        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Capaian Pembelajaran Bab</h2>
-        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
-        <ol>
-            <li>Menjelaskan konsep identitas sosial dan faktor-faktor yang mempengaruhinya</li>
-            <li>Menganalisis berbagai jenis tindakan sosial menurut Max Weber</li>
-            <li>Memahami dinamika hubungan sosial, termasuk bentuk-bentuk interaksi sosial asosiatif dan disosiatif</li>
-            <li>Mengaplikasikan konsep identitas, tindakan, dan hubungan sosial dalam menganalisis fenomena sehari-hari</li>
-        </ol>
-
-        <!-- ======== 3.1 IDENTITAS SOSIAL ======== -->
-        <h2>3.1 Identitas Sosial</h2>
+        <!-- 3.1 IDENTITAS SOSIAL -->
+        <h2><i class="fas fa-id-card"></i> 3.1 Identitas Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Identitas Sosial" class="content-image">
+        <p class="image-caption">Identitas sosial terbentuk dari keanggotaan kita dalam berbagai kelompok di masyarakat.</p>
 
         <h3>A. Pengertian Identitas Sosial</h3>
-        <p><strong>Identitas sosial</strong> adalah pemahaman seseorang tentang dirinya sendiri yang berasal dari keanggotaannya dalam kelompok-kelompok sosial tertentu. Identitas sosial memberikan makna dan rasa kebanggaan atau penghargaan diri yang terkait dengan kelompok tempat individu tersebut menjadi bagian.</p>
-        <p>Konsep ini pertama kali dikembangkan secara sistematis oleh <strong>Henri Tajfel</strong> dan <strong>John Turner</strong> melalui <em>Teori Identitas Sosial</em> (<em>Social Identity Theory</em>). Menurut teori ini, identitas sosial terbentuk melalui tiga proses:</p>
-        <ol>
-            <li><strong>Kategorisasi Sosial</strong> — individu mengelompokkan dunia sosial ke dalam kategori-kategori (misalnya: agama, etnis, profesi) untuk memahami lingkungannya.</li>
-            <li><strong>Identifikasi Sosial</strong> — individu mengadopsi identitas dari kelompok yang dipilih dan merasa menjadi bagian dari kelompok tersebut.</li>
-            <li><strong>Perbandingan Sosial</strong> — individu membandingkan kelompoknya (<em>in-group</em>) dengan kelompok lain (<em>out-group</em>) untuk menilai status dan nilai kelompoknya.</li>
-        </ol>
-
-        <div class="highlight-box">
-            <p><strong>Contoh:</strong> Seorang siswa yang tergabung dalam klub sepak bola sekolah akan mengategorikan dirinya sebagai "anggota klub sepak bola", merasa bangga menjadi bagian dari klub tersebut, dan membandingkan klubnya dengan klub lain untuk menunjukkan keunggulan timnya.</p>
+        <p><strong>Identitas sosial</strong> adalah pemahaman seseorang tentang dirinya sendiri yang berasal dari keanggotaannya dalam kelompok-kelompok sosial tertentu. Konsep ini dikembangkan oleh <strong>Henri Tajfel</strong> dan <strong>John Turner</strong> melalui <em>Teori Identitas Sosial</em>.</p>
+        
+        <p>Identitas sosial terbentuk melalui tiga proses:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; padding: 1.2rem; border-top: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-layer-group"></i> 1. Kategorisasi Sosial</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Mengelompokkan dunia sosial ke dalam kategori (agama, etnis, profesi).</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-top: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-user-check"></i> 2. Identifikasi Sosial</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Mengadopsi identitas kelompok dan merasa menjadi bagiannya.</p>
+            </div>
+            <div class="card" style="margin: 0; padding: 1.2rem; border-top: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-scale-balanced"></i> 3. Perbandingan Sosial</h4>
+                <p style="margin-bottom: 0; font-size: 0.9rem;">Membandingkan <em>in-group</em> dengan <em>out-group</em> untuk menilai status.</p>
+            </div>
         </div>
 
         <h3>B. Faktor-faktor Pembentuk Identitas Sosial</h3>
-        <p>Identitas sosial tidak terbentuk dengan sendirinya, melainkan dipengaruhi oleh berbagai faktor:</p>
-
         <table>
             <thead>
                 <tr>
@@ -301,187 +391,120 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Suku dan Etnis</strong></td>
-                    <td>Latar belakang keturunan dan budaya yang diwarisi</td>
-                    <td>Identitas sebagai suku Jawa, Batak, atau Dayak</td>
+                    <td><strong>Suku & Etnis</strong></td>
+                    <td>Latar belakang keturunan dan budaya</td>
+                    <td>Jawa, Batak, Dayak, Osing</td>
                 </tr>
                 <tr>
                     <td><strong>Agama</strong></td>
-                    <td>Sistem keyakinan dan nilai-nilai keagamaan yang dianut</td>
-                    <td>Identitas sebagai Muslim, Kristen, Hindu, Buddha, dll.</td>
+                    <td>Sistem keyakinan yang dianut</td>
+                    <td>Islam, Kristen, Hindu, Buddha</td>
                 </tr>
                 <tr>
-                    <td><strong>Jenis Kelamin dan Gender</strong></td>
-                    <td>Peran sosial yang dikaitkan dengan laki-laki atau perempuan</td>
-                    <td>Identitas sebagai laki-laki, perempuan, atau non-biner</td>
+                    <td><strong>Jenis Kelamin</strong></td>
+                    <td>Peran sosial terkait gender</td>
+                    <td>Laki-laki, perempuan, non-biner</td>
                 </tr>
                 <tr>
                     <td><strong>Status Sosial Ekonomi</strong></td>
-                    <td>Posisi dalam struktur kelas masyarakat</td>
-                    <td>Identitas sebagai kelas menengah, pekerja, atau elite</td>
+                    <td>Posisi dalam struktur kelas</td>
+                    <td>Kelas menengah, pekerja, elite</td>
                 </tr>
                 <tr>
-                    <td><strong>Profesi/Pekerjaan</strong></td>
-                    <td>Peran yang dijalani dalam dunia kerja</td>
-                    <td>Identitas sebagai guru, dokter, polisi, atau seniman</td>
+                    <td><strong>Profesi</strong></td>
+                    <td>Peran dalam dunia kerja</td>
+                    <td>Guru, dokter, petani, seniman</td>
                 </tr>
                 <tr>
-                    <td><strong>Daerah/Tempat Tinggal</strong></td>
-                    <td>Asal usul geografis dan budaya lokal</td>
-                    <td>Identitas sebagai warga Jakarta, Yogyakarta, atau Papua</td>
+                    <td><strong>Daerah Asal</strong></td>
+                    <td>Asal geografis dan budaya lokal</td>
+                    <td>Warga Banyuwangi, Jakarta, Papua</td>
                 </tr>
             </tbody>
         </table>
 
-        <h3>C. Identitas Sosial dan Konflik</h3>
-        <p>Identitas sosial dapat menjadi sumber konflik apabila terjadi persaingan antar kelompok (<em>intergroup conflict</em>). Ketika suatu kelompok merasa identitasnya terancam, diskriminasi, prasangka, atau bahkan kekerasan dapat muncul. Sebaliknya, identitas sosial juga dapat menjadi perekat sosial yang kuat jika dikelola dengan baik melalui dialog dan penghargaan terhadap perbedaan.</p>
+        <div class="highlight-box">
+            <p><strong><i class="fas fa-lightbulb"></i> Konsep Interseksionalitas:</strong><br>
+            Setiap individu memiliki <strong>lebih dari satu identitas</strong> yang saling bersilangan. Misalnya, seorang perempuan, Jawa, Muslim, dan dari keluarga pekerja akan mengalami realitas sosial yang berbeda dari laki-laki, Batak, Kristen, dan dari keluarga elite. Pemahaman ini membantu melihat kompleksitas pengalaman sosial secara utuh.</p>
+        </div>
 
-        <h3>D. Interseksionalitas (Persilangan Identitas)</h3>
-        <p>Setiap individu memiliki <strong>lebih dari satu identitas sosial</strong> yang saling bersilangan (interseksionalitas). Misalnya, seorang perempuan, Jawa, Muslim, dan dari keluarga pekerja akan mengalami realitas sosial yang berbeda dari laki-laki, Batak, Kristen, dan dari keluarga kaya. Pemahaman interseksionalitas membantu kita melihat kompleksitas pengalaman sosial seseorang secara lebih utuh.</p>
-
-        <!-- ======== 3.2 TINDAKAN SOSIAL ======== -->
-        <h2>3.2 Tindakan Sosial</h2>
+        <!-- 3.2 TINDAKAN SOSIAL -->
+        <h2><i class="fas fa-person-running"></i> 3.2 Tindakan Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80" alt="Tindakan Sosial" class="content-image">
+        <p class="image-caption">Setiap tindakan yang mempertimbangkan perilaku orang lain adalah tindakan sosial.</p>
 
         <h3>A. Pengertian Tindakan Sosial</h3>
-        <p>Konsep <strong>tindakan sosial</strong> (<em>social action</em>) diperkenalkan oleh <strong>Max Weber</strong>, salah satu tokoh pendiri sosiologi. Menurut Weber, tindakan sosial adalah tindakan yang dilakukan oleh individu dengan mempertimbangkan atau dipengaruhi oleh perilaku orang lain, serta memiliki makna subjektif bagi pelakunya.</p>
-        <p>Dengan kata lain, suatu tindakan dikatakan sebagai tindakan sosial jika:</p>
+        <p>Konsep <strong>tindakan sosial</strong> diperkenalkan oleh <strong>Max Weber</strong>. Menurut Weber, tindakan sosial adalah tindakan yang dilakukan individu dengan mempertimbangkan perilaku orang lain, serta memiliki makna subjektif bagi pelakunya.</p>
+        
+        <div class="highlight-box">
+            <p><strong>Contoh:</strong> Seseorang mengantre untuk membeli tiket konser. Tindakan ini adalah tindakan sosial karena ia menyadari adanya orang lain di sekitarnya dan menyesuaikan perilakunya dengan aturan antre yang berlaku.</p>
+        </div>
+
+        <h3>B. Empat Tipe Tindakan Sosial Menurut Max Weber</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> 1. Rasional Instrumental</h4>
+                <p style="font-size: 0.9rem;"><em>(Zweckrational)</em><br>Dilakukan dengan perhitungan rasional untuk mencapai tujuan secara efektif.</p>
+                <p style="font-size: 0.85rem; margin-bottom: 0;"><strong>Contoh:</strong> Siswa belajar keras untuk lulus ujian.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--accent);">
+                <h4 style="margin-top: 0; color: var(--accent);"><i class="fas fa-heart"></i> 2. Rasional Berorientasi Nilai</h4>
+                <p style="font-size: 0.9rem;"><em>(Wertrational)</em><br>Didasarkan pada keyakinan moral, etika, atau agama, terlepas dari konsekuensi.</p>
+                <p style="font-size: 0.85rem; margin-bottom: 0;"><strong>Contoh:</strong> Berjuang untuk keadilan tanpa imbalan.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-face-grin-tears"></i> 3. Tindakan Afektif</h4>
+                <p style="font-size: 0.9rem;"><em>(Affectual)</em><br>Didominasi oleh perasaan atau emosi, bersifat spontan dan tidak direncanakan.</p>
+                <p style="font-size: 0.85rem; margin-bottom: 0;"><strong>Contoh:</strong> Menangis karena sedih, berteriak karena marah.</p>
+            </div>
+            <div class="card" style="margin: 0; border-left: 4px solid var(--warning);">
+                <h4 style="margin-top: 0; color: var(--warning);"><i class="fas fa-clock-rotate-left"></i> 4. Tindakan Tradisional</h4>
+                <p style="font-size: 0.9rem;"><em>(Traditional)</em><br>Dilakukan karena kebiasaan atau adat yang mengakar, tanpa pertimbangan rasional.</p>
+                <p style="font-size: 0.85rem; margin-bottom: 0;"><strong>Contoh:</strong> Upacara adat, salam saat bertemu orang tua.</p>
+            </div>
+        </div>
+
+        <!-- 3.3 HUBUNGAN SOSIAL -->
+        <h2><i class="fas fa-handshake-angle"></i> 3.3 Hubungan Sosial</h2>
+        
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1000&q=80" alt="Hubungan Sosial" class="content-image">
+        <p class="image-caption">Hubungan sosial adalah jalinan interaksi timbal balik antara dua orang atau lebih.</p>
+
+        <h3>A. Pengertian & Proses Terbentuknya</h3>
+        <p><strong>Hubungan sosial</strong> adalah jalinan interaksi yang berlangsung antara dua orang atau lebih, bersifat timbal balik, dan berlangsung dalam waktu tertentu. Hubungan ini terbentuk melalui dua proses utama:</p>
         <ol>
-            <li>Memiliki makna atau tujuan bagi pelaku</li>
-            <li>Diarahkan atau dipengaruhi oleh tindakan orang lain</li>
+            <li><strong>Kontak Sosial</strong> — hubungan fisik atau komunikasi yang memungkinkan interaksi (primer/tatap muka atau sekunder/perantara).</li>
+            <li><strong>Komunikasi Sosial</strong> — proses penyampaian dan penerimaan pesan, simbol, atau makna antara pihak yang berinteraksi.</li>
         </ol>
 
-        <div class="highlight-box">
-            <p><strong>Contoh:</strong> Seseorang mengantre untuk membeli tiket konser. Tindakan ini adalah tindakan sosial karena ia menyadari adanya orang lain di sekitarnya yang juga mengantre, dan ia menyesuaikan perilakunya dengan aturan antre yang berlaku.</p>
+        <h3>B. Bentuk-bentuk Hubungan Sosial</h3>
+        <p>Hubungan sosial dibedakan menjadi dua arah utama:</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div class="card" style="margin: 0; border-top: 4px solid var(--success);">
+                <h4 style="margin-top: 0; color: var(--success);"><i class="fas fa-heart"></i> Asosiatif (Mempererat)</h4>
+                <ul style="font-size: 0.9rem; margin-bottom: 0;">
+                    <li><strong>Kerja Sama:</strong> Gotong royong, proyek tim.</li>
+                    <li><strong>Akomodasi:</strong> Mediasi, toleransi.</li>
+                    <li><strong>Asimilasi:</strong> Peleburan budaya menjadi satu kesatuan baru.</li>
+                    <li><strong>Akulturasi:</strong> Penerimaan budaya asing tanpa menghilangkan budaya asli.</li>
+                </ul>
+            </div>
+            <div class="card" style="margin: 0; border-top: 4px solid var(--danger);">
+                <h4 style="margin-top: 0; color: var(--danger);"><i class="fas fa-bolt"></i> Disosiatif (Memecah)</h4>
+                <ul style="font-size: 0.9rem; margin-bottom: 0;">
+                    <li><strong>Persaingan:</strong> Lomba debat, kompetisi bisnis.</li>
+                    <li><strong>Kontravensi:</strong> Gosip, fitnah, intimidasi halus.</li>
+                    <li><strong>Konflik:</strong> Perkelahian, demo anarkis, perang.</li>
+                </ul>
+            </div>
         </div>
 
-        <h3>B. Tipe-tipe Tindakan Sosial Menurut Max Weber</h3>
-        <p>Weber membagi tindakan sosial menjadi empat tipe ideal (ideal type), yaitu:</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Tipe Tindakan</th>
-                    <th>Ciri-ciri</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>1. Rasional Instrumental</strong> <br> (<em>Zweckrational</em>)</td>
-                    <td>Tindakan yang dilakukan dengan perhitungan rasional untuk mencapai tujuan tertentu dengan cara yang paling efektif dan efisien.</td>
-                    <td>Seorang pengusaha menaikkan harga barang untuk mendapatkan keuntungan maksimal; siswa belajar keras untuk lulus ujian.</td>
-                </tr>
-                <tr>
-                    <td><strong>2. Rasional Berorientasi Nilai</strong> <br> (<em>Wertrational</em>)</td>
-                    <td>Tindakan yang didasarkan pada keyakinan atau nilai-nilai moral, etika, estetika, atau agama, terlepas dari konsekuensi praktisnya.</td>
-                    <td>Seseorang yang berjuang untuk keadilan meskipun tidak mendapat imbalan; orang yang berpuasa karena ketaatan agama.</td>
-                </tr>
-                <tr>
-                    <td><strong>3. Tindakan Afektif</strong> <br> (<em>Affectual</em>)</td>
-                    <td>Tindakan yang didominasi oleh perasaan atau emosi pelaku, bersifat spontan dan tidak direncanakan.</td>
-                    <td>Menangis karena sedih, berteriak karena marah, atau memeluk karena gembira.</td>
-                </tr>
-                <tr>
-                    <td><strong>4. Tindakan Tradisional</strong> <br> (<em>Traditional</em>)</td>
-                    <td>Tindakan yang dilakukan karena kebiasaan, adat istiadat, atau tradisi yang sudah mengakar, tanpa banyak pertimbangan rasional.</td>
-                    <td>Melakukan upacara adat, merayakan hari raya keagamaan dengan cara turun-temurun, atau memberi salam saat bertemu orang tua.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="card">
-            <h4>Catatan Penting tentang Tipologi Weber</h4>
-            <p>Dalam praktiknya, suatu tindakan sosial sering merupakan kombinasi dari beberapa tipe. Misalnya, seorang dokter yang merawat pasien (rasional instrumental) juga didorong oleh nilai-nilai kemanusiaan (rasional nilai) dan mungkin kadang bertindak karena emosi (afektif) terhadap pasiennya. Weber menggunakan tipe ideal ini sebagai alat analisis, bukan untuk mengkotak-kotakkan realitas secara kaku.</p>
-        </div>
-
-        <h3>C. Pentingnya Tindakan Sosial dalam Masyarakat</h3>
-        <p>Memahami tindakan sosial membantu kita menjelaskan mengapa orang berperilaku dengan cara tertentu dalam konteks sosial. Tindakan sosial menjadi dasar dari semua interaksi dan hubungan sosial. Tanpa tindakan sosial, tidak akan ada kehidupan bermasyarakat yang bermakna.</p>
-
-        <!-- ======== 3.3 HUBUNGAN SOSIAL ======== -->
-        <h2>3.3 Hubungan Sosial</h2>
-
-        <h3>A. Pengertian Hubungan Sosial</h3>
-        <p><strong>Hubungan sosial</strong> (<em>social relationship</em>) adalah jalinan interaksi yang berlangsung antara dua orang atau lebih, yang bersifat timbal balik dan berlangsung dalam waktu tertentu. Hubungan sosial terbentuk melalui serangkaian tindakan sosial yang saling merespons.</p>
-        <p>Hubungan sosial dapat bersifat <strong>langsung</strong> (tatap muka) maupun <strong>tidak langsung</strong> (melalui media), dan dapat berlangsung antara individu dengan individu, individu dengan kelompok, maupun antar kelompok.</p>
-
-        <h3>B. Proses Terbentuknya Hubungan Sosial</h3>
-        <p>Hubungan sosial terbentuk melalui dua proses utama:</p>
-        <ol>
-            <li><strong>Kontak Sosial</strong> — hubungan fisik atau komunikasi yang memungkinkan terjadinya interaksi. Kontak sosial dapat berupa kontak primer (tatap muka) atau sekunder (perantara).</li>
-            <li><strong>Komunikasi Sosial</strong> — proses penyampaian dan penerimaan pesan, simbol, atau makna antara pihak-pihak yang berinteraksi. Komunikasi efektif memerlukan interpretasi bersama (shared meaning).</li>
-        </ol>
-
-        <h3>C. Bentuk-bentuk Hubungan Sosial</h3>
-        <p>Hubungan sosial dapat dibedakan menjadi dua arah utama: <strong>asosiatif</strong> (mengarah pada persatuan) dan <strong>disosiatif</strong> (mengarah pada perpecahan).</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Bentuk</th>
-                    <th>Jenis</th>
-                    <th>Penjelasan</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td rowspan="4"><strong>Asosiatif</strong> (mempererat)</td>
-                    <td><strong>Kerja Sama</strong> <br> (Kooperasi)</td>
-                    <td>Usaha bersama untuk mencapai tujuan bersama</td>
-                    <td>Gotong royong membersihkan lingkungan, proyek tim di sekolah</td>
-                </tr>
-                <tr>
-                    <td><strong>Akomodasi</strong></td>
-                    <td>Proses penyesuaian diri untuk mengurangi konflik dan menciptakan keseimbangan</td>
-                    <td>Mediasi dalam sengketa, toleransi antarumat beragama</td>
-                </tr>
-                <tr>
-                    <td><strong>Asimilasi</strong></td>
-                    <td>Peleburan perbedaan budaya hingga menjadi satu kesatuan baru</td>
-                    <td>Perpaduan budaya Jawa dan Tionghoa dalam seni budaya</td>
-                </tr>
-                <tr>
-                    <td><strong>Akulturasi</strong></td>
-                    <td>Penerimaan unsur budaya asing tanpa menghilangkan budaya asli</td>
-                    <td>Penggunaan bahasa asing dalam komunikasi sehari-hari</td>
-                </tr>
-                <tr>
-                    <td rowspan="3"><strong>Disosiatif</strong> (memecah)</td>
-                    <td><strong>Persaingan</strong> <br> (Kompetisi)</td>
-                    <td>Perjuangan individu/kelompok untuk mencapai tujuan yang sama tanpa menggunakan ancaman</td>
-                    <td>Persaingan dalam lomba debat, kompetisi bisnis</td>
-                </tr>
-                <tr>
-                    <td><strong>Kontravensi</strong></td>
-                    <td>Sikap tidak setuju yang tersembunyi, dapat memicu konflik</td>
-                    <td>Gosip, fitnah, intimidasi halus</td>
-                </tr>
-                <tr>
-                    <td><strong>Konflik</strong></td>
-                    <td>Perjuangan terbuka dengan cara kekerasan atau ancaman untuk mencapai tujuan</td>
-                    <td>Perkelahian, demo anarkis, perang saudara</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>D. Faktor-faktor yang Mempengaruhi Hubungan Sosial</h3>
-        <ul>
-            <li><strong>Kesamaan latar belakang</strong> — orang dengan kesamaan budaya, agama, atau nilai cenderung membangun hubungan lebih erat.</li>
-            <li><strong>Tujuan bersama</strong> — adanya sasaran yang ingin dicapai bersama memperkuat kohesi.</li>
-            <li><strong>Komunikasi yang efektif</strong> — keterbukaan dan empati memperlancar hubungan.</li>
-            <li><strong>Struktur sosial</strong> — norma, aturan, dan hierarki dalam masyarakat membentuk pola hubungan.</li>
-            <li><strong>Perubahan sosial</strong> — modernisasi, urbanisasi, dan teknologi mengubah cara orang berinteraksi.</li>
-        </ul>
-
-        <div class="highlight-box">
-            <p><strong>Relevansi:</strong> Memahami hubungan sosial membantu kita menjadi warga masyarakat yang lebih baik, mampu bekerja sama, mengelola konflik, dan menghargai keberagaman.</p>
-        </div>
-
-        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Uji Capaian Pembelajaran Bab 3</h2>
+        <!-- UJI CAPAIAN PEMBELAJARAN -->
+        <h2><i class="fas fa-clipboard-check"></i> Uji Capaian Pembelajaran Bab 3</h2>
 
         <h3>A. Soal Pilihan Ganda</h3>
-
         <div class="question-block">
             <p><strong>1.</strong> Teori Identitas Sosial dikembangkan oleh...</p>
             <ul class="soal-pilihan">
@@ -489,86 +512,55 @@
                 <li>b. Karl Marx</li>
                 <li>c. Émile Durkheim</li>
                 <li>d. Henri Tajfel dan John Turner</li>
-                <li>e. George Ritzer</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>2.</strong> Proses di mana individu mengelompokkan dunia sosial ke dalam kategori-kategori disebut...</p>
-            <ul class="soal-pilihan">
-                <li>a. Identifikasi sosial</li>
-                <li>b. Kategorisasi sosial</li>
-                <li>c. Perbandingan sosial</li>
-                <li>d. Interseksionalitas</li>
-                <li>e. Akulturasi</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>3.</strong> Menurut Max Weber, tindakan seorang pedagang yang menaikkan harga barang untuk mendapatkan keuntungan sebanyak-banyaknya termasuk dalam tipe...</p>
+            <p><strong>2.</strong> Menurut Max Weber, tindakan seorang pedagang yang menaikkan harga barang untuk mendapatkan keuntungan sebanyak-banyaknya termasuk tipe...</p>
             <ul class="soal-pilihan">
                 <li>a. Rasional instrumental</li>
                 <li>b. Rasional berorientasi nilai</li>
                 <li>c. Afektif</li>
                 <li>d. Tradisional</li>
-                <li>e. Irrasional</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>4.</strong> Bentuk hubungan sosial yang bertujuan untuk mengurangi konflik dan menciptakan keseimbangan disebut...</p>
+            <p><strong>3.</strong> Bentuk hubungan sosial yang bertujuan untuk mengurangi konflik dan menciptakan keseimbangan disebut...</p>
             <ul class="soal-pilihan">
                 <li>a. Kerja sama</li>
                 <li>b. Akomodasi</li>
                 <li>c. Asimilasi</li>
                 <li>d. Akulturasi</li>
-                <li>e. Persaingan</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>5.</strong> Berikut yang termasuk faktor pembentuk identitas sosial adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Letak geografis dan iklim</li>
-                <li>b. Suku, agama, dan status ekonomi</li>
-                <li>c. Ketinggian tempat dan vegetasi</li>
-                <li>d. Jenis tanah dan sumber daya alam</li>
-                <li>e. Jumlah penduduk dan kepadatan</li>
             </ul>
         </div>
 
         <h3>B. Soal Esai</h3>
-
         <div class="question-block">
-            <p><strong>1.</strong> Jelaskan tiga proses pembentukan identitas sosial menurut Teori Identitas Sosial (kategorisasi, identifikasi, perbandingan sosial) dengan memberikan contoh konkret!</p>
+            <p><strong>1.</strong> Jelaskan tiga proses pembentukan identitas sosial menurut Teori Identitas Sosial dengan memberikan contoh konkret!</p>
         </div>
         <div class="question-block">
-            <p><strong>2.</strong> Bandingkan dan kontraskan keempat tipe tindakan sosial menurut Max Weber (rasional instrumental, rasional nilai, afektif, tradisional) dengan memberikan dua contoh untuk masing-masing tipe!</p>
+            <p><strong>2.</strong> Bandingkan keempat tipe tindakan sosial menurut Max Weber dengan memberikan dua contoh untuk masing-masing tipe!</p>
         </div>
         <div class="question-block">
             <p><strong>3.</strong> Uraikan perbedaan antara hubungan sosial asosiatif dan disosiatif, serta jelaskan tiga bentuk dari masing-masing kategori!</p>
         </div>
-        <div class="question-block">
-            <p><strong>4.</strong> Mengapa identitas sosial yang beragam dapat menjadi sumber konflik sekaligus perekat sosial? Berikan analisis berdasarkan faktor-faktor yang mempengaruhinya!</p>
-        </div>
 
         <h3>C. Aktivitas Pembelajaran Mendalam</h3>
 
-        <!-- Aktivitas 1 -->
         <div class="aktivitas">
-            <h4>Aktivitas 1: Observasi Identitas Sosial di Lingkungan Sekitar</h4>
-            <p>Amatilah teman-teman di kelas atau di lingkungan tempat tinggalmu. Identifikasi berbagai identitas sosial yang mereka miliki (suku, agama, status ekonomi, hobi, dll.). Jawablah pertanyaan berikut:</p>
+            <h4><i class="fas fa-users"></i> Aktivitas 1: Observasi Identitas Sosial</h4>
+            <p>Amatilah teman-teman di kelas atau lingkunganmu. Identifikasi berbagai identitas sosial yang mereka miliki. Jawablah:</p>
             <ol>
                 <li>Identitas sosial apa yang paling menonjol dalam kelompokmu?</li>
                 <li>Bagaimana identitas-identitas tersebut memengaruhi interaksi sehari-hari?</li>
-                <li>Apakah ada stereotip atau prasangka yang muncul berdasarkan identitas sosial tertentu? Bagaimana cara mengatasinya?</li>
+                <li>Apakah ada stereotip atau prasangka yang muncul? Bagaimana cara mengatasinya?</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 2: Literasi Numerasi — Data Keberagaman Indonesia -->
         <div class="aktivitas">
-            <h4>Aktivitas 2: Literasi Numerasi — Analisis Data Keberagaman</h4>
-            <p>Perhatikan data komposisi penduduk Indonesia berdasarkan agama dan suku berikut (data ilustratif berdasarkan sensus):</p>
+            <h4><i class="fas fa-calculator"></i> Aktivitas 2: Literasi Numerasi — Data Keberagaman</h4>
+            <p>Perhatikan data komposisi penduduk Indonesia berikut:</p>
             <table>
                 <thead>
                     <tr>
@@ -584,55 +576,92 @@
                     <tr><td>Katolik</td><td>2,9%</td><td>Batak</td><td>3,6%</td></tr>
                     <tr><td>Hindu</td><td>1,7%</td><td>Madura</td><td>3,0%</td></tr>
                     <tr><td>Buddha</td><td>0,7%</td><td>Lainnya</td><td>37,7%</td></tr>
-                    <tr><td>Konghucu &amp; Lainnya</td><td>0,5%</td><td></td><td></td></tr>
                 </tbody>
             </table>
-            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <p><strong>Pertanyaan:</strong></p>
             <ol>
-                <li>Berapa jumlah total persentase agama? Apakah totalnya 100%? Jika tidak, jelaskan mengapa!</li>
                 <li>Jika jumlah penduduk Indonesia 270 juta jiwa, berapa perkiraan jumlah pemeluk Islam dan Kristen Protestan?</li>
-                <li>Berdasarkan data suku, kelompok suku mana yang menjadi mayoritas? Bagaimana keragaman suku ini memengaruhi identitas sosial dan hubungan sosial di Indonesia? Berikan analisis sosiologis!</li>
+                <li>Berdasarkan data suku, kelompok suku mana yang menjadi mayoritas? Bagaimana keragaman ini memengaruhi identitas sosial di Indonesia?</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 3: Proyek Mini Analisis Tindakan Sosial -->
         <div class="aktivitas">
-            <h4>Aktivitas 3: Pembelajaran Mendalam — Analisis Tindakan Sosial di Media Sosial</h4>
-            <p>Amatilah salah satu unggahan atau percakapan di media sosial (misalnya Twitter, Instagram, atau TikTok). Pilih satu tindakan atau respons dari pengguna, lalu analisis menggunakan tipologi Max Weber:</p>
+            <h4><i class="fas fa-mobile-screen"></i> Aktivitas 3: Analisis Tindakan Sosial di Media Sosial</h4>
+            <p>Amatilah salah satu unggahan di media sosial (Twitter, Instagram, TikTok). Pilih satu tindakan pengguna, lalu analisis menggunakan tipologi Max Weber:</p>
             <ol>
-                <li>Apakah tindakan tersebut termasuk rasional instrumental, rasional nilai, afektif, atau tradisional? Berikan alasan!</li>
-                <li>Bagaimana tindakan tersebut memengaruhi hubungan sosial di antara para pengguna (misalnya memicu konflik, solidaritas, atau diskusi)?</li>
-                <li>Tulislah laporan singkat (1 halaman) tentang temuanmu.</li>
+                <li>Apakah termasuk rasional instrumental, rasional nilai, afektif, atau tradisional?</li>
+                <li>Bagaimana tindakan tersebut memengaruhi hubungan sosial (memicu konflik, solidaritas, atau diskusi)?</li>
             </ol>
         </div>
 
-        <!-- Aktivitas 4: Literasi — Studi Kasus Konflik Sosial -->
-        <div class="aktivitas">
-            <h4>Aktivitas 4: Literasi — Studi Kasus Konflik dan Rekonsiliasi</h4>
-            <p>Carilah sebuah artikel berita tentang konflik sosial di Indonesia (misalnya konflik antarwarga, tawuran pelajar, atau konflik SARA). Bacalah dengan saksama, lalu jawablah:</p>
-            <ol>
-                <li>Identitas sosial apa yang menjadi latar belakang konflik?</li>
-                <li>Jenis tindakan sosial apa yang mendominasi dalam kasus tersebut?</li>
-                <li>Bagaimana hubungan sosial antara kelompok yang berkonflik?</li>
-                <li>Usaha apa yang dilakukan untuk menyelesaikan konflik dan membangun kembali hubungan sosial yang harmonis?</li>
-            </ol>
-            <p>Tuliskan analisis kritis dalam 2–3 paragraf.</p>
-        </div>
-
-        <!-- ======== RANGKUMAN ======== -->
+        <!-- RANGKUMAN -->
         <div class="rangkuman">
-            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 3</h2>
-            <ul>
-                <li><strong>Identitas sosial</strong> adalah pemahaman diri berdasarkan keanggotaan dalam kelompok, yang terbentuk melalui kategorisasi, identifikasi, dan perbandingan sosial. Faktor pembentuknya meliputi suku, agama, gender, status sosial, dan profesi.</li>
-                <li><strong>Interseksionalitas</strong> menunjukkan bahwa setiap orang memiliki banyak identitas yang saling bersilangan, menciptakan pengalaman sosial yang unik.</li>
-                <li><strong>Tindakan sosial</strong> menurut Max Weber terdiri dari empat tipe: <strong>rasional instrumental</strong> (berorientasi tujuan), <strong>rasional berorientasi nilai</strong> (berdasarkan keyakinan), <strong>afektif</strong> (emosional), dan <strong>tradisional</strong> (kebiasaan).</li>
-                <li><strong>Hubungan sosial</strong> adalah interaksi timbal balik yang dapat bersifat <strong>asosiatif</strong> (kerja sama, akomodasi, asimilasi, akulturasi) atau <strong>disosiatif</strong> (persaingan, kontravensi, konflik).</li>
-                <li>Ketiga konsep ini saling terkait: identitas sosial mempengaruhi jenis tindakan sosial yang dipilih, dan tindakan sosial membentuk pola hubungan sosial dalam masyarakat.</li>
+            <h2><i class="fas fa-check-circle"></i> Rangkuman Bab 3</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Identitas sosial</strong> adalah pemahaman diri berdasarkan keanggotaan dalam kelompok, terbentuk melalui kategorisasi, identifikasi, dan perbandingan sosial.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Interseksionalitas</strong> menunjukkan bahwa setiap orang memiliki banyak identitas yang saling bersilangan, menciptakan pengalaman sosial yang unik.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Tindakan sosial</strong> menurut Max Weber: <strong>rasional instrumental</strong> (tujuan), <strong>rasional nilai</strong> (keyakinan), <strong>afektif</strong> (emosi), dan <strong>tradisional</strong> (kebiasaan).
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Hubungan sosial</strong> bersifat <strong>asosiatif</strong> (kerja sama, akomodasi, asimilasi, akulturasi) atau <strong>disosiatif</strong> (persaingan, kontravensi, konflik).
+                </li>
             </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <a href="sosiologi-kelas-x.html" class="action-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portal Sosiologi Kelas X
+            </a>
         </div>
 
     </div>
     <!-- end container -->
 
+    <!-- Floating Action Buttons -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <button class="print-btn" onclick="window.print()" title="Cetak Materi">
+        <i class="fas fa-print"></i> Cetak
+    </button>
+
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
