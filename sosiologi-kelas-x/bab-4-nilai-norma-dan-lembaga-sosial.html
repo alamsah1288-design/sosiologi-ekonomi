@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 4: Lembaga Sosial</title>
+    <style>
+        /* --- Reset & Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f5f3ff;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2.5rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- Typography --- */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            border-bottom: 4px solid #6366f1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: #1e293b;
+            border-left: 6px solid #6366f1;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul,
+        ol {
+            margin: 0.8rem 0 1.2rem 1.8rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        blockquote {
+            background: #eef2ff;
+            border-left: 5px solid #6366f1;
+            padding: 1rem 1.8rem;
+            margin: 1.4rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.6rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        th {
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        td {
+            background: #ffffff;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.6rem 2rem;
+            margin: 1.8rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h4 {
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 6px solid #4f46e5;
+            padding: 1.2rem 1.8rem;
+            border-radius: 8px;
+            margin: 1.6rem 0;
+        }
+
+        .highlight-box strong {
+            color: #4338ca;
+        }
+
+        /* --- Assessment & Aktivitas --- */
+        .question-block {
+            margin: 1.8rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .question-block:last-child {
+            border-bottom: none;
+        }
+
+        .soal-pilihan {
+            list-style: lower-alpha;
+            margin-left: 1.8rem;
+        }
+
+        .soal-pilihan li {
+            margin-bottom: 0.2rem;
+        }
+
+        .aktivitas {
+            background: #eef2ff;
+            border-radius: 12px;
+            padding: 1.4rem 2rem;
+            margin: 1.6rem 0;
+            border: 1px solid #a5b4fc;
+        }
+
+        .aktivitas h4 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+
+        /* --- Rangkuman --- */
+        .rangkuman {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 16px;
+            padding: 1.8rem 2.2rem;
+            margin: 2.4rem 0;
+        }
+
+        .rangkuman ul {
+            list-style-type: disc;
+            margin-left: 1.6rem;
+        }
+
+        .rangkuman li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            table {
+                font-size: 0.85rem;
+            }
+            th,
+            td {
+                padding: 8px 10px;
+            }
+            .card,
+            .aktivitas,
+            .rangkuman {
+                padding: 1rem 1.2rem;
+            }
+            blockquote {
+                padding: 0.8rem 1.2rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0.5in;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .card,
+            .aktivitas,
+            .rangkuman {
+                border: 1px solid #ccc;
+                background: #f9f9f9;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ======== MAIN TITLE ======== -->
+        <h1>Bab 4: Lembaga Sosial</h1>
+
+        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
+        <h2>Capaian Pembelajaran Bab</h2>
+        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+        <ol>
+            <li>Menjelaskan pengertian, ciri-ciri, dan jenis-jenis nilai dan norma sosial</li>
+            <li>Menganalisis hubungan antara nilai sosial dan norma sosial dalam mengatur kehidupan bermasyarakat</li>
+            <li>Memahami pengertian, karakteristik, dan tipe-tipe lembaga sosial (keluarga, agama, pendidikan, ekonomi, politik)</li>
+            <li>Menjelaskan peran lembaga sosial dalam mewujudkan ketertiban sosial dan mengintegrasikan fungsi-fungsi sosial</li>
+        </ol>
+
+        <!-- ======== 4.1 NILAI DAN NORMA SOSIAL ======== -->
+        <h2>4.1 Nilai dan Norma Sosial</h2>
+
+        <h3>A. Nilai Sosial</h3>
+        <p><strong>Nilai sosial</strong> adalah konsep abstrak dalam diri manusia mengenai apa yang dianggap baik, benar, penting, dan diinginkan dalam kehidupan bermasyarakat. Nilai sosial menjadi dasar bagi individu atau kelompok untuk menentukan sikap dan perilaku terhadap sesuatu.</p>
+        <p>Menurut <strong>Clyde Kluckhohn</strong>, nilai sosial memiliki ciri-ciri sebagai berikut:</p>
+        <ul>
+            <li>Merupakan konstruksi mental yang abstrak</li>
+            <li>Mempengaruhi tindakan manusia</li>
+            <li>Dianut oleh sebagian besar anggota kelompok</li>
+            <li>Berkaitan dengan emosi dan perasaan</li>
+            <li>Berfungsi sebagai pedoman hidup</li>
+        </ul>
+
+        <h4>Jenis-jenis Nilai Sosial</h4>
+        <p>Berdasarkan sumbernya, nilai sosial dapat dibagi menjadi:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jenis Nilai</th>
+                    <th>Penjelasan</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Nilai Material</strong></td>
+                    <td>Berkaitan dengan kebutuhan fisik dan benda-benda konkret</td>
+                    <td>Pakaian, makanan, tempat tinggal, uang</td>
+                </tr>
+                <tr>
+                    <td><strong>Nilai Vital</strong></td>
+                    <td>Berkaitan dengan hal-hal yang diperlukan untuk kelangsungan hidup</td>
+                    <td>Kesehatan, keselamatan, keamanan</td>
+                </tr>
+                <tr>
+                    <td><strong>Nilai Kerohanian</strong></td>
+                    <td>Berkaitan dengan jiwa, akal, dan perasaan manusia (dibagi lagi menjadi nilai kebenaran, keindahan, kebaikan, dan religius)</td>
+                    <td>Kejujuran, keadilan, keindahan seni, ketakwaan</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>B. Norma Sosial</h3>
+        <p><strong>Norma sosial</strong> adalah aturan atau pedoman perilaku yang mengikat anggota masyarakat dalam berinteraksi. Norma sosial berisi <strong>perintah</strong> (apa yang harus dilakukan) dan <strong>larangan</strong> (apa yang tidak boleh dilakukan). Norma lahir dari nilai sosial yang dianut masyarakat dan berfungsi untuk mengatur serta mengendalikan perilaku.</p>
+
+        <h4>Tingkatan Norma Sosial (Dari yang Paling Lemah ke Paling Kuat)</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tingkatan</th>
+                    <th>Istilah Sosiologis</th>
+                    <th>Penjelasan</th>
+                    <th>Sanksi Pelanggaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Cara</strong></td>
+                    <td><em>Usage</em></td>
+                    <td>Norma yang paling lemah, terkait dengan perilaku sehari-hari yang tidak penting</td>
+                    <td>Ejekan, cemoohan, atau teguran ringan</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Kebiasaan</strong></td>
+                    <td><em>Folkways</em></td>
+                    <td>Perilaku yang dilakukan secara berulang-ulang dan menjadi pola tetap</td>
+                    <td>Kecaman sosial atau dikucilkan</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Tata Kelakuan</strong></td>
+                    <td><em>Mores</em></td>
+                    <td>Norma yang dianggap penting dan berkaitan dengan moralitas serta kebaikan</td>
+                    <td>Hukuman sosial yang berat, pengucilan, atau kehilangan status</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Adat Istiadat</strong></td>
+                    <td><em>Custom</em></td>
+                    <td>Norma yang sudah mengakar kuat dan dijaga secara turun-temurun</td>
+                    <td>Dicap sebagai orang yang tidak beradab atau dikeluarkan dari kelompok</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Hukum</strong></td>
+                    <td><em>Law</em></td>
+                    <td>Norma yang paling kuat, bersifat formal dan tertulis, serta memiliki sanksi tegas dari negara</td>
+                    <td>Denda, penjara, atau hukuman pidana lainnya</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box">
+            <p><strong>Contoh Kasus:</strong> Di suatu daerah, meludah di sembarang tempat dianggap sebagai pelanggaran <em>usage</em> (cara) yang hanya mendapat teguran. Namun, mencuri uang milik orang lain melanggar <em>law</em> (hukum) yang sanksinya tegas berupa pidana penjara.</p>
+        </div>
+
+        <h4>C. Hubungan Nilai dan Norma Sosial</h4>
+        <p>Nilai sosial dan norma sosial merupakan dua konsep yang saling berkaitan erat:</p>
+        <ul>
+            <li><strong>Nilai sosial</strong> adalah <strong>ide dasar</strong> atau <strong>jiwa</strong> dari aturan-aturan yang ada. Nilai bersifat abstrak, universal, dan sulit diukur.</li>
+            <li><strong>Norma sosial</strong> adalah <strong>pengejawantahan</strong> (perwujudan konkret) dari nilai sosial. Norma bersifat lebih spesifik, terlihat, dan dapat diukur pelaksanaannya.</li>
+        </ul>
+        <p><em>Contoh:</em> Nilai kejujuran (abstrak) diwujudkan dalam norma "tidak boleh berbohong" dan "harus mengembalikan barang temuan".</p>
+
+        <!-- ======== 4.2 LEMBAGA SOSIAL ======== -->
+        <h2>4.2 Lembaga Sosial</h2>
+
+        <h3>A. Pengertian Lembaga Sosial</h3>
+        <p><strong>Lembaga sosial</strong> (<em>social institution</em>) adalah sistem norma dan aturan yang terbentuk untuk memenuhi kebutuhan-kebutuhan pokok manusia dalam kehidupan bermasyarakat. Lembaga sosial bukanlah benda fisik, melainkan suatu <strong>sistem tata kelakuan</strong> yang terstruktur dan memiliki kekuatan untuk memaksa individu agar bertindak sesuai dengan norma-norma yang berlaku.</p>
+        <p>Menurut <strong>Koentjaraningrat</strong>, lembaga sosial adalah suatu sistem tata kelakuan dan hubungan yang berpusat pada aktivitas-aktivitas untuk memenuhi kebutuhan khusus dalam kehidupan masyarakat.</p>
+
+        <h3>B. Karakteristik Lembaga Sosial</h3>
+        <p>Ciri-ciri atau karakteristik lembaga sosial antara lain:</p>
+        <ul>
+            <li><strong>Memiliki simbol</strong> — biasanya memiliki lambang, motto, atau simbol tertentu yang menjadi identitas.</li>
+            <li><strong>Memiliki tata tertib dan tradisi</strong> — memiliki aturan tertulis dan tidak tertulis yang mengatur anggota.</li>
+            <li><strong>Memiliki kekekalan tertentu</strong> — tidak mudah berubah dan cenderung bertahan lama.</li>
+            <li><strong>Memiliki tujuan tertentu</strong> — dibentuk untuk memenuhi kebutuhan dasar manusia.</li>
+            <li><strong>Memiliki alat perlengkapan</strong> — sarana fisik dan nonfisik untuk menjalankan fungsinya.</li>
+        </ul>
+
+        <h3>C. Tipe-tipe Lembaga Sosial</h3>
+        <p>Berdasarkan fungsinya dalam memenuhi kebutuhan dasar manusia, lembaga sosial dibagi menjadi lima tipe utama:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Lembaga</th>
+                    <th>Kebutuhan Pokok</th>
+                    <th>Fungsi Utama</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Keluarga</strong></td>
+                    <td>Reproduksi, perlindungan, kasih sayang</td>
+                    <td>Membentuk kepribadian, sosialisasi primer, afeksi</td>
+                    <td>Keluarga inti, keluarga besar</td>
+                </tr>
+                <tr>
+                    <td><strong>Agama</strong></td>
+                    <td>Kebutuhan spiritual dan makna hidup</td>
+                    <td>Memberikan pedoman moral, ketenangan jiwa, dan ritual keagamaan</td>
+                    <td>Masjid, gereja, pura, vihara</td>
+                </tr>
+                <tr>
+                    <td><strong>Pendidikan</strong></td>
+                    <td>Transfer pengetahuan dan nilai budaya</td>
+                    <td>Mencerdaskan kehidupan bangsa, menyiapkan tenaga kerja</td>
+                    <td>Sekolah, universitas, kursus</td>
+                </tr>
+                <tr>
+                    <td><strong>Ekonomi</strong></td>
+                    <td>Kebutuhan sandang, pangan, dan papan</td>
+                    <td>Produksi, distribusi, dan konsumsi barang/jasa</td>
+                    <td>Pasar, bank, perusahaan, koperasi</td>
+                </tr>
+                <tr>
+                    <td><strong>Politik</strong></td>
+                    <td>Kebutuhan akan kekuasaan dan pengaturan</td>
+                    <td>Menjaga ketertiban, keamanan, dan keadilan</td>
+                    <td>Pemerintah, DPR, partai politik, kepolisian</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>D. Fungsi Lembaga Sosial</h3>
+        <p>Menurut <strong>Robert K. Merton</strong>, setiap lembaga sosial memiliki dua jenis fungsi:</p>
+        <ol>
+            <li><strong>Fungsi Manifes</strong> — fungsi yang disadari dan diharapkan oleh anggota masyarakat. Contoh: fungsi manifes sekolah adalah mendidik siswa.</li>
+            <li><strong>Fungsi Laten</strong> — fungsi yang tidak disadari dan merupakan efek samping. Contoh: fungsi laten sekolah adalah menjadi tempat bertemunya calon pasangan suami-istri.</li>
+        </ol>
+
+        <!-- ======== 4.3 PERAN LEMBAGA SOSIAL UNTUK KETERTIBAN SOSIAL ======== -->
+        <h2>4.3 Peran Lembaga Sosial untuk Mewujudkan Ketertiban Sosial</h2>
+
+        <h3>A. Pengertian Ketertiban Sosial</h3>
+        <p><strong>Ketertiban sosial</strong> (<em>social order</em>) adalah kondisi di mana masyarakat berjalan dengan harmonis, setiap anggota menjalankan perannya sesuai dengan norma dan aturan yang berlaku, serta konflik dapat diminimalisasi. Ketertiban sosial merupakan tujuan utama dari terbentuknya lembaga-lembaga sosial.</p>
+
+        <h3>B. Peran Lembaga Sosial dalam Menciptakan Ketertiban</h3>
+        <p>Lembaga sosial memiliki peran strategis dalam mewujudkan ketertiban sosial melalui berbagai cara:</p>
+
+        <div class="card">
+            <h4>1. Kontrol Sosial (<em>Social Control</em>)</h4>
+            <p>Lembaga sosial mengawasi perilaku anggota masyarakat melalui aturan dan sanksi. Misalnya, lembaga kepolisian menegakkan hukum, lembaga agama mengingatkan tentang dosa dan pahala, serta lembaga keluarga mengajarkan sopan santun sejak dini.</p>
+        </div>
+
+        <div class="card">
+            <h4>2. Internalisasi Nilai dan Norma</h4>
+            <p>Melalui proses sosialisasi, lembaga sosial menanamkan nilai-nilai dan norma-norma ke dalam diri individu (internalisasi) sehingga individu secara sadar mematuhi aturan tanpa paksaan. Keluarga dan pendidikan adalah dua lembaga utama dalam proses ini.</p>
+        </div>
+
+        <div class="card">
+            <h4>3. Mengatur Perilaku dan Peran</h4>
+            <p>Setiap lembaga memiliki peran-peran tertentu yang dijalankan oleh anggotanya. Misalnya, dalam lembaga ekonomi, ada peran produsen, konsumen, dan distributor. Dengan peran yang jelas, masyarakat terhindar dari kekacauan.</p>
+        </div>
+
+        <div class="card">
+            <h4>4. Menyelesaikan dan Mengelola Konflik</h4>
+            <p>Lembaga politik (seperti pengadilan) dan lembaga adat berfungsi sebagai mediator dalam menyelesaikan sengketa sehingga tidak berkembang menjadi konflik berkepanjangan.</p>
+        </div>
+
+        <div class="card">
+            <h4>5. Menjaga Stabilitas dan Integrasi Sosial</h4>
+            <p>Lembaga sosial mempertemukan berbagai kepentingan yang berbeda dalam masyarakat. Lembaga agama, misalnya, mengajarkan toleransi dan kerukunan, sementara lembaga pendidikan mengajarkan nasionalisme dan kebhinekaan.</p>
+        </div>
+
+        <div class="highlight-box">
+            <p><strong>Studi Kasus:</strong> Di tengah pandemi COVID-19, lembaga sosial memainkan peran besar dalam menjaga ketertiban. Lembaga kesehatan (puskesmas/rumah sakit) mengatur protokol kesehatan, lembaga agama mengimbau ibadah di rumah, lembaga pendidikan melaksanakan pembelajaran daring, dan lembaga politik mengeluarkan kebijakan PPKM. Semua bekerja bersama untuk melindungi masyarakat.</p>
+        </div>
+
+        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
+        <h2>Uji Capaian Pembelajaran Bab 4</h2>
+
+        <h3>A. Soal Pilihan Ganda</h3>
+
+        <div class="question-block">
+            <p><strong>1.</strong> Konsep abstrak dalam diri manusia mengenai apa yang dianggap baik dan penting dalam kehidupan bermasyarakat disebut...</p>
+            <ul class="soal-pilihan">
+                <li>a. Norma sosial</li>
+                <li>b. Nilai sosial</li>
+                <li>c. Lembaga sosial</li>
+                <li>d. Hukum</li>
+                <li>e. Adat istiadat</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>2.</strong> Norma yang paling kuat, bersifat formal, tertulis, dan memiliki sanksi tegas dari negara adalah...</p>
+            <ul class="soal-pilihan">
+                <li>a. Cara (usage)</li>
+                <li>b. Kebiasaan (folkways)</li>
+                <li>c. Tata kelakuan (mores)</li>
+                <li>d. Adat istiadat (custom)</li>
+                <li>e. Hukum (law)</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>3.</strong> Lembaga sosial yang berfungsi untuk memenuhi kebutuhan spiritual dan memberikan pedoman moral kepada anggota masyarakat adalah...</p>
+            <ul class="soal-pilihan">
+                <li>a. Lembaga keluarga</li>
+                <li>b. Lembaga agama</li>
+                <li>c. Lembaga pendidikan</li>
+                <li>d. Lembaga ekonomi</li>
+                <li>e. Lembaga politik</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>4.</strong> Fungsi yang tidak disadari dan merupakan efek samping dari keberadaan lembaga sosial disebut fungsi...</p>
+            <ul class="soal-pilihan">
+                <li>a. Manifes</li>
+                <li>b. Laten</li>
+                <li>c. Struktural</li>
+                <li>d. Fungsional</li>
+                <li>e. Instrumental</li>
+            </ul>
+        </div>
+
+        <div class="question-block">
+            <p><strong>5.</strong> Lembaga sosial berperan dalam mewujudkan ketertiban sosial. Berikut yang merupakan peran lembaga sosial dalam mengelola konflik adalah...</p>
+            <ul class="soal-pilihan">
+                <li>a. Mengajarkan sopan santun</li>
+                <li>b. Menjadi mediator dalam sengketa</li>
+                <li>c. Menanamkan nilai kejujuran</li>
+                <li>d. Menerapkan protokol kesehatan</li>
+                <li>e. Memproduksi barang konsumsi</li>
+            </ul>
+        </div>
+
+        <h3>B. Soal Esai</h3>
+
+        <div class="question-block">
+            <p><strong>1.</strong> Jelaskan perbedaan antara nilai sosial dan norma sosial, serta berikan contoh konkret yang menunjukkan hubungan keduanya!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>2.</strong> Uraikan lima tingkatan norma sosial dari yang paling lemah hingga paling kuat, disertai dengan contoh dan sanksi masing-masing!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>3.</strong> Sebutkan dan jelaskan lima tipe lembaga sosial berdasarkan kebutuhan pokok yang dipenuhinya, serta berikan contoh fungsinya masing-masing!</p>
+        </div>
+        <div class="question-block">
+            <p><strong>4.</strong> Bagaimana lembaga sosial berperan dalam mewujudkan ketertiban sosial? Uraikan minimal empat peran dengan contoh nyata!</p>
+        </div>
+
+        <h3>C. Aktivitas Pembelajaran Mendalam</h3>
+
+        <!-- Aktivitas 1 -->
+        <div class="aktivitas">
+            <h4>Aktivitas 1: Observasi Nilai dan Norma di Lingkungan Sekolah</h4>
+            <p>Amatilah aturan-aturan yang berlaku di sekolahmu (tata tertib, seragam, jam masuk, dan lain-lain). Identifikasi nilai sosial yang menjadi dasar dari aturan-aturan tersebut, serta klasifikasikan tingkat norma sosialnya (cara, kebiasaan, tata kelakuan, adat, atau hukum). Buatlah laporan singkat dalam bentuk tabel.</p>
+        </div>
+
+        <!-- Aktivitas 2: Literasi Numerasi — Data Pendidikan dan Fungsi Lembaga -->
+        <div class="aktivitas">
+            <h4>Aktivitas 2: Literasi Numerasi — Analisis Data Pendidikan</h4>
+            <p>Perhatikan data Angka Partisipasi Kasar (APK) Pendidikan di Indonesia berdasarkan jenjang pendidikan (data ilustratif):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jenjang Pendidikan</th>
+                        <th>APK 2020 (%)</th>
+                        <th>APK 2022 (%)</th>
+                        <th>Perubahan (poin)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>SD / MI</td><td>98,5</td><td>98,7</td><td>+0,2</td></tr>
+                    <tr><td>SMP / MTs</td><td>85,2</td><td>86,8</td><td>+1,6</td></tr>
+                    <tr><td>SMA / SMK / MA</td><td>72,1</td><td>74,5</td><td>+2,4</td></tr>
+                    <tr><td>Perguruan Tinggi</td><td>28,3</td><td>30,1</td><td>+1,8</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Pertanyaan Numerasi:</strong></p>
+            <ol>
+                <li>Jenjang pendidikan mana yang mengalami peningkatan APK tertinggi dan terendah?</li>
+                <li>Jika total penduduk usia sekolah (7–24 tahun) adalah 65 juta jiwa, perkirakan jumlah siswa di SMA/SMK/MA pada tahun 2022!</li>
+                <li>Bagaimana data ini mencerminkan peran lembaga pendidikan dalam masyarakat? Jelaskan fungsi manifes dan fungsi laten dari lembaga pendidikan berdasarkan data tersebut!</li>
+            </ol>
+        </div>
+
+        <!-- Aktivitas 3: Proyek Mini Riset Lembaga Sosial -->
+        <div class="aktivitas">
+            <h4>Aktivitas 3: Pembelajaran Mendalam — Wawancara Lembaga Sosial</h4>
+            <p>Pilih satu lembaga sosial yang ada di lingkunganmu (misalnya: pengurus masjid/gereja, karang taruna, koperasi desa, atau organisasi kemasyarakatan). Lakukan wawancara singkat dengan pengurusnya mengenai:</p>
+            <ol>
+                <li>Apa tujuan utama lembaga tersebut?</li>
+                <li>Aturan/norma apa yang diterapkan?</li>
+                <li>Bagaimana lembaga tersebut menjaga ketertiban di lingkungannya?</li>
+                <li>Apa kendala yang dihadapi?</li>
+            </ol>
+            <p>Tuliskan hasil wawancara dalam laporan 1–2 halaman dan kaitkan dengan konsep lembaga sosial yang telah dipelajari.</p>
+        </div>
+
+        <!-- Aktivitas 4: Literasi — Studi Kasus Pelanggaran Norma -->
+        <div class="aktivitas">
+            <h4>Aktivitas 4: Literasi — Analisis Berita Pelanggaran Norma</h4>
+            <p>Carilah sebuah artikel berita tentang pelanggaran norma sosial di Indonesia (misalnya: kasus korupsi, tawuran pelajar, pelanggaran lalu lintas, atau kasus asusila). Bacalah dengan saksama, lalu analisis:</p>
+            <ol>
+                <li>Norma sosial apa yang dilanggar (masuk kategori mana)?</li>
+                <li>Nilai sosial apa yang diabaikan oleh pelaku?</li>
+                <li>Lembaga sosial mana yang terlibat dalam penanganan kasus tersebut? Bagaimana perannya?</li>
+                <li>Menurutmu, bagaimana kasus ini mempengaruhi ketertiban sosial di masyarakat?</li>
+            </ol>
+        </div>
+
+        <!-- ======== RANGKUMAN ======== -->
+        <div class="rangkuman">
+            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 4</h2>
+            <ul>
+                <li><strong>Nilai sosial</strong> adalah konsep abstrak tentang baik-buruk, benar-salah yang menjadi pedoman hidup, sedangkan <strong>norma sosial</strong> adalah aturan konkret yang mengatur perilaku masyarakat. Norma adalah perwujudan dari nilai.</li>
+                <li>Norma memiliki tingkatan dari yang lemah hingga kuat: <strong>Cara (usage), Kebiasaan (folkways), Tata Kelakuan (mores), Adat Istiadat (custom), dan Hukum (law)</strong>.</li>
+                <li><strong>Lembaga sosial</strong> adalah sistem norma untuk memenuhi kebutuhan pokok masyarakat, terdiri dari lima tipe utama: <strong>keluarga, agama, pendidikan, ekonomi, dan politik</strong>.</li>
+                <li>Setiap lembaga memiliki fungsi <strong>manifes</strong> (disadari) dan <strong>laten</strong> (tidak disadari).</li>
+                <li>Lembaga sosial berperan penting dalam <strong>mewujudkan ketertiban sosial</strong> melalui kontrol sosial, internalisasi nilai/norma, pengaturan peran, penyelesaian konflik, dan menjaga integrasi sosial.</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- end container -->
+
+</body>
+</html>
