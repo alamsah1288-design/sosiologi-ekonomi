@@ -3,525 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bab 1: Pengantar Sosiologi</title>
+    <title>Bab 1: Kelahiran dan Kajian Sosiologi | SMA Negeri 1 Cluring</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
-        /* --- Reset & Base --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== VARIABEL PORTAL UTAMA ===== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            --gradient-primary: linear-gradient(120deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            background: #f5f7fa;
-            color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--dark);
             line-height: 1.7;
-            padding: 2rem 1rem;
+            padding-bottom: 4rem;
+            transition: background 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #f8f9fa;
+        }
+
+        /* ===== HEADER & NAVIGASI ===== */
+        .page-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+        .header-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; border: 3px solid rgba(255,255,255,0.3);
+            font-size: 2rem; backdrop-filter: blur(10px);
+        }
+        .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { opacity: 0.9; font-size: 1rem; }
+
+        /* ===== CONTAINER UTAMA ===== */
         .container {
             max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 2.5rem 3rem;
+            margin: -3rem auto 0;
+            background: white;
+            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
         }
+        body.dark-mode .container { background: #1e1e1e; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
 
-        /* --- Typography --- */
-        h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #0f172a;
-            border-bottom: 4px solid #3b82f6;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-
+        /* ===== TYPOGRAPHY ===== */
         h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 2.8rem;
-            margin-bottom: 1.2rem;
-            color: #1e293b;
-            border-left: 6px solid #3b82f6;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        body.dark-mode h2 { color: var(--accent); border-left-color: var(--accent); }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            color: #1e293b;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
+        body.dark-mode h3 { color: #f8f9fa; }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
+        body.dark-mode h4 { color: var(--accent); }
 
-        p {
-            margin-bottom: 1.2rem;
-        }
+        p { margin-bottom: 1.2rem; color: var(--gray); }
+        body.dark-mode p { color: #cbd5e1; }
 
-        ul,
-        ol {
-            margin: 0.8rem 0 1.2rem 1.8rem;
-        }
+        ul, ol { margin: 0.8rem 0 1.5rem 1.5rem; color: var(--gray); }
+        body.dark-mode ul, body.dark-mode ol { color: #cbd5e1; }
+        li { margin-bottom: 0.6rem; }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
-
-        strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        blockquote {
-            background: #f1f5f9;
-            border-left: 5px solid #3b82f6;
-            padding: 1rem 1.8rem;
-            margin: 1.4rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-
-        /* --- Tables --- */
-        table {
+        /* ===== IMAGES ===== */
+        .content-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1.6rem 0;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        th {
-            background: #1e293b;
-            color: #f8fafc;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        td {
-            background: #ffffff;
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) td {
-            background: #f8fafc;
-        }
-
-        /* --- Cards for special sections --- */
-        .card {
-            background: #f8fafc;
+            height: 250px;
+            object-fit: cover;
             border-radius: 16px;
-            padding: 1.6rem 2rem;
-            margin: 1.8rem 0;
-            border: 1px solid #e2e8f0;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .content-image:hover { transform: scale(1.01); }
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        .card h4 {
-            margin-top: 0;
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
         }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; }
 
         .highlight-box {
             background: #eff6ff;
-            border-left: 6px solid #2563eb;
-            padding: 1.2rem 1.8rem;
-            border-radius: 8px;
-            margin: 1.6rem 0;
+            border-left: 5px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .highlight-box { background: rgba(67, 97, 238, 0.15); }
+        .highlight-box strong { color: var(--primary); }
+        body.dark-mode .highlight-box strong { color: var(--accent); }
 
-        .highlight-box strong {
-            color: #1d4ed8;
-        }
-
-        /* --- Assessment styling --- */
-        .question-block {
-            margin: 1.8rem 0;
-            padding: 1rem 0;
-            border-bottom: 1px dashed #cbd5e1;
-        }
-
-        .question-block:last-child {
-            border-bottom: none;
-        }
-
-        .soal-pilihan {
-            list-style: lower-alpha;
-            margin-left: 1.8rem;
-        }
-
-        .soal-pilihan li {
-            margin-bottom: 0.2rem;
-        }
-
-        .aktivitas {
-            background: #f1f5f9;
-            border-radius: 12px;
-            padding: 1.4rem 2rem;
-            margin: 1.6rem 0;
-        }
-
-        .aktivitas h4 {
-            margin-top: 0;
-            color: #1e293b;
-        }
-
-        /* --- Rangkuman --- */
         .rangkuman {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 16px;
-            padding: 1.8rem 2.2rem;
-            margin: 2.4rem 0;
+            padding: 2rem;
+            margin: 3rem 0 1rem;
         }
+        body.dark-mode .rangkuman { background: rgba(74, 222, 128, 0.1); border-color: #22c55e; }
+        .rangkuman h2 { border-left-color: var(--success); color: #15803d; margin-top: 0; }
+        body.dark-mode .rangkuman h2 { color: var(--success); }
 
-        .rangkuman ul {
-            list-style-type: disc;
-            margin-left: 1.6rem;
+        .aktivitas {
+            background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+            border: 1px solid #fcd34d;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
         }
+        body.dark-mode .aktivitas { background: rgba(251, 191, 36, 0.1); border-color: #f59e0b; }
+        .aktivitas h4 { margin-top: 0; color: #92400e; display: flex; align-items: center; gap: 8px; }
+        body.dark-mode .aktivitas h4 { color: var(--warning); }
 
-        .rangkuman li {
-            margin-bottom: 0.6rem;
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 16px;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--dark);
+        }
+        body.dark-mode td { background: #2d2d2d; border-bottom-color: #444; color: #f8f9fa; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        body.dark-mode tr:nth-child(even) td { background: #374151; }
 
-        /* --- Responsive --- */
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.5rem 1.2rem;
-            }
+        /* ===== ASSESSMENT ===== */
+        .question-block {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        body.dark-mode .question-block { background: #2d2d2d; }
+        .soal-pilihan { list-style: lower-alpha; margin-left: 1.5rem; margin-top: 0.8rem; }
+        .soal-pilihan li { margin-bottom: 0.4rem; cursor: pointer; transition: var(--transition); padding: 4px 8px; border-radius: 6px; }
+        .soal-pilihan li:hover { background: rgba(67, 97, 238, 0.1); }
 
-            h1 {
-                font-size: 1.8rem;
-            }
+        /* ===== UTILITIES ===== */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        .print-btn:hover { transform: translateY(-3px); }
 
-            h2 {
-                font-size: 1.4rem;
-            }
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 140px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            z-index: 100;
+        }
+        body.dark-mode .theme-toggle { background: #2d2d2d; color: white; border-color: #444; }
+        .theme-toggle:hover { transform: rotate(15deg); }
 
-            h3 {
-                font-size: 1.2rem;
-            }
-
-            table {
-                font-size: 0.85rem;
-            }
-
-            th,
-            td {
-                padding: 8px 10px;
-            }
-
-            .card,
-            .aktivitas,
-            .rangkuman {
-                padding: 1rem 1.2rem;
-            }
-
-            blockquote {
-                padding: 0.8rem 1.2rem;
-            }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; margin-top: -2rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .back-btn { top: 15px; left: 15px; padding: 8px 14px; font-size: 0.8rem; }
+            h2 { font-size: 1.3rem; }
+            .content-image { height: 180px; }
+            .print-btn { bottom: 20px; right: 20px; padding: 10px 16px; font-size: 0.85rem; }
+            .theme-toggle { bottom: 20px; right: 110px; width: 40px; height: 40px; }
         }
 
         @media print {
-            body {
-                background: white;
-                padding: 0.5in;
-            }
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            .card,
-            .aktivitas,
-            .rangkuman {
-                border: 1px solid #ccc;
-                background: #f9f9f9;
-            }
+            .page-header, .print-btn, .theme-toggle, .back-btn { display: none !important; }
+            body { background: white; color: black; }
+            .container { margin: 0; box-shadow: none; padding: 0; max-width: 100%; }
+            .card, .aktivitas, .rangkuman, .question-block { border: 1px solid #ccc; background: #f9f9f9 !important; break-inside: avoid; }
+            h2 { color: black !important; border-left-color: black !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
+    <header class="page-header">
+        <a href="sosiologi-kelas-x.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali ke Sosiologi Kelas X
+        </a>
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-users-viewfinder"></i></div>
+            <h1>Bab 1: Kelahiran dan Kajian Sosiologi</h1>
+            <p>Memahami akar ilmu sosiologi, objek kajian, dan paradigma yang membentuk cara kita melihat masyarakat.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
     <div class="container">
 
-        <!-- ======== MAIN TITLE ======== -->
-        <h1>Bab 1: Pengantar Sosiologi — Kelahiran dan Kajian Sosiologi</h1>
+        <!-- CAPAIAN PEMBELAJARAN -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: none; border-radius: 16px;">
+            <h3 style="margin-top: 0; color: var(--primary);"><i class="fas fa-bullseye"></i> Capaian Pembelajaran Bab</h3>
+            <p style="margin-bottom: 0.5rem;">Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
+            <ol style="margin-bottom: 0;">
+                <li>Menjelaskan latar belakang kelahiran sosiologi sebagai ilmu pengetahuan.</li>
+                <li>Mengidentifikasi objek kajian sosiologi serta membedakan objek material dan formal.</li>
+                <li>Menganalisis sosiologi sebagai ilmu yang berparadigma ganda.</li>
+                <li>Mengaitkan konsep-konsep sosiologi dengan fenomena sosial dalam kehidupan sehari-hari.</li>
+            </ol>
+        </div>
 
-        <!-- ======== CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Capaian Pembelajaran Bab</h2>
-        <p>Setelah mempelajari bab ini, peserta didik diharapkan mampu:</p>
-        <ol>
-            <li>Menjelaskan latar belakang kelahiran sosiologi sebagai ilmu pengetahuan</li>
-            <li>Mengidentifikasi objek kajian sosiologi serta membedakan objek material dan objek formal</li>
-            <li>Menganalisis sosiologi sebagai ilmu yang berparadigma ganda</li>
-            <li>Mengaitkan konsep-konsep sosiologi dengan fenomena sosial dalam kehidupan sehari-hari</li>
-        </ol>
-
-        <!-- ======== 1.1 KELAHIRAN SOSIOLOGI ======== -->
-        <h2>1.1 Kelahiran Sosiologi</h2>
+        <!-- 1.1 KELAHIRAN SOSIOLOGI -->
+        <h2><i class="fas fa-landmark"></i> 1.1 Kelahiran Sosiologi</h2>
+        
+        <img src="https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?auto=format&fit=crop&w=1000&q=80" alt="Revolusi Industri" class="content-image">
+        <p class="image-caption">Ilustrasi perubahan struktur masyarakat dari agraris ke industri yang memicu lahirnya sosiologi.</p>
 
         <h3>A. Latar Belakang Kelahiran Sosiologi</h3>
-        <p>Sosiologi sebagai ilmu pengetahuan tidak lahir secara tiba-tiba. Kelahirannya tidak terlepas dari berbagai perubahan besar yang terjadi di Eropa pada abad ke-18 dan ke-19. Beberapa faktor penting yang melatarbelakangi kelahiran sosiologi antara lain:</p>
+        <p>Sosiologi tidak lahir secara tiba-tiba. Kelahirannya erat kaitannya dengan perubahan besar di Eropa pada abad ke-18 dan ke-19:</p>
+        <ul>
+            <li><strong>Revolusi Industri (1760–1840):</strong> Peralihan dari masyarakat agraris ke industri menyebabkan urbanisasi besar-besaran, munculnya kelas buruh, kemiskinan, dan eksploitasi. Kondisi ini mendorong pencarian pemahaman ilmiah tentang masalah sosial.</li>
+            <li><strong>Revolusi Prancis (1789–1799):</strong> Keruntuhan monarki absolut dan bangkitnya ide kebebasan, kesetaraan, dan persaudaraan menunjukkan bahwa tatanan sosial dapat berubah secara radikal.</li>
+            <li><strong>Perkembangan Ilmu Pengetahuan Alam:</strong> Keberhasilan fisika, kimia, dan biologi menginspirasi pemikir untuk menerapkan metode ilmiah yang sama dalam memahami fenomena sosial.</li>
+        </ul>
 
-        <h4>1. Revolusi Industri (sekitar 1760–1840)</h4>
-        <p>Revolusi Industri yang dimulai di Inggris membawa perubahan besar dalam struktur masyarakat. Peralihan dari masyarakat agraris ke masyarakat industri menyebabkan urbanisasi besar-besaran, munculnya kelas buruh, dan berbagai masalah sosial baru seperti kemiskinan, kepadatan penduduk, dan eksploitasi tenaga kerja. Kondisi ini mendorong para pemikir untuk mencari pemahaman ilmiah tentang masyarakat dan masalah-masalah yang timbul di dalamnya.</p>
-
-        <h4>2. Revolusi Prancis (1789–1799)</h4>
-        <p>Revolusi Prancis mengguncang tatanan sosial dan politik Eropa. Keruntuhan sistem monarki absolut dan bangkitnya ide-ide tentang kebebasan, kesetaraan, dan persaudaraan menunjukkan bahwa tatanan sosial dapat berubah secara radikal. Peristiwa ini mendorong munculnya pertanyaan-pertanyaan fundamental tentang hakikat masyarakat, kekuasaan, dan perubahan sosial.</p>
-
-        <h4>3. Perkembangan Ilmu Pengetahuan Alam</h4>
-        <p>Keberhasilan ilmu pengetahuan alam (fisika, kimia, biologi) dalam menjelaskan fenomena alam secara ilmiah menginspirasi para pemikir untuk menerapkan metode serupa dalam memahami fenomena sosial. Lahirlah keyakinan bahwa masyarakat pun dapat dipelajari secara ilmiah, sebagaimana alam dipelajari oleh ilmu pengetahuan alam.</p>
-
-        <!-- ======== B. AUGUSTE COMTE ======== -->
         <h3>B. Auguste Comte: Bapak Sosiologi</h3>
-        <p>Tokoh yang paling berjasa dalam kelahiran sosiologi adalah <strong>Auguste Comte</strong>, seorang filsuf Prancis yang hidup pada 19 Januari 1798 – 5 September 1857. Comte dikenal sebagai orang pertama yang memperkenalkan istilah <strong>sosiologi</strong> serta aliran <strong>positivisme</strong>.</p>
-
-        <div class="card">
-            <h4>Identitas Auguste Comte</h4>
-            <p><strong>Nama Lengkap:</strong> Isidore Auguste Marie François Xavier Comte</p>
-            <p><strong>Tempat Lahir:</strong> Montpellier, Prancis</p>
-            <p><strong>Pendidikan:</strong> École Polytechnique di Paris, sebuah sekolah yang terkenal dengan kesetiaannya pada gagasan republikanisme dan filosofi proses</p>
+        <div class="card" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <h4 style="margin-top: 0;"><i class="fas fa-user-tie"></i> Profil Singkat</h4>
+                <p><strong>Nama:</strong> Isidore Auguste Marie François Xavier Comte<br>
+                <strong>Lahir:</strong> 19 Januari 1798, Montpellier, Prancis<br>
+                <strong>Wafat:</strong> 5 September 1857<br>
+                <strong>Gelar:</strong> Bapak Sosiologi Dunia & Pencetus Positivisme</p>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <h4 style="margin-top: 0;"><i class="fas fa-scroll"></i> Kontribusi Utama</h4>
+                <ul style="margin-bottom: 0;">
+                    <li>Memperkenalkan istilah <strong>"Sosiologi"</strong> (<em>socius</em> = teman/masyarakat, <em>logos</em> = ilmu).</li>
+                    <li>Menerbitkan <em>Cours de Philosophie Positive</em> (1830).</li>
+                    <li>Membangun dasar pengaplikasian <strong>metode ilmiah</strong> dalam ilmu sosial.</li>
+                </ul>
+            </div>
         </div>
 
-        <h4>Perjalanan Hidup</h4>
-        <ul>
-            <li>Pada 1816, Comte meninggalkan École Polytechnique dan melanjutkan pendidikan di sekolah kedokteran Montpellier</li>
-            <li>Pada 1817, ia menjadi murid sekaligus sekretaris dari Henri de Saint-Simon, seorang reformis sosial Prancis</li>
-            <li>Pada 1826, Comte mulai memperkenalkan sistem filsafat positif</li>
-            <li>Pada 1828–1829, ia menerbitkan filosofi positif dalam buku berjudul <em>Cours de Philosophie Positive</em></li>
-            <li>Tahun 1832–1842, Comte menjadi pengajar di beberapa sekolah</li>
-            <li>Comte menikahi Caroline Massin pada 1825, namun pernikahan itu kandas pada 1842</li>
-        </ul>
-
-        <h4>Mengapa Comte Disebut Bapak Sosiologi?</h4>
-        <p>Comte mendapat julukan sebagai Bapak Sosiologi Dunia karena dari dialah kata <strong>sosiologi</strong> pertama kali digunakan. Istilah sosiologi berasal dari bahasa Latin <em>socius</em> (teman atau masyarakat) dan bahasa Yunani <em>logos</em> (ilmu atau studi). Dengan demikian, secara harfiah sosiologi berarti <strong>ilmu tentang masyarakat</strong>.</p>
-        <p>Meskipun Comte bukan pencetus konsep sosiologi atau bidang studinya secara keseluruhan, ia dipuji karena menciptakan istilah "sosiologi" dan berhasil memperluas serta mengelaborasi bidang tersebut. Melalui prinsip positivisme, Comte membangun dasar yang digunakan oleh akademisi hingga saat ini, yaitu pengaplikasian <strong>metode ilmiah</strong> dalam <strong>ilmu sosial</strong> sebagai sarana dalam memperoleh kebenaran.</p>
-
-        <!-- ======== C. HUKUM TIGA TAHAP ======== -->
         <h3>C. Hukum Tiga Tahap (Law of Three Stages)</h3>
-        <p>Salah satu pemikiran penting Auguste Comte adalah tentang <strong>Hukum Tiga Tahap</strong> perkembangan intelektual manusia. Menurut Comte, perkembangan pengetahuan manusia, baik secara individu maupun keseluruhan, melalui tiga tahapan:</p>
-
+        <p>Menurut Comte, perkembangan intelektual manusia dalam menjelaskan gejala sosial melalui tiga tahapan:</p>
         <table>
             <thead>
                 <tr>
-                    <th>Tahap</th>
-                    <th>Ciri-ciri</th>
-                    <th>Penjelasan Gejala Sosial</th>
+                    <th width="25%">Tahap</th>
+                    <th width="35%">Ciri-ciri</th>
+                    <th width="40%">Penjelasan Gejala Sosial</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Tahap Teologis</strong></td>
-                    <td>Penjelasan berdasarkan kekuatan adikodrati</td>
-                    <td>Gejala sosial dijelaskan sebagai campur tangan dewa-dewi atau kekuatan gaib</td>
+                    <td><strong>Teologis</strong></td>
+                    <td>Berdasarkan kekuatan adikodrati</td>
+                    <td>Campur tangan dewa-dewi, roh, atau kekuatan gaib</td>
                 </tr>
                 <tr>
-                    <td><strong>Tahap Metafisik</strong></td>
-                    <td>Penjelasan berdasarkan kekuatan abstrak</td>
-                    <td>Gejala sosial dijelaskan melalui konsep-konsep abstrak seperti "alam" atau "hakikat"</td>
+                    <td><strong>Metafisik</strong></td>
+                    <td>Berdasarkan kekuatan abstrak</td>
+                    <td>Konsep abstrak seperti "alam", "hakikat", atau "takdir"</td>
                 </tr>
                 <tr>
-                    <td><strong>Tahap Positif</strong></td>
-                    <td>Penjelasan berdasarkan fakta ilmiah</td>
-                    <td>Gejala sosial dijelaskan melalui observasi, pengukuran, dan metode ilmiah</td>
+                    <td><strong>Positif</strong></td>
+                    <td>Berdasarkan fakta ilmiah</td>
+                    <td>Observasi, pengukuran, eksperimen, dan metode ilmiah</td>
                 </tr>
             </tbody>
         </table>
 
-        <p>Comte meyakini bahwa masyarakat pada zamannya telah memasuki tahap positif, di mana segala sesuatu harus dijelaskan secara ilmiah berdasarkan fakta yang dapat diamati dan diukur.</p>
+        <!-- 1.2 KAJIAN SOSIOLOGI -->
+        <h2><i class="fas fa-microscope"></i> 1.2 Kajian Sosiologi</h2>
+        
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80" alt="Interaksi Sosial" class="content-image">
+        <p class="image-caption">Sosiologi mempelajari hubungan perilaku manusia dan interaksi dalam masyarakat.</p>
 
-        <!-- ======== D. PEMBAGIAN SOSIOLOGI ======== -->
-        <h3>D. Pembagian Sosiologi Menurut Comte</h3>
-        <p>Comte membagi sosiologi menjadi dua bidang utama:</p>
-        <ol>
-            <li><strong>Statistika Sosial</strong> — mempelajari struktur masyarakat dan bagaimana berbagai elemen masyarakat saling terkait dan mempertahankan ketertiban</li>
-            <li><strong>Dinamika Sosial</strong> — mempelajari proses perubahan sosial dan bagaimana masyarakat berkembang dari waktu ke waktu</li>
-        </ol>
+        <h3>A. Objek Kajian Sosiologi</h3>
+        <p>Objek kajian sosiologi secara umum adalah <strong>masyarakat</strong> beserta gejala, tindakan, hubungan, interaksi, dan konfliknya. Objek ini terbagi menjadi dua:</p>
 
-        <!-- ======== 1.2 KAJIAN SOSIOLOGI ======== -->
-        <h2>1.2 Kajian Sosiologi</h2>
-
-        <h3>A. Pengertian Sosiologi</h3>
-        <p>Sosiologi adalah ilmu yang mempelajari tentang kehidupan sosial, perubahan sosial, interaksi sosial, dan sebab akibat sosial dari perilaku manusia. Pada dasarnya, sosiologi mempelajari hubungan perilaku manusia dalam masyarakat.</p>
-        <p>Dengan demikian, objek kajian dalam sosiologi adalah <strong>kehidupan manusia, proses interaksinya di dalam masyarakat, serta produk dari interaksi manusia di dalam masyarakat tersebut</strong>.</p>
-
-        <h3>B. Objek Kajian Sosiologi</h3>
-        <p>Setiap ilmu pengetahuan memiliki objek kajian masing-masing. Dalam hal ini, objek kajian dipahami sebagai entitas yang diulas secara mendetail. Objek kajian sosiologi secara umum adalah <strong>masyarakat</strong> beserta gejala, tindakan, hubungan, interaksi, dan konfliknya.</p>
-        <p>Objek kajian sosiologi terbagi menjadi dua macam: <strong>objek material</strong> dan <strong>objek formal</strong>.</p>
-
-        <h4>1. Objek Material</h4>
-        <p>Objek material dalam kajian sosiologi adalah segala <strong>fenomena atau gejala</strong> yang mempengaruhi kehidupan sosial. Objek material dapat berupa <strong>aspek fisik</strong> (benda konkret) maupun <strong>aspek nonfisik</strong> (gagasan).</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Aspek</th>
-                    <th>Definisi</th>
-                    <th>Contoh</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Fisik</strong></td>
-                    <td>Benda konkret yang dapat dilihat dan diraba</td>
-                    <td>Rumah, sekolah, pasar, uang, motor, ponsel, kendaraan</td>
-                </tr>
-                <tr>
-                    <td><strong>Nonfisik</strong></td>
-                    <td>Gagasan, aturan, atau nilai yang tidak berwujud</td>
-                    <td>Norma sosial, tradisi, bahasa, aturan, ide</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="highlight-box">
-            <p><strong>Contoh objek material:</strong><br>
-            Seorang ibu pergi ke pasar membeli udang dengan menggunakan protokol kesehatan yang ketat. Dalam contoh ini, <strong>pasar dan uang</strong> merupakan aspek fisik, sedangkan <strong>protokol kesehatan</strong> merupakan peraturan dari pemerintah yang masuk ke dalam aspek nonfisik.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div class="card" style="border-top: 4px solid var(--primary);">
+                <h4 style="margin-top: 0;"><i class="fas fa-cube"></i> 1. Objek Material</h4>
+                <p>Fenomena atau gejala yang mempengaruhi kehidupan sosial (bisa fisik atau nonfisik).</p>
+                <ul style="font-size: 0.9rem;">
+                    <li><strong>Fisik:</strong> Rumah, sekolah, pasar, uang, ponsel.</li>
+                    <li><strong>Nonfisik:</strong> Norma, tradisi, bahasa, ide.</li>
+                </ul>
+            </div>
+            <div class="card" style="border-top: 4px solid var(--accent);">
+                <h4 style="margin-top: 0;"><i class="fas fa-handshake"></i> 2. Objek Formal</h4>
+                <p>Bentuk <strong>interaksi sosial</strong> dan proses yang terjadi di masyarakat. Kita tidak hanya merasakan, tetapi berinteraksi langsung di dalamnya.</p>
+                <div class="highlight-box" style="margin: 0.5rem 0 0; padding: 0.8rem; font-size: 0.9rem;">
+                    <strong>Contoh:</strong> Interaksi tawar-menawar antara ibu dan pedagang di pasar.
+                </div>
+            </div>
         </div>
 
-        <h4>2. Objek Formal</h4>
-        <p>Objek formal dalam kajian sosiologi adalah <strong>bentuk interaksi sosial</strong> dan proses yang terjadi di masyarakat. Objek formal lebih mengarah kepada hubungan antarmanusia sebagai makhluk sosial, serta proses yang timbul dari hubungan yang ada di dalam masyarakat.</p>
-
-        <div class="highlight-box">
-            <p><strong>Perbedaan objek material dan objek formal:</strong><br>
-            • <strong>Objek material</strong>: gejala sosial yang dapat kita rasakan keberadaannya<br>
-            • <strong>Objek formal</strong>: kita tidak hanya merasakannya, tetapi juga <strong>berinteraksi secara langsung</strong> di dalamnya</p>
-        </div>
-
-        <div class="card">
-            <p><strong>Contoh objek formal:</strong><br>
-            Masih dengan contoh ibu yang pergi ke pasar. Saat membeli udang, si ibu melakukan <strong>tawar-menawar</strong> harga udang. Interaksi tawar-menawar antara si ibu dengan pedagang merupakan <strong>objek formal</strong>.</p>
-        </div>
-
-        <p>Objek formal sosiologi mencakup:</p>
-        <ul>
-            <li>Hubungan antarmanusia secara individu</li>
-            <li>Hubungan individu dengan kelompok</li>
-            <li>Hubungan antarkelompok manusia</li>
-        </ul>
-
-        <h3>C. Objek Kajian Sosiologi Menurut Para Ahli</h3>
-        <p>Tiga ahli sosiologi ternama memiliki pandangan berbeda tentang objek kajian sosiologi:</p>
-
+        <h3>B. Objek Kajian Menurut Para Ahli</h3>
         <table>
             <thead>
                 <tr>
                     <th>Ahli</th>
-                    <th>Objek Kajian Sosiologi</th>
+                    <th>Fokus Objek Kajian</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><strong>Karl Marx</strong></td>
-                    <td>Konflik kepentingan antarkelas yang diekspresikan melalui perjuangan kaum proletar melawan borjuis</td>
+                    <td>Konflik kepentingan antarkelas (proletar vs borjuis)</td>
                 </tr>
                 <tr>
-                    <td><strong>Emile Durkheim</strong></td>
-                    <td>Gejala sosial yang disebut sebagai <strong>fakta sosial</strong></td>
+                    <td><strong>Émile Durkheim</strong></td>
+                    <td><strong>Fakta Sosial</strong> (cara bertindak, berpikir, dan merasa yang berada di luar individu)</td>
                 </tr>
                 <tr>
                     <td><strong>Max Weber</strong></td>
-                    <td>Aspek <strong>tindakan sosial</strong></td>
+                    <td><strong>Tindakan Sosial</strong> (tindakan yang dilakukan dengan mempertimbangkan perilaku orang lain)</td>
                 </tr>
             </tbody>
         </table>
 
-        <p>Meskipun terdapat perbedaan pandangan, inti dari semuanya tetap sama, yaitu <strong>masyarakat</strong>.</p>
+        <!-- 1.3 PARADIGMA SOSIOLOGI -->
+        <h2><i class="fas fa-project-diagram"></i> 1.3 Sosiologi Berparadigma Ganda</h2>
+        
+        <p>Istilah <strong>paradigma</strong> (diperkenalkan Thomas Kuhn, diadopsi George Ritzer) adalah pandangan fundamental tentang apa yang menjadi pokok persoalan suatu disiplin ilmu. Sosiologi disebut <em>berparadigma ganda</em> karena adanya perbedaan sudut pandang filsafat, teori, dan metode dalam memahami dunia sosial.</p>
 
-        <h3>D. Ruang Lingkup Sosiologi</h3>
-        <p>Ruang lingkup kajian sosiologi lebih luas daripada ilmu sosial lainnya. Sosiologi mengkaji:</p>
-        <ul>
-            <li>Struktur dalam kelompok sosial, organisasi, dan masyarakat</li>
-            <li>Bagaimana orang-orang berinteraksi dalam struktur ini</li>
-            <li>Berbagai gejala, tindakan, hubungan, interaksi, dan konflik dalam masyarakat</li>
-        </ul>
-
-        <h3>E. Sosiologi dan Ilmu Pengetahuan Lain</h3>
-        <p>Sosiologi berbeda dengan ilmu pengetahuan alam. Jika ilmu pengetahuan alam objeknya adalah benda, maka <strong>objek sosiologi adalah manusia</strong> dengan perilakunya yang sulit dipahami karena memiliki karakteristik yang sekaligus individual dan sosial.</p>
-
-        <!-- ======== 1.3 SOSIOLOGI BERPARADIGMA GANDA ======== -->
-        <h2>1.3 Sosiologi sebagai Ilmu yang Berparadigma Ganda</h2>
-
-        <h3>A. Pengertian Paradigma</h3>
-        <p>Istilah <strong>paradigma</strong> diperkenalkan oleh Thomas Kuhn dan kemudian diadopsi oleh George Ritzer dalam konteks sosiologi. Menurut Ritzer, <strong>paradigma</strong> adalah <strong>pandangan fundamental</strong> tentang apa yang menjadi pokok persoalan suatu disiplin ilmu tertentu.</p>
-        <p>Paradigma merupakan <strong>kesatuan konsensus yang terluas</strong> dalam satu disiplin ilmu yang membedakan antara komunitas ilmuwan (sub-komunitas) yang satu dengan yang lain. Paradigma juga menggolong-golongkan, mendefinisikan, dan menghubungkan berbagai teori, metode, serta instrumen yang terdapat di dalamnya.</p>
-
-        <h3>B. Mengapa Sosiologi Disebut Berparadigma Ganda?</h3>
-        <p>Sosiologi disebut sebagai ilmu yang <strong>berparadigma ganda</strong> (<em>multiple paradigm</em>) karena adanya perbedaan sudut pandang dalam memahami permasalahan yang terjadi di dunia sosial.</p>
-        <p>George Ritzer dalam bukunya <em>Sociology: A Multiple Paradigm Science</em> (1975) mengidentifikasi bahwa dalam sosiologi terdapat beberapa paradigma yang berbeda. Ada tiga faktor yang menyebabkan terjadinya perbedaan paradigma dalam sosiologi:</p>
-        <ol>
-            <li><strong>Perbedaan pandangan filsafat</strong> yang mendasari pemikiran masing-masing komunitas sosiolog tentang persoalan yang semestinya dipelajari sosiologi</li>
-            <li><strong>Perbedaan teori</strong> yang dibangun dan dikembangkan oleh masing-masing komunitas ilmuwan</li>
-            <li><strong>Perbedaan metode</strong> yang dipakai untuk memahami dan menerangkan substansi disiplin ilmu tersebut</li>
-        </ol>
-
-        <h3>C. Tiga Paradigma dalam Sosiologi Menurut Ritzer</h3>
-        <p>Ritzer melihat adanya <strong>tiga paradigma</strong> dalam sosiologi:</p>
-
+        <h3>Tiga Paradigma Utama Menurut George Ritzer</h3>
+        
         <div class="card">
-            <h4>1. Paradigma Fakta Sosial (<em>Social Facts Paradigm</em>)</h4>
-            <p><strong>Tokoh utama:</strong> Émile Durkheim</p>
-            <p><strong>Fokus kajian:</strong> Fakta sosial, baik dalam bentuk bendawi (material, ragawi) maupun tidak berbenda (non-material) seperti ide atau gagasan</p>
-            <p><strong>Ciri utama:</strong> Memusatkan perhatian pada <strong>struktur makro</strong> masyarakat</p>
-            <p><strong>Pendekatan:</strong> Teori fungsionalisme struktural yang memberi penekanan pada keteraturan dan cenderung tidak mengindahkan adanya konflik dan perubahan dalam masyarakat</p>
-            <p><strong>Contoh penerapan:</strong> Perilaku individu dibentuk dan dikendalikan oleh berbagai norma dan aturan sosial</p>
-            <p><strong>Pertanyaan kunci:</strong> Bagaimana struktur sosial memengaruhi tindakan individu?</p>
+            <h4 style="color: var(--primary);"><i class="fas fa-sitemap"></i> 1. Paradigma Fakta Sosial</h4>
+            <p><strong>Tokoh:</strong> Émile Durkheim<br>
+            <strong>Fokus:</strong> Fakta sosial (material & non-material) yang berada di luar individu.<br>
+            <strong>Ciri:</strong> Memusatkan perhatian pada <strong>struktur makro</strong> masyarakat dan keteraturan (fungsionalisme struktural).<br>
+            <strong>Pertanyaan Kunci:</strong> <em>Bagaimana struktur sosial memengaruhi tindakan individu?</em></p>
         </div>
 
         <div class="card">
-            <h4>2. Paradigma Definisi Sosial (<em>Social Definition Paradigm</em>)</h4>
-            <p><strong>Tokoh utama:</strong> Max Weber</p>
-            <p><strong>Fokus kajian:</strong> Makna yang diberikan individu terhadap tindakan sosial dan bagaimana individu mendefinisikan situasi sosialnya</p>
-            <p><strong>Ciri utama:</strong> Berorientasi pada <strong>tindakan individu</strong> dan pemaknaan subjektif</p>
-            <p><strong>Pendekatan:</strong> Memahami masyarakat dari perspektif aktor sosial, bukan dari struktur di luar individu</p>
-            <p><strong>Pertanyaan kunci:</strong> Apa makna yang diberikan individu terhadap tindakan sosialnya?</p>
+            <h4 style="color: var(--accent);"><i class="fas fa-user-edit"></i> 2. Paradigma Definisi Sosial</h4>
+            <p><strong>Tokoh:</strong> Max Weber<br>
+            <strong>Fokus:</strong> Makna yang diberikan individu terhadap tindakan sosialnya.<br>
+            <strong>Ciri:</strong> Berorientasi pada <strong>tindakan individu</strong> dan pemaknaan subjektif (perspektif aktor).<br>
+            <strong>Pertanyaan Kunci:</strong> <em>Apa makna yang diberikan individu terhadap tindakan sosialnya?</em></p>
         </div>
 
         <div class="card">
-            <h4>3. Paradigma Perilaku Sosial (<em>Social Behavior Paradigm</em>)</h4>
-            <p><strong>Tokoh utama:</strong> Para behavioris (seperti B.F. Skinner)</p>
-            <p><strong>Fokus kajian:</strong> Perilaku individu yang dapat diamati secara objektif</p>
-            <p><strong>Ciri utama:</strong> Menekankan pada <strong>perilaku yang tampak</strong> (<em>observable behavior</em>) dan faktor-faktor eksternal yang memengaruhinya</p>
-            <p><strong>Pendekatan:</strong> Masyarakat dipahami melalui pola-pola perilaku yang dapat diukur dan diamati</p>
-            <p><strong>Pertanyaan kunci:</strong> Faktor eksternal apa yang memengaruhi perilaku individu?</p>
+            <h4 style="color: var(--success);"><i class="fas fa-eye"></i> 3. Paradigma Perilaku Sosial</h4>
+            <p><strong>Tokoh:</strong> B.F. Skinner & Para Behavioris<br>
+            <strong>Fokus:</strong> Perilaku individu yang dapat diamati secara objektif.<br>
+            <strong>Ciri:</strong> Menekankan pada <strong>perilaku yang tampak</strong> (<em>observable behavior</em>) dan faktor eksternal (hadiah/hukuman).<br>
+            <strong>Pertanyaan Kunci:</strong> <em>Faktor eksternal apa yang memengaruhi perilaku individu?</em></p>
         </div>
 
-        <h3>D. Paradigma Terpadu sebagai Solusi</h3>
-        <p>Ritzer akhirnya mengajukan satu paradigma tambahan, yaitu <strong>Paradigma Terpadu</strong> (<em>Integrated Paradigm</em>), dengan maksud <strong>bukan untuk menggantikan</strong> ketiga paradigma yang ada, melainkan untuk <strong>mengatasi kelemahan</strong> pendekatan paradigma yang ada dalam menerangkan realitas sosial yang memang sangat kompleks.</p>
-        <p>Paradigma terpadu berusaha menggabungkan kekuatan dari ketiga paradigma sebelumnya untuk memberikan pemahaman yang lebih komprehensif tentang fenomena sosial.</p>
+        <div class="highlight-box">
+            <p><strong><i class="fas fa-lightbulb"></i> Solusi: Paradigma Terpadu</strong><br>
+            George Ritzer mengajukan <strong>Paradigma Terpadu</strong> (<em>Integrated Paradigm</em>) bukan untuk menggantikan ketiga paradigma di atas, melainkan untuk menggabungkan kekuatan masing-masing guna menjelaskan realitas sosial yang sangat kompleks secara lebih komprehensif.</p>
+        </div>
 
-        <h3>E. Pentingnya Memahami Sosiologi sebagai Ilmu Berparadigma Ganda</h3>
-        <p>Memahami sosiologi sebagai ilmu berparadigma ganda penting karena:</p>
-        <ol>
-            <li><strong>Realitas sosial bersifat kompleks</strong> — Tidak ada satu paradigma pun yang mampu menjelaskan seluruh fenomena sosial secara tuntas</li>
-            <li><strong>Memberikan keragaman perspektif</strong> — Setiap paradigma menawarkan cara pandang yang berbeda, sehingga memperkaya pemahaman kita tentang masyarakat</li>
-            <li><strong>Mencegah sikap dogmatis</strong> — Menyadari bahwa tidak ada satu kebenaran tunggal dalam memahami realitas sosial</li>
-            <li><strong>Mendorong pemikiran kritis</strong> — Menganalisis fenomena sosial dari berbagai sudut pandang</li>
-        </ol>
-
-        <!-- ======== UJI CAPAIAN PEMBELAJARAN ======== -->
-        <h2>Uji Capaian Pembelajaran Bab 1</h2>
+        <!-- UJI CAPAIAN PEMBELAJARAN -->
+        <h2><i class="fas fa-clipboard-check"></i> Uji Capaian Pembelajaran Bab 1</h2>
 
         <h3>A. Soal Pilihan Ganda</h3>
         <div class="question-block">
@@ -531,120 +504,52 @@
                 <li>b. Émile Durkheim</li>
                 <li>c. Max Weber</li>
                 <li>d. Auguste Comte</li>
-                <li>e. Herbert Spencer</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>2.</strong> Istilah "sosiologi" berasal dari bahasa...</p>
-            <ul class="soal-pilihan">
-                <li>a. Latin dan Yunani</li>
-                <li>b. Latin dan Inggris</li>
-                <li>c. Prancis dan Jerman</li>
-                <li>d. Yunani dan Inggris</li>
-                <li>e. Prancis dan Latin</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>3.</strong> Objek material dalam kajian sosiologi adalah...</p>
+            <p><strong>2.</strong> Objek material dalam kajian sosiologi adalah...</p>
             <ul class="soal-pilihan">
                 <li>a. Interaksi sosial dalam masyarakat</li>
                 <li>b. Fenomena atau gejala yang mempengaruhi kehidupan sosial</li>
                 <li>c. Hubungan antarmanusia</li>
-                <li>d. Proses tawar-menawar di pasar</li>
-                <li>e. Makna tindakan sosial</li>
+                <li>d. Makna tindakan sosial</li>
             </ul>
         </div>
 
         <div class="question-block">
-            <p><strong>4.</strong> Menurut George Ritzer, paradigma dalam sosiologi adalah...</p>
-            <ul class="soal-pilihan">
-                <li>a. Metode penelitian sosial</li>
-                <li>b. Pandangan fundamental tentang pokok persoalan suatu disiplin ilmu</li>
-                <li>c. Teknik pengumpulan data</li>
-                <li>d. Alat analisis data</li>
-                <li>e. Teori tentang perubahan sosial</li>
-            </ul>
-        </div>
-
-        <div class="question-block">
-            <p><strong>5.</strong> Tokoh utama dari paradigma fakta sosial adalah...</p>
+            <p><strong>3.</strong> Tokoh utama dari paradigma fakta sosial adalah...</p>
             <ul class="soal-pilihan">
                 <li>a. Karl Marx</li>
                 <li>b. Max Weber</li>
                 <li>c. Émile Durkheim</li>
-                <li>d. Auguste Comte</li>
-                <li>e. George Ritzer</li>
+                <li>d. George Ritzer</li>
             </ul>
         </div>
 
-        <h3>B. Soal Esai</h3>
+        <h3>B. Soal Esai & Refleksi</h3>
         <div class="question-block">
             <p><strong>1.</strong> Jelaskan tiga faktor yang melatarbelakangi kelahiran sosiologi sebagai ilmu pengetahuan!</p>
         </div>
         <div class="question-block">
-            <p><strong>2.</strong> Bedakan antara objek material dan objek formal dalam kajian sosiologi, serta berikan masing-masing dua contoh!</p>
-        </div>
-        <div class="question-block">
-            <p><strong>3.</strong> Mengapa sosiologi disebut sebagai ilmu yang berparadigma ganda? Jelaskan dengan merujuk pada pemikiran George Ritzer!</p>
-        </div>
-        <div class="question-block">
-            <p><strong>4.</strong> Bandingkan ketiga paradigma dalam sosiologi menurut Ritzer (fakta sosial, definisi sosial, dan perilaku sosial)!</p>
+            <p><strong>2.</strong> Bedakan antara objek material dan objek formal dalam kajian sosiologi, serta berikan masing-masing dua contoh dari lingkungan sekitarmu!</p>
         </div>
 
         <h3>C. Aktivitas Pembelajaran Mendalam</h3>
 
         <div class="aktivitas">
-            <h4>Aktivitas 1: Observasi Sosial</h4>
+            <h4><i class="fas fa-search-location"></i> Aktivitas 1: Observasi Sosial</h4>
             <p>Amatilah sebuah fenomena sosial di lingkungan sekitarmu (misalnya: tradisi gotong royong, perilaku antre, atau penggunaan media sosial). Analisis fenomena tersebut dari tiga perspektif paradigma sosiologi:</p>
             <ul>
-                <li><strong>Paradigma Fakta Sosial</strong>: Norma atau struktur sosial apa yang memengaruhinya?</li>
-                <li><strong>Paradigma Definisi Sosial</strong>: Apa makna yang diberikan pelaku terhadap tindakan tersebut?</li>
-                <li><strong>Paradigma Perilaku Sosial</strong>: Pola perilaku apa yang dapat diamati?</li>
+                <li><strong>Paradigma Fakta Sosial:</strong> Norma atau struktur sosial apa yang memengaruhinya?</li>
+                <li><strong>Paradigma Definisi Sosial:</strong> Apa makna yang diberikan pelaku terhadap tindakan tersebut?</li>
+                <li><strong>Paradigma Perilaku Sosial:</strong> Pola perilaku apa yang dapat diamati secara objektif?</li>
             </ul>
         </div>
 
         <div class="aktivitas">
-            <h4>Aktivitas 2: Literasi Numerasi — Data Demografi</h4>
-            <p>Perhatikan data jumlah penduduk Indonesia berikut (data ilustratif):</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tahun</th>
-                        <th>Jumlah Penduduk (juta)</th>
-                        <th>Pertumbuhan (%)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>2010</td><td>237,6</td><td>—</td></tr>
-                    <tr><td>2015</td><td>255,2</td><td>7,4%</td></tr>
-                    <tr><td>2020</td><td>270,2</td><td>5,9%</td></tr>
-                    <tr><td>2025</td><td>282,5</td><td>4,6%</td></tr>
-                </tbody>
-            </table>
-            <p><strong>Pertanyaan Numerasi:</strong></p>
-            <ol>
-                <li>Berapa rata-rata pertumbuhan penduduk per tahun dari 2010–2025?</li>
-                <li>Jika pertumbuhan penduduk terus menurun dengan pola yang sama, prediksikan jumlah penduduk pada tahun 2030!</li>
-                <li>Bagaimana data demografi ini dapat digunakan dalam kajian sosiologi? Hubungkan dengan objek material sosiologi!</li>
-            </ol>
-        </div>
-
-        <div class="aktivitas">
-            <h4>Aktivitas 3: Pembelajaran Mendalam — Proyek Mini Riset</h4>
-            <p>Lakukan wawancara singkat dengan 5 orang di lingkunganmu (keluarga, teman, atau tetangga) tentang <strong>perubahan perilaku sosial</strong> selama 10 tahun terakhir. Catat:</p>
-            <ol>
-                <li>Perubahan apa yang mereka alami?</li>
-                <li>Apa yang melatarbelakangi perubahan tersebut?</li>
-                <li>Bagaimana perubahan itu memengaruhi hubungan sosial mereka?</li>
-            </ol>
-            <p>Tuliskan laporan singkat (1–2 halaman) yang mengaitkan temuanmu dengan konsep-konsep dalam Bab 1.</p>
-        </div>
-
-        <div class="aktivitas">
-            <h4>Aktivitas 4: Literasi — Membaca dan Menganalisis</h4>
-            <p>Bacalah sebuah artikel berita tentang fenomena sosial (misalnya: tentang kenakalan remaja, kemiskinan, atau konflik sosial). Identifikasi dalam artikel tersebut:</p>
+            <h4><i class="fas fa-laptop-code"></i> Aktivitas 2: Literasi Digital & Berita</h4>
+            <p>Bacalah sebuah artikel berita online tentang fenomena sosial terkini (misalnya: kenakalan remaja, kemiskinan, atau tren media sosial). Identifikasi dalam artikel tersebut:</p>
             <ol>
                 <li>Aspek mana yang merupakan <strong>objek material</strong> sosiologi?</li>
                 <li>Aspek mana yang merupakan <strong>objek formal</strong> sosiologi?</li>
@@ -652,21 +557,74 @@
             </ol>
         </div>
 
-        <!-- ======== RANGKUMAN ======== -->
+        <!-- RANGKUMAN -->
         <div class="rangkuman">
-            <h2 style="border-left-color: #22c55e; margin-top: 0;">Rangkuman Bab 1</h2>
-            <ol>
-                <li><strong>Sosiologi</strong> lahir sebagai respons terhadap perubahan besar di Eropa, terutama Revolusi Industri dan Revolusi Prancis, serta dipengaruhi oleh perkembangan ilmu pengetahuan alam.</li>
-                <li><strong>Auguste Comte</strong> (1798–1857) adalah Bapak Sosiologi yang pertama kali menciptakan istilah "sosiologi" dan mengembangkan aliran positivisme.</li>
-                <li>Comte mengemukakan <strong>Hukum Tiga Tahap</strong> perkembangan intelektual manusia: tahap teologis, tahap metafisik, dan tahap positif.</li>
-                <li><strong>Objek kajian sosiologi</strong> terbagi menjadi <strong>objek material</strong> (fenomena/gejala sosial, baik fisik maupun nonfisik) dan <strong>objek formal</strong> (interaksi sosial dan proses yang terjadi di masyarakat).</li>
-                <li>Sosiologi disebut sebagai ilmu <strong>berparadigma ganda</strong> karena memiliki beberapa paradigma yang berbeda dalam memandang realitas sosial.</li>
-                <li>Menurut <strong>George Ritzer</strong>, terdapat tiga paradigma dalam sosiologi: <strong>Paradigma Fakta Sosial</strong> (Durkheim), <strong>Paradigma Definisi Sosial</strong> (Weber), dan <strong>Paradigma Perilaku Sosial</strong> (behavioris). Ritzer juga mengajukan <strong>Paradigma Terpadu</strong> sebagai solusi untuk mengatasi kelemahan masing-masing paradigma.</li>
-            </ol>
+            <h2><i class="fas fa-check-circle"></i> Rangkuman Bab 1</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Sosiologi</strong> lahir sebagai respons terhadap perubahan besar di Eropa (Revolusi Industri & Prancis) dan dipengaruhi oleh perkembangan ilmu pengetahuan alam.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Auguste Comte</strong> adalah Bapak Sosiologi yang menciptakan istilah "sosiologi" dan mengembangkan aliran positivisme serta Hukum Tiga Tahap.
+                </li>
+                <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    <strong>Objek kajian sosiologi</strong> terbagi menjadi <strong>objek material</strong> (fenomena/gejala sosial) dan <strong>objek formal</strong> (interaksi sosial dan proses di masyarakat).
+                </li>
+                <li style="padding-left: 1.5rem; position: relative;">
+                    <i class="fas fa-circle" style="font-size: 0.5rem; position: absolute; left: 0; top: 8px; color: var(--success);"></i>
+                    Sosiologi adalah ilmu <strong>berparadigma ganda</strong>. Menurut <strong>George Ritzer</strong>, terdapat 3 paradigma utama: <strong>Fakta Sosial</strong> (Durkheim), <strong>Definisi Sosial</strong> (Weber), dan <strong>Perilaku Sosial</strong> (Behavioris), yang dapat dipadukan melalui Paradigma Terpadu.
+                </li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+            <a href="sosiologi-kelas-x.html" class="action-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient-primary); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                <i class="fas fa-arrow-left"></i> Kembali ke Portal Sosiologi Kelas X
+            </a>
         </div>
 
     </div>
     <!-- end container -->
 
+    <!-- Floating Action Buttons -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <button class="print-btn" onclick="window.print()" title="Cetak Materi">
+        <i class="fas fa-print"></i> Cetak
+    </button>
+
+    <script>
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
