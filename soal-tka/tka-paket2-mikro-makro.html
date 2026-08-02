@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
+    <title>Latihan TKA Ekonomi: Mikro & Makro — SMAN 1 Cluring</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+            --light: #f8f9fa; --dark: #212529; --success: #4ade80;
+            --warning: #fbbf24; --danger: #f87171; --gray: #6c757d;
+            --border-radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        .dark-mode {
+            --light: #1a1a1a; --dark: #f8f9fa; --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark); line-height: 1.6; padding-bottom: 80px; transition: background 0.4s, color 0.4s;
+        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
+
+        .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+        .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
+        .theme-toggle { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        header { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 3rem 1rem 2rem; text-align: center; }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; font-size: 1rem; }
+        .breadcrumb { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .tka-info-box {
+            background: white; border-radius: var(--border-radius); padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
+        }
+        body.dark-mode .tka-info-box { background: #2d2d2d; }
+        .tka-info-box h3 { color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        body.dark-mode .tka-info-box h3 { color: #f8f9fa; }
+        .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
+
+        .tka-bagian-card {
+            background: white; border-radius: var(--border-radius); margin-bottom: 20px;
+            box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
+        
+        .tka-bagian-header {
+            padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
+            justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
+            border-left: 5px solid var(--primary); transition: var(--transition);
+        }
+        .tka-bagian-card.open .tka-bagian-header { background: rgba(67, 97, 238, 0.1); }
+        .tka-bagian-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
+        body.dark-mode .tka-bagian-title { color: #f8f9fa; }
+        .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; }
+        .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
+        .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
+        
+        .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .tka-bagian-card.open .tka-bagian-content { max-height: 20000px; }
+
+        .tka-question {
+            background: rgba(0,0,0,0.02); border-radius: 10px; padding: 25px;
+            margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
+        
+        .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .tka-q-number { 
+            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; 
+        }
+        .cognitive-badge {
+            background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+        }
+
+        .tka-stimulus {
+            background: white; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--accent);
+            margin-bottom: 15px; font-size: 0.95rem; color: var(--dark); line-height: 1.6;
+        }
+        body.dark-mode .tka-stimulus { background: #1e1e1e; color: #f8f9fa; }
+        .tka-stimulus table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .tka-stimulus table th, .tka-stimulus table td { border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; text-align: left; }
+        body.dark-mode .tka-stimulus table th, body.dark-mode .tka-stimulus table td { border-color: #444; }
+        .tka-stimulus table th { background: rgba(0,0,0,0.03); font-weight: 600; }
+        body.dark-mode .tka-stimulus table th { background: rgba(255,255,255,0.05); }
+
+        .tka-q-text { font-weight: 600; margin-bottom: 15px; color: var(--dark); line-height: 1.6; font-size: 1rem; }
+        body.dark-mode .tka-q-text { color: #f8f9fa; }
+
+        .tka-options { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .tka-option {
+            padding: 12px 15px; margin: 8px 0; background: white; border-radius: 8px;
+            border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+            display: flex; gap: 10px; font-size: 0.95rem; color: var(--dark);
+        }
+        body.dark-mode .tka-option { background: #1e1e1e; color: #e2e8f0; }
+        .tka-option:hover { border-color: var(--primary); background: rgba(67, 97, 238, 0.05); }
+        .tka-option-letter { font-weight: 700; color: var(--primary); min-width: 20px; }
+
+        .tka-reveal-btn {
+            background: transparent; border: 2px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins', sans-serif; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+        }
+        .tka-reveal-btn:hover { background: var(--primary); color: white; }
+
+        .tka-pembahasan {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0; margin-top: 0; background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px; border: 1px solid var(--success);
+        }
+        .tka-question.revealed .tka-pembahasan { max-height: 600px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
+        
+        .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        body.dark-mode .tka-correct-answer { color: #4ade80; }
+        .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
+        body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
+
+        .tka-question.revealed .tka-option.correct { background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600; }
+        .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
+
+        footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .footer-bottom { font-size: 0.9rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--primary); flex-direction: column; padding: 20px; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .tka-question { padding: 15px; margin: 15px; }
+            .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Latihan TKA Ekonomi</h1>
+        <p class="subtitle">Paket 2: Ekonomi Mikro dan Makro (Soal 1–70)</p>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Beranda</a> › <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Paket 2: Mikro & Makro</span>
+    </div>
+
+    <div class="tka-main">
+        <div class="tka-info-box">
+            <h3><i class="fas fa-info-circle" style="color: var(--warning);"></i> Petunjuk Pengerjaan</h3>
+            <ul>
+                <li>Soal disusun berdasarkan level kognitif <strong>C4 (Menganalisis)</strong> dan <strong>C5 (Mengevaluasi)</strong>.</li>
+                <li>Baca stimulus (ilustrasi/tabel) dengan saksama sebelum menjawab.</li>
+                <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
+            </ul>
+        </div>
+
+        <!-- BAGIAN 1 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 1: Permintaan, Penawaran, dan Keseimbangan Pasar</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 1–10</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 1 -->
+                <div class="tka-question" id="q1">
+                    <div class="tka-q-header"><div class="tka-q-number">1</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Menjelang Tahun Baru, permintaan tiket kereta api dari Jakarta menuju Yogyakarta meningkat tajam. Meskipun harga tiket naik sekitar 20%, sebagian besar masyarakat tetap membeli tiket karena harus pulang kampung.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Harga dan jumlah barang yang diminta meningkat karena pendapatan masyarakat turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Kenaikan harga selalu menyebabkan permintaan meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Permintaan tiket tetap tinggi karena adanya faktor kebutuhan pada waktu tertentu.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Penawaran tiket meningkat lebih cepat daripada permintaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Harga tidak memengaruhi keputusan konsumen.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q1')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Permintaan tidak hanya dipengaruhi harga, tetapi juga faktor kebutuhan dan musim. Pada periode mudik, meskipun harga naik, masyarakat tetap membeli tiket sehingga permintaan tetap tinggi.</div></div>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="tka-question" id="q2">
+                    <div class="tka-q-header"><div class="tka-q-number">2</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Peristiwa</th><th>Dampak</th></tr><tr><td>Pendapatan masyarakat meningkat</td><td>Penjualan mobil meningkat</td></tr><tr><td>Harga mobil tetap</td><td>Jumlah pembelian naik</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, peningkatan jumlah mobil yang diminta terutama dipengaruhi oleh ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> perubahan harga barang</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> kenaikan biaya produksi</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> meningkatnya pendapatan masyarakat</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> bertambahnya jumlah produsen</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> meningkatnya pajak kendaraan</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q2')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Karena harga mobil tetap, peningkatan jumlah pembelian disebabkan oleh naiknya pendapatan masyarakat. Pendapatan merupakan salah satu faktor nonharga yang memengaruhi permintaan.</div></div>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="tka-question" id="q3">
+                    <div class="tka-q-header"><div class="tka-q-number">3</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Harga cabai di pasar naik hingga Rp90.000 per kilogram. Melihat kondisi tersebut, banyak petani memperluas lahan tanam cabai pada musim berikutnya agar memperoleh keuntungan yang lebih besar.</div>
+                    <div class="tka-q-text">Hubungan antara harga dan jumlah barang yang ditawarkan pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Harga naik menyebabkan jumlah yang ditawarkan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Harga naik menyebabkan jumlah yang ditawarkan berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Harga tidak memengaruhi penawaran.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Penawaran hanya dipengaruhi cuaca.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Penawaran selalu tetap.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q3')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Sesuai hukum penawaran, semakin tinggi harga suatu barang, semakin besar jumlah barang yang ingin ditawarkan produsen.</div></div>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="tka-question" id="q4">
+                    <div class="tka-q-header"><div class="tka-q-number">4</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan minuman mengalami kenaikan harga gula sebagai bahan baku utama. Akibatnya, biaya produksi meningkat sehingga perusahaan mengurangi jumlah produksi.</div>
+                    <div class="tka-q-text">Evaluasi yang tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kurva penawaran bergeser ke kanan karena biaya produksi meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Kurva penawaran bergeser ke kiri akibat kenaikan biaya produksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Permintaan masyarakat meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Harga barang pengganti turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Konsumen membeli lebih banyak.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q4')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Kenaikan harga bahan baku meningkatkan biaya produksi sehingga produsen mengurangi jumlah barang yang ditawarkan. Hal ini menyebabkan kurva penawaran bergeser ke kiri.</div></div>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="tka-question" id="q5">
+                    <div class="tka-q-header"><div class="tka-q-number">5</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pada awal musim panen, produksi tomat meningkat sehingga pasokan di pasar melimpah. Pedagang menurunkan harga agar seluruh tomat dapat terjual.</div>
+                    <div class="tka-q-text">Peristiwa tersebut menunjukkan bahwa harga pasar akan bergerak menuju ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> harga maksimum</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> harga keseimbangan melalui penyesuaian jumlah barang</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga monopoli</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga internasional</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> harga eceran tertinggi</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q5')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Ketika pasokan melimpah, harga turun hingga tercapai titik keseimbangan baru, yaitu kondisi saat jumlah yang diminta sama dengan jumlah yang ditawarkan.</div></div>
+                </div>
+
+                <!-- Soal 6 -->
+                <div class="tka-question" id="q6">
+                    <div class="tka-q-header"><div class="tka-q-number">6</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah menetapkan Harga Eceran Tertinggi (HET) untuk minyak goreng. Namun, di beberapa daerah harga jual tetap berada di atas HET karena jumlah pasokan jauh lebih sedikit dibandingkan permintaan masyarakat.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> HET selalu menyebabkan harga turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Permintaan lebih kecil daripada penawaran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Kelangkaan pasokan menyebabkan harga pasar sulit menyesuaikan dengan harga yang ditetapkan pemerintah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Produsen tidak boleh memperoleh keuntungan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Konsumen tidak membutuhkan minyak goreng.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q6')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Penetapan HET tidak akan efektif jika pasokan sangat terbatas. Kelangkaan menyebabkan harga pasar tetap tinggi meskipun pemerintah telah menetapkan batas harga.</div></div>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="tka-question" id="q7">
+                    <div class="tka-q-header"><div class="tka-q-number">7</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br><table><tr><th>Harga (Rp/kg)</th><th>Jumlah Diminta (kg)</th><th>Jumlah Ditawarkan (kg)</th></tr><tr><td>8.000</td><td>120</td><td>60</td></tr><tr><td>10.000</td><td>100</td><td>100</td></tr><tr><td>12.000</td><td>80</td><td>140</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, harga keseimbangan pasar terjadi pada ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp8.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp9.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp10.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp11.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp12.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q7')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Harga keseimbangan terjadi ketika jumlah yang diminta sama dengan jumlah yang ditawarkan, yaitu pada harga Rp10.000 dengan jumlah 100 kg.</div></div>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="tka-question" id="q8">
+                    <div class="tka-q-header"><div class="tka-q-number">8</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Harga daging ayam turun karena produksi meningkat selama musim panen jagung sebagai bahan pakan. Akibatnya, masyarakat membeli daging ayam lebih banyak dibandingkan sebelumnya.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Penawaran meningkat sehingga harga turun dan jumlah yang diminta meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Permintaan turun sehingga harga naik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Penawaran turun sehingga harga turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Harga tidak dipengaruhi jumlah produksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Konsumen membeli lebih sedikit.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q8')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Produksi yang meningkat menyebabkan penawaran bertambah. Penawaran yang lebih besar menurunkan harga sehingga konsumen meningkatkan jumlah pembelian.</div></div>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="tka-question" id="q9">
+                    <div class="tka-q-header"><div class="tka-q-number">9</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah mengumumkan bahwa produksi beras nasional meningkat 12% dibandingkan tahun sebelumnya. Pada saat yang sama, konsumsi masyarakat relatif stabil.</div>
+                    <div class="tka-q-text">Apabila faktor lain dianggap tetap (ceteris paribus), kondisi yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Harga beras cenderung turun karena penawaran meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Harga beras naik karena permintaan meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Harga beras tetap karena produksi bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Jumlah penawaran menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Permintaan beras menjadi nol.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q9')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Dengan asumsi faktor lain tetap (ceteris paribus), peningkatan produksi berarti penawaran meningkat. Jika permintaan tetap, harga keseimbangan cenderung turun.</div></div>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="tka-question" id="q10">
+                    <div class="tka-q-header"><div class="tka-q-number">10</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah memberikan subsidi pupuk kepada petani. Akibatnya biaya produksi menurun sehingga produksi beras meningkat. Di sisi lain, permintaan beras masyarakat relatif tetap.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kurva permintaan bergeser ke kanan sehingga harga meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Kurva penawaran bergeser ke kanan sehingga harga keseimbangan cenderung turun dan jumlah keseimbangan meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kurva penawaran bergeser ke kiri sehingga harga naik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Permintaan masyarakat menjadi lebih sedikit.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Keseimbangan pasar tidak mengalami perubahan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q10')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Subsidi pupuk menurunkan biaya produksi sehingga penawaran meningkat (kurva bergeser ke kanan). Akibatnya, harga keseimbangan cenderung turun, sedangkan jumlah keseimbangan meningkat.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 2 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 2: Permintaan, Penawaran, dan Keseimbangan Pasar (Lanjutan)</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 11–20</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 11 -->
+                <div class="tka-question" id="q11">
+                    <div class="tka-q-header"><div class="tka-q-number">11</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah mengumumkan kenaikan gaji Aparatur Sipil Negara (ASN) sebesar 10%. Beberapa minggu kemudian, penjualan sepeda motor di berbagai dealer meningkat meskipun harga sepeda motor tidak mengalami perubahan.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> jumlah permintaan meningkat akibat kenaikan pendapatan masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> jumlah penawaran menurun akibat kenaikan gaji ASN.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga sepeda motor menjadi lebih murah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> produsen mengurangi jumlah produksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> permintaan hanya dipengaruhi harga barang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q11')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Kenaikan pendapatan merupakan faktor nonharga yang meningkatkan daya beli sehingga kurva permintaan bergeser ke kanan.</div></div>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="tka-question" id="q12">
+                    <div class="tka-q-header"><div class="tka-q-number">12</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Harga pupuk bersubsidi turun setelah pemerintah meningkatkan jumlah subsidi. Akibatnya, biaya produksi petani berkurang dan hasil panen meningkat.</div>
+                    <div class="tka-q-text">Perubahan tersebut akan menyebabkan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kurva permintaan bergeser ke kiri.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kurva penawaran bergeser ke kanan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah permintaan menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga keseimbangan meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pendapatan petani menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q12')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Subsidi pupuk menurunkan biaya produksi. Dengan biaya yang lebih rendah, produsen mampu menawarkan lebih banyak barang pada setiap tingkat harga sehingga kurva penawaran bergeser ke kanan.</div></div>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="tka-question" id="q13">
+                    <div class="tka-q-header"><div class="tka-q-number">13</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Harga (Rp/kg)</th><th>Jumlah Diminta</th><th>Jumlah Ditawarkan</th></tr><tr><td>15.000</td><td>500</td><td>300</td></tr><tr><td>20.000</td><td>400</td><td>400</td></tr><tr><td>25.000</td><td>300</td><td>550</td></tr></table></div>
+                    <div class="tka-q-text">Jika harga pasar ditetapkan sebesar Rp25.000, kondisi pasar yang terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kekurangan barang (shortage) sebanyak 250 unit.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pasar berada pada titik keseimbangan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> kelebihan penawaran (surplus) sebanyak 250 unit.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> permintaan meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> penawaran menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q13')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Pada harga Rp25.000, jumlah ditawarkan = 550 unit dan jumlah diminta = 300 unit. Terjadi surplus = 550 − 300 = 250 unit.</div></div>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="tka-question" id="q14">
+                    <div class="tka-q-header"><div class="tka-q-number">14</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Harga telur di pasar ditetapkan Rp22.000 per kilogram. Pada harga tersebut jumlah telur yang diminta masyarakat mencapai 1.200 kg, sedangkan jumlah yang ditawarkan produsen hanya 900 kg.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> terjadi surplus sebanyak 300 kg.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> terjadi keseimbangan pasar.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> terjadi kekurangan barang (shortage) sebanyak 300 kg.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga pasar terlalu tinggi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> permintaan lebih kecil daripada penawaran.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q14')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Permintaan (1.200 kg) lebih besar daripada penawaran (900 kg), sehingga terjadi shortage = 300 kg.</div></div>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="tka-question" id="q15">
+                    <div class="tka-q-header"><div class="tka-q-number">15</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah mengimbau masyarakat mengonsumsi beras lokal melalui kampanye nasional. Kampanye tersebut berhasil meningkatkan minat masyarakat membeli beras lokal meskipun harga tidak berubah.</div>
+                    <div class="tka-q-text">Perubahan tersebut menunjukkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> jumlah yang diminta berubah karena harga.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kurva permintaan bergeser ke kanan akibat perubahan selera.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> kurva penawaran bergeser ke kiri.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga keseimbangan pasti turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya produksi meningkat.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q15')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Perubahan selera akibat kampanye meningkatkan permintaan tanpa perubahan harga. Hal ini menyebabkan kurva permintaan bergeser ke kanan, bukan sekadar perubahan jumlah yang diminta.</div></div>
+                </div>
+
+                <!-- Soal 16 -->
+                <div class="tka-question" id="q16">
+                    <div class="tka-q-header"><div class="tka-q-number">16</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah perusahaan elektronik menerapkan teknologi produksi otomatis sehingga biaya produksi turun dan kapasitas produksi meningkat.</div>
+                    <div class="tka-q-text">Dampak yang paling mungkin terjadi terhadap pasar adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> penawaran meningkat sehingga harga cenderung turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> permintaan menurun sehingga harga naik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> penawaran menurun sehingga harga naik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> permintaan dan penawaran sama-sama turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> jumlah barang yang diproduksi berkurang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q16')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Teknologi yang lebih efisien menurunkan biaya produksi sehingga penawaran meningkat. Jika permintaan tetap, harga cenderung turun dan jumlah keseimbangan meningkat.</div></div>
+                </div>
+
+                <!-- Soal 17 -->
+                <div class="tka-question" id="q17">
+                    <div class="tka-q-header"><div class="tka-q-number">17</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Harga cabai naik tajam akibat gagal panen. Sebagian konsumen mengurangi pembelian cabai, sedangkan petani di daerah lain mulai meningkatkan produksi.</div>
+                    <div class="tka-q-text">Proses tersebut menunjukkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> mekanisme pasar akan mendorong terbentuknya keseimbangan baru.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> harga akan terus meningkat tanpa batas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah penawaran selalu tetap.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> permintaan tidak dipengaruhi harga.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> keseimbangan pasar tidak pernah berubah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q17')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Kenaikan harga akibat gagal panen mengurangi permintaan dan mendorong produsen lain meningkatkan produksi. Mekanisme ini mengarah pada keseimbangan pasar baru.</div></div>
+                </div>
+
+                <!-- Soal 18 -->
+                <div class="tka-question" id="q18">
+                    <div class="tka-q-header"><div class="tka-q-number">18</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah menghapus pembatasan impor gula ketika produksi dalam negeri menurun akibat cuaca buruk. Kebijakan tersebut dilakukan agar kebutuhan masyarakat tetap terpenuhi.</div>
+                    <div class="tka-q-text">Tujuan utama kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> mengurangi jumlah penawaran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> meningkatkan keseimbangan antara permintaan dan penawaran di pasar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> menaikkan harga gula.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> mengurangi jumlah konsumsi masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> menghilangkan permintaan gula.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q18')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Impor dilakukan untuk menambah pasokan ketika produksi domestik menurun sehingga keseimbangan antara permintaan dan penawaran dapat dipulihkan.</div></div>
+                </div>
+
+                <!-- Soal 19 -->
+                <div class="tka-question" id="q19">
+                    <div class="tka-q-header"><div class="tka-q-number">19</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah menetapkan Harga Pembelian Pemerintah (HPP) gabah untuk melindungi pendapatan petani. Pada saat panen raya, harga gabah di pasar turun di bawah HPP sehingga pemerintah membeli gabah petani sesuai harga yang telah ditetapkan.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pemerintah mengurangi jumlah penawaran gabah.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> HPP bertujuan menjaga kesejahteraan produsen ketika harga pasar terlalu rendah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> HPP menyebabkan permintaan masyarakat menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> HPP selalu menurunkan harga pasar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> HPP hanya menguntungkan konsumen.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q19')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Harga Pembelian Pemerintah (HPP) berfungsi melindungi produsen agar tetap memperoleh harga yang layak ketika harga pasar jatuh, terutama pada saat panen raya.</div></div>
+                </div>
+
+                <!-- Soal 20 -->
+                <div class="tka-question" id="q20">
+                    <div class="tka-q-header"><div class="tka-q-number">20</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pada awal tahun, permintaan sepeda meningkat karena banyak masyarakat mulai menerapkan gaya hidup sehat. Di sisi lain, produsen juga meningkatkan kapasitas produksi melalui investasi mesin baru sehingga jumlah sepeda yang dipasarkan bertambah.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> harga keseimbangan pasti turun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> harga keseimbangan pasti naik.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> keseimbangan pasar akan ditentukan oleh besarnya perubahan permintaan dan penawaran yang terjadi secara bersamaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> keseimbangan pasar tidak akan berubah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> jumlah barang yang diperdagangkan pasti menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q20')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Ketika permintaan dan penawaran sama-sama meningkat, arah perubahan harga tidak dapat ditentukan tanpa mengetahui besarnya masing-masing pergeseran. Yang pasti, jumlah keseimbangan cenderung meningkat, sedangkan harga dapat naik, turun, atau tetap bergantung pada kekuatan perubahan kedua kurva tersebut.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 3 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 3: Pendapatan Nasional, Pertumbuhan & Pembangunan Ekonomi</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 21–30</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 21 -->
+                <div class="tka-question" id="q21">
+                    <div class="tka-q-header"><div class="tka-q-number">21</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Berdasarkan laporan Badan Pusat Statistik (BPS), nilai Produk Domestik Bruto (PDB) Indonesia atas dasar harga berlaku meningkat dari Rp20.892 triliun pada tahun 2025 menjadi Rp22.150 triliun pada tahun 2026. Peningkatan tersebut didorong oleh meningkatnya konsumsi rumah tangga dan investasi.</div>
+                    <div class="tka-q-text">Berdasarkan informasi tersebut, dapat disimpulkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh masyarakat mengalami peningkatan kesejahteraan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> aktivitas produksi barang dan jasa di dalam negeri mengalami peningkatan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah penduduk Indonesia menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi pasti mengalami penurunan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran telah hilang sepenuhnya.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q21')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">PDB mengukur nilai barang dan jasa akhir yang diproduksi di wilayah suatu negara. Kenaikan PDB menunjukkan meningkatnya aktivitas produksi, tetapi belum tentu kesejahteraan masyarakat meningkat secara merata.</div></div>
+                </div>
+
+                <!-- Soal 22 -->
+                <div class="tka-question" id="q22">
+                    <div class="tka-q-header"><div class="tka-q-number">22</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Komponen Pengeluaran</th><th>Nilai (Triliun Rupiah)</th></tr><tr><td>Konsumsi Rumah Tangga</td><td>6.800</td></tr><tr><td>Investasi</td><td>2.400</td></tr><tr><td>Pengeluaran Pemerintah</td><td>1.900</td></tr><tr><td>Ekspor</td><td>2.100</td></tr><tr><td>Impor</td><td>1.700</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan pendekatan pengeluaran, nilai Produk Domestik Bruto (PDB) adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Rp11.500 triliun</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp11.100 triliun</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp10.900 triliun</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp12.200 triliun</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp9.200 triliun</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q22')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pendekatan pengeluaran menggunakan rumus: PDB = C + I + G + (X − M) = 6.800 + 2.400 + 1.900 + (2.100 − 1.700) = 6.800 + 2.400 + 1.900 + 400 = Rp11.500 triliun.</div></div>
+                </div>
+
+                <!-- Soal 23 -->
+                <div class="tka-question" id="q23">
+                    <div class="tka-q-header"><div class="tka-q-number">23</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Selama satu tahun, banyak perusahaan asing membuka pabrik di Indonesia sehingga nilai produksi barang dan jasa di dalam negeri meningkat. Sebaliknya, beberapa perusahaan Indonesia juga memperoleh pendapatan dari investasinya di luar negeri.</div>
+                    <div class="tka-q-text">Pernyataan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> PDB hanya menghitung pendapatan warga negara Indonesia.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> PDB mencerminkan seluruh produksi yang terjadi di wilayah Indonesia tanpa melihat kewarganegaraan pelaku usaha.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> PNB hanya menghitung produksi di dalam negeri.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> PDB selalu lebih kecil daripada PNB.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> PNB dan PDB selalu memiliki nilai yang sama.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q23')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Produk Domestik Bruto (PDB) menghitung seluruh produksi yang terjadi di dalam wilayah Indonesia, baik dilakukan oleh perusahaan nasional maupun asing.</div></div>
+                </div>
+
+                <!-- Soal 24 -->
+                <div class="tka-question" id="q24">
+                    <div class="tka-q-header"><div class="tka-q-number">24</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Tahun</th><th>Pertumbuhan Ekonomi</th></tr><tr><td>2023</td><td>4,9%</td></tr><tr><td>2024</td><td>5,2%</td></tr><tr><td>2025</td><td>5,5%</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> aktivitas ekonomi mengalami peningkatan dari tahun ke tahun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pembangunan ekonomi telah selesai.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> seluruh masyarakat sudah sejahtera.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi menjadi nol.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pendapatan nasional menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q24')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pertumbuhan ekonomi yang meningkat dari 4,9% menjadi 5,5% menunjukkan adanya peningkatan aktivitas ekonomi. Namun, data tersebut belum cukup untuk menyimpulkan bahwa kesejahteraan telah merata.</div></div>
+                </div>
+
+                <!-- Soal 25 -->
+                <div class="tka-question" id="q25">
+                    <div class="tka-q-header"><div class="tka-q-number">25</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Suatu negara mencatat pertumbuhan ekonomi sebesar 7% selama tiga tahun berturut-turut. Namun, angka kemiskinan dan pengangguran masih tinggi serta ketimpangan pendapatan semakin lebar.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pertumbuhan ekonomi selalu menunjukkan keberhasilan pembangunan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pertumbuhan ekonomi belum tentu diikuti pemerataan kesejahteraan masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pembangunan ekonomi tidak memerlukan pertumbuhan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kemiskinan tidak berhubungan dengan pembangunan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pertumbuhan ekonomi hanya dipengaruhi jumlah penduduk.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q25')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pertumbuhan ekonomi yang tinggi belum tentu mencerminkan pembangunan ekonomi apabila manfaatnya belum dirasakan secara merata dan masih terdapat kemiskinan serta ketimpangan.</div></div>
+                </div>
+
+                <!-- Soal 26 -->
+                <div class="tka-question" id="q26">
+                    <div class="tka-q-header"><div class="tka-q-number">26</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah membangun jalan, pelabuhan, sekolah, rumah sakit, dan jaringan internet di daerah tertinggal untuk meningkatkan kualitas hidup masyarakat.</div>
+                    <div class="tka-q-text">Kebijakan tersebut menunjukkan bahwa pembangunan ekonomi bertujuan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah uang beredar.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> meningkatkan kualitas hidup masyarakat melalui pembangunan berbagai sektor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> menaikkan harga barang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> meningkatkan impor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> mengurangi produksi nasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q26')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pembangunan ekonomi tidak hanya mengejar kenaikan output, tetapi juga peningkatan kualitas hidup melalui penyediaan infrastruktur, pendidikan, kesehatan, dan layanan publik.</div></div>
+                </div>
+
+                <!-- Soal 27 -->
+                <div class="tka-question" id="q27">
+                    <div class="tka-q-header"><div class="tka-q-number">27</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah daerah memberikan pelatihan keterampilan digital kepada pelaku UMKM serta menyediakan akses permodalan berbunga rendah agar mampu meningkatkan produktivitas usahanya.</div>
+                    <div class="tka-q-text">Program tersebut menunjukkan bahwa pembangunan ekonomi dilakukan melalui ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> peningkatan kualitas sumber daya manusia dan produktivitas ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pembatasan kegiatan ekonomi masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pengurangan jumlah tenaga kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> peningkatan pajak UMKM.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pembatasan investasi.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q27')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pelatihan keterampilan dan akses permodalan merupakan upaya meningkatkan kualitas sumber daya manusia sekaligus produktivitas ekonomi, yang merupakan bagian dari pembangunan ekonomi.</div></div>
+                </div>
+
+                <!-- Soal 28 -->
+                <div class="tka-question" id="q28">
+                    <div class="tka-q-header"><div class="tka-q-number">28</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Selama lima tahun terakhir, suatu daerah berhasil meningkatkan angka harapan hidup, rata-rata lama sekolah, dan pendapatan per kapita masyarakat.</div>
+                    <div class="tka-q-text">Keberhasilan tersebut menunjukkan adanya peningkatan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> nilai ekspor.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kualitas pembangunan manusia.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah impor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi nasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> jumlah uang beredar.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q28')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Indikator seperti angka harapan hidup, rata-rata lama sekolah, dan pendapatan per kapita merupakan komponen utama Indeks Pembangunan Manusia (IPM), sehingga menunjukkan peningkatan kualitas pembangunan manusia.</div></div>
+                </div>
+
+                <!-- Soal 29 -->
+                <div class="tka-question" id="q29">
+                    <div class="tka-q-header"><div class="tka-q-number">29</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Negara A memiliki pertumbuhan ekonomi sebesar 6%, tetapi ketimpangan pendapatan masih tinggi. Sementara itu, Negara B hanya tumbuh 4%, namun angka kemiskinan menurun, akses pendidikan meningkat, dan pelayanan kesehatan semakin baik.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Negara A memiliki pembangunan ekonomi yang lebih baik.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Negara B menunjukkan pembangunan ekonomi yang lebih berkualitas karena terjadi peningkatan kesejahteraan masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Pertumbuhan ekonomi selalu lebih penting daripada pembangunan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Pembangunan ekonomi hanya diukur dari besarnya PDB.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kedua negara memiliki kondisi pembangunan yang sama.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q29')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pembangunan ekonomi tidak hanya dilihat dari laju pertumbuhan ekonomi, tetapi juga dari pemerataan kesejahteraan, penurunan kemiskinan, serta peningkatan kualitas pendidikan dan kesehatan.</div></div>
+                </div>
+
+                <!-- Soal 30 -->
+                <div class="tka-question" id="q30">
+                    <div class="tka-q-header"><div class="tka-q-number">30</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah mencatat bahwa Produk Domestik Bruto (PDB) meningkat sebesar 5,4%. Pada saat yang sama, tingkat kemiskinan menurun, pengangguran berkurang, Indeks Pembangunan Manusia (IPM) meningkat, dan akses pendidikan semakin luas.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> peningkatan PDB hanya menunjukkan kenaikan jumlah penduduk.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pertumbuhan ekonomi yang disertai peningkatan kualitas hidup masyarakat mencerminkan keberhasilan pembangunan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pembangunan ekonomi hanya ditentukan oleh besarnya PDB.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> peningkatan IPM tidak berkaitan dengan pembangunan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pertumbuhan ekonomi tidak memiliki hubungan dengan kesejahteraan masyarakat.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q30')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Keberhasilan pembangunan ekonomi ditandai oleh pertumbuhan ekonomi yang diikuti dengan peningkatan kualitas hidup masyarakat, seperti turunnya kemiskinan dan pengangguran serta meningkatnya IPM dan akses pendidikan.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 4 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 4: Ketenagakerjaan</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 31–40</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 31 -->
+                <div class="tka-question" id="q31">
+                    <div class="tka-q-header"><div class="tka-q-number">31</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Badan Pusat Statistik (BPS) melaporkan bahwa jumlah angkatan kerja Indonesia meningkat pada tahun 2026. Namun, peningkatan tersebut tidak diikuti dengan penambahan lapangan pekerjaan yang memadai sehingga jumlah pengangguran juga meningkat.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh angkatan kerja telah memperoleh pekerjaan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pertumbuhan angkatan kerja lebih cepat dibandingkan penciptaan lapangan kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah tenaga kerja mengalami penurunan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> produktivitas tenaga kerja meningkat secara otomatis.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran hanya dipengaruhi oleh tingkat pendidikan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q31')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Peningkatan angkatan kerja yang tidak diimbangi penciptaan lapangan kerja menyebabkan jumlah pengangguran meningkat. Hal ini menunjukkan adanya ketidakseimbangan antara penawaran dan permintaan tenaga kerja.</div></div>
+                </div>
+
+                <!-- Soal 32 -->
+                <div class="tka-question" id="q32">
+                    <div class="tka-q-header"><div class="tka-q-number">32</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Seorang lulusan SMK memilih berhenti bekerja karena ingin mencari pekerjaan baru dengan gaji yang lebih tinggi dan sesuai dengan keahliannya. Selama proses pencarian tersebut, ia belum memperoleh pekerjaan.</div>
+                    <div class="tka-q-text">Jenis pengangguran yang dialami lulusan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pengangguran struktural</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pengangguran musiman</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> pengangguran friksional</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pengangguran siklis</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran teknologi</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q32')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Pengangguran friksional terjadi ketika seseorang sedang berpindah pekerjaan atau mencari pekerjaan yang lebih sesuai dengan keterampilan, minat, atau tingkat upah yang diharapkan.</div></div>
+                </div>
+
+                <!-- Soal 33 -->
+                <div class="tka-question" id="q33">
+                    <div class="tka-q-header"><div class="tka-q-number">33</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan tekstil mengganti sebagian besar tenaga kerja dengan mesin otomatis sehingga banyak pekerja kehilangan pekerjaan karena keterampilannya tidak lagi sesuai dengan kebutuhan perusahaan.</div>
+                    <div class="tka-q-text">Jenis pengangguran yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pengangguran friksional</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pengangguran musiman</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> pengangguran struktural</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pengangguran terbuka</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> setengah menganggur</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q33')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Penggunaan teknologi baru mengubah kebutuhan jenis tenaga kerja. Pekerja yang keterampilannya tidak lagi sesuai mengalami pengangguran struktural, karena terdapat ketidaksesuaian antara kompetensi tenaga kerja dan kebutuhan pasar kerja.</div></div>
+                </div>
+
+                <!-- Soal 34 -->
+                <div class="tka-question" id="q34">
+                    <div class="tka-q-header"><div class="tka-q-number">34</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah menyelenggarakan program pelatihan keterampilan digital bagi pencari kerja agar mampu memenuhi kebutuhan tenaga kerja di sektor ekonomi digital.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap program tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah pengangguran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> mengurangi kesenjangan antara kompetensi tenaga kerja dan kebutuhan dunia kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> mengurangi jumlah penduduk usia produktif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> menurunkan jumlah investasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> mengurangi jumlah perusahaan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q34')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pelatihan keterampilan digital bertujuan meningkatkan kompetensi pencari kerja agar sesuai dengan kebutuhan industri, sehingga mengurangi skill mismatch dan memperbesar peluang memperoleh pekerjaan.</div></div>
+                </div>
+
+                <!-- Soal 35 -->
+                <div class="tka-question" id="q35">
+                    <div class="tka-q-header"><div class="tka-q-number">35</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Tahun</th><th>Angkatan Kerja</th><th>Penduduk Bekerja</th></tr><tr><td>2024</td><td>150 juta</td><td>142 juta</td></tr><tr><td>2025</td><td>153 juta</td><td>144 juta</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, dapat disimpulkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> kesempatan kerja bertambah karena jumlah penduduk bekerja meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> seluruh angkatan kerja memperoleh pekerjaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah pengangguran menjadi nol.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> angkatan kerja mengalami penurunan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> tidak terjadi perubahan pada pasar tenaga kerja.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q35')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Jumlah penduduk bekerja meningkat dari 142 juta menjadi 144 juta. Hal ini menunjukkan adanya penambahan kesempatan kerja, meskipun tidak berarti seluruh angkatan kerja telah terserap.</div></div>
+                </div>
+
+                <!-- Soal 36 -->
+                <div class="tka-question" id="q36">
+                    <div class="tka-q-header"><div class="tka-q-number">36</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah daerah mengalami penutupan beberapa pabrik akibat penurunan permintaan ekspor. Ribuan pekerja kehilangan pekerjaan sehingga daya beli masyarakat menurun.</div>
+                    <div class="tka-q-text">Dampak ekonomi yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> konsumsi masyarakat meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pertumbuhan ekonomi daerah meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> aktivitas ekonomi menurun akibat berkurangnya pendapatan masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> jumlah investasi bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> harga barang selalu meningkat.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q36')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Penutupan pabrik menyebabkan pengangguran meningkat dan pendapatan masyarakat menurun. Akibatnya, konsumsi rumah tangga melemah sehingga aktivitas ekonomi daerah ikut menurun.</div></div>
+                </div>
+
+                <!-- Soal 37 -->
+                <div class="tka-question" id="q37">
+                    <div class="tka-q-header"><div class="tka-q-number">37</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah memberikan insentif pajak kepada perusahaan yang membuka lapangan kerja baru bagi lulusan SMK dan perguruan tinggi.</div>
+                    <div class="tka-q-text">Tujuan utama kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah pengangguran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> memperluas kesempatan kerja dan mengurangi pengangguran.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> mengurangi produktivitas tenaga kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> mengurangi jumlah perusahaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> meningkatkan impor barang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q37')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Insentif pajak diberikan agar perusahaan terdorong membuka lebih banyak lapangan kerja. Kebijakan ini bertujuan meningkatkan penyerapan tenaga kerja dan menekan angka pengangguran.</div></div>
+                </div>
+
+                <!-- Soal 38 -->
+                <div class="tka-question" id="q38">
+                    <div class="tka-q-header"><div class="tka-q-number">38</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan memberikan pelatihan rutin, memperbaiki sistem keselamatan kerja, dan menyediakan teknologi yang lebih modern bagi karyawannya.</div>
+                    <div class="tka-q-text">Dampak yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> produktivitas tenaga kerja meningkat sehingga efisiensi perusahaan menjadi lebih baik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> jumlah tenaga kerja otomatis berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> permintaan masyarakat menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran musiman bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q38')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pelatihan, keselamatan kerja, dan penggunaan teknologi yang tepat meningkatkan keterampilan, motivasi, dan efisiensi kerja, sehingga produktivitas tenaga kerja meningkat.</div></div>
+                </div>
+
+                <!-- Soal 39 -->
+                <div class="tka-question" id="q39">
+                    <div class="tka-q-header"><div class="tka-q-number">39</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Di sebuah daerah pertanian, sebagian besar petani hanya bekerja pada musim tanam dan musim panen. Setelah panen selesai, mereka tidak memiliki pekerjaan hingga musim berikutnya.</div>
+                    <div class="tka-q-text">Jenis pengangguran yang terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pengangguran struktural</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pengangguran friksional</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> pengangguran musiman</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pengangguran teknologi</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran sukarela</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q39')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Pengangguran musiman terjadi karena pekerjaan hanya tersedia pada musim tertentu, seperti sektor pertanian, perkebunan, atau perikanan.</div></div>
+                </div>
+
+                <!-- Soal 40 -->
+                <div class="tka-question" id="q40">
+                    <div class="tka-q-header"><div class="tka-q-number">40</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah daerah bekerja sama dengan dunia usaha dan industri untuk menyelenggarakan program magang bagi siswa SMK. Setelah lulus, sebagian besar peserta langsung diterima bekerja karena telah memiliki pengalaman dan kompetensi sesuai kebutuhan perusahaan.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap program tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> program tersebut meningkatkan jumlah pengangguran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> program magang memperkuat keterkaitan antara pendidikan dan kebutuhan dunia kerja sehingga meningkatkan penyerapan tenaga kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> program tersebut hanya menguntungkan perusahaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kesempatan kerja tidak dipengaruhi kualitas tenaga kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pengangguran terjadi karena jumlah penduduk sedikit.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q40')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Program magang menciptakan hubungan antara dunia pendidikan dan dunia industri (link and match), sehingga lulusan memiliki pengalaman kerja dan kompetensi yang sesuai dengan kebutuhan perusahaan. Hal ini meningkatkan peluang kerja dan mengurangi pengangguran.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 5 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 5: Indeks Harga dan Inflasi</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 41–50</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 41 -->
+                <div class="tka-question" id="q41">
+                    <div class="tka-q-header"><div class="tka-q-number">41</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Badan Pusat Statistik (BPS) melaporkan bahwa Indeks Harga Konsumen (IHK) meningkat dari 108,20 pada bulan Januari menjadi 110,85 pada bulan Februari. Kenaikan tersebut dipengaruhi oleh meningkatnya harga bahan pangan dan biaya transportasi.</div>
+                    <div class="tka-q-text">Berdasarkan informasi tersebut, dapat disimpulkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> daya beli masyarakat meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> harga barang dan jasa secara umum mengalami kenaikan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> jumlah uang beredar menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> seluruh barang mengalami kenaikan harga.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pendapatan masyarakat menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q41')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Kenaikan Indeks Harga Konsumen (IHK) menunjukkan bahwa harga barang dan jasa yang dikonsumsi rumah tangga secara umum mengalami kenaikan, yang menjadi indikator adanya tekanan inflasi.</div></div>
+                </div>
+
+                <!-- Soal 42 -->
+                <div class="tka-question" id="q42">
+                    <div class="tka-q-header"><div class="tka-q-number">42</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Kelompok Pengeluaran</th><th>Perubahan Harga</th></tr><tr><td>Makanan</td><td>Naik</td></tr><tr><td>Transportasi</td><td>Naik</td></tr><tr><td>Pendidikan</td><td>Tetap</td></tr><tr><td>Komunikasi</td><td>Turun</td></tr></table></div>
+                    <div class="tka-q-text">Analisis yang paling tepat berdasarkan data tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh kelompok barang mengalami inflasi.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kenaikan IHK dipengaruhi oleh kelompok barang yang mengalami kenaikan harga.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> indeks harga pasti mengalami penurunan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi tidak dipengaruhi harga makanan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> harga rata-rata seluruh barang turun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q42')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">IHK dipengaruhi oleh perubahan harga berbagai kelompok barang dan jasa. Meskipun ada kelompok yang harganya tetap atau turun, kenaikan pada kelompok dengan bobot besar seperti makanan dan transportasi dapat menyebabkan IHK meningkat.</div></div>
+                </div>
+
+                <!-- Soal 43 -->
+                <div class="tka-question" id="q43">
+                    <div class="tka-q-header"><div class="tka-q-number">43</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br><table><tr><th>Tahun</th><th>IHK</th></tr><tr><td>2025</td><td>120</td></tr><tr><td>2026</td><td>126</td></tr></table></div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, tingkat inflasi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> 3%</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> 4%</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> 5%</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> 6%</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> 8%</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q43')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Rumus inflasi: [(IHK tahun berjalan - IHK tahun sebelumnya) / IHK tahun sebelumnya] × 100% = [(126 - 120) / 120] × 100% = (6 / 120) × 100% = 5%.</div></div>
+                </div>
+
+                <!-- Soal 44 -->
+                <div class="tka-question" id="q44">
+                    <div class="tka-q-header"><div class="tka-q-number">44</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Menjelang Hari Raya Idulfitri, permintaan berbagai kebutuhan pokok meningkat tajam, sedangkan jumlah barang yang tersedia relatif tetap. Akibatnya, harga berbagai kebutuhan pokok mengalami kenaikan.</div>
+                    <div class="tka-q-text">Jenis inflasi yang paling tepat berdasarkan ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> inflasi dorongan biaya (cost-push inflation)</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> inflasi tarikan permintaan (demand-pull inflation)</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> inflasi impor</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi struktural</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> inflasi moneter</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q44')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Kenaikan harga terjadi karena permintaan meningkat sementara penawaran relatif tetap. Kondisi ini merupakan inflasi tarikan permintaan (demand-pull inflation).</div></div>
+                </div>
+
+                <!-- Soal 45 -->
+                <div class="tka-question" id="q45">
+                    <div class="tka-q-header"><div class="tka-q-number">45</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Harga minyak dunia meningkat tajam sehingga biaya transportasi dan distribusi barang ikut naik. Banyak produsen kemudian menaikkan harga jual produknya.</div>
+                    <div class="tka-q-text">Penyebab utama inflasi pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatnya permintaan masyarakat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kenaikan biaya produksi yang mendorong kenaikan harga.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> turunnya jumlah uang beredar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> meningkatnya tabungan masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> bertambahnya jumlah impor.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q45')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Naiknya harga minyak meningkatkan biaya transportasi dan produksi sehingga produsen menaikkan harga jual. Kondisi ini merupakan inflasi dorongan biaya (cost-push inflation).</div></div>
+                </div>
+
+                <!-- Soal 46 -->
+                <div class="tka-question" id="q46">
+                    <div class="tka-q-header"><div class="tka-q-number">46</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Dalam satu tahun terakhir, harga kebutuhan pokok meningkat rata-rata 12%, sedangkan pendapatan sebagian besar pekerja tetap.</div>
+                    <div class="tka-q-text">Dampak ekonomi yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> daya beli masyarakat meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> konsumsi masyarakat meningkat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> daya beli masyarakat menurun karena pendapatan riil berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> jumlah tabungan meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> nilai uang bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q46')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Ketika harga naik tetapi pendapatan tetap, kemampuan membeli barang dan jasa (daya beli riil) masyarakat menurun.</div></div>
+                </div>
+
+                <!-- Soal 47 -->
+                <div class="tka-question" id="q47">
+                    <div class="tka-q-header"><div class="tka-q-number">47</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Untuk mengendalikan inflasi, Bank Indonesia menaikkan suku bunga acuan sehingga masyarakat terdorong untuk menabung dan mengurangi konsumsi.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> kebijakan tersebut bertujuan mengurangi jumlah uang yang beredar sehingga tekanan inflasi menurun.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> kebijakan tersebut meningkatkan inflasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> suku bunga tidak memengaruhi inflasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> masyarakat akan meningkatkan konsumsi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> penawaran barang otomatis berkurang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q47')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Kenaikan suku bunga mendorong masyarakat menabung dan mengurangi konsumsi maupun pinjaman. Akibatnya, jumlah uang yang beredar dan tekanan inflasi dapat berkurang.</div></div>
+                </div>
+
+                <!-- Soal 48 -->
+                <div class="tka-question" id="q48">
+                    <div class="tka-q-header"><div class="tka-q-number">48</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah meningkatkan produksi beras melalui bantuan benih unggul dan subsidi pupuk untuk menjaga ketersediaan pangan nasional.</div>
+                    <div class="tka-q-text">Kebijakan tersebut bertujuan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan inflasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> mengurangi penawaran barang.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> menjaga stabilitas harga dengan meningkatkan jumlah barang yang tersedia di pasar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> mengurangi produksi pertanian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> menaikkan harga pangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q48')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Peningkatan produksi pangan bertujuan menambah pasokan di pasar sehingga harga menjadi lebih stabil dan inflasi dapat dikendalikan.</div></div>
+                </div>
+
+                <!-- Soal 49 -->
+                <div class="tka-question" id="q49">
+                    <div class="tka-q-header"><div class="tka-q-number">49</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Selama enam bulan terakhir terjadi inflasi yang cukup tinggi. Akibatnya masyarakat lebih berhati-hati dalam membelanjakan uangnya dan perusahaan mulai mengurangi rencana investasi.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> inflasi yang tinggi dapat mengurangi konsumsi dan investasi sehingga menghambat pertumbuhan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> inflasi selalu meningkatkan investasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> inflasi tidak memengaruhi dunia usaha.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> inflasi menyebabkan daya beli meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> inflasi hanya berdampak pada sektor perdagangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q49')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Inflasi yang tinggi dan berkepanjangan menurunkan daya beli, meningkatkan ketidakpastian usaha, serta dapat mengurangi konsumsi dan investasi sehingga menghambat pertumbuhan ekonomi.</div></div>
+                </div>
+
+                <!-- Soal 50 -->
+                <div class="tka-question" id="q50">
+                    <div class="tka-q-header"><div class="tka-q-number">50</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pada bulan Januari, IHK tercatat sebesar 118,5. Pada bulan Februari meningkat menjadi 120,9. Kenaikan tersebut terutama dipengaruhi oleh meningkatnya harga pangan akibat gangguan distribusi karena cuaca ekstrem. Pemerintah kemudian mempercepat distribusi pangan ke berbagai daerah.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kebijakan pemerintah tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pemerintah berupaya meningkatkan inflasi.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pemerintah berusaha memperbaiki distribusi agar pasokan meningkat sehingga tekanan inflasi dapat dikendalikan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pemerintah mengurangi jumlah barang di pasar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kenaikan IHK tidak berhubungan dengan inflasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> distribusi barang tidak memengaruhi harga.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q50')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Gangguan distribusi mengurangi pasokan di pasar dan mendorong kenaikan harga. Dengan memperlancar distribusi, pemerintah meningkatkan ketersediaan barang sehingga tekanan inflasi dapat ditekan.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 6 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 6: Bank Sentral, Kebijakan Moneter, Fiskal, dan Perpajakan</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 51–60</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 51 -->
+                <div class="tka-question" id="q51">
+                    <div class="tka-q-header"><div class="tka-q-number">51</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Bank Indonesia mengumumkan kenaikan suku bunga acuan sebesar 0,5% sebagai respons terhadap meningkatnya tekanan inflasi. Kebijakan tersebut diharapkan mampu menjaga stabilitas nilai rupiah dan mengendalikan kenaikan harga.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, fungsi utama Bank Indonesia adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan keuntungan perusahaan swasta.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> menjaga stabilitas nilai rupiah melalui kebijakan moneter.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> menentukan besarnya pajak penghasilan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> membangun infrastruktur nasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> mengelola APBN.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q51')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Bank Indonesia merupakan bank sentral yang memiliki tujuan utama menjaga stabilitas nilai rupiah, baik terhadap harga barang dan jasa (inflasi) maupun terhadap mata uang asing, melalui pelaksanaan kebijakan moneter.</div></div>
+                </div>
+
+                <!-- Soal 52 -->
+                <div class="tka-question" id="q52">
+                    <div class="tka-q-header"><div class="tka-q-number">52</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Nilai tukar rupiah terhadap dolar Amerika Serikat mengalami pelemahan yang cukup tajam. Untuk menjaga stabilitas nilai tukar, Bank Indonesia melakukan intervensi di pasar valuta asing.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Bank Indonesia menjalankan fungsi menjaga stabilitas sistem moneter.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Bank Indonesia sedang menyusun APBN.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Bank Indonesia mengelola penerimaan pajak.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Bank Indonesia memberikan subsidi kepada masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Bank Indonesia menetapkan tarif bea masuk.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q52')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Intervensi di pasar valuta asing merupakan salah satu instrumen Bank Indonesia untuk menjaga stabilitas nilai tukar rupiah sebagai bagian dari menjaga stabilitas sistem moneter.</div></div>
+                </div>
+
+                <!-- Soal 53 -->
+                <div class="tka-question" id="q53">
+                    <div class="tka-q-header"><div class="tka-q-number">53</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Inflasi meningkat hingga melampaui target yang ditetapkan. Untuk mengendalikan kondisi tersebut, Bank Indonesia menaikkan Giro Wajib Minimum (GWM) yang harus disimpan bank umum.</div>
+                    <div class="tka-q-text">Tujuan utama kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah uang beredar.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> mengurangi kemampuan bank menyalurkan kredit sehingga jumlah uang beredar berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> meningkatkan konsumsi masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> memperbesar pengeluaran pemerintah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> meningkatkan penerimaan pajak.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q53')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Peningkatan Giro Wajib Minimum (GWM) membuat bank umum memiliki dana yang lebih sedikit untuk disalurkan sebagai kredit. Akibatnya, jumlah uang beredar berkurang sehingga tekanan inflasi dapat diredam.</div></div>
+                </div>
+
+                <!-- Soal 54 -->
+                <div class="tka-question" id="q54">
+                    <div class="tka-q-header"><div class="tka-q-number">54</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Bank Indonesia menurunkan suku bunga acuan ketika perekonomian mengalami perlambatan. Setelah kebijakan tersebut diterapkan, masyarakat dan dunia usaha lebih mudah memperoleh kredit.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebijakan moneter kontraktif.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kebijakan moneter ekspansif yang bertujuan mendorong pertumbuhan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> kebijakan fiskal ekspansif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kebijakan perpajakan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kebijakan perdagangan internasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q54')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Penurunan suku bunga acuan merupakan kebijakan moneter ekspansif yang bertujuan mendorong konsumsi, investasi, dan pertumbuhan ekonomi ketika perekonomian melambat.</div></div>
+                </div>
+
+                <!-- Soal 55 -->
+                <div class="tka-question" id="q55">
+                    <div class="tka-q-header"><div class="tka-q-number">55</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah meningkatkan belanja infrastruktur dan bantuan sosial pada saat perekonomian mengalami perlambatan agar konsumsi masyarakat meningkat.</div>
+                    <div class="tka-q-text">Kebijakan tersebut merupakan contoh ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebijakan moneter kontraktif.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kebijakan fiskal ekspansif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> kebijakan moneter ekspansif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kebijakan perdagangan bebas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kebijakan proteksi.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q55')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Peningkatan belanja pemerintah merupakan kebijakan fiskal ekspansif karena bertujuan meningkatkan permintaan agregat dan mempercepat pemulihan ekonomi.</div></div>
+                </div>
+
+                <!-- Soal 56 -->
+                <div class="tka-question" id="q56">
+                    <div class="tka-q-header"><div class="tka-q-number">56</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Untuk mengurangi defisit anggaran, pemerintah menunda beberapa proyek pembangunan dan meningkatkan efisiensi belanja kementerian.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> pemerintah menerapkan kebijakan fiskal kontraktif untuk mengendalikan pengeluaran negara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pemerintah sedang menjalankan kebijakan moneter.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pemerintah meningkatkan jumlah uang beredar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pemerintah menurunkan tarif pajak.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pemerintah mengendalikan nilai tukar rupiah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q56')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pengurangan atau efisiensi belanja pemerintah merupakan bentuk kebijakan fiskal kontraktif yang bertujuan mengendalikan defisit anggaran dan menjaga kesehatan fiskal negara.</div></div>
+                </div>
+
+                <!-- Soal 57 -->
+                <div class="tka-question" id="q57">
+                    <div class="tka-q-header"><div class="tka-q-number">57</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah menggunakan penerimaan pajak untuk membangun jalan, jembatan, sekolah, dan rumah sakit di berbagai daerah.</div>
+                    <div class="tka-q-text">Fungsi pajak yang ditunjukkan pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> fungsi stabilisasi.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> fungsi anggaran (budgetair).</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> fungsi regulasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> fungsi redistribusi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> fungsi moneter.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q57')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Fungsi anggaran (budgetair) berarti pajak menjadi sumber utama penerimaan negara yang digunakan untuk membiayai pengeluaran pemerintah, seperti pembangunan infrastruktur dan pelayanan publik.</div></div>
+                </div>
+
+                <!-- Soal 58 -->
+                <div class="tka-question" id="q58">
+                    <div class="tka-q-header"><div class="tka-q-number">58</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah menaikkan tarif cukai rokok dengan tujuan mengurangi konsumsi rokok sekaligus meningkatkan penerimaan negara.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pajak hanya memiliki fungsi anggaran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kebijakan tersebut menunjukkan fungsi regulasi karena pajak digunakan untuk memengaruhi perilaku masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pemerintah sedang menjalankan kebijakan moneter.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pajak tidak memengaruhi konsumsi masyarakat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> tujuan utama kebijakan adalah meningkatkan ekspor.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q58')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Cukai rokok tidak hanya bertujuan menambah penerimaan negara, tetapi juga mengendalikan konsumsi masyarakat. Hal ini menunjukkan fungsi regulasi (mengatur) dari pajak.</div></div>
+                </div>
+
+                <!-- Soal 59 -->
+                <div class="tka-question" id="q59">
+                    <div class="tka-q-header"><div class="tka-q-number">59</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Inflasi meningkat akibat tingginya permintaan masyarakat. Bank Indonesia menaikkan suku bunga acuan, sementara pemerintah mengurangi belanja yang tidak prioritas.</div>
+                    <div class="tka-q-text">Kombinasi kebijakan tersebut bertujuan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah uang beredar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> memperbesar konsumsi masyarakat.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> mengurangi tekanan inflasi melalui kebijakan moneter dan fiskal yang bersifat kontraktif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> meningkatkan impor barang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> meningkatkan defisit APBN.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q59')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Kenaikan suku bunga oleh Bank Indonesia (kebijakan moneter kontraktif) dan pengurangan belanja pemerintah (kebijakan fiskal kontraktif) sama-sama bertujuan mengurangi tekanan permintaan sehingga inflasi dapat dikendalikan.</div></div>
+                </div>
+
+                <!-- Soal 60 -->
+                <div class="tka-question" id="q60">
+                    <div class="tka-q-header"><div class="tka-q-number">60</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Perekonomian mengalami inflasi yang cukup tinggi. Bank Indonesia menaikkan suku bunga acuan untuk mengurangi jumlah uang beredar, sedangkan pemerintah meningkatkan pengawasan terhadap penerimaan pajak dan mengalokasikan anggaran secara lebih efisien.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Bank Indonesia dan pemerintah menjalankan kebijakan yang saling bertentangan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Bank Indonesia menjalankan kebijakan moneter, sedangkan pemerintah menjalankan kebijakan fiskal untuk menjaga stabilitas perekonomian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> seluruh kebijakan tersebut merupakan kebijakan perdagangan internasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pajak tidak berhubungan dengan kebijakan fiskal.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> inflasi hanya dapat dikendalikan oleh Bank Indonesia.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q60')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Bank Indonesia bertanggung jawab atas kebijakan moneter, sedangkan pemerintah mengelola kebijakan fiskal melalui APBN, perpajakan, dan belanja negara. Sinergi kedua kebijakan diperlukan untuk menjaga stabilitas ekonomi.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN 7 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 7: Manajemen Badan Usaha, BUMN, BUMD, BUMS, dan Koperasi</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 61–70</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                <!-- Soal 61 -->
+                <div class="tka-question" id="q61">
+                    <div class="tka-q-header"><div class="tka-q-number">61</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan menetapkan target peningkatan penjualan sebesar 15% pada tahun berikutnya. Manajemen kemudian menyusun strategi pemasaran, mengalokasikan anggaran promosi, dan menentukan jadwal pelaksanaan program kerja.</div>
+                    <div class="tka-q-text">Kegiatan tersebut menunjukkan penerapan fungsi manajemen berupa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pengorganisasian (organizing)</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> perencanaan (planning)</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pengarahan (actuating)</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pengawasan (controlling)</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> evaluasi (evaluating)</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q61')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Kegiatan menyusun target, strategi, anggaran, dan jadwal merupakan fungsi perencanaan (planning).</div></div>
+                </div>
+
+                <!-- Soal 62 -->
+                <div class="tka-question" id="q62">
+                    <div class="tka-q-header"><div class="tka-q-number">62</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Direktur sebuah perusahaan membagi tugas kepada setiap kepala divisi sesuai dengan bidang keahlian masing-masing agar pekerjaan dapat berjalan secara efektif.</div>
+                    <div class="tka-q-text">Fungsi manajemen yang diterapkan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> planning</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> organizing</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> actuating</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> controlling</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> budgeting</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q62')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pembagian tugas sesuai bidang keahlian merupakan fungsi pengorganisasian (organizing).</div></div>
+                </div>
+
+                <!-- Soal 63 -->
+                <div class="tka-question" id="q63">
+                    <div class="tka-q-header"><div class="tka-q-number">63</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br><table><tr><th>Badan Usaha</th><th>Ciri-ciri</th></tr><tr><td>X</td><td>Modal dimiliki pemerintah pusat</td></tr><tr><td>Y</td><td>Modal dimiliki pemerintah daerah</td></tr><tr><td>Z</td><td>Modal dimiliki pihak swasta</td></tr></table></div>
+                    <div class="tka-q-text">Urutan jenis badan usaha yang benar adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> BUMS – BUMD – BUMN</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> BUMN – BUMD – BUMS</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> BUMD – BUMN – BUMS</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> BUMN – BUMS – BUMD</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> BUMD – BUMS – BUMN</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q63')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pemerintah pusat → BUMN. Pemerintah daerah → BUMD. Swasta → BUMS.</div></div>
+                </div>
+
+                <!-- Soal 64 -->
+                <div class="tka-question" id="q64">
+                    <div class="tka-q-header"><div class="tka-q-number">64</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah Provinsi mendirikan perusahaan yang bergerak di bidang penyediaan air bersih untuk meningkatkan pelayanan kepada masyarakat serta menambah Pendapatan Asli Daerah (PAD).</div>
+                    <div class="tka-q-text">Jenis badan usaha yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> koperasi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> BUMS</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> BUMD</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> firma</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> CV</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q64')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Perusahaan milik pemerintah daerah yang bertujuan memberikan pelayanan publik dan meningkatkan PAD merupakan BUMD.</div></div>
+                </div>
+
+                <!-- Soal 65 -->
+                <div class="tka-question" id="q65">
+                    <div class="tka-q-header"><div class="tka-q-number">65</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan milik negara memperoleh keuntungan yang cukup besar. Selain membagikan dividen kepada negara, perusahaan juga tetap menyediakan layanan publik yang terjangkau bagi masyarakat.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> BUMN hanya bertujuan mencari keuntungan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> BUMN memiliki fungsi ekonomi sekaligus fungsi pelayanan publik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> BUMN tidak boleh memperoleh laba.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> BUMN hanya melayani pemerintah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> seluruh keuntungan BUMN dibagikan kepada pegawai.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q65')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">BUMN memiliki dua fungsi, yaitu fungsi ekonomi (memperoleh laba) dan fungsi sosial/pelayanan publik.</div></div>
+                </div>
+
+                <!-- Soal 66 -->
+                <div class="tka-question" id="q66">
+                    <div class="tka-q-header"><div class="tka-q-number">66</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Koperasi sekolah menyediakan alat tulis, seragam, dan kebutuhan belajar lainnya dengan harga yang relatif lebih murah dibandingkan toko di luar sekolah. Seluruh anggota memiliki hak suara yang sama dalam rapat anggota.</div>
+                    <div class="tka-q-text">Prinsip koperasi yang ditunjukkan pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> modal menentukan hak suara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> keanggotaan bersifat tertutup.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> demokrasi ekonomi, yaitu satu anggota memiliki satu hak suara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> keuntungan hanya untuk pengurus.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> koperasi dikelola pemerintah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q66')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Salah satu prinsip koperasi adalah demokrasi ekonomi, yaitu setiap anggota memiliki satu hak suara, tanpa dipengaruhi besarnya modal.</div></div>
+                </div>
+
+                <!-- Soal 67 -->
+                <div class="tka-question" id="q67">
+                    <div class="tka-q-header"><div class="tka-q-number">67</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>Sisa Hasil Usaha (SHU) yang dibagikan kepada anggota sebesar Rp48.000.000.<br>Ketentuan pembagian SHU kepada anggota: 40% berdasarkan jasa modal, 60% berdasarkan jasa usaha.<br>Data anggota Andi: Simpanan Andi = Rp8.000.000, Total simpanan seluruh anggota = Rp160.000.000, Nilai transaksi Andi = Rp24.000.000, Total transaksi seluruh anggota = Rp480.000.000.</div>
+                    <div class="tka-q-text">Besarnya SHU yang diterima Andi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Rp2.400.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp2.160.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp2.640.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp3.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp3.600.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q67')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Langkah 1: Hitung SHU Jasa Modal = 40% × Rp48.000.000 = Rp19.200.000. Bagian Andi = Rp19.200.000 × (8.000.000 / 160.000.000) = Rp960.000.<br>Langkah 2: Hitung SHU Jasa Usaha = 60% × Rp48.000.000 = Rp28.800.000. Bagian Andi = Rp28.800.000 × (24.000.000 / 480.000.000) = Rp1.440.000.<br>Total SHU Andi = Rp960.000 + Rp1.440.000 = Rp2.400.000.</div></div>
+                </div>
+
+                <!-- Soal 68 -->
+                <div class="tka-question" id="q68">
+                    <div class="tka-q-header"><div class="tka-q-number">68</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>SHU untuk anggota = Rp60.000.000. Ketentuan: Jasa Modal = 30%, Jasa Usaha = 70%.<br>Data anggota Sinta: Simpanan = Rp15.000.000, Total Simpanan = Rp300.000.000, Transaksi = Rp36.000.000, Total Transaksi = Rp720.000.000.</div>
+                    <div class="tka-q-text">Besarnya SHU yang diterima Sinta adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp2.100.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp2.700.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp3.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp3.600.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp4.200.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q68')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Jasa Modal = 30% × Rp60.000.000 = Rp18.000.000. Bagian Sinta = Rp18.000.000 × (15/300) = Rp900.000.<br>Jasa Usaha = 70% × Rp60.000.000 = Rp42.000.000. Bagian Sinta = Rp42.000.000 × (36/720) = Rp2.100.000.<br>Total SHU = Rp900.000 + Rp2.100.000 = Rp3.000.000.</div></div>
+                </div>
+
+                <!-- Soal 69 -->
+                <div class="tka-question" id="q69">
+                    <div class="tka-q-header"><div class="tka-q-number">69</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pada akhir tahun buku, koperasi memperoleh SHU yang lebih besar dibandingkan tahun sebelumnya. Hal tersebut terjadi karena jumlah anggota meningkat, transaksi usaha bertambah, dan pengelolaan koperasi semakin efisien.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> SHU hanya dipengaruhi jumlah modal.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> peningkatan SHU dipengaruhi oleh meningkatnya aktivitas usaha dan efisiensi pengelolaan koperasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> SHU dibagikan sama besar tanpa memperhatikan jasa anggota.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> koperasi tidak boleh memperoleh keuntungan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> SHU hanya diberikan kepada pengurus.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q69')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">SHU dipengaruhi oleh volume usaha, jumlah transaksi anggota, efisiensi pengelolaan, dan kinerja koperasi, bukan hanya besarnya modal.</div></div>
+                </div>
+
+                <!-- Soal 70 -->
+                <div class="tka-question" id="q70">
+                    <div class="tka-q-header"><div class="tka-q-number">70</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah pusat mengelola perusahaan energi nasional, pemerintah daerah mengelola perusahaan air minum daerah, sedangkan masyarakat mendirikan koperasi simpan pinjam untuk memenuhi kebutuhan anggotanya.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh badan usaha memiliki tujuan yang sama.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> BUMN, BUMD, dan koperasi memiliki karakteristik kepemilikan, tujuan, serta fungsi yang berbeda sesuai dengan perannya dalam perekonomian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> koperasi termasuk BUMN.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> BUMD dimiliki pihak swasta.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> BUMS dimiliki pemerintah daerah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q70')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">BUMN dimiliki pemerintah pusat, BUMD dimiliki pemerintah daerah, BUMS dimiliki swasta, dan koperasi dimiliki serta dikelola oleh anggota berdasarkan asas kekeluargaan. Masing-masing memiliki tujuan dan fungsi yang berbeda dalam sistem perekonomian Indonesia.</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
+        <div class="footer-bottom">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleBagian(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        function togglePembahasan(questionId) {
+            const questionCard = document.getElementById(questionId);
+            const isRevealed = questionCard.classList.contains('revealed');
+            
+            if (isRevealed) {
+                questionCard.classList.remove('revealed');
+            } else {
+                questionCard.classList.add('revealed');
+                setTimeout(() => {
+                    questionCard.querySelector('.tka-pembahasan').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
