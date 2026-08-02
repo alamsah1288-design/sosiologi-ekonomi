@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
     <title>Latihan TKA Ekonomi: Konsep Dasar — SMAN 1 Cluring</title>
-    
+
     <!-- Google Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
+         crossorigin="anonymous"></script>
+
     <style>
         /* ===== CSS DASAR (Sama dengan template utama) ===== */
         :root {
@@ -50,7 +54,7 @@
 
         /* ===== LAYOUT KHUSUS TKA ===== */
         .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-        
+
         .tka-info-box {
             background: white; border-radius: var(--border-radius); padding: 25px;
             box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
@@ -61,13 +65,29 @@
         .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
         .tka-info-box li { margin-bottom: 6px; }
 
+        /* ===== UNIT IKLAN ===== */
+        .tka-ad-container {
+            background: white; border-radius: var(--border-radius); padding: 20px;
+            box-shadow: var(--shadow); margin-bottom: 30px; text-align: center;
+            border: 1px solid rgba(0,0,0,0.05); min-height: 120px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        body.dark-mode .tka-ad-container { background: #2d2d2d; border-color: #444; }
+        .tka-ad-label {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--gray); margin-bottom: 10px; opacity: 0.6;
+        }
+        .tka-ad-container ins.adsbygoogle {
+            display: block; width: 100%; max-width: 100%;
+        }
+
         /* ACCORDION BAGIAN */
         .tka-bagian-card {
             background: white; border-radius: var(--border-radius); margin-bottom: 20px;
             box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
         }
         body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
-        
+
         .tka-bagian-header {
             padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
             justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
@@ -79,7 +99,7 @@
         .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; }
         .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
         .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
-        
+
         .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
         .tka-bagian-card.open .tka-bagian-content { max-height: 15000px; /* Cukup besar untuk menampung 10 soal */ }
 
@@ -89,11 +109,11 @@
             margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
         }
         body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
-        
+
         .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .tka-q-number { 
-            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; 
+        .tka-q-number {
+            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;
         }
         .cognitive-badge {
             background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
@@ -139,15 +159,15 @@
             border-radius: 10px; border: 1px solid var(--success);
         }
         .tka-question.revealed .tka-pembahasan { max-height: 500px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
-        
+
         .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
         body.dark-mode .tka-correct-answer { color: #4ade80; }
         .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
         body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
 
         /* State ketika jawaban terungkap */
-        .tka-question.revealed .tka-option.correct { 
-            background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600; 
+        .tka-question.revealed .tka-option.correct {
+            background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600;
         }
         .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
 
@@ -163,6 +183,7 @@
             .tka-question { padding: 15px; margin: 15px; }
             .tka-bagian-content { padding: 0; }
             .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; }
+            .tka-ad-container { padding: 15px; min-height: 90px; }
         }
     </style>
 </head>
@@ -197,7 +218,7 @@
 
     <!-- KONTEN UTAMA TKA -->
     <div class="tka-main">
-        
+
         <div class="tka-info-box">
             <h3><i class="fas fa-info-circle" style="color: var(--warning);"></i> Petunjuk Pengerjaan</h3>
             <ul>
@@ -206,6 +227,21 @@
                 <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
                 <li>Gunakan mode gelap (🌙) di pojok kanan atas jika mata Anda cepat lelah.</li>
             </ul>
+        </div>
+
+        <!-- ===== UNIT IKLAN ===== -->
+        <div class="tka-ad-container">
+            <div class="tka-ad-label">— Iklan —</div>
+            <!-- tka-konsep-dasar.html -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1234355696976048"
+                 data-ad-slot="4839247333"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 
         <!-- ================= BAGIAN 1: SOAL 1-10 ================= -->
@@ -221,7 +257,7 @@
                 <i class="fas fa-chevron-down tka-bagian-toggle"></i>
             </div>
             <div class="tka-bagian-content">
-                
+
                 <!-- Soal 1 -->
                 <div class="tka-question" id="q1">
                     <div class="tka-q-header"><div class="tka-q-number">1</div><span class="cognitive-badge">C4</span></div>
@@ -433,7 +469,7 @@
                 <i class="fas fa-chevron-down tka-bagian-toggle"></i>
             </div>
             <div class="tka-bagian-content">
-                
+
                 <!-- Soal 11 -->
                 <div class="tka-question" id="q11">
                     <div class="tka-q-header"><div class="tka-q-number">11</div><span class="cognitive-badge">C4</span></div>
@@ -640,7 +676,7 @@
                 <i class="fas fa-chevron-down tka-bagian-toggle"></i>
             </div>
             <div class="tka-bagian-content">
-                
+
                 <!-- Soal 21 -->
                 <div class="tka-question" id="q21">
                     <div class="tka-q-header"><div class="tka-q-number">21</div><span class="cognitive-badge">C4</span></div>
@@ -856,7 +892,7 @@
         function togglePembahasan(questionId) {
             const questionCard = document.getElementById(questionId);
             const isRevealed = questionCard.classList.contains('revealed');
-            
+
             if (isRevealed) {
                 questionCard.classList.remove('revealed');
             } else {
@@ -873,7 +909,7 @@
             const body = document.body;
             const btn = document.getElementById('themeToggle');
             body.classList.toggle('dark-mode');
-            
+
             if (body.classList.contains('dark-mode')) {
                 btn.textContent = '☀️';
                 localStorage.setItem('darkMode', 'enabled');
