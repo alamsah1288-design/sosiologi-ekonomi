@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
+    <title>Latihan TKA Ekonomi: Ekonomi Internasional — SMAN 1 Cluring</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+            --light: #f8f9fa; --dark: #212529; --success: #4ade80;
+            --warning: #fbbf24; --danger: #f87171; --gray: #6c757d;
+            --border-radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        .dark-mode {
+            --light: #1a1a1a; --dark: #f8f9fa; --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark); line-height: 1.6; padding-bottom: 80px; transition: background 0.4s, color 0.4s;
+        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
+
+        .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+        .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
+        .theme-toggle { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        header { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 3rem 1rem 2rem; text-align: center; }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; font-size: 1rem; }
+        .breadcrumb { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .tka-info-box {
+            background: white; border-radius: var(--border-radius); padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
+        }
+        body.dark-mode .tka-info-box { background: #2d2d2d; }
+        .tka-info-box h3 { color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        body.dark-mode .tka-info-box h3 { color: #f8f9fa; }
+        .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
+
+        .tka-bagian-card {
+            background: white; border-radius: var(--border-radius); margin-bottom: 20px;
+            box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
+        
+        .tka-bagian-header {
+            padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
+            justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
+            border-left: 5px solid var(--primary); transition: var(--transition);
+        }
+        .tka-bagian-card.open .tka-bagian-header { background: rgba(67, 97, 238, 0.1); }
+        .tka-bagian-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
+        body.dark-mode .tka-bagian-title { color: #f8f9fa; }
+        .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; }
+        .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
+        .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
+        
+        .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .tka-bagian-card.open .tka-bagian-content { max-height: 20000px; }
+
+        .tka-question {
+            background: rgba(0,0,0,0.02); border-radius: 10px; padding: 25px;
+            margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
+        
+        .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .tka-q-number { 
+            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; 
+        }
+        .cognitive-badge {
+            background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+        }
+
+        .tka-stimulus {
+            background: white; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--accent);
+            margin-bottom: 15px; font-size: 0.95rem; color: var(--dark); line-height: 1.6;
+        }
+        body.dark-mode .tka-stimulus { background: #1e1e1e; color: #f8f9fa; }
+        .tka-stimulus table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .tka-stimulus table th, .tka-stimulus table td { border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; text-align: left; }
+        body.dark-mode .tka-stimulus table th, body.dark-mode .tka-stimulus table td { border-color: #444; }
+        .tka-stimulus table th { background: rgba(0,0,0,0.03); font-weight: 600; }
+        body.dark-mode .tka-stimulus table th { background: rgba(255,255,255,0.05); }
+        .tka-stimulus ul { padding-left: 20px; margin-top: 8px; }
+        .tka-stimulus li { margin-bottom: 4px; }
+
+        .tka-q-text { font-weight: 600; margin-bottom: 15px; color: var(--dark); line-height: 1.6; font-size: 1rem; }
+        body.dark-mode .tka-q-text { color: #f8f9fa; }
+
+        .tka-options { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .tka-option {
+            padding: 12px 15px; margin: 8px 0; background: white; border-radius: 8px;
+            border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+            display: flex; gap: 10px; font-size: 0.95rem; color: var(--dark);
+        }
+        body.dark-mode .tka-option { background: #1e1e1e; color: #e2e8f0; }
+        .tka-option:hover { border-color: var(--primary); background: rgba(67, 97, 238, 0.05); }
+        .tka-option-letter { font-weight: 700; color: var(--primary); min-width: 20px; }
+
+        .tka-reveal-btn {
+            background: transparent; border: 2px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins', sans-serif; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+        }
+        .tka-reveal-btn:hover { background: var(--primary); color: white; }
+
+        .tka-pembahasan {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0; margin-top: 0; background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px; border: 1px solid var(--success);
+        }
+        .tka-question.revealed .tka-pembahasan { max-height: 800px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
+        
+        .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        body.dark-mode .tka-correct-answer { color: #4ade80; }
+        .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
+        body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
+        .tka-pembahasan-text .calc-step { background: rgba(255,255,255,0.5); padding: 10px 15px; border-radius: 8px; margin: 10px 0; font-family: 'Courier New', monospace; font-size: 0.9rem; border-left: 3px solid var(--success); }
+        body.dark-mode .tka-pembahasan-text .calc-step { background: rgba(0,0,0,0.3); }
+
+        .tka-question.revealed .tka-option.correct { background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600; }
+        .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
+
+        footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .footer-bottom { font-size: 0.9rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--primary); flex-direction: column; padding: 20px; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .tka-question { padding: 15px; margin: 15px; }
+            .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; overflow-x: auto; }
+            .tka-stimulus table { font-size: 0.85rem; }
+            .tka-stimulus table th, .tka-stimulus table td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Latihan TKA Ekonomi</h1>
+        <p class="subtitle">Paket 3: Ekonomi Internasional (Soal 71–100)</p>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Beranda</a> › <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Paket 3: Ekonomi Internasional</span>
+    </div>
+
+    <div class="tka-main">
+        <div class="tka-info-box">
+            <h3><i class="fas fa-info-circle" style="color: var(--warning);"></i> Petunjuk Pengerjaan</h3>
+            <ul>
+                <li>Soal disusun berdasarkan level kognitif <strong>C4 (Menganalisis)</strong> dan <strong>C5 (Mengevaluasi)</strong>.</li>
+                <li>Materi mencakup: Kerja sama ekonomi internasional, ekspor-impor, keunggulan absolut & komparatif, neraca perdagangan, devisa, kurs, serta globalisasi ekonomi.</li>
+                <li>Untuk soal numerasi (perhitungan kurs, neraca perdagangan), perhatikan langkah-langkah pada pembahasan.</li>
+                <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
+            </ul>
+        </div>
+
+        <!-- BAGIAN 8: SOAL 71-80 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 8: Kerja Sama Ekonomi Internasional</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 71–80</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                
+                <!-- Soal 71 -->
+                <div class="tka-question" id="q71">
+                    <div class="tka-q-header"><div class="tka-q-number">71</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia dan Jepang menandatangani perjanjian kerja sama di bidang energi terbarukan. Kerja sama tersebut meliputi transfer teknologi, investasi, dan pelatihan tenaga kerja selama lima tahun.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, bentuk kerja sama ekonomi yang dilakukan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> multilateral</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> regional</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> bilateral</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> global</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> internasional bebas</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q71')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Kerja sama yang dilakukan hanya antara dua negara, yaitu Indonesia dan Jepang, sehingga termasuk kerja sama <strong>bilateral</strong>.</div></div>
+                </div>
+
+                <!-- Soal 72 -->
+                <div class="tka-question" id="q72">
+                    <div class="tka-q-header"><div class="tka-q-number">72</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Negara-negara Asia Tenggara sepakat mengurangi berbagai hambatan perdagangan melalui pembentukan ASEAN Economic Community (AEC). Tujuannya adalah meningkatkan arus barang, jasa, investasi, dan tenaga kerja terampil di kawasan.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kerja sama tersebut termasuk kerja sama bilateral.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> AEC merupakan bentuk kerja sama ekonomi regional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> AEC dibentuk oleh Perserikatan Bangsa-Bangsa.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> AEC hanya berlaku bagi negara maju.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> AEC bertujuan membatasi perdagangan antarnegara.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q72')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">ASEAN Economic Community (AEC) merupakan bentuk kerja sama ekonomi <strong>regional</strong> karena melibatkan negara-negara dalam satu kawasan, yaitu Asia Tenggara.</div></div>
+                </div>
+
+                <!-- Soal 73 -->
+                <div class="tka-question" id="q73">
+                    <div class="tka-q-header"><div class="tka-q-number">73</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br>
+                        <table>
+                            <tr><th>Organisasi</th><th>Kegiatan</th></tr>
+                            <tr><td>X</td><td>Menyelesaikan sengketa perdagangan internasional</td></tr>
+                            <tr><td>Y</td><td>Memberikan pinjaman untuk pembangunan negara berkembang</td></tr>
+                            <tr><td>Z</td><td>Menjaga stabilitas sistem moneter internasional</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Pasangan organisasi yang tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> WTO – World Bank – IMF</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> IMF – WTO – ASEAN</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> OECD – WTO – BRICS</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> World Bank – IMF – APEC</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> ASEAN – WTO – World Bank</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q73')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">
+                        • <strong>WTO</strong> → menyelesaikan sengketa perdagangan internasional.<br>
+                        • <strong>World Bank</strong> → memberikan pembiayaan pembangunan.<br>
+                        • <strong>IMF</strong> → menjaga stabilitas moneter internasional dan membantu negara yang mengalami krisis neraca pembayaran.
+                    </div></div>
+                </div>
+
+                <!-- Soal 74 -->
+                <div class="tka-question" id="q74">
+                    <div class="tka-q-header"><div class="tka-q-number">74</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Dua negara anggota WTO mengalami perselisihan mengenai kebijakan tarif impor baja. Perselisihan tersebut kemudian dibawa ke mekanisme penyelesaian sengketa WTO.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap peran WTO adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> memberikan bantuan pembangunan infrastruktur.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> menjaga stabilitas nilai tukar mata uang.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> memfasilitasi penyelesaian sengketa perdagangan antarnegara anggota.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> memberikan pinjaman kepada bank sentral.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> menetapkan suku bunga internasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q74')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Salah satu fungsi utama WTO adalah menyediakan mekanisme penyelesaian sengketa perdagangan antarnegara anggota melalui <em>Dispute Settlement Body</em>.</div></div>
+                </div>
+
+                <!-- Soal 75 -->
+                <div class="tka-question" id="q75">
+                    <div class="tka-q-header"><div class="tka-q-number">75</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah negara mengalami krisis neraca pembayaran dan cadangan devisanya menurun drastis sehingga mengalami kesulitan membayar utang luar negeri. Negara tersebut kemudian memperoleh bantuan dana disertai program penyesuaian ekonomi.</div>
+                    <div class="tka-q-text">Organisasi yang paling tepat memberikan bantuan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> ASEAN</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> WTO</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> IMF</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> OECD</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> APEC</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q75')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">IMF (International Monetary Fund) memberikan bantuan keuangan kepada negara yang mengalami krisis neraca pembayaran dan masalah stabilitas moneter, biasanya disertai program penyesuaian struktural.</div></div>
+                </div>
+
+                <!-- Soal 76 -->
+                <div class="tka-question" id="q76">
+                    <div class="tka-q-header"><div class="tka-q-number">76</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah memperoleh pinjaman luar negeri untuk membangun bendungan, jalan tol, rumah sakit, dan sistem irigasi guna meningkatkan produktivitas ekonomi.</div>
+                    <div class="tka-q-text">Organisasi internasional yang paling sesuai dengan ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> IMF</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> WTO</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> World Bank</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> ASEAN</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> OECD</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q76')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">World Bank berfokus pada pembiayaan proyek pembangunan jangka panjang, seperti infrastruktur, pendidikan, kesehatan, dan pengentasan kemiskinan.</div></div>
+                </div>
+
+                <!-- Soal 77 -->
+                <div class="tka-question" id="q77">
+                    <div class="tka-q-header"><div class="tka-q-number">77</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Indonesia secara aktif menjadi tuan rumah berbagai pertemuan ekonomi ASEAN untuk membahas peningkatan investasi, konektivitas kawasan, serta penguatan UMKM.</div>
+                    <div class="tka-q-text">Peran Indonesia tersebut menunjukkan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> partisipasi aktif dalam kerja sama ekonomi regional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> kebijakan perdagangan tertutup.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pembatasan investasi asing.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> penghentian perdagangan internasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kerja sama bilateral dengan satu negara.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q77')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Keaktifan Indonesia dalam forum ASEAN menunjukkan peran aktif dalam memperkuat kerja sama ekonomi di tingkat <strong>regional</strong>.</div></div>
+                </div>
+
+                <!-- Soal 78 -->
+                <div class="tka-question" id="q78">
+                    <div class="tka-q-header"><div class="tka-q-number">78</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Setelah bergabung dalam suatu organisasi ekonomi regional, ekspor produk manufaktur Indonesia meningkat, investasi asing bertambah, dan peluang kerja semakin luas.</div>
+                    <div class="tka-q-text">Manfaat utama kerja sama ekonomi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> menurunkan produktivitas nasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> mempersempit pasar internasional.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> memperluas akses pasar serta meningkatkan investasi dan kesempatan kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> mengurangi kegiatan ekspor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> meningkatkan hambatan perdagangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q78')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Kerja sama ekonomi internasional dapat memperluas akses pasar, meningkatkan investasi, mempercepat transfer teknologi, dan menciptakan lapangan kerja.</div></div>
+                </div>
+
+                <!-- Soal 79 -->
+                <div class="tka-question" id="q79">
+                    <div class="tka-q-header"><div class="tka-q-number">79</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemberlakuan pasar bebas menyebabkan produk impor lebih mudah masuk ke Indonesia. Beberapa industri kecil mengalami kesulitan bersaing karena kualitas produk dan efisiensi produksi masih rendah.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kerja sama ekonomi hanya memberikan dampak positif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pasar bebas tidak memengaruhi industri dalam negeri.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> peningkatan daya saing menjadi syarat penting agar industri domestik mampu memanfaatkan kerja sama ekonomi internasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> seluruh produk lokal akan hilang dari pasar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pemerintah harus menghentikan seluruh perdagangan internasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q79')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Pasar bebas meningkatkan persaingan. Oleh karena itu, industri domestik harus meningkatkan kualitas, efisiensi, dan inovasi agar mampu bersaing dengan produk impor.</div></div>
+                </div>
+
+                <!-- Soal 80 -->
+                <div class="tka-question" id="q80">
+                    <div class="tka-q-header"><div class="tka-q-number">80</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia menjadi anggota ASEAN, APEC, WTO, IMF, World Bank, dan BRICS. Setiap organisasi memiliki tujuan yang berbeda, mulai dari mendorong perdagangan bebas, menjaga stabilitas keuangan internasional, hingga memperkuat kerja sama pembangunan dan investasi.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh organisasi internasional memiliki fungsi yang sama.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Indonesia bergabung dalam berbagai organisasi internasional untuk memperkuat posisi ekonomi nasional melalui kerja sama di berbagai bidang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> seluruh organisasi tersebut hanya membahas perdagangan barang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> IMF bertugas menyelesaikan sengketa perdagangan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> WTO memberikan pinjaman pembangunan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q80')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Setiap organisasi internasional memiliki fokus yang berbeda:
+                        <br>• ASEAN → kerja sama regional Asia Tenggara.
+                        <br>• APEC → kerja sama ekonomi Asia Pasifik.
+                        <br>• WTO → perdagangan internasional.
+                        <br>• IMF → stabilitas moneter.
+                        <br>• World Bank → pembangunan.
+                        <br>• BRICS → kerja sama ekonomi negara berkembang.
+                        <br>Keikutsertaan Indonesia bertujuan memperkuat posisi ekonomi nasional melalui berbagai bentuk kerja sama internasional.
+                    </div></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BAGIAN 9: SOAL 81-90 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 9: Ekspor-Impor, Kurs, Devisa, dan Hambatan Perdagangan</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 81–90</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+
+                <!-- Soal 81 -->
+                <div class="tka-question" id="q81">
+                    <div class="tka-q-header"><div class="tka-q-number">81</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pada tahun 2026, ekspor produk kelapa sawit Indonesia meningkat karena permintaan dari beberapa negara Asia dan Eropa bertambah. Di sisi lain, impor mesin industri juga meningkat untuk mendukung pembangunan sektor manufaktur.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> ekspor dan impor selalu merugikan perekonomian.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> ekspor menghasilkan devisa, sedangkan impor barang modal dapat meningkatkan kapasitas produksi nasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> impor hanya menyebabkan pengangguran.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> ekspor mengurangi pendapatan nasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> impor selalu menurunkan pertumbuhan ekonomi.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q81')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Ekspor menghasilkan devisa bagi negara, sedangkan impor barang modal seperti mesin industri dapat meningkatkan kapasitas produksi dan produktivitas nasional.</div></div>
+                </div>
+
+                <!-- Soal 82 -->
+                <div class="tka-question" id="q82">
+                    <div class="tka-q-header"><div class="tka-q-number">82</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Indonesia mengekspor kopi ke Jepang, sedangkan Jepang mengekspor kendaraan bermotor ke Indonesia. Kedua negara memiliki perbedaan kondisi alam, teknologi, dan sumber daya.</div>
+                    <div class="tka-q-text">Faktor utama yang mendorong terjadinya perdagangan internasional pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> persamaan sumber daya alam.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> perbedaan potensi sumber daya dan kemampuan produksi antarnegara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> kesamaan tingkat pendapatan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kesamaan mata uang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> tidak adanya kebutuhan masyarakat.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q82')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Perdagangan internasional terjadi karena adanya perbedaan sumber daya alam, teknologi, iklim, biaya produksi, dan kemampuan menghasilkan barang di setiap negara.</div></div>
+                </div>
+
+                <!-- Soal 83 -->
+                <div class="tka-question" id="q83">
+                    <div class="tka-q-header"><div class="tka-q-number">83</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br>
+                        <table>
+                            <tr><th>Negara</th><th>Produksi Beras/Hari</th><th>Produksi Jagung/Hari</th></tr>
+                            <tr><td>A</td><td>120 ton</td><td>40 ton</td></tr>
+                            <tr><td>B</td><td>80 ton</td><td>60 ton</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Menurut teori keunggulan absolut Adam Smith, kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Negara A memiliki keunggulan absolut pada beras, sedangkan Negara B pada jagung.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Negara A memiliki keunggulan absolut pada semua komoditas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Negara B memiliki keunggulan absolut pada beras.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Kedua negara tidak dapat melakukan perdagangan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Keunggulan absolut ditentukan oleh jumlah penduduk.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q83')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Menurut teori keunggulan absolut Adam Smith, negara yang mampu menghasilkan suatu barang dengan produktivitas lebih tinggi memiliki keunggulan absolut pada barang tersebut.
+                        <div class="calc-step">• Beras → Negara A (120 > 80) ✓<br>• Jagung → Negara B (60 > 40) ✓</div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 84 -->
+                <div class="tka-question" id="q84">
+                    <div class="tka-q-header"><div class="tka-q-number">84</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Negara X mampu memproduksi kain dan gandum lebih banyak dibandingkan Negara Y. Namun, biaya peluang memproduksi kain di Negara X lebih rendah daripada memproduksi gandum.</div>
+                    <div class="tka-q-text">Berdasarkan teori David Ricardo, kebijakan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Negara X memproduksi seluruh kebutuhan sendiri.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Negara X mengkhususkan diri pada produksi kain dan melakukan perdagangan dengan Negara Y.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Negara X menghentikan perdagangan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Negara Y mengimpor semua barang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kedua negara tidak memperoleh manfaat dari perdagangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q84')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Menurut teori keunggulan komparatif David Ricardo, suatu negara sebaiknya mengkhususkan diri pada barang yang memiliki <strong>biaya peluang lebih rendah</strong>, kemudian melakukan perdagangan untuk memperoleh manfaat bersama.</div></div>
+                </div>
+
+                <!-- Soal 85 -->
+                <div class="tka-question" id="q85">
+                    <div class="tka-q-header"><div class="tka-q-number">85</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <table>
+                            <tr><th>Tahun</th><th>Nilai Ekspor</th><th>Nilai Impor</th></tr>
+                            <tr><td>2026</td><td>US$250 miliar</td><td>US$220 miliar</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, kondisi neraca perdagangan Indonesia adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> defisit sebesar US$30 miliar.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> surplus sebesar US$30 miliar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> seimbang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> defisit sebesar US$220 miliar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> surplus sebesar US$250 miliar.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q85')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Neraca perdagangan = Ekspor − Impor
+                        <div class="calc-step">= US$250 miliar − US$220 miliar<br>= US$30 miliar (surplus)</div>
+                        Karena ekspor lebih besar dari impor, neraca perdagangan mengalami <strong>surplus</strong>.
+                    </div></div>
+                </div>
+
+                <!-- Soal 86 -->
+                <div class="tka-question" id="q86">
+                    <div class="tka-q-header"><div class="tka-q-number">86</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah berupaya meningkatkan ekspor produk manufaktur, pariwisata, dan jasa digital agar penerimaan devisa negara semakin besar.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> devisa hanya diperoleh dari pinjaman luar negeri.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> peningkatan ekspor dan penerimaan wisatawan asing dapat menambah cadangan devisa negara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> devisa tidak memengaruhi perekonomian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> devisa hanya digunakan untuk membayar gaji pegawai.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> devisa berasal dari pajak daerah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q86')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Devisa diperoleh dari berbagai sumber, seperti ekspor barang dan jasa, pariwisata internasional, investasi asing, serta remitansi tenaga kerja Indonesia di luar negeri.</div></div>
+                </div>
+
+                <!-- Soal 87 -->
+                <div class="tka-question" id="q87">
+                    <div class="tka-q-header"><div class="tka-q-number">87</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah negara menetapkan tarif impor yang tinggi terhadap produk baja dari luar negeri untuk melindungi industri baja domestik.</div>
+                    <div class="tka-q-text">Tujuan utama kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatkan jumlah impor.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> melindungi produsen dalam negeri dari persaingan produk impor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> mengurangi penerimaan negara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> meningkatkan ekspor negara lain.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> menghilangkan industri nasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q87')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Tarif impor merupakan hambatan perdagangan yang bertujuan melindungi industri dalam negeri dari persaingan barang impor sekaligus dapat meningkatkan penerimaan negara.</div></div>
+                </div>
+
+                <!-- Soal 88 -->
+                <div class="tka-question" id="q88">
+                    <div class="tka-q-header"><div class="tka-q-number">88</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Negara A menjual produk baja ke luar negeri dengan harga lebih rendah daripada harga yang berlaku di pasar domestiknya sehingga produsen di negara tujuan mengalami kerugian.</div>
+                    <div class="tka-q-text">Praktik perdagangan tersebut disebut ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> subsidi ekspor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> tarif.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> kuota.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">D.</span> dumping.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> embargo.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q88')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: D</div><div class="tka-pembahasan-text"><strong>Dumping</strong> adalah praktik menjual barang di pasar luar negeri dengan harga lebih rendah daripada harga di pasar domestik atau bahkan di bawah biaya produksi untuk menguasai pasar.</div></div>
+                </div>
+
+                <!-- Soal 89 -->
+                <div class="tka-question" id="q89">
+                    <div class="tka-q-header"><div class="tka-q-number">89</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Kurs jual Bank = Rp16.450/US$</li>
+                            <li>Kurs beli Bank = Rp16.250/US$</li>
+                        </ul>
+                        Pak Rudi akan membeli US$2.000 untuk membayar biaya kuliah anaknya di luar negeri.
+                    </div>
+                    <div class="tka-q-text">Jumlah rupiah yang harus dibayarkan Pak Rudi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp32.500.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Rp32.900.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp33.100.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp33.250.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp32.250.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q89')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Karena Pak Rudi <strong>membeli dolar</strong> dari bank, digunakan <strong>kurs jual bank</strong> (harga saat bank menjual dolar kepada nasabah).
+                        <div class="calc-step">US$2.000 × Rp16.450 = <strong>Rp32.900.000</strong></div>
+                        <em>Tips: "Kurs jual" = harga saat bank MENJUAL valuta asing. "Kurs beli" = harga saat bank MEMBELI valuta asing.</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 90 -->
+                <div class="tka-question" id="q90">
+                    <div class="tka-q-header"><div class="tka-q-number">90</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Nilai tukar rupiah melemah dari Rp15.500 per US$ menjadi Rp16.300 per US$. Akibatnya, harga bahan baku impor meningkat sehingga biaya produksi beberapa industri ikut naik.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pelemahan rupiah selalu menguntungkan seluruh pelaku ekonomi.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pelemahan rupiah dapat meningkatkan biaya produksi bagi industri yang bergantung pada bahan baku impor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pelemahan rupiah menyebabkan impor menjadi lebih murah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pelemahan rupiah tidak memengaruhi perdagangan internasional.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pelemahan rupiah mengurangi harga barang impor.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q90')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pelemahan rupiah menyebabkan barang impor menjadi lebih mahal. Industri yang bergantung pada bahan baku impor akan mengalami kenaikan biaya produksi sehingga dapat memengaruhi harga jual dan daya saing.</div></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BAGIAN 10: SOAL 91-100 -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 10: Globalisasi, Perang Dagang, dan Literasi Ekonomi Internasional</div>
+                    <div class="tka-bagian-meta"><span><i class="fas fa-list-ol"></i> Soal 91–100</span><span class="cognitive-badge">C4 - C5</span></div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+
+                <!-- Soal 91 -->
+                <div class="tka-question" id="q91">
+                    <div class="tka-q-header"><div class="tka-q-number">91</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Perusahaan elektronik asal Korea Selatan membangun pabrik di Indonesia. Selain menyerap tenaga kerja lokal, perusahaan tersebut juga membawa teknologi produksi yang lebih modern sehingga kualitas produk dalam negeri meningkat.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap dampak globalisasi ekonomi pada ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> globalisasi hanya menguntungkan negara maju.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> investasi asing dapat meningkatkan transfer teknologi dan kualitas sumber daya manusia.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> globalisasi menyebabkan seluruh industri lokal tutup.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> investasi asing selalu menurunkan kesempatan kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> globalisasi menghilangkan perdagangan internasional.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q91')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Investasi asing merupakan salah satu bentuk globalisasi ekonomi yang dapat meningkatkan transfer teknologi, produktivitas, dan kualitas sumber daya manusia melalui pelatihan dan penggunaan teknologi modern.</div></div>
+                </div>
+
+                <!-- Soal 92 -->
+                <div class="tka-question" id="q92">
+                    <div class="tka-q-header"><div class="tka-q-number">92</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Negara A menaikkan tarif impor terhadap produk baja dari Negara B. Sebagai balasan, Negara B juga menaikkan tarif terhadap berbagai produk pertanian dari Negara A. Akibatnya volume perdagangan kedua negara mengalami penurunan.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> perang dagang dapat mengurangi perdagangan internasional dan menghambat pertumbuhan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> perang dagang selalu meningkatkan ekspor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> perang dagang menguntungkan seluruh negara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> tarif tidak memengaruhi perdagangan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> perang dagang meningkatkan efisiensi pasar dunia.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q92')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Perang dagang yang ditandai saling menaikkan tarif impor dapat menurunkan volume perdagangan internasional, mengganggu rantai pasok global, dan menghambat pertumbuhan ekonomi.</div></div>
+                </div>
+
+                <!-- Soal 93 -->
+                <div class="tka-question" id="q93">
+                    <div class="tka-q-header"><div class="tka-q-number">93</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Nilai tukar rupiah melemah dari Rp15.600 menjadi Rp16.500 per US$. Sebagian besar bahan baku industri tekstil masih diimpor dari luar negeri.</div>
+                    <div class="tka-q-text">Dampak yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya produksi industri tekstil menurun.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> harga bahan baku impor menjadi lebih mahal sehingga biaya produksi meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> ekspor Indonesia menurun secara otomatis.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga barang impor menjadi lebih murah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> inflasi pasti menurun.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q93')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Pelemahan nilai tukar rupiah menyebabkan barang dan bahan baku impor menjadi lebih mahal sehingga biaya produksi industri yang bergantung pada impor meningkat.</div></div>
+                </div>
+
+                <!-- Soal 94 -->
+                <div class="tka-question" id="q94">
+                    <div class="tka-q-header"><div class="tka-q-number">94</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah mengenakan tarif impor yang lebih tinggi terhadap produk tekstil dari luar negeri untuk melindungi industri tekstil nasional.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> tarif impor dapat meningkatkan daya saing industri domestik, tetapi berpotensi menaikkan harga bagi konsumen.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> tarif impor menyebabkan impor meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> tarif impor menurunkan penerimaan negara.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> tarif impor menghilangkan persaingan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> tarif impor tidak memengaruhi harga barang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q94')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Tarif impor bertujuan melindungi industri dalam negeri dari persaingan barang impor. Namun, tarif juga dapat meningkatkan harga barang bagi konsumen karena harga barang impor menjadi lebih mahal.</div></div>
+                </div>
+
+                <!-- Soal 95 -->
+                <div class="tka-question" id="q95">
+                    <div class="tka-q-header"><div class="tka-q-number">95</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <table>
+                            <tr><th>Tahun</th><th>Ekspor (US$ Miliar)</th><th>Impor (US$ Miliar)</th></tr>
+                            <tr><td>2025</td><td>285</td><td>250</td></tr>
+                            <tr><td>2026</td><td>300</td><td>290</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> neraca perdagangan mengalami defisit pada kedua tahun.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> surplus perdagangan tahun 2025 lebih besar dibandingkan tahun 2026.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> surplus perdagangan tahun 2026 lebih besar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> impor selalu lebih besar daripada ekspor.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> tidak terjadi perubahan perdagangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q95')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Surplus perdagangan:
+                        <div class="calc-step">• Tahun 2025 = 285 − 250 = US$35 miliar<br>• Tahun 2026 = 300 − 290 = US$10 miliar</div>
+                        Dengan demikian, surplus perdagangan tahun 2025 (US$35 miliar) <strong>lebih besar</strong> dibandingkan tahun 2026 (US$10 miliar).
+                    </div></div>
+                </div>
+
+                <!-- Soal 96 -->
+                <div class="tka-question" id="q96">
+                    <div class="tka-q-header"><div class="tka-q-number">96</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>Pada tahun tertentu diketahui:
+                        <ul>
+                            <li>Ekspor = US$340 miliar</li>
+                            <li>Impor = US$315 miliar</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, neraca perdagangan negara tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Defisit US$25 miliar</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Surplus US$25 miliar</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Surplus US$55 miliar</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Defisit US$55 miliar</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Seimbang</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q96')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Neraca perdagangan = Ekspor − Impor
+                        <div class="calc-step">= US$340 miliar − US$315 miliar<br>= US$25 miliar (surplus)</div>
+                        Karena ekspor lebih besar daripada impor, neraca perdagangan mengalami <strong>surplus US$25 miliar</strong>.
+                    </div></div>
+                </div>
+
+                <!-- Soal 97 -->
+                <div class="tka-question" id="q97">
+                    <div class="tka-q-header"><div class="tka-q-number">97</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah terus mendorong hilirisasi nikel sehingga sebagian besar hasil tambang diolah terlebih dahulu di dalam negeri sebelum diekspor.</div>
+                    <div class="tka-q-text">Tujuan utama kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> mengurangi nilai ekspor Indonesia.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> meningkatkan nilai tambah produk ekspor dan memperbesar devisa.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> mengurangi kesempatan kerja.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> meningkatkan impor barang jadi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> menghentikan investasi asing.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q97')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Hilirisasi bertujuan meningkatkan nilai tambah produk sebelum diekspor, sehingga menghasilkan devisa lebih besar, memperluas lapangan kerja, dan meningkatkan daya saing ekspor Indonesia.</div></div>
+                </div>
+
+                <!-- Soal 98 -->
+                <div class="tka-question" id="q98">
+                    <div class="tka-q-header"><div class="tka-q-number">98</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Produk UMKM Indonesia kini dapat dipasarkan melalui platform digital hingga ke berbagai negara. Namun, produk luar negeri juga semakin mudah masuk ke pasar Indonesia.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> globalisasi hanya memberikan dampak negatif.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> globalisasi membuka peluang pasar yang lebih luas, tetapi juga meningkatkan persaingan bagi pelaku usaha domestik.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> perdagangan internasional menjadi tidak diperlukan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> seluruh UMKM pasti mengalami kerugian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> produk impor tidak memengaruhi pasar dalam negeri.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q98')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Globalisasi ekonomi membuka peluang ekspor melalui platform digital, tetapi sekaligus meningkatkan persaingan dengan produk asing. Pelaku usaha perlu meningkatkan kualitas, inovasi, dan efisiensi.</div></div>
+                </div>
+
+                <!-- Soal 99 -->
+                <div class="tka-question" id="q99">
+                    <div class="tka-q-header"><div class="tka-q-number">99</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>Kurs Bank:
+                        <ul>
+                            <li>Kurs jual = Rp16.600/US$</li>
+                            <li>Kurs beli = Rp16.450/US$</li>
+                        </ul>
+                        Seorang eksportir menerima pembayaran sebesar US$8.000 dari pembeli di luar negeri dan akan menukarkan seluruh dolar tersebut ke bank.
+                    </div>
+                    <div class="tka-q-text">Jumlah rupiah yang diterima eksportir adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp132.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp132.400.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp132.800.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp133.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">E.</span> Rp131.600.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q99')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: E</div><div class="tka-pembahasan-text">Karena eksportir <strong>menjual dolar</strong> kepada bank, digunakan <strong>kurs beli bank</strong> (harga saat bank membeli dolar dari nasabah).
+                        <div class="calc-step">US$8.000 × Rp16.450 = <strong>Rp131.600.000</strong></div>
+                        <em>Catatan: Opsi E pada soal asli tertulis Rp132.600.000 (terdapat kesalahan ketik). Jawaban yang benar secara perhitungan adalah Rp131.600.000, sehingga opsi E telah disesuaikan.</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 100 -->
+                <div class="tka-question" id="q100">
+                    <div class="tka-q-header"><div class="tka-q-number">100</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Dalam beberapa tahun terakhir, Indonesia meningkatkan ekspor produk hilirisasi, memperluas pasar melalui berbagai perjanjian perdagangan internasional, menjaga stabilitas nilai tukar rupiah, serta memperbaiki kualitas produk nasional agar mampu bersaing di pasar global.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap strategi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> strategi tersebut hanya bertujuan meningkatkan impor.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> strategi tersebut merupakan upaya meningkatkan daya saing nasional melalui perdagangan internasional yang berkelanjutan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> perdagangan internasional hanya bergantung pada kurs.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> ekspor tidak memengaruhi pertumbuhan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kualitas produk tidak memengaruhi daya saing ekspor.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q100')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Strategi hilirisasi, perluasan pasar ekspor, stabilitas kurs, dan peningkatan kualitas produk merupakan kebijakan yang saling melengkapi untuk meningkatkan daya saing Indonesia dalam perdagangan internasional.</div></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
+        <div class="footer-bottom">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleBagian(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        function togglePembahasan(questionId) {
+            const questionCard = document.getElementById(questionId);
+            const isRevealed = questionCard.classList.contains('revealed');
+            
+            if (isRevealed) {
+                questionCard.classList.remove('revealed');
+            } else {
+                questionCard.classList.add('revealed');
+                setTimeout(() => {
+                    questionCard.querySelector('.tka-pembahasan').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
