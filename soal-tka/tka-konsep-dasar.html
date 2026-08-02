@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
-         crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
 
     <style>
-        /* ===== CSS DASAR (Sama dengan template utama) ===== */
+        /* ===== CSS DASAR ===== */
         :root {
             --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
             --light: #f8f9fa; --dark: #212529; --success: #4ade80;
@@ -35,7 +34,7 @@
         }
         body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
 
-        /* NAVBAR & HEADER (Disingkat untuk fokus ke konten TKA) */
+        /* NAVBAR & HEADER */
         .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
         .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
@@ -101,7 +100,7 @@
         .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
 
         .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-        .tka-bagian-card.open .tka-bagian-content { max-height: 15000px; /* Cukup besar untuk menampung 10 soal */ }
+        .tka-bagian-card.open .tka-bagian-content { max-height: 15000px; }
 
         /* KARTU SOAL INDIVIDU */
         .tka-question {
@@ -165,7 +164,6 @@
         .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
         body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
 
-        /* State ketika jawaban terungkap */
         .tka-question.revealed .tka-option.correct {
             background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600;
         }
@@ -192,12 +190,12 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <a href="../index.html" class="navbar-brand">
-            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring">
             <span>SMAN 1 Cluring</span>
         </a>
         <div style="display: flex; align-items: center; gap: 15px;">
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
-            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">🌙</button>
+            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">☰</button>
         </div>
         <ul class="nav-links">
             <li><a href="../index.html">Beranda</a></li>
@@ -232,7 +230,6 @@
         <!-- ===== UNIT IKLAN ===== -->
         <div class="tka-ad-container">
             <div class="tka-ad-label">— Iklan —</div>
-            <!-- tka-konsep-dasar.html -->
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-1234355696976048"
@@ -877,6 +874,9 @@
         <p>© 2025 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
         <div class="footer-bottom">
             <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+            <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">
+                <i class="fas fa-robot"></i> Script ini disusun, dirapikan, dan dioptimalkan dengan bantuan <strong>Qwen</strong>
+            </p>
         </div>
     </footer>
 
