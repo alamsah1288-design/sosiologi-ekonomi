@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
+    <title>Latihan TKA Ekonomi: Konsep Dasar — SMAN 1 Cluring</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== CSS DASAR (Sama dengan template utama) ===== */
+        :root {
+            --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+            --light: #f8f9fa; --dark: #212529; --success: #4ade80;
+            --warning: #fbbf24; --danger: #f87171; --gray: #6c757d;
+            --border-radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        .dark-mode {
+            --light: #1a1a1a; --dark: #f8f9fa; --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark); line-height: 1.6; padding-bottom: 80px; transition: background 0.4s, color 0.4s;
+        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
+
+        /* NAVBAR & HEADER (Disingkat untuk fokus ke konten TKA) */
+        .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+        .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
+        .theme-toggle { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.1); }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        header { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 3rem 1rem 2rem; text-align: center; }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; font-size: 1rem; }
+        .breadcrumb { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        /* ===== LAYOUT KHUSUS TKA ===== */
+        .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        
+        .tka-info-box {
+            background: white; border-radius: var(--border-radius); padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
+        }
+        body.dark-mode .tka-info-box { background: #2d2d2d; }
+        .tka-info-box h3 { color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        body.dark-mode .tka-info-box h3 { color: #f8f9fa; }
+        .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
+        .tka-info-box li { margin-bottom: 6px; }
+
+        /* ACCORDION BAGIAN */
+        .tka-bagian-card {
+            background: white; border-radius: var(--border-radius); margin-bottom: 20px;
+            box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
+        
+        .tka-bagian-header {
+            padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
+            justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
+            border-left: 5px solid var(--primary); transition: var(--transition);
+        }
+        .tka-bagian-card.open .tka-bagian-header { background: rgba(67, 97, 238, 0.1); }
+        .tka-bagian-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
+        body.dark-mode .tka-bagian-title { color: #f8f9fa; }
+        .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; }
+        .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
+        .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
+        
+        .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .tka-bagian-card.open .tka-bagian-content { max-height: 15000px; /* Cukup besar untuk menampung 10 soal */ }
+
+        /* KARTU SOAL INDIVIDU */
+        .tka-question {
+            background: rgba(0,0,0,0.02); border-radius: 10px; padding: 25px;
+            margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
+        
+        .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .tka-q-number { 
+            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; 
+        }
+        .cognitive-badge {
+            background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+        }
+
+        .tka-stimulus {
+            background: white; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--accent);
+            margin-bottom: 15px; font-size: 0.95rem; color: var(--dark); line-height: 1.6;
+        }
+        body.dark-mode .tka-stimulus { background: #1e1e1e; color: #f8f9fa; }
+        .tka-stimulus table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .tka-stimulus table th, .tka-stimulus table td { border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; text-align: left; }
+        body.dark-mode .tka-stimulus table th, body.dark-mode .tka-stimulus table td { border-color: #444; }
+        .tka-stimulus table th { background: rgba(0,0,0,0.03); font-weight: 600; }
+        body.dark-mode .tka-stimulus table th { background: rgba(255,255,255,0.05); }
+
+        .tka-q-text { font-weight: 600; margin-bottom: 15px; color: var(--dark); line-height: 1.6; font-size: 1rem; }
+        body.dark-mode .tka-q-text { color: #f8f9fa; }
+
+        .tka-options { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .tka-option {
+            padding: 12px 15px; margin: 8px 0; background: white; border-radius: 8px;
+            border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+            display: flex; gap: 10px; font-size: 0.95rem; color: var(--dark);
+        }
+        body.dark-mode .tka-option { background: #1e1e1e; color: #e2e8f0; }
+        .tka-option:hover { border-color: var(--primary); background: rgba(67, 97, 238, 0.05); }
+        .tka-option-letter { font-weight: 700; color: var(--primary); min-width: 20px; }
+
+        /* TOMBOL & PEMBAHASAN */
+        .tka-reveal-btn {
+            background: transparent; border: 2px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins', sans-serif; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+        }
+        .tka-reveal-btn:hover { background: var(--primary); color: white; }
+
+        .tka-pembahasan {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0; margin-top: 0; background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px; border: 1px solid var(--success);
+        }
+        .tka-question.revealed .tka-pembahasan { max-height: 500px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
+        
+        .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        body.dark-mode .tka-correct-answer { color: #4ade80; }
+        .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
+        body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
+
+        /* State ketika jawaban terungkap */
+        .tka-question.revealed .tka-option.correct { 
+            background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600; 
+        }
+        .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
+
+        /* FOOTER */
+        footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .footer-bottom { font-size: 0.9rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 20px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--primary); flex-direction: column; padding: 20px; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .tka-question { padding: 15px; margin: 15px; }
+            .tka-bagian-content { padding: 0; }
+            .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Latihan TKA Ekonomi</h1>
+        <p class="subtitle">Materi: Konsep Dasar Ekonomi (Kelangkaan, Biaya Peluang, Kegiatan Ekonomi)</p>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="../index.html">Beranda</a> › <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Latihan TKA Konsep Dasar</span>
+    </div>
+
+    <!-- KONTEN UTAMA TKA -->
+    <div class="tka-main">
+        
+        <div class="tka-info-box">
+            <h3><i class="fas fa-info-circle" style="color: var(--warning);"></i> Petunjuk Pengerjaan</h3>
+            <ul>
+                <li>Soal disusun berdasarkan level kognitif <strong>C4 (Menganalisis)</strong> dan <strong>C5 (Mengevaluasi)</strong>.</li>
+                <li>Baca stimulus (ilustrasi/tabel) dengan saksama sebelum menjawab.</li>
+                <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
+                <li>Gunakan mode gelap (🌙) di pojok kanan atas jika mata Anda cepat lelah.</li>
+            </ul>
+        </div>
+
+        <!-- ================= BAGIAN 1: SOAL 1-10 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 1: Konsep Dasar Ekonomi</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 1–10</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                
+                <!-- Soal 1 -->
+                <div class="tka-question" id="q1">
+                    <div class="tka-q-header"><div class="tka-q-number">1</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Kabupaten X mengalami musim kemarau yang berkepanjangan. Debit sungai menurun hingga 70%, sementara kebutuhan air masyarakat untuk rumah tangga, pertanian, dan industri tetap tinggi. Pemerintah daerah menerapkan jadwal distribusi air bersih secara bergilir agar seluruh masyarakat tetap memperoleh pasokan.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, penyebab utama munculnya masalah ekonomi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan masyarakat semakin sedikit</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> sumber daya yang tersedia terbatas sedangkan kebutuhan tidak terbatas</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga air mengalami kenaikan</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> masyarakat tidak mampu membeli air</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> distribusi air dilakukan pemerintah</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q1')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Masalah ekonomi berakar pada kelangkaan, yaitu kondisi di mana sumber daya (air) terbatas, sedangkan kebutuhan manusia (rumah tangga, pertanian, industri) tidak terbatas. Distribusi bergilir adalah upaya mengatasi masalah ini.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="tka-question" id="q2">
+                    <div class="tka-q-header"><div class="tka-q-number">2</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut.</strong><br>
+                        <table><tr><th>Barang</th><th>Kondisi</th></tr>
+                        <tr><td>Beras</td><td>Produksi menurun akibat banjir</td></tr>
+                        <tr><td>Minyak goreng</td><td>Permintaan meningkat menjelang hari raya</td></tr>
+                        <tr><td>Sayuran</td><td>Produksi normal</td></tr>
+                        <tr><td>Air mineral</td><td>Pasokan mencukupi</td></tr></table>
+                    </div>
+                    <div class="tka-q-text">Barang yang mengalami kelangkaan karena keterbatasan jumlah dibandingkan kebutuhan ditunjukkan oleh nomor ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Beras saja</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Minyak goreng saja</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Beras dan minyak goreng</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Sayuran dan air mineral</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Semua barang</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q2')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Kelangkaan terjadi ketika jumlah barang < ketersediaan. Beras mengalami penurunan produksi (supply turun), dan minyak goreng mengalami lonjakan permintaan (demand naik). Keduanya menciptakan kondisi kelangkaan relatif.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="tka-question" id="q3">
+                    <div class="tka-q-header"><div class="tka-q-number">3</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia memiliki sumber daya alam yang melimpah. Namun, beberapa daerah masih mengalami kekurangan listrik karena jaringan distribusi belum menjangkau seluruh wilayah.</div>
+                    <div class="tka-q-text">Masalah ekonomi pada ilustrasi tersebut menunjukkan bahwa kelangkaan dapat terjadi akibat ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> sumber daya alam tidak tersedia</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> distribusi sumber daya belum optimal</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> masyarakat tidak membutuhkan listrik</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga listrik terlalu murah</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> pemerintah menghentikan pembangunan</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q3')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Kelangkaan tidak selalu berarti sumber daya tidak ada sama sekali. Dalam kasus ini, SDA melimpah, tetapi <strong>ketidakmerataan distribusi</strong> menyebabkan sebagian daerah mengalami kelangkaan listrik.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="tka-question" id="q4">
+                    <div class="tka-q-header"><div class="tka-q-number">4</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Rina memiliki uang Rp500.000. Ia berencana membeli buku ekonomi untuk persiapan TKA seharga Rp450.000. Namun, pada saat yang sama ia mendapat kesempatan mengikuti seminar nasional ekonomi dengan biaya Rp500.000 yang hanya diselenggarakan satu kali dalam setahun. Setelah mempertimbangkan manfaatnya, Rina memilih mengikuti seminar tersebut.</div>
+                    <div class="tka-q-text">Biaya peluang (opportunity cost) dari keputusan Rina adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> uang Rp500.000 yang telah dibayarkan</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> buku ekonomi yang tidak jadi dibeli</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> biaya transportasi menuju seminar</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> keuntungan penyelenggara seminar</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> waktu belajar di rumah</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q4')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Biaya peluang adalah <strong>manfaat terbaik yang dikorbankan</strong> karena memilih alternatif lain. Karena Rina memilih seminar, maka buku ekonomi yang tidak jadi dibeli adalah biaya peluangnya.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="tka-question" id="q5">
+                    <div class="tka-q-header"><div class="tka-q-number">5</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-q-text">Seorang petani memiliki lahan yang dapat ditanami padi atau jagung. Setelah memperkirakan keuntungan, petani memilih menanam padi. Konsep biaya peluang pada kasus tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh biaya produksi padi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> keuntungan dari hasil panen padi</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> keuntungan yang seharusnya diperoleh jika menanam jagung</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga jual padi di pasar</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya pembelian pupuk</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q5')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Alternatif terbaik yang dikorbankan adalah keuntungan yang <em>seharusnya</em> didapat dari pilihan yang tidak diambil (menanam jagung).</div>
+                    </div>
+                </div>
+
+                <!-- Soal 6 -->
+                <div class="tka-question" id="q6">
+                    <div class="tka-q-header"><div class="tka-q-number">6</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut.</strong><br>Setelah lulus SMA, Andi diterima bekerja dengan gaji Rp4.000.000 per bulan. Pada saat yang sama ia diterima di perguruan tinggi negeri tanpa biaya kuliah. Andi memilih melanjutkan kuliah.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, biaya peluang terbesar yang ditanggung Andi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya membeli buku kuliah</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> uang transportasi ke kampus</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> pendapatan yang seharusnya diperoleh apabila langsung bekerja</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya hidup selama kuliah</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> uang saku dari orang tua</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q6')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Biaya peluang tidak selalu berupa pengeluaran uang, tetapi bisa berupa <strong>pendapatan yang hilang</strong> (forgone income) karena memilih berkuliah alih-alih bekerja.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="tka-question" id="q7">
+                    <div class="tka-q-header"><div class="tka-q-number">7</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Seorang pengusaha membeli biji kopi dari petani, kemudian mengolahnya menjadi kopi bubuk dan menjualnya kepada supermarket. Selanjutnya supermarket menjual kopi tersebut kepada masyarakat.</div>
+                    <div class="tka-q-text">Urutan kegiatan ekonomi yang tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> konsumsi–distribusi–produksi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> distribusi–produksi–konsumsi</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> produksi–distribusi–konsumsi</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> konsumsi–produksi–distribusi</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> produksi–konsumsi–distribusi</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q7')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Mengolah biji kopi = <strong>Produksi</strong>. Menjual ke supermarket = <strong>Distribusi</strong>. Masyarakat membeli dan memakai = <strong>Konsumsi</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="tka-question" id="q8">
+                    <div class="tka-q-header"><div class="tka-q-number">8</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan aktivitas berikut.</strong><br>1. Perusahaan membuat sepatu.<br>2. Agen menyalurkan sepatu ke toko.<br>3. Masyarakat membeli dan memakai sepatu.<br>4. Supplier menyediakan bahan baku kulit.</div>
+                    <div class="tka-q-text">Aktivitas yang termasuk fungsi distribusi ditunjukkan oleh ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> 1 dan 2</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> 2 saja</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> 3 saja</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> 4 saja</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> 2 dan 4</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q8')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Fungsi distribusi adalah kegiatan menyalurkan barang dari produsen ke konsumen. Nomor 2 (agen menyalurkan) adalah murni distribusi. Nomor 1 produksi, 3 konsumsi, 4 juga bagian dari rantai pasok produksi.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="tka-question" id="q9">
+                    <div class="tka-q-header"><div class="tka-q-number">9</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut.</strong><br>Sebuah perusahaan makanan memproduksi biskuit dalam jumlah besar, tetapi produk tersebut sulit ditemukan di berbagai daerah karena sistem distribusinya kurang baik.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, dampak ekonomi yang paling mungkin terjadi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan masyarakat terpenuhi secara merata</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> harga biskuit menjadi sama di semua daerah</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> terjadi ketidakseimbangan antara produksi dan konsumsi akibat distribusi yang tidak efektif</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> jumlah produksi otomatis meningkat</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> perusahaan memperoleh keuntungan lebih besar</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q9')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Distribusi yang buruk memutus mata rantai antara produsen dan konsumen, menyebabkan barang menumpuk di gudang (produksi tinggi) tetapi tidak tersedia di pasar (konsumsi terhambat).</div>
+                    </div>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="tka-question" id="q10">
+                    <div class="tka-q-header"><div class="tka-q-number">10</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah daerah membangun embung untuk menampung air hujan. Saat musim kemarau, air tersebut dimanfaatkan untuk kebutuhan rumah tangga dan irigasi pertanian sehingga masyarakat tetap dapat melakukan aktivitas ekonomi.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> pembangunan embung bertujuan menghilangkan seluruh kebutuhan manusia</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pembangunan embung merupakan upaya mengatasi kelangkaan sumber daya sehingga kegiatan ekonomi dapat berlangsung</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> embung dibangun agar harga air meningkat</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kegiatan ekonomi hanya terjadi pada sektor pertanian</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kelangkaan tidak akan pernah terjadi lagi setelah embung dibangun</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q10')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Embung adalah solusi atas masalah kelangkaan air di musim kemarau. Dengan tersedianya air, aktivitas ekonomi (rumah tangga & pertanian) dapat terus berjalan.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= BAGIAN 2: SOAL 11-20 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 2: Konsep Dasar Ekonomi (Lanjutan)</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 11–20</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                
+                <!-- Soal 11 -->
+                <div class="tka-question" id="q11">
+                    <div class="tka-q-header"><div class="tka-q-number">11</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Badan Pangan Nasional melaporkan bahwa produksi cabai menurun akibat cuaca ekstrem. Di sisi lain, permintaan cabai dari rumah tangga, restoran, dan industri makanan tetap tinggi sehingga harga cabai meningkat tajam di berbagai daerah.</div>
+                    <div class="tka-q-text">Berdasarkan ilustrasi tersebut, kenaikan harga cabai terutama disebabkan oleh ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatnya daya beli masyarakat</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> ketidakseimbangan antara jumlah barang yang tersedia dan kebutuhan masyarakat</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> pemerintah menaikkan pajak cabai</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya distribusi semakin rendah</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> masyarakat membeli cabai secara berlebihan</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q11')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Kenaikan harga adalah mekanisme pasar merespons kelangkaan. Produksi turun (supply ↓) sementara permintaan tinggi (demand ↑), menciptakan ketidakseimbangan yang mendorong harga naik.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="tka-question" id="q12">
+                    <div class="tka-q-header"><div class="tka-q-number">12</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah desa memiliki sumber mata air yang terbatas. Pemerintah desa menetapkan aturan bahwa penggunaan air untuk mencuci kendaraan dibatasi agar kebutuhan air minum dan sanitasi masyarakat tetap terpenuhi.</div>
+                    <div class="tka-q-text">Kebijakan tersebut menunjukkan penerapan prinsip ekonomi karena ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh kebutuhan masyarakat dapat dipenuhi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> pemerintah menghilangkan kelangkaan air</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> sumber daya yang terbatas dialokasikan untuk kebutuhan yang lebih prioritas</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> masyarakat bebas menggunakan air sesuai keinginan</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> harga air menjadi lebih murah</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q12')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Prinsip ekonomi dalam konteks kelangkaan adalah membuat <strong>skala prioritas</strong>. Air minum dan sanitasi adalah kebutuhan primer yang harus diprioritaskan di atas mencuci kendaraan (kebutuhan sekunder/tersier).</div>
+                    </div>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="tka-question" id="q13">
+                    <div class="tka-q-header"><div class="tka-q-number">13</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sinta memiliki waktu luang pada hari Sabtu. Ia harus memilih antara mengikuti pelatihan kewirausahaan, bekerja paruh waktu, atau mengikuti kegiatan organisasi sekolah. Sinta memutuskan mengikuti pelatihan kewirausahaan.</div>
+                    <div class="tka-q-text">Biaya peluang dari keputusan Sinta adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya transportasi menuju pelatihan</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> uang pendaftaran pelatihan</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> manfaat terbaik yang dikorbankan karena tidak bekerja paruh waktu</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> waktu istirahat setelah pelatihan</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> konsumsi selama mengikuti pelatihan</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q13')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Dari alternatif yang ditinggalkan (bekerja paruh waktu atau organisasi), <strong>bekerja paruh waktu</strong> umumnya dianggap sebagai alternatif dengan nilai/manfaat terbaik (berupa pendapatan) yang dikorbankan.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="tka-question" id="q14">
+                    <div class="tka-q-header"><div class="tka-q-number">14</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah daerah memiliki anggaran Rp50 miliar. Dana tersebut dapat digunakan untuk membangun rumah sakit baru atau memperbaiki jaringan irigasi. Setelah mempertimbangkan kondisi masyarakat, pemerintah memilih membangun rumah sakit.</div>
+                    <div class="tka-q-text">Analisis yang tepat mengenai biaya peluang dari keputusan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya pembangunan rumah sakit</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> seluruh anggaran yang digunakan</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> manfaat pembangunan jaringan irigasi yang harus dikorbankan</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya operasional rumah sakit</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> keuntungan kontraktor pembangunan</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q14')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Biaya peluang adalah alternatif terbaik yang tidak dipilih. Karena pemerintah memilih rumah sakit, maka <strong>manfaat dari jaringan irigasi</strong> yang tidak dibangun adalah biaya peluangnya.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="tka-question" id="q15">
+                    <div class="tka-q-header"><div class="tka-q-number">15</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan aktivitas berikut!</strong><br>1. Nelayan menangkap ikan di laut.<br>2. Pedagang besar membeli ikan dari nelayan.<br>3. Ikan dijual ke pasar tradisional.<br>4. Konsumen membeli ikan untuk dikonsumsi.</div>
+                    <div class="tka-q-text">Tahapan kegiatan ekonomi yang benar adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Produksi → Distribusi → Konsumsi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Distribusi → Produksi → Konsumsi</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Produksi → Konsumsi → Distribusi</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Konsumsi → Produksi → Distribusi</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Distribusi → Konsumsi → Produksi</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q15')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
+                        <div class="tka-pembahasan-text">Menangkap ikan = <strong>Produksi</strong>. Menjual ke pasar = <strong>Distribusi</strong>. Konsumen membeli = <strong>Konsumsi</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 16 -->
+                <div class="tka-question" id="q16">
+                    <div class="tka-q-header"><div class="tka-q-number">16</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan roti menggunakan mesin modern sehingga mampu meningkatkan jumlah produksi. Namun, perusahaan belum menambah jumlah armada distribusi sehingga banyak roti terlambat sampai ke toko.</div>
+                    <div class="tka-q-text">Permasalahan utama pada ilustrasi tersebut terdapat pada kegiatan ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> produksi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> konsumsi</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> distribusi</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> investasi</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> spesialisasi tenaga kerja</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q16')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Kata kunci "belum menambah jumlah armada distribusi" dan "terlambat sampai ke toko" secara eksplisit menunjukkan hambatan pada fungsi <strong>distribusi</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 17 -->
+                <div class="tka-question" id="q17">
+                    <div class="tka-q-header"><div class="tka-q-number">17</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah daerah memiliki lahan kosong yang dapat dimanfaatkan sebagai taman kota atau pusat olahraga. Setelah melakukan kajian kebutuhan masyarakat, pemerintah memilih membangun pusat olahraga.</div>
+                    <div class="tka-q-text">Keputusan tersebut menunjukkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kelangkaan tidak terjadi karena lahan masih tersedia</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> setiap pilihan selalu memiliki biaya peluang berupa alternatif terbaik yang tidak dipilih</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> seluruh kebutuhan masyarakat telah terpenuhi</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> pembangunan hanya mempertimbangkan keuntungan ekonomi</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya peluang selalu berupa uang</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q17')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Karena lahan (sumber daya) terbatas dan hanya bisa dipakai untuk satu fungsi, memilih pusat olahraga berarti mengorbankan manfaat taman kota. Ini adalah definisi murni dari <strong>biaya peluang</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 18 -->
+                <div class="tka-question" id="q18">
+                    <div class="tka-q-header"><div class="tka-q-number">18</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Seiring meningkatnya penggunaan kendaraan listrik, permintaan nikel sebagai bahan baku baterai meningkat pesat. Pemerintah berupaya mengelola cadangan nikel agar dapat dimanfaatkan secara berkelanjutan dan memberikan nilai tambah bagi perekonomian nasional.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan bacaan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kelangkaan hanya terjadi pada barang konsumsi</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> sumber daya alam harus dikelola secara efisien karena jumlahnya terbatas dibandingkan kebutuhan</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> permintaan tidak memengaruhi pemanfaatan sumber daya</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> seluruh sumber daya dapat diperbarui dalam waktu singkat</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kegiatan ekonomi tidak dipengaruhi oleh sumber daya alam</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q18')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Nikel adalah sumber daya yang tidak dapat diperbarui (terbatas). Peningkatan permintaan mengharuskan pengelolaan yang <strong>efisien dan berkelanjutan</strong> untuk menghindari kelangkaan di masa depan.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 19 -->
+                <div class="tka-question" id="q19">
+                    <div class="tka-q-header"><div class="tka-q-number">19</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan konveksi menerima pesanan seragam sekolah dan seragam kantor pada waktu yang bersamaan. Kapasitas produksi yang dimiliki hanya mampu menyelesaikan salah satu pesanan terlebih dahulu sehingga manajemen harus menentukan prioritas produksi.</div>
+                    <div class="tka-q-text">Permasalahan ekonomi pada ilustrasi tersebut terutama disebabkan oleh ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan konsumen menurun</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kapasitas produksi terbatas dibandingkan banyaknya kebutuhan yang harus dipenuhi</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga bahan baku terlalu murah</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> distribusi barang terlalu cepat</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> perusahaan memiliki keuntungan yang besar</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q19')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Ini adalah contoh kelangkaan dari sisi produsen. <strong>Kapasitas produksi (sumber daya) terbatas</strong>, sementara pesanan (kebutuhan) melebihi kapasitas tersebut, memaksa adanya pemilihan prioritas.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 20 -->
+                <div class="tka-question" id="q20">
+                    <div class="tka-q-header"><div class="tka-q-number">20</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah koperasi sekolah memiliki dana terbatas. Pengurus harus memilih antara membeli komputer baru untuk administrasi atau menambah stok alat tulis yang sering habis. Setelah melakukan analisis kebutuhan siswa dan guru, koperasi memutuskan membeli komputer terlebih dahulu.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap keputusan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga diperlukan penentuan skala prioritas dengan mempertimbangkan biaya peluang</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> koperasi dapat memenuhi seluruh kebutuhan tanpa keterbatasan dana</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> biaya peluang selalu berupa biaya administrasi pembelian komputer</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> kegiatan ekonomi tidak memerlukan pengambilan keputusan</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> kelangkaan hanya terjadi pada koperasi sekolah</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q20')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
+                        <div class="tka-pembahasan-text">Dana terbatas = <strong>kelangkaan</strong>. Memilih komputer = <strong>skala prioritas</strong>. Mengorbankan stok alat tulis = <strong>biaya peluang</strong>. Ini adalah integrasi sempurna dari tiga konsep dasar ekonomi.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= BAGIAN 3: SOAL 21-30 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 3: Integrasi Konsep Dasar Ekonomi</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 21–30</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                
+                <!-- Soal 21 -->
+                <div class="tka-question" id="q21">
+                    <div class="tka-q-header"><div class="tka-q-number">21</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah Kota A berencana membangun taman kota di lahan kosong yang tersedia. Namun, pada saat yang sama masyarakat mengusulkan agar lahan tersebut dijadikan rumah sakit karena jumlah fasilitas kesehatan masih terbatas. Pemerintah akhirnya memilih membangun rumah sakit.</div>
+                    <div class="tka-q-text">Analisis yang tepat terhadap ilustrasi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kelangkaan terjadi karena masyarakat tidak memiliki lahan.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pemerintah tidak dapat memenuhi seluruh kebutuhan sekaligus karena sumber daya terbatas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rumah sakit dibangun agar harga tanah meningkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Semua kebutuhan masyarakat telah terpenuhi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada sektor kesehatan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q21')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Lahan dan anggaran adalah sumber daya yang terbatas. Pemerintah tidak bisa membangun taman dan rumah sakit secara bersamaan di lahan yang sama, sehingga harus memilih kebutuhan yang paling mendesak (prinsip kelangkaan).</div>
+                    </div>
+                </div>
+
+                <!-- Soal 22 -->
+                <div class="tka-question" id="q22">
+                    <div class="tka-q-header"><div class="tka-q-number">22</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah daerah wisata mengalami peningkatan jumlah wisatawan hingga dua kali lipat saat musim liburan. Akibatnya, pasokan air bersih tidak mencukupi sehingga pemerintah daerah menerapkan pembatasan penggunaan air di hotel dan tempat wisata.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kebijakan tersebut menghilangkan kelangkaan air.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pembatasan dilakukan agar seluruh masyarakat memperoleh akses terhadap sumber daya yang terbatas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan terjadi karena wisatawan tidak membayar pajak.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Pemerintah dapat menambah sumber air dalam waktu singkat.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Air merupakan barang bebas sehingga tidak perlu diatur.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q22')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Pembatasan (kuota) adalah alat alokasi sumber daya langka. Tujuannya bukan menghilangkan kelangkaan (karena air tetap terbatas), tetapi memastikan <strong>distribusi yang adil</strong> agar kebutuhan dasar masyarakat tetap terpenuhi.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 23 -->
+                <div class="tka-question" id="q23">
+                    <div class="tka-q-header"><div class="tka-q-number">23</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Dimas memiliki modal Rp30.000.000. Ia dapat membuka usaha fotokopi atau usaha percetakan digital. Setelah melakukan analisis pasar, Dimas memilih membuka usaha percetakan digital.</div>
+                    <div class="tka-q-text">Biaya peluang dari keputusan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Modal usaha percetakan digital.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Pendapatan dari usaha percetakan digital.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Keuntungan yang mungkin diperoleh apabila membuka usaha fotokopi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Biaya promosi usaha.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Harga mesin percetakan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q23')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
+                        <div class="tka-pembahasan-text">Alternatif yang dikorbankan adalah usaha fotokopi. Maka, <strong>keuntungan yang seharusnya didapat</strong> dari usaha fotokopi tersebut adalah biaya peluangnya.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 24 -->
+                <div class="tka-question" id="q24">
+                    <div class="tka-q-header"><div class="tka-q-number">24</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Seorang siswa memperoleh beasiswa luar negeri, tetapi harus meninggalkan pekerjaannya yang memberikan penghasilan tetap setiap bulan. Setelah mempertimbangkan manfaat jangka panjang, ia memilih menerima beasiswa.</div>
+                    <div class="tka-q-text">Keputusan tersebut menunjukkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya peluang selalu berupa uang tunai.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> biaya peluang merupakan manfaat terbaik yang dikorbankan karena memilih alternatif lain.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> tidak ada biaya peluang jika memperoleh beasiswa.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> setiap keputusan hanya menghasilkan keuntungan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya peluang tidak berkaitan dengan pengambilan keputusan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q24')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Meskipun mendapat beasiswa (gratis), ia tetap menanggung biaya peluang berupa <strong>penghasilan tetap</strong> yang harus dikorbankan. Ini membuktikan biaya peluang adalah tentang manfaat yang hilang, bukan sekadar pengeluaran uang.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 25 -->
+                <div class="tka-question" id="q25">
+                    <div class="tka-q-header"><div class="tka-q-number">25</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan kegiatan berikut!</strong><br>1. Petani memanen padi.<br>2. Bulog membeli gabah dari petani.<br>3. Beras dijual di pasar.<br>4. Rumah tangga membeli beras untuk dikonsumsi.</div>
+                    <div class="tka-q-text">Hubungan antarkegiatan ekonomi tersebut menunjukkan bahwa ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> produksi → distribusi → konsumsi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> distribusi → konsumsi → produksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> konsumsi → produksi → distribusi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> produksi → konsumsi → distribusi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> distribusi → produksi → konsumsi.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q25')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
+                        <div class="tka-pembahasan-text">Memanen (1) = Produksi. Membeli dan menjual ke pasar (2 & 3) = Distribusi. Rumah tangga membeli (4) = Konsumsi.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 26 -->
+                <div class="tka-question" id="q26">
+                    <div class="tka-q-header"><div class="tka-q-number">26</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah UMKM berhasil meningkatkan kualitas produknya sehingga permintaan konsumen meningkat. Namun, produk sering terlambat sampai ke pelanggan karena jasa pengiriman tidak mampu memenuhi jumlah pesanan.</div>
+                    <div class="tka-q-text">Masalah utama yang dihadapi UMKM tersebut terdapat pada aspek ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> produksi.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> distribusi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> konsumsi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> investasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> spesialisasi.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q26')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Kualitas produk baik (produksi aman), permintaan tinggi (konsumsi aman), tetapi "jasa pengiriman tidak mampu" secara eksplisit menunjuk pada kegagalan atau hambatan di aspek <strong>distribusi</strong>.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 27 -->
+                <div class="tka-question" id="q27">
+                    <div class="tka-q-header"><div class="tka-q-number">27</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah memiliki anggaran terbatas untuk membangun jalan baru, sekolah, atau bendungan. Setelah melalui kajian, pemerintah memilih membangun bendungan karena dinilai memberikan manfaat paling besar bagi sektor pertanian dan penyediaan air bersih.</div>
+                    <div class="tka-q-text">Analisis yang tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Tidak terjadi biaya peluang karena pemerintah memiliki anggaran.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pemerintah menerapkan skala prioritas akibat adanya kelangkaan sumber daya.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Seluruh kebutuhan masyarakat telah dipenuhi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Bendungan dibangun tanpa mempertimbangkan manfaat ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada anggaran pemerintah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q27')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Anggaran terbatas = kelangkaan. Memilih satu dari tiga opsi = <strong>skala prioritas</strong>. Ini adalah respons rasional terhadap kondisi kelangkaan sumber daya.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 28 -->
+                <div class="tka-question" id="q28">
+                    <div class="tka-q-header"><div class="tka-q-number">28</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia memiliki cadangan hutan yang luas. Namun, eksploitasi yang berlebihan tanpa upaya reboisasi dapat mengurangi ketersediaan kayu pada masa mendatang sehingga mengganggu kegiatan industri dan keseimbangan lingkungan.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan bacaan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Semua sumber daya alam dapat dimanfaatkan tanpa batas.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pengelolaan sumber daya harus mempertimbangkan keberlanjutan karena sumber daya bersifat terbatas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan hanya dipengaruhi oleh jumlah penduduk.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Kegiatan ekonomi tidak memengaruhi lingkungan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Hutan merupakan barang bebas.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q28')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Eksploitasi berlebihan akan menguras sumber daya yang sebenarnya terbatas. Oleh karena itu, prinsip <strong>keberlanjutan (sustainability)</strong> adalah kunci agar kegiatan ekonomi tidak terhenti di masa depan.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 29 -->
+                <div class="tka-question" id="q29">
+                    <div class="tka-q-header"><div class="tka-q-number">29</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan tekstil memiliki kapasitas produksi 10.000 potong pakaian per bulan. Pada bulan tertentu perusahaan menerima pesanan sebanyak 15.000 potong dari berbagai pelanggan sehingga harus menentukan pesanan mana yang diprioritaskan.</div>
+                    <div class="tka-q-text">Masalah ekonomi yang paling tepat menggambarkan kondisi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan lebih kecil daripada sumber daya.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kelangkaan timbul karena keterbatasan kapasitas produksi dibandingkan kebutuhan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> distribusi menjadi penyebab utama.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> perusahaan tidak melakukan produksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> konsumen tidak memiliki daya beli.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q29')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
+                        <div class="tka-pembahasan-text">Ini adalah kelangkaan dari sisi penawaran (supply). Kapasitas (10.000) < Pesanan (15.000). Keterbatasan kapasitas produksi inilah yang menciptakan masalah kelangkaan relatif.</div>
+                    </div>
+                </div>
+
+                <!-- Soal 30 -->
+                <div class="tka-question" id="q30">
+                    <div class="tka-q-header"><div class="tka-q-number">30</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah koperasi siswa memiliki dana terbatas untuk mengembangkan usahanya. Pengurus harus memilih antara membeli mesin kasir digital atau menambah persediaan makanan ringan. Setelah melakukan survei, diputuskan membeli mesin kasir digital karena dianggap dapat meningkatkan efisiensi pelayanan dan pencatatan transaksi.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat terhadap keputusan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga koperasi harus menetapkan skala prioritas dengan mempertimbangkan biaya peluang demi mendukung kegiatan ekonomi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Seluruh kebutuhan koperasi dapat dipenuhi sekaligus.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan hanya terjadi pada koperasi sekolah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Biaya peluang selalu berupa harga mesin kasir.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kegiatan ekonomi tidak memerlukan pengambilan keputusan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q30')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan">
+                        <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
+                        <div class="tka-pembahasan-text">Soal ini mengintegrasikan tiga konsep: <strong>Kelangkaan</strong> (dana terbatas), <strong>Biaya Peluang</strong> (stok makanan ringan dikorbankan), dan <strong>Kegiatan Ekonomi</strong> (mesin kasir untuk efisiensi operasional). Pilihan A merangkum semuanya dengan paling komprehensif.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
+        <div class="footer-bottom">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle Accordion Bagian
+        function toggleBagian(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        // Toggle Pembahasan Soal
+        function togglePembahasan(questionId) {
+            const questionCard = document.getElementById(questionId);
+            const isRevealed = questionCard.classList.contains('revealed');
+            
+            if (isRevealed) {
+                questionCard.classList.remove('revealed');
+            } else {
+                questionCard.classList.add('revealed');
+                // Opsional: Scroll halus ke pembahasan agar terlihat di layar HP
+                setTimeout(() => {
+                    questionCard.querySelector('.tka-pembahasan').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Cek preferensi dark mode saat load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
