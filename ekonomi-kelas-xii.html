@@ -31,7 +31,6 @@
             --transition: all 0.3s ease;
             --header-height: 70px;
             
-            /* Warna khusus per semester */
             --semester1: #4361ee;
             --semester1-light: #e0e7ff;
             --semester2: #f59e0b;
@@ -344,6 +343,161 @@
         }
         body.dark-mode .ads-wrapper { background: #2d2d2d; border-color: rgba(255,255,255,0.08); }
 
+        /* ===== PUSAT LATIHAN TKA (CARD GATEWAY) ===== */
+        .tka-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .tka-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .tka-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        body.dark-mode .tka-header h2 { color: #f8f9fa; }
+        .tka-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 10px auto 0;
+            font-size: 0.95rem;
+        }
+
+        .tka-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tka-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 0;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-card { background: #2d2d2d; color: #f8f9fa; border-color: #444; }
+
+        .tka-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .tka-card-banner {
+            height: 8px;
+            width: 100%;
+        }
+        .tka-card.paket1 .tka-card-banner { background: linear-gradient(90deg, #4361ee, #4cc9f0); }
+        .tka-card.paket2 .tka-card-banner { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .tka-card.paket3 .tka-card-banner { background: linear-gradient(90deg, #10b981, #34d399); }
+        .tka-card.paket4 .tka-card-banner { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .tka-card-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tka-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        body.dark-mode .tka-badge { background: rgba(255,255,255,0.1); color: var(--accent); }
+
+        .tka-icon-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .tka-card.paket1 .tka-icon-large { background: linear-gradient(135deg, #4361ee, #3f37c9); }
+        .tka-card.paket2 .tka-icon-large { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .tka-card.paket3 .tka-icon-large { background: linear-gradient(135deg, #10b981, #059669); }
+        .tka-card.paket4 .tka-icon-large { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+        .tka-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        body.dark-mode .tka-card h3 { color: #f8f9fa; }
+
+        .tka-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .tka-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .tka-features li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tka-features li i { color: var(--success); font-size: 0.8rem; }
+
+        .tka-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            transition: var(--transition);
+        }
+        .tka-card.paket1 .tka-btn { background: var(--primary); }
+        .tka-card.paket2 .tka-btn { background: var(--semester2); }
+        .tka-card.paket3 .tka-btn { background: var(--success); color: #064e3b; }
+        .tka-card.paket4 .tka-btn { background: #8b5cf6; }
+
+        .tka-card:hover .tka-btn { filter: brightness(1.1); }
+        .tka-card:hover .tka-btn i { transform: translateX(4px); transition: transform 0.3s ease; }
+
         /* TAB SWITCHER */
         .tab-container { max-width: 1200px; margin: 30px auto 20px; padding: 0 20px; }
         .tab-switcher {
@@ -563,6 +717,7 @@
             .stat-info p { font-size: 0.75rem; }
             .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; }
             .quick-action-container { grid-template-columns: 1fr; }
+            .tka-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -634,9 +789,8 @@
         </div>
     </div>
 
-    <!-- ===== KARTU AKSI CEPAT & ARTIKEL (DIPERBARUI) ===== -->
+    <!-- ===== KARTU AKSI CEPAT & ARTIKEL ===== -->
     <div class="quick-action-container">
-        <!-- Kartu Absensi -->
         <a href="https://forms.gle/J2dkJLCZbJnFCirG8" target="_blank" rel="noopener noreferrer" class="action-card absensi">
             <div class="action-icon-wrapper"><i class="fas fa-clipboard-check"></i></div>
             <div class="action-info">
@@ -646,7 +800,6 @@
             </div>
         </a>
 
-        <!-- Kartu Artikel 1 -->
         <a href="artikel/ksp-berjatuhan-studi-kasus-akuntansi.html" class="action-card artikel-1">
             <div class="action-icon-wrapper"><i class="fas fa-building-columns"></i></div>
             <div class="action-info">
@@ -656,7 +809,6 @@
             </div>
         </a>
 
-        <!-- Kartu Artikel 2 -->
         <a href="artikel/motor-listrik-vs-bensin-penyusutan.html" class="action-card artikel-2">
             <div class="action-icon-wrapper"><i class="fas fa-motorcycle"></i></div>
             <div class="action-info">
@@ -666,7 +818,6 @@
             </div>
         </a>
 
-        <!-- Kartu Artikel 3 -->
         <a href="artikel/rumah-vs-motor-penyusutan.html" class="action-card artikel-3">
             <div class="action-icon-wrapper"><i class="fas fa-house-chimney"></i></div>
             <div class="action-info">
@@ -682,6 +833,80 @@
         <div class="ads-wrapper">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="1173523004" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <!-- ===== PUSAT LATIHAN TKA (CARD GATEWAY) ===== -->
+    <div class="tka-section">
+        <div class="tka-header">
+            <h2><i class="fas fa-dumbbell" style="color: var(--primary);"></i> Pusat Latihan & Pembahasan TKA</h2>
+            <p>Pilih paket soal berdasarkan materi. Setiap paket berisi soal level HOTS (C4-C5) lengkap dengan stimulus data dan pembahasan mendalam.</p>
+        </div>
+
+        <div class="tka-grid">
+            <!-- Paket 1 -->
+            <a href="tka-konsep-dasar.html" class="tka-card paket1">
+                <div class="tka-card-banner"></div>
+                <div class="tka-badge"><i class="fas fa-file-alt"></i> 30 Soal</div>
+                <div class="tka-card-body">
+                    <div class="tka-icon-large"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Paket 1: Konsep Dasar</h3>
+                    <p>Masalah ekonomi, sistem ekonomi, biaya peluang, dan Kurva Kemungkinan Produksi (PPF).</p>
+                    <ul class="tka-features">
+                        <li><i class="fas fa-check-circle"></i> Level Kognitif C4 - C5</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Bagian (Soal 1-30)</li>
+                    </ul>
+                    <div class="tka-btn">Mulai Latihan <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Paket 2 -->
+            <a href="tka-mikro-makro.html" class="tka-card paket2">
+                <div class="tka-card-banner"></div>
+                <div class="tka-badge"><i class="fas fa-file-alt"></i> 40 Soal</div>
+                <div class="tka-card-body">
+                    <div class="tka-icon-large"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Paket 2: Mikro & Makro</h3>
+                    <p>Permintaan-penawaran, Pendapatan Nasional, Inflasi, Kebijakan Moneter & Fiskal, serta Badan Usaha.</p>
+                    <ul class="tka-features">
+                        <li><i class="fas fa-check-circle"></i> Level Kognitif C4 - C5</li>
+                        <li><i class="fas fa-check-circle"></i> 7 Bagian (Soal 31-70)</li>
+                    </ul>
+                    <div class="tka-btn">Mulai Latihan <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Paket 3 -->
+            <a href="tka-internasional.html" class="tka-card paket3">
+                <div class="tka-card-banner"></div>
+                <div class="tka-badge"><i class="fas fa-file-alt"></i> 30 Soal</div>
+                <div class="tka-card-body">
+                    <div class="tka-icon-large"><i class="fas fa-globe-asia"></i></div>
+                    <h3>Paket 3: Ekonomi Internasional</h3>
+                    <p>Perdagangan internasional, neraca pembayaran, devisa, kerja sama ekonomi, dan literasi data ekspor-impor.</p>
+                    <ul class="tka-features">
+                        <li><i class="fas fa-check-circle"></i> Level Kognitif C4 - C5</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Bagian (Soal 71-100)</li>
+                    </ul>
+                    <div class="tka-btn">Mulai Latihan <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Paket 4 -->
+            <a href="tka-akuntansi.html" class="tka-card paket4">
+                <div class="tka-card-banner"></div>
+                <div class="tka-badge"><i class="fas fa-file-alt"></i> 30 Soal</div>
+                <div class="tka-card-body">
+                    <div class="tka-icon-large"><i class="fas fa-calculator"></i></div>
+                    <h3>Paket 4: Akuntansi Dasar</h3>
+                    <p>Persamaan dasar akuntansi, siklus akuntansi perusahaan jasa/dagang, dan analisis laporan keuangan.</p>
+                    <ul class="tka-features">
+                        <li><i class="fas fa-check-circle"></i> Level Kognitif C4 - C5</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Bagian (Soal 101-130)</li>
+                    </ul>
+                    <div class="tka-btn">Mulai Latihan <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
         </div>
     </div>
 
