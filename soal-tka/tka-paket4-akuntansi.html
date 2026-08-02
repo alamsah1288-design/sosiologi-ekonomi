@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="B2Xl7pA1qgKvjPvV0wfFDFOIInlxc50-23gne4fm_20" />
+    <title>Latihan TKA Ekonomi: Akuntansi Keuangan Dasar — SMAN 1 Cluring</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
+            --light: #f8f9fa; --dark: #212529; --success: #4ade80;
+            --warning: #fbbf24; --danger: #f87171; --gray: #6c757d;
+            --border-radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        .dark-mode {
+            --light: #1a1a1a; --dark: #f8f9fa; --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark); line-height: 1.6; padding-bottom: 80px; transition: background 0.4s, color 0.4s;
+        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
+
+        .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
+        .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
+        .theme-toggle { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        header { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 3rem 1rem 2rem; text-align: center; }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .subtitle { font-weight: 300; opacity: 0.9; font-size: 1rem; }
+        .breadcrumb { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .tka-info-box {
+            background: white; border-radius: var(--border-radius); padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
+        }
+        body.dark-mode .tka-info-box { background: #2d2d2d; }
+        .tka-info-box h3 { color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        body.dark-mode .tka-info-box h3 { color: #f8f9fa; }
+        .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
+        .tka-info-box li { margin-bottom: 6px; }
+
+        .tka-bagian-card {
+            background: white; border-radius: var(--border-radius); margin-bottom: 20px;
+            box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
+        
+        .tka-bagian-header {
+            padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
+            justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
+            border-left: 5px solid var(--primary); transition: var(--transition);
+        }
+        .tka-bagian-card.open .tka-bagian-header { background: rgba(67, 97, 238, 0.1); }
+        .tka-bagian-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
+        body.dark-mode .tka-bagian-title { color: #f8f9fa; }
+        .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
+        .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
+        
+        .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+        .tka-bagian-card.open .tka-bagian-content { max-height: 25000px; }
+
+        .tka-question {
+            background: rgba(0,0,0,0.02); border-radius: 10px; padding: 25px;
+            margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
+        }
+        body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
+        
+        .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .tka-q-number { 
+            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; 
+        }
+        .cognitive-badge {
+            background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+        }
+
+        .tka-stimulus {
+            background: white; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--accent);
+            margin-bottom: 15px; font-size: 0.95rem; color: var(--dark); line-height: 1.6;
+        }
+        body.dark-mode .tka-stimulus { background: #1e1e1e; color: #f8f9fa; }
+        .tka-stimulus table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .tka-stimulus table th, .tka-stimulus table td { border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; text-align: left; }
+        body.dark-mode .tka-stimulus table th, body.dark-mode .tka-stimulus table td { border-color: #444; }
+        .tka-stimulus table th { background: rgba(0,0,0,0.03); font-weight: 600; }
+        body.dark-mode .tka-stimulus table th { background: rgba(255,255,255,0.05); }
+        .tka-stimulus ul { padding-left: 20px; margin-top: 8px; }
+        .tka-stimulus li { margin-bottom: 4px; }
+
+        .tka-q-text { font-weight: 600; margin-bottom: 15px; color: var(--dark); line-height: 1.6; font-size: 1rem; }
+        body.dark-mode .tka-q-text { color: #f8f9fa; }
+
+        .tka-options { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .tka-option {
+            padding: 12px 15px; margin: 8px 0; background: white; border-radius: 8px;
+            border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+            display: flex; gap: 10px; font-size: 0.95rem; color: var(--dark);
+        }
+        body.dark-mode .tka-option { background: #1e1e1e; color: #e2e8f0; }
+        .tka-option:hover { border-color: var(--primary); background: rgba(67, 97, 238, 0.05); }
+        .tka-option-letter { font-weight: 700; color: var(--primary); min-width: 20px; }
+
+        .tka-reveal-btn {
+            background: transparent; border: 2px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 50px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins', sans-serif; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+        }
+        .tka-reveal-btn:hover { background: var(--primary); color: white; }
+
+        .tka-pembahasan {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0; margin-top: 0; background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px; border: 1px solid var(--success);
+        }
+        .tka-question.revealed .tka-pembahasan { max-height: 1000px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
+        
+        .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+        body.dark-mode .tka-correct-answer { color: #4ade80; }
+        .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
+        body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
+        
+        /* Kotak perhitungan khusus akuntansi */
+        .tka-pembahasan-text .calc-step { 
+            background: rgba(255,255,255,0.5); padding: 12px 15px; border-radius: 8px; 
+            margin: 10px 0; font-family: 'Courier New', monospace; font-size: 0.9rem; 
+            border-left: 3px solid var(--success); line-height: 1.8;
+        }
+        body.dark-mode .tka-pembahasan-text .calc-step { background: rgba(0,0,0,0.3); }
+        .tka-pembahasan-text .calc-step .result { 
+            color: #166534; font-weight: 700; 
+        }
+        body.dark-mode .tka-pembahasan-text .calc-step .result { color: #4ade80; }
+        
+        /* Kotak persamaan akuntansi */
+        .tka-pembahasan-text .equation {
+            background: rgba(67, 97, 238, 0.08); padding: 10px 15px; border-radius: 8px;
+            margin: 10px 0; font-family: 'Courier New', monospace; font-size: 0.95rem;
+            border-left: 3px solid var(--primary); text-align: center; font-weight: 600;
+        }
+        body.dark-mode .tka-pembahasan-text .equation { background: rgba(67, 97, 238, 0.15); }
+
+        .tka-question.revealed .tka-option.correct { background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600; }
+        .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
+
+        footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .footer-bottom { font-size: 0.9rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--primary); flex-direction: column; padding: 20px; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .tka-question { padding: 15px; margin: 15px; }
+            .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; overflow-x: auto; }
+            .tka-stimulus table { font-size: 0.85rem; }
+            .tka-stimulus table th, .tka-stimulus table td { padding: 6px 8px; }
+            .tka-pembahasan-text .calc-step { font-size: 0.8rem; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Beranda</a></li>
+            <li><a href="../ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1><i class="fas fa-calculator" style="margin-right: 10px;"></i>Latihan TKA Ekonomi</h1>
+        <p class="subtitle">Paket 4: Akuntansi Keuangan Dasar (Soal 101–130)</p>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Beranda</a> › <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Paket 4: Akuntansi Dasar</span>
+    </div>
+
+    <div class="tka-main">
+        <div class="tka-info-box">
+            <h3><i class="fas fa-info-circle" style="color: var(--warning);"></i> Petunjuk Pengerjaan</h3>
+            <ul>
+                <li>Soal disusun berdasarkan level kognitif <strong>C4 (Menganalisis)</strong> dan <strong>C5 (Mengevaluasi)</strong>.</li>
+                <li>Materi mencakup: <strong>Persamaan Dasar Akuntansi</strong>, <strong>Laporan Keuangan</strong> (Laba Rugi, Perubahan Modal, Neraca, Arus Kas, CaLK), serta <strong>Studi Kasus Terpadu</strong>.</li>
+                <li>Untuk soal numerasi, perhatikan langkah-langkah perhitungan pada pembahasan yang ditampilkan dengan format khusus.</li>
+                <li>Ingat rumus dasar: <strong>Aset = Utang + Modal</strong> dan <strong>Modal Akhir = Modal Awal + Laba − Prive</strong>.</li>
+                <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
+            </ul>
+        </div>
+
+        <!-- ================= BAGIAN 11: SOAL 101-110 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 11: Persamaan Dasar Akuntansi</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 101–110</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+                
+                <!-- Soal 101 -->
+                <div class="tka-question" id="q101">
+                    <div class="tka-q-header"><div class="tka-q-number">101</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pada tanggal 1 Januari 2026, Toko Maju menerima investasi pemilik berupa uang tunai sebesar Rp80.000.000.</div>
+                    <div class="tka-q-text">Pengaruh transaksi tersebut terhadap persamaan dasar akuntansi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Aset bertambah Rp80.000.000 dan Utang bertambah Rp80.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Aset bertambah Rp80.000.000 dan Modal bertambah Rp80.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Aset berkurang Rp80.000.000 dan Modal bertambah Rp80.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Aset bertambah Rp80.000.000 dan Pendapatan bertambah Rp80.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Modal berkurang Rp80.000.000 dan Aset bertambah Rp80.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q101')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Investasi pemilik menambah Kas (Aset) dan Modal dengan jumlah yang sama.
+                        <div class="equation">Aset (Kas) ↑ Rp80.000.000 = Modal ↑ Rp80.000.000</div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 102 -->
+                <div class="tka-question" id="q102">
+                    <div class="tka-q-header"><div class="tka-q-number">102</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Perusahaan membeli peralatan kantor seharga Rp25.000.000 secara tunai.</div>
+                    <div class="tka-q-text">Analisis yang tepat terhadap persamaan dasar akuntansi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kas bertambah, Peralatan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Kas berkurang, Modal bertambah.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Kas berkurang, Peralatan bertambah sehingga total aset tetap.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Utang bertambah, Peralatan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kas berkurang, Utang berkurang.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q102')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Terjadi pertukaran antaraset:
+                        <div class="calc-step">Kas ↓ Rp25.000.000<br>Peralatan ↑ Rp25.000.000<br><span class="result">Total Aset = TETAP</span></div>
+                        Transaksi ini hanya mengubah <strong>komposisi aset</strong>, bukan nilai totalnya.
+                    </div></div>
+                </div>
+
+                <!-- Soal 103 -->
+                <div class="tka-question" id="q103">
+                    <div class="tka-q-header"><div class="tka-q-number">103</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>Modal awal perusahaan sebesar Rp120.000.000. Selama bulan Januari terjadi transaksi:
+                        <ul>
+                            <li>Membeli perlengkapan tunai Rp12.000.000.</li>
+                            <li>Membeli kendaraan secara kredit Rp60.000.000.</li>
+                            <li>Membayar utang Rp15.000.000.</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Jumlah utang setelah transaksi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Rp45.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp60.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp75.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp72.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp48.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q103')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Utang timbul saat membeli kendaraan secara kredit, lalu berkurang saat pembayaran.
+                        <div class="calc-step">Utang awal = Rp0<br>+ Pembelian kendaraan kredit = Rp60.000.000<br>− Pembayaran utang = Rp15.000.000<br><span class="result">Utang akhir = Rp45.000.000</span></div>
+                        <em>Catatan: Pembelian perlengkapan tunai tidak memengaruhi utang.</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 104 -->
+                <div class="tka-question" id="q104">
+                    <div class="tka-q-header"><div class="tka-q-number">104</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Perusahaan menerima pendapatan jasa sebesar Rp18.000.000 secara tunai.</div>
+                    <div class="tka-q-text">Pengaruh transaksi tersebut terhadap persamaan dasar akuntansi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Kas bertambah dan Modal bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Kas bertambah dan Utang bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kas bertambah dan Peralatan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal berkurang dan Kas bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kas bertambah dan Piutang bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q104')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pendapatan meningkatkan ekuitas (modal) dan kas bertambah.
+                        <div class="equation">Aset (Kas) ↑ Rp18.000.000 = Modal (Pendapatan) ↑ Rp18.000.000</div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 105 -->
+                <div class="tka-question" id="q105">
+                    <div class="tka-q-header"><div class="tka-q-number">105</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemilik mengambil uang perusahaan sebesar Rp7.000.000 untuk kepentingan pribadi.</div>
+                    <div class="tka-q-text">Dampak transaksi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kas bertambah dan Modal bertambah.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Kas berkurang dan Modal berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kas berkurang dan Utang bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal bertambah dan Utang berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kas bertambah dan Pendapatan bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q105')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Prive (pengambilan pribadi) menyebabkan:
+                        <div class="calc-step">Kas ↓ Rp7.000.000<br>Modal (Prive) ↓ Rp7.000.000</div>
+                        <em>Prive <strong>bukan beban usaha</strong>, melainkan pengurang modal langsung.</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 106 -->
+                <div class="tka-question" id="q106">
+                    <div class="tka-q-header"><div class="tka-q-number">106</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Aset = Rp210.000.000</li>
+                            <li>Utang = Rp80.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Besarnya modal perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp120.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Rp130.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp140.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp150.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp290.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q106')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Persamaan dasar akuntansi:
+                        <div class="equation">Aset = Utang + Modal</div>
+                        <div class="calc-step">Modal = Aset − Utang<br>= Rp210.000.000 − Rp80.000.000<br><span class="result">= Rp130.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 107 -->
+                <div class="tka-question" id="q107">
+                    <div class="tka-q-header"><div class="tka-q-number">107</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan transaksi berikut!</strong>
+                        <ol style="padding-left: 20px; margin-top: 8px;">
+                            <li>Membeli perlengkapan secara kredit Rp8.000.000.</li>
+                            <li>Membayar utang Rp3.000.000.</li>
+                        </ol>
+                    </div>
+                    <div class="tka-q-text">Analisis yang tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Utang akhir menjadi Rp11.000.000.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Utang bertambah Rp5.000.000 dibanding sebelum transaksi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Aset tidak berubah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal bertambah Rp5.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Peralatan bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q107')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Perubahan utang:
+                        <div class="calc-step">Utang bertambah = Rp8.000.000 (transaksi 1)<br>Utang berkurang = Rp3.000.000 (transaksi 2)<br><span class="result">Kenaikan bersih utang = Rp5.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 108 -->
+                <div class="tka-question" id="q108">
+                    <div class="tka-q-header"><div class="tka-q-number">108</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan transaksi berikut!</strong>
+                        <ul>
+                            <li>Modal awal Rp150.000.000</li>
+                            <li>Membeli perlengkapan tunai Rp10.000.000</li>
+                            <li>Menerima pendapatan tunai Rp25.000.000</li>
+                            <li>Membayar beban listrik Rp4.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Besarnya modal akhir adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp161.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Rp171.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp175.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp179.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp181.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q108')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Perhitungan modal akhir:
+                        <div class="calc-step">Modal awal = Rp150.000.000<br>+ Pendapatan = Rp25.000.000<br>− Beban listrik = Rp4.000.000<br><span class="result">Modal akhir = Rp171.000.000</span></div>
+                        <em>Catatan: Pembelian perlengkapan tunai <strong>tidak memengaruhi modal</strong> karena hanya mengubah komposisi aset (Kas → Perlengkapan).</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 109 -->
+                <div class="tka-question" id="q109">
+                    <div class="tka-q-header"><div class="tka-q-number">109</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan tabel berikut!</strong><br>
+                        <table>
+                            <tr><th>Transaksi</th><th>Dampak</th></tr>
+                            <tr><td>Membeli peralatan secara kredit</td><td>?</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Pengaruh transaksi tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Aset bertambah, Utang bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Aset berkurang, Modal bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Utang berkurang, Aset berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal bertambah, Pendapatan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kas bertambah, Utang bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q109')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Membeli peralatan secara kredit menyebabkan:
+                        <div class="equation">Peralatan (Aset) ↑ = Utang ↑</div>
+                        Karena peralatan diterima (aset bertambah) tetapi belum dibayar (utang bertambah).
+                    </div></div>
+                </div>
+
+                <!-- Soal 110 -->
+                <div class="tka-question" id="q110">
+                    <div class="tka-q-header"><div class="tka-q-number">110</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Selama bulan Januari perusahaan melakukan beberapa transaksi:
+                        <ul>
+                            <li>Investasi pemilik Rp200.000.000</li>
+                            <li>Membeli kendaraan tunai Rp80.000.000</li>
+                            <li>Membeli perlengkapan kredit Rp20.000.000</li>
+                            <li>Menerima pendapatan jasa tunai Rp30.000.000</li>
+                            <li>Membayar beban gaji Rp12.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan transaksi tersebut, besarnya modal akhir perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp198.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp206.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp218.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp230.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp250.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q110')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Perhitungan modal akhir:
+                        <div class="calc-step">Modal awal (investasi) = Rp200.000.000<br>+ Pendapatan jasa = Rp30.000.000<br>− Beban gaji = Rp12.000.000<br><span class="result">Modal akhir = Rp218.000.000</span></div>
+                        <em>Catatan penting:</em>
+                        <ul style="padding-left: 20px; margin-top: 8px;">
+                            <li>Pembelian kendaraan tunai → hanya mengubah komposisi aset (Kas → Kendaraan), tidak memengaruhi modal.</li>
+                            <li>Pembelian perlengkapan kredit → menambah aset dan utang, tidak memengaruhi modal.</li>
+                        </ul>
+                    </div></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= BAGIAN 12: SOAL 111-120 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 12: Laporan Keuangan</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 111–120</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+
+                <!-- Soal 111 -->
+                <div class="tka-question" id="q111">
+                    <div class="tka-q-header"><div class="tka-q-number">111</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data keuangan berikut!</strong>
+                        <ul>
+                            <li>Pendapatan jasa : Rp85.000.000</li>
+                            <li>Beban gaji : Rp25.000.000</li>
+                            <li>Beban listrik : Rp4.000.000</li>
+                            <li>Beban penyusutan : Rp6.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Laba bersih perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp44.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp48.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp50.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp54.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp60.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q111')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Laba Bersih = Pendapatan − Total Beban
+                        <div class="calc-step">Total Beban = Rp25.000.000 + Rp4.000.000 + Rp6.000.000 = Rp35.000.000<br>Laba Bersih = Rp85.000.000 − Rp35.000.000<br><span class="result">= Rp50.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 112 -->
+                <div class="tka-question" id="q112">
+                    <div class="tka-q-header"><div class="tka-q-number">112</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Modal awal Rp150.000.000</li>
+                            <li>Laba bersih Rp40.000.000</li>
+                            <li>Prive Rp8.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Besarnya modal akhir adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Rp182.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp188.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp190.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp198.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp202.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q112')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Modal akhir = Modal awal + Laba − Prive
+                        <div class="calc-step">= Rp150.000.000 + Rp40.000.000 − Rp8.000.000<br><span class="result">= Rp182.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 113 -->
+                <div class="tka-question" id="q113">
+                    <div class="tka-q-header"><div class="tka-q-number">113</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <table>
+                            <tr><th>Akun</th><th>Saldo</th></tr>
+                            <tr><td>Kas</td><td>Rp60.000.000</td></tr>
+                            <tr><td>Piutang</td><td>Rp35.000.000</td></tr>
+                            <tr><td>Peralatan</td><td>Rp105.000.000</td></tr>
+                            <tr><td>Utang</td><td>Rp50.000.000</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Besarnya modal perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp140.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp145.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp150.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp155.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp160.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q113')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Langkah 1: Hitung total aset
+                        <div class="calc-step">Total Aset = Rp60.000.000 + Rp35.000.000 + Rp105.000.000<br>= Rp200.000.000</div>
+                        Langkah 2: Hitung modal
+                        <div class="calc-step">Modal = Aset − Utang<br>= Rp200.000.000 − Rp50.000.000<br><span class="result">= Rp150.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 114 -->
+                <div class="tka-question" id="q114">
+                    <div class="tka-q-header"><div class="tka-q-number">114</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Laporan laba rugi menunjukkan laba bersih sebesar Rp75.000.000. Namun, laporan arus kas menunjukkan kas bersih dari aktivitas operasi hanya Rp30.000.000.</div>
+                    <div class="tka-q-text">Analisis yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> perusahaan mengalami kerugian.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> laba bersih selalu sama dengan kas yang diterima.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> adanya transaksi nonkas atau piutang menyebabkan laba lebih besar daripada arus kas operasi.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> laporan keuangan tidak konsisten.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> perusahaan pasti bangkrut.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q114')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Laba bersih disusun dengan <strong>dasar akrual</strong> (dicatat saat terjadi, bukan saat kas diterima), sedangkan laporan arus kas mencatat <strong>penerimaan dan pengeluaran kas riil</strong>. Adanya piutang atau beban nonkas seperti penyusutan dapat menyebabkan laba bersih lebih besar daripada arus kas operasi. Ini adalah hal yang normal dan tidak berarti laporan tidak konsisten.</div></div>
+                </div>
+
+                <!-- Soal 115 -->
+                <div class="tka-question" id="q115">
+                    <div class="tka-q-header"><div class="tka-q-number">115</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Penerimaan kas pelanggan Rp180.000.000</li>
+                            <li>Pembayaran gaji Rp60.000.000</li>
+                            <li>Pembayaran listrik Rp8.000.000</li>
+                            <li>Pembayaran sewa Rp12.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Kas bersih dari aktivitas operasi adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp90.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp95.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp100.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp105.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp110.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q115')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Kas bersih aktivitas operasi:
+                        <div class="calc-step">Total Penerimaan = Rp180.000.000<br>Total Pengeluaran = Rp60.000.000 + Rp8.000.000 + Rp12.000.000 = Rp80.000.000<br>Kas Bersih = Rp180.000.000 − Rp80.000.000<br><span class="result">= Rp100.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 116 -->
+                <div class="tka-question" id="q116">
+                    <div class="tka-q-header"><div class="tka-q-number">116</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Dalam laporan keuangan disebutkan bahwa metode penyusutan aset tetap menggunakan metode garis lurus selama lima tahun.</div>
+                    <div class="tka-q-text">Informasi tersebut disajikan dalam ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> laporan laba rugi</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> laporan perubahan modal</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> laporan arus kas</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">D.</span> catatan atas laporan keuangan</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> neraca</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q116')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: D</div><div class="tka-pembahasan-text">Metode penyusutan merupakan <strong>kebijakan akuntansi</strong> yang dijelaskan secara rinci dalam <strong>Catatan atas Laporan Keuangan (CaLK)</strong>. CaLK berfungsi memberikan informasi tambahan yang tidak dapat disajikan secara rinci di laporan utama.</div></div>
+                </div>
+
+                <!-- Soal 117 -->
+                <div class="tka-question" id="q117">
+                    <div class="tka-q-header"><div class="tka-q-number">117</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Tahun ini laba bersih perusahaan meningkat sebesar 20%, tetapi modal akhir hanya naik sedikit karena pemilik mengambil prive dalam jumlah besar.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> laba bersih tidak memengaruhi modal.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> prive dapat mengurangi modal meskipun perusahaan memperoleh laba.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> modal hanya dipengaruhi utang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> laba selalu sama dengan modal.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> prive merupakan beban usaha.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q117')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Prive adalah pengambilan oleh pemilik untuk kepentingan pribadi sehingga <strong>mengurangi modal</strong>, meskipun perusahaan memperoleh laba.
+                        <div class="equation">Modal Akhir = Modal Awal + Laba − Prive</div>
+                        Jika prive sangat besar, kenaikan modal bisa menjadi kecil bahkan modal bisa turun.
+                    </div></div>
+                </div>
+
+                <!-- Soal 118 -->
+                <div class="tka-question" id="q118">
+                    <div class="tka-q-header"><div class="tka-q-number">118</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <strong>Aset:</strong>
+                        <ul>
+                            <li>Kas Rp45.000.000</li>
+                            <li>Piutang Rp25.000.000</li>
+                            <li>Peralatan Rp130.000.000</li>
+                        </ul>
+                        <strong>Liabilitas:</strong>
+                        <ul>
+                            <li>Utang usaha Rp40.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Modal yang harus disajikan dalam laporan posisi keuangan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp150.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp155.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp160.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp165.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp170.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q118')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Langkah 1: Total aset
+                        <div class="calc-step">= Rp45.000.000 + Rp25.000.000 + Rp130.000.000<br>= Rp200.000.000</div>
+                        Langkah 2: Modal
+                        <div class="calc-step">Modal = Aset − Liabilitas<br>= Rp200.000.000 − Rp40.000.000<br><span class="result">= Rp160.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 119 -->
+                <div class="tka-question" id="q119">
+                    <div class="tka-q-header"><div class="tka-q-number">119</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Modal awal Rp180.000.000</li>
+                            <li>Pendapatan Rp125.000.000</li>
+                            <li>Beban Rp70.000.000</li>
+                            <li>Prive Rp15.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Besarnya modal akhir adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Rp220.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp225.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp230.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp235.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp240.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q119')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Langkah 1: Hitung laba bersih
+                        <div class="calc-step">Laba = Pendapatan − Beban = Rp125.000.000 − Rp70.000.000 = Rp55.000.000</div>
+                        Langkah 2: Hitung modal akhir
+                        <div class="calc-step">Modal akhir = Modal awal + Laba − Prive<br>= Rp180.000.000 + Rp55.000.000 − Rp15.000.000<br><span class="result">= Rp220.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 120 -->
+                <div class="tka-question" id="q120">
+                    <div class="tka-q-header"><div class="tka-q-number">120</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan laporan keuangan sederhana berikut!</strong><br>
+                        <table>
+                            <tr><th>Keterangan</th><th>Jumlah</th></tr>
+                            <tr><td>Total Aset</td><td>Rp350.000.000</td></tr>
+                            <tr><td>Total Liabilitas</td><td>Rp140.000.000</td></tr>
+                            <tr><td>Laba Bersih Tahun Berjalan</td><td>Rp55.000.000</td></tr>
+                            <tr><td>Prive</td><td>Rp20.000.000</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, pernyataan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> ekuitas perusahaan sebesar Rp140.000.000.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> ekuitas perusahaan sebesar Rp210.000.000 dan akan bertambah sebesar laba bersih serta berkurang karena prive.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> laba bersih dicatat sebagai liabilitas.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> prive menambah modal perusahaan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> aset selalu sama dengan laba.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q120')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Perhitungan ekuitas:
+                        <div class="calc-step">Ekuitas = Aset − Liabilitas<br>= Rp350.000.000 − Rp140.000.000<br><span class="result">= Rp210.000.000</span></div>
+                        Ekuitas akan <strong>bertambah</strong> karena laba bersih (Rp55.000.000) dan <strong>berkurang</strong> karena prive (Rp20.000.000), sesuai konsep laporan perubahan modal.
+                    </div></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= BAGIAN 13: SOAL 121-130 ================= -->
+        <div class="tka-bagian-card">
+            <div class="tka-bagian-header" onclick="toggleBagian(this)">
+                <div>
+                    <div class="tka-bagian-title">Bagian 13: Studi Kasus Terpadu Akuntansi</div>
+                    <div class="tka-bagian-meta">
+                        <span><i class="fas fa-list-ol"></i> Soal 121–130</span>
+                        <span class="cognitive-badge">C4 - C5</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down tka-bagian-toggle"></i>
+            </div>
+            <div class="tka-bagian-content">
+
+                <!-- Soal 121 -->
+                <div class="tka-question" id="q121">
+                    <div class="tka-q-header"><div class="tka-q-number">121</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Salon Cantika selama bulan Januari 2026 menerima pendapatan jasa sebesar Rp95.000.000. Beban yang terjadi terdiri atas beban gaji Rp35.000.000, beban listrik Rp5.000.000, dan beban perlengkapan Rp10.000.000.</div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, laba bersih perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp40.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Rp45.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp50.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp55.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp60.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q121')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Laba bersih = Pendapatan − Total beban
+                        <div class="calc-step">Total Beban = Rp35.000.000 + Rp5.000.000 + Rp10.000.000 = Rp50.000.000<br>Laba Bersih = Rp95.000.000 − Rp50.000.000<br><span class="result">= Rp45.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 122 -->
+                <div class="tka-question" id="q122">
+                    <div class="tka-q-header"><div class="tka-q-number">122</div><span class="cognitive-badge">C4</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Toko Sukses membeli persediaan barang dagang secara kredit sebesar Rp40.000.000. Seminggu kemudian toko membayar utang sebesar Rp15.000.000.</div>
+                    <div class="tka-q-text">Analisis yang tepat terhadap posisi keuangan perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Persediaan bertambah Rp40.000.000 dan utang akhir Rp25.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Persediaan bertambah Rp15.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kas bertambah Rp15.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal bertambah Rp40.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Persediaan berkurang Rp15.000.000.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q122')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Analisis transaksi:
+                        <div class="calc-step">Transaksi 1: Persediaan ↑ Rp40.000.000, Utang ↑ Rp40.000.000<br>Transaksi 2: Utang ↓ Rp15.000.000, Kas ↓ Rp15.000.000<br><span class="result">Utang akhir = Rp40.000.000 − Rp15.000.000 = Rp25.000.000</span></div>
+                        Persediaan tetap Rp40.000.000 karena belum dijual.
+                    </div></div>
+                </div>
+
+                <!-- Soal 123 -->
+                <div class="tka-question" id="q123">
+                    <div class="tka-q-header"><div class="tka-q-number">123</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pembelian peralatan kantor secara tunai Rp12.000.000 dicatat sebagai <em>beban peralatan</em>.</div>
+                    <div class="tka-q-text">Dampak kesalahan pencatatan tersebut adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Laba terlalu besar dan aset terlalu besar.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Laba terlalu kecil dan aset terlalu kecil.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Laba terlalu kecil dan utang terlalu besar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Aset terlalu besar dan modal terlalu besar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Tidak memengaruhi laporan keuangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q123')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div><div class="tka-pembahasan-text">Peralatan seharusnya dicatat sebagai <strong>aset</strong>, bukan beban. Jika salah dicatat sebagai beban:
+                        <div class="calc-step">• Beban terlalu besar → Laba terlalu kecil<br>• Aset (peralatan) tidak diakui → Aset terlalu kecil<br>• Kas tetap benar (sudah keluar)</div>
+                        <em>Kesalahan ini juga menyebabkan Modal terlalu kecil karena Laba yang dipindahkan ke Modal terlalu kecil.</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 124 -->
+                <div class="tka-question" id="q124">
+                    <div class="tka-q-header"><div class="tka-q-number">124</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Perusahaan menerima pembayaran piutang pelanggan sebesar Rp18.000.000.</div>
+                    <div class="tka-q-text">Pengaruh transaksi tersebut terhadap laporan keuangan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Kas bertambah, piutang berkurang, total aset tetap.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Kas bertambah dan pendapatan bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Modal bertambah.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Utang berkurang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Laba bertambah.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q124')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Penerimaan piutang hanya mengubah <strong>komposisi aset</strong>:
+                        <div class="calc-step">Kas ↑ Rp18.000.000<br>Piutang ↓ Rp18.000.000<br><span class="result">Total Aset = TETAP</span></div>
+                        <em>Tidak memengaruhi laba karena pendapatan sudah diakui saat penjualan kredit terjadi (prinsip akrual).</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 125 -->
+                <div class="tka-question" id="q125">
+                    <div class="tka-q-header"><div class="tka-q-number">125</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <table>
+                            <tr><th>Keterangan</th><th>Jumlah</th></tr>
+                            <tr><td>Penjualan</td><td>Rp250.000.000</td></tr>
+                            <tr><td>Harga Pokok Penjualan</td><td>Rp150.000.000</td></tr>
+                            <tr><td>Beban Operasional</td><td>Rp40.000.000</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Laba bersih perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp40.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp50.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rp55.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">D.</span> Rp60.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp65.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q125')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: D</div><div class="tka-pembahasan-text">Langkah 1: Hitung laba kotor
+                        <div class="calc-step">Laba Kotor = Penjualan − HPP<br>= Rp250.000.000 − Rp150.000.000 = Rp100.000.000</div>
+                        Langkah 2: Hitung laba bersih
+                        <div class="calc-step">Laba Bersih = Laba Kotor − Beban Operasional<br>= Rp100.000.000 − Rp40.000.000<br><span class="result">= Rp60.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 126 -->
+                <div class="tka-question" id="q126">
+                    <div class="tka-q-header"><div class="tka-q-number">126</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>
+                        <table>
+                            <tr><th>Akun</th><th>Jumlah</th></tr>
+                            <tr><td>Total Aset</td><td>Rp420.000.000</td></tr>
+                            <tr><td>Total Liabilitas</td><td>Rp170.000.000</td></tr>
+                        </table>
+                    </div>
+                    <div class="tka-q-text">Besarnya ekuitas perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp230.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp240.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp250.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp260.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp270.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q126')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Ekuitas = Aset − Liabilitas
+                        <div class="calc-step">= Rp420.000.000 − Rp170.000.000<br><span class="result">= Rp250.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 127 -->
+                <div class="tka-question" id="q127">
+                    <div class="tka-q-header"><div class="tka-q-number">127</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pendapatan jasa sebesar Rp8.000.000 yang diterima tunai <strong>belum dicatat</strong> sampai akhir periode.</div>
+                    <div class="tka-q-text">Evaluasi yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Kas terlalu kecil, pendapatan terlalu kecil, dan laba terlalu kecil.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Kas terlalu besar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Utang terlalu kecil.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Modal terlalu besar.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Tidak memengaruhi laporan keuangan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q127')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Pendapatan yang belum dicatat menyebabkan:
+                        <div class="calc-step">• Kas terlalu kecil (seharusnya ada tambahan Rp8.000.000)<br>• Pendapatan terlalu kecil (seharusnya diakui)<br>• Laba terlalu kecil (karena pendapatan kurang)<br>• Modal juga menjadi lebih kecil</div>
+                        <em>Ini adalah contoh kesalahan <strong>understatement</strong> (pencatatan yang kurang).</em>
+                    </div></div>
+                </div>
+
+                <!-- Soal 128 -->
+                <div class="tka-question" id="q128">
+                    <div class="tka-q-header"><div class="tka-q-number">128</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong>
+                        <ul>
+                            <li>Modal awal Rp300.000.000</li>
+                            <li>Laba bersih Rp70.000.000</li>
+                            <li>Prive Rp20.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Modal akhir perusahaan adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Rp330.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Rp340.000.000</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Rp350.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Rp360.000.000</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Rp370.000.000</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q128')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Modal akhir = Modal awal + Laba − Prive
+                        <div class="calc-step">= Rp300.000.000 + Rp70.000.000 − Rp20.000.000<br><span class="result">= Rp350.000.000</span></div>
+                    </div></div>
+                </div>
+
+                <!-- Soal 129 -->
+                <div class="tka-question" id="q129">
+                    <div class="tka-q-header"><div class="tka-q-number">129</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan memperoleh laba bersih yang tinggi. Namun, sebagian besar penjualan dilakukan secara kredit sehingga saldo piutang meningkat tajam.</div>
+                    <div class="tka-q-text">Kesimpulan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option"><span class="tka-option-letter">A.</span> Laba bersih selalu sama dengan kas yang diterima.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Perusahaan pasti mengalami kerugian.</li>
+                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Tingginya laba tidak selalu diikuti peningkatan kas karena sebagian pendapatan masih berupa piutang.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Piutang tidak memengaruhi laporan keuangan.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Laporan laba rugi tidak diperlukan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q129')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div><div class="tka-pembahasan-text">Dalam <strong>akuntansi berbasis akrual</strong>, pendapatan diakui saat terjadi (bukan saat kas diterima). Jika penjualan dilakukan secara kredit:
+                        <div class="calc-step">• Pendapatan diakui → Laba naik<br>• Piutang naik (bukan kas)<br>• Arus kas operasi bisa tetap rendah</div>
+                        Inilah sebabnya perusahaan yang "laba tinggi" bisa saja mengalami <strong>masalah likuiditas</strong> jika piutang sulit ditagih.
+                    </div></div>
+                </div>
+
+                <!-- Soal 130 -->
+                <div class="tka-question" id="q130">
+                    <div class="tka-q-header"><div class="tka-q-number">130</div><span class="cognitive-badge">C5</span></div>
+                    <div class="tka-stimulus"><strong>Perhatikan data berikut!</strong><br>CV Sejahtera memiliki informasi keuangan sebagai berikut:
+                        <ul>
+                            <li>Total aset = Rp600.000.000</li>
+                            <li>Total liabilitas = Rp240.000.000</li>
+                            <li>Pendapatan = Rp420.000.000</li>
+                            <li>Beban = Rp330.000.000</li>
+                            <li>Prive = Rp30.000.000</li>
+                        </ul>
+                    </div>
+                    <div class="tka-q-text">Berdasarkan data tersebut, pernyataan yang paling tepat adalah ....</div>
+                    <ul class="tka-options">
+                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Ekuitas perusahaan sebesar Rp360.000.000 dan modal akhir bertambah sebesar laba bersih setelah dikurangi prive.</li>
+                        <li class="tka-option"><span class="tka-option-letter">B.</span> Ekuitas perusahaan sebesar Rp240.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">C.</span> Laba bersih perusahaan sebesar Rp330.000.000.</li>
+                        <li class="tka-option"><span class="tka-option-letter">D.</span> Prive merupakan beban usaha.</li>
+                        <li class="tka-option"><span class="tka-option-letter">E.</span> Total aset sama dengan pendapatan.</li>
+                    </ul>
+                    <button class="tka-reveal-btn" onclick="togglePembahasan('q130')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <div class="tka-pembahasan"><div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div><div class="tka-pembahasan-text">Perhitungan lengkap:
+                        <div class="calc-step"><strong>1. Ekuitas (Neraca)</strong><br>= Aset − Liabilitas<br>= Rp600.000.000 − Rp240.000.000<br><span class="result">= Rp360.000.000</span><br><br><strong>2. Laba Bersih (Laba Rugi)</strong><br>= Pendapatan − Beban<br>= Rp420.000.000 − Rp330.000.000<br><span class="result">= Rp90.000.000</span></div>
+                        Modal akhir akan meningkat sebesar laba bersih (Rp90.000.000) dan berkurang karena prive (Rp30.000.000), sesuai konsep laporan perubahan modal.
+                        <div class="equation">Modal Akhir = Modal Awal + Rp90.000.000 − Rp30.000.000</div>
+                    </div></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
+        <div class="footer-bottom">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleBagian(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        function togglePembahasan(questionId) {
+            const questionCard = document.getElementById(questionId);
+            const isRevealed = questionCard.classList.contains('revealed');
+            
+            if (isRevealed) {
+                questionCard.classList.remove('revealed');
+            } else {
+                questionCard.classList.add('revealed');
+                setTimeout(() => {
+                    questionCard.querySelector('.tka-pembahasan').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
