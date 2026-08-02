@@ -2,14 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Evaluasi Bab 1 Sosiologi – 30 Soal HOTS (PG, Multi, Menjodohkan) | Latar Belakang, Objek & Paradigma</title>
     <meta name="description" content="Soal evaluasi sosiologi kelas X bab 1: latar belakang kelahiran sosiologi, objek material & formal, serta paradigma ganda (Ritzer). Berbasis kasus HOTS." />
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- html2pdf library untuk download PDF di HP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer>
+    </script>
     <!-- AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
     <style>
         /* ===== ROOT & RESET ===== */
         :root {
@@ -312,6 +316,7 @@
             font-size: 1.7rem;
             letter-spacing: 2px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            min-width: 130px;
         }
         .timer-area span {
             font-size: 0.9rem;
@@ -400,6 +405,7 @@
             height: 18px;
             cursor: pointer;
             accent-color: var(--primary);
+            flex-shrink: 0;
         }
 
         /* ===== MATCHING TABLE ===== */
@@ -407,6 +413,7 @@
             width: 100%;
             border-collapse: collapse;
             background: #fefefe;
+            font-size: 0.95rem;
         }
         body.dark-mode .matching-table {
             background: #2d2d2d;
@@ -429,6 +436,8 @@
             font-weight: 500;
             font-family: 'Poppins', sans-serif;
             transition: background 0.3s, color 0.3s, border-color 0.3s;
+            width: 100%;
+            max-width: 260px;
         }
         body.dark-mode select {
             background: #2d2d2d;
@@ -456,6 +465,7 @@
             align-items: center;
             gap: 10px;
             font-family: 'Poppins', sans-serif;
+            touch-action: manipulation;
         }
         .btn-primary {
             background: #2c3e50;
@@ -593,12 +603,17 @@
                 font-size: 1.4rem;
                 padding: 10px 16px;
                 align-self: center;
+                width: 100%;
+                max-width: 200px;
             }
             .options {
                 gap: 10px;
+                flex-direction: column;
             }
             .option {
-                padding: 4px 10px;
+                padding: 8px 14px;
+                border-radius: 16px;
+                width: 100%;
             }
             .section-title {
                 font-size: 1.4rem;
@@ -606,10 +621,16 @@
             .matching-table td,
             .matching-table th {
                 padding: 8px;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+            .matching-table td:last-child {
+                min-width: 140px;
             }
             select {
                 min-width: 120px;
+                max-width: 100%;
+                font-size: 0.9rem;
+                padding: 10px 8px;
             }
             .action-buttons {
                 flex-direction: column;
@@ -617,10 +638,15 @@
             }
             .btn {
                 justify-content: center;
+                padding: 14px 20px;
+                font-size: 1rem;
             }
             .breadcrumb {
                 padding: 0 15px;
                 font-size: 0.8rem;
+            }
+            .question-text {
+                font-size: 0.95rem;
             }
         }
         @media (max-width: 576px) {
@@ -633,22 +659,65 @@
             }
             .exam-container {
                 padding: 10px;
+                margin: 6px;
+                border-radius: 16px;
             }
             .question-card {
                 padding: 12px 14px;
+                border-radius: 16px;
             }
             .timer-area {
                 font-size: 1.2rem;
+                padding: 8px 14px;
+                max-width: 160px;
+            }
+            .identity-bar {
+                padding: 14px 16px;
+                border-radius: 18px;
+            }
+            .identity-fields input {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.2rem;
+            }
+            .matching-table td,
+            .matching-table th {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+            select {
+                font-size: 0.85rem;
+                padding: 8px 6px;
+            }
+            .option {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            input[type="radio"],
+            input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+            }
+            .btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+            .score-area {
+                font-size: 0.95rem;
+                padding: 12px;
             }
         }
 
-        /* ===== PRINT ===== */
+        /* ===== PRINT STYLES ===== */
         @media print {
             body {
-                background: white;
+                background: white !important;
                 padding: 0;
                 margin: 0;
                 user-select: auto;
+                -webkit-user-select: auto;
             }
             .navbar,
             .breadcrumb,
@@ -662,28 +731,38 @@
                 display: none !important;
             }
             .exam-container {
-                box-shadow: none;
-                padding: 0;
-                max-width: 100%;
-                border-radius: 0;
-                background: white;
+                box-shadow: none !important;
+                padding: 10px !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+                background: white !important;
+                margin: 0 !important;
             }
             .identity-bar {
                 background: #2c3e50 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                border-radius: 0;
+                border-radius: 0 !important;
+                padding: 14px 18px !important;
+            }
+            .identity-fields input {
+                background: rgba(255, 255, 255, 0.15) !important;
+                border-color: rgba(255, 255, 255, 0.3) !important;
+                color: white !important;
             }
             .question-card {
                 break-inside: avoid;
                 page-break-inside: avoid;
                 border: 1px solid #ccc;
                 box-shadow: none;
+                background: white !important;
             }
             input,
             select {
-                border: 1px solid black;
-                background: transparent;
+                border: 1px solid #888 !important;
+                background: transparent !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             .score-area {
                 border: 2px solid #000;
@@ -692,7 +771,44 @@
                 print-color-adjust: exact;
             }
             .section-title {
-                border-bottom-color: #000;
+                border-bottom-color: #000 !important;
+            }
+            .options {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .option {
+                background: #f5f5f5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 4px 12px;
+            }
+            .matching-table td,
+            .matching-table th {
+                border-color: #aaa !important;
+            }
+            .matching-table {
+                background: white !important;
+            }
+            footer {
+                color: #555 !important;
+            }
+        }
+
+        /* ===== LOADING SPINNER ===== */
+        .btn-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s ease-in-out infinite;
+            margin-right: 6px;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -702,7 +818,7 @@
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <a href="../index.html" class="navbar-brand">
-            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" loading="lazy">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" loading="lazy" />
             <span>SMAN 1 Cluring</span>
         </a>
         <div class="nav-container">
@@ -743,22 +859,22 @@
     </div>
 
     <!-- ===== EXAM CONTAINER ===== -->
-    <div class="exam-container">
+    <div class="exam-container" id="examContainer">
 
         <!-- IDENTITY BAR + TIMER -->
-        <div class="identity-bar">
+        <div class="identity-bar" id="identityBar">
             <div class="identity-fields">
                 <div>
                     <label>NAMA LENGKAP</label>
-                    <input type="text" id="studentName" placeholder="Contoh: Ahmad Wijaya">
+                    <input type="text" id="studentName" placeholder="Contoh: Ahmad Wijaya" />
                 </div>
                 <div>
                     <label>KELAS</label>
-                    <input type="text" id="studentClass" placeholder="X IPS 1">
+                    <input type="text" id="studentClass" placeholder="X IPS 1" />
                 </div>
                 <div>
                     <label>TANGGAL</label>
-                    <input type="date" id="examDate">
+                    <input type="date" id="examDate" />
                 </div>
             </div>
             <div class="timer-area">
@@ -768,7 +884,7 @@
         </div>
 
         <!-- IKLAN -->
-        <div class="ad-top">
+        <div class="ad-top" id="adTop">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="3223142906" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -781,7 +897,7 @@
         <!-- TOMBOL AKSI -->
         <div class="action-buttons">
             <button class="btn btn-primary" id="submitBtn"><i class="fas fa-check-circle"></i> Submit & Lihat Skor</button>
-            <button class="btn btn-success" id="downloadPDFBtn"><i class="fas fa-file-pdf"></i> Download PDF (Cetak)</button>
+            <button class="btn btn-success" id="downloadPDFBtn"><i class="fas fa-file-pdf"></i> <span id="downloadLabel">Download PDF</span></button>
         </div>
 
         <!-- TEMPAT SKOR -->
@@ -865,7 +981,8 @@
         // ============================================================
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u')) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e
+                    .ctrlKey && e.key === 'u')) {
                 e.preventDefault();
             }
         });
@@ -878,139 +995,169 @@
         // ============================================================
         // DATA SOAL – BAB 1 (HOTS Berbasis Kasus: Latar Belakang, Objek, Paradigma)
         // ============================================================
-        
+
         // 1. PG biasa (20 soal)
-        const pgSoal = [
-            {
-                text: "Pada abad ke-18, masyarakat Eropa mengalami peralihan besar dari agraris ke industri. Dampaknya muncul urbanisasi besar-besaran, kelas buruh, dan kemiskinan, yang mendorong pencarian pemahaman ilmiah tentang masalah sosial. Peristiwa sejarah apakah yang dimaksud?",
-                options: ["Revolusi Industri", "Revolusi Prancis", "Renaisans", "Reformasi Gereja", "Perang Dunia I"],
-                correct: 0
-            },
-            {
-                text: "Keruntuhan monarki absolut dan bangkitnya ide kebebasan, kesetaraan, dan persaudaraan pada akhir abad ke-18 menunjukkan bahwa tatanan sosial dapat berubah secara radikal. Peristiwa ini menjadi salah satu latar belakang kelahiran sosiologi, yaitu...",
-                options: ["Revolusi Industri", "Revolusi Prancis", "Revolusi Amerika", "Revolusi Rusia", "Revolusi Hijau"],
-                correct: 1
-            },
-            {
-                text: "Seorang peneliti sosial tidak lagi menjelaskan terjadinya banjir bandang sebagai 'murka dewa', melainkan mengumpulkan data curah hujan, topografi, dan perilaku buang sampah masyarakat untuk menemukan penyebabnya. Berdasarkan Hukum Tiga Tahap Comte, peneliti tersebut berada pada tahap...",
-                options: ["Teologis", "Metafisik", "Positif", "Fenomenologis", "Hermeneutik"],
-                correct: 2
-            },
-            {
-                text: "Perhatikan fenomena berikut: 'Seorang siswa memilih untuk tidak menyontek saat ujian karena ia meyakini bahwa kejujuran adalah nilai utama yang membentuk karakternya, meskipun tidak ada pengawas.' Menurut Max Weber, tindakan ini termasuk dalam kajian...",
-                options: ["Fakta Sosial", "Tindakan Sosial", "Perilaku Sosial", "Struktur Sosial", "Konflik Sosial"],
-                correct: 1
-            },
-            {
-                text: "Dalam kajian sosiologi, 'uang' (fisik) dan 'norma kesopanan' (nonfisik) dikategorikan sebagai objek material. Alasan pengkategorian ini adalah karena keduanya merupakan...",
-                options: ["Bentuk interaksi sosial yang terjadi di masyarakat", "Fenomena atau gejala yang mempengaruhi kehidupan sosial", "Makna subjektif yang diberikan individu", "Fakta yang berada di luar individu dan memaksa", "Pola perilaku yang dapat diamati secara objektif"],
-                correct: 1
-            },
-            {
-                text: "Seorang sosiolog mengamati proses tawar-menawar yang terjadi antara ibu dan pedagang di pasar tradisional. Fokus kajian sosiolog tersebut adalah pada...",
-                options: ["Objek material fisik", "Objek material nonfisik", "Objek formal", "Fakta sosial material", "Paradigma perilaku sosial"],
-                correct: 2
-            },
-            {
-                text: "George Ritzer mengidentifikasi tiga paradigma utama dalam sosiologi. Jika seorang peneliti menganalisis fenomena kenakalan remaja dengan melihat bagaimana sistem pendidikan dan struktur ekonomi keluarga memengaruhi perilaku remaja tersebut, paradigma yang digunakan adalah...",
-                options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial", "Paradigma Konflik", "Paradigma Interaksionisme Simbolik"],
-                correct: 0
-            },
-            {
-                text: "Seorang guru memberikan hadiah (reward) kepada siswa yang rajin membaca, sehingga perilaku rajin membaca semakin meningkat. Analisis ini sangat sesuai dengan fokus...",
-                options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial", "Paradigma Kritis", "Paradigma Terpadu"],
-                correct: 2
-            },
-            {
-                text: "Mengapa sosiologi disebut sebagai ilmu yang berparadigma ganda?",
-                options: ["Karena hanya memiliki satu metode penelitian yang baku", "Karena adanya perbedaan sudut pandang filsafat, teori, dan metode dalam memahami dunia sosial", "Karena sosiologi tidak dapat menggunakan metode ilmiah", "Karena sosiologi hanya mempelajari masa lalu", "Karena sosiologi sama dengan ilmu alam"],
-                correct: 1
-            },
-            {
-                text: "Untuk memahami fenomena sosial yang sangat kompleks (misalnya kemiskinan) secara lebih komprehensif, George Ritzer menyarankan penggunaan...",
-                options: ["Paradigma Fakta Sosial saja", "Paradigma Definisi Sosial saja", "Paradigma Perilaku Sosial saja", "Paradigma Terpadu (Integrated Paradigm)", "Metode kualitatif eksklusif"],
-                correct: 3
-            },
-            {
-                text: "Auguste Comte menerbitkan karya berjudul *Cours de Philosophie Positive* pada tahun 1830. Inti dari pemikiran dalam karya tersebut adalah...",
-                options: ["Menolak penggunaan metode ilmiah dalam ilmu sosial", "Membangun dasar pengaplikasian metode ilmiah dalam ilmu sosial (positivisme)", "Menjelaskan masyarakat hanya melalui kekuatan gaib", "Menekankan pada konflik antarkelas", "Menolak adanya perubahan sosial"],
-                correct: 1
-            },
-            {
-                text: "Pada tahap perkembangan intelektual manusia di mana gejala sosial dijelaskan dengan kekuatan abstrak seperti 'hakikat', 'alam', atau 'takdir', Comte menyebutnya sebagai tahap...",
-                options: ["Teologis", "Metafisik", "Positif", "Primitif", "Modern"],
-                correct: 1
-            },
-            {
-                text: "Karl Marx memiliki fokus objek kajian sosiologi yang sangat berbeda dengan Durkheim dan Weber. Fokus utama Marx adalah pada...",
-                options: ["Fakta sosial yang memaksa", "Makna subjektif tindakan individu", "Konflik kepentingan antarkelas (proletar vs borjuis)", "Perilaku yang dapat diamati (observable)", "Keteraturan dan fungsi institusi sosial"],
-                correct: 2
-            },
-            {
-                text: "Émile Durkheim memperkenalkan konsep 'Fakta Sosial'. Ciri utama fakta sosial menurut Durkheim adalah...",
-                options: ["Berada di dalam pikiran individu dan bersifat subjektif", "Berada di luar individu dan memiliki kekuatan memaksa", "Hanya berupa benda-benda fisik yang dapat diraba", "Tidak memengaruhi tindakan individu", "Hanya berlaku pada masyarakat primitif"],
-                correct: 1
-            },
-            {
-                text: "Seorang siswa mengamati tradisi 'gotong royong' di desanya. Ia melihat bagaimana norma kebersamaan (struktur) memaksa individu untuk ikut serta, dan jika tidak ikut, akan mendapat sanksi sosial. Ini adalah contoh analisis menggunakan paradigma...",
-                options: ["Fakta Sosial", "Definisi Sosial", "Perilaku Sosial", "Pertukaran Sosial", "Fenomenologi"],
-                correct: 0
-            },
-            {
-                text: "Dalam perspektif Paradigma Definisi Sosial, pertanyaan kunci yang sering diajukan untuk menganalisis suatu fenomena adalah...",
-                options: ["Bagaimana struktur sosial memengaruhi tindakan individu?", "Apa makna yang diberikan individu terhadap tindakan sosialnya?", "Faktor eksternal apa yang memengaruhi perilaku individu?", "Siapa yang memegang alat produksi?", "Bagaimana fungsi institusi pendidikan?"],
-                correct: 1
-            },
-            {
-                text: "Perhatikan pernyataan berikut: (1) Berbasis fakta ilmiah, (2) Menggunakan observasi dan pengukuran, (3) Dipelopori oleh Auguste Comte. Pernyataan tersebut merujuk pada aliran...",
-                options: ["Interpretatif", "Positivisme", "Kritis", "Postmodern", "Konstruktivisme"],
-                correct: 1
-            },
-            {
-                text: "Objek kajian sosiologi yang berupa ide, bahasa, dan tradisi termasuk dalam kategori...",
-                options: ["Objek material fisik", "Objek material nonfisik", "Objek formal", "Fakta sosial material", "Tindakan sosial rasional"],
-                correct: 1
-            },
-            {
-                text: "Tindakan sosial menurut Max Weber dibedakan dari perilaku biasa karena tindakan sosial...",
-                options: ["Dilakukan tanpa berpikir", "Dilakukan dengan mempertimbangkan dan mengarah pada perilaku orang lain", "Hanya terjadi pada hewan", "Tidak memiliki makna subjektif", "Selalu bersifat irasional"],
-                correct: 1
-            },
-            {
-                text: "Jika seorang peneliti menggabungkan analisis struktur makro (Fakta Sosial), makna subjektif aktor (Definisi Sosial), dan pola perilaku yang teramati (Perilaku Sosial) dalam satu kajian fenomena sosial, ia sedang menerapkan...",
-                options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial", "Paradigma Terpadu", "Reduksionisme"],
-                correct: 3
-            }
-        ];
+        const pgSoal = [{
+            text: "Pada abad ke-18, masyarakat Eropa mengalami peralihan besar dari agraris ke industri. Dampaknya muncul urbanisasi besar-besaran, kelas buruh, dan kemiskinan, yang mendorong pencarian pemahaman ilmiah tentang masalah sosial. Peristiwa sejarah apakah yang dimaksud?",
+            options: ["Revolusi Industri", "Revolusi Prancis", "Renaisans", "Reformasi Gereja", "Perang Dunia I"],
+            correct: 0
+        }, {
+            text: "Keruntuhan monarki absolut dan bangkitnya ide kebebasan, kesetaraan, dan persaudaraan pada akhir abad ke-18 menunjukkan bahwa tatanan sosial dapat berubah secara radikal. Peristiwa ini menjadi salah satu latar belakang kelahiran sosiologi, yaitu...",
+            options: ["Revolusi Industri", "Revolusi Prancis", "Revolusi Amerika", "Revolusi Rusia",
+                "Revolusi Hijau"
+            ],
+            correct: 1
+        }, {
+            text: "Seorang peneliti sosial tidak lagi menjelaskan terjadinya banjir bandang sebagai 'murka dewa', melainkan mengumpulkan data curah hujan, topografi, dan perilaku buang sampah masyarakat untuk menemukan penyebabnya. Berdasarkan Hukum Tiga Tahap Comte, peneliti tersebut berada pada tahap...",
+            options: ["Teologis", "Metafisik", "Positif", "Fenomenologis", "Hermeneutik"],
+            correct: 2
+        }, {
+            text: "Perhatikan fenomena berikut: 'Seorang siswa memilih untuk tidak menyontek saat ujian karena ia meyakini bahwa kejujuran adalah nilai utama yang membentuk karakternya, meskipun tidak ada pengawas.' Menurut Max Weber, tindakan ini termasuk dalam kajian...",
+            options: ["Fakta Sosial", "Tindakan Sosial", "Perilaku Sosial", "Struktur Sosial", "Konflik Sosial"],
+            correct: 1
+        }, {
+            text: "Dalam kajian sosiologi, 'uang' (fisik) dan 'norma kesopanan' (nonfisik) dikategorikan sebagai objek material. Alasan pengkategorian ini adalah karena keduanya merupakan...",
+            options: [
+                "Bentuk interaksi sosial yang terjadi di masyarakat",
+                "Fenomena atau gejala yang mempengaruhi kehidupan sosial",
+                "Makna subjektif yang diberikan individu",
+                "Fakta yang berada di luar individu dan memaksa",
+                "Pola perilaku yang dapat diamati secara objektif"
+            ],
+            correct: 1
+        }, {
+            text: "Seorang sosiolog mengamati proses tawar-menawar yang terjadi antara ibu dan pedagang di pasar tradisional. Fokus kajian sosiolog tersebut adalah pada...",
+            options: ["Objek material fisik", "Objek material nonfisik", "Objek formal", "Fakta sosial material",
+                "Paradigma perilaku sosial"
+            ],
+            correct: 2
+        }, {
+            text: "George Ritzer mengidentifikasi tiga paradigma utama dalam sosiologi. Jika seorang peneliti menganalisis fenomena kenakalan remaja dengan melihat bagaimana sistem pendidikan dan struktur ekonomi keluarga memengaruhi perilaku remaja tersebut, paradigma yang digunakan adalah...",
+            options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial",
+                "Paradigma Konflik", "Paradigma Interaksionisme Simbolik"
+            ],
+            correct: 0
+        }, {
+            text: "Seorang guru memberikan hadiah (reward) kepada siswa yang rajin membaca, sehingga perilaku rajin membaca semakin meningkat. Analisis ini sangat sesuai dengan fokus...",
+            options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial",
+                "Paradigma Kritis", "Paradigma Terpadu"
+            ],
+            correct: 2
+        }, {
+            text: "Mengapa sosiologi disebut sebagai ilmu yang berparadigma ganda?",
+            options: [
+                "Karena hanya memiliki satu metode penelitian yang baku",
+                "Karena adanya perbedaan sudut pandang filsafat, teori, dan metode dalam memahami dunia sosial",
+                "Karena sosiologi tidak dapat menggunakan metode ilmiah",
+                "Karena sosiologi hanya mempelajari masa lalu",
+                "Karena sosiologi sama dengan ilmu alam"
+            ],
+            correct: 1
+        }, {
+            text: "Untuk memahami fenomena sosial yang sangat kompleks (misalnya kemiskinan) secara lebih komprehensif, George Ritzer menyarankan penggunaan...",
+            options: ["Paradigma Fakta Sosial saja", "Paradigma Definisi Sosial saja",
+                "Paradigma Perilaku Sosial saja", "Paradigma Terpadu (Integrated Paradigm)",
+                "Metode kualitatif eksklusif"
+            ],
+            correct: 3
+        }, {
+            text: "Auguste Comte menerbitkan karya berjudul *Cours de Philosophie Positive* pada tahun 1830. Inti dari pemikiran dalam karya tersebut adalah...",
+            options: ["Menolak penggunaan metode ilmiah dalam ilmu sosial",
+                "Membangun dasar pengaplikasian metode ilmiah dalam ilmu sosial (positivisme)",
+                "Menjelaskan masyarakat hanya melalui kekuatan gaib", "Menekankan pada konflik antarkelas",
+                "Menolak adanya perubahan sosial"
+            ],
+            correct: 1
+        }, {
+            text: "Pada tahap perkembangan intelektual manusia di mana gejala sosial dijelaskan dengan kekuatan abstrak seperti 'hakikat', 'alam', atau 'takdir', Comte menyebutnya sebagai tahap...",
+            options: ["Teologis", "Metafisik", "Positif", "Primitif", "Modern"],
+            correct: 1
+        }, {
+            text: "Karl Marx memiliki fokus objek kajian sosiologi yang sangat berbeda dengan Durkheim dan Weber. Fokus utama Marx adalah pada...",
+            options: ["Fakta sosial yang memaksa", "Makna subjektif tindakan individu",
+                "Konflik kepentingan antarkelas (proletar vs borjuis)", "Perilaku yang dapat diamati (observable)",
+                "Keteraturan dan fungsi institusi sosial"
+            ],
+            correct: 2
+        }, {
+            text: "Émile Durkheim memperkenalkan konsep 'Fakta Sosial'. Ciri utama fakta sosial menurut Durkheim adalah...",
+            options: ["Berada di dalam pikiran individu dan bersifat subjektif",
+                "Berada di luar individu dan memiliki kekuatan memaksa",
+                "Hanya berupa benda-benda fisik yang dapat diraba", "Tidak memengaruhi tindakan individu",
+                "Hanya berlaku pada masyarakat primitif"
+            ],
+            correct: 1
+        }, {
+            text: "Seorang siswa mengamati tradisi 'gotong royong' di desanya. Ia melihat bagaimana norma kebersamaan (struktur) memaksa individu untuk ikut serta, dan jika tidak ikut, akan mendapat sanksi sosial. Ini adalah contoh analisis menggunakan paradigma...",
+            options: ["Fakta Sosial", "Definisi Sosial", "Perilaku Sosial", "Pertukaran Sosial", "Fenomenologi"],
+            correct: 0
+        }, {
+            text: "Dalam perspektif Paradigma Definisi Sosial, pertanyaan kunci yang sering diajukan untuk menganalisis suatu fenomena adalah...",
+            options: ["Bagaimana struktur sosial memengaruhi tindakan individu?",
+                "Apa makna yang diberikan individu terhadap tindakan sosialnya?",
+                "Faktor eksternal apa yang memengaruhi perilaku individu?",
+                "Siapa yang memegang alat produksi?", "Bagaimana fungsi institusi pendidikan?"
+            ],
+            correct: 1
+        }, {
+            text: "Perhatikan pernyataan berikut: (1) Berbasis fakta ilmiah, (2) Menggunakan observasi dan pengukuran, (3) Dipelopori oleh Auguste Comte. Pernyataan tersebut merujuk pada aliran...",
+            options: ["Interpretatif", "Positivisme", "Kritis", "Postmodern", "Konstruktivisme"],
+            correct: 1
+        }, {
+            text: "Objek kajian sosiologi yang berupa ide, bahasa, dan tradisi termasuk dalam kategori...",
+            options: ["Objek material fisik", "Objek material nonfisik", "Objek formal", "Fakta sosial material",
+                "Tindakan sosial rasional"
+            ],
+            correct: 1
+        }, {
+            text: "Tindakan sosial menurut Max Weber dibedakan dari perilaku biasa karena tindakan sosial...",
+            options: ["Dilakukan tanpa berpikir", "Dilakukan dengan mempertimbangkan dan mengarah pada perilaku orang lain",
+                "Hanya terjadi pada hewan", "Tidak memiliki makna subjektif", "Selalu bersifat irasional"
+            ],
+            correct: 1
+        }, {
+            text: "Jika seorang peneliti menggabungkan analisis struktur makro (Fakta Sosial), makna subjektif aktor (Definisi Sosial), dan pola perilaku yang teramati (Perilaku Sosial) dalam satu kajian fenomena sosial, ia sedang menerapkan...",
+            options: ["Paradigma Fakta Sosial", "Paradigma Definisi Sosial", "Paradigma Perilaku Sosial",
+                "Paradigma Terpadu", "Reduksionisme"
+            ],
+            correct: 3
+        }];
 
         // 2. Multi jawaban (5 soal)
-        const multiSoal = [
-            {
-                text: "Faktor-faktor yang melatarbelakangi kelahiran sosiologi sebagai ilmu pengetahuan pada abad ke-18 dan ke-19 adalah... (Pilih 3)",
-                options: ["Revolusi Industri", "Revolusi Prancis", "Perkembangan Ilmu Pengetahuan Alam", "Penemuan benua Amerika", "Perang Dingin"],
-                correctIndices: [0, 1, 2]
-            },
-            {
-                text: "Berdasarkan Hukum Tiga Tahap Auguste Comte, ciri-ciri masyarakat yang berada pada Tahap Positif adalah... (Pilih 3)",
-                options: ["Penjelasan berdasarkan fakta ilmiah", "Mengandalkan mitos dan kekuatan gaib", "Menggunakan metode observasi dan eksperimen", "Mengandalkan pengukuran data yang objektif", "Menjelaskan gejala dengan konsep abstrak seperti 'takdir'"],
-                correctIndices: [0, 2, 3]
-            },
-            {
-                text: "Manakah di bawah ini yang merupakan contoh Objek Material dalam kajian sosiologi? (Pilih 3)",
-                options: ["Gedung sekolah (Fisik)", "Proses tawar-menawar di pasar", "Norma adat istiadat (Nonfisik)", "Interaksi antara guru dan siswa", "Bahasa daerah (Nonfisik)"],
-                correctIndices: [0, 2, 4]
-            },
-            {
-                text: "Pasangan antara tokoh sosiologi dan fokus objek kajiannya yang tepat adalah... (Pilih 3)",
-                options: ["Karl Marx: Konflik kepentingan antarkelas", "Émile Durkheim: Fakta Sosial", "Max Weber: Tindakan Sosial", "Auguste Comte: Paradigma Perilaku Sosial", "George Ritzer: Hukum Tiga Tahap"],
-                correctIndices: [0, 1, 2]
-            },
-            {
-                text: "Ciri-ciri utama dari Paradigma Definisi Sosial menurut George Ritzer adalah... (Pilih 3)",
-                options: ["Berorientasi pada tindakan individu", "Menekankan pada pemaknaan subjektif (perspektif aktor)", "Tokoh utamanya adalah Max Weber", "Fokus pada struktur makro masyarakat", "Menekankan pada hadiah dan hukuman eksternal"],
-                correctIndices: [0, 1, 2]
-            }
-        ];
+        const multiSoal = [{
+            text: "Faktor-faktor yang melatarbelakangi kelahiran sosiologi sebagai ilmu pengetahuan pada abad ke-18 dan ke-19 adalah... (Pilih 3)",
+            options: ["Revolusi Industri", "Revolusi Prancis", "Perkembangan Ilmu Pengetahuan Alam",
+                "Penemuan benua Amerika", "Perang Dingin"
+            ],
+            correctIndices: [0, 1, 2]
+        }, {
+            text: "Berdasarkan Hukum Tiga Tahap Auguste Comte, ciri-ciri masyarakat yang berada pada Tahap Positif adalah... (Pilih 3)",
+            options: ["Penjelasan berdasarkan fakta ilmiah", "Mengandalkan mitos dan kekuatan gaib",
+                "Menggunakan metode observasi dan eksperimen", "Mengandalkan pengukuran data yang objektif",
+                "Menjelaskan gejala dengan konsep abstrak seperti 'takdir'"
+            ],
+            correctIndices: [0, 2, 3]
+        }, {
+            text: "Manakah di bawah ini yang merupakan contoh Objek Material dalam kajian sosiologi? (Pilih 3)",
+            options: ["Gedung sekolah (Fisik)", "Proses tawar-menawar di pasar", "Norma adat istiadat (Nonfisik)",
+                "Interaksi antara guru dan siswa", "Bahasa daerah (Nonfisik)"
+            ],
+            correctIndices: [0, 2, 4]
+        }, {
+            text: "Pasangan antara tokoh sosiologi dan fokus objek kajiannya yang tepat adalah... (Pilih 3)",
+            options: ["Karl Marx: Konflik kepentingan antarkelas", "Émile Durkheim: Fakta Sosial",
+                "Max Weber: Tindakan Sosial", "Auguste Comte: Paradigma Perilaku Sosial",
+                "George Ritzer: Hukum Tiga Tahap"
+            ],
+            correctIndices: [0, 1, 2]
+        }, {
+            text: "Ciri-ciri utama dari Paradigma Definisi Sosial menurut George Ritzer adalah... (Pilih 3)",
+            options: ["Berorientasi pada tindakan individu", "Menekankan pada pemaknaan subjektif (perspektif aktor)",
+                "Tokoh utamanya adalah Max Weber", "Fokus pada struktur makro masyarakat",
+                "Menekankan pada hadiah dan hukuman eksternal"
+            ],
+            correctIndices: [0, 1, 2]
+        }];
 
         // 3. Menjodohkan (5 pasangan)
         const matchingLeft = [
@@ -1044,8 +1191,8 @@
             html += `<div><h2 class="section-title"><i class="fas fa-check-circle"></i> A. Pilihan Ganda (1-20)</h2></div>`;
             pgSoal.forEach((q, idx) => {
                 html += `<div class="question-card" data-qtype="pg" data-idx="${idx}">
-                    <div class="question-text"><strong>${idx+1}.</strong> ${q.text}</div>
-                    <div class="options">`;
+                        <div class="question-text"><strong>${idx+1}.</strong> ${q.text}</div>
+                        <div class="options">`;
                 q.options.forEach((opt, optIdx) => {
                     let letter = String.fromCharCode(97 + optIdx);
                     html += `<label class="option"><input type="radio" name="pg_${idx}" value="${optIdx}"> <span>${letter.toUpperCase()}. ${opt}</span></label>`;
@@ -1054,11 +1201,12 @@
             });
 
             // Bagian B: Multi
-            html += `<div><h2 class="section-title"><i class="fas fa-check-double"></i> B. Multi Jawaban (21-25) - Pilih lebih dari satu</h2></div>`;
+            html +=
+                `<div><h2 class="section-title"><i class="fas fa-check-double"></i> B. Multi Jawaban (21-25) - Pilih lebih dari satu</h2></div>`;
             multiSoal.forEach((q, idx) => {
                 html += `<div class="question-card" data-qtype="multi" data-idx="${idx}">
-                    <div class="question-text"><strong>${21+idx}.</strong> ${q.text}</div>
-                    <div class="options" style="flex-direction: column; gap: 8px;">`;
+                        <div class="question-text"><strong>${21+idx}.</strong> ${q.text}</div>
+                        <div class="options" style="flex-direction: column; gap: 8px;">`;
                 q.options.forEach((opt, optIdx) => {
                     html += `<label class="option"><input type="checkbox" name="multi_${idx}" value="${optIdx}"> ${String.fromCharCode(97+optIdx)}. ${opt}</label>`;
                 });
@@ -1066,18 +1214,19 @@
             });
 
             // Bagian C: Menjodohkan
-            html += `<div><h2 class="section-title"><i class="fas fa-puzzle-piece"></i> C. Menjodohkan (26-30)</h2></div>`;
+            html +=
+                `<div><h2 class="section-title"><i class="fas fa-puzzle-piece"></i> C. Menjodohkan (26-30)</h2></div>`;
             html += `<div class="question-card"><table class="matching-table">
-                <thead><tr><th>No.</th><th>Istilah / Tokoh</th><th>Pasangan Jawaban (pilih A-E)</th></tr></thead><tbody>`;
+                    <thead><tr><th>No.</th><th>Istilah / Tokoh</th><th>Pasangan Jawaban (pilih A-E)</th></tr></thead><tbody>`;
             for (let i = 0; i < matchingLeft.length; i++) {
                 html += `<tr>
-                    <td>${26+i}</td>
-                    <td><strong>${matchingLeft[i]}</strong></td>
-                    <td><select id="match_${i}" data-matchidx="${i}">
-                        <option value="">-- Pilih --</option>
-                        ${matchingRightOptions.map((opt, oidx) => `<option value="${oidx}">${opt}</option>`).join('')}
-                    </select></td>
-                </tr>`;
+                        <td>${26+i}</td>
+                        <td><strong>${matchingLeft[i]}</strong></td>
+                        <td><select id="match_${i}" data-matchidx="${i}">
+                            <option value="">-- Pilih --</option>
+                            ${matchingRightOptions.map((opt, oidx) => `<option value="${oidx}">${opt}</option>`).join('')}
+                        </select></td>
+                    </tr>`;
             }
             html += `</tbody></table></div>`;
             document.getElementById('questionsContainer').innerHTML = html;
@@ -1095,7 +1244,8 @@
                 let checkboxes = document.querySelectorAll(`input[name="multi_${i}"]`);
                 checkboxes.forEach(cb => {
                     cb.addEventListener('change', () => {
-                        let checkedVals = Array.from(checkboxes).filter(ch => ch.checked).map(ch => parseInt(ch.value));
+                        let checkedVals = Array.from(checkboxes).filter(ch => ch.checked).map(ch => parseInt(ch
+                        .value));
                         multiAnswers[i] = checkedVals;
                     });
                 });
@@ -1118,8 +1268,8 @@
             }
             let scoreMulti = 0;
             for (let i = 0; i < multiSoal.length; i++) {
-                let user = multiAnswers[i].sort((a, b) => a - b);
-                let correctArr = multiSoal[i].correctIndices.sort((a, b) => a - b);
+                let user = [...multiAnswers[i]].sort((a, b) => a - b);
+                let correctArr = [...multiSoal[i].correctIndices].sort((a, b) => a - b);
                 if (user.length === correctArr.length && user.every((val, idx) => val === correctArr[idx])) {
                     scoreMulti += 2;
                 }
@@ -1175,11 +1325,11 @@
             let kelas = document.getElementById('studentClass').value || "-";
             let tgl = document.getElementById('examDate').value;
             let scoreHtml = `<strong>📊 HASIL EVALUASI BAB 1</strong><br>
-                Nama: ${nama} | Kelas: ${kelas} | Tanggal: ${tgl}<br>
-                ✅ PG (1-20): ${scorePg} / ${pgSoal.length}<br>
-                ✅ Multi Jawaban (21-25): ${scoreMulti} / ${multiSoal.length*2} (bobot 2 tiap soal)<br>
-                ✅ Menjodohkan (26-30): ${scoreMatching} / ${matchingLeft.length}<br>
-                🎯 TOTAL SKOR: ${total} / ${maxTotal} (${Math.round((total/maxTotal)*100)} poin)`;
+                    Nama: ${nama} | Kelas: ${kelas} | Tanggal: ${tgl}<br>
+                    ✅ PG (1-20): ${scorePg} / ${pgSoal.length}<br>
+                    ✅ Multi Jawaban (21-25): ${scoreMulti} / ${multiSoal.length*2} (bobot 2 tiap soal)<br>
+                    ✅ Menjodohkan (26-30): ${scoreMatching} / ${matchingLeft.length}<br>
+                    🎯 TOTAL SKOR: ${total} / ${maxTotal} (${Math.round((total/maxTotal)*100)} poin)`;
             let scoreDiv = document.getElementById('scoreDisplay');
             scoreDiv.innerHTML = scoreHtml;
             scoreDiv.style.display = 'block';
@@ -1197,8 +1347,72 @@
             }
         });
 
-        document.getElementById('downloadPDFBtn').addEventListener('click', () => {
-            window.print();
+        // ============================================================
+        // DOWNLOAD PDF - PERBAIKAN UTAMA UNTUK HP
+        // ============================================================
+        const downloadBtn = document.getElementById('downloadPDFBtn');
+        const downloadLabel = document.getElementById('downloadLabel');
+
+        downloadBtn.addEventListener('click', async function() {
+            // Cegah double klik
+            if (downloadBtn.disabled) return;
+            downloadBtn.disabled = true;
+            downloadLabel.textContent = 'Membuat PDF...';
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> <span id="downloadLabel">Membuat PDF...</span>';
+
+            try {
+                // Ambil elemen yang akan di-PDF
+                const element = document.getElementById('examContainer');
+
+                // Clone elemen untuk PDF (hindari mutasi DOM asli)
+                const clone = element.cloneNode(true);
+                // Hapus tombol aksi dari clone
+                const actionClone = clone.querySelector('.action-buttons');
+                if (actionClone) actionClone.remove();
+                // Hapus iklan dari clone
+                const adClone = clone.querySelector('.ad-top');
+                if (adClone) adClone.remove();
+                // Hapus breadcrumb dari clone (tidak ada di dalam container, aman)
+
+                // Sembunyikan element asli sebentar? Tidak perlu, kita render dari clone.
+
+                // Siapkan opsi PDF
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: 'Evaluasi_Bab_1_Sosiologi.pdf',
+                    image: { type: 'jpeg', quality: 0.95 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        logging: false,
+                        scrollY: 0,
+                        windowHeight: element.scrollHeight,
+                        width: element.scrollWidth,
+                        height: element.scrollHeight,
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                // Generate PDF dari clone
+                await html2pdf().set(opt).from(clone).save();
+
+                // Reset tombol setelah berhasil
+                downloadLabel.textContent = 'Download PDF';
+                downloadBtn.innerHTML = '<i class="fas fa-file-pdf"></i> <span id="downloadLabel">Download PDF</span>';
+                downloadBtn.disabled = false;
+
+            } catch (error) {
+                console.error('PDF Error:', error);
+                alert('Gagal membuat PDF. Silakan coba lagi atau gunakan fitur Cetak (Ctrl+P).');
+                downloadLabel.textContent = 'Download PDF';
+                downloadBtn.innerHTML = '<i class="fas fa-file-pdf"></i> <span id="downloadLabel">Download PDF</span>';
+                downloadBtn.disabled = false;
+            }
         });
 
         // ============================================================
@@ -1211,6 +1425,9 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('examDate').value = today;
         }
+
+        // Fallback: jika html2pdf tidak load, tetap ada tombol cetak
+        console.log('Evaluasi Bab 1 Sosiologi siap. Tombol Download PDF menggunakan html2pdf untuk kompatibilitas HP.');
     </script>
 
 </body>
