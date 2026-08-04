@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKA Sosiologi - Sosiologi sebagai Ilmu</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+    .header {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header h1 {
+        font-size: 1.3em;
+        color: #4a148c;
+    }
+    .header p {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+    .progress-bar {
+        background: #eee;
+        border-radius: 10px;
+        height: 12px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        background: linear-gradient(90deg, #42a5f5, #4a148c);
+        height: 100%;
+        width: 4%;
+        transition: width 0.4s ease;
+        border-radius: 10px;
+    }
+    .info-nomor {
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+    .soal-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .soal-card.aktif { display: block; }
+    .badge {
+        display: inline-block;
+        background: #ede7f6;
+        color: #4a148c;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.78em;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+    .pertanyaan {
+        font-size: 1.03em;
+        line-height: 1.75;
+        color: #2c2c2c;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .keyword {
+        font-weight: bold;
+        font-style: italic;
+        color: #6a1b9a;
+    }
+    .opsi {
+        display: block;
+        padding: 12px 16px;
+        margin: 9px 0;
+        background: #f8f9ff;
+        border: 2px solid #e0e0f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1.5;
+        font-size: 0.97em;
+    }
+    .opsi:hover {
+        background: #ede7f6;
+        border-color: #9575cd;
+        transform: translateX(5px);
+    }
+    .pembahasan {
+        display: none;
+        margin-top: 18px;
+        background: #e8f5e9;
+        border-left: 6px solid #2e7d32;
+        border-radius: 8px;
+        padding: 18px 20px;
+        line-height: 1.75;
+        font-size: 0.96em;
+    }
+    .pembahasan .jawaban {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    .tombol-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .btn-bahas {
+        background: #2e7d32;
+        color: #fff;
+    }
+    .btn-bahas:hover { background: #1b5e20; }
+    .btn-next {
+        background: #4a148c;
+        color: #fff;
+        margin-left: auto;
+    }
+    .btn-next:hover { background: #6a1b9a; }
+    .btn-prev {
+        background: #eceff1;
+        color: #37474f;
+    }
+    .btn-prev:hover { background: #cfd8dc; }
+    .btn-final {
+        background: linear-gradient(90deg, #f57f17, #e65100);
+        color: #fff;
+        margin-left: auto;
+        display: none;
+        font-size: 1em;
+    }
+    .btn-final:hover { transform: scale(1.03); }
+    .selesai-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .selesai-card h2 { color: #4a148c; margin-bottom: 15px; }
+    .selesai-card p { color: #555; line-height: 1.7; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📘 TKA Sosiologi</h1>
+    <p><b>Materi:</b> Sosiologi sebagai Ilmu &mdash; Pengertian & Etimologi | Sejarah & Tokoh | Ciri sebagai Ilmu | Objek & Metode | Teori & Aliran | Fungsi & Perkembangan</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+<!-- ============ SOAL 1 ============ -->
+<div class="soal-card aktif" id="soal1">
+    <span class="badge">Pengertian & Etimologi Sosiologi</span>
+    <div class="pertanyaan">
+        Istilah sosiologi berasal dari bahasa Latin <span class="keyword">socius</span> dan bahasa Yunani <span class="keyword">logos</span>. Secara etimologis, pengertian sosiologi adalah...
+    </div>
+    <div class="opsi">A. Ilmu tentang perubahan sosial dalam masyarakat</div>
+    <div class="opsi">B. Ilmu tentang kawan atau masyarakat</div>
+    <div class="opsi">C. Ilmu tentang struktur pemerintahan negara</div>
+    <div class="opsi">D. Ilmu tentang kebudayaan benda manusia</div>
+    <div class="opsi">E. Ilmu tentang kegiatan ekonomi masyarakat</div>
+    <div class="pembahasan" id="bahas1">
+        <div class="jawaban">✅ Jawaban: B. Ilmu tentang kawan atau masyarakat</div>
+        <b>Pembahasan:</b> Secara etimologis, kata <span class="keyword">socius</span> berarti kawan atau teman, sedangkan <span class="keyword">logos</span> berarti ilmu atau kata. Jadi, sosiologi berarti ilmu tentang kawan atau masyarakat. Istilah ini pertama kali diperkenalkan oleh Auguste Comte.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 2 ============ -->
+<div class="soal-card" id="soal2">
+    <span class="badge">Pengertian & Etimologi Sosiologi</span>
+    <div class="pertanyaan">
+        Pitirim Sorokin mendefinisikan sosiologi sebagai ilmu yang mempelajari hubungan dan pengaruh timbal balik antara aneka macam gejala-gejala sosial. Definisi ini menekankan bahwa fokus kajian sosiologi adalah...
+    </div>
+    <div class="opsi">A. Perilaku individu yang bersifat psikologis</div>
+    <div class="opsi">B. Hubungan antara manusia dengan kelompok dan pengaruh timbal balik gejala sosial</div>
+    <div class="opsi">C. Sistem ketatanegaraan dan politik</div>
+    <div class="opsi">D. Aktivitas produksi dan distribusi barang</div>
+    <div class="opsi">E. Benda-benda peninggalan sejarah</div>
+    <div class="pembahasan" id="bahas2">
+        <div class="jawaban">✅ Jawaban: B. Hubungan antara manusia dengan kelompok dan pengaruh timbal balik gejala sosial</div>
+        <b>Pembahasan:</b> Menurut <span class="keyword">Pitirim Sorokin</span>, sosiologi mempelajari hubungan antara manusia dengan kelompok, hubungan antar-kelompok, serta pengaruh timbal balik antara gejala-gejala sosial. Definisi ini menegaskan bahwa fokus sosiologi adalah <span class="keyword">hubungan sosial</span>, bukan perilaku individu secara psikologis.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 3 ============ -->
+<div class="soal-card" id="soal3">
+    <span class="badge">Pengertian & Etimologi Sosiologi</span>
+    <div class="pertanyaan">
+        Auguste Comte dikenal sebagai <span class="keyword">Bapak Sosiologi</span> karena jasanya dalam meletakkan dasar sosiologi sebagai ilmu mandiri. Alasan utama Comte mendapat julukan tersebut adalah...
+    </div>
+    <div class="opsi">A. Menemukan metode statistik pertama di dunia</div>
+    <div class="opsi">B. Mengembangkan teori evolusi sosial</div>
+    <div class="opsi">C. Pertama kali memperkenalkan istilah sosiologi dan mengembangkannya sebagai ilmu mandiri</div>
+    <div class="opsi">D. Mendirikan departemen sosiologi pertama di Eropa</div>
+    <div class="opsi">E. Menulis buku tentang masyarakat tradisional</div>
+    <div class="pembahasan" id="bahas3">
+        <div class="jawaban">✅ Jawaban: C. Pertama kali memperkenalkan istilah sosiologi dan mengembangkannya sebagai ilmu mandiri</div>
+        <b>Pembahasan:</b> <span class="keyword">Auguste Comte</span> memperkenalkan istilah "sociologie" dalam bukunya <span class="keyword">Cours de Philosophie Positive</span> (1838). Ia meletakkan dasar sosiologi sebagai ilmu yang mandiri dengan pendekatan <span class="keyword">positivisme</span>, sehingga dijuluki Bapak Sosiologi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 4 ============ -->
+<div class="soal-card" id="soal4">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Auguste Comte merumuskan <span class="keyword">Hukum Tiga Tahap</span> untuk menjelaskan perkembangan pemikiran manusia. Tahapan di mana manusia mulai menggunakan akal budi dan observasi empiris untuk menjelaskan fenomena sosial disebut tahap...
+    </div>
+    <div class="opsi">A. Teologis</div>
+    <div class="opsi">B. Metafisika</div>
+    <div class="opsi">C. Positif</div>
+    <div class="opsi">D. Tradisional</div>
+    <div class="opsi">E. Modern</div>
+    <div class="pembahasan" id="bahas4">
+        <div class="jawaban">✅ Jawaban: C. Positif</div>
+        <b>Pembahasan:</b> Menurut <span class="keyword">Hukum Tiga Tahap</span> Comte, perkembangan pemikiran manusia melewati tahap <span class="keyword">teologis</span> (penjelasan mistis), tahap <span class="keyword">metafisika</span> (penjelasan abstrak), dan tahap <span class="keyword">positif</span> (penjelasan ilmiah berbasis observasi, eksperimen, dan perbandingan).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 5 ============ -->
+<div class="soal-card" id="soal5">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Sosiologi lahir di Eropa pada abad ke-19 sebagai respons terhadap perubahan besar dalam masyarakat. Peristiwa yang menjadi latar belakang lahirnya sosiologi adalah...
+    </div>
+    <div class="opsi">A. Penemuan benua Amerika oleh Columbus</div>
+    <div class="opsi">B. Revolusi Industri dan Revolusi Prancis yang mengubah tatanan sosial secara drastis</div>
+    <div class="opsi">C. Perang Dunia I dan Perang Dunia II</div>
+    <div class="opsi">D. Penemuan mesin cetak oleh Gutenberg</div>
+    <div class="opsi">E. Runtuhnya Kekaisaran Romawi Barat</div>
+    <div class="pembahasan" id="bahas5">
+        <div class="jawaban">✅ Jawaban: B. Revolusi Industri dan Revolusi Prancis yang mengubah tatanan sosial secara drastis</div>
+        <b>Pembahasan:</b> Sosiologi lahir sebagai respons terhadap kekacauan sosial (<span class="keyword">anomie</span>) akibat <span class="keyword">Revolusi Industri</span> dan <span class="keyword">Revolusi Prancis</span>. Kedua peristiwa ini mengubah tatanan sosial secara drastis, sehingga para pemikir mencari ilmu baru untuk memahami dan menata kembali masyarakat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 6 ============ -->
+<div class="soal-card" id="soal6">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Emile Durkheim menetapkan bahwa objek kajian sosiologi adalah <span class="keyword">fakta sosial</span>. Pengertian fakta sosial menurut Durkheim adalah...
+    </div>
+    <div class="opsi">A. Perilaku individu yang bersifat psikologis</div>
+    <div class="opsi">B. Cara bertindak, berpikir, dan berperasaan yang berada di luar individu dan memiliki kekuatan memaksa</div>
+    <div class="opsi">C. Aktivitas ekonomi masyarakat tradisional</div>
+    <div class="opsi">D. Struktur pemerintahan suatu negara</div>
+    <div class="opsi">E. Benda-benda budaya masyarakat</div>
+    <div class="pembahasan" id="bahas6">
+        <div class="jawaban">✅ Jawaban: B. Cara bertindak, berpikir, dan berperasaan yang berada di luar individu dan memiliki kekuatan memaksa</div>
+        <b>Pembahasan:</b> <span class="keyword">Fakta sosial</span> (fait social) menurut <span class="keyword">Durkheim</span> memiliki dua ciri utama: bersifat <span class="keyword">eksternal</span> (berada di luar individu) dan <span class="keyword">memaksa</span> (coercive) terhadap individu. Contohnya: hukum, norma, adat istiadat, dan lembaga sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 7 ============ -->
+<div class="soal-card" id="soal7">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Dalam karyanya <span class="keyword">Le Suicide</span>, Emile Durkheim meneliti fenomena bunuh diri sebagai fakta sosial. Perilaku bunuh diri yang meningkat drastis akibat ketidakjelasan norma saat masa transisi ekonomi dikategorikan sebagai tipe bunuh diri...
+    </div>
+    <div class="opsi">A. Egoistik</div>
+    <div class="opsi">B. Altruistik</div>
+    <div class="opsi">C. Anomik</div>
+    <div class="opsi">D. Fatalistik</div>
+    <div class="opsi">E. Ritualistik</div>
+    <div class="pembahasan" id="bahas7">
+        <div class="jawaban">✅ Jawaban: C. Anomik</div>
+        <b>Pembahasan:</b> Bunuh diri <span class="keyword">anomia/anomik</span> terjadi ketika integrasi sosial melemah akibat perubahan sosial yang terlalu cepat, sehingga individu kehilangan pegangan norma (<span class="keyword">anomie</span>). Tipe lain: <span class="keyword">egoistik</span> (integrasi lemah), <span class="keyword">altruistik</span> (integrasi berlebihan), <span class="keyword">fatalistik</span> (regulasi berlebihan).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 8 ============ -->
+<div class="soal-card" id="soal8">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Max Weber menekankan pentingnya memahami makna subjektif di balik tindakan sosial. Metode yang digunakan untuk memahami makna tersebut secara empatik disebut...
+    </div>
+    <div class="opsi">A. Positivisme</div>
+    <div class="opsi">B. Verstehen</div>
+    <div class="opsi">C. Fungsionalisme</div>
+    <div class="opsi">D. Strukturalisme</div>
+    <div class="opsi">E. Behaviorisme</div>
+    <div class="pembahasan" id="bahas8">
+        <div class="jawaban">✅ Jawaban: B. Verstehen</div>
+        <b>Pembahasan:</b> <span class="keyword">Verstehen</span> adalah konsep metodologis <span class="keyword">Max Weber</span> yang berarti "pemahaman". Sosiolog harus mampu menempatkan diri dalam posisi aktor sosial untuk menangkap <span class="keyword">makna subjektif</span>, motivasi, dan tujuan di balik suatu tindakan sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 9 ============ -->
+<div class="soal-card" id="soal9">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Karl Marx memandang bahwa sejarah masyarakat adalah sejarah pertentangan kelas. Dalam konteks industri modern, konflik utama terjadi antara pemilik modal (borjuis) dan pekerja (proletar). Konsep ini dikenal sebagai...
+    </div>
+    <div class="opsi">A. Solidaritas Mekanik</div>
+    <div class="opsi">B. Kelas Sosial</div>
+    <div class="opsi">C. Perjuangan Kelas (Class Struggle)</div>
+    <div class="opsi">D. Alienasi</div>
+    <div class="opsi">E. Birokrasi</div>
+    <div class="pembahasan" id="bahas9">
+        <div class="jawaban">✅ Jawaban: C. Perjuangan Kelas (Class Struggle)</div>
+        <b>Pembahasan:</b> <span class="keyword">Class Struggle</span> (perjuangan kelas) adalah inti teori <span class="keyword">Karl Marx</span>. Kaum <span class="keyword">borjuis</span> (pemilik alat produksi) dan kaum <span class="keyword">proletar</span> (pekerja) memiliki kepentingan yang bertentangan secara fundamental, dan ketegangan inilah yang mendorong perubahan sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 10 ============ -->
+<div class="soal-card" id="soal10">
+    <span class="badge">Sejarah & Tokoh Sosiologi</span>
+    <div class="pertanyaan">
+        Herbert Spencer menerapkan teori evolusi biologis Darwin ke dalam masyarakat dengan ungkapan <span class="keyword">survival of the fittest</span>. Pandangan ini dalam sosiologi dikenal sebagai...
+    </div>
+    <div class="opsi">A. Evolusionisme Unilinear</div>
+    <div class="opsi">B. Darwinisme Sosial</div>
+    <div class="opsi">C. Fungsionalisme Organik</div>
+    <div class="opsi">D. Materialisme Historis</div>
+    <div class="opsi">E. Interaksionisme Simbolik</div>
+    <div class="pembahasan" id="bahas10">
+        <div class="jawaban">✅ Jawaban: B. Darwinisme Sosial</div>
+        <b>Pembahasan:</b> <span class="keyword">Darwinisme Sosial</span> adalah adaptasi teori seleksi alam ke ranah sosial oleh <span class="keyword">Herbert Spencer</span>. Ia berpendapat bahwa masyarakat berevolusi dari sederhana ke kompleks, dan kelompok yang paling mampu beradaptasi akan bertahan, sementara yang lemah akan tersingkir secara alami.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 11 ============ -->
+<div class="soal-card" id="soal11">
+    <span class="badge">Ciri-ciri Sosiologi sebagai Ilmu</span>
+    <div class="pertanyaan">
+        Salah satu ciri sosiologi sebagai ilmu adalah bersifat <span class="keyword">empiris</span>, yang artinya...
+    </div>
+    <div class="opsi">A. Didasarkan pada spekulasi dan khayalan peneliti</div>
+    <div class="opsi">B. Berdasarkan hasil observasi terhadap kenyataan dan akal sehat</div>
+    <div class="opsi">C. Selalu menghasilkan data berupa angka statistik</div>
+    <div class="opsi">D. Mengutamakan penilaian moral terhadap fenomena sosial</div>
+    <div class="opsi">E. Hanya mempelajari peristiwa masa lalu</div>
+    <div class="pembahasan" id="bahas11">
+        <div class="jawaban">✅ Jawaban: B. Berdasarkan hasil observasi terhadap kenyataan dan akal sehat</div>
+        <b>Pembahasan:</b> Ciri <span class="keyword">empiris</span> berarti sosiologi didasarkan pada hasil <span class="keyword">observasi</span> terhadap kenyataan (fakta sosial) dan menggunakan <span class="keyword">akal sehat</span>, bukan spekulasi atau dugaan tanpa dasar. Sosiologi tidak menilai baik-buruknya fakta, tetapi menjelaskan fakta secara objektif.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 12 ============ -->
+<div class="soal-card" id="soal12">
+    <span class="badge">Ciri-ciri Sosiologi sebagai Ilmu</span>
+    <div class="pertanyaan">
+        Sosiologi selalu berusaha menyusun abstraksi dari hasil observasi untuk menjelaskan hubungan logis sebab-akibat suatu fenomena sosial. Hal ini menunjukkan bahwa sosiologi bersifat...
+    </div>
+    <div class="opsi">A. Empiris</div>
+    <div class="opsi">B. Teoretis</div>
+    <div class="opsi">C. Kumulatif</div>
+    <div class="opsi">D. Non-etis</div>
+    <div class="opsi">E. Positivisme</div>
+    <div class="pembahasan" id="bahas12">
+        <div class="jawaban">✅ Jawaban: B. Teoretis</div>
+        <b>Pembahasan:</b> Ciri <span class="keyword">teoretis</span> berarti sosiologi berusaha menyusun <span class="keyword">abstraksi</span> dari hasil observasi untuk menjelaskan hubungan logis <span class="keyword">sebab-akibat</span> fenomena sosial. Abstraksi ini kemudian dirumuskan menjadi teori-teori sosiologi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 13 ============ -->
+<div class="soal-card" id="soal13">
+    <span class="badge">Ciri-ciri Sosiologi sebagai Ilmu</span>
+    <div class="pertanyaan">
+        Teori sosiologi disusun berdasarkan teori-teori yang sudah ada sebelumnya, kemudian diperbaiki, diperluas, dan diperhalus sesuai perkembangan zaman. Hal ini menunjukkan bahwa sosiologi bersifat...
+    </div>
+    <div class="opsi">A. Empiris</div>
+    <div class="opsi">B. Teoretis</div>
+    <div class="opsi">C. Kumulatif</div>
+    <div class="opsi">D. Non-etis</div>
+    <div class="opsi">E. Spekulatif</div>
+    <div class="pembahasan" id="bahas13">
+        <div class="jawaban">✅ Jawaban: C. Kumulatif</div>
+        <b>Pembahasan:</b> Ciri <span class="keyword">kumulatif</span> berarti teori sosiologi dibangun di atas teori-teori yang sudah ada sebelumnya, kemudian <span class="keyword">diperbaiki</span>, <span class="keyword">diperluas</span>, dan <span class="keyword">diperhalus</span> sesuai perkembangan zaman. Contoh: teori fungsionalisme struktural yang berkembang dari gagasan Durkheim hingga Parsons.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 14 ============ -->
+<div class="soal-card" id="soal14">
+    <span class="badge">Ciri-ciri Sosiologi sebagai Ilmu</span>
+    <div class="pertanyaan">
+        Sosiologi memiliki ciri-ciri sebagai ilmu pengetahuan. Salah satu cirinya adalah bersifat <span class="keyword">non-etis</span>, yang berarti...
+    </div>
+    <div class="opsi">A. Mencari nilai-nilai moral dalam masyarakat</div>
+    <div class="opsi">B. Tidak mempersoalkan baik buruknya fakta, melainkan menjelaskan fakta secara analitis</div>
+    <div class="opsi">C. Selalu berubah sesuai perkembangan zaman</div>
+    <div class="opsi">D. Berdasarkan spekulasi dan dugaan peneliti</div>
+    <div class="opsi">E. Mengutamakan norma agama dalam analisis</div>
+    <div class="pembahasan" id="bahas14">
+        <div class="jawaban">✅ Jawaban: B. Tidak mempersoalkan baik buruknya fakta, melainkan menjelaskan fakta secara analitis</div>
+        <b>Pembahasan:</b> Sifat <span class="keyword">non-etis</span> dalam sosiologi menegaskan bahwa tugas sosiolog bukan untuk menghakimi apakah suatu perilaku sosial itu bermoral atau amoral, melainkan <span class="keyword">menguraikan</span> mengapa perilaku tersebut terjadi dan apa dampaknya bagi struktur sosial secara objektif.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 15 ============ -->
+<div class="soal-card" id="soal15">
+    <span class="badge">Objek & Metode Kajian Sosiologi</span>
+    <div class="pertanyaan">
+        Setiap ilmu memiliki objek kajian khusus yang membedakannya dengan ilmu lain. Objek kajian utama sosiologi adalah...
+    </div>
+    <div class="opsi">A. Alam semesta dan fenomenanya</div>
+    <div class="opsi">B. Masyarakat dan hubungan antarmanusia</div>
+    <div class="opsi">C. Jiwa dan perilaku individu</div>
+    <div class="opsi">D. Sistem pemerintahan suatu negara</div>
+    <div class="opsi">E. Kegiatan produksi dan distribusi barang</div>
+    <div class="pembahasan" id="bahas15">
+        <div class="jawaban">✅ Jawaban: B. Masyarakat dan hubungan antarmanusia</div>
+        <b>Pembahasan:</b> Objek kajian sosiologi adalah <span class="keyword">masyarakat</span> (society) dan <span class="keyword">hubungan sosial</span> antarmanusia dalam kelompok. Masyarakat mencakup struktur, proses, dan perubahan sosial yang terjadi dalam kehidupan bersama.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 16 ============ -->
+<div class="soal-card" id="soal16">
+    <span class="badge">Objek & Metode Kajian Sosiologi</span>
+    <div class="pertanyaan">
+        Sosiologi termasuk <span class="keyword">ilmu sosial</span> (social science), bukan ilmu alam (natural science), karena...
+    </div>
+    <div class="opsi">A. Mempelajari fenomena alam dan benda fisik</div>
+    <div class="opsi">B. Menggunakan metode eksperimen laboratorium</div>
+    <div class="opsi">C. Mempelajari manusia dan masyarakat sebagai makhluk sosial</div>
+    <div class="opsi">D. Selalu menghasilkan hukum pasti yang tidak berubah</div>
+    <div class="opsi">E. Hanya menggunakan data berupa angka</div>
+    <div class="pembahasan" id="bahas16">
+        <div class="jawaban">✅ Jawaban: C. Mempelajari manusia dan masyarakat sebagai makhluk sosial</div>
+        <b>Pembahasan:</b> Sosiologi termasuk <span class="keyword">ilmu sosial</span> karena mempelajari manusia dan masyarakat sebagai <span class="keyword">makhluk sosial</span>, berbeda dengan ilmu alam yang mempelajari fenomena fisik. Ilmu sosial mempelajari pola perilaku manusia dalam konteks kehidupan bersama.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 17 ============ -->
+<div class="soal-card" id="soal17">
+    <span class="badge">Objek & Metode Kajian Sosiologi</span>
+    <div class="pertanyaan">
+        Sosiologi bersifat <span class="keyword">umum</span>, bukan khusus. Artinya sosiologi...
+    </div>
+    <div class="opsi">A. Hanya mempelajari satu gejala sosial tertentu</div>
+    <div class="opsi">B. Mempelajari gejala-gejala umum pada setiap hubungan manusia</div>
+    <div class="opsi">C. Hanya berlaku untuk masyarakat modern</div>
+    <div class="opsi">D. Mempelajari satu masyarakat tertentu saja</div>
+    <div class="opsi">E. Mengkhususkan pada satu kelompok sosial</div>
+    <div class="pembahasan" id="bahas17">
+        <div class="jawaban">✅ Jawaban: B. Mempelajari gejala-gejala umum pada setiap hubungan manusia</div>
+        <b>Pembahasan:</b> Sosiologi bersifat <span class="keyword">umum</span> karena mempelajari gejala-gejala umum pada setiap hubungan antarmanusia, bukan gejala khusus tertentu. Sosiologi mencari pola umum yang berlaku dalam berbagai bentuk hubungan sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 18 ============ -->
+<div class="soal-card" id="soal18">
+    <span class="badge">Objek & Metode Kajian Sosiologi</span>
+    <div class="pertanyaan">
+        Gejala sosial kemiskinan struktural di perkotaan tidak dapat diselesaikan hanya dengan memberikan bantuan tunai sesaat, karena akar masalahnya terletak pada ketimpangan akses terhadap sumber daya. Pendekatan sosiologi yang tepat untuk menganalisis hal ini adalah...
+    </div>
+    <div class="opsi">A. Mikro-sosiologi</div>
+    <div class="opsi">B. Makro-sosiologi</div>
+    <div class="opsi">C. Psikologi Sosial</div>
+    <div class="opsi">D. Antropologi Budaya</div>
+    <div class="opsi">E. Demografi</div>
+    <div class="pembahasan" id="bahas18">
+        <div class="jawaban">✅ Jawaban: B. Makro-sosiologi</div>
+        <b>Pembahasan:</b> <span class="keyword">Makro-sosiologi</span> mempelajari struktur sosial skala besar, sistem ekonomi, kebijakan publik, dan pola ketimpangan yang mempengaruhi kehidupan masyarakat secara luas. Kemiskinan struktural adalah masalah makro yang memerlukan analisis institusional, bukan sekadar interaksi individu.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 19 ============ -->
+<div class="soal-card" id="soal19">
+    <span class="badge">Objek & Metode Kajian Sosiologi</span>
+    <div class="pertanyaan">
+        Suatu pengetahuan dapat disebut <span class="keyword">ilmu</span> apabila memenuhi syarat ontologis, epistemologis, dan aksiologis. Syarat <span class="keyword">epistemologis</span> dalam sosiologi berarti...
+    </div>
+    <div class="opsi">A. Memiliki objek kajian berupa masyarakat</div>
+    <div class="opsi">B. Memiliki metode ilmiah untuk memperoleh pengetahuan</div>
+    <div class="opsi">C. Memiliki manfaat bagi kehidupan manusia</div>
+    <div class="opsi">D. Memiliki teori yang sudah mapan</div>
+    <div class="opsi">E. Memiliki tokoh yang terkenal</div>
+    <div class="pembahasan" id="bahas19">
+        <div class="jawaban">✅ Jawaban: B. Memiliki metode ilmiah untuk memperoleh pengetahuan</div>
+        <b>Pembahasan:</b> Syarat <span class="keyword">epistemologis</span> berkaitan dengan metode atau cara memperoleh pengetahuan yang benar. Syarat <span class="keyword">ontologis</span> berkaitan dengan objek kajian, dan syarat <span class="keyword">aksiologis</span> berkaitan dengan manfaat atau nilai guna ilmu tersebut.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 20 ============ -->
+<div class="soal-card" id="soal20">
+    <span class="badge">Teori & Aliran Sosiologi</span>
+    <div class="pertanyaan">
+        Teori fungsionalisme struktural dari Talcott Parsons melihat masyarakat sebagai sebuah sistem yang saling berkaitan. Jika salah satu bagian mengalami gangguan, maka bagian lain akan menyesuaikan diri untuk mengembalikan keseimbangan. Konsep ini dikenal sebagai...
+    </div>
+    <div class="opsi">A. Conflict Theory</div>
+    <div class="opsi">B. Social Equilibrium</div>
+    <div class="opsi">C. Symbolic Interactionism</div>
+    <div class="opsi">D. Social Construction</div>
+    <div class="opsi">E. Cultural Lag</div>
+    <div class="pembahasan" id="bahas20">
+        <div class="jawaban">✅ Jawaban: B. Social Equilibrium</div>
+        <b>Pembahasan:</b> <span class="keyword">Social Equilibrium</span> (keseimbangan sosial) adalah gagasan inti fungsionalisme struktural <span class="keyword">Talcott Parsons</span> bahwa masyarakat cenderung menuju stabilitas. Setiap institusi memiliki fungsi untuk mempertahankan sistem, dan gangguan akan memicu mekanisme penyesuaian menuju keseimbangan baru.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 21 ============ -->
+<div class="soal-card" id="soal21">
+    <span class="badge">Teori & Aliran Sosiologi</span>
+    <div class="pertanyaan">
+        Teori <span class="keyword">interaksionisme simbolik</span> yang dikembangkan oleh George Herbert Mead dan Herbert Blumer menekankan bahwa...
+    </div>
+    <div class="opsi">A. Masyarakat adalah sistem yang stabil dan seimbang</div>
+    <div class="opsi">B. Perilaku manusia ditentukan oleh struktur ekonomi</div>
+    <div class="opsi">C. Makna lahir dari interaksi sosial melalui simbol-simbol yang dimaknai bersama</div>
+    <div class="opsi">D. Konflik adalah penggerak utama perubahan sosial</div>
+    <div class="opsi">E. Individu sepenuhnya ditentukan oleh lingkungan fisik</div>
+    <div class="pembahasan" id="bahas21">
+        <div class="jawaban">✅ Jawaban: C. Makna lahir dari interaksi sosial melalui simbol-simbol yang dimaknai bersama</div>
+        <b>Pembahasan:</b> <span class="keyword">Interaksionisme simbolik</span> adalah perspektif <span class="keyword">mikro-sosiologi</span> yang menekankan bahwa makna lahir dari interaksi sosial melalui simbol-simbol (bahasa, gestur, tanda) yang dimaknai bersama. Tokoh utamanya: <span class="keyword">George Herbert Mead</span> dan <span class="keyword">Herbert Blumer</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 22 ============ -->
+<div class="soal-card" id="soal22">
+    <span class="badge">Teori & Aliran Sosiologi</span>
+    <div class="pertanyaan">
+        Selain Karl Marx, teori <span class="keyword">konflik</span> juga dikembangkan oleh Ralf Dahrendorf. Menurut Dahrendorf, konflik dalam masyarakat modern bersumber dari...
+    </div>
+    <div class="opsi">A. Perbedaan budaya antarkelompok</div>
+    <div class="opsi">B. Ketimpangan distribusi kekuasaan dan otoritas</div>
+    <div class="opsi">C. Perbedaan agama dan kepercayaan</div>
+    <div class="opsi">D. Konflik antargenerasi</div>
+    <div class="opsi">E. Perbedaan kondisi geografis</div>
+    <div class="pembahasan" id="bahas22">
+        <div class="jawaban">✅ Jawaban: B. Ketimpangan distribusi kekuasaan dan otoritas</div>
+        <b>Pembahasan:</b> <span class="keyword">Ralf Dahrendorf</span> mengembangkan teori konflik dengan menekankan bahwa konflik bersumber dari ketimpangan distribusi <span class="keyword">kekuasaan dan otoritas</span>, bukan semata kepemilikan alat produksi seperti yang dikemukakan Marx. Teori ini relevan untuk menganalisis masyarakat modern yang kompleks.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 23 ============ -->
+<div class="soal-card" id="soal23">
+    <span class="badge">Teori & Aliran Sosiologi</span>
+    <div class="pertanyaan">
+        William F. Ogburn memperkenalkan konsep yang menjelaskan ketertinggalan unsur budaya immaterial (seperti nilai dan norma) dalam menyesuaikan diri dengan perubahan budaya material (teknologi). Konsep ini disebut...
+    </div>
+    <div class="opsi">A. Culture Shock</div>
+    <div class="opsi">B. Cultural Lag</div>
+    <div class="opsi">C. Cultural Diffusion</div>
+    <div class="opsi">D. Cultural Relativism</div>
+    <div class="opsi">E. Ethnocentrism</div>
+    <div class="pembahasan" id="bahas23">
+        <div class="jawaban">✅ Jawaban: B. Cultural Lag</div>
+        <b>Pembahasan:</b> <span class="keyword">Cultural Lag</span> (ketertinggalan budaya) adalah konsep <span class="keyword">William F. Ogburn</span> yang terjadi ketika inovasi teknologi berkembang pesat sementara norma, hukum, dan nilai sosial belum siap mengimbanginya, menciptakan kesenjangan yang berpotensi menimbulkan masalah sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 24 ============ -->
+<div class="soal-card" id="soal24">
+    <span class="badge">Fungsi & Perkembangan Sosiologi</span>
+    <div class="pertanyaan">
+        Sosiologi memiliki fungsi penting dalam pembangunan masyarakat. Salah satu fungsi sosiologi dalam pembangunan adalah...
+    </div>
+    <div class="opsi">A. Menentukan kebijakan ekonomi secara langsung</div>
+    <div class="opsi">B. Memberikan data sosial untuk perencanaan dan pemecahan masalah sosial</div>
+    <div class="opsi">C. Menggantikan peran pemerintah dalam pembangunan</div>
+    <div class="opsi">D. Menciptakan teknologi baru untuk masyarakat</div>
+    <div class="opsi">E. Menghapus seluruh konflik sosial yang ada</div>
+    <div class="pembahasan" id="bahas24">
+        <div class="jawaban">✅ Jawaban: B. Memberikan data sosial untuk perencanaan dan pemecahan masalah sosial</div>
+        <b>Pembahasan:</b> Sosiologi berfungsi memberikan <span class="keyword">data sosial</span> untuk <span class="keyword">perencanaan</span>, <span class="keyword">pelaksanaan</span>, dan <span class="keyword">evaluasi</span> pembangunan, serta membantu pemecahan masalah sosial. Sosiolog berperan sebagai analis sosial yang menyediakan informasi berbasis riset untuk pengambil kebijakan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 25 ============ -->
+<div class="soal-card" id="soal25">
+    <span class="badge">Fungsi & Perkembangan Sosiologi</span>
+    <div class="pertanyaan">
+        Perkembangan sosiologi di Indonesia ditandai dengan berdirinya jurusan sosiologi pertama di perguruan tinggi. Tokoh yang dikenal sebagai salah satu pelopor sosiologi di Indonesia adalah...
+    </div>
+    <div class="opsi">A. Selo Soemardjan</div>
+    <div class="opsi">B. Ki Hajar Dewantara</div>
+    <div class="opsi">C. Soekarno</div>
+    <div class="opsi">D. Mohammad Hatta</div>
+    <div class="opsi">E. Tan Malaka</div>
+    <div class="pembahasan" id="bahas25">
+        <div class="jawaban">✅ Jawaban: A. Selo Soemardjan</div>
+        <b>Pembahasan:</b> <span class="keyword">Selo Soemardjan</span> dikenal sebagai pelopor sosiologi Indonesia dan berperan besar dalam pengembangan sosiologi di Indonesia, khususnya di <span class="keyword">Universitas Gadjah Mada</span>. Beliau sering dijuluki sebagai "Bapak Sosiologi Indonesia" atas jasanya mengembangkan ilmu sosiologi di tanah air.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+        <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Soal Selanjutnya: Hubungan dan Gejala Sosial ➡</button>
+    </div>
+</div>
+
+<!-- ============ HALAMAN SELESAI ============ -->
+<div class="selesai-card" id="selesaiCard">
+    <h2>🎉 Selamat!</h2>
+    <p>Anda telah menyelesaikan <b>25 soal</b> materi <b>Sosiologi sebagai Ilmu</b>.<br>
+    Klik tombol di bawah untuk melanjutkan ke materi berikutnya.</p>
+    <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Materi Hubungan dan Gejala Sosial akan segera tersedia! 🚀')">📚 Lanjut ke Materi: Hubungan dan Gejala Sosial</button>
+</div>
+
+</div>
+
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

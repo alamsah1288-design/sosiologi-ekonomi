@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKA Sosiologi - Hubungan dan Gejala Sosial</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+    .header {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header h1 {
+        font-size: 1.3em;
+        color: #4a148c;
+    }
+    .header p {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+    .progress-bar {
+        background: #eee;
+        border-radius: 10px;
+        height: 12px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        background: linear-gradient(90deg, #42a5f5, #4a148c);
+        height: 100%;
+        width: 4%;
+        transition: width 0.4s ease;
+        border-radius: 10px;
+    }
+    .info-nomor {
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+    .soal-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .soal-card.aktif { display: block; }
+    .badge {
+        display: inline-block;
+        background: #ede7f6;
+        color: #4a148c;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.78em;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+    .pertanyaan {
+        font-size: 1.03em;
+        line-height: 1.75;
+        color: #2c2c2c;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .keyword {
+        font-weight: bold;
+        font-style: italic;
+        color: #6a1b9a;
+    }
+    .opsi {
+        display: block;
+        padding: 12px 16px;
+        margin: 9px 0;
+        background: #f8f9ff;
+        border: 2px solid #e0e0f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1.5;
+        font-size: 0.97em;
+    }
+    .opsi:hover {
+        background: #ede7f6;
+        border-color: #9575cd;
+        transform: translateX(5px);
+    }
+    .pembahasan {
+        display: none;
+        margin-top: 18px;
+        background: #e8f5e9;
+        border-left: 6px solid #2e7d32;
+        border-radius: 8px;
+        padding: 18px 20px;
+        line-height: 1.75;
+        font-size: 0.96em;
+    }
+    .pembahasan .jawaban {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    .tombol-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .btn-bahas {
+        background: #2e7d32;
+        color: #fff;
+    }
+    .btn-bahas:hover { background: #1b5e20; }
+    .btn-next {
+        background: #4a148c;
+        color: #fff;
+        margin-left: auto;
+    }
+    .btn-next:hover { background: #6a1b9a; }
+    .btn-prev {
+        background: #eceff1;
+        color: #37474f;
+    }
+    .btn-prev:hover { background: #cfd8dc; }
+    .btn-final {
+        background: linear-gradient(90deg, #f57f17, #e65100);
+        color: #fff;
+        margin-left: auto;
+        display: none;
+        font-size: 1em;
+    }
+    .btn-final:hover { transform: scale(1.03); }
+    .selesai-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .selesai-card h2 { color: #4a148c; margin-bottom: 15px; }
+    .selesai-card p { color: #555; line-height: 1.7; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📘 TKA Sosiologi</h1>
+    <p><b>Materi:</b> Hubungan dan Gejala Sosial &mdash; Hubungan Sosial | Kepribadian, Kelompok & Lembaga Sosial | Gejala Sosial | Masyarakat Multikultural</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+<!-- ============ SOAL 1 ============ -->
+<div class="soal-card aktif" id="soal1">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Hubungan sosial terjadi melalui proses <span class="keyword">interaksi sosial</span>, yaitu hubungan timbal balik antara individu dengan individu, individu dengan kelompok, maupun kelompok dengan kelompok. Syarat utama terjadinya interaksi sosial adalah...
+    </div>
+    <div class="opsi">A. Adat istiadat dan norma</div>
+    <div class="opsi">B. Kontak sosial dan komunikasi</div>
+    <div class="opsi">C. Status dan peran sosial</div>
+    <div class="opsi">D. Nilai dan lembaga sosial</div>
+    <div class="opsi">E. Sosialisasi dan internalisasi</div>
+    <div class="pembahasan" id="bahas1">
+        <div class="jawaban">✅ Jawaban: B. Kontak sosial dan komunikasi</div>
+        <b>Pembahasan:</b> Interaksi sosial mensyaratkan dua hal, yaitu <span class="keyword">kontak sosial</span> (hubungan fisik maupun nonfisik antara pihak-pihak) dan <span class="keyword">komunikasi</span> (proses penyampaian dan penerimaan pesan). Tanpa keduanya, hubungan timbal balik tidak dapat dikatakan sebagai interaksi sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 2 ============ -->
+<div class="soal-card" id="soal2">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Seorang anak meniru gaya berpakaian dan cara berbicara penyanyi favoritnya hingga detail. Dalam hubungan sosial, tindakan tersebut didorong oleh faktor <span class="keyword">imitasi</span>, yaitu...
+    </div>
+    <div class="opsi">A. Dorongan untuk menjadi sama persis dengan orang yang dikagumi secara menyeluruh</div>
+    <div class="opsi">B. Proses meniru tindakan, gaya, atau perilaku orang lain</div>
+    <div class="opsi">C. Pengaruh orang lain yang diterima tanpa berpikir kritis</div>
+    <div class="opsi">D. Rasa iba terhadap kondisi orang lain</div>
+    <div class="opsi">E. Pemberian dorongan agar seseorang bertindak</div>
+    <div class="pembahasan" id="bahas2">
+        <div class="jawaban">✅ Jawaban: B. Proses meniru tindakan, gaya, atau perilaku orang lain</div>
+        <b>Pembahasan:</b> <span class="keyword">Imitasi</span> adalah proses meniru tindakan, gaya, ucapan, atau perilaku orang lain. Opsi A adalah <span class="keyword">identifikasi</span>, opsi C adalah <span class="keyword">sugesti</span>, opsi D adalah <span class="keyword">simpati</span>, dan opsi E adalah <span class="keyword">motivasi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 3 ============ -->
+<div class="soal-card" id="soal3">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Perhatikan pernyataan berikut!<br>
+        (1) Kerja sama warga membersihkan selokan<br>
+        (2) Tawuran antarpelajar<br>
+        (3) Gotong royong membangun rumah<br>
+        (4) Persaingan dua perusahaan dagang<br>
+        (5) Mediasi sengketa tanah<br><br>
+        Yang termasuk bentuk interaksi sosial <span class="keyword">asosiatif</span> ditunjukkan oleh nomor...
+    </div>
+    <div class="opsi">A. (1), (2), dan (3)</div>
+    <div class="opsi">B. (1), (3), dan (5)</div>
+    <div class="opsi">C. (2), (3), dan (4)</div>
+    <div class="opsi">D. (2), (4), dan (5)</div>
+    <div class="opsi">E. (3), (4), dan (5)</div>
+    <div class="pembahasan" id="bahas3">
+        <div class="jawaban">✅ Jawaban: B. (1), (3), dan (5)</div>
+        <b>Pembahasan:</b> Interaksi <span class="keyword">asosiatif</span> bersifat menyatukan dan kerja sama, meliputi <span class="keyword">kerja sama</span>, <span class="keyword">akomodasi</span>, <span class="keyword">asimilasi</span>, dan <span class="keyword">akulturasi</span>. Nomor (1), (3), dan (5) bersifat menyatukan. Adapun (2) dan (4) termasuk interaksi <span class="keyword">disosiatif</span> (konflik dan persaingan).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 4 ============ -->
+<div class="soal-card" id="soal4">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Persaingan antara dua calon ketua OSIS dilakukan secara sehat dengan menyampaikan visi dan misi tanpa saling menjatuhkan. Bentuk interaksi sosial semacam ini disebut <span class="keyword">kompetisi</span>, yang memiliki ciri utama...
+    </div>
+    <div class="opsi">A. Menggunakan kekerasan untuk mengalahkan lawan</div>
+    <div class="opsi">B. Dilakukan sesuai aturan tanpa ancaman atau kekerasan</div>
+    <div class="opsi">C. Bertujuan memusnahkan pihak lawan</div>
+    <div class="opsi">D. Tidak memiliki aturan yang mengikat</div>
+    <div class="opsi">E. Selalu berakhir dengan konflik terbuka</div>
+    <div class="pembahasan" id="bahas4">
+        <div class="jawaban">✅ Jawaban: B. Dilakukan sesuai aturan tanpa ancaman atau kekerasan</div>
+        <b>Pembahasan:</b> <span class="keyword">Kompetisi</span> (persaingan) adalah perjuangan memperebutkan sesuatu yang terbatas dengan cara sehat, mengikuti <span class="keyword">aturan</span>, dan tanpa kekerasan. Apabila disertai ancaman atau kekerasan, maka berubah menjadi <span class="keyword">kontravensi</span> atau <span class="keyword">konflik</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 5 ============ -->
+<div class="soal-card" id="soal5">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Sengketa lahan antara dua keluarga diselesaikan oleh kepala desa selaku pihak ketiga yang netral, dan keputusannya bersifat mengikat bagi kedua belah pihak. Bentuk akomodasi tersebut adalah <span class="keyword">arbitrase</span>, karena...
+    </div>
+    <div class="opsi">A. Pihak ketiga hanya menjadi fasilitator tanpa wewenang memutuskan</div>
+    <div class="opsi">B. Pihak ketiga memiliki wewenang mengambil keputusan yang mengikat</div>
+    <div class="opsi">C. Kedua pihak saling menurunkan tuntutan sendiri</div>
+    <div class="opsi">D. Penyelesaian dilakukan melalui pengadilan</div>
+    <div class="opsi">E. Salah satu pihak mengalah karena kekuatan lebih besar</div>
+    <div class="pembahasan" id="bahas5">
+        <div class="jawaban">✅ Jawaban: B. Pihak ketiga memiliki wewenang mengambil keputusan yang mengikat</div>
+        <b>Pembahasan:</b> Dalam <span class="keyword">arbitrase</span>, pihak ketiga berwenang mengambil keputusan yang <span class="keyword">mengikat</span>. Jika pihak ketiga hanya memfasilitasi, disebut <span class="keyword">mediasi</span>; jika kedua pihak menurunkan tuntutan, disebut <span class="keyword">kompromi</span>; dan jika melalui pengadilan disebut <span class="keyword">ajudikasi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 6 ============ -->
+<div class="soal-card" id="soal6">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Ketika sahabatnya tertimpa musibah kebakaran rumah, Rina tidak hanya merasa iba tetapi juga ikut menggalang bantuan dan mendampingi sahabatnya setiap hari. Sikap Rina menunjukkan faktor pendorong hubungan sosial berupa <span class="keyword">empati</span>, yaitu...
+    </div>
+    <div class="opsi">A. Rasa kagum terhadap orang lain</div>
+    <div class="opsi">B. Perasaan iba tanpa tindakan nyata</div>
+    <div class="opsi">C. Kemampuan merasakan kondisi orang lain disertai tindakan nyata</div>
+    <div class="opsi">D. Keinginan menjadi sama dengan orang lain</div>
+    <div class="opsi">E. Pengaruh kuat dari orang lain</div>
+    <div class="pembahasan" id="bahas6">
+        <div class="jawaban">✅ Jawaban: C. Kemampuan merasakan kondisi orang lain disertai tindakan nyata</div>
+        <b>Pembahasan:</b> <span class="keyword">Empati</span> adalah simpati mendalam yang disertai <span class="keyword">tindakan nyata</span> dan keterlibatan langsung. Berbeda dengan <span class="keyword">simpati</span> yang hanya berupa perasaan iba, empati mendorong seseorang benar-benar bertindak membantu.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 7 ============ -->
+<div class="soal-card" id="soal7">
+    <span class="badge">Konsep & Bentuk Hubungan Sosial</span>
+    <div class="pertanyaan">
+        Masyarakat pesisir menerima budaya musik dangdut yang kemudian dipadukan dengan alat musik tradisional tanpa menghilangkan ciri khas aslinya. Proses ini merupakan contoh <span class="keyword">akulturasi</span>, yaitu...
+    </div>
+    <div class="opsi">A. Percampuran dua budaya hingga budaya asli hilang</div>
+    <div class="opsi">B. Percampuran dua budaya tanpa menghilangkan ciri khas budaya asli</div>
+    <div class="opsi">C. Penolakan terhadap budaya asing</div>
+    <div class="opsi">D. Penyebaran budaya dari satu daerah ke daerah lain</div>
+    <div class="opsi">E. Pemaksaan budaya oleh kelompok dominan</div>
+    <div class="pembahasan" id="bahas7">
+        <div class="jawaban">✅ Jawaban: B. Percampuran dua budaya tanpa menghilangkan ciri khas budaya asli</div>
+        <b>Pembahasan:</b> <span class="keyword">Akulturasi</span> adalah percampuran dua budaya dengan tetap mempertahankan <span class="keyword">ciri khas</span> budaya asli. Jika budaya asli melebur dan hilang, disebut <span class="keyword">asimilasi</span>. Penyebaran budaya disebut <span class="keyword">difusi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 8 ============ -->
+<div class="soal-card" id="soal8">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        Seorang bayi yang baru lahir belum mengenal nilai dan norma. Melalui proses <span class="keyword">sosialisasi</span>, ia belajar berperilaku sesuai harapan masyarakat. Tujuan utama sosialisasi dalam pembentukan kepribadian adalah...
+    </div>
+    <div class="opsi">A. Memberikan kebebasan penuh kepada individu</div>
+    <div class="opsi">B. Membentuk kepribadian agar mampu berperan sesuai nilai dan norma</div>
+    <div class="opsi">C. Menolak pengaruh lingkungan sekitar</div>
+    <div class="opsi">D. Memisahkan individu dari masyarakat</div>
+    <div class="opsi">E. Menghilangkan bakat bawaan individu</div>
+    <div class="pembahasan" id="bahas8">
+        <div class="jawaban">✅ Jawaban: B. Membentuk kepribadian agar mampu berperan sesuai nilai dan norma</div>
+        <b>Pembahasan:</b> <span class="keyword">Sosialisasi</span> adalah proses belajar individu untuk mengenal dan menginternalisasi <span class="keyword">nilai dan norma</span> sehingga terbentuk kepribadian yang memungkinkannya berperan dalam masyarakat. Sosialisasi berlangsung sepanjang hayat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 9 ============ -->
+<div class="soal-card" id="soal9">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        Seorang anak pertama kali belajar berbicara, mengenal kasih sayang, dan memahami aturan dasar dari orang tuanya. Agen sosialisasi yang berperan dalam tahap tersebut adalah <span class="keyword">keluarga</span> yang merupakan agen sosialisasi...
+    </div>
+    <div class="opsi">A. Sekunder</div>
+    <div class="opsi">B. Tersier</div>
+    <div class="opsi">C. Primer</div>
+    <div class="opsi">D. Formal</div>
+    <div class="opsi">E. Nonformal</div>
+    <div class="pembahasan" id="bahas9">
+        <div class="jawaban">✅ Jawaban: C. Primer</div>
+        <b>Pembahasan:</b> <span class="keyword">Keluarga</span> merupakan agen sosialisasi <span class="keyword">primer</span> karena menjadi lingkungan pertama dan utama bagi anak. Agen sosialisasi <span class="keyword">sekunder</span> meliputi sekolah, kelompok bermain, dan media massa.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 10 ============ -->
+<div class="soal-card" id="soal10">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        Kelompok pertemanan sebaya yang memiliki hubungan akrab, saling mengenal secara pribadi, dan bersifat kekeluargaan termasuk kelompok sosial <span class="keyword">primer</span>, seperti yang dikemukakan oleh...
+    </div>
+    <div class="opsi">A. Emile Durkheim</div>
+    <div class="opsi">B. Charles Horton Cooley</div>
+    <div class="opsi">C. Max Weber</div>
+    <div class="opsi">D. Karl Marx</div>
+    <div class="opsi">E. Auguste Comte</div>
+    <div class="pembahasan" id="bahas10">
+        <div class="jawaban">✅ Jawaban: B. Charles Horton Cooley</div>
+        <b>Pembahasan:</b> Konsep <span class="keyword">primary group</span> (kelompok primer) dikemukakan oleh <span class="keyword">Charles Horton Cooley</span> (1909), yaitu kelompok dengan hubungan tatap muka yang intim, personal, dan kekeluargaan, seperti keluarga dan sahabat. Kelompok <span class="keyword">sekunder</span> bersifat impersonal dan berorientasi tujuan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 11 ============ -->
+<div class="soal-card" id="soal11">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Lembaga sosial</span> merupakan sistem norma yang tersusun untuk memenuhi kebutuhan masyarakat. Berikut yang merupakan fungsi laten (tidak disadari) dari lembaga pendidikan adalah...
+    </div>
+    <div class="opsi">A. Mentransfer ilmu pengetahuan</div>
+    <div class="opsi">B. Mempersiapkan anak mencari nafkah</div>
+    <div class="opsi">C. Mengurangi kendali orang tua terhadap anak</div>
+    <div class="opsi">D. Mengembangkan bakat peserta didik</div>
+    <div class="opsi">E. Menanamkan keterampilan dasar</div>
+    <div class="pembahasan" id="bahas11">
+        <div class="jawaban">✅ Jawaban: C. Mengurangi kendali orang tua terhadap anak</div>
+        <b>Pembahasan:</b> Fungsi lembaga sosial terbagi menjadi <span class="keyword">fungsi manifes</span> (disadari/diharapkan) dan <span class="keyword">fungsi laten</span> (tidak disadari). Mengurangi kendali orang tua dan memperpanjang masa remaja adalah fungsi <span class="keyword">laten</span> sekolah, sedangkan transfer ilmu dan persiapan kerja adalah fungsi manifes.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 12 ============ -->
+<div class="soal-card" id="soal12">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        Pasangan suami istri bekerja di luar kota sehingga pengasuhan anak diserahkan kepada neneknya. Kondisi ini menunjukkan adanya pergeseran peran dalam lembaga <span class="keyword">keluarga</span>, khususnya fungsi...
+    </div>
+    <div class="opsi">A. Reproduksi</div>
+    <div class="opsi">B. Ekonomi</div>
+    <div class="opsi">C. Afeksi dan sosialisasi</div>
+    <div class="opsi">D. Proteksi fisik</div>
+    <div class="opsi">E. Pengendalian sosial formal</div>
+    <div class="pembahasan" id="bahas12">
+        <div class="jawaban">✅ Jawaban: C. Afeksi dan sosialisasi</div>
+        <b>Pembahasan:</b> Pengasuhan anak berkaitan dengan fungsi <span class="keyword">afeksi</span> (kasih sayang) dan <span class="keyword">sosialisasi</span> (penanaman nilai). Ketika pengasuhan dialihkan kepada nenek, terjadi pergeseran pelaksanaan kedua fungsi tersebut dalam lembaga <span class="keyword">keluarga</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 13 ============ -->
+<div class="soal-card" id="soal13">
+    <span class="badge">Kepribadian, Kelompok & Lembaga Sosial</span>
+    <div class="pertanyaan">
+        Lembaga yang tumbuh dari kebiasaan masyarakat dan diakui serta dipatuhi tanpa harus berbentuk tertulis, seperti gotong royong dan musyawarah desa, disebut lembaga sosial dalam bentuk <span class="keyword">informal</span>. Lembaga informal memiliki ciri...
+    </div>
+    <div class="opsi">A. Memiliki anggaran dasar tertulis</div>
+    <div class="opsi">B. Bersumber dari kebiasaan yang hidup di masyarakat</div>
+    <div class="opsi">C. Dibentuk oleh keputusan negara</div>
+    <div class="opsi">D. Memiliki struktur organisasi baku</div>
+    <div class="opsi">E. Diakui secara hukum formal</div>
+    <div class="pembahasan" id="bahas13">
+        <div class="jawaban">✅ Jawaban: B. Bersumber dari kebiasaan yang hidup di masyarakat</div>
+        <b>Pembahasan:</b> Lembaga <span class="keyword">informal</span> tumbuh dari <span class="keyword">kebiasaan</span>, adat, dan nilai yang hidup di masyarakat tanpa aturan tertulis resmi. Sebaliknya, lembaga <span class="keyword">formal</span> memiliki aturan tertulis, struktur baku, dan pengakuan hukum, seperti sekolah dan pengadilan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 14 ============ -->
+<div class="soal-card" id="soal14">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Gejala sosial</span> adalah peristiwa yang terjadi di antara dan oleh manusia yang memengaruhi kehidupan bersama. Salah satu ciri gejala sosial adalah bersifat kompleks, yang artinya...
+    </div>
+    <div class="opsi">A. Mudah diukur dengan angka pasti</div>
+    <div class="opsi">B. Hanya terjadi pada satu kelompok saja</div>
+    <div class="opsi">C. Melibatkan banyak faktor dan sulit diprediksi secara pasti</div>
+    <div class="opsi">D. Selalu berdampak negatif</div>
+    <div class="opsi">E. Berlangsung sangat singkat</div>
+    <div class="pembahasan" id="bahas14">
+        <div class="jawaban">✅ Jawaban: C. Melibatkan banyak faktor dan sulit diprediksi secara pasti</div>
+        <b>Pembahasan:</b> <span class="keyword">Gejala sosial</span> bersifat <span class="keyword">kompleks</span> karena melibatkan berbagai faktor (ekonomi, budaya, psikologi), dinamis, dan sulit diprediksi secara pasti. Ciri lainnya antara lain: kualitatif, dinamis, dan saling berkaitan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 15 ============ -->
+<div class="soal-card" id="soal15">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        Banyak warga perkotaan tinggal di bantaran sungai karena tidak mampu membeli lahan layak. Kondisi ini memicu permukiman kumuh dan masalah kesehatan. Gejala sosial tersebut termasuk gejala sosial <span class="keyword">ekonomi</span>, karena berkaitan dengan...
+    </div>
+    <div class="opsi">A. Rendahnya kesadaran hukum masyarakat</div>
+    <div class="opsi">B. Keterbatasan ekonomi dalam memenuhi kebutuhan hidup</div>
+    <div class="opsi">C. Lunturnya nilai budaya lokal</div>
+    <div class="opsi">D. Perubahan struktur organisasi pemerintah</div>
+    <div class="opsi">E. Pengaruh media sosial</div>
+    <div class="pembahasan" id="bahas15">
+        <div class="jawaban">✅ Jawaban: B. Keterbatasan ekonomi dalam memenuhi kebutuhan hidup</div>
+        <b>Pembahasan:</b> Gejala sosial <span class="keyword">ekonomi</span> berkaitan dengan <span class="keyword">kemiskinan</span> dan keterbatasan memenuhi kebutuhan, seperti permukiman kumuh, pengangguran, dan kesenjangan. Gejala ini sering dipicu oleh faktor struktural dan ketimpangan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 16 ============ -->
+<div class="soal-card" id="soal16">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        Maraknya aksi <span class="keyword">kenakalan remaja</span> seperti balap liar dan tawuran di lingkungan sekolah dipengaruhi oleh lemahnya kontrol keluarga dan lingkungan pergaulan. Gejala sosial ini termasuk gejala sosial...
+    </div>
+    <div class="opsi">A. Ekonomi</div>
+    <div class="opsi">B. Politik</div>
+    <div class="opsi">C. Budaya</div>
+    <div class="opsi">D. Lingkungan alam</div>
+    <div class="opsi">E. Demografi</div>
+    <div class="pembahasan" id="bahas16">
+        <div class="jawaban">✅ Jawaban: C. Budaya</div>
+        <b>Pembahasan:</b> <span class="keyword">Kenakalan remaja</span>, pergaulan bebas, dan tawuran termasuk gejala sosial <span class="keyword">budaya</span> karena berkaitan dengan nilai, gaya hidup, dan perilaku yang menyimpang dari norma masyarakat. Gejalanya dipengaruhi <span class="keyword">sosialisasi tidak sempurna</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 17 ============ -->
+<div class="soal-card" id="soal17">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        Penggunaan media sosial secara berlebihan membuat remaja cenderung membandingkan diri dengan orang lain sehingga muncul rasa tidak percaya diri dan kecemasan. Gejala sosial ini menunjukkan dampak negatif media sosial dalam bidang...
+    </div>
+    <div class="opsi">A. Ekonomi produktif</div>
+    <div class="opsi">B. Psikologis dan hubungan sosial</div>
+    <div class="opsi">C. Pelestarian budaya</div>
+    <div class="opsi">D. Penegakan hukum</div>
+    <div class="opsi">E. Peningkatan pendidikan</div>
+    <div class="pembahasan" id="bahas17">
+        <div class="jawaban">✅ Jawaban: B. Psikologis dan hubungan sosial</div>
+        <b>Pembahasan:</b> Kecanduan media sosial menimbulkan gejala sosial pada aspek <span class="keyword">psikologis</span> (kecemasan, rendah diri) dan <span class="keyword">hubungan sosial</span> (interaksi tatap muka menurun). Ini contoh gejala sosial yang dipicu perkembangan <span class="keyword">teknologi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 18 ============ -->
+<div class="soal-card" id="soal18">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        Perhatikan gejala sosial berikut!<br>
+        (1) Meningkatnya angka putus sekolah<br>
+        (2) Pengangguran akibat PHK massal<br>
+        (3) Kesenjangan antara si kaya dan si miskin<br>
+        (4) Tawuran antarpelajar<br>
+        (5) Penebangan liar di hutan lindung<br><br>
+        Yang termasuk gejala sosial <span class="keyword">ekonomi</span> ditunjukkan oleh nomor...
+    </div>
+    <div class="opsi">A. (1), (2), dan (3)</div>
+    <div class="opsi">B. (1), (3), dan (4)</div>
+    <div class="opsi">C. (2), (3), dan (5)</div>
+    <div class="opsi">D. (2), (4), dan (5)</div>
+    <div class="opsi">E. (3), (4), dan (5)</div>
+    <div class="pembahasan" id="bahas18">
+        <div class="jawaban">✅ Jawaban: A. (1), (2), dan (3)</div>
+        <b>Pembahasan:</b> Gejala sosial <span class="keyword">ekonomi</span> meliputi <span class="keyword">kemiskinan</span>, <span class="keyword">pengangguran</span>, <span class="keyword">kesenjangan</span>, dan putus sekolah karena biaya. Nomor (4) adalah gejala budaya (kenakalan remaja), sedangkan (5) adalah gejala <span class="keyword">lingkungan alam</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 19 ============ -->
+<div class="soal-card" id="soal19">
+    <span class="badge">Ragam Gejala Sosial</span>
+    <div class="pertanyaan">
+        Di sebuah kampung, warga rutin mengadakan kerja bakti setiap Minggu untuk menjaga kebersihan lingkungan dan mempererat kerukunan. Kegiatan ini menunjukkan bahwa gejala sosial juga dapat bersifat <span class="keyword">positif</span>, karena...
+    </div>
+    <div class="opsi">A. Menimbulkan masalah baru di masyarakat</div>
+    <div class="opsi">B. Meningkatkan solidaritas dan keteraturan sosial</div>
+    <div class="opsi">C. Menghilangkan seluruh konflik sosial</div>
+    <div class="opsi">D. Membuat masyarakat menjadi individualis</div>
+    <div class="opsi">E. Menurunkan kualitas lingkungan</div>
+    <div class="pembahasan" id="bahas19">
+        <div class="jawaban">✅ Jawaban: B. Meningkatkan solidaritas dan keteraturan sosial</div>
+        <b>Pembahasan:</b> Gejala sosial tidak selalu negatif. Kerja bakti, gotong royong, dan kegiatan sosial merupakan gejala sosial <span class="keyword">positif</span> karena memperkuat <span class="keyword">solidaritas</span>, <span class="keyword">integrasi</span>, dan keteraturan dalam masyarakat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 20 ============ -->
+<div class="soal-card" id="soal20">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Indonesia terdiri atas berbagai suku, agama, ras, dan budaya yang hidup berdampingan. Kondisi tersebut menunjukkan Indonesia sebagai masyarakat <span class="keyword">multikultural</span>, yaitu masyarakat yang...
+    </div>
+    <div class="opsi">A. Hanya memiliki satu kebudayaan dominan</div>
+    <div class="opsi">B. Terdiri atas keberagaman budaya yang diakui setara</div>
+    <div class="opsi">C. Menolak segala bentuk perbedaan</div>
+    <div class="opsi">D. Menghapus identitas budaya lokal</div>
+    <div class="opsi">E. Menyeragamkan seluruh adat istiadat</div>
+    <div class="pembahasan" id="bahas20">
+        <div class="jawaban">✅ Jawaban: B. Terdiri atas keberagaman budaya yang diakui setara</div>
+        <b>Pembahasan:</b> Masyarakat <span class="keyword">multikultural</span> mengakui dan menghargai <span class="keyword">keberagaman</span> budaya secara setara. Konsep ini menekankan toleransi, penghargaan terhadap perbedaan, dan kesederajatan setiap identitas budaya.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 21 ============ -->
+<div class="soal-card" id="soal21">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Menurut Pierre L. van den Berghe, salah satu ciri masyarakat multikultural adalah memiliki struktur sosial yang terbagi ke dalam lembaga-lembaga yang bersifat <span class="keyword">nonkomplementer</span>. Hal ini berarti...
+    </div>
+    <div class="opsi">A. Lembaga sosial saling melengkapi satu sama lain</div>
+    <div class="opsi">B. Lembaga sosial tidak saling melengkapi karena segmentasi kelompok</div>
+    <div class="opsi">C. Seluruh kelompok memiliki lembaga yang sama</div>
+    <div class="opsi">D. Lembaga sosial terpusat pada satu kelompok</div>
+    <div class="opsi">E. Tidak ada lembaga sosial yang berfungsi</div>
+    <div class="pembahasan" id="bahas21">
+        <div class="jawaban">✅ Jawaban: B. Lembaga sosial tidak saling melengkapi karena segmentasi kelompok</div>
+        <b>Pembahasan:</b> Ciri masyarakat multikultural menurut <span class="keyword">van den Berghe</span>: segmentasi ke dalam kelompok dengan subkebudayaan berbeda, struktur sosial terbagi dalam lembaga <span class="keyword">nonkomplementer</span>, kurang konsensus nilai, sering konflik, integrasi tumbuh karena paksaan/dominasi politik.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 22 ============ -->
+<div class="soal-card" id="soal22">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Konflik antarsuku yang terjadi di beberapa daerah sering dipicu oleh sikap menganggap suku sendiri lebih unggul daripada suku lain. Sikap semacam ini disebut <span class="keyword">etnosentrisme</span>, yang dapat menyebabkan...
+    </div>
+    <div class="opsi">A. Integrasi sosial semakin kuat</div>
+    <div class="opsi">B. Toleransi antarbudaya meningkat</div>
+    <div class="opsi">C. Perpecahan dan konflik horizontal</div>
+    <div class="opsi">D. Akulturasi budaya berjalan lancar</div>
+    <div class="opsi">E. Kerja sama antarkelompok meningkat</div>
+    <div class="pembahasan" id="bahas22">
+        <div class="jawaban">✅ Jawaban: C. Perpecahan dan konflik horizontal</div>
+        <b>Pembahasan:</b> <span class="keyword">Etnosentrisme</span> adalah sikap menilai budaya lain dengan standar budaya sendiri dan menganggap budayanya paling unggul. Sikap ini menjadi pemicu <span class="keyword">konflik horizontal</span> dan menghambat integrasi nasional.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 23 ============ -->
+<div class="soal-card" id="soal23">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Semboyan <span class="keyword">Bhinneka Tunggal Ika</span> menjadi perekat persatuan bangsa Indonesia di tengah keberagaman. Semboyan ini menjadi dasar terwujudnya...
+    </div>
+    <div class="opsi">A. Dominasi budaya mayoritas</div>
+    <div class="opsi">B. Penyeragaman seluruh budaya daerah</div>
+    <div class="opsi">C. Integrasi nasional dalam keberagaman</div>
+    <div class="opsi">D. Pemisahan antarkelompok budaya</div>
+    <div class="opsi">E. Penghapusan identitas lokal</div>
+    <div class="pembahasan" id="bahas23">
+        <div class="jawaban">✅ Jawaban: C. Integrasi nasional dalam keberagaman</div>
+        <b>Pembahasan:</b> <span class="keyword">Bhinneka Tunggal Ika</span> (berbeda-beda tetapi tetap satu) menjadi landasan <span class="keyword">integrasi nasional</span>, yaitu penyatuan berbagai kelompok budaya dan sosial ke dalam satu kesatuan bangsa tanpa menghilangkan identitas masing-masing.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 24 ============ -->
+<div class="soal-card" id="soal24">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Di sebuah kota besar, terdapat perkampungan khusus berdasarkan asal daerah seperti Kampung Jawa, Kampung Ambon, dan Kampung Bugis. Fenomena ini menunjukkan bentuk <span class="keyword">segmentasi</span> dalam masyarakat multikultural yang berpotensi menimbulkan...
+    </div>
+    <div class="opsi">A. Akulturasi yang sempurna</div>
+    <div class="opsi">B. Integrasi otomatis</div>
+    <div class="opsi">C. Primordialisme dan eksklusivitas kelompok</div>
+    <div class="opsi">D. Penghapusan identitas budaya</div>
+    <div class="opsi">E. Kesetaraan ekonomi menyeluruh</div>
+    <div class="pembahasan" id="bahas24">
+        <div class="jawaban">✅ Jawaban: C. Primordialisme dan eksklusivitas kelompok</div>
+        <b>Pembahasan:</b> <span class="keyword">Segmentasi</span> (pengelompokan berdasarkan asal daerah/budaya) dapat memperkuat <span class="keyword">primordialisme</span>, yaitu keterikatan berlebihan pada identitas bawaan, serta <span class="keyword">eksklusivitas</span> yang berpotensi menghambat pembauran antarkelompok.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 25 ============ -->
+<div class="soal-card" id="soal25">
+    <span class="badge">Masyarakat Multikultural</span>
+    <div class="pertanyaan">
+        Untuk menjaga kerukunan dalam masyarakat multikultural, diperlukan sikap <span class="keyword">toleransi</span> dan <span class="keyword">multikulturalisme</span>. Upaya paling tepat yang dapat dilakukan generasi muda di sekolah adalah...
+    </div>
+    <div class="opsi">A. Membentuk kelompok bermain hanya dengan teman seasal daerah</div>
+    <div class="opsi">B. Menghormati perbedaan agama dan budaya teman dalam pergaulan</div>
+    <div class="opsi">C. Menganggap budaya sendiri paling baik</div>
+    <div class="opsi">D. Menolak kegiatan lintas budaya di sekolah</div>
+    <div class="opsi">E. Memaksakan pandangan kelompoknya kepada orang lain</div>
+    <div class="pembahasan" id="bahas25">
+        <div class="jawaban">✅ Jawaban: B. Menghormati perbedaan agama dan budaya teman dalam pergaulan</div>
+        <b>Pembahasan:</b> <span class="keyword">Multikulturalisme</span> adalah pandangan yang menghargai keberagaman budaya secara setara. Sikap <span class="keyword">toleransi</span>, saling menghormati, dan keterbukaan merupakan kunci merawat kerukunan dalam masyarakat multikultural, termasuk di lingkungan sekolah.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+        <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Soal Selanjutnya: Penelitian Sosial ➡</button>
+    </div>
+</div>
+
+<!-- ============ HALAMAN SELESAI ============ -->
+<div class="selesai-card" id="selesaiCard">
+    <h2>🎉 Selamat!</h2>
+    <p>Anda telah menyelesaikan <b>25 soal</b> materi <b>Hubungan dan Gejala Sosial</b>.<br>
+    Klik tombol di bawah untuk melanjutkan ke materi berikutnya.</p>
+    <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Materi Penelitian Sosial akan segera tersedia! 🚀')">📚 Lanjut ke Materi: Penelitian Sosial</button>
+</div>
+
+</div>
+
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
