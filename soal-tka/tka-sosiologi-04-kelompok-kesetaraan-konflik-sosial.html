@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKA Sosiologi - Kelompok Sosial, Kesetaraan, dan Konflik Sosial</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    .header {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header h1 { font-size: 1.3em; color: #4a148c; }
+    .header p { color: #666; font-size: 0.9em; margin-top: 5px; }
+    .progress-bar {
+        background: #eee;
+        border-radius: 10px;
+        height: 12px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        background: linear-gradient(90deg, #42a5f5, #4a148c);
+        height: 100%;
+        width: 4%;
+        transition: width 0.4s ease;
+        border-radius: 10px;
+    }
+    .info-nomor { font-weight: bold; color: #fff; margin-bottom: 8px; }
+    .soal-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .soal-card.aktif { display: block; }
+    .badge {
+        display: inline-block;
+        background: #ede7f6;
+        color: #4a148c;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.78em;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+    .bacaan {
+        background: #f3e5f5;
+        border-left: 5px solid #7b1fa2;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.92em;
+        line-height: 1.7;
+        margin: 12px 0 16px 0;
+        color: #4a148c;
+    }
+    .bacaan b { color: #6a1b9a; }
+    .pertanyaan {
+        font-size: 1.03em;
+        line-height: 1.75;
+        color: #2c2c2c;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .keyword {
+        font-weight: bold;
+        font-style: italic;
+        color: #6a1b9a;
+    }
+    .opsi {
+        display: block;
+        padding: 12px 16px;
+        margin: 9px 0;
+        background: #f8f9ff;
+        border: 2px solid #e0e0f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1.5;
+        font-size: 0.97em;
+    }
+    .opsi:hover {
+        background: #ede7f6;
+        border-color: #9575cd;
+        transform: translateX(5px);
+    }
+    .pembahasan {
+        display: none;
+        margin-top: 18px;
+        background: #e8f5e9;
+        border-left: 6px solid #2e7d32;
+        border-radius: 8px;
+        padding: 18px 20px;
+        line-height: 1.75;
+        font-size: 0.96em;
+    }
+    .pembahasan .jawaban {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    .tombol-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .btn-bahas { background: #2e7d32; color: #fff; }
+    .btn-bahas:hover { background: #1b5e20; }
+    .btn-next { background: #4a148c; color: #fff; margin-left: auto; }
+    .btn-next:hover { background: #6a1b9a; }
+    .btn-prev { background: #eceff1; color: #37474f; }
+    .btn-prev:hover { background: #cfd8dc; }
+    .btn-final {
+        background: linear-gradient(90deg, #f57f17, #e65100);
+        color: #fff;
+        margin-left: auto;
+        display: none;
+        font-size: 1em;
+    }
+    .btn-final:hover { transform: scale(1.03); }
+    .selesai-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .selesai-card h2 { color: #4a148c; margin-bottom: 15px; }
+    .selesai-card p { color: #555; line-height: 1.7; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📘 TKA Sosiologi</h1>
+    <p><b>Materi:</b> Kelompok Sosial, Kesetaraan, dan Konflik Sosial &mdash; Konsep & Dinamika Kelompok | Ketidaksetaraan & Kesetaraan Sosial | Konflik & Penanganan Konflik</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+<!-- ============ SOAL 1 ============ -->
+<div class="soal-card aktif" id="soal1">
+    <span class="badge">Konsep Kelompok Sosial</span>
+    <div class="pertanyaan">
+        Menurut Soerjono Soekanto, suatu himpunan manusia baru dapat disebut <span class="keyword">kelompok sosial</span> apabila memenuhi beberapa syarat. Syarat utama suatu kumpulan manusia disebut kelompok sosial adalah...
+    </div>
+    <div class="opsi">A. Berada di tempat yang sama secara kebetulan</div>
+    <div class="opsi">B. Memiliki kesadaran sebagai bagian kelompok, hubungan timbal balik, dan struktur aturan</div>
+    <div class="opsi">C. Memiliki jumlah anggota lebih dari sepuluh orang</div>
+    <div class="opsi">D. Hanya berkumpul pada waktu tertentu saja</div>
+    <div class="opsi">E. Tidak memiliki aturan yang mengikat</div>
+    <div class="pembahasan" id="bahas1">
+        <div class="jawaban">✅ Jawaban: B. Memiliki kesadaran sebagai bagian kelompok, hubungan timbal balik, dan struktur aturan</div>
+        <b>Pembahasan:</b> Menurut <span class="keyword">Soerjono Soekanto</span>, syarat kelompok sosial meliputi: (1) <span class="keyword">kesadaran</span> sebagai bagian kelompok, (2) <span class="keyword">hubungan timbal balik</span>, (3) <span class="keyword">faktor pengikat</span> (nasib, kepentingan, tujuan), (4) berstruktur dengan kaidah dan pola perilaku, serta (5) bersistem dan berproses.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 2 ============ -->
+<div class="soal-card" id="soal2">
+    <span class="badge">Konsep Kelompok Sosial</span>
+    <div class="bacaan">
+        <b>Bacaan:</b> Menurut Ferdinand Tonnies, masyarakat terbagi menjadi dua tipe kelompok: (1) kelompok yang didasarkan pada ikatan batin, alamiah, dan kekal; (2) kelompok yang didasarkan pada kepentingan, bersifat sementara, dan mekanis.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan bacaan di atas, dua tipe kelompok sosial menurut Ferdinand Tonnies adalah...
+    </div>
+    <div class="opsi">A. Kelompok primer dan kelompok sekunder</div>
+    <div class="opsi">B. Gemeinschaft (paguyuban) dan Gesellschaft (patembayan)</div>
+    <div class="opsi">C. In-group dan out-group</div>
+    <div class="opsi">D. Kelompok formal dan kelompok informal</div>
+    <div class="opsi">E. Membership group dan reference group</div>
+    <div class="pembahasan" id="bahas2">
+        <div class="jawaban">✅ Jawaban: B. Gemeinschaft (paguyuban) dan Gesellschaft (patembayan)</div>
+        <b>Pembahasan:</b> <span class="keyword">Ferdinand Tonnies</span> membagi kelompok sosial menjadi <span class="keyword">Gemeinschaft</span> (paguyuban) yang bersifat personal, tradisional, dan kekal (contoh: keluarga, rukun tetangga) dan <span class="keyword">Gesellschaft</span> (patembayan) yang bersifat impersonal, rasional, dan sementara (contoh: perusahaan, organisasi).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 3 ============ -->
+<div class="soal-card" id="soal3">
+    <span class="badge">Konsep Kelompok Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS 2023:</b> Jumlah Kelompok Tani (Poktan) di Indonesia tercatat <b>812.427 kelompok</b> dengan total anggota sekitar 15,3 juta petani. Poktan berperan sebagai wadah pembelajaran, kerja sama, dan unit produksi bagi petani.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data di atas, kelompok tani termasuk dalam jenis kelompok sosial <span class="keyword">sekunder</span> karena...
+    </div>
+    <div class="opsi">A. Hubungan antaranggota bersifat kekeluargaan dan emosional</div>
+    <div class="opsi">B. Memiliki jumlah anggota besar, hubungan formal, dan berorientasi pada tujuan tertentu</div>
+    <div class="opsi">C. Terbentuk secara turun-temurun dari nenek moyang</div>
+    <div class="opsi">D. Tidak memiliki struktur organisasi</div>
+    <div class="opsi">E. Hanya beranggotakan kerabat dekat</div>
+    <div class="pembahasan" id="bahas3">
+        <div class="jawaban">✅ Jawaban: B. Memiliki jumlah anggota besar, hubungan formal, dan berorientasi pada tujuan tertentu</div>
+        <b>Pembahasan:</b> <span class="keyword">Kelompok sekunder</span> (Charles Horton Cooley) memiliki ciri: jumlah anggota <span class="keyword">besar</span>, hubungan bersifat <span class="keyword">formal</span> dan impersonal, berorientasi pada <span class="keyword">tujuan tertentu</span>, serta bersifat sementara. Poktan termasuk kelompok sekunder karena dibentuk untuk tujuan pertanian dan bersifat organisasi formal.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 4 ============ -->
+<div class="soal-card" id="soal4">
+    <span class="badge">Konsep Kelompok Sosial</span>
+    <div class="pertanyaan">
+        Penonton konser musik yang berkumpul di stadion selama beberapa jam tidak termasuk <span class="keyword">kelompok sosial</span>, melainkan tergolong sebagai...
+    </div>
+    <div class="opsi">A. Kelompok primer</div>
+    <div class="opsi">B. Kelompok sekunder</div>
+    <div class="opsi">C. Kerumunan (crowd)</div>
+    <div class="opsi">D. Publik</div>
+    <div class="opsi">E. Asosiasi</div>
+    <div class="pembahasan" id="bahas4">
+        <div class="jawaban">✅ Jawaban: C. Kerumunan (crowd)</div>
+        <b>Pembahasan:</b> <span class="keyword">Kerumunan (crowd)</span> adalah kumpulan orang di tempat yang sama secara kebetulan, bersifat sementara, tidak memiliki struktur, dan tidak ada hubungan timbal balik yang stabil. Berbeda dengan <span class="keyword">publik</span> yang tersebar dan berinteraksi tidak langsung melalui media.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 5 ============ -->
+<div class="soal-card" id="soal5">
+    <span class="badge">Dinamika Kelompok</span>
+    <div class="bacaan">
+        <b>Studi Kasus:</b> Kelompok arisan RT 05 di Jakarta awalnya terdiri dari 30 ibu rumah tangga dengan hubungan sangat erat dan saling percaya. Namun setelah 5 tahun, beberapa anggota pindah rumah dan anggota baru yang berbeda latar belakang bergabung, sehingga muncul gesekan kecil dalam pengambilan keputusan.
+    </div>
+    <div class="pertanyaan">
+        Perubahan dalam kelompok arisan tersebut menunjukkan adanya <span class="keyword">dinamika kelompok</span>, yaitu...
+    </div>
+    <div class="opsi">A. Proses perubahan yang terjadi karena interaksi antaranggota dan faktor eksternal</div>
+    <div class="opsi">B. Keadaan kelompok yang selalu stabil dan tidak berubah</div>
+    <div class="opsi">C. Proses pembubaran kelompok secara paksa</div>
+    <div class="opsi">D. Penolakan terhadap anggota baru</div>
+    <div class="opsi">E. Pengambilalihan kekuasaan oleh ketua kelompok</div>
+    <div class="pembahasan" id="bahas5">
+        <div class="jawaban">✅ Jawaban: A. Proses perubahan yang terjadi karena interaksi antaranggota dan faktor eksternal</div>
+        <b>Pembahasan:</b> <span class="keyword">Dinamika kelompok</span> adalah proses perubahan dan pergerakan yang terjadi dalam kelompok sosial akibat interaksi antaranggota maupun pengaruh dari <span class="keyword">lingkungan eksternal</span>. Dinamika mencakup perubahan struktur, peran, kepemimpinan, dan kohesi kelompok.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 6 ============ -->
+<div class="soal-card" id="soal6">
+    <span class="badge">Dinamika Kelompok</span>
+    <div class="pertanyaan">
+        Kekuatan yang mengikat anggota kelompok sehingga mereka merasa saling membutuhkan dan setia terhadap kelompok disebut <span class="keyword">kohesi kelompok</span>. Faktor yang memperkuat kohesi kelompok adalah...
+    </div>
+    <div class="opsi">A. Jumlah anggota yang sangat besar</div>
+    <div class="opsi">B. Interaksi yang intens, tujuan bersama yang jelas, dan ancaman dari luar</div>
+    <div class="opsi">C. Perbedaan latar belakang antaranggota</div>
+    <div class="opsi">D. Tidak adanya pemimpin yang tegas</div>
+    <div class="opsi">E. Komunikasi yang jarang dilakukan</div>
+    <div class="pembahasan" id="bahas6">
+        <div class="jawaban">✅ Jawaban: B. Interaksi yang intens, tujuan bersama yang jelas, dan ancaman dari luar</div>
+        <b>Pembahasan:</b> <span class="keyword">Kohesi kelompok</span> (group cohesion) diperkuat oleh: (1) <span class="keyword">interaksi intens</span>, (2) <span class="keyword">tujuan bersama</span>, (3) <span class="keyword">ancaman dari luar</span> yang memicu solidaritas, serta (4) keberhasilan kelompok yang memperkuat kebanggaan anggota.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 7 ============ -->
+<div class="soal-card" id="soal7">
+    <span class="badge">Dinamika Kelompok</span>
+    <div class="bacaan">
+        <b>Data:</b> Dalam sebuah organisasi mahasiswa, terdapat 50 anggota. Setelah pemilu ketua, kelompok A (pendukung ketua) yang berjumlah 28 orang mendominasi posisi penting. Kelompok B (22 orang) merasa tersingkirkan dan mulai membentuk aliansi sendiri untuk melawan kebijakan kelompok A.
+    </div>
+    <div class="pertanyaan">
+        Fenomena terbentuknya kelompok A dan kelompok B menunjukkan munculnya <span class="keyword">in-group dan out-group</span>, yang menurut William G. Sumner berarti...
+    </div>
+    <div class="opsi">A. Kelompok A adalah kelompok primer dan B adalah sekunder</div>
+    <div class="opsi">B. Kelompok A (in-group) sebagai kelompok "kami" dan B (out-group) sebagai kelompok "mereka"</div>
+    <div class="opsi">C. Kedua kelompok tersebut saling bekerja sama</div>
+    <div class="opsi">D. Kelompok A dan B merupakan kelompok formal</div>
+    <div class="opsi">E. Keduanya tidak memiliki hubungan apapun</div>
+    <div class="pembahasan" id="bahas7">
+        <div class="jawaban">✅ Jawaban: B. Kelompok A (in-group) sebagai kelompok "kami" dan B (out-group) sebagai kelompok "mereka"</div>
+        <b>Pembahasan:</b> Menurut <span class="keyword">William G. Sumner</span>, <span class="keyword">in-group</span> adalah kelompok yang dengannya individu mengidentifikasi diri ("kami"), sedangkan <span class="keyword">out-group</span> adalah kelompok yang dianggap sebagai lawan atau orang luar ("mereka"). Perbedaan ini sering memicu etnosentrisme.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 8 ============ -->
+<div class="soal-card" id="soal8">
+    <span class="badge">Dinamika Kelompok</span>
+    <div class="pertanyaan">
+        Robert K. Merton memperkenalkan konsep <span class="keyword">reference group</span> dan <span class="keyword">membership group</span>. Seorang pelajar yang bukan anggota kelompok seniman, namun meniru gaya hidup dan nilai-nilai seniman tersebut, menjadikan seniman sebagai...
+    </div>
+    <div class="opsi">A. Membership group</div>
+    <div class="opsi">B. Reference group</div>
+    <div class="opsi">C. Primary group</div>
+    <div class="opsi">D. Secondary group</div>
+    <div class="opsi">E. Out-group</div>
+    <div class="pembahasan" id="bahas8">
+        <div class="jawaban">✅ Jawaban: B. Reference group</div>
+        <b>Pembahasan:</b> <span class="keyword">Reference group</span> adalah kelompok yang menjadi acuan bagi individu dalam membentuk sikap dan perilaku, meskipun individu tersebut bukan anggotanya. Sedangkan <span class="keyword">membership group</span> adalah kelompok yang secara resmi diikuti oleh individu.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 9 ============ -->
+<div class="soal-card" id="soal9">
+    <span class="badge">Ketidaksetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS Maret 2024:</b> Rasio Gini Indonesia tercatat sebesar <b>0,380</b>. Rasio Gini adalah ukuran ketimpangan pengeluaran dengan rentang 0 (setara sempurna) sampai 1 (timpang sempurna). Nilai 0,380 menunjukkan ketimpangan kategori sedang.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data di atas, angka rasio Gini sebesar 0,380 menunjukkan adanya <span class="keyword">ketidaksetaraan sosial</span> dalam bidang...
+    </div>
+    <div class="opsi">A. Pendidikan</div>
+    <div class="opsi">B. Kesehatan</div>
+    <div class="opsi">C. Ekonomi (distribusi pendapatan/pengeluaran)</div>
+    <div class="opsi">D. Politik</div>
+    <div class="opsi">E. Budaya</div>
+    <div class="pembahasan" id="bahas9">
+        <div class="jawaban">✅ Jawaban: C. Ekonomi (distribusi pendapatan/pengeluaran)</div>
+        <b>Pembahasan:</b> <span class="keyword">Rasio Gini</span> adalah indikator <span class="keyword">ketimpangan ekonomi</span> yang mengukur distribusi pendapatan/pengeluaran masyarakat. Nilai 0 berarti sempurna setara, 1 berarti timpang sempurna. <span class="keyword">Ketidaksetaraan sosial</span> adalah kondisi ketidaksamaan akses terhadap sumber daya.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 10 ============ -->
+<div class="soal-card" id="soal10">
+    <span class="badge">Ketidaksetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS 2023:</b> Indeks Pembangunan Gender (IPG) Indonesia sebesar <b>91,47</b> dari skala 100. IPG mengukur pencapaian dimensi kesehatan, pendidikan, dan ekonomi antara laki-laki dan perempuan.
+    </div>
+    <div class="pertanyaan">
+        Nilai IPG di bawah 100 menunjukkan adanya <span class="keyword">ketidaksetaraan gender</span>. Faktor utama penyebab ketidaksetaraan gender di Indonesia adalah...
+    </div>
+    <div class="opsi">A. Kebijakan pemerintah yang mendukung perempuan</div>
+    <div class="opsi">B. Nilai patriarki yang masih kuat dalam masyarakat</div>
+    <div class="opsi">C. Tingkat pendidikan perempuan yang lebih tinggi</div>
+    <div class="opsi">D. Banyaknya perempuan di posisi strategis</div>
+    <div class="opsi">E. Kesetaraan upah antara laki-laki dan perempuan</div>
+    <div class="pembahasan" id="bahas10">
+        <div class="jawaban">✅ Jawaban: B. Nilai patriarki yang masih kuat dalam masyarakat</div>
+        <b>Pembahasan:</b> <span class="keyword">Ketidaksetaraan gender</span> di Indonesia terutama disebabkan oleh budaya <span class="keyword">patriarki</span> yang menempatkan laki-laki lebih dominan daripada perempuan dalam bidang ekonomi, politik, dan pengambilan keputusan, serta pembagian peran domestik.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 11 ============ -->
+<div class="soal-card" id="soal11">
+    <span class="badge">Ketidaksetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data UNESCO 2022:</b> Di Indonesia, angka partisipasi sekolah penduduk pedesaan untuk jenjang SMA/SMK hanya <b>65,2%</b>, sedangkan di perkotaan mencapai <b>81,5%</b>. Selisih 16,3% ini menunjukkan ketimpangan akses pendidikan.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data UNESCO, <span class="keyword">ketidaksetaraan pendidikan</span> antara desa dan kota termasuk bentuk ketidaksetaraan...
+    </div>
+    <div class="opsi">A. Gender</div>
+    <div class="opsi">B. Etnis</div>
+    <div class="opsi">C. Geografis (wilayah)</div>
+    <div class="opsi">D. Generasi</div>
+    <div class="opsi">E. Agama</div>
+    <div class="pembahasan" id="bahas11">
+        <div class="jawaban">✅ Jawaban: C. Geografis (wilayah)</div>
+        <b>Pembahasan:</b> <span class="keyword">Ketidaksetaraan geografis</span> terjadi karena ketimpangan pembangunan antardaerah. Wilayah <span class="keyword">perkotaan</span> umumnya memiliki akses pendidikan, kesehatan, dan infrastruktur yang lebih baik dibanding <span class="keyword">pedesaan</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 12 ============ -->
+<div class="soal-card" id="soal12">
+    <span class="badge">Ketidaksetaraan Sosial</span>
+    <div class="pertanyaan">
+        Ketidaksetaraan sosial tidak hanya disebabkan oleh faktor individu, tetapi juga oleh <span class="keyword">faktor struktural</span>. Contoh ketidaksetaraan struktural adalah...
+    </div>
+    <div class="opsi">A. Seseorang gagal karena malas belajar</div>
+    <div class="opsi">B. Anak dari keluarga miskin sulit mengakses pendidikan berkualitas karena kebijakan yang tidak merata</div>
+    <div class="opsi">C. Seseorang tidak lulus ujian karena tidak rajin berlatih</div>
+    <div class="opsi">D. Seseorang kurang berhasil karena tidak memiliki bakat</div>
+    <div class="opsi">E. Seseorang gagal berwirausaha karena kurang kreatif</div>
+    <div class="pembahasan" id="bahas12">
+        <div class="jawaban">✅ Jawaban: B. Anak dari keluarga miskin sulit mengakses pendidikan berkualitas karena kebijakan yang tidak merata</div>
+        <b>Pembahasan:</b> <span class="keyword">Ketidaksetaraan struktural</span> disebabkan oleh <span class="keyword">struktur sosial</span>, kebijakan, atau sistem yang tidak adil, bukan karena faktor individu. Opsi lain (A, C, D, E) termasuk faktor <span class="keyword">individual</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 13 ============ -->
+<div class="soal-card" id="soal13">
+    <span class="badge">Kesetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS 2023:</b> Tingkat Partisipasi Angkatan Kerja (TPAK) laki-laki di Indonesia sebesar <b>82,43%</b>, sedangkan perempuan hanya <b>53,76%</b>. Kesenjangan 28,67% ini menunjukkan partisipasi ekonomi perempuan masih rendah.
+    </div>
+    <div class="pertanyaan">
+        Untuk mewujudkan <span class="keyword">kesetaraan sosial</span> gender di bidang ekonomi, upaya yang paling tepat dilakukan pemerintah adalah...
+    </div>
+    <div class="opsi">A. Melarang perempuan bekerja di sektor formal</div>
+    <div class="opsi">B. Memberikan pelatihan kewirausahaan dan akses permodalan bagi perempuan</div>
+    <div class="opsi">C. Menurunkan upah minimum bagi pekerja perempuan</div>
+    <div class="opsi">D. Mengurangi kuota perempuan di jabatan publik</div>
+    <div class="opsi">E. Menghapus cuti melahirkan bagi pekerja perempuan</div>
+    <div class="pembahasan" id="bahas13">
+        <div class="jawaban">✅ Jawaban: B. Memberikan pelatihan kewirausahaan dan akses permodalan bagi perempuan</div>
+        <b>Pembahasan:</b> <span class="keyword">Kesetaraan sosial</span> berarti memberikan kesempatan yang sama bagi semua individu tanpa memandang gender, suku, atau status. Pelatihan dan akses modal adalah bentuk <span class="keyword">pemberdayaan</span> perempuan agar dapat berpartisipasi setara di bidang ekonomi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 14 ============ -->
+<div class="soal-card" id="soal14">
+    <span class="badge">Kesetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data Kemendikbudristek 2023:</b> Program KIP-Kuliah telah memberikan beasiswa kepada <b>818.000 mahasiswa</b> dari keluarga kurang mampu untuk melanjutkan pendidikan tinggi.
+    </div>
+    <div class="pertanyaan">
+        Program KIP-Kuliah merupakan contoh kebijakan <span class="keyword">afirmatif</span> yang bertujuan...
+    </div>
+    <div class="opsi">A. Memperbesar kesenjangan antara si kaya dan si miskin</div>
+    <div class="opsi">B. Memberikan perlakuan khusus kepada kelompok kurang mampu untuk mencapai kesetaraan</div>
+    <div class="opsi">C. Menutup akses pendidikan bagi kelompok miskin</div>
+    <div class="opsi">D. Mengurangi jumlah perguruan tinggi negeri</div>
+    <div class="opsi">E. Hanya menguntungkan kelompok mampu secara ekonomi</div>
+    <div class="pembahasan" id="bahas14">
+        <div class="jawaban">✅ Jawaban: B. Memberikan perlakuan khusus kepada kelompok kurang mampu untuk mencapai kesetaraan</div>
+        <b>Pembahasan:</b> Kebijakan <span class="keyword">afirmatif</span> adalah kebijakan khusus yang memberikan <span class="keyword">perlakuan istimewa</span> kepada kelompok yang terpinggirkan atau kurang mampu untuk mencapai kesetaraan. KIP-Kuliah adalah contoh kebijakan afirmatif di bidang pendidikan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 15 ============ -->
+<div class="soal-card" id="soal15">
+    <span class="badge">Kesetaraan Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Kesetaraan di hadapan hukum</span> (equality before the law) merupakan prinsip dasar negara hukum. Prinsip ini dijamin dalam UUD 1945 Pasal 27 ayat (1) yang berbunyi...
+    </div>
+    <div class="opsi">A. Setiap warga negara berhak atas pekerjaan dan penghidupan yang layak</div>
+    <div class="opsi">B. Segala warga negara bersamaan kedudukannya di dalam hukum dan pemerintahan</div>
+    <div class="opsi">C. Setiap warga negara berhak memperoleh pendidikan</div>
+    <div class="opsi">D. Kemerdekaan berserikat dan berkumpul dijamin oleh negara</div>
+    <div class="opsi">E. Fakir miskin dan anak terlantar dipelihara oleh negara</div>
+    <div class="pembahasan" id="bahas15">
+        <div class="jawaban">✅ Jawaban: B. Segala warga negara bersamaan kedudukannya di dalam hukum dan pemerintahan</div>
+        <b>Pembahasan:</b> <span class="keyword">Pasal 27 ayat (1) UUD 1945</span> menjamin kesetaraan di hadapan hukum (<span class="keyword">equality before the law</span>), artinya setiap warga negara memiliki kedudukan yang sama tanpa memandang suku, agama, ras, atau status sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 16 ============ -->
+<div class="soal-card" id="soal16">
+    <span class="badge">Kesetaraan Sosial</span>
+    <div class="bacaan">
+        <b>Data Kemensos 2023:</b> Jumlah penyandang disabilitas di Indonesia diperkirakan mencapai <b>22,5 juta jiwa</b>. Namun baru sekitar 35% yang memiliki akses terhadap pelayanan kesehatan, pendidikan, dan pekerjaan.
+    </div>
+    <div class="pertanyaan">
+        Upaya mewujudkan <span class="keyword">inklusi sosial</span> bagi penyandang disabilitas yang paling tepat adalah...
+    </div>
+    <div class="opsi">A. Mengisolasi penyandang disabilitas di panti khusus</div>
+    <div class="opsi">B. Membangun fasilitas umum yang aksesibel dan menerapkan kuota kerja 1% di sektor swasta</div>
+    <div class="opsi">C. Memberikan tunjangan tanpa upaya pemberdayaan</div>
+    <div class="opsi">D. Melarang penyandang disabilitas bekerja di sektor formal</div>
+    <div class="opsi">E. Memisahkan sekolah khusus disabilitas dari sekolah umum</div>
+    <div class="pembahasan" id="bahas16">
+        <div class="jawaban">✅ Jawaban: B. Membangun fasilitas umum yang aksesibel dan menerapkan kuota kerja 1% di sektor swasta</div>
+        <b>Pembahasan:</b> <span class="keyword">Inklusi sosial</span> adalah upaya menjamin setiap individu, termasuk <span class="keyword">penyandang disabilitas</span>, dapat berpartisipasi penuh dalam kehidupan sosial. UU No. 8 Tahun 2016 mewajibkan kuota kerja 1% untuk disabilitas di swasta dan 2% di pemerintahan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 17 ============ -->
+<div class="soal-card" id="soal17">
+    <span class="badge">Konflik Sosial</span>
+    <div class="bacaan">
+        <b>Data BNPT 2023:</b> Sepanjang tahun 2023 tercatat <b>137 kasus konflik sosial</b> di Indonesia, dengan rincian: 48% konflik keagamaan, 27% konflik antaretnis, 15% konflik lahan, dan 10% konflik lainnya.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data BNPT, konflik sosial didominasi oleh konflik yang bersumber dari...
+    </div>
+    <div class="opsi">A. Politik</div>
+    <div class="opsi">B. Agama</div>
+    <div class="opsi">C. Ekonomi</div>
+    <div class="opsi">D. Pendidikan</div>
+    <div class="opsi">E. Lingkungan alam</div>
+    <div class="pembahasan" id="bahas17">
+        <div class="jawaban">✅ Jawaban: B. Agama</div>
+        <b>Pembahasan:</b> Berdasarkan data BNPT 2023, konflik <span class="keyword">keagamaan</span> menempati posisi tertinggi (48%) di Indonesia. Ini menunjukkan bahwa <span class="keyword">perbedaan agama</span> masih menjadi pemicu utama konflik sosial di Indonesia, diikuti konflik etnis (27%).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 18 ============ -->
+<div class="soal-card" id="soal18">
+    <span class="badge">Konflik Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Lewis Coser</span> mengemukakan bahwa konflik tidak selalu berdampak negatif. Menurut Coser, fungsi positif konflik sosial adalah...
+    </div>
+    <div class="opsi">A. Menyebabkan perpecahan permanen dalam masyarakat</div>
+    <div class="opsi">B. Memperkuat solidaritas kelompok dan memperjelas batas antarkelompok</div>
+    <div class="opsi">C. Menghancurkan struktur sosial secara keseluruhan</div>
+    <div class="opsi">D. Menyebabkan kemiskinan massal</div>
+    <div class="opsi">E. Menghilangkan norma sosial</div>
+    <div class="pembahasan" id="bahas18">
+        <div class="jawaban">✅ Jawaban: B. Memperkuat solidaritas kelompok dan memperjelas batas antarkelompok</div>
+        <b>Pembahasan:</b> <span class="keyword">Lewis Coser</span> berpendapat bahwa konflik dapat berfungsi positif: (1) memperkuat <span class="keyword">solidaritas kelompok</span> saat menghadapi musuh bersama, (2) memperjelas batas antarkelompok, (3) menjadi sarana perubahan sosial, dan (4) mengaktifkan komunikasi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 19 ============ -->
+<div class="soal-card" id="soal19">
+    <span class="badge">Konflik Sosial</span>
+    <div class="bacaan">
+        <b>Studi Kasus:</b> Konflik antara buruh pabrik dengan pemilik perusahaan yang menuntut kenaikan UMP merupakan konflik yang melibatkan dua pihak dalam posisi yang berbeda secara struktural.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan bacaan, konflik tersebut termasuk jenis konflik <span class="keyword">vertikal</span>, yaitu...
+    </div>
+    <div class="opsi">A. Konflik antara dua pihak yang sederajat</div>
+    <div class="opsi">B. Konflik antara pihak-pihak yang memiliki kedudukan berbeda dalam hierarki kekuasaan</div>
+    <div class="opsi">C. Konflik antarsuku yang berbeda wilayah</div>
+    <div class="opsi">D. Konflik antarumat beragama</div>
+    <div class="opsi">E. Konflik antargenerasi dalam keluarga</div>
+    <div class="pembahasan" id="bahas19">
+        <div class="jawaban">✅ Jawaban: B. Konflik antara pihak-pihak yang memiliki kedudukan berbeda dalam hierarki kekuasaan</div>
+        <b>Pembahasan:</b> <span class="keyword">Konflik vertikal</span> adalah konflik antara pihak-pihak dengan <span class="keyword">kedudukan tidak setara</span> (misalnya buruh vs majikan, rakyat vs pemerintah). Sebaliknya, <span class="keyword">konflik horizontal</span> terjadi antara pihak-pihak yang sederajat (antaragama, antarsuku).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 20 ============ -->
+<div class="soal-card" id="soal20">
+    <span class="badge">Konflik Sosial</span>
+    <div class="bacaan">
+        <b>Studi Sejarah:</b> Konflik Ambon (1999-2002) menewaskan sekitar <b>5.000 jiwa</b> dan mengungsi lebih dari 700.000 orang. Konflik ini dipicu oleh kesenjangan ekonomi, sentimen keagamaan, dan provokasi dari luar. Perdamaian dicapai melalui Perjanjian Malino II (2002).
+    </div>
+    <div class="pertanyaan">
+        Konflik Ambon termasuk contoh konflik <span class="keyword">horizontal</span> yang kompleks karena melibatkan faktor...
+    </div>
+    <div class="opsi">A. Hanya ekonomi saja</div>
+    <div class="opsi">B. Agama, ekonomi, dan politik secara bersamaan</div>
+    <div class="opsi">C. Hanya politik</div>
+    <div class="opsi">D. Hanya pendidikan</div>
+    <div class="opsi">E. Hanya budaya</div>
+    <div class="pembahasan" id="bahas20">
+        <div class="jawaban">✅ Jawaban: B. Agama, ekonomi, dan politik secara bersamaan</div>
+        <b>Pembahasan:</b> <span class="keyword">Konflik Ambon</span> merupakan contoh konflik horizontal yang kompleks karena melibatkan <span class="keyword">multidimensi</span>: agama (Islam vs Kristen), ekonomi (kesenjangan), politik (persaingan kekuasaan lokal), dan sentimen etnis.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 21 ============ -->
+<div class="soal-card" id="soal21">
+    <span class="badge">Konflik Sosial</span>
+    <div class="pertanyaan">
+        Soerjono Soekanto mengklasifikasikan konflik menjadi beberapa bentuk. Konflik yang terjadi antara dua kelompok dengan kepentingan yang sama atas sumber daya terbatas, seperti dua perusahaan yang memperebutkan pasar, disebut...
+    </div>
+    <div class="opsi">A. Konflik pribadi</div>
+    <div class="opsi">B. Konflik rasial</div>
+    <div class="opsi">C. Konflik antarkelas sosial</div>
+    <div class="opsi">D. Konflik politik</div>
+    <div class="opsi">E. Konflik antarkelompok kepentingan</div>
+    <div class="pembahasan" id="bahas21">
+        <div class="jawaban">✅ Jawaban: E. Konflik antarkelompok kepentingan</div>
+        <b>Pembahasan:</b> <span class="keyword">Konflik antarkelompok kepentingan</span> adalah konflik antara dua kelompok yang memiliki kepentingan sama atas sumber daya terbatas, misalnya <span class="keyword">perusahaan A vs B</span> memperebutkan pasar, atau serikat buruh yang menuntut kenaikan UMP.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 22 ============ -->
+<div class="soal-card" id="soal22">
+    <span class="badge">Penanganan Konflik</span>
+    <div class="bacaan">
+        <b>Studi Kasus:</b> Sengketa lahan antara warga Desa X dengan perusahaan sawit diselesaikan dengan menghadirkan Dinas Lingkungan Hidup sebagai pihak ketiga. Dinas memberikan saran tanpa memaksakan keputusan, sehingga kedua belah pihak akhirnya mencapai kesepakatan sendiri.
+    </div>
+    <div class="pertanyaan">
+        Bentuk penyelesaian konflik tersebut disebut <span class="keyword">mediasi</span>, yang memiliki ciri utama...
+    </div>
+    <div class="opsi">A. Pihak ketiga memiliki wewenang mengambil keputusan yang mengikat</div>
+    <div class="opsi">B. Pihak ketiga hanya menjadi fasilitator, keputusan tetap pada pihak yang bersengketa</div>
+    <div class="opsi">C. Penyelesaian dilakukan melalui pengadilan</div>
+    <div class="opsi">D. Salah satu pihak harus mengalah sepenuhnya</div>
+    <div class="opsi">E. Konflik diselesaikan dengan kekerasan</div>
+    <div class="pembahasan" id="bahas22">
+        <div class="jawaban">✅ Jawaban: B. Pihak ketiga hanya menjadi fasilitator, keputusan tetap pada pihak yang bersengketa</div>
+        <b>Pembahasan:</b> <span class="keyword">Mediasi</span> adalah penyelesaian konflik dengan pihak ketiga sebagai <span class="keyword">fasilitator netral</span> yang tidak memiliki wewenang memutuskan. Jika pihak ketiga berhak memutuskan, disebut <span class="keyword">arbitrase</span>; jika melalui pengadilan, disebut <span class="keyword">ajudikasi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 23 ============ -->
+<div class="soal-card" id="soal23">
+    <span class="badge">Penanganan Konflik</span>
+    <div class="pertanyaan">
+        Dua perusahaan sepakat melakukan <span class="keyword">negosiasi</span> untuk menyelesaikan sengketa dagang. Negosiasi yang baik memiliki ciri...
+    </div>
+    <div class="opsi">A. Dilakukan oleh satu pihak saja tanpa melibatkan pihak lain</div>
+    <div class="opsi">B. Dilakukan secara sepihak dengan paksaan</div>
+    <div class="opsi">C. Dilakukan dengan komunikasi dua arah untuk mencapai kesepakatan bersama</div>
+    <div class="opsi">D. Tidak melibatkan komunikasi sama sekali</div>
+    <div class="opsi">E. Selalu diakhiri dengan konflik terbuka</div>
+    <div class="pembahasan" id="bahas23">
+        <div class="jawaban">✅ Jawaban: C. Dilakukan dengan komunikasi dua arah untuk mencapai kesepakatan bersama</div>
+        <b>Pembahasan:</b> <span class="keyword">Negosiasi</span> adalah proses tawar-menawar antara dua pihak atau lebih melalui <span class="keyword">komunikasi dua arah</span> untuk mencapai kesepakatan yang saling menguntungkan (win-win solution) tanpa melibatkan pihak ketiga.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 24 ============ -->
+<div class="soal-card" id="soal24">
+    <span class="badge">Penanganan Konflik</span>
+    <div class="bacaan">
+        <b>Studi Sejarah:</b> Perdamaian Aceh dicapai melalui Perjanjian Helsinki pada <b>15 Agustus 2005</b> antara Pemerintah RI dan GAM. Perjanjian ini mengakhiri konflik bersenjata yang berlangsung selama hampir <b>30 tahun</b>.
+    </div>
+    <div class="pertanyaan">
+        Proses perdamaian Aceh di atas merupakan contoh <span class="keyword">rekonsiliasi</span>, yaitu...
+    </div>
+    <div class="opsi">A. Proses memperpanjang konflik secara terus-menerus</div>
+    <div class="opsi">B. Upaya memulihkan hubungan dan membangun perdamaian setelah konflik</div>
+    <div class="opsi">C. Proses menggunakan kekerasan untuk menekan lawan</div>
+    <div class="opsi">D. Upaya melupakan sejarah tanpa penyelesaian</div>
+    <div class="opsi">E. Penyelesaian konflik dengan memaksa salah satu pihak menyerah</div>
+    <div class="pembahasan" id="bahas24">
+        <div class="jawaban">✅ Jawaban: B. Upaya memulihkan hubungan dan membangun perdamaian setelah konflik</div>
+        <b>Pembahasan:</b> <span class="keyword">Rekonsiliasi</span> adalah upaya <span class="keyword">memulihkan hubungan</span> dan membangun perdamaian setelah konflik, meliputi pengakuan kesalahan, permintaan maaf, amnesti, dan reintegrasi. Perjanjian Helsinki Aceh adalah contoh rekonsiliasi melalui <span class="keyword">pendekatan damai</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 25 ============ -->
+<div class="soal-card" id="soal25">
+    <span class="badge">Penanganan Konflik</span>
+    <div class="pertanyaan">
+        <span class="keyword">Pengendalian sosial</span> merupakan upaya masyarakat untuk mencegah atau mengatasi konflik. Contoh pengendalian sosial <span class="keyword">preventif</span> adalah...
+    </div>
+    <div class="opsi">A. Polisi menangkap pelaku tawuran setelah kejadian</div>
+    <div class="opsi">B. Tokoh adat memberikan sanksi adat kepada pelanggar</div>
+    <div class="opsi">C. Pemerintah mengadakan dialog lintas agama untuk mencegah konflik keagamaan</div>
+    <div class="opsi">D. Pengadilan menjatuhkan vonis kepada pelaku kekerasan</div>
+    <div class="opsi">E. TNI menumpas kelompok separatis</div>
+    <div class="pembahasan" id="bahas25">
+        <div class="jawaban">✅ Jawaban: C. Pemerintah mengadakan dialog lintas agama untuk mencegah konflik keagamaan</div>
+        <b>Pembahasan:</b> <span class="keyword">Pengendalian preventif</span> dilakukan <span class="keyword">sebelum</span> pelanggaran/konflik terjadi untuk mencegah timbulnya masalah. Opsi A, B, D, E merupakan pengendalian <span class="keyword">represif</span> yang dilakukan setelah konflik terjadi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+        <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Soal Selanjutnya: Perubahan Sosial ➡</button>
+    </div>
+</div>
+
+<!-- ============ HALAMAN SELESAI ============ -->
+<div class="selesai-card" id="selesaiCard">
+    <h2>🎉 Selamat!</h2>
+    <p>Anda telah menyelesaikan <b>25 soal</b> materi <b>Kelompok Sosial, Kesetaraan, dan Konflik Sosial</b> dengan nuansa literasi dan numerasi faktual.<br>
+    Klik tombol di bawah untuk melanjutkan ke materi berikutnya.</p>
+    <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Materi Perubahan Sosial akan segera tersedia! 🚀')">📚 Lanjut ke Materi: Perubahan Sosial</button>
+</div>
+
+</div>
+
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) { tampilkanSoal(n + 1); }
+    function prevSoal(n) { tampilkanSoal(n - 1); }
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKA Sosiologi - Penelitian Sosial</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+    .header {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header h1 {
+        font-size: 1.3em;
+        color: #4a148c;
+    }
+    .header p {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+    .progress-bar {
+        background: #eee;
+        border-radius: 10px;
+        height: 12px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        background: linear-gradient(90deg, #42a5f5, #4a148c);
+        height: 100%;
+        width: 4%;
+        transition: width 0.4s ease;
+        border-radius: 10px;
+    }
+    .info-nomor {
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+    .soal-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .soal-card.aktif { display: block; }
+    .badge {
+        display: inline-block;
+        background: #ede7f6;
+        color: #4a148c;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.78em;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+    .pertanyaan {
+        font-size: 1.03em;
+        line-height: 1.75;
+        color: #2c2c2c;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .keyword {
+        font-weight: bold;
+        font-style: italic;
+        color: #6a1b9a;
+    }
+    .opsi {
+        display: block;
+        padding: 12px 16px;
+        margin: 9px 0;
+        background: #f8f9ff;
+        border: 2px solid #e0e0f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1.5;
+        font-size: 0.97em;
+    }
+    .opsi:hover {
+        background: #ede7f6;
+        border-color: #9575cd;
+        transform: translateX(5px);
+    }
+    .pembahasan {
+        display: none;
+        margin-top: 18px;
+        background: #e8f5e9;
+        border-left: 6px solid #2e7d32;
+        border-radius: 8px;
+        padding: 18px 20px;
+        line-height: 1.75;
+        font-size: 0.96em;
+    }
+    .pembahasan .jawaban {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    .tombol-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .btn-bahas {
+        background: #2e7d32;
+        color: #fff;
+    }
+    .btn-bahas:hover { background: #1b5e20; }
+    .btn-next {
+        background: #4a148c;
+        color: #fff;
+        margin-left: auto;
+    }
+    .btn-next:hover { background: #6a1b9a; }
+    .btn-prev {
+        background: #eceff1;
+        color: #37474f;
+    }
+    .btn-prev:hover { background: #cfd8dc; }
+    .btn-final {
+        background: linear-gradient(90deg, #f57f17, #e65100);
+        color: #fff;
+        margin-left: auto;
+        display: none;
+        font-size: 1em;
+    }
+    .btn-final:hover { transform: scale(1.03); }
+    .selesai-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .selesai-card h2 { color: #4a148c; margin-bottom: 15px; }
+    .selesai-card p { color: #555; line-height: 1.7; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📘 TKA Sosiologi</h1>
+    <p><b>Materi:</b> Penelitian Sosial &mdash; Pengertian | Langkah-langkah | Metode (Kualitatif, Kuantitatif, Campuran) | Teknik Pengumpulan Data | Penyajian & Analisis Data | Penarikan Kesimpulan</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+<!-- ============ SOAL 1 ============ -->
+<div class="soal-card aktif" id="soal1">
+    <span class="badge">Pengertian Penelitian Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Penelitian sosial</span> merupakan kegiatan ilmiah yang dilakukan untuk memperoleh pengetahuan tentang berbagai fenomena dalam masyarakat. Pengertian penelitian sosial yang paling tepat adalah...
+    </div>
+    <div class="opsi">A. Kegiatan mengumpulkan data tanpa tujuan tertentu</div>
+    <div class="opsi">B. Upaya sistematis dan ilmiah untuk memperoleh pengetahuan dan memecahkan masalah sosial</div>
+    <div class="opsi">C. Kegiatan mengamati perilaku individu secara psikologis</div>
+    <div class="opsi">D. Proses pembuatan kebijakan oleh pemerintah</div>
+    <div class="opsi">E. Kegiatan menulis artikel di media massa</div>
+    <div class="pembahasan" id="bahas1">
+        <div class="jawaban">✅ Jawaban: B. Upaya sistematis dan ilmiah untuk memperoleh pengetahuan dan memecahkan masalah sosial</div>
+        <b>Pembahasan:</b> <span class="keyword">Penelitian sosial</span> adalah upaya <span class="keyword">sistematis</span> dan <span class="keyword">ilmiah</span> untuk memperoleh pengetahuan, memahami, menjelaskan, serta memecahkan masalah sosial dalam masyarakat. Penelitian sosial menggunakan metode ilmiah agar hasilnya dapat dipertanggungjawabkan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 2 ============ -->
+<div class="soal-card" id="soal2">
+    <span class="badge">Pengertian Penelitian Sosial</span>
+    <div class="pertanyaan">
+        <span class="keyword">Tujuan penelitian sosial</span> tidak hanya sekadar mengumpulkan data, tetapi memiliki sasaran yang jelas. Tujuan utama penelitian sosial adalah...
+    </div>
+    <div class="opsi">A. Mencari keuntungan finansial bagi peneliti</div>
+    <div class="opsi">B. Memperoleh pengetahuan, menguji teori, dan memecahkan masalah sosial</div>
+    <div class="opsi">C. Mempromosikan produk tertentu kepada masyarakat</div>
+    <div class="opsi">D. Menghibur masyarakat dengan informasi menarik</div>
+    <div class="opsi">E. Mengubah struktur pemerintahan secara langsung</div>
+    <div class="pembahasan" id="bahas2">
+        <div class="jawaban">✅ Jawaban: B. Memperoleh pengetahuan, menguji teori, dan memecahkan masalah sosial</div>
+        <b>Pembahasan:</b> <span class="keyword">Tujuan penelitian sosial</span> meliputi: (1) memperoleh pengetahuan baru tentang fenomena sosial, (2) menguji dan mengembangkan teori, (3) memecahkan masalah sosial praktis, dan (4) memberikan dasar bagi pengambilan kebijakan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 3 ============ -->
+<div class="soal-card" id="soal3">
+    <span class="badge">Pengertian Penelitian Sosial</span>
+    <div class="pertanyaan">
+        Penelitian sosial harus dilakukan secara <span class="keyword">sistematis</span>, yang merupakan salah satu karakteristik penelitian ilmiah. Arti sistematis dalam penelitian sosial adalah...
+    </div>
+    <div class="opsi">A. Dilakukan secara acak tanpa perencanaan</div>
+    <div class="opsi">B. Mengikuti prosedur dan tahapan yang teratur, runtut, dan logis</div>
+    <div class="opsi">C. Hanya menggunakan satu metode saja</div>
+    <div class="opsi">D. Tidak memerlukan data lapangan</div>
+    <div class="opsi">E. Dilakukan oleh satu orang tanpa tim</div>
+    <div class="pembahasan" id="bahas3">
+        <div class="jawaban">✅ Jawaban: B. Mengikuti prosedur dan tahapan yang teratur, runtut, dan logis</div>
+        <b>Pembahasan:</b> Karakteristik penelitian ilmiah meliputi <span class="keyword">sistematis</span> (teratur dan runtut), <span class="keyword">logis</span> (masuk akal), <span class="keyword">empiris</span> (berdasarkan data nyata), dan <span class="keyword">objektif</span> (bebas dari bias). Sistematis berarti penelitian mengikuti tahapan yang telah ditentukan secara konsisten.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 4 ============ -->
+<div class="soal-card" id="soal4">
+    <span class="badge">Langkah-langkah Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Langkah pertama</span> dalam penelitian sosial sangat menentukan arah seluruh proses penelitian. Langkah pertama yang harus dilakukan peneliti adalah...
+    </div>
+    <div class="opsi">A. Mengumpulkan data dari lapangan</div>
+    <div class="opsi">B. Menganalisis data yang sudah terkumpul</div>
+    <div class="opsi">C. Merumuskan masalah penelitian</div>
+    <div class="opsi">D. Menarik kesimpulan akhir</div>
+    <div class="opsi">E. Menyusun laporan penelitian</div>
+    <div class="pembahasan" id="bahas4">
+        <div class="jawaban">✅ Jawaban: C. Merumuskan masalah penelitian</div>
+        <b>Pembahasan:</b> <span class="keyword">Langkah pertama</span> dalam penelitian sosial adalah <span class="keyword">merumuskan masalah</span>, yaitu menentukan pertanyaan penelitian yang akan dijawab. Tanpa rumusan masalah yang jelas, penelitian tidak akan memiliki arah dan fokus yang tepat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 5 ============ -->
+<div class="soal-card" id="soal5">
+    <span class="badge">Langkah-langkah Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Urutan langkah penelitian sosial</span> yang benar dan sistematis adalah...
+    </div>
+    <div class="opsi">A. Merumuskan masalah → mengumpulkan data → menentukan hipotesis → analisis → kesimpulan</div>
+    <div class="opsi">B. Mengumpulkan data → merumuskan masalah → kesimpulan → analisis data</div>
+    <div class="opsi">C. Merumuskan masalah → tinjauan pustaka → hipotesis → pengumpulan data → analisis data → kesimpulan</div>
+    <div class="opsi">D. Analisis data → merumuskan masalah → pengumpulan data → kesimpulan</div>
+    <div class="opsi">E. Kesimpulan → analisis data → pengumpulan data → rumusan masalah</div>
+    <div class="pembahasan" id="bahas5">
+        <div class="jawaban">✅ Jawaban: C. Merumuskan masalah → tinjauan pustaka → hipotesis → pengumpulan data → analisis data → kesimpulan</div>
+        <b>Pembahasan:</b> <span class="keyword">Urutan langkah penelitian</span> yang benar: (1) merumuskan masalah, (2) melakukan tinjauan pustaka/landasan teori, (3) merumuskan hipotesis, (4) menentukan metode dan mengumpulkan data, (5) menganalisis data, (6) menarik kesimpulan, dan (7) menyusun laporan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 6 ============ -->
+<div class="soal-card" id="soal6">
+    <span class="badge">Langkah-langkah Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Rumusan masalah</span> dalam penelitian merupakan pertanyaan penelitian yang akan dijawab melalui pengumpulan data. Rumusan masalah yang baik biasanya dinyatakan dalam bentuk...
+    </div>
+    <div class="opsi">A. Pernyataan umum yang sangat luas</div>
+    <div class="opsi">B. Pertanyaan penelitian yang spesifik, jelas, dan dapat diuji</div>
+    <div class="opsi">C. Kesimpulan akhir penelitian</div>
+    <div class="opsi">D. Daftar pustaka yang digunakan</div>
+    <div class="opsi">E. Hasil analisis data</div>
+    <div class="pembahasan" id="bahas6">
+        <div class="jawaban">✅ Jawaban: B. Pertanyaan penelitian yang spesifik, jelas, dan dapat diuji</div>
+        <b>Pembahasan:</b> <span class="keyword">Rumusan masalah</span> yang baik bersifat spesifik, jelas, fokus, dan dapat diuji secara empiris. Rumusan masalah biasanya dinyatakan dalam bentuk pertanyaan yang mengarahkan peneliti dalam pengumpulan dan analisis data.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 7 ============ -->
+<div class="soal-card" id="soal7">
+    <span class="badge">Langkah-langkah Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Tinjauan pustaka</span> merupakan salah satu langkah penting dalam penelitian sosial. Fungsi utama tinjauan pustaka adalah...
+    </div>
+    <div class="opsi">A. Mengumpulkan data primer langsung dari lapangan</div>
+    <div class="opsi">B. Mengkaji teori dan penelitian terdahulu yang relevan sebagai landasan penelitian</div>
+    <div class="opsi">C. Menentukan sampel penelitian secara acak</div>
+    <div class="opsi">D. Menyajikan data dalam bentuk tabel dan grafik</div>
+    <div class="opsi">E. Menarik kesimpulan akhir penelitian</div>
+    <div class="pembahasan" id="bahas7">
+        <div class="jawaban">✅ Jawaban: B. Mengkaji teori dan penelitian terdahulu yang relevan sebagai landasan penelitian</div>
+        <b>Pembahasan:</b> <span class="keyword">Tinjauan pustaka</span> berfungsi untuk mengkaji teori-teori dan penelitian terdahulu yang relevan sebagai <span class="keyword">landasan teori</span>. Hal ini membantu peneliti membangun kerangka berpikir, menghindari duplikasi, dan memperkuat dasar ilmiah penelitian.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 8 ============ -->
+<div class="soal-card" id="soal8">
+    <span class="badge">Langkah-langkah Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Hipotesis</span> merupakan salah satu komponen dalam penelitian kuantitatif. Pengertian hipotesis yang paling tepat adalah...
+    </div>
+    <div class="opsi">A. Kesimpulan akhir dari penelitian</div>
+    <div class="opsi">B. Dugaan sementara atau jawaban sementara terhadap rumusan masalah yang perlu diuji kebenarannya</div>
+    <div class="opsi">C. Daftar pertanyaan wawancara kepada informan</div>
+    <div class="opsi">D. Teknik analisis data yang digunakan</div>
+    <div class="opsi">E. Sumber data dalam penelitian</div>
+    <div class="pembahasan" id="bahas8">
+        <div class="jawaban">✅ Jawaban: B. Dugaan sementara atau jawaban sementara terhadap rumusan masalah yang perlu diuji kebenarannya</div>
+        <b>Pembahasan:</b> <span class="keyword">Hipotesis</span> adalah dugaan sementara atau jawaban sementara terhadap rumusan masalah yang kebenarannya masih perlu diuji secara empiris. Hipotesis disusun berdasarkan landasan teori dan akan dibuktikan melalui pengumpulan serta analisis data.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 9 ============ -->
+<div class="soal-card" id="soal9">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        <span class="keyword">Metode penelitian</span> merupakan cara ilmiah yang digunakan dalam penelitian. Pengertian metode penelitian yang paling tepat adalah...
+    </div>
+    <div class="opsi">A. Cara memperoleh dana untuk membiayai penelitian</div>
+    <div class="opsi">B. Cara ilmiah untuk memperoleh data dengan tujuan dan kegunaan tertentu</div>
+    <div class="opsi">C. Alat untuk menghitung data statistik</div>
+    <div class="opsi">D. Teknik menulis laporan penelitian</div>
+    <div class="opsi">E. Cara mempresentasikan hasil penelitian</div>
+    <div class="pembahasan" id="bahas9">
+        <div class="jawaban">✅ Jawaban: B. Cara ilmiah untuk memperoleh data dengan tujuan dan kegunaan tertentu</div>
+        <b>Pembahasan:</b> <span class="keyword">Metode penelitian</span> adalah cara ilmiah yang digunakan untuk memperoleh data dengan <span class="keyword">tujuan</span> dan <span class="keyword">kegunaan</span> tertentu. Metode menentukan bagaimana data dikumpulkan, diolah, dan dianalisis agar valid dan reliabel.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 10 ============ -->
+<div class="soal-card" id="soal10">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        Penelitian <span class="keyword">kuantitatif</span> banyak digunakan untuk menguji hubungan antarvariabel dengan data numerik. Ciri utama metode penelitian kuantitatif adalah...
+    </div>
+    <div class="opsi">A. Menghasilkan data deskriptif berupa kata-kata dan narasi</div>
+    <div class="opsi">B. Berlandaskan pada angka dan analisis statistik untuk menguji hipotesis</div>
+    <div class="opsi">C. Tidak memerlukan data lapangan sama sekali</div>
+    <div class="opsi">D. Hanya digunakan dalam penelitian sejarah</div>
+    <div class="opsi">E. Mengutamakan interpretasi subjektif peneliti</div>
+    <div class="pembahasan" id="bahas10">
+        <div class="jawaban">✅ Jawaban: B. Berlandaskan pada angka dan analisis statistik untuk menguji hipotesis</div>
+        <b>Pembahasan:</b> Penelitian <span class="keyword">kuantitatif</span> berlandaskan pada <span class="keyword">angka</span> dan <span class="keyword">analisis statistik</span> untuk menguji hipotesis. Ciri utamanya: data berupa angka, analisis statistik, bersifat deduktif, bertujuan menguji teori, dan hasilnya dapat digeneralisasi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 11 ============ -->
+<div class="soal-card" id="soal11">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        Penelitian <span class="keyword">kualitatif</span> sering digunakan untuk memahami makna mendalam dari suatu fenomena sosial. Penelitian kualitatif menekankan pada...
+    </div>
+    <div class="opsi">A. Pengukuran angka dan uji statistik</div>
+    <div class="opsi">B. Pemahaman mendalam tentang makna, pengalaman, dan konteks sosial secara deskriptif</div>
+    <div class="opsi">C. Uji hipotesis dengan rumus matematika</div>
+    <div class="opsi">D. Generalisasi hasil ke populasi yang sangat luas</div>
+    <div class="opsi">E. Eksperimen laboratorium yang ketat</div>
+    <div class="pembahasan" id="bahas11">
+        <div class="jawaban">✅ Jawaban: B. Pemahaman mendalam tentang makna, pengalaman, dan konteks sosial secara deskriptif</div>
+        <b>Pembahasan:</b> Penelitian <span class="keyword">kualitatif</span> menekankan pada pemahaman mendalam tentang <span class="keyword">makna</span>, pengalaman, dan konteks sosial secara deskriptif. Data berupa kata-kata, narasi, atau gambar, bukan angka. Pendekatan ini bersifat induktif dan mengutamakan perspektif subjek.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 12 ============ -->
+<div class="soal-card" id="soal12">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        Seorang peneliti ingin memperoleh data statistik sekaligus memahami pengalaman mendalam subjek penelitian. Metode yang paling tepat digunakan adalah metode <span class="keyword">campuran</span>, yaitu...
+    </div>
+    <div class="opsi">A. Metode yang hanya menggunakan wawancara mendalam</div>
+    <div class="opsi">B. Kombinasi metode kuantitatif dan kualitatif dalam satu penelitian</div>
+    <div class="opsi">C. Metode yang tidak memerlukan pengumpulan data</div>
+    <div class="opsi">D. Metode khusus untuk penelitian sejarah</div>
+    <div class="opsi">E. Metode yang hanya menggunakan observasi</div>
+    <div class="pembahasan" id="bahas12">
+        <div class="jawaban">✅ Jawaban: B. Kombinasi metode kuantitatif dan kualitatif dalam satu penelitian</div>
+        <b>Pembahasan:</b> Metode <span class="keyword">campuran</span> (mixed method) adalah kombinasi metode <span class="keyword">kuantitatif</span> dan <span class="keyword">kualitatif</span> dalam satu penelitian. Tujuannya memperoleh pemahaman yang lebih komprehensif dengan menggabungkan kekuatan kedua pendekatan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 13 ============ -->
+<div class="soal-card" id="soal13">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        Perbedaan antara penelitian <span class="keyword">kualitatif</span> dan <span class="keyword">kuantitatif</span> merupakan hal penting yang harus dipahami peneliti. Perbedaan utama antara keduanya terletak pada...
+    </div>
+    <div class="opsi">A. Kualitatif menggunakan angka, kuantitatif menggunakan kata-kata</div>
+    <div class="opsi">B. Kualitatif mengutamakan kedalaman makna, kuantitatif mengutamakan pengukuran angka</div>
+    <div class="opsi">C. Kualitatif tidak memerlukan data, kuantitatif memerlukan data</div>
+    <div class="opsi">D. Kualitatif hanya untuk sosiologi, kuantitatif hanya untuk ekonomi</div>
+    <div class="opsi">E. Tidak ada perbedaan sama sekali</div>
+    <div class="pembahasan" id="bahas13">
+        <div class="jawaban">✅ Jawaban: B. Kualitatif mengutamakan kedalaman makna, kuantitatif mengutamakan pengukuran angka</div>
+        <b>Pembahasan:</b> <span class="keyword">Kualitatif</span> mengutamakan kedalaman makna dan pemahaman konteks dengan data deskriptif, sedangkan <span class="keyword">kuantitatif</span> mengutamakan pengukuran angka dan analisis statistik. Kualitatif bersifat induktif-subjektif, kuantitatif bersifat deduktif-objektif.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 14 ============ -->
+<div class="soal-card" id="soal14">
+    <span class="badge">Metode Penelitian</span>
+    <div class="pertanyaan">
+        Seorang peneliti ingin mengetahui pengaruh <span class="keyword">tingkat pendidikan</span> terhadap <span class="keyword">pendapatan</span> masyarakat di suatu kota dengan data berupa angka statistik. Metode yang paling tepat digunakan adalah...
+    </div>
+    <div class="opsi">A. Kualitatif dengan wawancara mendalam</div>
+    <div class="opsi">B. Kuantitatif dengan survei dan analisis statistik</div>
+    <div class="opsi">C. Studi kasus dengan observasi partisipatif</div>
+    <div class="opsi">D. Etnografi dengan tinggal di komunitas</div>
+    <div class="opsi">E. Fenomenologi dengan memahami pengalaman subjektif</div>
+    <div class="pembahasan" id="bahas14">
+        <div class="jawaban">✅ Jawaban: B. Kuantitatif dengan survei dan analisis statistik</div>
+        <b>Pembahasan:</b> Karena penelitian bertujuan menguji <span class="keyword">pengaruh</span> antarvariabel dengan data berupa <span class="keyword">angka</span>, maka metode <span class="keyword">kuantitatif</span> dengan survei dan analisis statistik paling tepat. Metode ini memungkinkan pengukuran hubungan antarvariabel secara numerik.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 15 ============ -->
+<div class="soal-card" id="soal15">
+    <span class="badge">Teknik Pengumpulan Data</span>
+    <div class="pertanyaan">
+        <span class="keyword">Teknik pengumpulan data</span> merupakan cara yang digunakan peneliti untuk memperoleh data yang dibutuhkan. Pengertian teknik pengumpulan data adalah...
+    </div>
+    <div class="opsi">A. Cara menganalisis hasil penelitian</div>
+    <div class="opsi">B. Cara yang digunakan peneliti untuk memperoleh data dari sumbernya</div>
+    <div class="opsi">C. Cara menyusun laporan penelitian</div>
+    <div class="opsi">D. Cara mempresentasikan hasil penelitian</div>
+    <div class="opsi">E. Cara menentukan judul penelitian</div>
+    <div class="pembahasan" id="bahas15">
+        <div class="jawaban">✅ Jawaban: B. Cara yang digunakan peneliti untuk memperoleh data dari sumbernya</div>
+        <b>Pembahasan:</b> <span class="keyword">Teknik pengumpulan data</span> adalah cara yang digunakan peneliti untuk memperoleh data dari sumbernya. Teknik yang umum meliputi wawancara, observasi, angket/kuesioner, studi dokumen, dan focus group discussion.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 16 ============ -->
+<div class="soal-card" id="soal16">
+    <span class="badge">Teknik Pengumpulan Data</span>
+    <div class="pertanyaan">
+        Seorang peneliti melakukan tanya jawab langsung dengan tokoh masyarakat untuk menggali informasi tentang perubahan sosial di desanya. Teknik pengumpulan data yang digunakan adalah <span class="keyword">wawancara</span>, yaitu...
+    </div>
+    <div class="opsi">A. Mengamati langsung objek penelitian</div>
+    <div class="opsi">B. Mengajukan pertanyaan secara langsung kepada informan untuk memperoleh informasi</div>
+    <div class="opsi">C. Menyebarkan daftar pertanyaan tertulis</div>
+    <div class="opsi">D. Mengkaji dokumen dan arsip</div>
+    <div class="opsi">E. Melakukan eksperimen di laboratorium</div>
+    <div class="pembahasan" id="bahas16">
+        <div class="jawaban">✅ Jawaban: B. Mengajukan pertanyaan secara langsung kepada informan untuk memperoleh informasi</div>
+        <b>Pembahasan:</b> <span class="keyword">Wawancara</span> adalah teknik pengumpulan data dengan mengajukan pertanyaan secara langsung kepada <span class="keyword">informan</span> atau narasumber. Wawancara dapat bersifat terstruktur, semi-terstruktur, atau tidak terstruktur.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 17 ============ -->
+<div class="soal-card" id="soal17">
+    <span class="badge">Teknik Pengumpulan Data</span>
+    <div class="pertanyaan">
+        Seorang peneliti mengamati langsung aktivitas pedagang di pasar tradisional selama satu bulan untuk memahami pola interaksi mereka. Teknik pengumpulan data yang digunakan adalah <span class="keyword">observasi</span>, yaitu...
+    </div>
+    <div class="opsi">A. Mengajukan pertanyaan kepada informan</div>
+    <div class="opsi">B. Mengamati langsung objek penelitian di lapangan dengan menggunakan panca indera</div>
+    <div class="opsi">C. Menyebarkan kuesioner kepada responden</div>
+    <div class="opsi">D. Membaca buku dan jurnal ilmiah</div>
+    <div class="opsi">E. Melakukan wawancara melalui telepon</div>
+    <div class="pembahasan" id="bahas17">
+        <div class="jawaban">✅ Jawaban: B. Mengamati langsung objek penelitian di lapangan dengan menggunakan panca indera</div>
+        <b>Pembahasan:</b> <span class="keyword">Observasi</span> adalah teknik pengumpulan data dengan mengamati langsung objek penelitian di lapangan menggunakan panca indera. Observasi dapat bersifat <span class="keyword">partisipatif</span> (peneliti ikut terlibat) atau <span class="keyword">non-partisipatif</span> (peneliti hanya mengamati).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 18 ============ -->
+<div class="soal-card" id="soal18">
+    <span class="badge">Teknik Pengumpulan Data</span>
+    <div class="pertanyaan">
+        Untuk menjangkau responden dalam jumlah besar dan tersebar di berbagai wilayah, seorang peneliti menyebarkan daftar pertanyaan tertulis secara online. Teknik pengumpulan data ini disebut <span class="keyword">angket/kuesioner</span>, yaitu...
+    </div>
+    <div class="opsi">A. Wawancara mendalam dengan informan kunci</div>
+    <div class="opsi">B. Observasi langsung di lokasi penelitian</div>
+    <div class="opsi">C. Menyebarkan daftar pertanyaan tertulis kepada responden untuk diisi</div>
+    <div class="opsi">D. Mengkaji dokumen dan arsip sejarah</div>
+    <div class="opsi">E. Diskusi kelompok terarah</div>
+    <div class="pembahasan" id="bahas18">
+        <div class="jawaban">✅ Jawaban: C. Menyebarkan daftar pertanyaan tertulis kepada responden untuk diisi</div>
+        <b>Pembahasan:</b> <span class="keyword">Angket/kuesioner</span> adalah teknik pengumpulan data dengan menyebarkan daftar pertanyaan tertulis kepada <span class="keyword">responden</span>. Teknik ini efisien untuk penelitian dengan responden dalam jumlah besar dan tersebar, terutama dalam penelitian kuantitatif.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 19 ============ -->
+<div class="soal-card" id="soal19">
+    <span class="badge">Teknik Pengumpulan Data</span>
+    <div class="pertanyaan">
+        Seorang peneliti sejarah mengkaji surat kabar lama, arsip pemerintah, dan catatan resmi untuk memahami peristiwa masa lalu. Teknik pengumpulan data yang digunakan adalah <span class="keyword">studi dokumen</span>, yaitu...
+    </div>
+    <div class="opsi">A. Wawancara dengan saksi sejarah</div>
+    <div class="opsi">B. Observasi partisipatif di lokasi kejadian</div>
+    <div class="opsi">C. Menyebarkan angket kepada masyarakat</div>
+    <div class="opsi">D. Mengkaji catatan tertulis, arsip, atau dokumen yang relevan</div>
+    <div class="opsi">E. Melakukan eksperimen laboratorium</div>
+    <div class="pembahasan" id="bahas19">
+        <div class="jawaban">✅ Jawaban: D. Mengkaji catatan tertulis, arsip, atau dokumen yang relevan</div>
+        <b>Pembahasan:</b> <span class="keyword">Studi dokumen</span> (studi pustaka) adalah teknik pengumpulan data dengan mengkaji catatan tertulis, arsip, dokumen resmi, atau sumber sekunder lainnya. Teknik ini sering digunakan dalam penelitian sejarah, hukum, dan kajian kebijakan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 20 ============ -->
+<div class="soal-card" id="soal20">
+    <span class="badge">Penyajian & Analisis Data</span>
+    <div class="pertanyaan">
+        Setelah data terkumpul, langkah selanjutnya adalah melakukan <span class="keyword">analisis data</span>. Pengertian analisis data dalam penelitian adalah...
+    </div>
+    <div class="opsi">A. Proses mengumpulkan data dari lapangan</div>
+    <div class="opsi">B. Proses mengolah, mengorganisasi, dan menafsirkan data untuk menjawab rumusan masalah</div>
+    <div class="opsi">C. Proses menulis latar belakang penelitian</div>
+    <div class="opsi">D. Proses menentukan judul penelitian</div>
+    <div class="opsi">E. Proses memilih sampel penelitian</div>
+    <div class="pembahasan" id="bahas20">
+        <div class="jawaban">✅ Jawaban: B. Proses mengolah, mengorganisasi, dan menafsirkan data untuk menjawab rumusan masalah</div>
+        <b>Pembahasan:</b> <span class="keyword">Analisis data</span> adalah proses mengolah, mengorganisasi, mengurutkan, dan menafsirkan data yang telah terkumpul untuk menemukan pola dan menjawab <span class="keyword">rumusan masalah</span>. Analisis data dapat bersifat kuantitatif (statistik) atau kualitatif (interpretatif).
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 21 ============ -->
+<div class="soal-card" id="soal21">
+    <span class="badge">Penyajian & Analisis Data</span>
+    <div class="pertanyaan">
+        Menurut model Miles dan Huberman, <span class="keyword">analisis data kualitatif</span> dilakukan melalui tiga tahapan utama, yaitu...
+    </div>
+    <div class="opsi">A. Pengumpulan data, penyebaran angket, dan wawancara</div>
+    <div class="opsi">B. Reduksi data, penyajian data, dan penarikan kesimpulan/verifikasi</div>
+    <div class="opsi">C. Menghitung rata-rata, median, dan modus</div>
+    <div class="opsi">D. Membuat grafik batang, lingkaran, dan garis</div>
+    <div class="opsi">E. Uji hipotesis, uji validitas, dan uji reliabilitas</div>
+    <div class="pembahasan" id="bahas21">
+        <div class="jawaban">✅ Jawaban: B. Reduksi data, penyajian data, dan penarikan kesimpulan/verifikasi</div>
+        <b>Pembahasan:</b> Menurut <span class="keyword">Miles dan Huberman</span>, analisis data kualitatif terdiri dari tiga tahapan: (1) <span class="keyword">reduksi data</span> (merangkum dan memilih data penting), (2) <span class="keyword">penyajian data</span> (menampilkan data dalam bentuk narasi/tabel), dan (3) <span class="keyword">penarikan kesimpulan/verifikasi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 22 ============ -->
+<div class="soal-card" id="soal22">
+    <span class="badge">Penyajian & Analisis Data</span>
+    <div class="pertanyaan">
+        Data hasil penelitian <span class="keyword">kuantitatif</span> perlu disajikan secara sistematis agar mudah dipahami. Bentuk penyajian data kuantitatif yang paling umum adalah...
+    </div>
+    <div class="opsi">A. Narasi panjang tanpa struktur yang jelas</div>
+    <div class="opsi">B. Tabel, grafik, diagram, dan angka statistik</div>
+    <div class="opsi">C. Foto dan video dokumentasi saja</div>
+    <div class="opsi">D. Cerita pengalaman pribadi peneliti</div>
+    <div class="opsi">E. Kutipan wawancara informan saja</div>
+    <div class="pembahasan" id="bahas22">
+        <div class="jawaban">✅ Jawaban: B. Tabel, grafik, diagram, dan angka statistik</div>
+        <b>Pembahasan:</b> <span class="keyword">Penyajian data</span> kuantitatif biasanya menggunakan <span class="keyword">tabel</span>, <span class="keyword">grafik</span>, <span class="keyword">diagram</span>, dan <span class="keyword">angka statistik</span> agar data mudah dibaca, dipahami, dan dianalisis. Penyajian yang baik membantu pembaca melihat pola dan hubungan antarvariabel.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 23 ============ -->
+<div class="soal-card" id="soal23">
+    <span class="badge">Penarikan Kesimpulan</span>
+    <div class="pertanyaan">
+        Tahap akhir dalam penelitian sosial adalah <span class="keyword">penarikan kesimpulan</span>. Pengertian penarikan kesimpulan yang paling tepat adalah...
+    </div>
+    <div class="opsi">A. Proses mengumpulkan data dari berbagai sumber</div>
+    <div class="opsi">B. Proses merumuskan jawaban akhir berdasarkan hasil analisis data terhadap rumusan masalah</div>
+    <div class="opsi">C. Proses memilih metode penelitian yang akan digunakan</div>
+    <div class="opsi">D. Proses menyusun daftar pustaka</div>
+    <div class="opsi">E. Proses menentukan sampel penelitian</div>
+    <div class="pembahasan" id="bahas23">
+        <div class="jawaban">✅ Jawaban: B. Proses merumuskan jawaban akhir berdasarkan hasil analisis data terhadap rumusan masalah</div>
+        <b>Pembahasan:</b> <span class="keyword">Penarikan kesimpulan</span> adalah proses merumuskan jawaban akhir berdasarkan hasil <span class="keyword">analisis data</span> terhadap rumusan masalah. Kesimpulan harus didukung oleh data yang valid dan reliabel, bukan opini subjektif peneliti.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 24 ============ -->
+<div class="soal-card" id="soal24">
+    <span class="badge">Penarikan Kesimpulan</span>
+    <div class="pertanyaan">
+        Penarikan kesimpulan yang berangkat dari fakta-fakta khusus di lapangan menuju pernyataan umum disebut penalaran <span class="keyword">induktif</span>. Pengertian generalisasi dalam konteks ini adalah...
+    </div>
+    <div class="opsi">A. Proses memperluas hasil penelitian dari sampel ke populasi</div>
+    <div class="opsi">B. Proses mengumpulkan data secara langsung</div>
+    <div class="opsi">C. Proses memilih informan penelitian</div>
+    <div class="opsi">D. Proses menulis latar belakang masalah</div>
+    <div class="opsi">E. Proses menentukan variabel penelitian</div>
+    <div class="pembahasan" id="bahas24">
+        <div class="jawaban">✅ Jawaban: A. Proses memperluas hasil penelitian dari sampel ke populasi</div>
+        <b>Pembahasan:</b> <span class="keyword">Generalisasi</span> adalah proses memperluas hasil penelitian dari <span class="keyword">sampel</span> ke <span class="keyword">populasi</span> yang lebih luas. Generalisasi berkaitan dengan penalaran <span class="keyword">induktif</span>, yaitu menarik kesimpulan umum dari fakta-fakta khusus.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 25 ============ -->
+<div class="soal-card" id="soal25">
+    <span class="badge">Penarikan Kesimpulan</span>
+    <div class="pertanyaan">
+        Bagian penutup dalam <span class="keyword">laporan penelitian</span> berisi kesimpulan dan saran. Kesimpulan yang baik dalam laporan penelitian harus...
+    </div>
+    <div class="opsi">A. Bersifat subjektif dan tanpa dasar data</div>
+    <div class="opsi">B. Berdasarkan hasil analisis data dan menjawab rumusan masalah</div>
+    <div class="opsi">C. Berupa opini pribadi peneliti tanpa bukti</div>
+    <div class="opsi">D. Tidak perlu didukung oleh data penelitian</div>
+    <div class="opsi">E. Sama persis dengan latar belakang masalah</div>
+    <div class="pembahasan" id="bahas25">
+        <div class="jawaban">✅ Jawaban: B. Berdasarkan hasil analisis data dan menjawab rumusan masalah</div>
+        <b>Pembahasan:</b> <span class="keyword">Kesimpulan</span> yang baik harus berdasarkan hasil <span class="keyword">analisis data</span> dan mampu menjawab <span class="keyword">rumusan masalah</span> yang telah ditetapkan di awal penelitian. Kesimpulan juga harus objektif, didukung bukti, dan konsisten dengan temuan penelitian.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+        <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Soal Selanjutnya: Kelompok Sosial ➡</button>
+    </div>
+</div>
+
+<!-- ============ HALAMAN SELESAI ============ -->
+<div class="selesai-card" id="selesaiCard">
+    <h2>🎉 Selamat!</h2>
+    <p>Anda telah menyelesaikan <b>25 soal</b> materi <b>Penelitian Sosial</b>.<br>
+    Klik tombol di bawah untuk melanjutkan ke materi berikutnya.</p>
+    <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Materi Kelompok Sosial akan segera tersedia! 🚀')">📚 Lanjut ke Materi: Kelompok Sosial</button>
+</div>
+
+</div>
+
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
