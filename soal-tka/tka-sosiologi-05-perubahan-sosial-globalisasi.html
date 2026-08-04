@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKA Sosiologi - Perubahan Sosial dan Globalisasi</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    .header {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header h1 { font-size: 1.3em; color: #4a148c; }
+    .header p { color: #666; font-size: 0.9em; margin-top: 5px; }
+    .progress-bar {
+        background: #eee;
+        border-radius: 10px;
+        height: 12px;
+        margin-top: 12px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        background: linear-gradient(90deg, #42a5f5, #4a148c);
+        height: 100%;
+        width: 4%;
+        transition: width 0.4s ease;
+        border-radius: 10px;
+    }
+    .info-nomor { font-weight: bold; color: #fff; margin-bottom: 8px; }
+    .soal-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .soal-card.aktif { display: block; }
+    .badge {
+        display: inline-block;
+        background: #ede7f6;
+        color: #4a148c;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.78em;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+    .bacaan {
+        background: #f3e5f5;
+        border-left: 5px solid #7b1fa2;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.92em;
+        line-height: 1.7;
+        margin: 12px 0 16px 0;
+        color: #4a148c;
+    }
+    .bacaan b { color: #6a1b9a; }
+    .tabel-data {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.9em;
+    }
+    .tabel-data th, .tabel-data td {
+        border: 1px solid #ce93d8;
+        padding: 8px 10px;
+        text-align: left;
+    }
+    .tabel-data th {
+        background: #e1bee7;
+        color: #4a148c;
+    }
+    .pertanyaan {
+        font-size: 1.03em;
+        line-height: 1.75;
+        color: #2c2c2c;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .keyword {
+        font-weight: bold;
+        font-style: italic;
+        color: #6a1b9a;
+    }
+    .opsi {
+        display: block;
+        padding: 12px 16px;
+        margin: 9px 0;
+        background: #f8f9ff;
+        border: 2px solid #e0e0f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1.5;
+        font-size: 0.97em;
+    }
+    .opsi:hover {
+        background: #ede7f6;
+        border-color: #9575cd;
+        transform: translateX(5px);
+    }
+    .pembahasan {
+        display: none;
+        margin-top: 18px;
+        background: #e8f5e9;
+        border-left: 6px solid #2e7d32;
+        border-radius: 8px;
+        padding: 18px 20px;
+        line-height: 1.75;
+        font-size: 0.96em;
+    }
+    .pembahasan .jawaban {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+    }
+    .tombol-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 0.95em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.25s;
+    }
+    .btn-bahas { background: #2e7d32; color: #fff; }
+    .btn-bahas:hover { background: #1b5e20; }
+    .btn-next { background: #4a148c; color: #fff; margin-left: auto; }
+    .btn-next:hover { background: #6a1b9a; }
+    .btn-prev { background: #eceff1; color: #37474f; }
+    .btn-prev:hover { background: #cfd8dc; }
+    .btn-final {
+        background: linear-gradient(90deg, #f57f17, #e65100);
+        color: #fff;
+        margin-left: auto;
+        display: none;
+        font-size: 1em;
+    }
+    .btn-final:hover { transform: scale(1.03); }
+    .selesai-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 45px 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .selesai-card h2 { color: #4a148c; margin-bottom: 15px; }
+    .selesai-card p { color: #555; line-height: 1.7; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📘 TKA Sosiologi</h1>
+    <p><b>Materi:</b> Perubahan Sosial dan Globalisasi &mdash; Bentuk & Faktor Penyebab | Dampak Perubahan | Globalisasi & Dampaknya | Sikap Kritis Globalisasi</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+<!-- ============ SOAL 1 ============ -->
+<div class="soal-card aktif" id="soal1">
+    <span class="badge">Bentuk Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS:</b> Struktur pekerjaan penduduk Indonesia mengalami perubahan signifikan. Pada tahun <b>1980</b>, sektor pertanian menyerap <b>55,3%</b> tenaga kerja. Pada tahun <b>2023</b>, angka tersebut turun menjadi <b>28,6%</b>, sementara sektor jasa meningkat dari 24,5% menjadi 49,3%.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data di atas, perubahan struktur pekerjaan penduduk Indonesia selama 43 tahun termasuk bentuk perubahan sosial <span class="keyword">evolusi</span>, karena...
+    </div>
+    <div class="opsi">A. Terjadi secara cepat dan mengubah seluruh tatanan masyarakat dalam waktu singkat</div>
+    <div class="opsi">B. Terjadi secara lambat, bertahap, dan memerlukan waktu panjang tanpa perencanaan khusus</div>
+    <div class="opsi">C. Dihasilkan dari kesepakatan elite politik</div>
+    <div class="opsi">D. Dipaksakan oleh pemerintah pusat</div>
+    <div class="opsi">E. Tidak membawa dampak pada kehidupan masyarakat</div>
+    <div class="pembahasan" id="bahas1">
+        <div class="jawaban">✅ Jawaban: B. Terjadi secara lambat, bertahap, dan memerlukan waktu panjang tanpa perencanaan khusus</div>
+        <b>Pembahasan:</b> <span class="keyword">Evolusi</span> adalah perubahan sosial yang berlangsung secara <span class="keyword">lambat dan bertahap</span> dalam waktu panjang, biasanya tanpa perencanaan khusus. Pergeseran struktur pekerjaan dari pertanian ke jasa selama 43 tahun menunjukkan ciri evolusi, berbeda dengan <span class="keyword">revolusi</span> yang berlangsung cepat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 2 ============ -->
+<div class="soal-card" id="soal2">
+    <span class="badge">Bentuk Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Studi Kasus:</b> Pada 1998, Indonesia mengalami krisis ekonomi yang memicu jatuhnya rezim Orde Baru. Peristiwa ini mengubah sistem politik dari otoriter menjadi demokratis dalam waktu singkat, ditandai dengan kebebasan pers, pemilu multipartai, dan desentralisasi.
+    </div>
+    <div class="pertanyaan">
+        Perubahan sistem politik Indonesia pada tahun 1998 merupakan contoh <span class="keyword">revolusi</span>, karena...
+    </div>
+    <div class="opsi">A. Terjadi secara bertahap selama puluhan tahun</div>
+    <div class="opsi">B. Berlangsung cepat dan mengubah dasar-dasar pokok kehidupan bermasyarakat</div>
+    <div class="opsi">C. Hanya berdampak pada satu kelompok saja</div>
+    <div class="opsi">D. Tidak mengubah struktur pemerintahan</div>
+    <div class="opsi">E. Direncanakan secara matang oleh pemerintah</div>
+    <div class="pembahasan" id="bahas2">
+        <div class="jawaban">✅ Jawaban: B. Berlangsung cepat dan mengubah dasar-dasar pokok kehidupan bermasyarakat</div>
+        <b>Pembahasan:</b> <span class="keyword">Revolusi</span> adalah perubahan sosial yang berlangsung <span class="keyword">cepat</span> dan mengubah <span class="keyword">dasar-dasar pokok</span> kehidupan bermasyarakat seperti sistem politik, ekonomi, atau pemerintahan. Reformasi 1998 mengubah sistem politik Indonesia secara fundamental dalam waktu singkat.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 3 ============ -->
+<div class="soal-card" id="soal3">
+    <span class="badge">Bentuk Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Data Kominfo 2023:</b> Pemerintah meluncurkan program <b>digitalisasi UMKM</b> dengan target 30 juta UMKM masuk ekosistem digital pada 2024. Program ini disertai pelatihan, subsidi kuota, dan pendampingan.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data di atas, digitalisasi UMKM termasuk bentuk perubahan sosial <span class="keyword">yang direncanakan</span> (planned change), karena...
+    </div>
+    <div class="opsi">A. Terjadi secara tiba-tiba tanpa persiapan</div>
+    <div class="opsi">B. Diinisiasi oleh pihak tertentu dengan tujuan dan strategi yang jelas</div>
+    <div class="opsi">C. Tidak memiliki tujuan yang spesifik</div>
+    <div class="opsi">D. Hanya terjadi pada masyarakat tradisional</div>
+    <div class="opsi">E. Bersifat kebetulan dan tidak terstruktur</div>
+    <div class="pembahasan" id="bahas3">
+        <div class="jawaban">✅ Jawaban: B. Diinisiasi oleh pihak tertentu dengan tujuan dan strategi yang jelas</div>
+        <b>Pembahasan:</b> <span class="keyword">Perubahan yang direncanakan</span> (planned change) adalah perubahan yang dikehendaki dan diinisiasi oleh <span class="keyword">agent of change</span> (pemerintah, tokoh, lembaga) dengan tujuan dan strategi yang jelas. Digitalisasi UMKM adalah program terencana dengan target dan langkah konkret.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 4 ============ -->
+<div class="soal-card" id="soal4">
+    <span class="badge">Bentuk Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Pandemi COVID-19 (2020-2022) memaksa perubahan masif dalam sistem pendidikan: pembelajaran daring, penggunaan platform digital, dan perubahan interaksi guru-siswa. Perubahan ini tidak direncanakan sebelumnya dan terjadi secara tiba-tiba.
+    </div>
+    <div class="pertanyaan">
+        Perubahan sistem pendidikan akibat pandemi COVID-19 paling tepat diklasifikasikan sebagai...
+    </div>
+    <div class="opsi">A. Perubahan yang direncanakan dan evolusi</div>
+    <div class="opsi">B. Perubahan tidak direncanakan yang berlangsung cepat dan berdampak luas</div>
+    <div class="opsi">C. Perubahan kecil yang tidak memengaruhi struktur sosial</div>
+    <div class="opsi">D. Perubahan yang hanya berdampak pada satu sektor</div>
+    <div class="opsi">E. Perubahan yang tidak membawa dampak sama sekali</div>
+    <div class="pembahasan" id="bahas4">
+        <div class="jawaban">✅ Jawaban: B. Perubahan tidak direncanakan yang berlangsung cepat dan berdampak luas</div>
+        <b>Pembahasan:</b> Pandemi adalah <span class="keyword">perubahan tidak direncanakan</span> (unplanned change) yang bersifat <span class="keyword">cepat</span> dan <span class="keyword">berdampak luas</span> pada berbagai sektor (pendidikan, ekonomi, kesehatan). Perubahan ini memaksa adaptasi mendadak tanpa persiapan matang.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 5 ============ -->
+<div class="soal-card" id="soal5">
+    <span class="badge">Faktor Penyebab Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Data:</b> Penemuan smartphone pada awal 2000-an mengubah pola komunikasi masyarakat Indonesia. Pada 2024, <b>221 juta penduduk</b> Indonesia (82% populasi) menggunakan internet, dan rata-rata menghabiskan <b>7 jam 42 menit per hari</b> untuk online.
+    </div>
+    <div class="pertanyaan">
+        Penemuan smartphone yang mengubah pola komunikasi masyarakat termasuk faktor penyebab perubahan sosial <span class="keyword">internal</span>, yaitu...
+    </div>
+    <div class="opsi">A. Pengaruh budaya dari masyarakat lain</div>
+    <div class="opsi">B. Penemuan baru (inovasi) yang berkembang dalam masyarakat itu sendiri</div>
+    <div class="opsi">C. Peperangan dengan negara lain</div>
+    <div class="opsi">D. Bencana alam yang memaksa migrasi</div>
+    <div class="opsi">E. Pengaruh lingkungan fisik</div>
+    <div class="pembahasan" id="bahas5">
+        <div class="jawaban">✅ Jawaban: B. Penemuan baru (inovasi) yang berkembang dalam masyarakat itu sendiri</div>
+        <b>Pembahasan:</b> Faktor <span class="keyword">internal</span> perubahan sosial meliputi: (1) <span class="keyword">penemuan baru</span> (inovasi/discovery/invention), (2) <span class="keyword">pertentangan</span> dalam masyarakat, dan (3) <span class="keyword">perubahan demografis</span>. Smartphone adalah inovasi teknologi yang mendorong perubahan pola komunikasi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 6 ============ -->
+<div class="soal-card" id="soal6">
+    <span class="badge">Faktor Penyebab Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Data BPS 2024:</b> Jumlah penduduk perkotaan Indonesia terus meningkat. Pada tahun <b>2000</b>, penduduk perkotaan hanya <b>42%</b>, pada <b>2020</b> menjadi <b>56,7%</b>, dan diproyeksikan mencapai <b>66,6%</b> pada 2035.
+    </div>
+    <div class="pertanyaan">
+        Peningkatan penduduk perkotaan (urbanisasi) yang mengubah struktur sosial masyarakat termasuk faktor penyebab perubahan sosial <span class="keyword">demografis</span>, karena...
+    </div>
+    <div class="opsi">A. Disebabkan oleh penemuan teknologi baru</div>
+    <div class="opsi">B. Disebabkan oleh perubahan jumlah, komposisi, dan distribusi penduduk</div>
+    <div class="opsi">C. Berasal dari pengaruh budaya asing</div>
+    <div class="opsi">D. Terjadi karena peperangan antarnegara</div>
+    <div class="opsi">E. Disebabkan oleh bencana alam</div>
+    <div class="pembahasan" id="bahas6">
+        <div class="jawaban">✅ Jawaban: B. Disebabkan oleh perubahan jumlah, komposisi, dan distribusi penduduk</div>
+        <b>Pembahasan:</b> Faktor <span class="keyword">demografis</span> adalah perubahan yang berkaitan dengan <span class="keyword">jumlah, komposisi, dan distribusi penduduk</span>. Urbanisasi mengubah struktur sosial, pola konsumsi, dan interaksi masyarakat di perkotaan maupun pedesaan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 7 ============ -->
+<div class="soal-card" id="soal7">
+    <span class="badge">Faktor Penyebab Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Studi Kasus HOTS:</b> Masuknya drama Korea (K-Drama) dan musik K-Pop ke Indonesia sejak 2005 mengubah gaya berpakaian, selera musik, dan pola konsumsi remaja Indonesia. Pada 2023, ekspor produk budaya Korea ke Indonesia mencapai <b>USD 1,2 miliar</b>.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan analisis, masuknya budaya K-Pop ke Indonesia termasuk faktor penyebab perubahan sosial <span class="keyword">eksternal</span>, karena...
+    </div>
+    <div class="opsi">A. Berasal dari penemuan dalam masyarakat Indonesia sendiri</div>
+    <div class="opsi">B. Berasal dari pengaruh budaya masyarakat/negara lain</div>
+    <div class="opsi">C. Disebabkan oleh perubahan demografis</div>
+    <div class="opsi">D. Terjadi karena konflik internal masyarakat</div>
+    <div class="opsi">E. Merupakan hasil kebijakan pemerintah Indonesia</div>
+    <div class="pembahasan" id="bahas7">
+        <div class="jawaban">✅ Jawaban: B. Berasal dari pengaruh budaya masyarakat/negara lain</div>
+        <b>Pembahasan:</b> Faktor <span class="keyword">eksternal</span> perubahan sosial meliputi: (1) <span class="keyword">pengaruh budaya</span> masyarakat lain, (2) <span class="keyword">peperangan</span>, dan (3) <span class="keyword">pengaruh lingkungan alam</span>. Masuknya K-Pop adalah contoh pengaruh budaya asing yang mengubah gaya hidup remaja Indonesia.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 8 ============ -->
+<div class="soal-card" id="soal8">
+    <span class="badge">Faktor Penyebab Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Pembangunan Jalan Tol Trans-Jawa (1.150 km) sejak 2018 mengubah pola mobilitas, distribusi barang, dan pertumbuhan ekonomi di sepanjang jalur tol. Kota-kota kecil di sekitar pintu tol mengalami pertumbuhan pesat.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan analisis komprehensif, faktor utama perubahan sosial akibat pembangunan tol Trans-Jawa adalah...
+    </div>
+    <div class="opsi">A. Penemuan teknologi baru dalam masyarakat</div>
+    <div class="opsi">B. Kebijakan pembangunan infrastruktur oleh pemerintah (faktor internal terencana)</div>
+    <div class="opsi">C. Pengaruh budaya asing yang masuk secara masif</div>
+    <div class="opsi">D. Peperangan antarnegara</div>
+    <div class="opsi">E. Bencana alam yang memaksa relokasi</div>
+    <div class="pembahasan" id="bahas8">
+        <div class="jawaban">✅ Jawaban: B. Kebijakan pembangunan infrastruktur oleh pemerintah (faktor internal terencana)</div>
+        <b>Pembahasan:</b> Pembangunan tol merupakan <span class="keyword">faktor internal</span> yang bersifat <span class="keyword">terencana</span> oleh pemerintah sebagai agent of change. Infrastruktur mengubah <span class="keyword">aksesibilitas</span>, mobilitas, dan pertumbuhan ekonomi daerah, yang kemudian memicu perubahan sosial.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 9 ============ -->
+<div class="soal-card" id="soal9">
+    <span class="badge">Dampak Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Data UNDP 2023:</b> Indeks Pembangunan Manusia (IPM) Indonesia terus meningkat: <b>68,97</b> (2015), <b>71,92</b> (2020), dan <b>74,39</b> (2023). Peningkatan ini didorong oleh perbaikan akses pendidikan, kesehatan, dan standar hidup.
+    </div>
+    <div class="pertanyaan">
+        Kenaikan IPM Indonesia menunjukkan <span class="keyword">dampak positif</span> perubahan sosial dalam bidang...
+    </div>
+    <div class="opsi">A. Meningkatnya angka kriminalitas</div>
+    <div class="opsi">B. Peningkatan kualitas hidup manusia melalui pendidikan dan kesehatan</div>
+    <div class="opsi">C. Lunturnya nilai-nilai tradisional</div>
+    <div class="opsi">D. Meningkatnya kesenjangan sosial</div>
+    <div class="opsi">E. Menurunnya partisipasi politik</div>
+    <div class="pembahasan" id="bahas9">
+        <div class="jawaban">✅ Jawaban: B. Peningkatan kualitas hidup manusia melalui pendidikan dan kesehatan</div>
+        <b>Pembahasan:</b> <span class="keyword">IPM</span> mengukur tiga dimensi: umur panjang dan sehat, pengetahuan, dan standar hidup layak. Kenaikan IPM menunjukkan <span class="keyword">dampak positif</span> perubahan sosial berupa peningkatan kualitas hidup melalui akses pendidikan dan kesehatan yang lebih baik.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 10 ============ -->
+<div class="soal-card" id="soal10">
+    <span class="badge">Dampak Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Studi Kasus:</b> Masyarakat Desa Adat X di Bali mengalami <span class="keyword">cultural shock</span> ketika tiba-tiba dikunjungi ribuan wisatawan asing setiap bulan. Beberapa warga merasa terganggu dengan perilaku wisatawan yang tidak sesuai adat setempat.
+    </div>
+    <div class="pertanyaan">
+        Fenomena yang dialami masyarakat Desa Adat X merupakan contoh <span class="keyword">cultural shock</span>, yaitu...
+    </div>
+    <div class="opsi">A. Proses penerimaan budaya baru tanpa gejolak</div>
+    <div class="opsi">B. Keterkejutan budaya akibat masuknya unsur budaya baru yang berbeda secara tiba-tiba</div>
+    <div class="opsi">C. Proses asimilasi budaya yang berjalan lancar</div>
+    <div class="opsi">D. Ketertinggalan budaya material dari budaya immaterial</div>
+    <div class="opsi">E. Proses penolakan total terhadap budaya asing</div>
+    <div class="pembahasan" id="bahas10">
+        <div class="jawaban">✅ Jawaban: B. Keterkejutan budaya akibat masuknya unsur budaya baru yang berbeda secara tiba-tiba</div>
+        <b>Pembahasan:</b> <span class="keyword">Cultural shock</span> adalah keterkejutan budaya akibat masuknya unsur budaya baru yang <span class="keyword">berbeda secara tiba-tiba</span>, menyebabkan kebingungan, kecemasan, atau penolakan. Berbeda dengan <span class="keyword">cultural lag</span> yang merupakan ketertinggalan budaya immaterial dari material.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 11 ============ -->
+<div class="soal-card" id="soal11">
+    <span class="badge">Dampak Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Pesatnya perkembangan teknologi digital (budaya material) tidak diimbangi dengan kesiapan regulasi dan etika digital (budaya immaterial). Akibatnya, muncul masalah seperti hoaks, penipuan online, dan perundungan siber.
+    </div>
+    <div class="pertanyaan">
+        Fenomena di atas merupakan contoh <span class="keyword">cultural lag</span>, yang berarti...
+    </div>
+    <div class="opsi">A. Ketertinggalan budaya material dari budaya immaterial</div>
+    <div class="opsi">B. Ketertinggalan budaya immaterial (norma, regulasi) dari budaya material (teknologi)</div>
+    <div class="opsi">C. Penolakan total terhadap teknologi modern</div>
+    <div class="opsi">D. Proses akulturasi budaya yang berhasil</div>
+    <div class="opsi">E. Penyebaran budaya secara merata</div>
+    <div class="pembahasan" id="bahas11">
+        <div class="jawaban">✅ Jawaban: B. Ketertinggalan budaya immaterial (norma, regulasi) dari budaya material (teknologi)</div>
+        <b>Pembahasan:</b> <span class="keyword">Cultural lag</span> (William F. Ogburn) adalah ketertinggalan budaya <span class="keyword">immaterial</span> (nilai, norma, regulasi) dalam menyesuaikan diri dengan perubahan budaya <span class="keyword">material</span> (teknologi). Kesenjangan ini menimbulkan masalah sosial seperti hoaks dan kejahatan siber.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 12 ============ -->
+<div class="soal-card" id="soal12">
+    <span class="badge">Dampak Perubahan Sosial</span>
+    <div class="bacaan">
+        <b>Perbandingan HOTS:</b><br>
+        &bull; <span class="keyword">Modernisasi</span>: perubahan menuju masyarakat modern berbasis rasionalitas, teknologi, dan efisiensi.<br>
+        &bull; <span class="keyword">Westernisasi</span>: peniruan gaya hidup Barat secara membabi buta tanpa filter nilai lokal.
+    </div>
+    <div class="pertanyaan">
+        Seorang remaja yang meniru gaya berpakaian, konsumsi alkohol, dan pergaulan bebas ala Barat tanpa mempertimbangkan nilai budaya lokal telah mengalami proses...
+    </div>
+    <div class="opsi">A. Modernisasi yang positif</div>
+    <div class="opsi">B. Westernisasi yang berpotensi negatif</div>
+    <div class="opsi">C. Globalisasi yang menguntungkan</div>
+    <div class="opsi">D. Akulturasi budaya yang berhasil</div>
+    <div class="opsi">E. Asimilasi budaya yang sempurna</div>
+    <div class="pembahasan" id="bahas12">
+        <div class="jawaban">✅ Jawaban: B. Westernisasi yang berpotensi negatif</div>
+        <b>Pembahasan:</b> <span class="keyword">Westernisasi</span> adalah peniruan gaya hidup Barat secara <span class="keyword">membabi buta</span> tanpa filter nilai lokal, berpotensi merusak identitas budaya. Berbeda dengan <span class="keyword">modernisasi</span> yang menekankan rasionalitas dan efisiensi tanpa harus meninggalkan nilai lokal.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 13 ============ -->
+<div class="soal-card" id="soal13">
+    <span class="badge">Globalisasi</span>
+    <div class="bacaan">
+        <b>Data KOF Globalization Index 2024:</b> Indeks globalisasi Indonesia mencapai <b>68,42</b> dari skala 100, dengan rincian: globalisasi ekonomi (72,1), globalisasi sosial (65,8), dan globalisasi politik (67,3).
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data KOF, <span class="keyword">globalisasi</span> dapat diartikan sebagai...
+    </div>
+    <div class="opsi">A. Proses isolasi negara dari pengaruh luar</div>
+    <div class="opsi">B. Proses integrasi internasional yang terjadi karena pertukaran pandangan, produk, pemikiran, dan aspek kebudayaan</div>
+    <div class="opsi">C. Penutupan batas antarnegara</div>
+    <div class="opsi">D. Penyeragaman seluruh budaya dunia menjadi satu</div>
+    <div class="opsi">E. Penghapusan identitas nasional</div>
+    <div class="pembahasan" id="bahas13">
+        <div class="jawaban">✅ Jawaban: B. Proses integrasi internasional yang terjadi karena pertukaran pandangan, produk, pemikiran, dan aspek kebudayaan</div>
+        <b>Pembahasan:</b> <span class="keyword">Globalisasi</span> adalah proses <span class="keyword">integrasi internasional</span> yang terjadi karena pertukaran pandangan dunia, produk, pemikiran, dan aspek kebudayaan. Globalisasi mencakup dimensi <span class="keyword">ekonomi</span>, <span class="keyword">sosial</span>, dan <span class="keyword">politik</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 14 ============ -->
+<div class="soal-card" id="soal14">
+    <span class="badge">Globalisasi</span>
+    <div class="bacaan">
+        <b>Data Kemenkeu 2023:</b> Nilai investasi asing langsung (FDI) di Indonesia pada 2023 mencapai <b>Rp 744 triliun</b>, meningkat 13,7% dari tahun sebelumnya. Sektor utama: industri logam, transportasi, dan pertambangan.
+    </div>
+    <div class="pertanyaan">
+        Masuknya investasi asing (FDI) ke Indonesia merupakan bentuk <span class="keyword">globalisasi ekonomi</span>, yang ditandai oleh...
+    </div>
+    <div class="opsi">A. Penutupan pasar domestik dari produk asing</div>
+    <div class="opsi">B. Integrasi pasar nasional ke dalam pasar global melalui aliran modal, barang, dan jasa</div>
+    <div class="opsi">C. Penghapusan seluruh kebijakan ekonomi nasional</div>
+    <div class="opsi">D. Penolakan terhadap perdagangan internasional</div>
+    <div class="opsi">E. Isolasi ekonomi dari negara lain</div>
+    <div class="pembahasan" id="bahas14">
+        <div class="jawaban">✅ Jawaban: B. Integrasi pasar nasional ke dalam pasar global melalui aliran modal, barang, dan jasa</div>
+        <b>Pembahasan:</b> <span class="keyword">Globalisasi ekonomi</span> ditandai oleh integrasi pasar nasional ke dalam pasar global melalui <span class="keyword">aliran modal</span> (FDI), <span class="keyword">perdagangan barang dan jasa</span>, serta <span class="keyword">transfer teknologi</span>. FDI adalah salah satu indikator utama globalisasi ekonomi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 15 ============ -->
+<div class="soal-card" id="soal15">
+    <span class="badge">Globalisasi</span>
+    <div class="bacaan">
+        <b>Data We Are Social 2024:</b> Pengguna media sosial aktif di Indonesia mencapai <b>139 juta jiwa</b> (49,9% populasi). Platform terpopuler: WhatsApp (88%), YouTube (85%), Instagram (82%), dan TikTok (73%).
+    </div>
+    <div class="pertanyaan">
+        Tingginya penggunaan media sosial di Indonesia merupakan bentuk <span class="keyword">globalisasi budaya dan informasi</span>, yang berdampak pada...
+    </div>
+    <div class="opsi">A. Terputusnya komunikasi antarnegara</div>
+    <div class="opsi">B. Penyebaran informasi dan budaya secara cepat tanpa batas negara</div>
+    <div class="opsi">C. Penguatan identitas lokal secara otomatis</div>
+    <div class="opsi">D. Penghapusan seluruh budaya tradisional</div>
+    <div class="opsi">E. Penutupan akses informasi dari luar negeri</div>
+    <div class="pembahasan" id="bahas15">
+        <div class="jawaban">✅ Jawaban: B. Penyebaran informasi dan budaya secara cepat tanpa batas negara</div>
+        <b>Pembahasan:</b> <span class="keyword">Globalisasi budaya dan informasi</span> ditandai oleh penyebaran informasi, gagasan, dan budaya secara <span class="keyword">cepat tanpa batas negara</span> melalui media sosial, internet, dan teknologi komunikasi. Hal ini mempercepat pertukaran budaya global.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 16 ============ -->
+<div class="soal-card" id="soal16">
+    <span class="badge">Globalisasi</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Indonesia aktif dalam organisasi internasional seperti ASEAN, G20, WTO, dan PBB. Keikutsertaan ini memungkinkan Indonesia terlibat dalam pengambilan keputusan global dan kerja sama multilateral.
+    </div>
+    <div class="pertanyaan">
+        Keikutsertaan Indonesia dalam organisasi internasional merupakan bentuk <span class="keyword">globalisasi politik</span>, yang ditandai oleh...
+    </div>
+    <div class="opsi">A. Penutupan hubungan diplomatik dengan negara lain</div>
+    <div class="opsi">B. Meningkatnya kerja sama antarnegara melalui organisasi internasional dan kebijakan multilateral</div>
+    <div class="opsi">C. Penghapusan kedaulatan nasional</div>
+    <div class="opsi">D. Pembentukan satu pemerintahan dunia</div>
+    <div class="opsi">E. Isolasi politik dari komunitas internasional</div>
+    <div class="pembahasan" id="bahas16">
+        <div class="jawaban">✅ Jawaban: B. Meningkatnya kerja sama antarnegara melalui organisasi internasional dan kebijakan multilateral</div>
+        <b>Pembahasan:</b> <span class="keyword">Globalisasi politik</span> ditandai oleh meningkatnya <span class="keyword">kerja sama antarnegara</span> melalui organisasi internasional (ASEAN, G20, PBB, WTO), perjanjian multilateral, dan kebijakan bersama. Keikutsertaan ini memperkuat posisi Indonesia di kancah global.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 17 ============ -->
+<div class="soal-card" id="soal17">
+    <span class="badge">Dampak Globalisasi</span>
+    <div class="bacaan">
+        <b>Data Bank Indonesia 2023:</b> Nilai transaksi e-commerce Indonesia pada 2023 mencapai <b>Rp 453,75 triliun</b>, meningkat dari Rp 401 triliun pada 2022. UMKM digital tumbuh menjadi <b>22 juta unit</b> yang masuk ekosistem digital.
+    </div>
+    <div class="pertanyaan">
+        Pertumbuhan e-commerce dan UMKM digital menunjukkan <span class="keyword">dampak positif</span> globalisasi dalam bidang ekonomi, yaitu...
+    </div>
+    <div class="opsi">A. Menurunnya daya saing produk lokal</div>
+    <div class="opsi">B. Terbukanya akses pasar yang lebih luas dan peningkatan ekonomi digital</div>
+    <div class="opsi">C. Matinya seluruh pasar tradisional</div>
+    <div class="opsi">D. Meningkatnya pengangguran</div>
+    <div class="opsi">E. Penurunan kualitas produk lokal</div>
+    <div class="pembahasan" id="bahas17">
+        <div class="jawaban">✅ Jawaban: B. Terbukanya akses pasar yang lebih luas dan peningkatan ekonomi digital</div>
+        <b>Pembahasan:</b> <span class="keyword">Dampak positif</span> globalisasi ekonomi meliputi: (1) terbukanya <span class="keyword">akses pasar</span> yang lebih luas, (2) peningkatan <span class="keyword">ekonomi digital</span>, (3) penciptaan lapangan kerja baru, dan (4) efisiensi distribusi. E-commerce memungkinkan UMKM menjangkau pasar nasional dan global.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 18 ============ -->
+<div class="soal-card" id="soal18">
+    <span class="badge">Dampak Globalisasi</span>
+    <div class="bacaan">
+        <b>Data:</b> Konsumsi barang bermerek dan gaya hidup hedonis meningkat di kalangan remaja perkotaan Indonesia. Survei 2023 menunjukkan <b>62%</b> remaja perkotaan menghabiskan lebih dari 30% uang jajan untuk produk fashion dan makanan impor.
+    </div>
+    <div class="pertanyaan">
+        Fenomena meningkatnya konsumsi barang bermerek dan gaya hidup hedonis merupakan <span class="keyword">dampak negatif</span> globalisasi yang disebut...
+    </div>
+    <div class="opsi">A. Nasionalisme</div>
+    <div class="opsi">B. Konsumerisme dan hedonisme</div>
+    <div class="opsi">C. Modernisasi</div>
+    <div class="opsi">D. Demokratisasi</div>
+    <div class="opsi">E. Industrialisasi</div>
+    <div class="pembahasan" id="bahas18">
+        <div class="jawaban">✅ Jawaban: B. Konsumerisme dan hedonisme</div>
+        <b>Pembahasan:</b> <span class="keyword">Konsumerisme</span> adalah gaya hidup yang mengutamakan konsumsi barang secara berlebihan, sedangkan <span class="keyword">hedonisme</span> adalah pandangan hidup yang mengutamakan kesenangan duniawi. Keduanya merupakan dampak negatif globalisasi yang mengancam nilai kesederhanaan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 19 ============ -->
+<div class="soal-card" id="soal19">
+    <span class="badge">Dampak Globalisasi</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Generasi muda Indonesia semakin jarang menggunakan bahasa daerah dan lebih memilih bahasa Indonesia atau bahasa asing. Data UNESCO 2023 menunjukkan <b>11 bahasa daerah</b> di Indonesia telah punah dan 25 bahasa lainnya terancam punah.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan data UNESCO, dampak globalisasi yang paling mengancam identitas budaya lokal adalah...
+    </div>
+    <div class="opsi">A. Meningkatnya penggunaan teknologi</div>
+    <div class="opsi">B. Erosi identitas budaya lokal akibat dominasi budaya global</div>
+    <div class="opsi">C. Peningkatan akses pendidikan</div>
+    <div class="opsi">D. Pertumbuhan ekonomi digital</div>
+    <div class="opsi">E. Meningkatnya kerja sama internasional</div>
+    <div class="pembahasan" id="bahas19">
+        <div class="jawaban">✅ Jawaban: B. Erosi identitas budaya lokal akibat dominasi budaya global</div>
+        <b>Pembahasan:</b> <span class="keyword">Erosi identitas budaya</span> adalah dampak negatif globalisasi di mana budaya lokal (bahasa, adat, tradisi) tergerus oleh dominasi budaya global. Kepunahan bahasa daerah menunjukkan hilangnya <span class="keyword">warisan budaya</span> yang tidak ternilai.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 20 ============ -->
+<div class="soal-card" id="soal20">
+    <span class="badge">Dampak Globalisasi</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Beberapa kritikus berpendapat bahwa globalisasi ekonomi dapat menjadi bentuk <span class="keyword">neokolonialisme</span>, di mana negara maju menguasai ekonomi negara berkembang melalui perusahaan multinasional (MNC) dan utang luar negeri.
+    </div>
+    <div class="pertanyaan">
+        Pandangan kritis terhadap globalisasi ekonomi yang berpotensi menjadi neokolonialisme didasarkan pada argumen bahwa...
+    </div>
+    <div class="opsi">A. Globalisasi selalu menguntungkan semua negara secara setara</div>
+    <div class="opsi">B. Globalisasi dapat memperkuat ketergantungan ekonomi negara berkembang pada negara maju</div>
+    <div class="opsi">C. Globalisasi menghapus seluruh bentuk imperialisme</div>
+    <div class="opsi">D. Globalisasi menjamin kedaulatan ekonomi setiap negara</div>
+    <div class="opsi">E. Globalisasi tidak memengaruhi struktur ekonomi global</div>
+    <div class="pembahasan" id="bahas20">
+        <div class="jawaban">✅ Jawaban: B. Globalisasi dapat memperkuat ketergantungan ekonomi negara berkembang pada negara maju</div>
+        <b>Pembahasan:</b> Pandangan <span class="keyword">neokolonialisme</span> menyatakan bahwa globalisasi ekonomi dapat memperkuat <span class="keyword">ketergantungan</span> negara berkembang pada negara maju melalui MNC, utang, dan ketidaksetaraan perdagangan. Ini merupakan <span class="keyword">kritik</span> terhadap globalisasi yang tidak setara.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 21 ============ -->
+<div class="soal-card" id="soal21">
+    <span class="badge">Dampak Globalisasi</span>
+    <div class="bacaan">
+        <b>Data APJII 2024:</b> Pengguna internet Indonesia mencapai <b>221 juta</b> (82% populasi). Namun terdapat kesenjangan digital: pengguna di Jawa mencapai 90%, sedangkan di Papua dan Maluku hanya <b>45-50%</b>.
+    </div>
+    <div class="pertanyaan">
+        Kesenjangan penggunaan internet antara Jawa dan Papua merupakan contoh <span class="keyword">digital divide</span>, yang berdampak pada...
+    </div>
+    <div class="opsi">A. Pemerataan akses informasi di seluruh wilayah</div>
+    <div class="opsi">B. Ketimpangan akses informasi dan peluang ekonomi antardaerah</div>
+    <div class="opsi">C. Peningkatan kualitas pendidikan di seluruh daerah</div>
+    <div class="opsi">D. Penghapusan kesenjangan sosial</div>
+    <div class="opsi">E. Penguatan identitas budaya lokal</div>
+    <div class="pembahasan" id="bahas21">
+        <div class="jawaban">✅ Jawaban: B. Ketimpangan akses informasi dan peluang ekonomi antardaerah</div>
+        <b>Pembahasan:</b> <span class="keyword">Digital divide</span> adalah kesenjangan akses terhadap teknologi digital antarkelompok/wilayah. Kesenjangan ini berdampak pada <span class="keyword">ketimpangan akses informasi</span>, pendidikan, dan peluang ekonomi, sehingga memperlebar jurang antardaerah.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 22 ============ -->
+<div class="soal-card" id="soal22">
+    <span class="badge">Sikap Kritis terhadap Globalisasi</span>
+    <div class="bacaan">
+        <b>Studi Kasus HOTS:</b> Seorang remaja Indonesia gemar menonton drama Korea dan meniru gaya hidup tokoh-tokohnya. Namun ia tetap mempertahankan kebiasaan makan makanan tradisional, berbahasa daerah dengan keluarga, dan mengikuti kegiatan adat.
+    </div>
+    <div class="pertanyaan">
+        Sikap remaja tersebut mencerminkan <span class="keyword">sikap kritis terhadap globalisasi</span>, yaitu...
+    </div>
+    <div class="opsi">A. Menolak seluruh pengaruh budaya asing</div>
+    <div class="opsi">B. Menerima budaya asing secara total tanpa filter</div>
+    <div class="opsi">C. Menyaring budaya asing yang masuk sambil mempertahankan identitas budaya lokal</div>
+    <div class="opsi">D. Mengisolasi diri dari pengaruh global</div>
+    <div class="opsi">E. Menghapus seluruh budaya tradisional</div>
+    <div class="pembahasan" id="bahas22">
+        <div class="jawaban">✅ Jawaban: C. Menyaring budaya asing yang masuk sambil mempertahankan identitas budaya lokal</div>
+        <b>Pembahasan:</b> <span class="keyword">Sikap kritis terhadap globalisasi</span> berarti tidak menolak total (isolasi) atau menerima total (westernisasi), melainkan <span class="keyword">menyaring</span> budaya asing yang masuk sambil mempertahankan identitas budaya lokal. Ini disebut <span class="keyword">glokalisasi</span>.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 23 ============ -->
+<div class="soal-card" id="soal23">
+    <span class="badge">Sikap Kritis terhadap Globalisasi</span>
+    <div class="bacaan">
+        <b>Data Kemendikbud 2023:</b> Program <span class="keyword">Penguatan Pendidikan Karakter</span> (PPK) dan kurikulum muatan lokal diterapkan di sekolah-sekolah untuk membentengi generasi muda dari dampak negatif globalisasi.
+    </div>
+    <div class="pertanyaan">
+        Penerapan PPK dan kurikulum muatan lokal merupakan upaya <span class="keyword">ketahanan budaya</span> dalam menghadapi globalisasi, yang bertujuan...
+    </div>
+    <div class="opsi">A. Menolak seluruh pengaruh budaya asing</div>
+    <div class="opsi">B. Memperkuat nilai-nilai lokal dan karakter bangsa tanpa menutup diri dari dunia luar</div>
+    <div class="opsi">C. Menghapus seluruh budaya modern</div>
+    <div class="opsi">D. Menyeragamkan seluruh budaya Indonesia</div>
+    <div class="opsi">E. Mengisolasi Indonesia dari pergaulan internasional</div>
+    <div class="pembahasan" id="bahas23">
+        <div class="jawaban">✅ Jawaban: B. Memperkuat nilai-nilai lokal dan karakter bangsa tanpa menutup diri dari dunia luar</div>
+        <b>Pembahasan:</b> <span class="keyword">Ketahanan budaya</span> adalah upaya memperkuat nilai-nilai lokal dan karakter bangsa agar tidak tergerus globalisasi, tanpa harus menutup diri dari dunia luar. Pendidikan karakter dan muatan lokal adalah strategi <span class="keyword">preventif</span> yang efektif.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 24 ============ -->
+<div class="soal-card" id="soal24">
+    <span class="badge">Sikap Kritis terhadap Globalisasi</span>
+    <div class="bacaan">
+        <b>Analisis HOTS:</b> Di era globalisasi, beberapa kelompok masyarakat menunjukkan sikap <span class="keyword">nasionalisme sempit</span> dengan menolak seluruh produk asing. Di sisi lain, ada kelompok yang menerima seluruh budaya asing tanpa filter. Kedua sikap ini dianggap tidak ideal.
+    </div>
+    <div class="pertanyaan">
+        Berdasarkan analisis, sikap yang paling tepat terhadap globalisasi adalah...
+    </div>
+    <div class="opsi">A. Menolak seluruh produk dan budaya asing</div>
+    <div class="opsi">B. Menerima seluruh budaya asing tanpa seleksi</div>
+    <div class="opsi">C. Bersikap terbuka dengan tetap menyaring pengaruh asing berdasarkan nilai Pancasila</div>
+    <div class="opsi">D. Mengisolasi diri dari pergaulan internasional</div>
+    <div class="opsi">E. Menghapus seluruh identitas nasional</div>
+    <div class="pembahasan" id="bahas24">
+        <div class="jawaban">✅ Jawaban: C. Bersikap terbuka dengan tetap menyaring pengaruh asing berdasarkan nilai Pancasila</div>
+        <b>Pembahasan:</b> Sikap ideal terhadap globalisasi adalah <span class="keyword">terbuka namun kritis</span>: menerima pengaruh positif (teknologi, ilmu pengetahuan) sambil <span class="keyword">menyaring</span> pengaruh negatif berdasarkan nilai <span class="keyword">Pancasila</span> dan budaya bangsa. Ini merupakan jalan tengah antara isolasi dan westernisasi.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+        <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+    </div>
+</div>
+
+<!-- ============ SOAL 25 ============ -->
+<div class="soal-card" id="soal25">
+    <span class="badge">Sikap Kritis terhadap Globalisasi</span>
+    <div class="bacaan">
+        <b>Tantangan HOTS:</b> Pemerintah Indonesia meluncurkan program <span class="keyword">Bangga Buatan Indonesia</span> untuk mendorong konsumsi produk lokal di tengah gempuran produk impor. Program ini melibatkan UMKM, platform digital, dan kampanye media sosial.
+    </div>
+    <div class="pertanyaan">
+        Jika Anda diminta merancang strategi untuk memperkuat program Bangga Buatan Indonesia di kalangan generasi muda, langkah paling efektif adalah...
+    </div>
+    <div class="opsi">A. Melarang seluruh produk impor masuk ke Indonesia</div>
+    <div class="opsi">B. Memaksa generasi muda membeli produk lokal dengan sanksi</div>
+    <div class="opsi">C. Meningkatkan kualitas produk lokal dan memanfaatkan media digital untuk promosi yang kreatif</div>
+    <div class="opsi">D. Menutup seluruh platform e-commerce asing</div>
+    <div class="opsi">E. Menghapus seluruh iklan produk impor</div>
+    <div class="pembahasan" id="bahas25">
+        <div class="jawaban">✅ Jawaban: C. Meningkatkan kualitas produk lokal dan memanfaatkan media digital untuk promosi yang kreatif</div>
+        <b>Pembahasan:</b> Strategi efektif menghadapi globalisasi adalah <span class="keyword">meningkatkan daya saing</span> produk lokal melalui perbaikan kualitas, inovasi, dan <span class="keyword">pemanfaatan media digital</span> untuk promosi kreatif. Pendekatan ini lebih berkelanjutan dibanding proteksionisme ekstrem atau pemaksaan.
+    </div>
+    <div class="tombol-group">
+        <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+        <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+        <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Soal Selanjutnya: Ketimpangan Sosial ➡</button>
+    </div>
+</div>
+
+<!-- ============ HALAMAN SELESAI ============ -->
+<div class="selesai-card" id="selesaiCard">
+    <h2>🎉 Selamat!</h2>
+    <p>Anda telah menyelesaikan <b>25 soal</b> materi <b>Perubahan Sosial dan Globalisasi</b> dengan nuansa literasi, numerasi, dan HOTS.<br>
+    Klik tombol di bawah untuk melanjutkan ke materi berikutnya.</p>
+    <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Materi Ketimpangan Sosial akan segera tersedia! 🚀')">📚 Lanjut ke Materi: Ketimpangan Sosial</button>
+</div>
+
+</div>
+
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) { tampilkanSoal(n + 1); }
+    function prevSoal(n) { tampilkanSoal(n - 1); }
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
