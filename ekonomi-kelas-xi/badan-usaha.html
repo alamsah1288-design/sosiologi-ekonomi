@@ -727,6 +727,228 @@
             margin-bottom: 20px;
         }
 
+        /* ===== SIMULATOR SHU ===== */
+        .simulator-shu {
+            background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
+            border-radius: var(--border-radius);
+            padding: 1.8rem 2rem;
+            margin: 1.8rem 0;
+            border: 2px solid var(--koperasi);
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-mode .simulator-shu {
+            background: linear-gradient(135deg, #2d2416 0%, #3d2e1a 100%);
+            border-color: #b45309;
+        }
+
+        .simulator-shu h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--koperasi);
+        }
+
+        .simulator-shu h3 i {
+            font-size: 1.6rem;
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+        }
+
+        .sim-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sim-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sim-group label i {
+            color: var(--koperasi);
+            width: 20px;
+        }
+
+        .sim-group input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #d1d5db;
+            border-radius: 10px;
+            outline: none;
+            margin: 6px 0;
+            transition: background 0.3s;
+        }
+
+        .sim-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--koperasi);
+            cursor: pointer;
+            transition: 0.15s;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .sim-group input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.12);
+            background: #d97706;
+        }
+
+        .sim-group input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--koperasi);
+            cursor: pointer;
+            border: 2px solid white;
+        }
+
+        .sim-value {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark);
+            background: white;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            border: 1px solid #d1d5db;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        body.dark-mode .sim-value {
+            background: #1e1e1e;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+
+        .sim-value-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .sim-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed #d1d5db;
+        }
+
+        body.dark-mode .sim-results {
+            border-color: #444;
+        }
+
+        .sim-result-card {
+            background: white;
+            border-radius: 16px;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark-mode .sim-result-card {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .sim-result-card .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .sim-result-card .value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-top: 2px;
+        }
+
+        .sim-result-card .value.jasa-modal { color: #4361ee; }
+        .sim-result-card .value.jasa-anggota { color: #10b981; }
+        .sim-result-card .value.total { color: var(--koperasi); font-size: 2rem; }
+
+        .sim-result-card .sub {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        .sim-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            align-items: center;
+        }
+
+        body.dark-mode .sim-footer {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+
+        .sim-footer .badge-koperasi {
+            background: var(--koperasi);
+            color: white;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .sim-footer .badge-modal {
+            background: #4361ee;
+            color: white;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .sim-footer .badge-anggota {
+            background: #10b981;
+            color: white;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .sim-grid { grid-template-columns: 1fr; }
+            .sim-results { grid-template-columns: 1fr 1fr; }
+            .simulator-shu { padding: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .sim-results { grid-template-columns: 1fr; }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .content-grid { grid-template-columns: 1fr; }
@@ -1152,7 +1374,7 @@
                     </div>
                 </section>
 
-                <!-- Card: Koperasi -->
+                <!-- Card: Koperasi + SIMULATOR SHU -->
                 <section class="card koperasi-border">
                     <h2><i class="fas fa-people-carry koperasi-color"></i> Koperasi</h2>
                     <p><strong>Koperasi</strong> adalah badan usaha yang beranggotakan orang-seorang atau badan hukum koperasi dengan melandaskan kegiatannya berdasarkan prinsip koperasi sekaligus sebagai gerakan ekonomi rakyat yang berdasar atas asas kekeluargaan.</p>
@@ -1171,6 +1393,93 @@
                             <p style="margin-top: 10px;"><strong>Jenis Koperasi:</strong> Koperasi Konsumsi, Koperasi Produksi, Koperasi Simpan Pinjam, Koperasi Jasa, Koperasi Serba Usaha</p>
                         </ul>
                     </div>
+
+                    <!-- ======================== SIMULATOR SHU ======================== -->
+                    <div class="simulator-shu" id="simulatorSHU">
+                        <h3><i class="fas fa-calculator"></i> Simulator SHU Koperasi</h3>
+                        <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 1rem;">
+                            Geser slider untuk mengubah parameter koperasi dan lihat perhitungan SHU secara <strong>real-time</strong>.
+                        </p>
+
+                        <div class="sim-grid">
+                            <!-- Total Simpanan -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-coins"></i> Total Simpanan Anggota</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="totalModal" min="500000000" max="10000000000" step="50000000" value="3000000000" />
+                                    <span class="sim-value" id="totalModalDisplay">Rp3.000.000.000</span>
+                                </div>
+                            </div>
+                            <!-- SHU Jasa Modal -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-percent"></i> SHU untuk Jasa Modal</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="shuModal" min="50000000" max="1000000000" step="10000000" value="300000000" />
+                                    <span class="sim-value" id="shuModalDisplay">Rp300.000.000</span>
+                                </div>
+                            </div>
+                            <!-- Total Belanja -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-shopping-cart"></i> Total Belanja Anggota</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="totalBelanja" min="1000000000" max="20000000000" step="100000000" value="9000000000" />
+                                    <span class="sim-value" id="totalBelanjaDisplay">Rp9.000.000.000</span>
+                                </div>
+                            </div>
+                            <!-- SHU Jasa Anggota -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-percent"></i> SHU untuk Jasa Anggota</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="shuAnggota" min="50000000" max="1500000000" step="10000000" value="450000000" />
+                                    <span class="sim-value" id="shuAnggotaDisplay">Rp450.000.000</span>
+                                </div>
+                            </div>
+                            <!-- Simpanan Anggota -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-user-tie"></i> Simpanan Anggota (contoh)</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="simpananAndi" min="1000000" max="100000000" step="500000" value="12000000" />
+                                    <span class="sim-value" id="simpananAndiDisplay">Rp12.000.000</span>
+                                </div>
+                            </div>
+                            <!-- Belanja Anggota -->
+                            <div class="sim-group">
+                                <label><i class="fas fa-user-tie"></i> Belanja Anggota (contoh)</label>
+                                <div class="sim-value-wrapper">
+                                    <input type="range" id="belanjaAndi" min="1000000" max="200000000" step="500000" value="36000000" />
+                                    <span class="sim-value" id="belanjaAndiDisplay">Rp36.000.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hasil -->
+                        <div class="sim-results" id="simResults">
+                            <div class="sim-result-card">
+                                <div class="label"><i class="fas fa-piggy-bank"></i> Jasa Modal</div>
+                                <div class="value jasa-modal" id="resultJasaModal">Rp1.200.000</div>
+                                <div class="sub">berdasarkan simpanan</div>
+                            </div>
+                            <div class="sim-result-card">
+                                <div class="label"><i class="fas fa-users"></i> Jasa Anggota</div>
+                                <div class="value jasa-anggota" id="resultJasaAnggota">Rp1.800.000</div>
+                                <div class="sub">berdasarkan transaksi</div>
+                            </div>
+                            <div class="sim-result-card" style="border-color: var(--koperasi); background: rgba(245, 158, 11, 0.08);">
+                                <div class="label"><i class="fas fa-star" style="color: var(--koperasi);"></i> Total SHU</div>
+                                <div class="value total" id="resultTotal">Rp3.000.000</div>
+                                <div class="sub">diterima anggota</div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Info -->
+                        <div class="sim-footer">
+                            <span><span class="badge-modal">Jasa Modal</span> <strong id="pctModal">10,00%</strong></span>
+                            <span><span class="badge-anggota">Jasa Anggota</span> <strong id="pctAnggota">5,00%</strong></span>
+                            <span><i class="fas fa-arrow-right" style="color: var(--koperasi);"></i> Total SHU koperasi: <strong id="totalSHU">Rp750.000.000</strong></span>
+                        </div>
+                    </div>
+                    <!-- ==================== END SIMULATOR ==================== -->
+
                 </section>
 
                 <!-- Card: Studi Kasus -->
@@ -1455,6 +1764,91 @@
         // Init language
         const savedLang = localStorage.getItem('language') || 'id';
         if (savedLang === 'en') switchLanguage('en');
+
+        // ================================================================
+        // SIMULATOR SHU — real-time update
+        // ================================================================
+
+        // Elemen input
+        const totalModalInput = document.getElementById('totalModal');
+        const shuModalInput = document.getElementById('shuModal');
+        const totalBelanjaInput = document.getElementById('totalBelanja');
+        const shuAnggotaInput = document.getElementById('shuAnggota');
+        const simpananAndiInput = document.getElementById('simpananAndi');
+        const belanjaAndiInput = document.getElementById('belanjaAndi');
+
+        // Elemen display value
+        const totalModalDisplay = document.getElementById('totalModalDisplay');
+        const shuModalDisplay = document.getElementById('shuModalDisplay');
+        const totalBelanjaDisplay = document.getElementById('totalBelanjaDisplay');
+        const shuAnggotaDisplay = document.getElementById('shuAnggotaDisplay');
+        const simpananAndiDisplay = document.getElementById('simpananAndiDisplay');
+        const belanjaAndiDisplay = document.getElementById('belanjaAndiDisplay');
+
+        // Elemen hasil
+        const resultJasaModal = document.getElementById('resultJasaModal');
+        const resultJasaAnggota = document.getElementById('resultJasaAnggota');
+        const resultTotal = document.getElementById('resultTotal');
+        const pctModal = document.getElementById('pctModal');
+        const pctAnggota = document.getElementById('pctAnggota');
+        const totalSHU = document.getElementById('totalSHU');
+
+        // Fungsi format Rupiah
+        function formatRupiah(num) {
+            return 'Rp' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        // Fungsi utama update
+        function updateSimulator() {
+            const totalModal = parseFloat(totalModalInput.value) || 0;
+            const shuModal = parseFloat(shuModalInput.value) || 0;
+            const totalBelanja = parseFloat(totalBelanjaInput.value) || 0;
+            const shuAnggota = parseFloat(shuAnggotaInput.value) || 0;
+            const simpananAndi = parseFloat(simpananAndiInput.value) || 0;
+            const belanjaAndi = parseFloat(belanjaAndiInput.value) || 0;
+
+            // Update display
+            totalModalDisplay.textContent = formatRupiah(totalModal);
+            shuModalDisplay.textContent = formatRupiah(shuModal);
+            totalBelanjaDisplay.textContent = formatRupiah(totalBelanja);
+            shuAnggotaDisplay.textContent = formatRupiah(shuAnggota);
+            simpananAndiDisplay.textContent = formatRupiah(simpananAndi);
+            belanjaAndiDisplay.textContent = formatRupiah(belanjaAndi);
+
+            // Hitung persentase
+            const pctModalVal = totalModal > 0 ? (shuModal / totalModal) * 100 : 0;
+            const pctAnggotaVal = totalBelanja > 0 ? (shuAnggota / totalBelanja) * 100 : 0;
+
+            // Hitung SHU anggota
+            const jasaModal = totalModal > 0 ? (simpananAndi / totalModal) * shuModal : 0;
+            const jasaAnggota = totalBelanja > 0 ? (belanjaAndi / totalBelanja) * shuAnggota : 0;
+            const totalSHUAnggota = jasaModal + jasaAnggota;
+
+            // Update hasil
+            resultJasaModal.textContent = formatRupiah(jasaModal);
+            resultJasaAnggota.textContent = formatRupiah(jasaAnggota);
+            resultTotal.textContent = formatRupiah(totalSHUAnggota);
+
+            // Update persentase
+            pctModal.textContent = pctModalVal.toFixed(2) + '%';
+            pctAnggota.textContent = pctAnggotaVal.toFixed(2) + '%';
+
+            // Total SHU koperasi
+            totalSHU.textContent = formatRupiah(shuModal + shuAnggota);
+        }
+
+        // Daftarkan event listener ke semua slider
+        const simSliders = [
+            totalModalInput, shuModalInput, totalBelanjaInput,
+            shuAnggotaInput, simpananAndiInput, belanjaAndiInput
+        ];
+        simSliders.forEach(slider => {
+            slider.addEventListener('input', updateSimulator);
+        });
+
+        // Inisialisasi pertama
+        updateSimulator();
     </script>
+
 </body>
 </html>
