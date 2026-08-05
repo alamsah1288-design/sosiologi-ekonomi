@@ -4,15 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bank Soal TKA – SMAN 1 Cluring</title>
-    <!-- Google Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
 
     <style>
-        /* ===== CSS SAMA DENGAN INDEX ASLI ===== */
         :root {
             --primary: #4361ee;
             --secondary: #3f37c9;
@@ -34,14 +30,8 @@
             --gray: #a0aec0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
@@ -52,8 +42,8 @@
         }
         body.dark-mode {
             background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-            color: var(--dark);
         }
+
         /* NAVBAR */
         .navbar {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
@@ -84,11 +74,7 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             object-fit: cover;
         }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .nav-container { display: flex; align-items: center; gap: 15px; }
         .nav-links {
             display: flex;
             gap: 15px;
@@ -104,7 +90,6 @@
             padding: 8px 12px;
             border-radius: 50px;
             transition: var(--transition);
-            position: relative;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -113,9 +98,7 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        .dropdown {
-            position: relative;
-        }
+        .dropdown { position: relative; }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -143,12 +126,9 @@
         .dropdown-content a:hover {
             background: var(--primary);
             color: white;
-            transform: none;
             padding-left: 20px;
         }
-        .dropdown:hover .dropdown-content {
-            display: flex;
-        }
+        .dropdown:hover .dropdown-content { display: flex; }
         .hamburger {
             display: none;
             cursor: pointer;
@@ -176,6 +156,7 @@
             transform: rotate(15deg);
             background: rgba(255, 255, 255, 0.1);
         }
+
         /* HEADER */
         header {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
@@ -199,12 +180,8 @@
             z-index: 1;
         }
         @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         .logo {
             width: 100px;
@@ -219,17 +196,13 @@
             transition: var(--transition);
             object-fit: contain;
         }
-        .logo:hover {
-            transform: scale(1.05) rotate(10deg);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        }
+        .logo:hover { transform: scale(1.05) rotate(10deg); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); }
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             z-index: 2;
             position: relative;
-            letter-spacing: -0.5px;
         }
         .subtitle {
             font-weight: 300;
@@ -239,7 +212,6 @@
             font-size: 1.1rem;
         }
 
-        /* ADSENSE CONTAINER */
         .adsense-container {
             max-width: 1200px;
             margin: 20px auto;
@@ -248,9 +220,58 @@
             justify-content: center;
         }
 
+        /* CATEGORY TITLE */
+        .category-title {
+            text-align: center;
+            margin: 50px auto 25px;
+            max-width: 1200px;
+            padding: 0 20px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        body.dark-mode .category-title { color: #f8f9fa; }
+        .category-title::before,
+        .category-title::after {
+            content: '';
+            flex: 1;
+            max-width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        .category-title i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        .category-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .category-title.sosiologi { color: #f59e0b; }
+        .category-title.sosiologi i { color: #f59e0b; }
+        .category-title.sosiologi::before,
+        .category-title.sosiologi::after { background: linear-gradient(90deg, transparent, #f59e0b, transparent); }
+        .category-title.pkk { color: #10b981; }
+        .category-title.pkk i { color: #10b981; }
+        .category-title.pkk::before,
+        .category-title.pkk::after { background: linear-gradient(90deg, transparent, #10b981, transparent); }
+
+        /* CONTAINER & CARD */
         .container {
             max-width: 1200px;
-            margin: -40px auto 40px;
+            margin: 0 auto 40px;
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -267,6 +288,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            border-top: 4px solid var(--primary);
+            position: relative;
         }
         body.dark-mode .card {
             background: #2d2d2d;
@@ -278,13 +301,11 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         .card h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
             color: var(--dark);
         }
-        body.dark-mode .card h2 {
-            color: #f8f9fa;
-        }
+        body.dark-mode .card h2 { color: #f8f9fa; }
         .card p {
             margin-bottom: 20px;
             color: var(--gray);
@@ -303,7 +324,6 @@
             justify-content: center;
             gap: 8px;
             min-width: 160px;
-            text-align: center;
             border: none;
             cursor: pointer;
             background: var(--primary);
@@ -314,27 +334,47 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             background: var(--secondary);
         }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        .btn-outline:hover {
-            background: var(--primary);
+
+        /* HOTS BADGE */
+        .hots-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
         }
-        /* FOOTER (sama persis dengan index) */
+
+        /* Color variants */
+        .card.ekonomi { border-top-color: #4361ee; }
+        .card.ekonomi .btn { background: #4361ee; }
+        .card.ekonomi .btn:hover { background: #3f37c9; }
+        .card.ekonomi:hover { border-top-color: #4cc9f0; }
+
+        .card.sosiologi { border-top-color: #f59e0b; }
+        .card.sosiologi .btn { background: #f59e0b; }
+        .card.sosiologi .btn:hover { background: #d97706; }
+        .card.sosiologi:hover { border-top-color: #fbbf24; }
+
+        .card.pkk { border-top-color: #10b981; }
+        .card.pkk .btn { background: #10b981; }
+        .card.pkk .btn:hover { background: #059669; }
+        .card.pkk:hover { border-top-color: #4ade80; }
+
+        /* FOOTER */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
             color: white;
             padding: 60px 20px 30px;
             margin-top: 60px;
             font-family: 'Poppins', sans-serif;
-            transition: background 0.4s;
         }
-        body.dark-mode footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-        }
+        body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -358,13 +398,8 @@
             background: #4361ee;
             border-radius: 3px;
         }
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer-section li {
-            margin: 10px 0;
-        }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section li { margin: 10px 0; }
         .footer-section a {
             color: #e2e8f0;
             text-decoration: none;
@@ -373,30 +408,8 @@
             align-items: center;
             gap: 8px;
         }
-        .footer-section a:hover {
-            color: #4361ee;
-            transform: translateX(5px);
-        }
-        .footer-section p {
-            line-height: 1.6;
-            margin: 8px 0;
-            color: #e2e8f0;
-        }
-        .footer-legal-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .footer-legal-links a {
-            font-size: 0.9rem;
-            padding: 4px 0;
-        }
-        .footer-legal-links i {
-            width: 18px;
-            text-align: center;
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
+        .footer-section a:hover { color: #4361ee; transform: translateX(5px); }
+        .footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
         .footer-legal-bar {
             display: none;
             text-align: center;
@@ -409,19 +422,9 @@
             justify-content: center;
             font-size: 0.8rem;
         }
-        .footer-legal-bar a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s;
-            padding: 3px 8px;
-        }
-        .footer-legal-bar a:hover {
-            color: #4361ee;
-        }
-        .footer-legal-bar .separator {
-            color: rgba(255, 255, 255, 0.2);
-            margin: 0 3px;
-        }
+        .footer-legal-bar a { color: #94a3b8; text-decoration: none; padding: 3px 8px; }
+        .footer-legal-bar a:hover { color: #4361ee; }
+        .footer-legal-bar .separator { color: rgba(255, 255, 255, 0.2); margin: 0 3px; }
         .visitor-counter {
             text-align: center;
             padding: 15px;
@@ -429,20 +432,11 @@
             border-radius: 8px;
             margin-top: 10px;
         }
-        .visitor-counter img {
-            max-width: 100%;
-            height: auto;
-            filter: brightness(1.2);
-        }
-        .visitor-counter p {
-            margin-top: 10px;
-            font-size: 0.85rem;
-            opacity: 0.8;
-            color: #e2e8f0;
-        }
+        .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
+        .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
         .copyright {
             text-align: center;
-            grid-column: span 4;
+            grid-column: span 5;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 20px;
@@ -455,24 +449,15 @@
             font-size: 0.9rem;
             color: #94a3b8;
         }
-        /* SCROLL INDICATOR & BACK TO TOP */
+
+        /* SCROLL & BACK TO TOP */
         .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: 4px; background: rgba(0, 0, 0, 0.1); z-index: 9999;
         }
         .scroll-indicator span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.2s ease;
+            position: absolute; top: 0; left: 0; height: 100%;
+            background: var(--primary); width: 0%; transition: width 0.2s ease;
         }
         .back-to-top {
             position: fixed;
@@ -494,48 +479,29 @@
             visibility: hidden;
             z-index: 999;
         }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
-        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
+
         .loader-wrapper {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             z-index: 9999;
             transition: opacity 0.5s ease-out;
         }
         .loader {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border: 5px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
         }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        /* RESPONSIVE */
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 768px) {
-            .navbar {
-                padding: 0.8rem 1rem;
-            }
-            .hamburger {
-                display: block;
-            }
+            .hamburger { display: block; }
             .nav-links {
                 display: none;
                 position: fixed;
@@ -546,33 +512,15 @@
                 flex-direction: column;
                 gap: 0;
                 padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
             }
-            .nav-links.active {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
             @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-10px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
             }
-            .nav-links li {
-                width: 100%;
-            }
-            .nav-links a {
-                padding: 12px 20px;
-                border-radius: 0;
-                width: 100%;
-                display: flex;
-                align-items: center;
-            }
+            .nav-links li { width: 100%; }
+            .nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
             .dropdown-content {
                 position: static;
                 background: rgba(0, 0, 0, 0.1);
@@ -581,80 +529,37 @@
                 display: none;
                 padding: 0;
             }
-            .dropdown.active .dropdown-content {
-                display: flex;
-                flex-direction: column;
-            }
-            .dropdown-content a {
-                padding-left: 40px;
-                color: white;
-            }
-            .dropdown-content a:hover {
-                background: rgba(255, 255, 255, 0.1);
-            }
-            header {
-                padding: 4rem 1rem 2rem;
-            }
-            .logo {
-                width: 80px;
-                height: 80px;
-            }
-            .container {
-                grid-template-columns: 1fr;
-                margin-top: -30px;
-                padding: 15px;
-                gap: 20px;
-            }
-            .card {
-                padding: 25px 20px;
-            }
-            .btn {
-                width: 100%;
-                min-width: auto;
-            }
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .copyright {
-                grid-column: span 1;
-            }
-            .footer-legal-bar {
-                display: flex;
-            }
-            .footer-section:nth-child(3) {
-                display: none;
-            }
+            .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
+            .dropdown-content a { padding-left: 40px; color: white; }
+            .category-title { font-size: 1.3rem; }
+            header { padding: 4rem 1rem 2rem; }
+            .logo { width: 80px; height: 80px; }
+            .container { grid-template-columns: 1fr; padding: 15px; gap: 20px; }
+            .card { padding: 25px 20px; }
+            .btn { width: 100%; min-width: auto; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; }
+            .copyright { grid-column: span 1; }
+            .footer-legal-bar { display: flex; }
+            .footer-section:nth-child(3) { display: none; }
         }
         @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 1rem;
-            }
-            .navbar-brand img {
-                width: 35px;
-                height: 35px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
+            .navbar-brand { font-size: 1rem; }
+            .navbar-brand img { width: 35px; height: 35px; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- LOADER -->
     <div class="loader-wrapper" id="loader">
         <div class="loader"></div>
     </div>
-    <!-- SCROLL INDICATOR -->
     <div class="scroll-indicator">
         <span id="scrollProgress"></span>
     </div>
-    <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">
             <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" />
@@ -682,77 +587,107 @@
         </ul>
     </nav>
 
-    <!-- HEADER -->
     <header>
         <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" class="logo" />
         <h1>Bank Soal TKA</h1>
         <p class="subtitle">Kumpulan soal latihan untuk persiapan ujian TKA – SMAN 1 Cluring</p>
     </header>
 
-    <!-- ADSENSE - Iklan Bank Soal TKA -->
     <div class="adsense-container">
-        <!-- soal-tka.html -->
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-1234355696976048"
              data-ad-slot="7545225746"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- DAFTAR PAKET SOAL -->
+    <!-- ===== EKONOMI (4 CARD) ===== -->
+    <h2 class="category-title ekonomi"><i class="fas fa-coins"></i> Ekonomi</h2>
     <div class="container">
-        <div class="card">
+        <div class="card ekonomi">
             <h2><i class="fas fa-coins"></i> Konsep Dasar Ekonomi</h2>
-            <p>Kelangkaan, biaya peluang, dan kegiatan ekonomi.</p>
+            <p>Kelangkaan, biaya peluang, kegiatan ekonomi, dan prinsip-prinsip dasar perekonomian.</p>
             <a href="soal-tka/tka-konsep-dasar.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card ekonomi">
             <h2><i class="fas fa-chart-pie"></i> Mikro & Makro Ekonomi</h2>
-            <p>Permintaan, penawaran, inflasi, pengangguran, dan kebijakan.</p>
+            <p>Permintaan, penawaran, inflasi, pengangguran, dan kebijakan fiskal-moneter.</p>
             <a href="soal-tka/tka-paket2-mikro-makro.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card ekonomi">
             <h2><i class="fas fa-globe"></i> Ekonomi Internasional</h2>
-            <p>Perdagangan, kurs, neraca pembayaran, dan kerjasama.</p>
+            <p>Perdagangan, kurs valuta asing, neraca pembayaran, dan kerjasama internasional.</p>
             <a href="soal-tka/tka-paket3-internasional.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card ekonomi">
             <h2><i class="fas fa-calculator"></i> Akuntansi</h2>
-            <p>Dasar akuntansi, jurnal, buku besar, dan laporan keuangan.</p>
+            <p>Dasar akuntansi, jurnal umum, buku besar, hingga penyusunan laporan keuangan.</p>
             <a href="soal-tka/tka-paket4-akuntansi.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+    </div>
+
+    <!-- ===== SOSIOLOGI (5 CARD) ===== -->
+    <h2 class="category-title sosiologi"><i class="fas fa-users"></i> Sosiologi</h2>
+    <div class="container">
+        <div class="card sosiologi">
             <h2><i class="fas fa-users"></i> Sosiologi sebagai Ilmu</h2>
-            <p>Pengertian, sejarah, dan objek kajian sosiologi.</p>
+            <p>Pengertian, sejarah perkembangan, tokoh, serta objek kajian sosiologi.</p>
             <a href="soal-tka/tka-sosiologi-01-sosiologi-sebagai-ilmu.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card sosiologi">
             <h2><i class="fas fa-handshake"></i> Hubungan & Gejala Sosial</h2>
-            <p>Interaksi sosial, norma, dan gejala-gejala sosial.</p>
+            <p>Interaksi sosial, nilai, norma, dan dinamika gejala sosial di masyarakat.</p>
             <a href="soal-tka/tka-sosiologi-02-hubungan-dan-gejala-sosial.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card sosiologi">
             <h2><i class="fas fa-search"></i> Penelitian Sosial</h2>
-            <p>Metode penelitian, teknik pengumpulan data, dan analisis.</p>
+            <p>Metode penelitian, teknik pengumpulan data, dan analisis hasil penelitian.</p>
             <a href="soal-tka/tka-sosiologi-03-penelitian-sosial.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
+        <div class="card sosiologi">
             <h2><i class="fas fa-balance-scale"></i> Kelompok & Konflik Sosial</h2>
-            <p>Kelompok sosial, kesetaraan, dan konflik sosial.</p>
+            <p>Kelompok sosial, kesetaraan, serta konflik dan integrasi sosial.</p>
             <a href="soal-tka/tka-sosiologi-04-kelompok-kesetaraan-konflik-sosial.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
-        <div class="card">
-            <h2><i class="fas fa-exchange-alt"></i> Perubahan & Globalisasi</h2>
-            <p>Perubahan sosial, modernisasi, dan globalisasi.</p>
+        <div class="card sosiologi">
+            <h2><i class="fas fa-exchange-alt"></i> Perubahan Sosial & Globalisasi</h2>
+            <p>Dinamika perubahan sosial, modernisasi, dan dampak globalisasi.</p>
             <a href="soal-tka/tka-sosiologi-05-perubahan-sosial-globalisasi.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
     </div>
 
-    <!-- FOOTER (SAMA) -->
+    <!-- ===== PRODUK KREATIF & KEWIRAUSAHAAN (4 CARD HOTS) ===== -->
+    <h2 class="category-title pkk"><i class="fas fa-rocket"></i> Produk Kreatif & Kewirausahaan</h2>
+    <div class="container">
+        <div class="card pkk">
+            <span class="hots-badge">HOTS</span>
+            <h2><i class="fas fa-industry"></i> Produksi & Pengelolaan Usaha</h2>
+            <p>Soal HOTS campuran tentang proses produksi dan pengelolaan usaha kewirausahaan.</p>
+            <a href="soal-tka/soal_hots_campuran_produksi_pengelolaan_usaha.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card pkk">
+            <span class="hots-badge">HOTS</span>
+            <h2><i class="fas fa-bullseye"></i> Peluang, Proposal & HaKI</h2>
+            <p>Soal HOTS tentang analisis peluang usaha, penyusunan proposal, keuangan, dan Hak Kekayaan Intelektual.</p>
+            <a href="soal-tka/soal_hots_peluang_proposal_keuangan_haki.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card pkk">
+            <span class="hots-badge">HOTS</span>
+            <h2><i class="fas fa-palette"></i> Produk Kreatif – Bagian 1</h2>
+            <p>Soal HOTS bagian pertama tentang desain dan pembuatan produk kreatif.</p>
+            <a href="soal-tka/soal_hots_produk_kreatif_bagian1.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card pkk">
+            <span class="hots-badge">HOTS</span>
+            <h2><i class="fas fa-paint-brush"></i> Produk Kreatif – Bagian 2</h2>
+            <p>Soal HOTS bagian kedua tentang inovasi, prototipe, dan pengembangan produk kreatif.</p>
+            <a href="soal-tka/soal_hots_produk_kreatif_bagian2.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -823,7 +758,6 @@
     </footer>
 
     <script>
-        // ===== SCRIPT SAMA DENGAN INDEX =====
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -874,11 +808,8 @@
             const scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
             const backToTop = document.getElementById('backToTop');
-            if (winScroll > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            if (winScroll > 300) backToTop.classList.add('visible');
+            else backToTop.classList.remove('visible');
         };
         document.getElementById('backToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -891,13 +822,6 @@
                 setTimeout(() => { loader.style.display = 'none'; }, 500);
             }, 1000);
         });
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            if (loader.style.display !== 'none') {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }
-        }, 3000);
     </script>
 </body>
 </html>
