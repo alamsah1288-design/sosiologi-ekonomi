@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soal HOTS Campuran - Produksi & Pengelolaan Usaha</title>
+
+    <!-- ===== GOOGLE ADSENSE (placeholder) ===== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* --- RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .header h1 {
+            font-size: 1.3em;
+            color: #0a192f;
+        }
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .header .sub {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 2px;
+        }
+        .progress-bar {
+            background: #eee;
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #d4af37, #b8860b);
+            height: 100%;
+            width: 4%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+        .info-nomor {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        /* --- IKLAN (ADSENSE) --- */
+        .ad-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .ad-wrapper .ad-label {
+            font-size: 0.6em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- SOAL CARD --- */
+        .soal-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .soal-card.aktif {
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e8eaf6;
+            color: #1a365d;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+        .badge-level {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #1b5e20;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .pertanyaan {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .keyword {
+            font-weight: bold;
+            font-style: italic;
+            color: #b8860b;
+        }
+        .keyword2 {
+            font-weight: bold;
+            color: #c62828;
+        }
+        .opsi {
+            display: block;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8f9ff;
+            border: 2px solid #e0e0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            line-height: 1.5;
+            font-size: 0.96em;
+        }
+        .opsi:hover {
+            background: #e8eaf6;
+            border-color: #d4af37;
+            transform: translateX(5px);
+        }
+        .pembahasan {
+            display: none;
+            margin-top: 18px;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            border-radius: 8px;
+            padding: 18px 22px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+        .pembahasan .jawaban {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+        .pembahasan .deep-note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fff3e0;
+            border-left: 4px solid #e65100;
+            border-radius: 6px;
+            font-size: 0.94em;
+            color: #4e342e;
+        }
+
+        /* --- TOMBOL --- */
+        .tombol-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.93em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-bahas {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .btn-bahas:hover {
+            background: #1b5e20;
+        }
+        .btn-next {
+            background: #1a365d;
+            color: #fff;
+            margin-left: auto;
+        }
+        .btn-next:hover {
+            background: #2a4a7f;
+        }
+        .btn-prev {
+            background: #eceff1;
+            color: #37474f;
+        }
+        .btn-prev:hover {
+            background: #cfd8dc;
+        }
+        .btn-final {
+            background: linear-gradient(90deg, #d4af37, #b8860b);
+            color: #fff;
+            margin-left: auto;
+            display: none;
+            font-size: 1em;
+        }
+        .btn-final:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- SELESAI --- */
+        .selesai-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .selesai-card h2 {
+            color: #1a365d;
+            margin-bottom: 15px;
+        }
+        .selesai-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .soal-card {
+                padding: 18px 16px;
+            }
+            .pertanyaan {
+                font-size: 0.98em;
+            }
+            .opsi {
+                font-size: 0.92em;
+                padding: 10px 14px;
+            }
+            .tombol-group button {
+                font-size: 0.85em;
+                padding: 10px 16px;
+            }
+            .header h1 {
+                font-size: 1.1em;
+            }
+            .ad-wrapper {
+                padding: 8px 10px;
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>🏭 Soal HOTS Campuran — Produksi &amp; Pengelolaan Usaha</h1>
+        <p><b>13 Sub-elemen:</b> Desain · Kemasan · Prototipe · Perencanaan · Proses · Pengemasan · QA · Pemasaran · Distribusi · Peluang · Proposal · Keuangan · HaKI</p>
+        <p class="sub">⚡ Level Kognitif: C3 (Menerapkan) · C4 (Menganalisis) · C5 (Mengevaluasi) | Total 25 Soal</p>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- ===== IKLAN 1 — TOP ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+    <!-- ============================================================ -->
+    <!-- ========== ELEMEN 1: KEGIATAN PRODUKSI (Soal 1-13) ========== -->
+
+    <!-- ========== SUB: DESAIN PRODUK (1 & 10) ====================== -->
+    <!-- ===================== SOAL 1 ================================ -->
+    <div class="soal-card aktif" id="soal1">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Perusahaan furnitur beralih dari desain konvensional ke desain <span class="keyword">modular</span> (komponen yang dapat dibongkar pasang). Analisislah prosedur pengembangan desain mana yang paling kritis untuk diadaptasi agar produk modular tetap kokoh dan mudah dirakit oleh konsumen!
+        </div>
+        <div class="opsi">A. Tahap brainstorming ide, karena harus menghasilkan konsep yang kreatif.</div>
+        <div class="opsi">B. Tahap <span class="keyword">pembuatan prototipe dan uji fungsional</span>, karena sambungan/konektor antarmodul harus diuji kekuatan dan kemudahan perakitannya secara iteratif.</div>
+        <div class="opsi">C. Tahap produksi massal, karena hanya proses produksi yang menentukan kualitas.</div>
+        <div class="opsi">D. Tahap pemasaran, karena desain modular butuh penjelasan ke konsumen.</div>
+        <div class="opsi">E. Tahap distribusi, karena ukuran modul mempengaruhi biaya kirim.</div>
+        <div class="pembahasan" id="bahas1">
+            <div class="jawaban">✅ Jawaban: B. Tahap pembuatan prototipe dan uji fungsional, karena sambungan/konektor harus diuji kekuatan dan kemudahan perakitan.</div>
+            <b>Pembahasan:</b> Desain modular menghadirkan <span class="keyword">tantangan teknis baru</span> pada sistem sambungan (joinery). Prosedur pengembangan harus menekankan <span class="keyword">rapid prototyping</span> dan <span class="keyword">usability testing</span> untuk memastikan komponen tidak longgar setelah berulang kali dibongkar pasang. Tanpa uji fungsional yang ketat, produk berisiko gagal di tangan konsumen (misal meja ambruk).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Desain untuk Perakitan (Design for Assembly/DFA) adalah prinsip yang harus diadopsi. Pengujian siklus hidup (life-cycle testing) sangat penting untuk memvalidasi ketahanan sambungan mekanis.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: DESAIN KEMASAN (2 & 11) ===================== -->
+    <!-- ===================== SOAL 2 ================================ -->
+    <div class="soal-card" id="soal2">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produsen minuman premium membandingkan 2 opsi kemasan: (A) botol kaca tebal dengan label timbul, dan (B) botol PET ringan dengan label stiker. Evaluasilah opsi mana yang lebih menguntungkan dari sisi <span class="keyword">biaya logistik</span> dan <span class="keyword">persepsi konsumen</span> untuk produk yang dijual secara online!
+        </div>
+        <div class="opsi">A. Opsi A (kaca) lebih baik karena memberi kesan mewah, meskipun biaya kirim mahal.</div>
+        <div class="opsi">B. Opsi B (PET) jauh lebih ringan sehingga menekan biaya pengiriman, tetapi persepsi kemasan murah bisa menurunkan nilai premium produk. Perlu kompromi dengan desain label yang eksklusif.</div>
+        <div class="opsi">C. Opsi A dan B sama efektifnya.</div>
+        <div class="opsi">D. Opsi B selalu lebih baik karena lebih praktis.</div>
+        <div class="opsi">E. Opsi A lebih baik karena kaca dapat didaur ulang 100%.</div>
+        <div class="pembahasan" id="bahas2">
+            <div class="jawaban">✅ Jawaban: B. Opsi B (PET) lebih ringan untuk logistik, tetapi perlu strategi desain label eksklusif agar persepsi premium tetap terjaga.</div>
+            <b>Pembahasan:</b> Untuk e-commerce, biaya pengiriman sangat dipengaruhi oleh <span class="keyword">berat kemasan</span>. Botol kaca secara signifikan lebih berat dan rentan pecah, meningkatkan biaya dan risiko retur. Namun, produsen premium tidak ingin terkesan murah. Solusi evaluatifnya adalah menggunakan PET dengan <span class="keyword">desain label premium</span> (misal efek metalik, emboss) dan kemasan sekunder yang elegan untuk menjaga persepsi nilai.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah <span class="keyword">trade-off</span> antara utilitarian (fungsi) dan hedonis (emosi). Desain kemasan modern sering menggunakan material ringan dengan finishing mewah (misal soft-touch coating) untuk menjembatani keduanya.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PROTOTIPE (3 & 12) ========================== -->
+    <!-- ===================== SOAL 3 ================================ -->
+    <div class="soal-card" id="soal3">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Tim R&D akan menguji kenyamanan gagang setrika listrik baru. Terapkan metode pembuatan prototipe yang paling tepat dan efisien untuk mengumpulkan data ergonomis sebelum produksi massal!
+        </div>
+        <div class="opsi">A. Membuat prototipe fungsional dari logam yang sudah jadi (final material).</div>
+        <div class="opsi">B. Membuat prototipe <span class="keyword">gagang dari resin/cetakan 3D</span> dengan bahan murah, lalu mengujicobakan kepada 20 orang responden untuk menilai genggaman dan keseimbangan.</div>
+        <div class="opsi">C. Hanya membuat sketsa 2D tanpa prototipe fisik.</div>
+        <div class="opsi">D. Memproduksi 100 unit langsung untuk uji pasar.</div>
+        <div class="opsi">E. Menggunakan prototipe kayu yang sama persis dengan bentuk akhir.</div>
+        <div class="pembahasan" id="bahas3">
+            <div class="jawaban">✅ Jawaban: B. Membuat prototipe gagang dari resin/cetakan 3D dengan bahan murah, lalu uji coba ke responden.</div>
+            <b>Pembahasan:</b> Untuk uji ergonomi, kita memerlukan <span class="keyword">prototipe fisik</span> yang merepresentasikan bentuk dan bobot, tetapi tidak harus tahan panas. <span class="keyword">Additive manufacturing (3D printing)</span> atau resin memungkinkan iterasi cepat dan biaya rendah. Ini adalah metode <span class="keyword">rapid prototyping</span> yang tepat untuk mengumpulkan umpan balik pengguna sebelum investasi cetakan logam mahal.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Setelah prototipe bentuk (form prototype) diterima, barulah dibuat prototipe fungsional (functional prototype) menggunakan material akhir untuk uji kelistrikan dan panas.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PERENCANAAN PRODUKSI (4 & 13) ============== -->
+    <!-- ===================== SOAL 4 ================================ -->
+    <div class="soal-card" id="soal4">
+        <span class="badge">Perencanaan Produksi <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik tas memiliki biaya tetap Rp 20.000.000 per bulan dan biaya variabel Rp 15.000 per unit. Harga jual tas Rp 25.000 per unit. Tentukan <span class="keyword">BEP (unit)</span> dan analisislah apakah usaha akan untung jika produksi mencapai 1.000 unit dalam sebulan!
+        </div>
+        <div class="opsi">A. BEP = 2.000 unit; Produksi 1.000 unit = RUGI.</div>
+        <div class="opsi">B. BEP = 1.333 unit; Produksi 1.000 unit = RUGI.</div>
+        <div class="opsi">C. BEP = 2.000 unit; Produksi 1.000 unit = UNTUNG.</div>
+        <div class="opsi">D. BEP = 1.000 unit; Produksi 1.000 unit = IMPAS.</div>
+        <div class="opsi">E. BEP = 800 unit; Produksi 1.000 unit = UNTUNG.</div>
+        <div class="pembahasan" id="bahas4">
+            <div class="jawaban">✅ Jawaban: A. BEP = 2.000 unit; Produksi 1.000 unit = RUGI.</div>
+            <b>Pembahasan:</b> BEP unit = Biaya Tetap / (Harga – Biaya Variabel) = 20.000.000 / (25.000 – 15.000) = 20.000.000 / 10.000 = 2.000 unit. Dengan produksi 1.000 unit, total pendapatan = 25.000 × 1.000 = 25.000.000. Total biaya = 20.000.000 + (15.000 × 1.000) = 35.000.000. Rugi = 10.000.000. Untuk mendapatkan laba, produksi harus > 2.000 unit.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analisis BEP sangat krusial. Jika kapasitas produksi hanya 1.000 unit, usaha ini <span class="keyword">tidak layak</span> secara finansial. Solusi: menaikkan harga jual, menurunkan biaya variabel (negosiasi supplier), atau menurunkan biaya tetap.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PROSES PRODUKSI (5) ========================= -->
+    <!-- ===================== SOAL 5 ================================ -->
+    <div class="soal-card" id="soal5">
+        <span class="badge">Proses Produksi <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah usaha kue ulang tahun rumahan menerima pesanan dengan desain yang sangat bervariasi (karakter, tema, ukuran). Terapkan strategi proses produksi yang paling tepat untuk memaksimalkan efisiensi tanpa mengorbankan kustomisasi!
+        </div>
+        <div class="opsi">A. Proses produksi <span class="keyword">kontinu</span> (assembly line) untuk semua kue.</div>
+        <div class="opsi">B. Proses produksi <span class="keyword">job shop</span> (berdasarkan pesanan) dengan standarisasi bahan baku dasar (sponge cake, buttercream) untuk memudahkan kustomisasi.</div>
+        <div class="opsi">C. Membuat stok kue jadi tanpa pesanan.</div>
+        <div class="opsi">D. Menggunakan mesin otomatis full untuk semua proses.</div>
+        <div class="opsi">E. Memproduksi semua kue dengan desain yang sama.</div>
+        <div class="pembahasan" id="bahas5">
+            <div class="jawaban">✅ Jawaban: B. Proses produksi job shop dengan standarisasi bahan baku dasar.</div>
+            <b>Pembahasan:</b> Produk dengan variasi tinggi membutuhkan <span class="keyword">flexibility</span>. Proses job shop (atau batch) memungkinkan perubahan setup cepat sesuai pesanan. Dengan menstandarisasi komponen dasar (base cake, filling), pekerja dapat fokus pada kustomisasi dekorasi. Ini adalah <span class="keyword">mass customization</span> dalam skala kecil.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Prinsip <span class="keyword">postponement</span> (penundaan diferensiasi) diterapkan di sini. Produksi dasar dilakukan terlebih dahulu, lalu kustomisasi dilakukan di tahap akhir sesuai permintaan pelanggan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PENGEMASAN PRODUK (6) ======================= -->
+    <!-- ===================== SOAL 6 ================================ -->
+    <div class="soal-card" id="soal6">
+        <span class="badge">Pengemasan Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Produsen biskuit akan mendistribusikan produknya ke daerah tropis yang lembab. Terapkan kombinasi material pengemas yang paling efektif untuk menjaga kerenyahan biskuit selama 6 bulan masa simpan!
+        </div>
+        <div class="opsi">A. Kemasan kertas kraft yang ramah lingkungan.</div>
+        <div class="opsi">B. Kemasan <span class="keyword">aluminium foil</span> berlapis (laminate) dengan <span class="keyword">silica gel</span> (penyerap uap air) di dalamnya, serta penutup yang kedap udara.</div>
+        <div class="opsi">C. Kemasan plastik klip biasa.</div>
+        <div class="opsi">D. Stoples kaca tanpa seal khusus.</div>
+        <div class="opsi">E. Kemasan vakum tanpa silica gel.</div>
+        <div class="pembahasan" id="bahas6">
+            <div class="jawaban">✅ Jawaban: B. Kemasan aluminium foil berlapis dengan silica gel dan penutup kedap udara.</div>
+            <b>Pembahasan:</b> Biskuit rentan menyerap uap air (higroskopis) yang membuatnya melempem. <span class="keyword">Aluminium foil laminate</span> memberikan barrier terhadap uap air, oksigen, dan cahaya. <span class="keyword">Silica gel</span> menyerap sisa uap air di dalam kemasan. Penutup kedap udara (misal heat seal) mencegah masuknya udara dari luar. Ini adalah aplikasi <span class="keyword">active packaging</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Kadar uap air (water activity/Aw) harus dijaga di bawah 0,6 untuk mencegah pertumbuhan mikroba dan mempertahankan tekstur. Material dengan <span class="keyword">Water Vapor Transmission Rate (WVTR)</span> rendah sangat penting.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: QUALITY ASSURANCE (7) ======================= -->
+    <!-- ===================== SOAL 7 ================================ -->
+    <div class="soal-card" id="soal7">
+        <span class="badge">Pengendalian Mutu (QA) <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Pabrik sepatu menetapkan toleransi cacat maksimal 3%. Setiap hari diambil sampel 200 sepatu. Jika ditemukan 8 sepatu cacat, terapkan prosedur pengambilan keputusan menggunakan <span class="keyword">peta kendali proporsi</span> (P-chart) untuk menentukan apakah proses harus dihentikan!
+        </div>
+        <div class="opsi">A. Proses dihentikan karena 8/200 = 4% > 3% (melewati batas toleransi).</div>
+        <div class="opsi">B. Proses dilanjutkan karena 4% masih mendekati 3%.</div>
+        <div class="opsi">C. Proses dihentikan hanya jika cacat > 10%.</div>
+        <div class="opsi">D. Proses dilanjutkan karena sampel acak bisa saja mengandung cacat lebih banyak.</div>
+        <div class="opsi">E. Tidak bisa ditentukan tanpa menghitung batas kendali atas (UCL) dan bawah (LCL).</div>
+        <div class="pembahasan" id="bahas7">
+            <div class="jawaban">✅ Jawaban: E. Tidak bisa ditentukan tanpa menghitung batas kendali atas (UCL) dan bawah (LCL).</div>
+            <b>Pembahasan:</b> Dalam <span class="keyword">statistical process control (SPC)</span>, keputusan tidak diambil hanya berdasarkan rata-rata sampel vs toleransi. Kita harus menghitung <span class="keyword">batas kendali</span> (UCL, LCL) dengan standar deviasi proporsi. Jika proporsi cacat berada di dalam batas kendali (meskipun > 3%), proses dianggap <span class="keyword">in control</span> (variasi wajar). Jika di luar batas, maka dihentikan untuk investigasi penyebab khusus (special cause).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Rumus UCL = p̄ + 3√(p̄(1-p̄)/n). Tanpa data historis p̄ (rata-rata proporsi jangka panjang), kita tidak bisa menghitung batas kendali. Ini mengajarkan bahwa pengendalian mutu berbasis data, bukan insting.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PEMASARAN (8) =============================== -->
+    <!-- ===================== SOAL 8 ================================ -->
+    <div class="soal-card" id="soal8">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Brand kecantikan lokal mengalokasikan 60% budget pemasaran untuk influencer mikro (10.000-50.000 followers) dan 40% untuk iklan TV nasional. Evaluasilah keefektifan strategi ini untuk menargetkan Generasi Z (usia 18-24) yang dikenal sebagai <span class="keyword">digital native</span>!
+        </div>
+        <div class="opsi">A. Sangat efektif, TV menjangkau semua kalangan.</div>
+        <div class="opsi">B. Kurang efektif, karena alokasi TV 40% terlalu besar untuk Gen Z yang jarang menonton TV. Sebaiknya 80% untuk influencer mikro dan konten digital interaktif (TikTok, Reels).</div>
+        <div class="opsi">C. Efektif karena kombinasi offline dan online selalu baik.</div>
+        <div class="opsi">D. Tidak efektif karena influencer mikro tidak kredibel.</div>
+        <div class="opsi">E. Efektif jika semua influencer adalah selebriti besar.</div>
+        <div class="pembahasan" id="bahas8">
+            <div class="jawaban">✅ Jawaban: B. Kurang efektif, TV 40% terlalu besar. Sebaiknya 80% untuk influencer mikro dan konten digital.</div>
+            <b>Pembahasan:</b> Gen Z menghabiskan rata-rata 4-5 jam per hari di media sosial dan hampir tidak menonton TV linear. <span class="keyword">Influencer mikro</span> memiliki engagement rate yang lebih tinggi (feel like a friend) dan biaya lebih rendah. Iklan TV memiliki <span class="keyword">CPM (Cost per Mille)</span> yang lebih tinggi dan jangkauan yang kurang efektif untuk segmen ini. Alokasi 60% ke digital adalah langkah baik, tetapi 40% ke TV masih terlalu besar. Idealnya, TV digunakan hanya untuk branding awareness massal jika budget sangat besar.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Metrik utama untuk Gen Z adalah <span class="keyword">ROAS (Return on Ad Spend)</span> dan <span class="keyword">engagement rate</span>. Kampanye UGC (User Generated Content) dan challenge di TikTok seringkali memberikan hasil lebih baik daripada iklan TV.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: DISTRIBUSI (9) ============================== -->
+    <!-- ===================== SOAL 9 ================================ -->
+    <div class="soal-card" id="soal9">
+        <span class="badge">Distribusi Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Produsen mobil mewah (harga > Rp 1 M) ingin meluncurkan model terbaru. Terapkan strategi distribusi yang paling tepat untuk menjaga <span class="keyword">eksklusivitas</span> dan <span class="keyword">pengalaman pelanggan</span>!
+        </div>
+        <div class="opsi">A. Distribusi <span class="keyword">intensif</span> (tersedia di semua dealer dan marketplace).</div>
+        <div class="opsi">B. Distribusi <span class="keyword">selektif</span> (hanya di dealer terpilih di kota besar).</div>
+        <div class="opsi">C. Distribusi <span class="keyword">eksklusif</span> (hanya 1-2 showroom resmi di seluruh Indonesia dengan layanan konsultasi privat).</div>
+        <div class="opsi">D. Dijual melalui e-commerce umum seperti Tokopedia.</div>
+        <div class="opsi">E. Menggunakan agen keliling door-to-door.</div>
+        <div class="pembahasan" id="bahas9">
+            <div class="jawaban">✅ Jawaban: C. Distribusi eksklusif (hanya 1-2 showroom resmi dengan layanan privat).</div>
+            <b>Pembahasan:</b> Produk mewah membutuhkan <span class="keyword">distribusi eksklusif</span> (exclusive distribution) untuk menciptakan aura kelangkaan dan pengalaman premium. Showroom terbatas memungkinkan tenaga penjual memberikan perhatian penuh (personal selling), test drive private, dan after-sales service yang excellent. Ini adalah bagian dari <span class="keyword">brand image</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Distribusi eksklusif juga melindungi margin keuntungan karena dealer tidak perlu bersaing harga. Dalam Hukum Perdagangan, ini diperbolehkan selama tidak melanggar aturan persaingan usaha.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 10 =============================== -->
+    <div class="soal-card" id="soal10">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Perusahaan mainan anak beralih menggunakan <span class="keyword">plastik daur ulang</span> (recycled plastic) sebagai bahan baku. Analisislah bagaimana perubahan material ini memengaruhi prosedur pengembangan desain produk, terutama pada tahap <span class="keyword">pengujian keamanan</span> dan <span class="keyword">daya tahan</span>!
+        </div>
+        <div class="opsi">A. Tidak ada perubahan prosedur, semua plastik sama.</div>
+        <div class="opsi">B. Prosedur pengujian harus diperketat karena plastik daur ulang memiliki <span class="keyword">konsistensi sifat mekanis yang lebih rendah</span> (rentan patah) dan berpotensi mengandung kontaminan. Uji impak, uji tarik, dan uji migrasi zat kimia harus menjadi prioritas.</div>
+        <div class="opsi">C. Hanya perlu mengganti warna produk.</div>
+        <div class="opsi">D. Prosedur pengujian menjadi lebih mudah karena bahan sudah teruji.</div>
+        <div class="opsi">E. Tidak perlu pengujian lagi karena bahan ramah lingkungan.</div>
+        <div class="pembahasan" id="bahas10">
+            <div class="jawaban">✅ Jawaban: B. Prosedur pengujian harus diperketat karena plastik daur ulang memiliki konsistensi rendah dan potensi kontaminan.</div>
+            <b>Pembahasan:</b> Plastik daur ulang sering kali memiliki <span class="keyword">property degradation</span> (penurunan sifat) akibat proses daur ulang berulang. Visikositas, kekuatan tarik, dan ketahanan impak bisa bervariasi antar batch. Untuk mainan anak, uji keamanan (misal uji tarik bagian kecil, uji toksisitas) harus lebih ketat untuk memastikan tidak ada bagian yang patah dan tertelan, serta tidak ada zat berbahaya (seperti BPA atau logam berat) yang bermigrasi.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Standar seperti ISO atau ASTM memiliki protokol khusus untuk material daur ulang. Desainer harus bekerja sama dengan laboratorium untuk menentukan spesifikasi material minimum (misal MFI - Melt Flow Index) yang dapat diterima.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 11 =============================== -->
+    <div class="soal-card" id="soal11">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah produk susu bubuk menggunakan kemasan kertas karton berlapis aluminium (aseptic packaging) yang ramah lingkungan, tetapi ternyata tidak cukup melindungi produk dari sinar UV selama penyimpanan di gudang terbuka, menyebabkan oksidasi vitamin. Evaluasilah solusi perbaikan yang paling tepat!
+        </div>
+        <div class="opsi">A. Mengganti seluruh kemasan dengan plastik hitam tebal.</div>
+        <div class="opsi">B. Menambahkan <span class="keyword">lapisan UV-blocking</span> pada bagian luar karton atau menggunakan tinta yang dapat menyerap sinar UV, tanpa mengubah struktur utama kemasan agar tetap ramah lingkungan.</div>
+        <div class="opsi">C. Memindahkan gudang ke tempat gelap saja.</div>
+        <div class="opsi">D. Mengurangi masa simpan produk menjadi 1 bulan.</div>
+        <div class="opsi">E. Mengabaikan masalah karena konsumen tidak akan tahu.</div>
+        <div class="pembahasan" id="bahas11">
+            <div class="jawaban">✅ Jawaban: B. Menambahkan lapisan UV-blocking pada bagian luar karton atau menggunakan tinta penyerap UV.</div>
+            <b>Pembahasan:</b> Kemasan aseptik karton/Al foil sudah baik untuk oksigen dan kelembaban, tetapi kurang efektif terhadap sinar UV (terutama jika tidak dilapisi lapisan putih). Solusi evaluatif adalah <span class="keyword">modifikasi kemasan</span> dengan varnish atau coating yang mengandung UV absorber, atau menggunakan tinta cetak yang mengandung pigmen penyerap UV. Ini mempertahankan keberlanjutan kemasan (kertas) sambil menambahkan fungsi proteksi yang hilang.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah contoh <span class="keyword">sustainable packaging innovation</span>. Coating berbasis air (water-based) yang ramah lingkungan kini tersedia untuk memberikan perlindungan UV tanpa mencemari proses daur ulang kertas.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 12 =============================== -->
+    <div class="soal-card" id="soal12">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah startup sedang mengembangkan aplikasi mobile untuk pemesanan makanan. Mereka masih dalam tahap wireframe (sketsa antarmuka). Terapkan metode pembuatan prototipe yang tepat untuk menguji <span class="keyword">user flow</span> (alur pengguna) sebelum memasuki tahap pengkodean penuh!
+        </div>
+        <div class="opsi">A. Membuat prototipe fungsional penuh dengan bahasa pemrograman.</div>
+        <div class="opsi">B. Membuat <span class="keyword">prototipe interaktif berbasis klik</span> (misal menggunakan Figma, Adobe XD) yang dapat disimulasikan di smartphone untuk menguji alur navigasi dan mendapatkan umpan balik awal.</div>
+        <div class="opsi">C. Hanya menggambar sketsa di kertas dan menunjukkannya ke investor.</div>
+        <div class="opsi">D. Meluncurkan aplikasi setengah jadi ke Play Store.</div>
+        <div class="opsi">E. Mengabaikan prototipe dan langsung coding.</div>
+        <div class="pembahasan" id="bahas12">
+            <div class="jawaban">✅ Jawaban: B. Membuat prototipe interaktif berbasis klik (Figma/Adobe XD) untuk simulasi alur navigasi.</div>
+            <b>Pembahasan:</b> Untuk menguji user flow, kita membutuhkan <span class="keyword">prototipe hi-fidelity</span> yang interaktif tetapi tanpa logika backend. Tools seperti Figma memungkinkan desainer membuat link antar halaman yang dapat diklik, simulasi gesture, dan animasi. Ini adalah metode <span class="keyword">rapid prototyping</span> untuk UI/UX, memungkinkan perbaikan desain sebelum biaya pengkodean membengkak.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Pengujian dengan calon pengguna (usability testing) pada prototipe Figma dapat mengungkap 80% masalah navigasi. Ini adalah inti dari <span class="keyword">Design Thinking</span> pada tahap prototyping.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 13 =============================== -->
+    <div class="soal-card" id="soal13">
+        <span class="badge">Perencanaan Produksi <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik roti awalnya menggunakan tepung impor (Rp 10.000/kg). Karena kebijakan baru, harga tepung naik 20%. Jika total biaya bahan baku sebelumnya untuk 1.000 roti adalah Rp 50.000.000 dan biaya lain tetap, tentukan <span class="keyword">kenaikan biaya produksi total</span> dan berikan rekomendasi strategis untuk mempertahankan profit!
+        </div>
+        <div class="opsi">A. Kenaikan biaya = Rp 10.000.000. Rekomendasi: mencari pemasok lokal yang lebih murah atau reformulasi resep (substitusi bahan).</div>
+        <div class="opsi">B. Kenaikan biaya = Rp 2.000.000. Rekomendasi: menaikkan harga jual 20%.</div>
+        <div class="opsi">C. Kenaikan biaya = Rp 50.000.000. Rekomendasi: berhenti produksi.</div>
+        <div class="opsi">D. Kenaikan biaya = Rp 15.000.000. Rekomendasi: mengurangi ukuran roti.</div>
+        <div class="opsi">E. Kenaikan biaya = Rp 8.000.000. Rekomendasi: menggunakan tepung kadaluarsa.</div>
+        <div class="pembahasan" id="bahas13">
+            <div class="jawaban">✅ Jawaban: A. Kenaikan biaya = Rp 10.000.000. Rekomendasi: cari pemasok lokal atau reformulasi.</div>
+            <b>Pembahasan:</b> Harga tepung naik 20% dari Rp 10.000 menjadi Rp 12.000/kg. Jika biaya bahan baku total sebelumnya Rp 50.000.000 untuk 1.000 roti, maka proporsi tepung adalah 100% dari biaya bahan baku (atau asumsi). Kenaikan = 20% × Rp 50.000.000 = Rp 10.000.000. Strategi yang tepat adalah <span class="keyword">cost reduction</span> melalui negosiasi supplier, substitusi bahan baku lokal yang lebih murah, atau mengurangi waste produksi. Menaikkan harga 20% mungkin tidak kompetitif, dan mengurangi ukuran roti adalah strategi yang tidak etis (shrinkflation) yang bisa menurunkan kepercayaan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah contoh <span class="keyword">supply chain risk management</span>. Ketergantungan pada satu supplier impor sangat berisiko. Diversifikasi pemasok adalah kebijakan yang bijak.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 2 — MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ========== ELEMEN 2: PENGELOLAAN USAHA (Soal 14-25) ========= -->
+
+    <!-- ========== SUB: ANALISIS PELUANG USAHA (14, 15, 16) ======== -->
+    <!-- ===================== SOAL 14 =============================== -->
+    <div class="soal-card" id="soal14">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Seorang pengusaha ingin membuka usaha <span class="keyword">jasa bersih-bersih rumah</span> di kawasan perumahan baru. Analisislah peluang ini dengan pendekatan <span class="keyword">PESTLE</span> (Politik, Ekonomi, Sosial, Teknologi, Legal, Lingkungan) untuk mengidentifikasi faktor eksternal yang paling berpengaruh!
+        </div>
+        <div class="opsi">A. Faktor Politik (kebijakan upah minimum) dan Ekonomi (daya beli) adalah yang paling berpengaruh terhadap penetapan harga jasa.</div>
+        <div class="opsi">B. Faktor Sosial (kesibukan masyarakat urban) dan Teknologi (aplikasi pemesanan) adalah pendorong utama permintaan, sementara Legal (sertifikasi kebersihan) dan Lingkungan (penggunaan bahan kimia ramah lingkungan) adalah pembeda kompetitif.</div>
+        <div class="opsi">C. Hanya faktor ekonomi yang penting.</div>
+        <div class="opsi">D. Faktor lingkungan (cuaca) adalah yang terpenting.</div>
+        <div class="opsi">E. Faktor politik dan teknologi tidak relevan.</div>
+        <div class="pembahasan" id="bahas14">
+            <div class="jawaban">✅ Jawaban: B. Faktor Sosial (kesibukan) dan Teknologi (aplikasi) mendorong permintaan; Legal dan Lingkungan jadi pembeda.</div>
+            <b>Pembahasan:</b> Analisis PESTLE yang komprehensif melihat semua dimensi. Untuk jasa bersih-bersih di perumahan baru: <span class="keyword">Sosial</span> (urban lifestyle dengan kedua pasangan bekerja) menciptakan kebutuhan. <span class="keyword">Teknologi</span> (platform pemesanan online) memudahkan akses. <span class="keyword">Legal</span> (izin usaha, standar kebersihan) dan <span class="keyword">Lingkungan</span> (produk ramah lingkungan) menjadi faktor diferensiasi yang penting di tengah persaingan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> PESTLE membantu melihat <span class="keyword">market attractiveness</span> secara makro. Peluang besar ketika faktor sosial dan teknologi sejalan, dan hambatan legal serta lingkungan masih rendah.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 15 =============================== -->
+    <div class="soal-card" id="soal15">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Tren <span class="keyword">urban farming</span> (pertanian perkotaan) semakin populer. Seorang pengusaha ingin memulai bisnis hidroponik sayur. Analisislah segmentasi pasar yang paling potensial dan tentukan <span class="keyword">positioning</span> yang tepat untuk bersaing dengan sayur impor!
+        </div>
+        <div class="opsi">A. Segmentasi: semua penduduk kota. Positioning: harga termurah.</div>
+        <div class="opsi">B. Segmentasi: <span class="keyword">restoran sehat dan keluarga millennial</span> yang peduli pada kesegaran dan keberlanjutan. Positioning: sayur "panen pagi, sampai siang" (hyper-fresh) dan bebas pestisida.</div>
+        <div class="opsi">C. Segmentasi: pasar tradisional. Positioning: sama seperti sayur biasa.</div>
+        <div class="opsi">D. Segmentasi: eksportir. Positioning: volume besar.</div>
+        <div class="opsi">E. Segmentasi: semua umur. Positioning: kemasan mewah.</div>
+        <div class="pembahasan" id="bahas15">
+            <div class="jawaban">✅ Jawaban: B. Segmentasi restoran sehat dan millennial. Positioning: hyper-fresh & bebas pestisida.</div>
+            <b>Pembahasan:</b> Produk hidroponik memiliki nilai tambah <span class="keyword">freshness</span> (tanpa tanah, dekat dengan pasar) dan <span class="keyword">clean label</span> (bebas pestisida). Segmen restoran premium dan keluarga millennial bersedia membayar lebih untuk kualitas ini. Positioning sebagai "panen pagi, sampai siang" menonjolkan keunggulan logistik rantai dingin (cold chain) yang tidak dimiliki sayur impor. Ini adalah <span class="keyword">differentiation strategy</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analisis peluang harus mengidentifikasi <span class="keyword">pain point</span> konsumen (sayur impor sering layu di perjalanan). Dengan memproduksi lokal, bisnis ini menawarkan solusi nilai tambah (value-added) yang jelas.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 16 =============================== -->
+    <div class="soal-card" id="soal16">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Data menunjukkan peningkatan pengangguran lulusan SMA sebesar 15% di Kota X. Seorang pengusaha melihat peluang <span class="keyword">kursus keterampilan digital</span> (desain grafis, copywriting). Analisislah apakah peluang ini layak dikejar dan tentukan <span class="keyword">faktor kunci sukses</span> yang harus dimiliki!
+        </div>
+        <div class="opsi">A. Peluang tidak layak karena lulusan SMA tidak punya uang.</div>
+        <div class="opsi">B. Peluang layak, asalkan menggandeng <span class="keyword">lembaga pelatihan kerja (BLK) atau subsidi pemerintah</span>. Faktor kunci: kurikulum praktis berbasis proyek, koneksi dengan perusahaan untuk magang, dan biaya terjangkau dengan sistem cicilan.</div>
+        <div class="opsi">C. Peluang layak, tetapi harus gratis total.</div>
+        <div class="opsi">D. Tidak layak karena banyak pesaing kursus online gratis.</div>
+        <div class="opsi">E. Faktor kunci hanya lokasi yang strategis.</div>
+        <div class="pembahasan" id="bahas16">
+            <div class="jawaban">✅ Jawaban: B. Peluang layak, dengan kemitraan BLK/subsidi. Faktor kunci: kurikulum praktis, koneksi magang, dan cicilan.</div>
+            <b>Pembahasan:</b> Pengangguran lulusan SMA adalah <span class="keyword">social problem</span> sekaligus <span class="keyword">business opportunity</span>. Namun, daya beli mereka terbatas. Kerja sama dengan pemerintah (BLK, kartu prakerja) atau skema pembayaran fleksibel (income share agreement) menjadi penting. Faktor kunci sukses adalah <span class="keyword">employability outcome</span> — lulusan harus benar-benar mendapatkan pekerjaan (track record penempatan kerja).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah contoh <span class="keyword">social entrepreneurship</span>. Keberhasilan diukur tidak hanya dari profit, tetapi juga <span class="keyword">social impact</span> (tingkat penyerapan kerja).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PROPOSAL USAHA (17, 18, 19) ================ -->
+    <!-- ===================== SOAL 17 =============================== -->
+    <div class="soal-card" id="soal17">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah proposal usaha mencantumkan proyeksi laba bersih yang besar, tetapi <span class="keyword">laporan arus kas (cash flow)</span> tidak disertakan. Analisislah kelemahan serius dari proposal ini bagi calon investor!
+        </div>
+        <div class="opsi">A. Tidak masalah, laba bersih sudah cukup untuk investor.</div>
+        <div class="opsi">B. Kelemahan serius: laba akuntansi bisa tinggi tetapi arus kas negatif (misal karena piutang besar). Tanpa proyeksi arus kas, investor tidak bisa menilai <span class="keyword">likuiditas</span> dan kemampuan perusahaan membayar hutang/gaji bulanan.</div>
+        <div class="opsi">C. Arus kas hanya penting untuk perusahaan besar.</div>
+        <div class="opsi">D. Investor hanya peduli pada aset, bukan arus kas.</div>
+        <div class="opsi">E. Arus kas bisa digantikan oleh neraca.</div>
+        <div class="pembahasan" id="bahas17">
+            <div class="jawaban">✅ Jawaban: B. Kelemahan serius: laba bisa tinggi tetapi arus kas negatif (likuiditas). Investor tidak bisa menilai kemampuan bayar.</div>
+            <b>Pembahasan:</b> Banyak bisnis bangkrut bukan karena tidak untung, tetapi karena <span class="keyword">kehabisan kas</span>. Laporan arus kas menunjukkan kapan uang masuk dan keluar. Tanpa ini, investor tidak bisa memprediksi risiko gagal bayar gaji atau supplier. Proposal yang kredibel harus menyertakan <span class="keyword">3 laporan keuangan utama</span>: Laba Rugi, Neraca, dan Arus Kas.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Investor sering melihat metrik <span class="keyword">Burn Rate</span> (berapa cepat kas habis) dan <span class="keyword">Runway</span> (berapa lama bertahan). Ini tidak bisa dihitung dari laba rugi saja.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 18 =============================== -->
+    <div class="soal-card" id="soal18">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dalam proposal bisnis minuman bubble tea, bagian pemasaran hanya mencantumkan "promosi di media sosial" tanpa rincian konten, jadwal, atau budget. Analisislah dampak negatif dari ketidakjelasan strategi pemasaran ini terhadap penilaian bank saat pengajuan kredit!
+        </div>
+        <div class="opsi">A. Bank tidak peduli dengan detail pemasaran.</div>
+        <div class="opsi">B. Bank akan meragukan <span class="keyword">kemampuan eksekusi</span> dan <span class="keyword">realisme target penjualan</span>. Tanpa strategi pemasaran yang terukur, proyeksi pendapatan dianggap tidak kredibel, sehingga kredit berisiko ditolak.</div>
+        <div class="opsi">C. Bank hanya melihat agunan, bukan proposal.</div>
+        <div class="opsi">D. Proposal tetap diterima karena bisnis minuman sedang tren.</div>
+        <div class="opsi">E. Ketidakjelasan pemasaran justru baik karena fleksibel.</div>
+        <div class="pembahasan" id="bahas18">
+            <div class="jawaban">✅ Jawaban: B. Bank meragukan kemampuan eksekusi dan realisme target penjualan, sehingga kredit berisiko ditolak.</div>
+            <b>Pembahasan:</b> Lembaga keuangan (bank) menilai proposal berdasarkan <span class="keyword">5C (Character, Capacity, Capital, Collateral, Condition)</span>. Capacity (kemampuan menghasilkan cash flow) sangat bergantung pada rencana pemasaran yang konkret. Tanpa rincian seperti <span class="keyword">marketing funnel</span> (bagaimana mendapatkan pelanggan), biaya per akuisisi (CAC), dan channel yang digunakan, bank tidak percaya proyeksi omzet tercapai.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Proposal yang kuat harus menyertakan <span class="keyword">budget pemasaran</span> (misal 20% dari omzet) dan <span class="keyword">Key Performance Indicators (KPI)</span> seperti jumlah followers, conversion rate, dan sales per channel.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 19 =============================== -->
+    <div class="soal-card" id="soal19">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah proposal usaha kerajinan tangan mengajukan dana Rp 100 juta dengan rincian: 70% untuk bahan baku, 20% untuk mesin, 10% untuk biaya tak terduga. Evaluasilah alokasi dana ini dan berikan rekomendasi jika usaha tersebut baru pertama kali beroperasi!
+        </div>
+        <div class="opsi">A. Alokasi sudah sempurna.</div>
+        <div class="opsi">B. Alokasi 10% untuk biaya tak terduga (Rp 10 juta) terlalu kecil. Untuk usaha baru, biaya tak terduga bisa mencapai 20-30% (perizinan, trial error produksi, komponen). Idealnya: 50% bahan baku, 30% mesin/peralatan, 20% biaya tak terduga + modal kerja.</div>
+        <div class="opsi">C. Harus 100% untuk bahan baku.</div>
+        <div class="opsi">D. Tidak perlu biaya tak terduga.</div>
+        <div class="opsi">E. Mesin tidak perlu dibeli, bisa sewa saja.</div>
+        <div class="pembahasan" id="bahas19">
+            <div class="jawaban">✅ Jawaban: B. 10% untuk biaya tak terduga terlalu kecil. Idealnya 20% + modal kerja.</div>
+            <b>Pembahasan:</b> Usaha baru (startup) menghadapi banyak <span class="keyword">ketidakpastian operasional</span>. Biaya tak terduga bisa muncul dari kenaikan harga bahan, biaya pengiriman, retur produk, atau perbaikan mesin. Selain itu, seringkali terlupa bahwa <span class="keyword">modal kerja (working capital)</span> untuk 3-6 bulan pertama harus dianggarkan. Alokasi yang lebih realistis adalah menyisihkan 20% untuk buffer dan 15-20% untuk operasional awal. Bahan baku 70% terlalu agresif.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam manajemen keuangan, <span class="keyword">contingency fund</span> adalah praktik standar. Proposal harus menunjukkan arus kas bulanan untuk memastikan bisnis dapat bertahan sebelum mencapai BEP.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: PELAPORAN KEUANGAN (20, 21, 22) ============ -->
+    <!-- ===================== SOAL 20 =============================== -->
+    <div class="soal-card" id="soal20">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Data Neraca: Kas Rp 10.000.000, Piutang Rp 20.000.000, Persediaan Rp 30.000.000, Utang Lancar Rp 40.000.000. Hitung <span class="keyword">Rasio Lancar (Current Ratio)</span> dan <span class="keyword">Rasio Cepat (Quick Ratio)</span>, lalu analisislah likuiditas perusahaan!
+        </div>
+        <div class="opsi">A. Current = 1,5; Quick = 0,75. Likuiditas kurang baik karena cepat < 1, artinya perusahaan tidak mampu menutupi utang jangka pendek tanpa menjual persediaan.</div>
+        <div class="opsi">B. Current = 1,5; Quick = 1,5. Likuiditas baik.</div>
+        <div class="opsi">C. Current = 0,67; Quick = 0,33. Sangat buruk.</div>
+        <div class="opsi">D. Current = 2,0; Quick = 1,0. Cukup baik.</div>
+        <div class="opsi">E. Current = 1,2; Quick = 0,5. Perlu perbaikan.</div>
+        <div class="pembahasan" id="bahas20">
+            <div class="jawaban">✅ Jawaban: A. Current = 1,5; Quick = 0,75. Likuiditas kurang baik.</div>
+            <b>Pembahasan:</b> Aset Lancar = Kas + Piutang + Persediaan = 10 + 20 + 30 = 60. Utang Lancar = 40. <span class="keyword">Current Ratio</span> = 60/40 = 1,5 (standar >1). <span class="keyword">Quick Ratio</span> = (Kas + Piutang) / Utang Lancar = 30/40 = 0,75 (standar >1). Quick ratio di bawah 1 menandakan perusahaan mengandalkan penjualan persediaan untuk membayar utang, yang berisiko jika persediaan sulit dijual cepat. Likuiditas dianggap kurang sehat.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Persediaan adalah aset paling tidak likuid. Manajemen harus fokus pada pengurangan hari penjualan persediaan (DSI) dan percepatan penagihan piutang (DSO) untuk meningkatkan quick ratio.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 21 =============================== -->
+    <div class="soal-card" id="soal21">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan melakukan <span class="keyword">window dressing</span> laporan keuangan dengan menunda pembayaran hutang hingga awal tahun berikutnya agar neraca terlihat lebih sehat. Evaluasilah etika dan dampak praktik ini terhadap pengambilan keputusan investor!
+        </div>
+        <div class="opsi">A. Ini adalah praktik ilegal dan harus dilaporkan ke polisi.</div>
+        <div class="opsi">B. Ini adalah praktik <span class="keyword">manajemen laba</span> yang tidak etis (menyesatkan) karena memberikan gambaran likuiditas yang lebih baik dari kondisi sebenarnya. Investor bisa mengambil keputusan keliru (misal membeli saham) berdasarkan data yang "dipercantik".</div>
+        <div class="opsi">C. Ini adalah praktik standar akuntansi yang diperbolehkan.</div>
+        <div class="opsi">D. Tidak berdampak karena investor hanya melihat laba.</div>
+        <div class="opsi">E. Hal ini diperbolehkan jika dilakukan di akhir tahun.</div>
+        <div class="pembahasan" id="bahas21">
+            <div class="jawaban">✅ Jawaban: B. Ini adalah manajemen laba tidak etis (menyesatkan) yang membuat investor salah mengambil keputusan.</div>
+            <b>Pembahasan:</b> Window dressing mengubah <span class="keyword">substansi ekonomi</span> menjadi bentuk yang lebih menarik. Meskipun mungkin secara teknis legal (jika sesuai dengan batas waktu pelaporan), ini melanggar <span class="keyword">prinsip pengungkapan penuh (full disclosure)</span> dan akuntabilitas. Investor yang melihat utang rendah mungkin menilai risiko keuangan rendah, padahal kenyataannya utang tersebut hanya ditunda.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam analisis fundamental, investor harus memeriksa <span class="keyword">arus kas operasi</span> dan <span class="keyword">rasio aktivitas</span> (misal payable turnover) untuk mendeteksi anomali window dressing. Laporan audit yang wajar (unqualified opinion) penting untuk mengurangi risiko ini.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 22 =============================== -->
+    <div class="soal-card" id="soal22">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Perusahaan membeli mesin senilai Rp 100.000.000 dengan masa manfaat 5 tahun dan nilai sisa Rp 0. Menggunakan metode <span class="keyword">garis lurus</span>, hitung biaya depresiasi tahunan dan analisis pengaruhnya terhadap laporan laba rugi serta arus kas!
+        </div>
+        <div class="opsi">A. Depresiasi = Rp 20.000.000/tahun. Ini mengurangi laba bersih (non-cash expense), tetapi tidak mempengaruhi arus kas operasi (karena bukan pengeluaran kas). Ini penting karena mengurangi pajak penghasilan.</div>
+        <div class="opsi">B. Depresiasi = Rp 10.000.000/tahun.</div>
+        <div class="opsi">C. Depresiasi = Rp 50.000.000/tahun.</div>
+        <div class="opsi">D. Depresiasi = Rp 100.000.000/tahun (langsung habis).</div>
+        <div class="opsi">E. Depresiasi tidak mempengaruhi laporan keuangan.</div>
+        <div class="pembahasan" id="bahas22">
+            <div class="jawaban">✅ Jawaban: A. Depresiasi = Rp 20.000.000/tahun. Mengurangi laba (non-cash), tidak mempengaruhi arus kas, tetapi mengurangi pajak.</div>
+            <b>Pembahasan:</b> Depresiasi garis lurus = (Harga Perolehan – Nilai Sisa) / Masa Manfaat = (100.000.000 – 0) / 5 = Rp 20.000.000/tahun. Depresiasi adalah <span class="keyword">biaya non-tunai</span>; laba bersih berkurang Rp 20 juta, tetapi arus kas tidak berkurang karena uang sudah dikeluarkan di awal (saat pembelian mesin). Manfaatnya, beban depresiasi mengurangi laba kena pajak (tax shield), sehingga menghemat kas dari pembayaran pajak.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam laporan arus kas, depresiasi ditambahkan kembali (add-back) pada arus kas dari operasi karena merupakan beban non-kas. Ini adalah salah satu alasan mengapa EBITDA (Earnings Before Interest, Taxes, Depreciation, Amortization) sering digunakan sebagai proksi arus kas.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ========== SUB: HAKI (23, 24, 25) =========================== -->
+    <!-- ===================== SOAL 23 =============================== -->
+    <div class="soal-card" id="soal23">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Seorang musisi menemukan lagunya diputar di sebuah kafe tanpa izin (tanpa membayar royalti ke LMKN). Evaluasilah langkah hukum yang dapat diambil berdasarkan UU Hak Cipta, serta jelaskan siapa yang berwenang menagih royalti di Indonesia!
+        </div>
+        <div class="opsi">A. Musisi tidak bisa menuntut karena lagu sudah dipublikasikan.</div>
+        <div class="opsi">B. Musisi dapat mengirim <span class="keyword">somasi</span> dan melaporkan ke <span class="keyword">LMKN</span> (Lembaga Manajemen Kolektif Nasional) yang bertugas mengumpulkan royalti untuk pencipta. Jika tidak diindahkan, dapat mengajukan gugatan perdata ke PN.</div>
+        <div class="opsi">C. Hanya LMKN yang bisa menuntut, bukan musisi.</div>
+        <div class="opsi">D. Musisi harus mendaftarkan lagu ke DJKI dulu baru bisa menuntut.</div>
+        <div class="opsi">E. Kafe tidak wajib membayar karena hanya untuk pengunjung.</div>
+        <div class="pembahasan" id="bahas23">
+            <div class="jawaban">✅ Jawaban: B. Musisi dapat somasi dan melaporkan ke LMKN. LMKN mengumpulkan royalti. Jika tidak diindahkan, gugatan perdata.</div>
+            <b>Pembahasan:</b> Hak Cipta lagu memberikan hak ekonomi kepada pencipta. Di Indonesia, <span class="keyword">LMKN</span> (Lembaga Manajemen Kolektif Nasional) adalah lembaga resmi yang mengelola royalti komersial untuk pencipta. Pengguna komersial (kafe, hotel, radio) wajib memiliki lisensi dan membayar royalti melalui LMKN. Langkah pertama adalah <span class="keyword">negosiasi/somasi</span>. Jika tidak, dapat melalui jalur perdata (gugatan ganti rugi) atau pidana (Pasal 113 UU Hak Cipta) untuk pelanggaran berat.
+            <div class="deep-note">📌 <b>Pendalaman:</b> UU No. 28 Tahun 2014 Pasal 9 mengatur bahwa pencipta berhak memberikan izin atau melarang pihak lain yang tanpa izin menggunakan ciptaannya. Sistem LMKN menyederhanakan penagihan agar musisi tidak perlu menagih satu per satu.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 24 =============================== -->
+    <div class="soal-card" id="soal24">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan bernama "Bintang Mas" memproduksi minyak goreng. Perusahaan lain mendaftarkan merek "Bintang Mas" untuk produk <span class="keyword">minyak goreng</span> juga, tetapi dengan tambahan kata "Asli" (Bintang Mas Asli). Evaluasilah apakah pendaftaran merek ini dapat ditolak dan berikan dasar hukumnya!
+        </div>
+        <div class="opsi">A. Dapat diterima karena ada kata tambahan "Asli".</div>
+        <div class="opsi">B. Dapat ditolak karena <span class="keyword">persamaan pada pokoknya</span> dengan merek terkenal yang sudah terdaftar terlebih dahulu untuk barang sejenis, sehingga berpotensi menyesatkan konsumen.</div>
+        <div class="opsi">C. Dapat diterima jika perusahaannya berbeda daerah.</div>
+        <div class="opsi">D. Dapat ditolak hanya jika merk pertama dipatenkan.</div>
+        <div class="opsi">E. Tidak bisa ditolak karena "Asli" membedakan.</div>
+        <div class="pembahasan" id="bahas24">
+            <div class="jawaban">✅ Jawaban: B. Dapat ditolak karena persamaan pada pokoknya dengan merek terdaftar untuk barang sejenis.</div>
+            <b>Pembahasan:</b> Menurut UU Merek, <span class="keyword">persamaan pada pokoknya</span> adalah jika merek tersebut memiliki kemiripan yang dapat menimbulkan kebingungan konsumen. Kata "Asli" dianggap unsur non-distinctive (deskriptif) dan tidak cukup membedakan. Karena kelas barangnya sama (minyak goreng), pendaftaran merek kedua berisiko ditolak oleh DJKI atau dibatalkan melalui gugatan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Perlindungan merek bersifat <span class="keyword">first-to-file</span>. Pemilik pertama yang mendaftar berhak atas penggunaan eksklusif. Perusahaan kedua sebaiknya memilih nama yang benar-benar baru (misal "Bintang Rafi") untuk menghindari sengketa.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 25 =============================== -->
+    <div class="soal-card" id="soal25">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Seorang petani menciptakan alat penanam biji jagung yang lebih efisien. Ia ingin melindunginya. Evaluasilah jenis HaKI apa yang paling tepat untuk alat ini, dengan mempertimbangkan biaya, durasi perlindungan, dan kewajiban pengungkapan!
+        </div>
+        <div class="opsi">A. <span class="keyword">Paten sederhana (utility model)</span> lebih tepat karena alat tersebut adalah inovasi teknis baru dengan masa perlindungan 10 tahun, proses pendaftaran lebih cepat dan murah dibandingkan paten invention, serta melindungi fungsi alat.</div>
+        <div class="opsi">B. Paten Invention (20 tahun) adalah yang terbaik.</div>
+        <div class="opsi">C. Hak Cipta, karena berbentuk alat.</div>
+        <div class="opsi">D. Rahasia Dagang, agar tidak diungkap ke publik.</div>
+        <div class="opsi">E. Desain Industri, karena hanya melindungi bentuk.</div>
+        <div class="pembahasan" id="bahas25">
+            <div class="jawaban">✅ Jawaban: A. Paten sederhana (utility model) lebih tepat karena inovasi teknis baru, biaya murah, pendaftaran cepat, dan perlindungan 10 tahun.</div>
+            <b>Pembahasan:</b> Alat penanam jagung adalah <span class="keyword">invensi teknis</span> (produk). Di Indonesia, ada dua jenis paten: <span class="keyword">Paten</span> (20 tahun, untuk penemuan baru dan langkah inventif tinggi) dan <span class="keyword">Paten Sederhana</span> (10 tahun, untuk produk yang sudah ada tetapi dimodifikasi menjadi lebih praktis/efisien). Alat pertanian seperti ini biasanya masuk kriteria paten sederhana. Biaya dan waktu pendaftaran lebih rendah, serta cukup untuk melindungi fungsi alat dari peniru. Rahasia dagang tidak efektif jika alat dijual ke publik (karena orang bisa membongkar).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Paten sederhana tidak memerlukan uji substantif mendalam seperti paten invention, sehingga lebih cepat terdaftar. Ini sangat cocok untuk UKM dan inventor individu di bidang pertanian.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+            <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Lihat Hasil Selesai ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 6 — FOOTER ===== -->
+    <div class="ad-wrapper" style="margin-top:20px;">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===== HALAMAN SELESAI ===== -->
+    <div class="selesai-card" id="selesaiCard">
+        <h2>🎉 Selamat!</h2>
+        <p>Anda telah menyelesaikan <b>25 soal campuran</b> dari <b>13 sub-elemen</b> kewirausahaan.<br />
+        Mencakup: <b>Elemen Produksi</b> (Desain, Kemasan, Prototipe, Perencanaan, Proses, Pengemasan, QA, Pemasaran, Distribusi) &amp; <b>Elemen Pengelolaan</b> (Peluang, Proposal, Keuangan, HaKI).</p>
+        <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Terima kasih telah mengerjakan! 🚀')">📚 Kembali ke Awal</button>
+    </div>
+
+</div>
+<!-- /container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

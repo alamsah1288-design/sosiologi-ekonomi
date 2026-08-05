@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soal HOTS - Produksi & Kewirausahaan</title>
+
+    <!-- ===== GOOGLE ADSENSE (placeholder) ===== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* --- RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            font-size: 1.3em;
+            color: #0d47a1;
+        }
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .header .sub {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 2px;
+        }
+        .progress-bar {
+            background: #eee;
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #42a5f5, #0d47a1);
+            height: 100%;
+            width: 4%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+        .info-nomor {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        /* --- IKLAN (ADSENSE) --- */
+        .ad-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .ad-wrapper .ad-label {
+            font-size: 0.6em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- SOAL CARD --- */
+        .soal-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .soal-card.aktif {
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+        .badge-level {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #1b5e20;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .pertanyaan {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .keyword {
+            font-weight: bold;
+            font-style: italic;
+            color: #0d47a1;
+        }
+        .keyword2 {
+            font-weight: bold;
+            color: #c62828;
+        }
+        .opsi {
+            display: block;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8f9ff;
+            border: 2px solid #e0e0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            line-height: 1.5;
+            font-size: 0.96em;
+        }
+        .opsi:hover {
+            background: #e3f2fd;
+            border-color: #42a5f5;
+            transform: translateX(5px);
+        }
+        .pembahasan {
+            display: none;
+            margin-top: 18px;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            border-radius: 8px;
+            padding: 18px 22px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+        .pembahasan .jawaban {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+        .pembahasan .deep-note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fff3e0;
+            border-left: 4px solid #e65100;
+            border-radius: 6px;
+            font-size: 0.94em;
+            color: #4e342e;
+        }
+
+        /* --- TOMBOL --- */
+        .tombol-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.93em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-bahas {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .btn-bahas:hover {
+            background: #1b5e20;
+        }
+        .btn-next {
+            background: #0d47a1;
+            color: #fff;
+            margin-left: auto;
+        }
+        .btn-next:hover {
+            background: #1565c0;
+        }
+        .btn-prev {
+            background: #eceff1;
+            color: #37474f;
+        }
+        .btn-prev:hover {
+            background: #cfd8dc;
+        }
+        .btn-final {
+            background: linear-gradient(90deg, #f57f17, #e65100);
+            color: #fff;
+            margin-left: auto;
+            display: none;
+            font-size: 1em;
+        }
+        .btn-final:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- SELESAI --- */
+        .selesai-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .selesai-card h2 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+        .selesai-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .soal-card {
+                padding: 18px 16px;
+            }
+            .pertanyaan {
+                font-size: 0.98em;
+            }
+            .opsi {
+                font-size: 0.92em;
+                padding: 10px 14px;
+            }
+            .tombol-group button {
+                font-size: 0.85em;
+                padding: 10px 16px;
+            }
+            .header h1 {
+                font-size: 1.1em;
+            }
+            .ad-wrapper {
+                padding: 8px 10px;
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>📦 Soal HOTS — Produksi &amp; Kewirausahaan</h1>
+        <p><b>Materi:</b> Pengembangan Desain Produk · Desain Kemasan · Prototipe · Perencanaan Produksi &amp; Biaya</p>
+        <p class="sub">⚡ Level Kognitif: C3 (Menerapkan) · C4 (Menganalisis) · C5 (Mengevaluasi)</p>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- ===== IKLAN 1 — TOP ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+    <!-- ============================================================ -->
+    <!-- ===================== SOAL 1 ================================ -->
+    <div class="soal-card aktif" id="soal1">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Seorang wirausahawan mengembangkan dua alternatif desain untuk kursi belajar anak. Desain A menggunakan material kayu solid dengan sudut tajam, sedangkan Desain B menggunakan kayu lapis dengan sudut membulat dan lapisan cat anti-slip. Analisislah desain mana yang lebih sesuai dengan prinsip keselamatan dan kenyamanan pengguna (ergonomi anak) serta berikan alasannya!
+        </div>
+        <div class="opsi">A. Desain A, karena kayu solid lebih tahan lama dan kuat.</div>
+        <div class="opsi">B. Desain A, karena sudut tajam membuat anak lebih berhati-hati.</div>
+        <div class="opsi">C. Desain B, karena sudut membulat mengurangi risiko cedera dan anti-slip menambah stabilitas.</div>
+        <div class="opsi">D. Desain B, karena kayu lapis lebih murah dan mudah dibentuk.</div>
+        <div class="opsi">E. Keduanya sama aman, tergantung pada finishing catnya.</div>
+        <div class="pembahasan" id="bahas1">
+            <div class="jawaban">✅ Jawaban: C. Desain B, karena sudut membulat mengurangi risiko cedera dan anti-slip menambah stabilitas.</div>
+            <b>Pembahasan:</b> Desain produk untuk anak harus mengutamakan <span class="keyword">keselamatan</span> dan <span class="keyword">ergonomi</span>. Sudut membulat menghindari cedera saat anak terbentur, sedangkan lapisan anti-slip mencegah kursi bergeser yang dapat menyebabkan jatuh. Meskipun kayu solid lebih kuat, aspek keselamatan lebih prioritas untuk pengguna anak.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam pengembangan desain produk, <span class="keyword">human-centered design</span> menempatkan kebutuhan dan keselamatan pengguna sebagai pertimbangan utama. Sudut tajam pada produk anak merupakan risiko tinggi yang harus dihindari.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 2 ================================ -->
+    <div class="soal-card" id="soal2">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produk sirup mangga menggunakan botol kaca dengan label kertas berperekat, didistribusikan via e-commerce ke luar pulau. Evaluasilah kelemahan paling kritis dari kombinasi kemasan dan label ini terhadap keberhasilan distribusi!
+        </div>
+        <div class="opsi">A. Botol kaca memiliki nilai estetika yang rendah.</div>
+        <div class="opsi">B. Label kertas dapat rusak terkena air/hujan saat pengiriman dan botol kaca berisiko pecah.</div>
+        <div class="opsi">C. Kemasan kaca membuat produk terkesan murah.</div>
+        <div class="opsi">D. Label perekat sulit dibersihkan oleh konsumen.</div>
+        <div class="opsi">E. Botol kaca lebih mahal daripada plastik sehingga mengurangi margin.</div>
+        <div class="pembahasan" id="bahas2">
+            <div class="jawaban">✅ Jawaban: B. Label kertas dapat rusak terkena air/hujan saat pengiriman dan botol kaca berisiko pecah.</div>
+            <b>Pembahasan:</b> Dalam distribusi jarak jauh, kemasan harus <span class="keyword">tahan benturan</span> dan <span class="keyword">tahan cuaca</span>. Botol kaca rentan pecah, dan label kertas mudah rusak oleh air atau kelembaban, sehingga informasi produk hilang dan produk tidak layak jual. Ini adalah kelemahan paling kritis karena berdampak langsung pada kelayakan produk saat tiba di konsumen.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Evaluasi kemasan untuk e-commerce harus mempertimbangkan <span class="keyword">distribusi multi-sentra</span> dan <span class="keyword">handling</span> oleh kurir. Kemasan yang aman dan informatif adalah kunci kepuasan pelanggan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 3 ================================ -->
+    <div class="soal-card" id="soal3">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Tim R&D membuat prototipe rak sepatu portabel dari pipa PVC. Saat uji beban, rak melengkung di bagian tengah pada beban 10 kg. Terapkan langkah perbaikan yang paling tepat untuk mengatasi masalah ini pada prototipe selanjutnya!
+        </div>
+        <div class="opsi">A. Mengganti material PVC dengan bambu yang lebih ringan.</div>
+        <div class="opsi">B. Menambahkan penyangga diagonal (cross-brace) atau pipa besi pada bagian tengah untuk menambah kekakuan.</div>
+        <div class="opsi">C. Mengurangi beban maksimal yang diizinkan menjadi 5 kg.</div>
+        <div class="opsi">D. Mengecat ulang PVC agar lebih kaku.</div>
+        <div class="opsi">E. Membuat rak lebih pendek agar beban tidak terpusat.</div>
+        <div class="pembahasan" id="bahas3">
+            <div class="jawaban">✅ Jawaban: B. Menambahkan penyangga diagonal (cross-brace) atau pipa besi pada bagian tengah untuk menambah kekakuan.</div>
+            <b>Pembahasan:</b> Masalah melengkung disebabkan oleh <span class="keyword">kekurangan struktur penahan beban</span> pada bagian tengah. Penambahan penyangga diagonal atau pipa besi akan mendistribusikan beban dan meningkatkan <span class="keyword">kekakuan struktural</span> tanpa mengubah material dasar secara radikal. Ini adalah perbaikan yang paling efisien dan terarah.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam pengembangan prototipe, <span class="keyword">iterasi</span> adalah kunci. Setiap temuan dari uji fungsional harus direspons dengan modifikasi desain yang spesifik, bukan mengganti seluruh material atau membatasi fungsi produk.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 4 ================================ -->
+    <div class="soal-card" id="soal4">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Usaha bakery memiliki biaya tetap Rp 3.000.000/bulan dan biaya variabel Rp 4.000/unit roti. Harga jual Rp 10.000/unit. Tentukan BEP unit dan analisislah apakah usaha akan untung jika hanya menjual 400 unit/bulan!
+        </div>
+        <div class="opsi">A. BEP = 500 unit; jika jual 400 unit, RUGI karena belum menutupi biaya tetap.</div>
+        <div class="opsi">B. BEP = 750 unit; jika jual 400 unit, RUGI.</div>
+        <div class="opsi">C. BEP = 300 unit; jika jual 400 unit, UNTUNG.</div>
+        <div class="opsi">D. BEP = 500 unit; jika jual 400 unit, UNTUNG karena sudah mendekati target.</div>
+        <div class="opsi">E. BEP = 600 unit; jika jual 400 unit, impas (balik modal).</div>
+        <div class="pembahasan" id="bahas4">
+            <div class="jawaban">✅ Jawaban: A. BEP = 500 unit; jika jual 400 unit, RUGI karena belum menutupi biaya tetap.</div>
+            <b>Pembahasan:</b> BEP (unit) = Biaya Tetap / (Harga – Biaya Variabel) = 3.000.000 / (10.000 – 4.000) = 3.000.000 / 6.000 = 500 unit. Jika hanya menjual 400 unit, pendapatan = 400 × 10.000 = Rp 4.000.000, total biaya = 3.000.000 + (400 × 4.000) = 4.600.000, sehingga rugi Rp 600.000. Maka usaha merugi.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Break Even Point</span> adalah alat penting untuk menentukan volume produksi minimal. Jika produksi di bawah BEP, usaha tidak layak secara finansial. Strategi yang mungkin: menaikkan harga, menurunkan biaya variabel, atau meningkatkan volume penjualan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 5 ================================ -->
+    <div class="soal-card" id="soal5">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dalam prosedur pengembangan desain produk: Brainstorming → Sketsa → Prototipe → Uji Fungsi → Produksi Massal. Analisislah konsekuensi terburuk jika seorang pengusaha melewatkan tahap "Uji Fungsi" pada prototipe dan langsung memproduksi massal!
+        </div>
+        <div class="opsi">A. Produk akan cepat ketinggalan zaman.</div>
+        <div class="opsi">B. Terjadi penumpukan barang jadi karena desain tidak sesuai selera.</div>
+        <div class="opsi">C. Produk berpotensi memiliki cacat fungsional yang baru diketahui konsumen, menyebabkan biaya recall dan kerusakan reputasi.</div>
+        <div class="opsi">D. Biaya produksi menjadi lebih mahal karena terburu-buru.</div>
+        <div class="opsi">E. Tidak ada dampak signifikan karena sketsa sudah final.</div>
+        <div class="pembahasan" id="bahas5">
+            <div class="jawaban">✅ Jawaban: C. Produk berpotensi memiliki cacat fungsional yang baru diketahui konsumen, menyebabkan biaya recall dan kerusakan reputasi.</div>
+            <b>Pembahasan:</b> Uji fungsi adalah tahap <span class="keyword">verifikasi</span> untuk mendeteksi cacat desain sebelum produksi massal. Melewatkannya berarti risiko <span class="keyword">gagal fungsi</span> hanya terdeteksi setelah produk beredar, yang memicu biaya penarikan (recall), komplain, dan citra negatif. Ini jauh lebih mahal daripada biaya uji coba.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam <span class="keyword">quality management</span>, biaya kualitas (cost of quality) lebih murah jika dilakukan pencegahan (prevention) daripada perbaikan setelah produk beredar (failure cost). Uji fungsi adalah investasi pencegahan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 2 — MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===================== SOAL 6 ================================ -->
+    <div class="soal-card" id="soal6">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produk kopi kemasan memiliki label dominan hitam dengan tulisan emas "PREMIUM" dan gambar biji kopi besar, tetapi tidak mencantumkan tanggal kadaluarsa, nomor BPOM, dan komposisi dalam bahasa Indonesia. Evaluasilah kelayakan label ini untuk diedarkan secara legal di Indonesia!
+        </div>
+        <div class="opsi">A. Layak, karena warna mewah sudah cukup untuk menarik konsumen.</div>
+        <div class="opsi">B. Kurang layak, karena tidak ada informasi kontak produsen.</div>
+        <div class="opsi">C. Tidak layak, karena melanggar aturan label pangan (harus ada kadaluarsa, BPOM, dan komposisi).</div>
+        <div class="opsi">D. Layak, selama rasa kopinya enak dan harga terjangkau.</div>
+        <div class="opsi">E. Tidak layak, karena desainnya terlalu gelap sehingga sulit dibaca.</div>
+        <div class="pembahasan" id="bahas6">
+            <div class="jawaban">✅ Jawaban: C. Tidak layak, karena melanggar aturan label pangan (harus ada kadaluarsa, BPOM, dan komposisi).</div>
+            <b>Pembahasan:</b> Label pangan di Indonesia diatur oleh BPOM dan UU Pangan. Informasi wajib meliputi <span class="keyword">tanggal kadaluarsa</span>, <span class="keyword">nomor izin edar (BPOM)</span>, dan <span class="keyword">komposisi dalam bahasa Indonesia</span>. Tanpa itu, produk tidak memenuhi syarat legal dan dapat disita. Aspek estetika tidak bisa menggantikan kepatuhan regulasi.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Selain aspek hukum, informasi lengkap juga penting untuk <span class="keyword">transparansi</span> dan <span class="keyword">keamanan konsumen</span>. Konsumen berhak mengetahui kandungan dan tanggal kadaluarsa sebelum membeli.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 7 ================================ -->
+    <div class="soal-card" id="soal7">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Anda mengembangkan prototipe alat penjernih air sederhana menggunakan arang aktif, kerikil, dan kain katun. Terapkan urutan lapisan material yang paling efektif untuk menyaring kotoran dan bau secara maksimal dalam prototipe tersebut (dari atas ke bawah)!
+        </div>
+        <div class="opsi">A. Kain katun → Kerikil → Arang aktif.</div>
+        <div class="opsi">B. Arang aktif → Kerikil → Kain katun.</div>
+        <div class="opsi">C. Kerikil → Arang aktif → Kain katun.</div>
+        <div class="opsi">D. Kain katun → Arang aktif → Kerikil.</div>
+        <div class="opsi">E. Kerikil → Kain katun → Arang aktif.</div>
+        <div class="pembahasan" id="bahas7">
+            <div class="jawaban">✅ Jawaban: C. Kerikil → Arang aktif → Kain katun.</div>
+            <b>Pembahasan:</b> Urutan yang efektif: <span class="keyword">kerikil</span> di bagian atas menyaring partikel besar, <span class="keyword">arang aktif</span> di tengah menyerap bau dan zat kimia, <span class="keyword">kain katun</span> di bagian bawah menyaring partikel halus. Ini adalah prinsip <span class="keyword">filter bertingkat</span> dari kasar ke halus untuk memaksimalkan penyaringan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Desain prototipe harus mempertimbangkan <span class="keyword">aliran fluida</span> dan <span class="keyword">kapasitas adsorpsi</span>. Arang aktif memiliki luas permukaan besar, sehingga cocok ditempatkan setelah penyaringan fisik agar tidak cepat tersumbat.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 8 ================================ -->
+    <div class="soal-card" id="soal8">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dua pendekatan desain: Design Push (teknologi baru mendorong produk) dan Market Pull (kebutuhan pasar mendorong produk). Analisislah pendekatan mana yang paling tepat untuk pengembangan alat bantu jalan bagi lansia, dan berikan alasannya!
+        </div>
+        <div class="opsi">A. Design Push, karena alat bantu jalan harus menggunakan teknologi robotik terbaru.</div>
+        <div class="opsi">B. Market Pull, karena pengembangan harus didasarkan pada kebutuhan mobilitas dan kenyamanan spesifik lansia.</div>
+        <div class="opsi">C. Design Push, karena lebih murah dan cepat.</div>
+        <div class="opsi">D. Market Pull, karena lansia tidak tertarik pada teknologi baru.</div>
+        <div class="opsi">E. Keduanya sama, tidak ada perbedaan signifikan.</div>
+        <div class="pembahasan" id="bahas8">
+            <div class="jawaban">✅ Jawaban: B. Market Pull, karena pengembangan harus didasarkan pada kebutuhan mobilitas dan kenyamanan spesifik lansia.</div>
+            <b>Pembahasan:</b> Produk untuk lansia harus <span class="keyword">user-centered</span>, mengutamakan kemudahan, keamanan, dan kenyamanan yang sesuai dengan kondisi fisik dan psikologis pengguna. Pendekatan Market Pull memastikan produk menjawab <span class="keyword">need gap</span> yang nyata, bukan sekadar menerapkan teknologi canggih yang mungkin tidak dibutuhkan atau sulit digunakan oleh lansia.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam <span class="keyword">inclusive design</span>, produk harus dapat diakses oleh semua kalangan, termasuk lansia. Riset pasar dan observasi langsung sangat penting untuk menggali kebutuhan yang sebenarnya.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 9 ================================ -->
+    <div class="soal-card" id="soal9">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Snack kemasan menggunakan warna oranye terang dan gambar karakter kartun, dijual di lingkungan perkantoran. Evaluasilah efektivitas desain kemasan tersebut untuk target pasar pekerja kantoran!
+        </div>
+        <div class="opsi">A. Efektif, warna terang selalu menarik perhatian siapa pun.</div>
+        <div class="opsi">B. Kurang efektif, karena pekerja kantoran cenderung menyukai desain minimalis dan elegan, bukan karakter kartun.</div>
+        <div class="opsi">C. Efektif, karena karakter kartun mengurangi stres di tempat kerja.</div>
+        <div class="opsi">D. Kurang efektif, karena warna oranye tidak enak dipandang.</div>
+        <div class="opsi">E. Tidak berpengaruh, yang penting rasa dan harga.</div>
+        <div class="pembahasan" id="bahas9">
+            <div class="jawaban">✅ Jawaban: B. Kurang efektif, karena pekerja kantoran cenderung menyukai desain minimalis dan elegan, bukan karakter kartun.</div>
+            <b>Pembahasan:</b> Desain kemasan harus <span class="keyword">selaras dengan preferensi target pasar</span>. Pekerja kantoran (dewasa) umumnya lebih menyukai kemasan yang <span class="keyword">sederhana, profesional, dan modern</span>. Karakter kartun dan warna oranye terang lebih cocok untuk anak-anak atau suasana kasual. Ketidaksesuaian ini dapat menurunkan daya tarik produk.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Segmentasi pasar</span> sangat menentukan elemen desain. Analisis psikografi dan demografi harus dilakukan sebelum menentukan warna, tipografi, dan ilustrasi kemasan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 10 =============================== -->
+    <div class="soal-card" id="soal10">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Konveksi merencanakan produksi 1.000 kemeja. Biaya bahan baku Rp 65.000/kemeja, tenaga kerja Rp 25.000/kemeja, overhead pabrik tetap Rp 15.000.000. Jika harga jual Rp 150.000/kemeja, tentukan total biaya produksi dan laba/rugi!
+        </div>
+        <div class="opsi">A. Total biaya Rp 105.000.000; Laba Rp 45.000.000.</div>
+        <div class="opsi">B. Total biaya Rp 90.000.000; Laba Rp 60.000.000.</div>
+        <div class="opsi">C. Total biaya Rp 120.000.000; Laba Rp 30.000.000.</div>
+        <div class="opsi">D. Total biaya Rp 105.000.000; Laba Rp 30.000.000.</div>
+        <div class="opsi">E. Total biaya Rp 100.000.000; Laba Rp 50.000.000.</div>
+        <div class="pembahasan" id="bahas10">
+            <div class="jawaban">✅ Jawaban: A. Total biaya Rp 105.000.000; Laba Rp 45.000.000.</div>
+            <b>Pembahasan:</b> Biaya variabel per unit = 65.000 + 25.000 = Rp 90.000. Total variabel = 1.000 × 90.000 = Rp 90.000.000. Total biaya = variabel + tetap = 90.000.000 + 15.000.000 = Rp 105.000.000. Pendapatan = 1.000 × 150.000 = Rp 150.000.000. Laba = 150.000.000 – 105.000.000 = Rp 45.000.000.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Perhitungan biaya produksi harus memisahkan <span class="keyword">biaya variabel</span> dan <span class="keyword">biaya tetap</span>. Ini penting untuk analisis profitabilitas dan pengambilan keputusan harga jual.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 3 — MID-BOTTOM ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===================== SOAL 11 =============================== -->
+    <div class="soal-card" id="soal11">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Tren gaya hidup ramah lingkungan (sustainability) mempengaruhi prosedur pengembangan desain produk, terutama pada pemilihan bahan baku dan proses produksi. Analisislah pengaruh tren ini secara mendalam!
+        </div>
+        <div class="opsi">A. Tren ini tidak mempengaruhi karena konsumen hanya peduli harga.</div>
+        <div class="opsi">B. Produsen harus mempertimbangkan siklus hidup produk, menggunakan bahan daur ulang atau terbarukan, serta meminimalkan limbah produksi.</div>
+        <div class="opsi">C. Produsen hanya perlu mengganti kemasan plastik dengan kertas.</div>
+        <div class="opsi">D. Tren ini justru membuat desain menjadi lebih mahal dan tidak kompetitif.</div>
+        <div class="opsi">E. Tidak ada hubungan antara desain produk dengan lingkungan.</div>
+        <div class="pembahasan" id="bahas11">
+            <div class="jawaban">✅ Jawaban: B. Produsen harus mempertimbangkan siklus hidup produk, menggunakan bahan daur ulang atau terbarukan, serta meminimalkan limbah produksi.</div>
+            <b>Pembahasan:</b> Sustainability mendorong <span class="keyword">eco-design</span> yang memperhatikan dampak lingkungan dari hulu ke hilir: pemilihan bahan (<span class="keyword">material selection</span>), efisiensi energi, reduksi limbah, hingga daur ulang. Ini bukan sekadar mengganti kemasan, melainkan <span class="keyword">transformasi sistem produksi</span> secara holistik.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Konsep <span class="keyword">cradle-to-cradle</span> menekankan bahwa produk harus dirancang untuk dapat didaur ulang sepenuhnya atau terurai secara alami tanpa merusak lingkungan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 12 =============================== -->
+    <div class="soal-card" id="soal12">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Bandingkan kemasan Stand-up Pouch (seal) dengan Plastik Klip biasa untuk produk bumbu sachet. Evaluasi mana yang lebih menguntungkan dari sisi perlindungan produk dan daya tarik di rak toko!
+        </div>
+        <div class="opsi">A. Plastik klip lebih baik karena murah dan mudah dibuka.</div>
+        <div class="opsi">B. Stand-up pouch lebih baik karena dapat berdiri sendiri, area cetak lebih luas untuk informasi, dan seal lebih rapat.</div>
+        <div class="opsi">C. Keduanya sama, tidak ada perbedaan signifikan.</div>
+        <div class="opsi">D. Plastik klip lebih baik karena tidak memerlukan mesin sealing khusus.</div>
+        <div class="opsi">E. Stand-up pouch lebih baik hanya dari segi harga.</div>
+        <div class="pembahasan" id="bahas12">
+            <div class="jawaban">✅ Jawaban: B. Stand-up pouch lebih baik karena dapat berdiri sendiri, area cetak lebih luas untuk informasi, dan seal lebih rapat.</div>
+            <b>Pembahasan:</b> Stand-up pouch menawarkan <span class="keyword">tampilan display</span> yang lebih baik (dapat berdiri di rak), <span class="keyword">area branding</span> lebih luas, dan <span class="keyword">seal kedap udara</span> yang melindungi produk dari kelembaban dan oksidasi. Plastik klip cenderung kurang kedap dan mudah rusak. Dalam perlindungan dan daya tarik, stand-up pouch unggul.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Kemasan berperan sebagai <span class="keyword">silent salesman</span>. Kemasan yang menarik dan informatif meningkatkan <span class="keyword">shelf impact</span> dan keputusan pembelian konsumen.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 13 =============================== -->
+    <div class="soal-card" id="soal13">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Prototipe tempat tisu dari kain flanel berhasil dibuat. Namun, saat diuji coba, tisu mudah rontok/sobek saat ditarik. Terapkan metode uji coba fungsional yang tepat untuk mengidentifikasi akar masalah ini!
+        </div>
+        <div class="opsi">A. Uji ketahanan warna flanel terhadap sinar matahari.</div>
+        <div class="opsi">B. Uji tarikan tisu dengan variasi sudut dan kecepatan, serta periksa apakah lubang pengeluaran tisu terlalu sempit/kasar.</div>
+        <div class="opsi">C. Uji bau pada kain flanel.</div>
+        <div class="opsi">D. Uji berat maksimal tempat tisu.</div>
+        <div class="opsi">E. Uji daya rekat lem pada sambungan kain.</div>
+        <div class="pembahasan" id="bahas13">
+            <div class="jawaban">✅ Jawaban: B. Uji tarikan tisu dengan variasi sudut dan kecepatan, serta periksa apakah lubang pengeluaran tisu terlalu sempit/kasar.</div>
+            <b>Pembahasan:</b> Masalah tisu sobek saat ditarik menandakan <span class="keyword">gesekan berlebih</span> atau <span class="keyword">desain lubang yang tidak ergonomis</span>. Uji fungsional harus mensimulasikan kondisi pemakaian nyata: variasi sudut tarik, kecepatan, dan periksa kekasaran tepi lubang. Ini akan menunjukkan titik masalah secara spesifik.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Usability testing</span> adalah bagian penting dari pengembangan prototipe. Pengguna harus dilibatkan untuk mengungkap masalah yang tidak terlihat oleh perancang.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 14 =============================== -->
+    <div class="soal-card" id="soal14">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Pengusaha mebel membuat meja belajar. Biaya bahan baku Rp 400.000, tenaga kerja Rp 100.000, biaya lain Rp 50.000 per unit. Ia menginginkan keuntungan 25% dari harga pokok produksi. Tentukan harga jual per unit dan analisislah strategi jika pesaing menjual produk serupa di harga Rp 650.000!
+        </div>
+        <div class="opsi">A. Harga jual = Rp 687.500. Strategi: menonjolkan keunggulan kualitas/garansi karena harga di atas pesaing.</div>
+        <div class="opsi">B. Harga jual = Rp 550.000. Lebih murah dari pesaing, untung besar.</div>
+        <div class="opsi">C. Harga jual = Rp 700.000. Sama dengan pesaing.</div>
+        <div class="opsi">D. Harga jual = Rp 625.000. Lebih murah, tetapi margin tipis.</div>
+        <div class="opsi">E. Harga jual = Rp 800.000. Mewah, target eksklusif.</div>
+        <div class="pembahasan" id="bahas14">
+            <div class="jawaban">✅ Jawaban: A. Harga jual = Rp 687.500. Strategi: menonjolkan keunggulan kualitas/garansi karena harga di atas pesaing.</div>
+            <b>Pembahasan:</b> Harga pokok produksi (HPP) = 400.000 + 100.000 + 50.000 = Rp 550.000. Keuntungan 25% = 550.000 × 25% = Rp 137.500. Harga jual = 550.000 + 137.500 = Rp 687.500. Karena harga di atas pesaing (Rp 650.000), strategi yang tepat adalah <span class="keyword">diferensiasi kualitas</span> dan layanan purna jual untuk membenarkan premium price.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Pricing strategy</span> harus mempertimbangkan posisi kompetitif. Harga premium dapat diterima jika produk menawarkan nilai tambah yang jelas (material lebih baik, desain unik, garansi lebih lama).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 15 =============================== -->
+    <div class="soal-card" id="soal15">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Analisislah peran penting dari pembuatan mood board dalam pengembangan desain produk interior untuk sebuah kafe kekinian!
+        </div>
+        <div class="opsi">A. Mood board hanya untuk memperindah presentasi, tidak berpengaruh pada hasil akhir.</div>
+        <div class="opsi">B. Mood board berfungsi menyamakan persepsi visual antara desainer dan pemilik kafe mengenai tema, warna, tekstur, dan suasana yang diinginkan sebelum memulai produksi.</div>
+        <div class="opsi">C. Mood board digunakan untuk menghitung biaya produksi.</div>
+        <div class="opsi">D. Mood board adalah tahap akhir sebelum pemasaran.</div>
+        <div class="opsi">E. Mood board menggantikan prototipe fisik.</div>
+        <div class="pembahasan" id="bahas15">
+            <div class="jawaban">✅ Jawaban: B. Mood board berfungsi menyamakan persepsi visual antara desainer dan pemilik kafe mengenai tema, warna, tekstur, dan suasana yang diinginkan sebelum memulai produksi.</div>
+            <b>Pembahasan:</b> Mood board adalah alat <span class="keyword">komunikasi visual</span> yang menyatukan visi desain. Ini mencegah kesalahpahaman antara klien dan desainer, memastikan kedua pihak memiliki ekspektasi yang sama sebelum investasi produksi. Ini adalah langkah <span class="keyword">alignment</span> yang kritis dalam proses desain.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Mood board juga berfungsi sebagai <span class="keyword">referensi</span> selama proses desain dan produksi, membantu tim tetap konsisten pada tema yang telah disepakati.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 4 — BOTTOM-MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===================== SOAL 16 =============================== -->
+    <div class="soal-card" id="soal16">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produk cokelat batangan menggunakan kemasan aluminium foil yang dilapisi kertas karton. Evaluasilah efektivitas kemasan ini dalam melindungi cokelat dari tiga ancaman utama: suhu tinggi, kelembapan, dan cahaya!
+        </div>
+        <div class="opsi">A. Efektif melindungi dari ketiganya.</div>
+        <div class="opsi">B. Efektif terhadap kelembapan dan cahaya, tetapi kurang efektif terhadap suhu tinggi (cokelat bisa meleleh).</div>
+        <div class="opsi">C. Efektif terhadap suhu tinggi, tetapi tidak terhadap kelembapan.</div>
+        <div class="opsi">D. Tidak efektif sama sekali, sebaiknya menggunakan plastik biasa.</div>
+        <div class="opsi">E. Hanya efektif terhadap cahaya, sisanya tidak.</div>
+        <div class="pembahasan" id="bahas16">
+            <div class="jawaban">✅ Jawaban: B. Efektif terhadap kelembapan dan cahaya, tetapi kurang efektif terhadap suhu tinggi (cokelat bisa meleleh).</div>
+            <b>Pembahasan:</b> Aluminium foil dan karton memberikan <span class="keyword">barrier</span> yang baik terhadap cahaya (mencegah oksidasi) dan kelembapan (mencegah tekstur berubah). Namun, <span class="keyword">konduktivitas termal</span> aluminium menyebabkan panas mudah masuk, sehingga cokelat tetap rentan meleleh pada suhu tinggi. Lapisan ini tidak efektif sebagai isolator termal.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Untuk perlindungan suhu, diperlukan <span class="keyword">insulasi tambahan</span> seperti busa atau lapisan udara. Hal ini penting dalam distribusi ke daerah tropis.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 17 =============================== -->
+    <div class="soal-card" id="soal17">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Dalam proses iterasi prototipe kursi gaming, pengguna mengeluhkan sandaran yang terlalu tegak dan pegangan tangan yang terlalu rendah. Terapkan langkah-langkah revisi desain yang harus dilakukan pada prototipe berikutnya!
+        </div>
+        <div class="opsi">A. Menurunkan tinggi sandaran dan menaikkan pegangan tangan.</div>
+        <div class="opsi">B. Membuat sandaran dapat di-recline (dimiringkan) dan menaikkan posisi pegangan tangan agar ergonomis.</div>
+        <div class="opsi">C. Menghapus pegangan tangan dan memperkecil kursi.</div>
+        <div class="opsi">D. Menambahkan bantal leher dan melebarkan dudukan saja.</div>
+        <div class="opsi">E. Mengganti material busa dengan kayu.</div>
+        <div class="pembahasan" id="bahas17">
+            <div class="jawaban">✅ Jawaban: B. Membuat sandaran dapat di-recline (dimiringkan) dan menaikkan posisi pegangan tangan agar ergonomis.</div>
+            <b>Pembahasan:</b> Keluhan sandaran terlalu tegak diatasi dengan <span class="keyword">mekanisme recline</span> yang dapat disesuaikan. Pegangan tangan yang rendah diatasi dengan <span class="keyword">menaikkan posisi</span> agar lengan pengguna dapat beristirahat dengan nyaman. Ini adalah perbaikan fungsional langsung pada dua titik masalah yang dikeluhkan pengguna.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Ergonomi</span> adalah ilmu menyesuaikan desain dengan anatomi dan fisiologi manusia. Revisi prototipe harus selalu mengacu pada data antropometri dan umpan balik pengguna.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 18 =============================== -->
+    <div class="soal-card" id="soal18">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Perusahaan jamu herbal memiliki biaya tetap Rp 400.000 dan biaya variabel Rp 3.000/botol. Harga jual Rp 8.000/botol. Kapasitas produksi maksimal 150 botol. Tentukan BEP unit dan analisislah kelayakan usaha ini!
+        </div>
+        <div class="opsi">A. BEP = 80 unit. Kapasitas 150 > 80, USAHA LAYAK dan potensi untung.</div>
+        <div class="opsi">B. BEP = 100 unit. Kapasitas 150 > 100, USAHA LAYAK.</div>
+        <div class="opsi">C. BEP = 120 unit. Kapasitas 150 > 120, USAHA LAYAK.</div>
+        <div class="opsi">D. BEP = 80 unit. Kapasitas 150 > 80, tetapi tetap RUGI karena biaya variabel tinggi.</div>
+        <div class="opsi">E. BEP = 50 unit. Kapasitas 150 > 50, USAHA SANGAT LAYAK.</div>
+        <div class="pembahasan" id="bahas18">
+            <div class="jawaban">✅ Jawaban: A. BEP = 80 unit. Kapasitas 150 > 80, USAHA LAYAK dan potensi untung.</div>
+            <b>Pembahasan:</b> BEP = 400.000 / (8.000 – 3.000) = 400.000 / 5.000 = 80 unit. Kapasitas 150 > 80, maka usaha <span class="keyword">layak</span> karena dapat menutupi biaya tetap dan menghasilkan keuntungan pada produksi di atas 80 unit. Potensi keuntungan = (150 – 80) × 5.000 = Rp 350.000.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Kelayakan usaha tidak hanya dihitung dari BEP, tetapi juga <span class="keyword">margin of safety</span> (selisih antara kapasitas dan BEP). Margin 70 unit menunjukkan keamanan yang cukup baik.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 19 =============================== -->
+    <div class="soal-card" id="soal19">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Analisislah bagaimana perkembangan teknologi 3D printing mengubah prosedur pengembangan desain produk di industri kerajinan logam/perhiasan!
+        </div>
+        <div class="opsi">A. 3D printing tidak berguna karena logam tidak bisa dicetak.</div>
+        <div class="opsi">B. Memungkinkan pembuatan prototipe lilin/resin secara cepat, desain kompleks yang sulit dibuat tangan, dan reduksi biaya cetakan awal.</div>
+        <div class="opsi">C. 3D printing hanya berfungsi untuk membuat kemasan.</div>
+        <div class="opsi">D. Teknologi ini membuat desain menjadi lebih sederhana dan kurang artistik.</div>
+        <div class="opsi">E. Hanya digunakan untuk mencetak produk jadi, bukan prototipe.</div>
+        <div class="pembahasan" id="bahas19">
+            <div class="jawaban">✅ Jawaban: B. Memungkinkan pembuatan prototipe lilin/resin secara cepat, desain kompleks yang sulit dibuat tangan, dan reduksi biaya cetakan awal.</div>
+            <b>Pembahasan:</b> 3D printing (additive manufacturing) memungkinkan <span class="keyword">rapid prototyping</span> dengan biaya rendah, menghasilkan bentuk geometris yang rumit yang sulit dicapai dengan teknik manual. Dalam perhiasan, ini mempercepat iterasi desain dan mengurangi investasi cetakan awal. Ini adalah <span class="keyword">disrupsi positif</span> dalam prosedur pengembangan produk.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Teknologi ini juga mendukung <span class="keyword">mass customization</span>, di mana setiap pelanggan dapat memiliki desain yang dipersonalisasi tanpa biaya tambahan yang signifikan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 20 =============================== -->
+    <div class="soal-card" id="soal20">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Mainan anak-anak menggunakan kemasan plastik keras (blister) dengan tepi runcing. Evaluasilah keamanan kemasan ini jika produk dijual bebas untuk anak di bawah usia 5 tahun!
+        </div>
+        <div class="opsi">A. Aman, karena plastik keras melindungi mainan.</div>
+        <div class="opsi">B. Tidak aman, karena tepi runcing dapat melukai anak dan plastik keras sulit dibuka, berpotensi menyebabkan tangan tergores.</div>
+        <div class="opsi">C. Aman, selama ada tulisan "Jauhkan dari jangkauan anak-anak".</div>
+        <div class="opsi">D. Tidak aman hanya jika warnanya mencolok.</div>
+        <div class="opsi">E. Aman, karena bahan plastik tidak beracun.</div>
+        <div class="pembahasan" id="bahas20">
+            <div class="jawaban">✅ Jawaban: B. Tidak aman, karena tepi runcing dapat melukai anak dan plastik keras sulit dibuka, berpotensi menyebabkan tangan tergores.</div>
+            <b>Pembahasan:</b> Kemasan untuk produk anak harus memenuhi standar <span class="keyword">child-safe packaging</span>, yaitu tidak memiliki tepi tajam dan mudah dibuka oleh orang dewasa tetapi sulit dibuka oleh anak. Blister dengan tepi runcing jelas <span class="keyword">berbahaya</span> dan tidak sesuai dengan regulasi keselamatan mainan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Di banyak negara, produk anak wajib menggunakan kemasan yang <span class="keyword">tahan rusak</span> dan tidak memiliki komponen yang dapat melukai. Ini adalah aspek <span class="keyword">product liability</span> yang penting.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 5 — NEAR END ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===================== SOAL 21 =============================== -->
+    <div class="soal-card" id="soal21">
+        <span class="badge">Prototipe Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Anda membuat prototipe tempat sampah pintar dengan sensor jarak. Terapkan prosedur pengujian sensor jarak untuk memastikan tutup sampah terbuka saat tangan mendekat dan tertutup saat tangan menjauh!
+        </div>
+        <div class="opsi">A. Uji hanya sekali, jika berhasil maka selesai.</div>
+        <div class="opsi">B. Uji dengan variasi jarak (5cm, 15cm, 30cm), uji kecepatan reaksi, dan uji dengan objek bergerak cepat untuk memastikan konsistensi.</div>
+        <div class="opsi">C. Uji hanya pada cuaca cerah.</div>
+        <div class="opsi">D. Uji dengan menaruh benda di atas sensor.</div>
+        <div class="opsi">E. Uji dengan menyiram air ke sensor.</div>
+        <div class="pembahasan" id="bahas21">
+            <div class="jawaban">✅ Jawaban: B. Uji dengan variasi jarak (5cm, 15cm, 30cm), uji kecepatan reaksi, dan uji dengan objek bergerak cepat untuk memastikan konsistensi.</div>
+            <b>Pembahasan:</b> Pengujian sensor harus <span class="keyword">komprehensif</span> dan <span class="keyword">bervariasi</span> untuk memastikan keandalan dalam berbagai kondisi. Variasi jarak, kecepatan gerakan, dan objek akan mengungkap batas deteksi dan responsivitas sensor. Ini adalah prosedur <span class="keyword">quality assurance</span> yang standar.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Test scenario</span> harus mencakup kondisi ekstrem (misal cahaya redup, gangguan elektromagnetik) untuk memastikan produk robust sebelum diproduksi massal.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 22 =============================== -->
+    <div class="soal-card" id="soal22">
+        <span class="badge">Pengembangan Desain Produk <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Startup ingin membuat sepatu lari. Mereka membuat 3 sketsa: 1) aerodinamis, ringan; 2) tebal, banyak busa; 3) minimalis, tipis. Analisislah sketsa mana yang paling potensial untuk lari maraton jarak jauh (42 km) berdasarkan prinsip biomekanika!
+        </div>
+        <div class="opsi">A. Sketsa 3 (minimalis) karena ringan dan alami.</div>
+        <div class="opsi">B. Sketsa 2 (tebal/busa) karena memberikan bantalan maksimal untuk menyerap hentakan berulang dalam jarak jauh.</div>
+        <div class="opsi">C. Sketsa 1 (aerodinamis) karena hanya kecepatan yang penting.</div>
+        <div class="opsi">D. Ketiganya sama saja, hanya selera.</div>
+        <div class="opsi">E. Sketsa 1 dan 3 sama baiknya.</div>
+        <div class="pembahasan" id="bahas22">
+            <div class="jawaban">✅ Jawaban: B. Sketsa 2 (tebal/busa) karena memberikan bantalan maksimal untuk menyerap hentakan berulang dalam jarak jauh.</div>
+            <b>Pembahasan:</b> Lari maraton melibatkan <span class="keyword">ribuan hentakan</span> yang memberi tekanan pada sendi dan otot. Sepatu dengan <span class="keyword">bantalan tebal</span> (cushioning) membantu menyerap energi benturan, mengurangi kelelahan dan risiko cedera. Sketsa minimalis kurang memberikan perlindungan untuk jarak ekstrem.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Biomekanika lari</span> menunjukkan bahwa efisiensi energi dan perlindungan sendi adalah prioritas utama untuk lari jarak jauh. Teknologi busa seperti EVA atau TPU telah terbukti efektif.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 23 =============================== -->
+    <div class="soal-card" id="soal23">
+        <span class="badge">Desain Kemasan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produk makanan memiliki kemasan hijau tua dan gambar daun, tetapi isinya adalah keripik kentang rasa keju. Evaluasilah kesesuaian antara desain kemasan (warna & gambar) dengan isi produk dari sisi psikologi konsumen!
+        </div>
+        <div class="opsi">A. Sangat sesuai, hijau melambangkan makanan sehat.</div>
+        <div class="opsi">B. Kurang sesuai, karena warna hijau dan daun biasanya mengasosiasikan rasa sayur/alami/sehat, sedangkan isinya adalah keripik keju (gurih/berlemak) yang bisa menimbulkan ekspektasi keliru.</div>
+        <div class="opsi">C. Tidak masalah, konsumen tidak peduli warna.</div>
+        <div class="opsi">D. Sangat sesuai karena semua keripik itu tidak sehat.</div>
+        <div class="opsi">E. Hanya masalah harga, bukan warna.</div>
+        <div class="pembahasan" id="bahas23">
+            <div class="jawaban">✅ Jawaban: B. Kurang sesuai, karena warna hijau dan daun biasanya mengasosiasikan rasa sayur/alami/sehat, sedangkan isinya adalah keripik keju (gurih/berlemak) yang bisa menimbulkan ekspektasi keliru.</div>
+            <b>Pembahasan:</b> Warna dan elemen visual pada kemasan membentuk <span class="keyword">ekspektasi rasa</span> dan <span class="keyword">persepsi produk</span>. Hijau dan daun identik dengan produk alami atau sayuran, sementara keripik keju memiliki citra gurih dan tidak sehat. Ketidaksesuaian ini dapat mengecewakan konsumen dan menurunkan kepercayaan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Color psychology</span> dalam pemasaran sangat kuat. Warna harus sesuai dengan positioning produk agar tidak terjadi <span class="keyword">cognitive dissonance</span> pada konsumen.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 24 =============================== -->
+    <div class="soal-card" id="soal24">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">💰 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Pabrik roti memproduksi 2.000 pak roti. Biaya bahan baku Rp 6.000/pak, TK Rp 2.000/pak, biaya listrik & air Rp 5.000.000 (tetap), sewa Rp 3.000.000 (tetap). Harga jual Rp 12.000/pak. Tentukan total biaya produksi dan laba/rugi bersih!
+        </div>
+        <div class="opsi">A. Total biaya = Rp 24.000.000; Laba = Rp 0 (impas).</div>
+        <div class="opsi">B. Total biaya = Rp 16.000.000; Laba = Rp 8.000.000.</div>
+        <div class="opsi">C. Total biaya = Rp 24.000.000; Rugi = Rp 2.000.000.</div>
+        <div class="opsi">D. Total biaya = Rp 24.000.000; Laba = Rp 8.000.000.</div>
+        <div class="opsi">E. Total biaya = Rp 20.000.000; Laba = Rp 4.000.000.</div>
+        <div class="pembahasan" id="bahas24">
+            <div class="jawaban">✅ Jawaban: D. Total biaya = Rp 24.000.000; Laba = Rp 8.000.000.</div>
+            <b>Pembahasan:</b> Biaya variabel per unit = 6.000 + 2.000 = Rp 8.000. Total variabel = 2.000 × 8.000 = Rp 16.000.000. Total biaya = variabel + tetap = 16.000.000 + 5.000.000 + 3.000.000 = Rp 24.000.000. Pendapatan = 2.000 × 12.000 = Rp 24.000.000. Laba = 24.000.000 – 24.000.000 = Rp 8.000.000 (impas), karena total biaya sama dengan pendapatan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Perhitungan ini menunjukkan bahwa usaha berada pada <span class="keyword">titik impas</span>. Untuk mendapatkan laba, perusahaan perlu meningkatkan volume penjualan atau menurunkan biaya produksi.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 25 =============================== -->
+    <div class="soal-card" id="soal25">
+        <span class="badge">Perencanaan Produksi &amp; Biaya <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Manajer produksi menghadapi kenaikan harga bahan baku kain sebesar 15% untuk produksi 500 unit jaket. Biaya bahan baku awal Rp 100.000/unit, biaya lain tetap Rp 30.000.000. Harga jual Rp 250.000/unit. Evaluasilah dampak kenaikan terhadap laba bersih dan tentukan keputusan strategis terbaik untuk mempertahankan laba tanpa menaikkan harga jual!
+        </div>
+        <div class="opsi">A. Biaya bahan baku baru = Rp 115.000/unit. Total biaya = Rp 87.500.000. Pendapatan = Rp 125.000.000. Laba = Rp 37.500.000 (turun dari sebelumnya). Keputusan: negosiasi harga supplier atau efisiensi pola potong kain.</div>
+        <div class="opsi">B. Biaya naik, laba pasti turun drastis; satu-satunya cara adalah menaikkan harga jual menjadi Rp 300.000.</div>
+        <div class="opsi">C. Tidak perlu evaluasi, karena konsumen akan tetap membeli.</div>
+        <div class="opsi">D. Biaya bahan baku baru = Rp 115.000/unit, laba tetap sama karena biaya tetap tidak berubah.</div>
+        <div class="opsi">E. Mengurangi kualitas bahan baku untuk menekan biaya adalah solusi terbaik.</div>
+        <div class="pembahasan" id="bahas25">
+            <div class="jawaban">✅ Jawaban: A. Biaya bahan baku baru = Rp 115.000/unit. Total biaya = Rp 87.500.000. Pendapatan = Rp 125.000.000. Laba = Rp 37.500.000 (turun dari sebelumnya). Keputusan: negosiasi harga supplier atau efisiensi pola potong kain.</div>
+            <b>Pembahasan:</b> Biaya bahan baku awal: 100.000 × 500 = Rp 50.000.000. Setelah naik 15%: 115.000 × 500 = Rp 57.500.000. Total biaya = 57.500.000 + 30.000.000 = Rp 87.500.000. Pendapatan = 250.000 × 500 = Rp 125.000.000. Laba = 125.000.000 – 87.500.000 = Rp 37.500.000. Sebelumnya laba = (250.000 – 100.000) × 500 – 30.000.000 = Rp 45.000.000. Jadi laba turun Rp 7.500.000. Strategi terbaik adalah <span class="keyword">menekan biaya</span> melalui negosiasi atau efisiensi produksi, bukan menaikkan harga yang bisa mengurangi daya saing.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Cost leadership</span> adalah strategi mempertahankan margin dengan mengoptimalkan efisiensi. Ini lebih berkelanjutan daripada menaikkan harga di pasar yang kompetitif.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+            <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Lihat Hasil Selesai ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 6 — FOOTER ===== -->
+    <div class="ad-wrapper" style="margin-top:20px;">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===== HALAMAN SELESAI ===== -->
+    <div class="selesai-card" id="selesaiCard">
+        <h2>🎉 Selamat!</h2>
+        <p>Anda telah menyelesaikan <b>25 soal HOTS</b> materi <b>Kegiatan Produksi, Pemasaran, dan Distribusi</b>.<br />
+        Topik yang dicakup: Pengembangan Desain Produk, Desain Kemasan, Prototipe, serta Perencanaan Produksi &amp; Biaya.</p>
+        <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Terima kasih telah mengerjakan! 🚀')">📚 Kembali ke Awal</button>
+    </div>
+
+</div>
+<!-- /container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

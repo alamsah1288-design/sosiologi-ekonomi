@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soal HOTS - Pengelolaan Usaha (Peluang, Proposal, Keuangan, HaKI)</title>
+
+    <!-- ===== GOOGLE ADSENSE (placeholder) ===== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* --- RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            font-size: 1.3em;
+            color: #e65100;
+        }
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .header .sub {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 2px;
+        }
+        .progress-bar {
+            background: #eee;
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #ff9800, #bf360c);
+            height: 100%;
+            width: 4%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+        .info-nomor {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        /* --- IKLAN (ADSENSE) --- */
+        .ad-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .ad-wrapper .ad-label {
+            font-size: 0.6em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- SOAL CARD --- */
+        .soal-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .soal-card.aktif {
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #fff3e0;
+            color: #e65100;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+        .badge-level {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #1b5e20;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .pertanyaan {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .keyword {
+            font-weight: bold;
+            font-style: italic;
+            color: #bf360c;
+        }
+        .keyword2 {
+            font-weight: bold;
+            color: #c62828;
+        }
+        .opsi {
+            display: block;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8f9ff;
+            border: 2px solid #e0e0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            line-height: 1.5;
+            font-size: 0.96em;
+        }
+        .opsi:hover {
+            background: #fff3e0;
+            border-color: #ff9800;
+            transform: translateX(5px);
+        }
+        .pembahasan {
+            display: none;
+            margin-top: 18px;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            border-radius: 8px;
+            padding: 18px 22px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+        .pembahasan .jawaban {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+        .pembahasan .deep-note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fff3e0;
+            border-left: 4px solid #e65100;
+            border-radius: 6px;
+            font-size: 0.94em;
+            color: #4e342e;
+        }
+
+        /* --- TOMBOL --- */
+        .tombol-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.93em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-bahas {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .btn-bahas:hover {
+            background: #1b5e20;
+        }
+        .btn-next {
+            background: #bf360c;
+            color: #fff;
+            margin-left: auto;
+        }
+        .btn-next:hover {
+            background: #e65100;
+        }
+        .btn-prev {
+            background: #eceff1;
+            color: #37474f;
+        }
+        .btn-prev:hover {
+            background: #cfd8dc;
+        }
+        .btn-final {
+            background: linear-gradient(90deg, #f57f17, #e65100);
+            color: #fff;
+            margin-left: auto;
+            display: none;
+            font-size: 1em;
+        }
+        .btn-final:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- SELESAI --- */
+        .selesai-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .selesai-card h2 {
+            color: #bf360c;
+            margin-bottom: 15px;
+        }
+        .selesai-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .soal-card {
+                padding: 18px 16px;
+            }
+            .pertanyaan {
+                font-size: 0.98em;
+            }
+            .opsi {
+                font-size: 0.92em;
+                padding: 10px 14px;
+            }
+            .tombol-group button {
+                font-size: 0.85em;
+                padding: 10px 16px;
+            }
+            .header h1 {
+                font-size: 1.1em;
+            }
+            .ad-wrapper {
+                padding: 8px 10px;
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>📈 Soal HOTS — Pengelolaan Usaha (Peluang, Proposal, Keuangan, HaKI)</h1>
+        <p><b>Materi:</b> Analisis Peluang Usaha · Proposal Usaha · Pelaporan Keuangan · HaKI</p>
+        <p class="sub">⚡ Level Kognitif: C3 (Menerapkan) · C4 (Menganalisis) · C5 (Mengevaluasi)</p>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- ===== IKLAN 1 — TOP ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+    <!-- ============================================================ -->
+    <!-- ===== SUB-ELEMEN: ANALISIS PELUANG USAHA (Soal 1-6) ======== -->
+    <!-- ===================== SOAL 1 ================================ -->
+    <div class="soal-card aktif" id="soal1">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Di sebuah kota, terjadi peningkatan jumlah pengguna kendaraan listrik (EV) sebesar 40% dalam setahun. Seorang pengusaha ingin membuka usaha <span class="keyword">stasiun pengisian daya EV</span> dan <span class="keyword">service center</span> baterai. Analisislah kelayakan peluang ini dengan menggunakan pendekatan <span class="keyword">STP (Segmentasi, Target, Positioning)</span>!
+        </div>
+        <div class="opsi">A. Segmentasi: semua pemilik kendaraan; Target: pengguna EV di kota; Positioning: harga termurah. Ini adalah strategi yang tepat.</div>
+        <div class="opsi">B. Segmentasi: pengguna EV berdasarkan lokasi (perkotaan vs pinggiran) dan tipe kendaraan (roda 2 vs 4); Target: pengguna EV roda 2 di pusat bisnis; Positioning: kecepatan pengisian dan keandalan layanan. Ini lebih tepat karena responsif terhadap kebutuhan spesifik.</div>
+        <div class="opsi">C. Tidak perlu segmentasi karena semua EV butuh charging.</div>
+        <div class="opsi">D. Positioning harus selalu fokus pada harga murah untuk menarik pasar massal.</div>
+        <div class="opsi">E. Analisis STP hanya untuk produk fisik, bukan untuk jasa.</div>
+        <div class="pembahasan" id="bahas1">
+            <div class="jawaban">✅ Jawaban: B. Segmentasi: pengguna EV berdasarkan lokasi dan tipe; Target: EV roda 2 di pusat bisnis; Positioning: kecepatan dan keandalan.</div>
+            <b>Pembahasan:</b> STP membantu mengidentifikasi <span class="keyword">pasar yang paling potensial</span>. Segmentasi berdasarkan lokasi dan tipe kendaraan membuat strategi lebih terarah. Target segmen yang spesifik (misal pengendara EV roda 2 di perkantoran) memungkinkan penyesuaian layanan (misal fast charging 15 menit). Positioning pada kecepatan dan keandalan menciptakan <span class="keyword">diferensiasi</span>, bukan hanya bersaing di harga.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analisis peluang juga harus mempertimbangkan <span class="keyword">keberlanjutan</span> (sustainability) dan <span class="keyword">regulasi pemerintah</span> terkait infrastruktur EV. Segmentasi yang tepat mengurangi risiko investasi besar di awal.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 2 ================================ -->
+    <div class="soal-card" id="soal2">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah startup makanan sehat menyusun analisis SWOT. Data: <i>Strengths</i> — bahan organik bersertifikat, resep unik; <i>Weaknesses</i> — harga premium, produksi terbatas; <i>Opportunities</i> — tren gaya hidup sehat, program pemerintah UKM; <i>Threats</i> — banyak pesaing dengan harga murah. Analisislah strategi <span class="keyword">SO (Strengths-Opportunities)</span> yang paling tepat untuk memaksimalkan peluang!
+        </div>
+        <div class="opsi">A. Menurunkan harga untuk menyaingi pesaing murah.</div>
+        <div class="opsi">B. Memanfaatkan sertifikasi organik dan tren sehat untuk melakukan <span class="keyword">branding premium</span> serta bermitra dengan program pemerintah untuk subsidi/akses pasar.</div>
+        <div class="opsi">C. Menghentikan produksi organik dan beralih ke bahan konvensional.</div>
+        <div class="opsi">D. Hanya fokus pada pemasaran digital tanpa mengubah produk.</div>
+        <div class="opsi">E. Mengabaikan pesaing dan hanya mengandalkan resep unik.</div>
+        <div class="pembahasan" id="bahas2">
+            <div class="jawaban">✅ Jawaban: B. Memanfaatkan sertifikasi organik dan tren sehat untuk branding premium serta bermitra dengan program pemerintah untuk subsidi/akses pasar.</div>
+            <b>Pembahasan:</b> Strategi SO (Strength-Opportunity) adalah <span class="keyword">agresif</span> dengan memadukan kekuatan internal dan peluang eksternal. Sertifikasi organik adalah kekuatan; tren sehat adalah peluang. Menggabungkannya menciptakan <span class="keyword">competitive advantage</span> yang sulit ditiru. Kerja sama dengan program pemerintah UKM dapat membuka akses bazaar, pelatihan, atau bantuan promosi yang memperkuat posisi.
+            <div class="deep-note">📌 <b>Pendalaman:</b> SWOT juga punya strategi WO (Weakness-Opportunity) misalnya mencari investor untuk meningkatkan kapasitas produksi. Namun yang ditanya SO, maka jawaban B adalah yang paling sesuai.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 3 ================================ -->
+    <div class="soal-card" id="soal3">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Seorang pengusaha ingin membuka bisnis <span class="keyword">co-working space</span> di daerah kampus. Terapkan metode <span class="keyword">analisis pesaing</span> untuk menentukan apakah peluang ini masih menarik, dengan mempertimbangkan 3 co-working space yang sudah ada di radius 2 km!
+        </div>
+        <div class="opsi">A. Hanya menghitung jumlah pesaing; jika lebih dari 2, maka peluang tidak layak.</div>
+        <div class="opsi">B. Analisis pesaing mencakup: kapasitas, harga sewa, fasilitas, jam operasional, dan ulasan pelanggan. Jika pesaing penuh (occupancy > 90%) dan ada segmen yang tidak terlayani (misal mahasiswa malam), peluang tetap layak.</div>
+        <div class="opsi">C. Mengabaikan pesaing karena mahasiswa selalu butuh tempat.</div>
+        <div class="opsi">D. Hanya membandingkan harga; jika harga lebih murah, pasti menang.</div>
+        <div class="opsi">E. Analisis pesaing tidak penting karena bisnis ini unik.</div>
+        <div class="pembahasan" id="bahas3">
+            <div class="jawaban">✅ Jawaban: B. Analisis pesaing mencakup kapasitas, harga, fasilitas, jam operasional, ulasan. Jika occupancy tinggi dan ada celah segmen, peluang tetap layak.</div>
+            <b>Pembahasan:</b> Analisis pesaing yang komprehensif adalah <span class="keyword">benchmarking</span> terhadap <span class="keyword">value proposition</span> kompetitor. Jika pesaing penuh, itu menandakan <span class="keyword">permintaan berlebih</span> (excess demand) — peluang pasar masih besar. Jika ada segmen yang tidak terlayani (misal 24 jam, ruang privat untuk diskusi), maka kita bisa masuk dengan <span class="keyword">diferensiasi</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Matriks <span class="keyword">Competitive Profile Matrix (CPM)</span> bisa digunakan untuk membandingkan faktor-faktor kunci sukses (key success factors) seperti lokasi, akses internet, dan suasana.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 4 ================================ -->
+    <div class="soal-card" id="soal4">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Data demografi menunjukkan bahwa 55% populasi di suatu wilayah adalah generasi Z (usia 18-25 tahun) dengan akses internet tinggi. Analisislah peluang usaha <span class="keyword">jasa konsultasi karir online</span> yang ditargetkan untuk segmen ini, serta tentukan <span class="keyword">faktor kunci sukses</span> yang harus dimiliki!
+        </div>
+        <div class="opsi">A. Faktor kunci: harga murah dan promosi melalui TV nasional.</div>
+        <div class="opsi">B. Faktor kunci: platform yang <span class="keyword">mobile-first</span>, konten interaktif (quiz/assessment), harga terjangkau, dan koneksi dengan perusahaan magang. Ini sesuai dengan karakteristik Gen Z yang digital native dan mencari pengalaman praktis.</div>
+        <div class="opsi">C. Faktor kunci: lokasi fisik yang strategis di pusat kota.</div>
+        <div class="opsi">D. Faktor kunci: sertifikasi internasional yang mahal untuk konsultan.</div>
+        <div class="opsi">E. Faktor kunci: iklan di media cetak dan radio.</div>
+        <div class="pembahasan" id="bahas4">
+            <div class="jawaban">✅ Jawaban: B. Faktor kunci: platform mobile-first, konten interaktif, harga terjangkau, dan koneksi dengan perusahaan magang.</div>
+            <b>Pembahasan:</b> Gen Z adalah <span class="keyword">digital native</span> yang mengutamakan kemudahan akses dari gawai. Mereka menyukai pengalaman belajar yang interaktif (gamifikasi) dan relevansi praktis (magang/kerja). Harga terjangkau penting karena mereka masih dalam tahap awal karir. Faktor-faktor ini adalah <span class="keyword">critical success factors (CSFs)</span> yang membedakan dari konsultan karir tradisional.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analisis peluang harus didasari oleh <span class="keyword">consumer insight</span> yang mendalam. Untuk Gen Z, <span class="keyword">social proof</span> (testimoni dari teman sebaya) dan <span class="keyword">transparansi biaya</span> juga sangat berpengaruh terhadap keputusan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 5 ================================ -->
+    <div class="soal-card" id="soal5">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah usaha <span class="keyword">katering sehat</span> beroperasi dengan model langganan bulanan. Setelah 6 bulan, pelanggan tetap hanya 30% dari pelanggan awal. Evaluasilah apakah ini adalah masalah <span class="keyword">churn rate</span> yang kritis dan analisislah strategi retensi yang paling tepat berdasarkan data tersebut!
+        </div>
+        <div class="opsi">A. Churn rate 70% dalam 6 bulan sangat tinggi (kritis). Strategi: <span class="keyword">survei kepuasan</span> dan <span class="keyword">personalization menu</span> berdasarkan preferensi pelanggan, serta program loyalitas poin.</div>
+        <div class="opsi">B. Churn 70% adalah normal untuk bisnis katering, tidak perlu dikhawatirkan.</div>
+        <div class="opsi">C. Strategi: menurunkan harga secara drastis agar pelanggan kembali.</div>
+        <div class="opsi">D. Strategi: mengganti seluruh menu menjadi menu internasional.</div>
+        <div class="opsi">E. Churn tidak bisa diukur untuk bisnis jasa.</div>
+        <div class="pembahasan" id="bahas5">
+            <div class="jawaban">✅ Jawaban: A. Churn rate 70% sangat tinggi (kritis). Strategi: survei kepuasan dan personalization menu, serta program loyalitas.</div>
+            <b>Pembahasan:</b> Churn rate adalah persentase pelanggan yang berhenti berlangganan dalam periode tertentu. 70% dalam 6 bulan sangat tinggi dan mengindikasikan <span class="keyword">value proposition</span> tidak sesuai harapan. Data churn harus ditindaklanjuti dengan <span class="keyword">customer feedback loop</span> (survei) untuk mengidentifikasi akar masalah (rasa, variasi, waktu kirim). Personalization membuat pelanggan merasa diperhatikan, dan loyalitas program meningkatkan <span class="keyword">switching cost</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Untuk bisnis berlangganan, <span class="keyword">Customer Lifetime Value (CLV)</span> harus lebih besar dari Customer Acquisition Cost (CAC). Churn yang tinggi membuat CLV rendah dan bisnis tidak berkelanjutan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 6 ================================ -->
+    <div class="soal-card" id="soal6">
+        <span class="badge">Analisis Peluang Usaha <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Seorang pengusaha menemukan <span class="keyword">celah pasar</span>: tidak ada toko yang menjual perlengkapan bayi organik di kotanya, padahal tingkat kelahiran tinggi (3.000 bayi/tahun). Analisislah <span class="keyword">risiko terbesar</span> yang harus diwaspadai sebelum memulai usaha ini!
+        </div>
+        <div class="opsi">A. Risiko harga bahan baku organik yang sangat tinggi.</div>
+        <div class="opsi">B. Risiko <span class="keyword">kesalahan estimasi permintaan</span> — meskipun jumlah bayi tinggi, mungkin tidak semua orang tua memprioritaskan produk organik karena harganya mahal. Edukasi pasar adalah kunci.</div>
+        <div class="opsi">C. Risiko lokasi toko yang tidak strategis.</div>
+        <div class="opsi">D. Risiko persaingan dari toko online.</div>
+        <div class="opsi">E. Risiko regulasi impor barang bayi.</div>
+        <div class="pembahasan" id="bahas6">
+            <div class="jawaban">✅ Jawaban: B. Risiko kesalahan estimasi permintaan — jumlah bayi tinggi belum tentu berarti permintaan produk organik tinggi. Edukasi pasar adalah kunci.</div>
+            <b>Pembahasan:</b> Celah pasar (gap) yang ditemukan adalah <span class="keyword">supply gap</span> (tidak ada penjual), tetapi belum tentu <span class="keyword">demand gap</span> (kebutuhan yang dirasakan). Orang tua mungkin memilih produk konvensional karena harga lebih murah. Risiko terbesar adalah <span class="keyword">market acceptance</span> — konsumen belum teredukasi tentang manfaat organik. Oleh karena itu, strategi awal harus mencakup kampanye edukasi dan sampling produk.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah contoh <span class="keyword">assumption-based planning</span>. Validasi pasar melalui <span class="keyword">minimum viable product (MVP)</span> atau pre-order sangat penting sebelum investasi besar.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 2 — MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ======== SUB-ELEMEN: PROPOSAL USAHA (Soal 7-12) ============= -->
+    <!-- ===================== SOAL 7 ================================ -->
+    <div class="soal-card" id="soal7">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah proposal usaha mendapatkan penolakan dari investor dengan alasan <span class="keyword">analisis pasar</span> dianggap dangkal. Proposal hanya mencantumkan "pasar potensial besar" tanpa data pendukung. Analisislah bagian proposal mana yang harus diperbaiki secara mendalam untuk meyakinkan investor!
+        </div>
+        <div class="opsi">A. Bagian <span class="keyword">Tinjauan Pustaka</span> harus ditambah referensi buku.</div>
+        <div class="opsi">B. Bagian <span class="keyword">Analisis Pasar</span> harus diperkaya dengan: ukuran pasar (market size), pertumbuhan (growth rate), segmentasi, perilaku konsumen, analisis pesaing, dan proyeksi penjualan 3-5 tahun.</div>
+        <div class="opsi">C. Bagian <span class="keyword">Rencana Pemasaram</span> saja yang perlu diperbaiki.</div>
+        <div class="opsi">D. Bagian <span class="keyword">Struktur Organisasi</span> harus diubah.</div>
+        <div class="opsi">E. Bagian <span class="keyword">Proyeksi Keuangan</span> sudah cukup, tidak perlu pasar.</div>
+        <div class="pembahasan" id="bahas7">
+            <div class="jawaban">✅ Jawaban: B. Bagian Analisis Pasar harus diperkaya dengan market size, growth, segmentasi, perilaku konsumen, analisis pesaing, dan proyeksi penjualan.</div>
+            <b>Pembahasan:</b> Investor ingin melihat <span class="keyword">bukti empiris</span> bahwa pasar benar-benar ada dan dapat ditembus. Analisis pasar yang kuat menunjukkan <span class="keyword">due diligence</span> pengusaha. Data kuantitatif (TAM, SAM, SOM) dan kualitatif (customer pain points) sangat krusial untuk menilai potensi return of investment (ROI).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Investor sering menggunakan <span class="keyword">Top-Down Analysis</span> (total pasar → target pasar) dan <span class="keyword">Bottom-Up Analysis</span> (kapasitas produksi → penjualan). Keduanya harus selaras dalam proposal.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 8 ================================ -->
+    <div class="soal-card" id="soal8">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah proposal bisnis mengajukan pendanaan Rp 500 juta. Rincian: 60% untuk inventaris, 20% untuk pemasaran, 20% untuk operasional. Evaluasilah apakah alokasi biaya ini masuk akal untuk bisnis ritel fashion startup, dan berikan rekomendasi!
+        </div>
+        <div class="opsi">A. Masuk akal, karena inventaris memang kebutuhan utama ritel.</div>
+        <div class="opsi">B. Kurang masuk akal, karena alokasi pemasaran (20%) terlalu kecil untuk startup fashion yang membutuhkan brand awareness besar; sebaiknya 40% pemasaran, 40% inventaris, 20% operasional.</div>
+        <div class="opsi">C. Tidak masuk akal karena operasional harus lebih besar.</div>
+        <div class="opsi">D. Masuk akal, karena pemasaran tidak perlu untuk ritel.</div>
+        <div class="opsi">E. Alokasi harus 100% untuk inventaris.</div>
+        <div class="pembahasan" id="bahas8">
+            <div class="jawaban">✅ Jawaban: B. Kurang masuk akal, karena alokasi pemasaran (20%) terlalu kecil untuk startup fashion; sebaiknya 40% pemasaran, 40% inventaris, 20% operasional.</div>
+            <b>Pembahasan:</b> Dalam <span class="keyword">startup ritel fashion</span>, brand awareness dan customer acquisition adalah kunci untuk menembus pasar kompetitif. Mengalokasikan hanya 20% untuk pemasaran (Rp 100 juta) mungkin tidak cukup untuk kampanye digital, influencer, dan promo pembukaan. Rekomendasi lebih realistis adalah menyeimbangkan inventaris (agar stok cukup) dan pemasaran (agar stok laku). Operasional bisa ditekan dengan sistem efisien.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam proposal, <span class="keyword">cash flow projection</span> sangat penting. Meskipun alokasi berubah, pengusaha harus menunjukkan bahwa arus kas tetap positif atau memiliki buffer untuk 6 bulan pertama.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 9 ================================ -->
+    <div class="soal-card" id="soal9">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dalam sebuah proposal usaha budidaya jamur tiram, terdapat analisis kelayakan aspek teknis dan manajemen. Analisislah komponen apa saja yang harus ada dalam <span class="keyword">aspek teknis</span> proposal tersebut untuk meyakinkan kredibilitas operasional!
+        </div>
+        <div class="opsi">A. Hanya lokasi lahan dan jenis bibit jamur.</div>
+        <div class="opsi">B. Aspek teknis harus mencakup: desain bangunan (kumbung), sistem irigasi/suhu, <span class="keyword">supply chain</span> bibit dan bahan baku, kapasitas produksi per siklus, serta teknologi pengendalian hama.</div>
+        <div class="opsi">C. Aspek teknis hanya tentang pemasaran produk.</div>
+        <div class="opsi">D. Aspek teknis sama dengan aspek keuangan.</div>
+        <div class="opsi">E. Tidak perlu aspek teknis, cukup aspek pemasaran.</div>
+        <div class="pembahasan" id="bahas9">
+            <div class="jawaban">✅ Jawaban: B. Aspek teknis harus mencakup desain bangunan, irigasi, supply chain bibit, kapasitas produksi, dan pengendalian hama.</div>
+            <b>Pembahasan:</b> <span class="keyword">Aspek teknis</span> dalam proposal menjawab pertanyaan "bagaimana produk dibuat?" Ini mencakup <span class="keyword">proses produksi</span>, <span class="keyword">teknologi</span>, <span class="keyword">layout</span>, dan <span class="keyword">sumber daya</span>. Untuk budidaya jamur, faktor lingkungan (suhu, kelembapan) sangat kritis, sehingga detail sistem pengendalian iklim mikro sangat penting untuk menunjukkan bahwa pengusaha memahami risiko teknis.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Aspek teknis juga mencakup <span class="keyword">break-even time</span> produksi (kapan panen pertama) dan <span class="keyword">maintenance schedule</span> peralatan. Ini mempengaruhi proyeksi keuangan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 10 =============================== -->
+    <div class="soal-card" id="soal10">
+        <span class="badge">Proposal Usaha <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Anda menyusun proposal untuk <span class="keyword">usaha jasa laundry kiloan</span>. Terapkan format <span class="keyword">anggaran biaya investasi</span> yang benar, termasuk komponen mesin cuci, pengering, setrika, meja, renovasi tempat, dan biaya izin usaha. Total investasi yang direncanakan adalah Rp 40 juta.
+        </div>
+        <div class="opsi">A. Mesin cuci 20jt, pengering 10jt, setrika/meja 5jt, renovasi 3jt, izin 2jt. Total 40jt. Ini sudah sesuai.</div>
+        <div class="opsi">B. Mesin cuci 10jt, pengering 8jt, setrika/meja 4jt, renovasi 10jt, izin 8jt. Total 40jt. Semua komponen harus ada rincian harga satuan dan <span class="keyword">biaya tak terduga</span> (5-10%) perlu dicadangkan. Jika total persis 40jt tanpa buffer, itu tidak realistis.</div>
+        <div class="opsi">C. Cukup tulis total 40 juta tanpa rincian.</div>
+        <div class="opsi">D. Anggaran hanya untuk mesin cuci, sisanya tidak penting.</div>
+        <div class="opsi">E. Investasi harus 100 juta agar terlihat mewah.</div>
+        <div class="pembahasan" id="bahas10">
+            <div class="jawaban">✅ Jawaban: B. Mesin cuci 10jt, pengering 8jt, setrika/meja 4jt, renovasi 10jt, izin 8jt. Perlu buffer 5-10% untuk biaya tak terduga.</div>
+            <b>Pembahasan:</b> Proposal yang kredibel menyajikan <span class="keyword">rincian biaya</span> yang transparan. Selain itu, setiap proyek investasi selalu memiliki <span class="keyword">contingency cost</span> (biaya tak terduga) minimal 5-10% dari total, karena harga bahan atau perizinan bisa berubah. Jika totalnya pas 40 juta tanpa buffer, proyek rentan mengalami <span class="keyword">cost overrun</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam proposal, bagian <span class="keyword">working capital</span> (modal kerja untuk 3-6 bulan) juga harus dipisahkan dari investasi tetap agar arus kas lancar selama masa awal operasi.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 11 =============================== -->
+    <div class="soal-card" id="soal11">
+        <span class="badge">Proposal Usaha <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah proposal usaha kafe mengklaim akan mencapai BEP (Break Even Point) dalam 6 bulan. Evaluasilah klaim ini dengan menggunakan data: biaya tetap Rp 20 juta/bulan, biaya variabel Rp 5.000/porsi, harga jual Rp 25.000/porsi, dan rata-rata penjualan 2.000 porsi/bulan di bulan pertama, naik 10% setiap bulan.
+        </div>
+        <div class="opsi">A. Klaim masuk akal karena BEP = 20.000.000 / (25.000-5.000) = 1.000 porsi. Bulan pertama jual 2.000 > 1.000, maka laba sudah mulai bulan pertama, BEP tercapai lebih cepat dari 6 bulan.</div>
+        <div class="opsi">B. Klaim tidak masuk akal karena BEP = 2.000 porsi, dan bulan pertama hanya 2.000 (impas), belum untung. Butuh 6 bulan untuk stabilisasi.</div>
+        <div class="opsi">C. Klaim tidak masuk akal karena BEP = 4.000 porsi.</div>
+        <div class="opsi">D. Klaim masuk akal karena biaya tetap bisa dikurangi.</div>
+        <div class="opsi">E. Tidak bisa dievaluasi karena data tidak lengkap.</div>
+        <div class="pembahasan" id="bahas11">
+            <div class="jawaban">✅ Jawaban: A. Klaim masuk akal karena BEP = 1.000 porsi. Bulan pertama 2.000 > 1.000, laba mulai bulan pertama.</div>
+            <b>Pembahasan:</b> BEP (unit) = Biaya Tetap / (Harga – Biaya Variabel) = 20.000.000 / (25.000 – 5.000) = 20.000.000 / 20.000 = 1.000 porsi. Dengan penjualan 2.000 porsi di bulan pertama, kafe sudah melewati BEP dan menghasilkan laba. Bahkan dengan kenaikan 10% per bulan, laba terus meningkat. Jadi klaim BEP dalam 6 bulan sangat <span class="keyword">konservatif</span> bahkan terlalu pesimis, karena seharusnya BEP terjadi di bulan pertama.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam evaluasi proposal, investor akan memeriksa apakah asumsi penjualan (2.000 porsi/bulan) realistis dengan kapasitas dapur dan lokasi kafe. Meskipun secara matematis BEP tercapai, <span class="keyword">validitas asumsi pasar</span> tetap harus diuji.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 12 =============================== -->
+    <div class="soal-card" id="soal12">
+        <span class="badge">Proposal Usaha <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dalam proposal, bagian <span class="keyword">rencana pemasaran</span> menggunakan strategi <span class="keyword">AIDA (Attention, Interest, Desire, Action)</span>. Analisislah bagaimana strategi ini diterapkan secara efektif untuk produk <span class="keyword">kursi ergonomis</span> bagi pekerja kantoran!
+        </div>
+        <div class="opsi">A. Attention: iklan TV; Interest: diskon; Desire: testimoni; Action: beli sekarang. Ini sudah tepat.</div>
+        <div class="opsi">B. Attention: konten edukatif "bahaya duduk lama" (menarik perhatian); Interest: demo video keunggulan kursi; Desire: penawaran garansi 5 tahun dan uji coba di kantor; Action: link pembelian dan konsultasi gratis. Ini lebih efektif karena berfokus pada <span class="keyword">pain point</span> dan <span class="keyword">solusi konkret</span>.</div>
+        <div class="opsi">C. Cukup pasang spanduk di jalan.</div>
+        <div class="opsi">D. AIDA hanya untuk produk murah, bukan kursi mahal.</div>
+        <div class="opsi">E. Tidak perlu strategi pemasaran, cukup word of mouth.</div>
+        <div class="pembahasan" id="bahas12">
+            <div class="jawaban">✅ Jawaban: B. Attention: edukasi bahaya duduk lama; Interest: demo video; Desire: garansi & uji coba; Action: link beli & konsultasi.</div>
+            <b>Pembahasan:</b> AIDA adalah <span class="keyword">model hierarki efek</span> dalam komunikasi pemasaran. Untuk produk B2B atau high-involvement seperti kursi ergonomis, pendekatan edukatif dan demonstrasi nilai sangat penting. Tahap "Desire" harus membangun kepercayaan (garansi, trial), dan "Action" harus mudah diakses. Ini menunjukkan pemahaman mendalam tentang <span class="keyword">customer journey</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam proposal, rencana pemasaran juga harus mencantumkan <span class="keyword">budget per saluran</span> (misal Google Ads, LinkedIn) dan <span class="keyword">Key Performance Indicators (KPI)</span> seperti conversion rate.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 3 — MID-BOTTOM ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ======== SUB-ELEMEN: PELAPORAN KEUANGAN (Soal 13-19) ======= -->
+    <!-- ===================== SOAL 13 =============================== -->
+    <div class="soal-card" id="soal13">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah usaha kecil memiliki data: Pendapatan Rp 200.000.000, HPP Rp 120.000.000, Biaya Operasional Rp 50.000.000, dan Beban Bunga Rp 5.000.000. Analisislah <span class="keyword">Laporan Laba Rugi</span> untuk menghitung Laba Bersih dan <span class="keyword">Margin Laba Bersih</span>!
+        </div>
+        <div class="opsi">A. Laba Kotor = Rp 80.000.000; Laba Bersih = Rp 25.000.000; Margin = 12,5%.</div>
+        <div class="opsi">B. Laba Kotor = Rp 80.000.000; Laba Bersih = Rp 30.000.000; Margin = 15%.</div>
+        <div class="opsi">C. Laba Kotor = Rp 30.000.000; Laba Bersih = Rp 25.000.000; Margin = 12,5%.</div>
+        <div class="opsi">D. Laba Kotor = Rp 80.000.000; Laba Bersih = Rp 25.000.000; Margin = 25%.</div>
+        <div class="opsi">E. Laba Kotor = Rp 50.000.000; Laba Bersih = Rp 20.000.000; Margin = 10%.</div>
+        <div class="pembahasan" id="bahas13">
+            <div class="jawaban">✅ Jawaban: A. Laba Kotor = Rp 80.000.000; Laba Bersih = Rp 25.000.000; Margin = 12,5%.</div>
+            <b>Pembahasan:</b> Laba Kotor = Pendapatan – HPP = 200.000.000 – 120.000.000 = Rp 80.000.000. Laba Bersih = Laba Kotor – Biaya Operasional – Beban Bunga = 80.000.000 – 50.000.000 – 5.000.000 = Rp 25.000.000. Margin Laba Bersih = (Laba Bersih / Pendapatan) × 100% = (25.000.000 / 200.000.000) × 100% = 12,5%.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Net Profit Margin</span> 12,5% menunjukkan efisiensi usaha. Standar industri rata-rata 10-15%, jadi usaha ini masih dalam batas wajar. Analisis tren (yoy) lebih bermakna untuk melihat peningkatan efisiensi.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 14 =============================== -->
+    <div class="soal-card" id="soal14">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Data Neraca: Aset Lancar Rp 50.000.000, Utang Lancar Rp 30.000.000, Total Aset Rp 150.000.000, Total Utang Rp 90.000.000, Ekuitas Rp 60.000.000. Hitung <span class="keyword">Rasio Lancar</span> dan <span class="keyword">Rasio Utang terhadap Aset</span>, lalu evaluasi tingkat kesehatan keuangan perusahaan!
+        </div>
+        <div class="opsi">A. Rasio Lancar = 1,67; Rasio Utang/Aset = 60%. Likuiditas cukup baik, tetapi solvabilitas (utang) cukup tinggi (60% > 50%) menandakan risiko keuangan yang signifikan.</div>
+        <div class="opsi">B. Rasio Lancar = 0,6; Rasio Utang/Aset = 40%. Keuangan sehat.</div>
+        <div class="opsi">C. Rasio Lancar = 1,67; Rasio Utang/Aset = 40%. Sangat sehat.</div>
+        <div class="opsi">D. Rasio Lancar = 2,0; Rasio Utang/Aset = 60%. Sangat sehat.</div>
+        <div class="opsi">E. Rasio Lancar = 1,0; Rasio Utang/Aset = 50%. Cukup sehat.</div>
+        <div class="pembahasan" id="bahas14">
+            <div class="jawaban">✅ Jawaban: A. Rasio Lancar = 1,67; Rasio Utang/Aset = 60%. Likuiditas cukup baik, tetapi solvabilitas utang tinggi (60% > 50%) menandakan risiko keuangan.</div>
+            <b>Pembahasan:</b> Rasio Lancar = Aset Lancar / Utang Lancar = 50.000.000 / 30.000.000 = 1,67 (standar > 1, cukup likuid). Rasio Utang terhadap Aset = Total Utang / Total Aset = 90.000.000 / 150.000.000 = 60%. Angka 60% berarti 60% aset dibiayai utang. Ini <span class="keyword">berisiko</span> karena beban bunga tetap harus dibayar, terutama jika pendapatan turun. Idealnya di bawah 50% untuk mengurangi risiko kebangkrutan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Meskipun likuiditas baik, <span class="keyword">leverage</span> yang tinggi membuat perusahaan rentan terhadap kenaikan suku bunga. Perusahaan bisa mempertimbangkan <span class="keyword">refinancing</span> atau menambah ekuitas untuk menurunkan rasio utang.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 15 =============================== -->
+    <div class="soal-card" id="soal15">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah toko elektronik membeli 100 unit TV seharga Rp 3.000.000/unit. Biaya kirim Rp 5.000.000, biaya asuransi Rp 2.000.000. Toko tersebut menjual TV dengan harga Rp 4.000.000/unit. Terapkan perhitungan <span class="keyword">Harga Pokok Penjualan (HPP)</span> per unit dan laba kotor total!
+        </div>
+        <div class="opsi">A. HPP/unit = 3.000.000; Laba Kotor total = Rp 100.000.000.</div>
+        <div class="opsi">B. HPP/unit = 3.070.000; Laba Kotor total = Rp 93.000.000.</div>
+        <div class="opsi">C. HPP/unit = 3.050.000; Laba Kotor total = Rp 95.000.000.</div>
+        <div class="opsi">D. HPP/unit = 3.100.000; Laba Kotor total = Rp 90.000.000.</div>
+        <div class="opsi">E. HPP/unit = 3.020.000; Laba Kotor total = Rp 98.000.000.</div>
+        <div class="pembahasan" id="bahas15">
+            <div class="jawaban">✅ Jawaban: B. HPP/unit = 3.070.000; Laba Kotor total = Rp 93.000.000.</div>
+            <b>Pembahasan:</b> HPP meliputi semua biaya yang dikeluarkan hingga barang siap dijual. Total biaya perolehan = (100 × 3.000.000) + 5.000.000 + 2.000.000 = 300.000.000 + 7.000.000 = 307.000.000. HPP/unit = 307.000.000 / 100 = Rp 3.070.000. Laba Kotor total = (Harga Jual – HPP) × Q = (4.000.000 – 3.070.000) × 100 = 930.000 × 100 = Rp 93.000.000.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Biaya pengiriman dan asuransi</span> adalah bagian dari inventory cost yang harus dikapitalisasi ke HPP, bukan dibebankan sebagai biaya operasional. Ini sesuai dengan prinsip akuntansi (PSAK 14).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 16 =============================== -->
+    <div class="soal-card" id="soal16">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Laporan arus kas menunjukkan: Arus kas dari aktivitas operasi = +Rp 30.000.000, investasi = -Rp 50.000.000, pendanaan = +Rp 40.000.000. Analisislah posisi kas bersih perusahaan dan interpretasikan maknanya!
+        </div>
+        <div class="opsi">A. Kas bersih = +Rp 20.000.000. Perusahaan mampu menghasilkan kas dari operasi dan menarik pendanaan, tetapi investasi besar. Ini menandakan fase ekspansi yang sehat.</div>
+        <div class="opsi">B. Kas bersih = -Rp 20.000.000. Perusahaan mengalami defisit kas.</div>
+        <div class="opsi">C. Kas bersih = +Rp 120.000.000. Perusahaan sangat kaya.</div>
+        <div class="opsi">D. Kas bersih = Rp 0. Perusahaan impas.</div>
+        <div class="opsi">E. Kas bersih = -Rp 50.000.000. Perusahaan bangkrut.</div>
+        <div class="pembahasan" id="bahas16">
+            <div class="jawaban">✅ Jawaban: A. Kas bersih = +Rp 20.000.000. Perusahaan mampu menghasilkan kas dari operasi dan menarik pendanaan, tetapi investasi besar. Ini menandakan fase ekspansi yang sehat.</div>
+            <b>Pembahasan:</b> Kas bersih = Operasi + Investasi + Pendanaan = 30.000.000 + (-50.000.000) + 40.000.000 = +Rp 20.000.000. Interpretasi: <span class="keyword">Operating cash flow</span> positif menandakan bisnis inti menghasilkan uang. Investasi negatif (besar) berarti perusahaan membeli aset (ekspansi). Pendanaan positif berarti mendapat pinjaman atau suntikan modal. Ini adalah <span class="keyword">growth company</span> yang sehat, asalkan investasi tersebut menghasilkan return di masa depan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analis keuangan akan membandingkan <span class="keyword">Free Cash Flow (FCF)</span> = Arus Kas Operasi – Capex. Dalam kasus ini FCF = 30jt – 50jt = -20jt, artinya perusahaan masih membutuhkan pendanaan eksternal untuk ekspansi. Ini wajar untuk startup.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 17 =============================== -->
+    <div class="soal-card" id="soal17">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan memiliki laba bersih Rp 100.000.000, namun arus kas dari operasi negatif (-Rp 20.000.000). Evaluasilah mengapa kondisi ini bisa terjadi dan apa implikasinya bagi kelangsungan usaha!
+        </div>
+        <div class="opsi">A. Ini normal, laba bersih selalu sama dengan arus kas.</div>
+        <div class="opsi">B. Hal ini bisa terjadi karena penjualan kredit yang tinggi (piutang membesar) atau persediaan meningkat. Perusahaan mungkin secara akuntansi untung, tetapi kekurangan kas untuk membayar tagihan jangka pendek — ini adalah <span class="keyword">risiko likuiditas</span> yang serius.</div>
+        <div class="opsi">C. Ini berarti perusahaan melakukan kecurangan.</div>
+        <div class="opsi">D. Ini tidak berdampak apapun karena laba sudah besar.</div>
+        <div class="opsi">E. Ini berarti perusahaan harus segera bangkrut.</div>
+        <div class="pembahasan" id="bahas17">
+            <div class="jawaban">✅ Jawaban: B. Hal ini bisa terjadi karena penjualan kredit (piutang membesar) atau persediaan meningkat. Laba akuntansi positif tetapi kas negatif — risiko likuiditas serius.</div>
+            <b>Pembahasan:</b> Laporan laba rugi menggunakan basis <span class="keyword">akrual</span> (mengakui pendapatan saat terjadi, bukan saat kas diterima). Jika perusahaan menjual banyak produk secara kredit (piutang), laba naik tetapi kas belum masuk. Jika perusahaan menimbun persediaan besar, kas keluar tetapi belum menjadi HPP. Kondisi ini disebut <span class="keyword">profit but no cash</span> dan bisa menyebabkan <span class="keyword">insolvensi</span> meskipun secara teoretis untung. Perusahaan harus mempercepat penagihan piutang atau mengurangi pembelian persediaan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Ini adalah alasan mengapa <span class="keyword">laporan arus kas</span> dianggap lebih jujur daripada laba rugi untuk mengukur kesehatan likuiditas. Rasio <span class="keyword">Cash Conversion Cycle (CCC)</span> perlu dihitung untuk mengelola modal kerja.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 18 =============================== -->
+    <div class="soal-card" id="soal18">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Data keuangan usaha warung makan: Pendapatan Rp 60.000.000, HPP Rp 30.000.000, Biaya Gaji Rp 10.000.000, Sewa Rp 5.000.000, Utilitas Rp 3.000.000, Bunga Rp 2.000.000, Pajak Rp 2.000.000. Analisislah laporan laba rugi untuk menentukan <span class="keyword">EBITDA</span> (Earnings Before Interest, Taxes, Depreciation, and Amortization) usaha tersebut!
+        </div>
+        <div class="opsi">A. EBITDA = Pendapatan – HPP – Gaji – Sewa – Utilitas = 60jt – 30jt – 10jt – 5jt – 3jt = Rp 12.000.000.</div>
+        <div class="opsi">B. EBITDA = Laba Bersih + Bunga + Pajak = (60-30-10-5-3-2-2) + 2 + 2 = 8 + 4 = Rp 12.000.000.</div>
+        <div class="opsi">C. A dan B benar karena keduanya menghasilkan Rp 12.000.000.</div>
+        <div class="opsi">D. EBITDA = 60jt – 30jt = Rp 30.000.000.</div>
+        <div class="opsi">E. EBITDA = Laba Bersih = Rp 8.000.000.</div>
+        <div class="pembahasan" id="bahas18">
+            <div class="jawaban">✅ Jawaban: C. A dan B benar karena keduanya menghasilkan Rp 12.000.000.</div>
+            <b>Pembahasan:</b> EBITDA adalah metrik profitabilitas sebelum bunga, pajak, depresiasi, dan amortisasi. Karena tidak ada depresiasi/amortisasi, perhitungannya: <span class="keyword">EBITDA = Pendapatan – HPP – Biaya Operasional (selain bunga, pajak, depresiasi)</span>. Biaya operasional di sini adalah Gaji, Sewa, Utilitas = 10+5+3=18jt. EBITDA = 60 – 30 – 18 = 12jt. Cara B juga benar karena Laba Bersih = 60-30-10-5-3-2-2 = 8jt. EBITDA = Laba Bersih + Bunga + Pajak = 8 + 2 + 2 = 12jt. Keduanya konsisten.
+            <div class="deep-note">📌 <b>Pendalaman:</b> EBITDA sering digunakan oleh investor untuk membandingkan kinerja operasional antar perusahaan tanpa pengaruh struktur modal dan kebijakan pajak. Nilai 12jt dari pendapatan 60jt menunjukkan margin EBITDA 20%.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 19 =============================== -->
+    <div class="soal-card" id="soal19">
+        <span class="badge">Pelaporan Keuangan <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan ingin menilai <span class="keyword">efisiensi penggunaan aset</span>. Data: Penjualan Rp 500.000.000, Total Aset Awal Rp 200.000.000, Total Aset Akhir Rp 300.000.000. Terapkan perhitungan <span class="keyword">Total Asset Turnover (TATO)</span> dan interpretasikan hasilnya!
+        </div>
+        <div class="opsi">A. TATO = 500jt / ((200jt+300jt)/2) = 500/250 = 2,0. Artinya setiap Rp 1 aset menghasilkan Rp 2 penjualan — efisiensi cukup baik.</div>
+        <div class="opsi">B. TATO = 500/300 = 1,67. Cukup baik.</div>
+        <div class="opsi">C. TATO = 500/200 = 2,5. Sangat baik.</div>
+        <div class="opsi">D. TATO = 300/500 = 0,6. Kurang baik.</div>
+        <div class="opsi">E. TATO = (200+300)/500 = 1,0.</div>
+        <div class="pembahasan" id="bahas19">
+            <div class="jawaban">✅ Jawaban: A. TATO = 500jt / ((200jt+300jt)/2) = 500/250 = 2,0. Efisiensi cukup baik.</div>
+            <b>Pembahasan:</b> TATO = Penjualan / Rata-rata Total Aset. Rata-rata aset = (200jt+300jt)/2 = 250jt. TATO = 500/250 = 2,0. Interpretasi: perusahaan menghasilkan Rp 2 penjualan untuk setiap Rp 1 aset yang dimiliki. Industri ritel biasanya TATO 2-4, jadi 2,0 adalah <span class="keyword">cukup efisien</span>. Jika TATO rendah (misal < 1), itu menandakan aset menganggur atau modal kerja tidak produktif.
+            <div class="deep-note">📌 <b>Pendalaman:</b> TATO adalah bagian dari <span class="keyword">DuPont Analysis</span> yang menghubungkan profit margin dengan asset turnover untuk menghitung Return on Equity (ROE). Peningkatan TATO dapat dilakukan dengan meningkatkan penjualan atau mengurangi aset yang tidak produktif.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 4 — BOTTOM-MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ============= SUB-ELEMEN: HaKI (Soal 20-25) ================= -->
+    <!-- ===================== SOAL 20 =============================== -->
+    <div class="soal-card" id="soal20">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Seorang content creator menemukan bahwa videonya diunggah ulang oleh akun lain di platform yang sama tanpa izin, dan akun tersebut mendapatkan keuntungan iklan dari video tersebut. Evaluasilah tindakan hukum yang paling tepat sesuai dengan UU Hak Cipta di Indonesia (UU No. 28 Tahun 2014)!
+        </div>
+        <div class="opsi">A. Langsung melaporkan ke polisi tanpa bukti.</div>
+        <div class="opsi">B. Mengirim <span class="keyword">takedown notice</span> melalui mekanisme DMCA atau laporan bawaan platform, kemudian jika tidak diindahkan, dapat mengajukan gugatan perdata atas pelanggaran hak cipta (hak ekonomi) dan menuntut ganti rugi.</div>
+        <div class="opsi">C. Menghapus akun sendiri.</div>
+        <div class="opsi">D. Membalas dengan komentar negatif di video pelanggar.</div>
+        <div class="opsi">E. Tidak ada tindakan karena konten di internet adalah domain publik.</div>
+        <div class="pembahasan" id="bahas20">
+            <div class="jawaban">✅ Jawaban: B. Mengirim takedown notice melalui platform, kemudian gugatan perdata atas pelanggaran hak ekonomi.</div>
+            <b>Pembahasan:</b> UU Hak Cipta memberikan perlindungan otomatis pada karya yang diwujudkan dalam bentuk nyata. Langkah pertama adalah <span class="keyword">notification and takedown</span> melalui platform (sesuai UU ITE dan kebijakan platform). Jika pelanggar tidak kooperatif, creator dapat mengajukan <span class="keyword">gugatan perdata</span> ke pengadilan untuk menuntut ganti rugi atas kerugian ekonomi. Pelanggaran hak cipta juga bisa dipidana (Pasal 113), tetapi jalur perdata lebih umum untuk kasus komersialisasi tanpa izin.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Creator juga disarankan untuk <span class="keyword">mendaftarkan ciptaan</span> ke DJKI (Ditjen Kekayaan Intelektual) meskipun perlindungan otomatis ada. Sertifikat pencatatan memudahkan pembuktian di pengadilan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 21 =============================== -->
+    <div class="soal-card" id="soal21">
+        <span class="badge">HaKI <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Seorang pengusaha menemukan inovasi mesin pengupas kelapa yang lebih efisien. Ia ingin melindungi temuannya agar tidak ditiru oleh pesaing. Analisislah jenis HaKI yang paling tepat untuk melindungi inovasi ini dan jelaskan alasan teknisnya!
+        </div>
+        <div class="opsi">A. Hak Cipta, karena mesin adalah karya seni.</div>
+        <div class="opsi">B. <span class="keyword">Paten</span>, karena mesin adalah invensi (penemuan baru) di bidang teknologi yang memiliki fungsi teknis dan dapat diproduksi secara industri.</div>
+        <div class="opsi">C. Merek dagang, karena nama mesin perlu dilindungi.</div>
+        <div class="opsi">D. Desain Industri, karena bentuk mesin perlu dilindungi.</div>
+        <div class="opsi">E. Rahasia Dagang, karena lebih mudah dan murah.</div>
+        <div class="pembahasan" id="bahas21">
+            <div class="jawaban">✅ Jawaban: B. Paten, karena mesin adalah invensi di bidang teknologi dengan fungsi teknis.</div>
+            <b>Pembahasan:</b> <span class="keyword">Paten</span> diberikan untuk invensi yang baru, mengandung langkah inventif, dan dapat diterapkan dalam industri (Pasal 1 UU Paten). Mesin pengupas kelapa yang efisien memenuhi kriteria ini. Paten memberikan hak eksklusif selama 20 tahun untuk memproduksi, menggunakan, dan menjual invensi. Dibandingkan dengan rahasia dagang, paten memberikan perlindungan yang lebih kuat jika pesaing berhasil meniru (karena paten dapat dituntut), sedangkan rahasia dagang hanya efektif jika teknologi tidak terungkap.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Sebelum mengajukan paten, pengusaha harus melakukan <span class="keyword">patent search</span> untuk memastikan tidak ada paten yang sama. Biaya dan waktu pengurusan paten cukup besar, tetapi sangat penting untuk melindungi investasi R&D.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 22 =============================== -->
+    <div class="soal-card" id="soal22">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan roti menggunakan nama merek "Mekar Sari" untuk produknya. Kemudian ada perusahaan baru yang mendaftarkan merek "Mekar Sari" untuk produk yang sama tetapi dengan logo berbeda. Evaluasilah apakah pendaftaran merek baru ini diperbolehkan dan jelaskan konsekuensinya!
+        </div>
+        <div class="opsi">A. Diperbolehkan karena logo berbeda, sehingga tidak membingungkan konsumen.</div>
+        <div class="opsi">B. Tidak diperbolehkan karena <span class="keyword">persamaan pada pokoknya</span> (nama sama untuk produk sejenis) dapat menyesatkan konsumen dan melanggar hak merek yang sudah terdaftar terlebih dahulu.</div>
+        <div class="opsi">C. Diperbolehkan jika perusahaan baru mendaftar di kelas produk yang berbeda.</div>
+        <div class="opsi">D. Tidak diperbolehkan karena semua merek harus unik secara global.</div>
+        <div class="opsi">E. Diperbolehkan selama perusahaan lama tidak keberatan.</div>
+        <div class="pembahasan" id="bahas22">
+            <div class="jawaban">✅ Jawaban: B. Tidak diperbolehkan karena persamaan pada pokoknya (nama sama) untuk produk sejenis dapat menyesatkan konsumen.</div>
+            <b>Pembahasan:</b> Berdasarkan UU Merek, suatu merek tidak dapat didaftarkan jika memiliki <span class="keyword">persamaan pada pokoknya</span> atau keseluruhan dengan merek terdaftar milik pihak lain untuk barang/jasa sejenis. "Mekar Sari" adalah nama yang sama persis. Logo yang berbeda tidak menghilangkan <span class="keyword">likelihood of confusion</span> (kemungkinan konsumen keliru). Perusahaan lama dapat mengajukan <span class="keyword">gugatan pembatalan</span> merek baru. Prinsip ini adalah <span class="keyword">first-to-file</span> (siapa daftar pertama, dia yang berhak).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Pendaftaran merek dilakukan per kelas barang (Nice Classification). Jika produknya berbeda kelas (misal roti vs mesin roti), maka bisa diperbolehkan. Namun dalam kasus ini, produk sama, jadi jelas dilanggar.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 23 =============================== -->
+    <div class="soal-card" id="soal23">
+        <span class="badge">HaKI <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Seorang desainer grafis menciptakan motif batik baru yang sangat populer. Namun, ia tidak mendaftarkan HaKI. Beberapa bulan kemudian, ia melihat motifnya digunakan secara massal oleh perusahaan tekstil besar tanpa izin. Evaluasilah langkah-langkah yang dapat diambil desainer tersebut berdasarkan perlindungan hukum yang ada!
+        </div>
+        <div class="opsi">A. Tidak bisa berbuat apa-apa karena tidak mendaftar.</div>
+        <div class="opsi">B. Motif batik adalah <span class="keyword">karya seni</span> yang dilindungi Hak Cipta secara otomatis. Desainer dapat mengumpulkan bukti (tanggal publikasi, sketsa) dan mengirim <span class="keyword">somasi</span>, lalu menuntut secara perdata. Meskipun tidak terdaftar, pencipta tetap memiliki hak moral dan ekonomi.</div>
+        <div class="opsi">C. Hanya bisa meminta maaf kepada perusahaan.</div>
+        <div class="opsi">D. Harus mendaftarkan paten terlebih dahulu baru bisa menuntut.</div>
+        <div class="opsi">E. Motif batik tidak bisa dilindungi karena merupakan budaya tradisional.</div>
+        <div class="pembahasan" id="bahas23">
+            <div class="jawaban">✅ Jawaban: B. Motif batik adalah karya seni yang dilindungi Hak Cipta secara otomatis. Desainer dapat mengumpulkan bukti, somasi, dan gugatan perdata.</div>
+            <b>Pembahasan:</b> Hak Cipta lahir secara <span class="keyword">otomatis</span> setelah karya diwujudkan dalam bentuk nyata (Pasal 1 UU Hak Cipta). Meskipun pencatatan di DJKI tidak wajib, itu sangat membantu sebagai bukti awal. Desainer harus mengumpulkan <span class="keyword">bukti kepemilikan</span> (file digital, tanggal unggah, publikasi). Langkah pertama adalah <span class="keyword">somasi</span> (teguran resmi) kepada perusahaan. Jika tidak diindahkan, dapat mengajukan gugatan perdata ke pengadilan untuk mendapatkan ganti rugi dan/atau penghentian penggunaan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Jika motif batik memiliki unsur tradisional yang sudah menjadi warisan bersama, perlindungannya bisa kompleks. Namun, jika desainer menciptakan <span class="keyword">variasi baru</span> yang orisinal, ia berhak atas perlindungan sebagai ciptaan turunan atau modifikasi.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 24 =============================== -->
+    <div class="soal-card" id="soal24">
+        <span class="badge">HaKI <span class="badge-level">🔍 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah startup teknologi mengembangkan <span class="keyword">algoritma AI</span> untuk prediksi penjualan. Analisislah jenis perlindungan HaKI yang paling tepat untuk algoritma tersebut, dan jelaskan alasan mengapa paten atau hak cipta mungkin memiliki keterbatasan!
+        </div>
+        <div class="opsi">A. Perlindungan terbaik adalah <span class="keyword">Rahasia Dagang</span>, karena algoritma tidak diwajibkan untuk diungkapkan ke publik seperti paten. Hak Cipta hanya melindungi ekspresi kode, bukan idenya; Paten untuk perangkat lunak di Indonesia masih terbatas dan prosesnya rumit.</div>
+        <div class="opsi">B. Paten adalah yang terbaik karena melindungi ide algoritma.</div>
+        <div class="opsi">C. Hak Cipta adalah yang terbaik karena kode program dilindungi.</div>
+        <div class="opsi">D. Merek dagang adalah yang terbaik.</div>
+        <div class="opsi">E. Desain Industri adalah yang terbaik.</div>
+        <div class="pembahasan" id="bahas24">
+            <div class="jawaban">✅ Jawaban: A. Perlindungan terbaik adalah Rahasia Dagang, karena paten memerlukan pengungkapan dan hak cipta hanya melindungi kode, bukan logika.</div>
+            <b>Pembahasan:</b> Algoritma AI seringkali berada di "wilayah abu-abu" HaKI. <span class="keyword">Hak Cipta</span> melindungi kode sumber (source code) sebagai ekspresi tertulis, tetapi tidak melindungi ide, metode, atau logika di baliknya. <span class="keyword">Paten</span> secara teori bisa melindungi metode komputasi, tetapi di Indonesia, paten perangkat lunak sulit didapat karena harus memiliki "efek teknis" di luar komputer (misal mengontrol mesin). <span class="keyword">Rahasia Dagang</span> adalah pilihan paling praktis karena melindungi algoritma selama dirahasiakan, tanpa batas waktu, dan tidak perlu mengungkapkan detail ke publik. Namun, kerugiannya jika bocor, perlindungan hilang.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Startup biasanya menggunakan kombinasi: <span class="keyword">hak cipta</span> untuk kode, <span class="keyword">rahasia dagang</span> untuk model/data training, dan <span class="keyword">paten</span> untuk bagian yang memiliki efek teknis (jika ada).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 25 =============================== -->
+    <div class="soal-card" id="soal25">
+        <span class="badge">HaKI <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Seorang pengusaha kuliner ingin melindungi <span class="keyword">resep rahasia</span> sambal buatannya dan <span class="keyword">logo</span> warungnya. Terapkan strategi perlindungan HaKI yang tepat untuk kedua aset tersebut!
+        </div>
+        <div class="opsi">A. Resep sambal dilindungi dengan <span class="keyword">Paten</span>, logo dilindungi dengan <span class="keyword">Hak Cipta</span>.</div>
+        <div class="opsi">B. Resep sambal dilindungi dengan <span class="keyword">Rahasia Dagang</span> (resep tidak diungkap ke publik), logo dilindungi dengan <span class="keyword">Merek</span> (untuk identitas usaha dan mencegah peniruan nama/logo).</div>
+        <div class="opsi">C. Resep sambal dilindungi dengan Hak Cipta, logo dilindungi dengan Paten.</div>
+        <div class="opsi">D. Keduanya dilindungi dengan Merek.</div>
+        <div class="opsi">E. Keduanya dilindungi dengan Rahasia Dagang.</div>
+        <div class="pembahasan" id="bahas25">
+            <div class="jawaban">✅ Jawaban: B. Resep sambal dilindungi dengan Rahasia Dagang, logo dilindungi dengan Merek.</div>
+            <b>Pembahasan:</b> <span class="keyword">Resep</span> adalah informasi yang tidak diketahui umum dan memiliki nilai ekonomi, sehingga tepat dilindungi sebagai <span class="keyword">Rahasia Dagang</span> (UU Rahasia Dagang). Ini menghindari kewajiban pengungkapan seperti pada paten. <span class="keyword">Logo</span> warung berfungsi sebagai pembeda produk/jasa di pasar, sehingga harus didaftarkan sebagai <span class="keyword">Merek</span>. Pendaftaran merek memberikan hak eksklusif atas penggunaan logo dan nama usaha dalam kelas barang/jasa yang dipilih.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Rahasia Dagang tidak memiliki batas waktu, tetapi harus dijaga kerahasiaannya dengan kebijakan internal (misal NDAs dengan karyawan). Merek harus diperbarui setiap 10 tahun. Kombinasi keduanya adalah strategi perlindungan komprehensif untuk bisnis kuliner.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+            <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Lihat Hasil Selesai ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 6 — FOOTER ===== -->
+    <div class="ad-wrapper" style="margin-top:20px;">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===== HALAMAN SELESAI ===== -->
+    <div class="selesai-card" id="selesaiCard">
+        <h2>🎉 Selamat!</h2>
+        <p>Anda telah menyelesaikan <b>25 soal HOTS</b> materi <b>Pengelolaan Usaha</b>.<br />
+        Topik yang dicakup: Analisis Peluang Usaha · Proposal Usaha · Pelaporan Keuangan · HaKI.</p>
+        <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Terima kasih telah mengerjakan! 🚀')">📚 Kembali ke Awal</button>
+    </div>
+
+</div>
+<!-- /container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

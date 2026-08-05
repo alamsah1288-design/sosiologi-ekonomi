@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soal HOTS - Produksi, Kemasan, Mutu, Pemasaran & Distribusi</title>
+
+    <!-- ===== GOOGLE ADSENSE (placeholder) ===== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* --- RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #004d40 0%, #1a237e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            font-size: 1.3em;
+            color: #004d40;
+        }
+        .header p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .header .sub {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 2px;
+        }
+        .progress-bar {
+            background: #eee;
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #26a69a, #004d40);
+            height: 100%;
+            width: 4%;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+        }
+        .info-nomor {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        /* --- IKLAN (ADSENSE) --- */
+        .ad-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .ad-wrapper .ad-label {
+            font-size: 0.6em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- SOAL CARD --- */
+        .soal-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .soal-card.aktif {
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0f2f1;
+            color: #004d40;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+        .badge-level {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #1b5e20;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .pertanyaan {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .keyword {
+            font-weight: bold;
+            font-style: italic;
+            color: #00695c;
+        }
+        .keyword2 {
+            font-weight: bold;
+            color: #c62828;
+        }
+        .opsi {
+            display: block;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8f9ff;
+            border: 2px solid #e0e0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            line-height: 1.5;
+            font-size: 0.96em;
+        }
+        .opsi:hover {
+            background: #e0f2f1;
+            border-color: #26a69a;
+            transform: translateX(5px);
+        }
+        .pembahasan {
+            display: none;
+            margin-top: 18px;
+            background: #e8f5e9;
+            border-left: 6px solid #2e7d32;
+            border-radius: 8px;
+            padding: 18px 22px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+        .pembahasan .jawaban {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+        .pembahasan .deep-note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fff3e0;
+            border-left: 4px solid #e65100;
+            border-radius: 6px;
+            font-size: 0.94em;
+            color: #4e342e;
+        }
+
+        /* --- TOMBOL --- */
+        .tombol-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.93em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-bahas {
+            background: #2e7d32;
+            color: #fff;
+        }
+        .btn-bahas:hover {
+            background: #1b5e20;
+        }
+        .btn-next {
+            background: #004d40;
+            color: #fff;
+            margin-left: auto;
+        }
+        .btn-next:hover {
+            background: #00695c;
+        }
+        .btn-prev {
+            background: #eceff1;
+            color: #37474f;
+        }
+        .btn-prev:hover {
+            background: #cfd8dc;
+        }
+        .btn-final {
+            background: linear-gradient(90deg, #f57f17, #e65100);
+            color: #fff;
+            margin-left: auto;
+            display: none;
+            font-size: 1em;
+        }
+        .btn-final:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- SELESAI --- */
+        .selesai-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .selesai-card h2 {
+            color: #004d40;
+            margin-bottom: 15px;
+        }
+        .selesai-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .soal-card {
+                padding: 18px 16px;
+            }
+            .pertanyaan {
+                font-size: 0.98em;
+            }
+            .opsi {
+                font-size: 0.92em;
+                padding: 10px 14px;
+            }
+            .tombol-group button {
+                font-size: 0.85em;
+                padding: 10px 16px;
+            }
+            .header h1 {
+                font-size: 1.1em;
+            }
+            .ad-wrapper {
+                padding: 8px 10px;
+                min-height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>🏭 Soal HOTS — Produksi, Kemasan, Mutu, Pemasaran &amp; Distribusi</h1>
+        <p><b>Materi:</b> Proses Produksi · Pengemasan · Quality Assurance · Pemasaran · Distribusi</p>
+        <p class="sub">⚡ Level Kognitif: C3 (Menerapkan) · C4 (Menganalisis) · C5 (Mengevaluasi)</p>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- ===== IKLAN 1 — TOP ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <div class="info-nomor" id="infoNomor">Soal 1 dari 25</div>
+
+    <!-- ============================================================ -->
+    <!-- ================== SUB-ELEMEN: PROSES PRODUKSI (1-5) ======== -->
+    <!-- ===================== SOAL 1 ================================ -->
+    <div class="soal-card aktif" id="soal1">
+        <span class="badge">Proses Produksi <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan mebel menerapkan sistem produksi <span class="keyword">make-to-order</span> untuk furnitur kayu ukir, dan <span class="keyword">make-to-stock</span> untuk kursi plastik sederhana. Terapkan strategi yang paling tepat untuk menentukan <span class="keyword">kapasitas produksi</span> harian jika diketahui: permintaan kursi plastik rata-rata 200 unit/hari, waktu siklus 2 menit/unit, dan jam kerja efektif 7 jam/hari.
+        </div>
+        <div class="opsi">A. Kapasitas produksi kursi plastik = 210 unit/hari, cukup untuk memenuhi permintaan dengan sedikit buffer.</div>
+        <div class="opsi">B. Kapasitas produksi kursi plastik = 180 unit/hari, karena harus memberi ruang untuk pesanan kayu ukir.</div>
+        <div class="opsi">C. Kapasitas produksi kursi plastik = 250 unit/hari, menggunakan lembur 1 jam.</div>
+        <div class="opsi">D. Kapasitas produksi kursi plastik = 420 unit/hari (hitung 7×60/2=210), tetapi perlu buffer 10% karena faktor hambatan.</div>
+        <div class="opsi">E. Tidak perlu menghitung kapasitas karena produksi dapat disesuaikan setiap hari.</div>
+        <div class="pembahasan" id="bahas1">
+            <div class="jawaban">✅ Jawaban: D. Kapasitas produksi kursi plastik = 210 unit/hari (hitung 7×60/2=210), tetapi perlu buffer 10% karena faktor hambatan.</div>
+            <b>Pembahasan:</b> Kapasitas teoritis = (Jam kerja × 60) / Waktu siklus = (7 × 60) / 2 = 210 unit/hari. Namun, dalam praktiknya, perlu mempertimbangkan <span class="keyword">efisiensi</span> (mesin rusak, istirahat, material delay) sehingga kapasitas efektif biasanya dikalikan faktor efisiensi (misal 90%). Make-to-stock membutuhkan buffer untuk mengantisipasi lonjakan permintaan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Perhitungan kapasitas adalah dasar <span class="keyword">production planning</span>. Make-to-order lebih fleksibel terhadap variasi produk, sedangkan make-to-stock menuntut stabilitas dan prediksi permintaan yang akurat untuk menghindari overstock atau stockout.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-bahas" onclick="toggleBahas(1)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(1)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 2 ================================ -->
+    <div class="soal-card" id="soal2">
+        <span class="badge">Proses Produksi <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik garmen memiliki 3 stasiun kerja: (1) Pemotongan (kapasitas 100 potong/jam), (2) Penjahitan (80 potong/jam), (3) Finishing (120 potong/jam). Analisislah <span class="keyword">bottleneck</span> (hambatan) dalam proses produksi ini dan tentukan kapasitas maksimum sistem per jam!
+        </div>
+        <div class="opsi">A. Stasiun Finishing adalah bottleneck, kapasitas sistem = 120 potong/jam.</div>
+        <div class="opsi">B. Stasiun Penjahitan adalah bottleneck, kapasitas sistem = 80 potong/jam.</div>
+        <div class="opsi">C. Stasiun Pemotongan adalah bottleneck, kapasitas sistem = 100 potong/jam.</div>
+        <div class="opsi">D. Tidak ada bottleneck karena kapasitas seimbang.</div>
+        <div class="opsi">E. Kapasitas sistem adalah rata-rata ketiganya = 100 potong/jam.</div>
+        <div class="pembahasan" id="bahas2">
+            <div class="jawaban">✅ Jawaban: B. Stasiun Penjahitan adalah bottleneck, kapasitas sistem = 80 potong/jam.</div>
+            <b>Pembahasan:</b> <span class="keyword">Bottleneck</span> adalah stasiun dengan kapasitas terkecil yang membatasi aliran keseluruhan. Penjahitan (80) lebih lambat dari Pemotongan (100) dan Finishing (120), sehingga sistem hanya dapat memproduksi 80 unit/jam. Untuk meningkatkan output, harus ditambahkan kapasitas pada stasiun penjahitan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam <span class="keyword">Theory of Constraints (TOC)</span>, mengidentifikasi bottleneck adalah langkah pertama untuk meningkatkan produktivitas. Investasi atau perbaikan harus difokuskan pada bottleneck, bukan pada stasiun yang sudah cepat.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(2)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(2)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(2)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 3 ================================ -->
+    <div class="soal-card" id="soal3">
+        <span class="badge">Proses Produksi <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Perusahaan roti memproduksi 3 varian: Roti Tawar (A), Roti Manis (B), dan Roti Gandum (C). Waktu produksi per unit: A=5 menit, B=8 menit, C=10 menit. Kapasitas mesin oven 600 menit/hari. Jika permintaan harian A=50, B=30, C=20 unit, terapkan <span class="keyword">penjadwalan produksi</span> yang tepat agar semua permintaan terpenuhi dalam kapasitas yang tersedia!
+        </div>
+        <div class="opsi">A. Total waktu = 50×5 + 30×8 + 20×10 = 690 menit > 600, maka tidak mungkin memenuhi semua permintaan; perlu lembur 90 menit.</div>
+        <div class="opsi">B. Total waktu = 50×5 + 30×8 + 20×10 = 690 menit, tetapi masih bisa karena oven bisa dipakai bergantian.</div>
+        <div class="opsi">C. Total waktu = 250 + 240 + 200 = 690 menit, cukup karena kurang dari 720 menit (12 jam).</div>
+        <div class="opsi">D. Total waktu = 500 menit, masih di bawah kapasitas.</div>
+        <div class="opsi">E. Tidak perlu penjadwalan, cukup produksi sesuai pesanan masuk.</div>
+        <div class="pembahasan" id="bahas3">
+            <div class="jawaban">✅ Jawaban: A. Total waktu = 50×5 + 30×8 + 20×10 = 690 menit > 600, maka tidak mungkin memenuhi semua permintaan; perlu lembur 90 menit.</div>
+            <b>Pembahasan:</b> Total kebutuhan waktu = (50×5) + (30×8) + (20×10) = 250 + 240 + 200 = 690 menit. Kapasitas 600 menit, sehingga terjadi <span class="keyword">overcapacity</span> sebesar 90 menit. Solusi: menambah jam lembur, menurunkan permintaan, atau meningkatkan efisiensi oven (misal mengurangi waktu setup).
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Aggregate Planning</span> diperlukan untuk menyeimbangkan kapasitas dan permintaan. Keputusan seperti lembur, subkontrak, atau persediaan pengaman harus diambil berdasarkan analisis biaya.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(3)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(3)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(3)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 4 ================================ -->
+    <div class="soal-card" id="soal4">
+        <span class="badge">Proses Produksi <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik keramik membandingkan 2 mesin: Mesin Manual (harga Rp 50 juta, biaya variabel Rp 5.000/unit) dan Mesin Otomatis (Rp 150 juta, biaya variabel Rp 2.000/unit). Analisislah pada volume produksi berapa kedua mesin memiliki biaya total yang sama (<span class="keyword">break-even point mesin</span>)!
+        </div>
+        <div class="opsi">A. 20.000 unit</div>
+        <div class="opsi">B. 25.000 unit</div>
+        <div class="opsi">C. 33.333 unit</div>
+        <div class="opsi">D. 50.000 unit</div>
+        <div class="opsi">E. 100.000 unit</div>
+        <div class="pembahasan" id="bahas4">
+            <div class="jawaban">✅ Jawaban: C. 33.333 unit</div>
+            <b>Pembahasan:</b> Biaya total mesin manual = 50.000.000 + (5.000 × Q). Biaya total mesin otomatis = 150.000.000 + (2.000 × Q). Titik impas: 50.000.000 + 5.000Q = 150.000.000 + 2.000Q → 3.000Q = 100.000.000 → Q = 33.333 unit. Jika produksi di bawah 33.333 unit, mesin manual lebih murah; jika di atas, mesin otomatis lebih ekonomis.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Analisis ini adalah <span class="keyword">trade-off</span> antara biaya tetap tinggi (otomatis) dan biaya variabel rendah. Keputusan investasi mesin harus mempertimbangkan proyeksi volume produksi jangka panjang.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(4)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(4)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(4)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 5 ================================ -->
+    <div class="soal-card" id="soal5">
+        <span class="badge">Proses Produksi <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan otomotif menerapkan <span class="keyword">lean manufacturing</span> dan <span class="keyword">just-in-time</span> (JIT) untuk mengurangi pemborosan. Terapkan salah satu prinsip JIT yang paling tepat untuk mengatasi masalah <span class="keyword">overproduction</span> (produksi berlebih) di lantai produksi!
+        </div>
+        <div class="opsi">A. Meningkatkan kecepatan konveyor agar produksi lebih cepat.</div>
+        <div class="opsi">B. Menerapkan sistem <span class="keyword">Kanban</span> (penarikan) yang memproduksi barang hanya berdasarkan permintaan aktual dari stasiun berikutnya.</div>
+        <div class="opsi">C. Menambah jumlah tenaga kerja di setiap stasiun.</div>
+        <div class="opsi">D. Memperbesar kapasitas gudang penyimpanan bahan baku.</div>
+        <div class="opsi">E. Memproduksi semua varian produk secara bersamaan.</div>
+        <div class="pembahasan" id="bahas5">
+            <div class="jawaban">✅ Jawaban: B. Menerapkan sistem <span class="keyword">Kanban</span> (penarikan) yang memproduksi barang hanya berdasarkan permintaan aktual dari stasiun berikutnya.</div>
+            <b>Pembahasan:</b> Overproduction adalah pemborosan terbesar dalam lean. Sistem Kanban adalah metode <span class="keyword">pull system</span> di mana produksi hanya dilakukan jika ada sinyal (kartu/kanban) dari proses hilir. Ini mencegah akumulasi work-in-progress (WIP) dan memastikan aliran tepat sesuai kebutuhan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Prinsip JIT juga mencakup <span class="keyword">continuous improvement (kaizen)</span> dan <span class="keyword">jidoka</span> (otomatisasi dengan sentuhan manusia). Tujuan akhir adalah mengurangi lead time dan biaya produksi.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(5)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(5)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(5)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 2 — MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ============= SUB-ELEMEN: PENGEMASAN PRODUK (6-10) ========== -->
+    <!-- ===================== SOAL 6 ================================ -->
+    <div class="soal-card" id="soal6">
+        <span class="badge">Pengemasan Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah produk makanan beku (bakso) akan dikemas untuk didistribusikan ke supermarket. Terapkan jenis material kemasan yang paling tepat untuk melindungi produk dari <span class="keyword">suhu fluktuatif</span> dan <span class="keyword">kontaminasi fisik</span> selama perjalanan!
+        </div>
+        <div class="opsi">A. Kantong plastik tipis transparan.</div>
+        <div class="opsi">B. Karton bergelombang (corrugated) dengan lapisan busa polistiren (styrofoam) di dalamnya.</div>
+        <div class="opsi">C. Kemasan vakum (plastic shrink) saja tanpa pelindung luar.</div>
+        <div class="opsi">D. Stoples kaca dengan tutup ulir.</div>
+        <div class="opsi">E. Kertas minyak yang dibungkus rapat.</div>
+        <div class="pembahasan" id="bahas6">
+            <div class="jawaban">✅ Jawaban: B. Karton bergelombang (corrugated) dengan lapisan busa polistiren (styrofoam) di dalamnya.</div>
+            <b>Pembahasan:</b> Produk beku membutuhkan <span class="keyword">insulasi termal</span> untuk menjaga suhu dan <span class="keyword">pelindung fisik</span> terhadap benturan. Kombinasi karton bergelombang (struktur kuat) dan busa polistiren (isolator) memberikan perlindungan ganda. Kantong plastik atau kertas tidak memberikan isolasi dan perlindungan benturan yang memadai.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Selain material, pertimbangan lain untuk kemasan beku adalah <span class="keyword">barrier uap air</span> dan <span class="keyword">ketahanan terhadap pembekuan</span>. Kemasan yang tepat memperpanjang umur simpan produk (shelf life).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(6)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(6)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(6)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 7 ================================ -->
+    <div class="soal-card" id="soal7">
+        <span class="badge">Pengemasan Produk <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah brand kosmetik ingin mengganti kemasan botol plastik PET dengan kemasan <span class="keyword">ramah lingkungan</span> berbahan dasar bambu dan kertas daur ulang. Analisislah tantangan utama yang harus dihadapi dalam peralihan kemasan ini dari sisi <span class="keyword">fungsi proteksi</span> produk (krim wajah)!
+        </div>
+        <div class="opsi">A. Kemasan bambu tidak menarik secara visual.</div>
+        <div class="opsi">B. Bahan bambu dan kertas kurang kedap terhadap oksigen dan kelembaban, sehingga dapat mengurangi stabilitas dan umur simpan krim.</div>
+        <div class="opsi">C. Harga kemasan bambu lebih murah sehingga menguntungkan.</div>
+        <div class="opsi">D. Kertas daur ulang lebih kuat dari plastik.</div>
+        <div class="opsi">E. Tidak ada tantangan, semua kemasan ramah lingkungan pasti lebih baik.</div>
+        <div class="pembahasan" id="bahas7">
+            <div class="jawaban">✅ Jawaban: B. Bahan bambu dan kertas kurang kedap terhadap oksigen dan kelembaban, sehingga dapat mengurangi stabilitas dan umur simpan krim.</div>
+            <b>Pembahasan:</b> Kemasan kosmetik harus melindungi dari <span class="keyword">oksidasi</span> dan <span class="keyword">kontaminasi mikroba</span> yang diperparah oleh kelembaban. Plastik dan kaca memiliki barrier yang baik, sedangkan bambu/kertas bersifat <span class="keyword">porous</span> (berpori). Peralihan ke bahan ramah lingkungan membutuhkan inovasi lapisan (coating) biodegradable atau desain kemasan sekunder (inner container) yang tetap melindungi produk.
+            <div class="deep-note">📌 <b>Pendalaman:</b> <span class="keyword">Sustainable packaging</span> adalah tren, tetapi harus menyeimbangkan antara fungsi proteksi, estetika, dan dampak lingkungan. Material bioplastik atau kaca daur ulang sering menjadi solusi tengah.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(7)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(7)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(7)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 8 ================================ -->
+    <div class="soal-card" id="soal8">
+        <span class="badge">Pengemasan Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah produk keripik singkong dikemas dalam kemasan standing pouch dengan gas nitrogen. Tujuan utama pengisian gas nitrogen dalam kemasan adalah untuk <span class="keyword">menggantikan oksigen</span> yang ada. Terapkan alasan ilmiah mengapa langkah ini penting untuk menjaga kualitas keripik!
+        </div>
+        <div class="opsi">A. Nitrogen membuat kemasan terlihat lebih besar dan menarik.</div>
+        <div class="opsi">B. Nitrogen bereaksi dengan minyak pada keripik sehingga menjadi lebih gurih.</div>
+        <div class="opsi">C. Nitrogen mencegah oksidasi lemak (ketengikan) dan menghambat pertumbuhan mikroba aerob.</div>
+        <div class="opsi">D. Nitrogen membuat keripik menjadi lebih renyah secara kimiawi.</div>
+        <div class="opsi">E. Nitrogen berfungsi sebagai pengawet kimia seperti MSG.</div>
+        <div class="pembahasan" id="bahas8">
+            <div class="jawaban">✅ Jawaban: C. Nitrogen mencegah oksidasi lemak (ketengikan) dan menghambat pertumbuhan mikroba aerob.</div>
+            <b>Pembahasan:</b> Oksigen adalah penyebab utama <span class="keyword">oksidasi lemak</span> (ketengikan) dan pertumbuhan <span class="keyword">mikroba aerob</span> (jamur/bakteri yang membutuhkan oksigen). Gas nitrogen adalah gas inert yang menggantikan oksigen dalam ruang kemasan, sehingga memperlambat reaksi kimia dan biologis yang merusak produk. Ini adalah aplikasi <span class="keyword">modified atmosphere packaging (MAP)</span>.
+            <div class="deep-note">📌 <b>Pendalaman:</b> MAP juga sering menggunakan CO2 atau campuran gas spesifik. Untuk keripik, nitrogen adalah pilihan utama karena tidak bereaksi dengan produk dan murah.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(8)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(8)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(8)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 9 ================================ -->
+    <div class="soal-card" id="soal9">
+        <span class="badge">Pengemasan Produk <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Perusahaan minuman ringan mengemas produknya dalam botol PET 600ml dan juga kaleng aluminium 330ml. Analisislah keunggulan kompetitif botol PET dibandingkan kaleng aluminium dari sisi <span class="keyword">biaya logistik</span> dan <span class="keyword">persepsi konsumen</span> di pasar Indonesia!
+        </div>
+        <div class="opsi">A. Botol PET lebih berat sehingga biaya kirim lebih mahal, tetapi terkesan mewah.</div>
+        <div class="opsi">B. Botol PET lebih ringan (mengurangi biaya transportasi), tahan benturan, dan transparan sehingga konsumen dapat melihat produk, tetapi kurang tahan terhadap suhu ekstrem dibanding kaleng.</div>
+        <div class="opsi">C. Kaleng lebih ringan dari PET, sehingga lebih unggul dalam logistik.</div>
+        <div class="opsi">D. PET tidak bisa didaur ulang, sedangkan kaleng bisa, sehingga konsumen lebih suka kaleng.</div>
+        <div class="opsi">E. Keduanya sama, tidak ada perbedaan signifikan.</div>
+        <div class="pembahasan" id="bahas9">
+            <div class="jawaban">✅ Jawaban: B. Botol PET lebih ringan (mengurangi biaya transportasi), tahan benturan, dan transparan sehingga konsumen dapat melihat produk, tetapi kurang tahan terhadap suhu ekstrem dibanding kaleng.</div>
+            <b>Pembahasan:</b> PET jauh lebih ringan daripada kaca dan relatif tahan pecah. Transparansi PET memungkinkan visualisasi produk (daya tarik konsumen). Namun, PET memiliki <span class="keyword">thermal resistance</span> yang lebih rendah (rentan meleleh jika terkena panas tinggi) dibanding kaleng. Kaleng lebih baik untuk preservasi rasa (tidak tembus cahaya) dan tahan tekanan, tetapi lebih berat dan tidak transparan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Dalam logistik, <span class="keyword">biaya per unit volume</span> sangat dipengaruhi oleh berat dan dimensi. PET sering dipilih untuk produk sekali pakai karena efisiensi biaya dan kemampuan cetak label yang baik.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(9)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(9)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(9)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 10 =============================== -->
+    <div class="soal-card" id="soal10">
+        <span class="badge">Pengemasan Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah UMKM makanan ringan ingin mendesain label kemasan yang menarik dan informatif. Terapkan urutan prioritas informasi yang wajib dicantumkan berdasarkan regulasi label pangan di Indonesia (BPOM)!
+        </div>
+        <div class="opsi">A. Nama produk, harga, alamat toko.</div>
+        <div class="opsi">B. Nama produk, komposisi, tanggal kadaluarsa, nomor BPOM, nilai gizi, dan alamat produsen.</div>
+        <div class="opsi">C. Nama produk, desain warna, dan logo brand.</div>
+        <div class="opsi">D. Hanya nama produk dan gambar makanan.</div>
+        <div class="opsi">E. Komposisi, cara penyimpanan, dan resep masakan.</div>
+        <div class="pembahasan" id="bahas10">
+            <div class="jawaban">✅ Jawaban: B. Nama produk, komposisi, tanggal kadaluarsa, nomor BPOM, nilai gizi, dan alamat produsen.</div>
+            <b>Pembahasan:</b> Berdasarkan Peraturan BPOM, label pangan wajib mencantumkan: <span class="keyword">Nama produk</span>, <span class="keyword">Daftar bahan/komposisi</span>, <span class="keyword">Berat bersih</span>, <span class="keyword">Nama dan alamat produsen</span>, <span class="keyword">Tanggal kadaluwarsa</span>, <span class="keyword">Nomor izin edar (MD/PIRT)</span>, dan <span class="keyword">Informasi nilai gizi</span>. Informasi ini adalah hak konsumen dan kepatuhan hukum.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Selain regulasi, label juga berfungsi sebagai <span class="keyword">media komunikasi pemasaran</span>. Informasi halal dan klaim kesehatan (jika ada) juga harus sesuai dengan ketentuan agar tidak menyesatkan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(10)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(10)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(10)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 3 — MID-BOTTOM ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ======== SUB-ELEMEN: PENGENDALIAN MUTU (QA) (11-15) ======== -->
+    <!-- ===================== SOAL 11 =============================== -->
+    <div class="soal-card" id="soal11">
+        <span class="badge">Pengendalian Mutu <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik sepatu mengalami peningkatan cacat produk (sol terlepas) dari 2% menjadi 8% dalam sebulan. Tim QA membuat diagram <span class="keyword">fishbone (Ishikawa)</span> untuk menganalisis penyebab. Analisislah kategori utama yang paling mungkin menjadi akar masalah pada kasus ini!
+        </div>
+        <div class="opsi">A. Hanya faktor mesin (press machine rusak).</div>
+        <div class="opsi">B. Faktor manusia (operator kurang terlatih), material (lem berkurang kualitas), mesin (tekanan tidak stabil), dan metode (suhu pengeringan berubah).</div>
+        <div class="opsi">C. Faktor lingkungan (cuaca) saja.</div>
+        <div class="opsi">D. Faktor biaya produksi yang ditekan.</div>
+        <div class="opsi">E. Faktor desain produk yang berubah.</div>
+        <div class="pembahasan" id="bahas11">
+            <div class="jawaban">✅ Jawaban: B. Faktor manusia (operator kurang terlatih), material (lem berkurang kualitas), mesin (tekanan tidak stabil), dan metode (suhu pengeringan berubah).</div>
+            <b>Pembahasan:</b> Diagram Ishikawa (tulang ikan) mengkategorikan penyebab masalah ke dalam 6M: <span class="keyword">Man (manusia)</span>, <span class="keyword">Machine (mesin)</span>, <span class="keyword">Material (bahan)</span>, <span class="keyword">Method (metode)</span>, <span class="keyword">Measurement (pengukuran)</span>, dan <span class="keyword">Environment (lingkungan)</span>. Karena sol terlepas adalah masalah kualitas perekatan, kemungkinan besar melibatkan material (lem), mesin (tekanan/suhu), dan metode (waktu curing). Analisis komprehensif diperlukan.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Setelah identifikasi akar masalah, gunakan <span class="keyword">5 Whys</span> untuk menggali lebih dalam, misalnya "Mengapa lem berkurang kualitas?" → "Karena supplier mengganti bahan baku tanpa pemberitahuan".</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(11)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(11)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(11)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 12 =============================== -->
+    <div class="soal-card" id="soal12">
+        <span class="badge">Pengendalian Mutu <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah pabrik menghasilkan 5.000 unit produk per hari. Inspeksi 100% tidak memungkinkan karena memakan waktu. Terapkan metode <span class="keyword">sampling penerimaan</span> (acceptance sampling) dengan AQL (Acceptable Quality Level) 1,5% dan ukuran sampel 125 unit. Jika ditemukan 3 unit cacat dalam sampel, apakah lot produksi diterima atau ditolak?
+        </div>
+        <div class="opsi">A. Diterima, karena 3 < 1,5% dari 125 (1,875).</div>
+        <div class="opsi">B. Ditolak, karena 3 > 1,5% dari 125 (1,875).</div>
+        <div class="opsi">C. Diterima, karena 3 unit cacat masih wajar.</div>
+        <div class="opsi">D. Ditolak, karena berapapun cacat harus nol.</div>
+        <div class="opsi">E. Tidak bisa ditentukan karena AQL harus 0%.</div>
+        <div class="pembahasan" id="bahas12">
+            <div class="jawaban">✅ Jawaban: B. Ditolak, karena 3 > 1,5% dari 125 (1,875).</div>
+            <b>Pembahasan:</b> AQL 1,5% berarti tingkat kecacatan maksimum yang masih dapat diterima adalah 1,5% dari sampel. Untuk sampel 125, batas penerimaan = 125 × 1,5% = 1,875. Karena ditemukan 3 unit cacat (lebih dari 1,875), lot produksi <span class="keyword">ditolak</span> dan harus dilakukan perbaikan atau sortir ulang.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Acceptance sampling adalah bagian dari <span class="keyword">Statistical Quality Control (SQC)</span>. Keputusan menerima/menolak lot berdasarkan probabilitas risiko bagi produsen dan konsumen.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(12)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(12)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(12)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 13 =============================== -->
+    <div class="soal-card" id="soal13">
+        <span class="badge">Pengendalian Mutu <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Dalam proses produksi makanan kaleng, titik kendali mutu (Critical Control Point - CCP) ditetapkan pada proses <span class="keyword">sterilisasi</span> (suhu 121°C selama 15 menit). Analisislah konsekuensi jika suhu sterilisasi turun menjadi 115°C selama 15 menit!
+        </div>
+        <div class="opsi">A. Tidak berpengaruh, karena selisih 6°C masih aman.</div>
+        <div class="opsi">B. Risiko bakteri <span class="keyword">Clostridium botulinum</span> tidak mati sempurna, menyebabkan produk beracun (botulisme) dan membahayakan konsumen.</div>
+        <div class="opsi">C. Rasa kaleng menjadi lebih enak karena suhu lebih rendah.</div>
+        <div class="opsi">D. Hanya mempengaruhi warna makanan, bukan keamanan.</div>
+        <div class="opsi">E. Proses sterilisasi menjadi lebih cepat.</div>
+        <div class="pembahasan" id="bahas13">
+            <div class="jawaban">✅ Jawaban: B. Risiko bakteri <span class="keyword">Clostridium botulinum</span> tidak mati sempurna, menyebabkan produk beracun (botulisme) dan membahayakan konsumen.</div>
+            <b>Pembahasan:</b> CCP pada sterilisasi didasarkan pada <span class="keyword">proses termal</span> untuk membunuh spora bakteri patogen, terutama C. botulinum yang menghasilkan racun mematikan. Suhu 121°C adalah standar (12D process) untuk memastikan reduksi logaritmik yang cukup. Penurunan suhu secara signifikan (115°C) tidak mencapai <span class="keyword">lethal rate</span> yang diperlukan, sehingga produk tidak aman.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Sistem <span class="keyword">HACCP (Hazard Analysis Critical Control Point)</span> mewajibkan pemantauan suhu secara real-time. Jika terjadi deviasi, produk harus ditahan dan dievaluasi, tidak boleh diedarkan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(13)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(13)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(13)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 14 =============================== -->
+    <div class="soal-card" id="soal14">
+        <span class="badge">Pengendalian Mutu <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan farmasi menetapkan spesifikasi berat tablet adalah 500 mg ± 10 mg. Hasil sampling menunjukkan rata-rata berat tablet = 502 mg dengan standar deviasi = 4 mg. Terapkan konsep <span class="keyword">kapabilitas proses (Cp)</span> untuk menilai apakah proses ini mampu memenuhi spesifikasi!
+        </div>
+        <div class="opsi">A. Cp = 0,83 (proses tidak mampu, karena < 1).</div>
+        <div class="opsi">B. Cp = 1,0 (proses cukup mampu).</div>
+        <div class="opsi">C. Cp = 1,25 (proses sangat mampu).</div>
+        <div class="opsi">D. Cp = 0,5 (proses sangat buruk).</div>
+        <div class="opsi">E. Cp = 2,0 (proses sangat baik).</div>
+        <div class="pembahasan" id="bahas14">
+            <div class="jawaban">✅ Jawaban: A. Cp = 0,83 (proses tidak mampu, karena < 1).</div>
+            <b>Pembahasan:</b> Rumus Cp = (USL – LSL) / (6σ). USL = 510, LSL = 490, σ = 4. Cp = (510 – 490) / (6×4) = 20 / 24 = 0,83. Nilai Cp < 1 menunjukkan bahwa variasi proses lebih lebar daripada toleransi spesifikasi, sehingga proses <span class="keyword">tidak mampu</span> memproduksi dalam batas spesifikasi secara konsisten. Perlu perbaikan (reduksi variasi).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Cp yang ideal adalah ≥ 1,33 (proses capable). Jika Cp < 1, perusahaan harus memperbaiki mesin, meningkatkan akurasi, atau memperlonggar spesifikasi (jika memungkinkan).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(14)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(14)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(14)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 15 =============================== -->
+    <div class="soal-card" id="soal15">
+        <span class="badge">Pengendalian Mutu <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah tim QA menggunakan diagram <span class="keyword">Pareto</span> untuk mengklasifikasikan jenis cacat produk elektronik. Data menunjukkan: 45% cacat layar retak, 25% tombol tidak berfungsi, 20% baterai cepat habis, 10% casing rusak. Analisislah prioritas perbaikan yang harus dilakukan berdasarkan prinsip Pareto (80/20)!
+        </div>
+        <div class="opsi">A. Fokus memperbaiki casing karena paling mudah.</div>
+        <div class="opsi">B. Fokus memperbaiki layar retak dan tombol (total 70%), karena dua masalah ini menyumbang sebagian besar cacat.</div>
+        <div class="opsi">C. Fokus pada baterai karena kritis untuk fungsi.</div>
+        <div class="opsi">D. Perbaiki semua jenis cacat secara bersamaan.</div>
+        <div class="opsi">E. Fokus pada cacat tombol karena paling mengganggu pengguna.</div>
+        <div class="pembahasan" id="bahas15">
+            <div class="jawaban">✅ Jawaban: B. Fokus memperbaiki layar retak dan tombol (total 70%), karena dua masalah ini menyumbang sebagian besar cacat.</div>
+            <b>Pembahasan:</b> Prinsip Pareto (80/20) menyatakan bahwa 80% efek berasal dari 20% penyebab. Dalam kasus ini, 45% (layar) + 25% (tombol) = 70%. Dengan memperbaiki dua sumber utama ini, tim dapat mengurangi sebagian besar cacat secara signifikan dengan sumber daya yang efisien. Layar retak harus diinvestigasi (material, handling), dan tombol (kualitas switch/assembly).
+            <div class="deep-note">📌 <b>Pendalaman:</b> Diagram Pareto adalah alat <span class="keyword">prioritasi</span>. Setelah fokus pada prioritas, tim dapat melanjutkan ke penyebab berikutnya (baterai, casing) untuk perbaikan berkelanjutan (continuous improvement).</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(15)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(15)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(15)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 4 — BOTTOM-MID ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ============== SUB-ELEMEN: PEMASARAN PRODUK (16-20) ========= -->
+    <!-- ===================== SOAL 16 =============================== -->
+    <div class="soal-card" id="soal16">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah brand minuman kesehatan meluncurkan kampanye digital dengan biaya Rp 50 juta dan menghasilkan 10.000 pelanggan baru. Sementara itu, kampanye media konvensional (TV) biaya Rp 200 juta menghasilkan 15.000 pelanggan baru. Evaluasilah efektivitas kedua strategi tersebut menggunakan metrik <span class="keyword">Customer Acquisition Cost (CAC)</span> dan berikan rekomendasi!
+        </div>
+        <div class="opsi">A. CAC Digital = Rp 5.000, CAC TV = Rp 13.333. Digital lebih efektif dan efisien, fokuskan anggaran pada digital.</div>
+        <div class="opsi">B. CAC TV = Rp 10.000, lebih baik dari digital, fokus pada TV.</div>
+        <div class="opsi">C. Kedua CAC sama, tidak ada perbedaan.</div>
+        <div class="opsi">D. Digital CAC = Rp 10.000, TV CAC = Rp 5.000, TV lebih baik.</div>
+        <div class="opsi">E. Tidak bisa dievaluasi karena biaya berbeda.</div>
+        <div class="pembahasan" id="bahas16">
+            <div class="jawaban">✅ Jawaban: A. CAC Digital = Rp 5.000, CAC TV = Rp 13.333. Digital lebih efektif dan efisien, fokuskan anggaran pada digital.</div>
+            <b>Pembahasan:</b> CAC = Total Biaya Kampanye / Jumlah Pelanggan Baru. Digital: 50.000.000 / 10.000 = Rp 5.000. TV: 200.000.000 / 15.000 = Rp 13.333. CAC digital jauh lebih rendah, artinya setiap pelanggan baru didapat dengan biaya lebih murah. Meskipun TV menjangkau lebih banyak orang (dalam nominal), efisiensi biaya digital lebih unggul. Rekomendasi: alokasikan lebih banyak anggaran ke digital, atau kombinasikan dengan TV untuk jangkauan massal jika budget memungkinkan, tetapi evaluasi terus ROI.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Selain CAC, metrik lain seperti <span class="keyword">Lifetime Value (LTV)</span> juga penting. Jika pelanggan TV memiliki LTV lebih tinggi (misal loyal), maka perlu dipertimbangkan secara strategis. Namun secara efisiensi akuisisi, digital menang.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(16)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(16)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(16)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 17 =============================== -->
+    <div class="soal-card" id="soal17">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah startup teknologi meluncurkan aplikasi baru. Mereka menggunakan strategi <span class="keyword">price skimming</span> (harga tinggi awal) dan kemudian <span class="keyword">penetration pricing</span> (harga rendah) setelah 6 bulan. Evaluasilah kelemahan utama dari strategi penetrasi harga (harga rendah) yang diterapkan pada tahap kedua terhadap persepsi kualitas konsumen!
+        </div>
+        <div class="opsi">A. Harga rendah pasti meningkatkan volume penjualan tanpa efek samping.</div>
+        <div class="opsi">B. Harga rendah dapat menurunkan persepsi kualitas dan eksklusivitas aplikasi, karena konsumen mengasosiasikan harga dengan nilai (price-quality heuristic).</div>
+        <div class="opsi">C. Harga rendah menyebabkan biaya produksi naik.</div>
+        <div class="opsi">D. Strategi ini hanya berlaku untuk produk fisik, bukan digital.</div>
+        <div class="opsi">E. Tidak ada kelemahan, semua startup harus menggunakan penetration pricing.</div>
+        <div class="pembahasan" id="bahas17">
+            <div class="jawaban">✅ Jawaban: B. Harga rendah dapat menurunkan persepsi kualitas dan eksklusivitas aplikasi, karena konsumen mengasosiasikan harga dengan nilai (price-quality heuristic).</div>
+            <b>Pembahasan:</b> Price skimming membangun persepsi <span class="keyword">premium</span>. Ketika tiba-tiba harga turun drastis (penetrasi), konsumen awal mungkin merasa "ditipu" atau menganggap aplikasi kehilangan nilai. Selain itu, konsumen baru mungkin berpikir "mengapa murah? mungkin kualitasnya rendah" (<span class="keyword">price-quality heuristic</span>). Risiko ini harus dimitigasi dengan komunikasi yang jelas (misal: "spesial launching" atau "fokus pada pasar massal").
+            <div class="deep-note">📌 <b>Pendalaman:</b> Strategi yang lebih aman adalah <span class="keyword">skimming bertahap</span> (menurunkan harga secara perlahan) atau membedakan fitur (versi premium vs basic) untuk mempertahankan persepsi nilai pada segmen yang sensitif.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(17)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(17)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(17)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 18 =============================== -->
+    <div class="soal-card" id="soal18">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Produk minuman sachet dengan rasa baru (matcha latte) diluncurkan. Segmentasi pasar yang ditarget adalah <span class="keyword">remaja urban</span> (15-25 tahun) dengan gaya hidup aktif. Evaluasilah elemen <span class="keyword">promosi</span> mana yang paling efektif untuk menjangkau segmen ini, dan berikan alasan kritis!
+        </div>
+        <div class="opsi">A. Iklan di televisi nasional, karena jangkauan luas dan kredibel.</div>
+        <div class="opsi">B. Billboards (papan reklame) di jalan raya, karena sering dilihat.</div>
+        <div class="opsi">C. Endorsement dari <span class="keyword">micro-influencer</span> di TikTok dan Instagram, serta konten interaktif (challenge), karena remaja urban menghabiskan waktu di platform tersebut dan lebih percaya pada rekomendasi peer/influencer.</div>
+        <div class="opsi">D. Brosur yang disebar di sekolah.</div>
+        <div class="opsi">E. Radio nasional, karena dapat didengar saat bepergian.</div>
+        <div class="pembahasan" id="bahas18">
+            <div class="jawaban">✅ Jawaban: C. Endorsement dari <span class="keyword">micro-influencer</span> di TikTok dan Instagram, serta konten interaktif (challenge), karena remaja urban menghabiskan waktu di platform tersebut dan lebih percaya pada rekomendasi peer/influencer.</div>
+            <b>Pembahasan:</b> Segmentasi remaja urban memiliki karakteristik <span class="keyword">digital native</span> dan <span class="keyword">social media centric</span>. Mereka cenderung mengabaikan iklan tradisional (TV, radio) dan lebih terpengaruh oleh konten viral serta rekomendasi dari influencer yang mereka ikuti. Micro-influencer memiliki engagement rate lebih tinggi dan biaya lebih rendah daripada selebriti besar.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Elemen <span class="keyword">User Generated Content (UGC)</span> seperti challenge atau review juga sangat efektif karena menciptakan rasa memiliki (sense of belonging) dan bukti sosial (social proof) di kalangan target market.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(18)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(18)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(18)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 19 =============================== -->
+    <div class="soal-card" id="soal19">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah restoran cepat saji mengevaluasi 7P marketing mix (Product, Price, Place, Promotion, People, Process, Physical Evidence). Evaluasilah elemen <span class="keyword">People</span> (karyawan) dan <span class="keyword">Process</span> (proses pelayanan) yang paling menentukan kepuasan pelanggan di restoran tersebut, dibandingkan dengan produk itu sendiri!
+        </div>
+        <div class="opsi">A. Produk (makanan) adalah satu-satunya faktor utama, People dan Process tidak penting.</div>
+        <div class="opsi">B. People (keramahan pelayan) dan Process (kecepatan penyajian) sangat kritis karena restoran adalah bisnis jasa. Pelayanan yang buruk dapat merusak pengalaman meskipun makanan enak, dan sebaliknya pelayanan baik dapat meningkatkan loyalitas.</div>
+        <div class="opsi">C. Harga lebih penting dari People dan Process.</div>
+        <div class="opsi">D. Place (lokasi) adalah yang paling penting.</div>
+        <div class="opsi">E. Physical Evidence (dekorasi) mengalahkan semuanya.</div>
+        <div class="pembahasan" id="bahas19">
+            <div class="jawaban">✅ Jawaban: B. People (keramahan pelayan) dan Process (kecepatan penyajian) sangat kritis karena restoran adalah bisnis jasa. Pelayanan yang buruk dapat merusak pengalaman meskipun makanan enak, dan sebaliknya pelayanan baik dapat meningkatkan loyalitas.</div>
+            <b>Pembahasan:</b> Dalam industri jasa (restoran), <span class="keyword">interaksi langsung</span> dengan konsumen adalah momen kebenaran (moment of truth). "People" mencakup kompetensi, sikap, dan penampilan karyawan. "Process" mencakup alur pemesanan, kecepatan, dan akurasi. Keduanya menciptakan pengalaman emosional yang membentuk persepsi kualitas total, seringkali lebih diingat daripada rasa makanan itu sendiri.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Konsep <span class="keyword">Service Blueprint</span> digunakan untuk memetakan interaksi pelanggan dengan People dan Process. Setiap titik sentuh (touchpoint) harus dikelola dengan baik untuk menciptakan pengalaman yang seamless.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(19)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(19)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(19)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 20 =============================== -->
+    <div class="soal-card" id="soal20">
+        <span class="badge">Pemasaran Produk <span class="badge-level">🧠 C5 Evaluasi</span></span>
+        <div class="pertanyaan">
+            Sebuah produk kecantikan melakukan SWOT Analysis. Kekuatan (Strengths): formula alami dan sertifikasi halal. Kelemahan (Weaknesses): harga premium dan distribusi terbatas. Peluang (Opportunities): tren gaya hidup sehat dan e-commerce. Ancaman (Threats): banyak pesaing murah. Evaluasilah strategi yang paling tepat untuk mengoptimalkan peluang dan mengatasi ancaman!
+        </div>
+        <div class="opsi">A. Menurunkan harga agar bersaing dengan pesaing murah.</div>
+        <div class="opsi">B. Memperluas distribusi melalui e-commerce (memanfaatkan peluang) dan menonjolkan keunggulan sertifikasi halal/alami (kekuatan) untuk membedakan dari pesaing murah.</div>
+        <div class="opsi">C. Menghentikan produksi karena ancaman terlalu besar.</div>
+        <div class="opsi">D. Fokus hanya pada toko fisik eksklusif.</div>
+        <div class="opsi">E. Mengabaikan kompetitor dan fokus pada promosi TV.</div>
+        <div class="pembahasan" id="bahas20">
+            <div class="jawaban">✅ Jawaban: B. Memperluas distribusi melalui e-commerce (memanfaatkan peluang) dan menonjolkan keunggulan sertifikasi halal/alami (kekuatan) untuk membedakan dari pesaing murah.</div>
+            <b>Pembahasan:</b> Strategi ini adalah <span class="keyword">SO (Strengths-Opportunities)</span> dan <span class="keyword">ST (Strengths-Threats)</span>. Dengan e-commerce, perusahaan menjangkau pasar yang lebih luas (peluang) tanpa bergantung pada toko fisik. Dengan menonjolkan formula alami dan halal (kekuatan), produk menciptakan <span class="keyword">diferensiasi</span> yang membuat konsumen rela membayar harga premium meskipun ada pesaing murah. Tidak perlu menurunkan harga karena akan menghilangkan positioning.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Strategi pemasaran berbasis SWOT harus menghasilkan <span class="keyword">competitive advantage</span> yang berkelanjutan. Kombinasi diferensiasi dan perluasan saluran distribusi adalah pendekatan yang solid untuk pertumbuhan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(20)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(20)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(20)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 5 — NEAR END ===== -->
+    <div class="ad-wrapper">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ============== SUB-ELEMEN: DISTRIBUSI PRODUK (21-25) ======== -->
+    <!-- ===================== SOAL 21 =============================== -->
+    <div class="soal-card" id="soal21">
+        <span class="badge">Distribusi Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah usaha kerajinan batik skala kecil ingin mendistribusikan produknya ke pasar internasional (ekspor). Terapkan saluran distribusi yang paling tepat untuk meminimalkan risiko dan biaya logistik bagi UMKM tersebut!
+        </div>
+        <div class="opsi">A. Membuka toko sendiri di luar negeri.</div>
+        <div class="opsi">B. Menggunakan <span class="keyword">distributor/agen lokal</span> di negara tujuan yang sudah memiliki jaringan dan memahami regulasi impor.</div>
+        <div class="opsi">C. Mengirimkan langsung ke konsumen via DHL/FedEx untuk setiap pesanan kecil.</div>
+        <div class="opsi">D. Menitipkan produk di pameran dagang saja tanpa mitra distribusi.</div>
+        <div class="opsi">E. Menjual melalui platform e-commerce internasional secara dropship.</div>
+        <div class="pembahasan" id="bahas21">
+            <div class="jawaban">✅ Jawaban: B. Menggunakan <span class="keyword">distributor/agen lokal</span> di negara tujuan yang sudah memiliki jaringan dan memahami regulasi impor.</div>
+            <b>Pembahasan:</b> Ekspor membutuhkan pengetahuan tentang <span class="keyword">bea cukai</span>, <span class="keyword">standar produk</span>, dan <span class="keyword">saluran ritel</span> setempat. Distributor lokal memiliki infrastruktur pergudangan, transportasi, dan hubungan dengan pengecer. Ini mengurangi risiko kegagalan logistik dan biaya penanganan dibandingkan mengirim sendiri ke luar negeri. Untuk UMKM, ini adalah strategi <span class="keyword">indirect exporting</span> yang paling efisien.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Sebelum memilih distributor, lakukan <span class="keyword">due diligence</span> (reputasi, kemampuan finansial, coverage area). Kontrak distribusi harus jelas mengenai hak eksklusif, target penjualan, dan mekanisme pembayaran.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(21)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(21)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(21)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 22 =============================== -->
+    <div class="soal-card" id="soal22">
+        <span class="badge">Distribusi Produk <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah perusahaan mengalami <span class="keyword">stockout</span> (kehabisan stok) produk A di gudang pusat, tetapi terjadi <span class="keyword">overstock</span> (kelebihan) produk A di gudang cabang. Analisislah penyebab paling mungkin dari ketidakseimbangan inventaris ini dalam sistem distribusi!
+        </div>
+        <div class="opsi">A. Kesalahan peramalan (forecasting) permintaan di masing-masing wilayah dan kurangnya sistem <span class="keyword">replenishment</span> yang responsif antar gudang.</div>
+        <div class="opsi">B. Harga produk A terlalu murah.</div>
+        <div class="opsi">C. Produk A memiliki kualitas rendah.</div>
+        <div class="opsi">D. Tenaga penjualan di cabang kurang aktif.</div>
+        <div class="opsi">E. Ukuran kemasan produk A terlalu besar.</div>
+        <div class="pembahasan" id="bahas22">
+            <div class="jawaban">✅ Jawaban: A. Kesalahan peramalan (forecasting) permintaan di masing-masing wilayah dan kurangnya sistem <span class="keyword">replenishment</span> yang responsif antar gudang.</div>
+            <b>Pembahasan:</b> Ketidakseimbangan inventaris menunjukkan kegagalan dalam <span class="keyword">supply chain visibility</span> dan <span class="keyword">distribution planning</span>. Pusat kehabisan (permintaan lebih tinggi dari perkiraan) sementara cabang kelebihan (permintaan lebih rendah). Penyebabnya adalah peramalan yang tidak akurat dan ketiadaan mekanisme <span class="keyword">transshipment</span> (transfer stok antar gudang) untuk merespons perubahan permintaan secara dinamis.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Solusi strategis adalah menerapkan sistem <span class="keyword">Integrated Inventory Management</span> dan analisis data real-time, serta menerapkan kebijakan <span class="keyword">safety stock</span> yang berbeda untuk setiap wilayah berdasarkan variabilitas permintaan.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(22)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(22)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(22)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 23 =============================== -->
+    <div class="soal-card" id="soal23">
+        <span class="badge">Distribusi Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah gudang menyimpan produk makanan dengan masa kadaluarsa 6 bulan. Terapkan sistem <span class="keyword">FEFO (First Expired First Out)</span> dalam pengelolaan stok dan jelaskan mengapa sistem ini lebih tepat daripada FIFO (First In First Out) untuk produk ini!
+        </div>
+        <div class="opsi">A. FEFO memastikan produk yang kadaluarsa lebih cepat dikeluarkan terlebih dahulu, mengurangi risiko produk rusak (expired) di gudang. FIFO hanya berdasarkan waktu masuk, tidak mempertimbangkan perbedaan batch kadaluarsa.</div>
+        <div class="opsi">B. FIFO lebih tepat karena lebih sederhana.</div>
+        <div class="opsi">C. FEFO hanya untuk produk elektronik.</div>
+        <div class="opsi">D. FIFO lebih baik karena batch awal biasanya lebih murah.</div>
+        <div class="opsi">E. Tidak perlu sistem khusus, cukup periksa manual.</div>
+        <div class="pembahasan" id="bahas23">
+            <div class="jawaban">✅ Jawaban: A. FEFO memastikan produk yang kadaluarsa lebih cepat dikeluarkan terlebih dahulu, mengurangi risiko produk rusak (expired) di gudang. FIFO hanya berdasarkan waktu masuk, tidak mempertimbangkan perbedaan batch kadaluarsa.</div>
+            <b>Pembahasan:</b> FEFO adalah metode <span class="keyword">inventory management</span> yang mengutamakan tanggal kadaluwarsa, bukan tanggal masuk. Ini penting untuk produk perishable seperti makanan, farmasi, dan kosmetik. Dengan FEFO, batch yang mendekati kadaluarsa dikirim lebih dulu ke pelanggan, mengurangi waste (kerugian) akibat produk kedaluwarsa yang tidak terjual.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Implementasi FEFO membutuhkan sistem <span class="keyword">barcode/LOT tracking</span> untuk melacak setiap batch. Ini adalah standar dalam industri FMCG dan healthcare.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(23)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(23)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(23)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 24 =============================== -->
+    <div class="soal-card" id="soal24">
+        <span class="badge">Distribusi Produk <span class="badge-level">🧠 C4 Analisis</span></span>
+        <div class="pertanyaan">
+            Sebuah produsen elektronik memilih distributor A (memiliki 50 toko di kota besar) dan distributor B (memiliki 200 toko di kota kecil dan pedesaan). Analisislah pemilihan distributor mana yang paling tepat jika produk adalah <span class="keyword">televisi premium</span> berharga tinggi dan mana yang tepat untuk produk <span class="keyword">kabel charger</span> berharga rendah!
+        </div>
+        <div class="opsi">A. Televisi premium: Distributor B (jangkauan luas). Kabel charger: Distributor A (eksklusif).</div>
+        <div class="opsi">B. Televisi premium: Distributor A (fokus pada target pasar kota dengan daya beli tinggi). Kabel charger: Distributor B (distribusi massal untuk produk kebutuhan sehari-hari).</div>
+        <div class="opsi">C. Keduanya menggunakan distributor A.</div>
+        <div class="opsi">D. Keduanya menggunakan distributor B.</div>
+        <div class="opsi">E. Tidak perlu distributor, jual langsung online saja.</div>
+        <div class="pembahasan" id="bahas24">
+            <div class="jawaban">✅ Jawaban: B. Televisi premium: Distributor A (fokus pada target pasar kota dengan daya beli tinggi). Kabel charger: Distributor B (distribusi massal untuk produk kebutuhan sehari-hari).</div>
+            <b>Pembahasan:</b> Produk premium membutuhkan <span class="keyword">distribusi selektif</span> (selective distribution) di lokasi strategis yang sesuai dengan profil konsumen (daya beli tinggi, kesadaran merek). Distributor A dengan 50 toko di kota besar lebih tepat. Sementara kabel charger adalah produk <span class="keyword">intensif</span> (intensive distribution) yang harus tersedia di mana-mana (convenience goods), sehingga Distributor B dengan jangkauan luas lebih tepat.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Strategi distribusi harus selaras dengan <span class="keyword">positioning produk</span>. Produk premium sering menggunakan exclusive distribution untuk menjaga eksklusivitas, sementara produk massal menggunakan intensive distribution untuk penetrasi pasar maksimal.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(24)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(24)">📖 Lihat Pembahasan</button>
+            <button class="btn-next" onclick="nextSoal(24)">Soal Selanjutnya ➡</button>
+        </div>
+    </div>
+
+    <!-- ===================== SOAL 25 =============================== -->
+    <div class="soal-card" id="soal25">
+        <span class="badge">Distribusi Produk <span class="badge-level">⚡ C3 Penerapan</span></span>
+        <div class="pertanyaan">
+            Sebuah UMKM fashion mempertimbangkan untuk menggunakan <span class="keyword">dropshipping</span> sebagai model distribusi. Terapkan analisis kelebihan dan kekurangan dropshipping dibandingkan dengan sistem <span class="keyword">stock keeping</span> (menyimpan stok sendiri) untuk UMKM dengan modal terbatas!
+        </div>
+        <div class="opsi">A. Dropshipping lebih baik karena tidak perlu modal untuk stok dan gudang, tetapi kelemahannya adalah margin lebih tipis dan kontrol kualitas pengiriman rendah.</div>
+        <div class="opsi">B. Stock keeping lebih baik karena margin lebih besar, tetapi membutuhkan modal besar dan risiko stok mati.</div>
+        <div class="opsi">C. Keduanya memiliki kelebihan dan kekurangan; dropshipping cocok untuk uji pasar awal (modal rendah), stock keeping cocok untuk produk yang sudah mapan (kontrol penuh).</div>
+        <div class="opsi">D. Hanya A yang benar.</div>
+        <div class="opsi">E. A, B, dan C benar karena saling melengkapi analisis.</div>
+        <div class="pembahasan" id="bahas25">
+            <div class="jawaban">✅ Jawaban: E. A, B, dan C benar karena saling melengkapi analisis.</div>
+            <b>Pembahasan:</b> Dropshipping: <span class="keyword">Keuntungan</span> – tanpa modal stok, risiko rendah, fleksibel. <span class="keyword">Kekurangan</span> – margin kecil, ketergantungan pada supplier, masalah kualitas/keterlambatan pengiriman di luar kendali. Stock keeping: <span class="keyword">Keuntungan</span> – margin tinggi, kontrol penuh atas kualitas dan pengiriman, branding kuat. <span class="keyword">Kekurangan</span> – modal besar untuk stok dan gudang, risiko kerugian jika produk tidak laku. UMKM modal terbatas disarankan memulai dengan dropshipping untuk validasi produk, lalu beralih ke stock keeping saat skala meningkat.
+            <div class="deep-note">📌 <b>Pendalaman:</b> Model <span class="keyword">hybrid</span> juga populer: stok untuk produk best-seller, dropshipping untuk produk niche/variasi baru. Ini memberikan keseimbangan antara kontrol dan fleksibilitas.</div>
+        </div>
+        <div class="tombol-group">
+            <button class="btn-prev" onclick="prevSoal(25)">⬅ Sebelumnya</button>
+            <button class="btn-bahas" onclick="toggleBahas(25)">📖 Lihat Pembahasan</button>
+            <button class="btn-final" id="btnFinal" onclick="tampilkanSelesai()">🎯 Lihat Hasil Selesai ➡</button>
+        </div>
+    </div>
+
+    <!-- ===== IKLAN 6 — FOOTER ===== -->
+    <div class="ad-wrapper" style="margin-top:20px;">
+        <span class="ad-label">— Sponsored —</span>
+        <div style="font-size:0.85em; color:#555;">Iklan (Google Adsense) — placehold</div>
+    </div>
+
+    <!-- ===== HALAMAN SELESAI ===== -->
+    <div class="selesai-card" id="selesaiCard">
+        <h2>🎉 Selamat!</h2>
+        <p>Anda telah menyelesaikan <b>25 soal HOTS</b> materi <b>Kegiatan Produksi, Pemasaran, dan Distribusi</b>.<br />
+        Topik yang dicakup: Proses Produksi · Pengemasan Produk · Quality Assurance · Pemasaran Produk · Distribusi Produk.</p>
+        <button class="btn-final" style="display:inline-block; float:none;" onclick="alert('Terima kasih telah mengerjakan! 🚀')">📚 Kembali ke Awal</button>
+    </div>
+
+</div>
+<!-- /container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    const totalSoal = 25;
+
+    function tampilkanSoal(n) {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        const card = document.getElementById('soal' + n);
+        if (card) {
+            card.classList.add('aktif');
+            document.getElementById('infoNomor').innerText = 'Soal ' + n + ' dari ' + totalSoal;
+            document.getElementById('progressFill').style.width = (n / totalSoal * 100) + '%';
+            document.getElementById('selesaiCard').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            tampilkanSelesai();
+        }
+    }
+
+    function nextSoal(n) {
+        tampilkanSoal(n + 1);
+    }
+
+    function prevSoal(n) {
+        tampilkanSoal(n - 1);
+    }
+
+    function toggleBahas(n) {
+        const el = document.getElementById('bahas' + n);
+        el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function tampilkanSelesai() {
+        document.querySelectorAll('.soal-card').forEach(card => card.classList.remove('aktif'));
+        document.getElementById('selesaiCard').style.display = 'block';
+        document.getElementById('infoNomor').innerText = 'Selesai ✔';
+        document.getElementById('progressFill').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
