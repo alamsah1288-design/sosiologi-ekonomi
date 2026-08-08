@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Soal TKA Matematika – Geometri & Pengukuran</title>
+    <!-- MathJax untuk rendering rumus LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ['\\[', '\\]']
+                ],
+                processEscapes: true,
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async>
+    </script>
+
+    <style>
+        /* === RESET & GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 15px;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            padding: 30px 30px;
+            overflow-x: hidden;
+        }
+
+        /* === HEADER === */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b3b5c;
+            border-left: 6px solid #2e86c1;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #475569;
+            margin-bottom: 30px;
+            padding-left: 26px;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .subhead span {
+            background: #d6eaf8;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1a5276;
+            margin-right: 8px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* === KARTU SOAL === */
+        .soal-item {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 22px 25px;
+            margin-bottom: 28px;
+            border: 1px solid #e6edf5;
+            transition: 0.2s;
+            overflow-x: hidden;
+        }
+
+        .soal-item:hover {
+            border-color: #85c1e9;
+            background: #f8fbff;
+        }
+
+        .soal-nomor {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 2px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .soal-teks {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 14px;
+            font-weight: 500;
+            color: #0f2b42;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .soal-teks p {
+            margin: 0;
+        }
+
+        /* === OPSI JAWABAN (GRID RESPONSIF) === */
+        .opsi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 25px;
+            margin: 12px 0 14px 0;
+            font-size: 0.98rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .opsi div {
+            padding: 4px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .opsi .huruf {
+            font-weight: 600;
+            color: #1a5276;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        /* === JAWABAN & PEMBAHASAN === */
+        .jawaban {
+            margin-top: 14px;
+            padding: 10px 18px;
+            background: #eaf4fa;
+            border-radius: 12px;
+            border-left: 4px solid #2e86c1;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .jawaban strong {
+            color: #0d3b5c;
+        }
+
+        .pembahasan {
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #f0f8ff;
+            border-radius: 12px;
+            border-left: 4px solid #85c1e9;
+            font-size: 0.95rem;
+            color: #1e3a5f;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        .pembahasan strong {
+            color: #0d3b5c;
+        }
+
+        .kunci-badge {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        hr {
+            margin: 25px 0 10px 0;
+            border: none;
+            border-top: 1px dashed #d4dfe9;
+        }
+
+        /* === PERBAIKAN MATHJAX AGAR TIDAK OVERFLOW === */
+        mjx-container {
+            display: inline-block !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            vertical-align: middle;
+            padding: 2px 0;
+        }
+
+        mjx-container[jax="SVG"] {
+            direction: ltr;
+        }
+
+        .MathJax {
+            font-size: 1em !important;
+        }
+
+        /* === RESPONSIVE BREAKPOINTS === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 18px;
+            }
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px 15px;
+            }
+            .soal-item {
+                padding: 18px 18px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px 12px;
+                border-radius: 16px;
+            }
+            .opsi {
+                grid-template-columns: 1fr;
+            }
+            .soal-item {
+                padding: 15px 14px;
+                border-radius: 14px;
+            }
+            .soal-teks {
+                font-size: 1rem;
+            }
+            .pembahasan,
+            .jawaban {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 8px;
+            }
+            .container {
+                padding: 10px 8px;
+            }
+            .soal-item {
+                padding: 12px 10px;
+                margin-bottom: 20px;
+            }
+            .soal-teks {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .opsi {
+                font-size: 0.9rem;
+                gap: 2px;
+            }
+            .subhead {
+                font-size: 0.85rem;
+                padding-left: 10px;
+            }
+            h1 {
+                font-size: 1.4rem;
+                padding-left: 12px;
+            }
+            .kunci-badge {
+                font-size: 0.7rem;
+                padding: 1px 10px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Soal TKA – Geometri & Pengukuran</h1>
+        <div class="subhead">
+            <span>25 Soal</span> Objek Geometri · Transformasi · Pengukuran (Luas, Volume, Jarak)
+        </div>
+
+        <!-- ===================== SOAL 1 (Teorema Pythagoras) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 1</div>
+            <div class="soal-teks">
+                <p>Sebuah tangga disandarkan pada dinding. Jarak kaki tangga ke dinding adalah 2 meter dan ujung tangga menyentuh dinding pada ketinggian 4 meter. Berapakah panjang tangga tersebut?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\sqrt{5}$ m</div>
+                <div><span class="huruf">B.</span> $2\sqrt{5}$ m</div>
+                <div><span class="huruf">C.</span> $3\sqrt{5}$ m</div>
+                <div><span class="huruf">D.</span> $4\sqrt{5}$ m</div>
+                <div><span class="huruf">E.</span> $5\sqrt{5}$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Berdasarkan Teorema Pythagoras, $s^2 = 2^2 + 4^2 = 4 + 16 = 20$. Maka $s = \sqrt{20} = 2\sqrt{5}$ meter.</div>
+        </div>
+
+        <!-- ===================== SOAL 2 (Hubungan Sudut/Garis) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 2</div>
+            <div class="soal-teks">
+                <p>Dua buah rel kereta api dianggap sebagai dua garis sejajar yang dipotong oleh sebuah rel melintang. Jika salah satu sudut sehadap besarnya $70^\circ$, maka besar sudut dalam sepihak yang bersesuaian adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $70^\circ$</div>
+                <div><span class="huruf">B.</span> $90^\circ$</div>
+                <div><span class="huruf">C.</span> $100^\circ$</div>
+                <div><span class="huruf">D.</span> $110^\circ$</div>
+                <div><span class="huruf">E.</span> $180^\circ$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Sudut dalam sepihak adalah sudut yang berada di sisi yang sama dari garis transversal dan di antara dua garis sejajar. Jumlah sudut dalam sepihak adalah $180^\circ$. Jadi, $180^\circ - 70^\circ = 110^\circ$.</div>
+        </div>
+
+        <!-- ===================== SOAL 3 (Kesebangunan) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 3</div>
+            <div class="soal-teks">
+                <p>Untuk mengukur tinggi pohon, seorang siswa menggunakan tongkat berdiri tegak setinggi 150 cm. Bayangan tongkat adalah 200 cm, sedangkan bayangan pohon adalah 800 cm. Tinggi pohon sebenarnya adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 4 m</div>
+                <div><span class="huruf">B.</span> 5 m</div>
+                <div><span class="huruf">C.</span> 6 m</div>
+                <div><span class="huruf">D.</span> 7 m</div>
+                <div><span class="huruf">E.</span> 8 m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Karena segitiga yang dibentuk oleh tongkat dan pohon sebangun, maka $\frac{Tinggi_{pohon}}{Bayangan_{pohon}} = \frac{Tinggi_{tongkat}}{Bayangan_{tongkat}}$. <br>
+                $Tinggi_{pohon} = \frac{150}{200} \times 800 = 600$ cm = 6 m.</div>
+        </div>
+
+        <!-- ===================== SOAL 4 (Luas Sebenarnya) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 4</div>
+            <div class="soal-teks">
+                <p>Sebuah taman berbentuk segitiga siku-siku digambar pada denah dengan skala $1 : 200$. Pada denah, ukuran alas dan tinggi segitiga adalah 5 cm dan 12 cm. Luas taman sebenarnya adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $30 \text{ m}^2$</div>
+                <div><span class="huruf">B.</span> $60 \text{ m}^2$</div>
+                <div><span class="huruf">C.</span> $120 \text{ m}^2$</div>
+                <div><span class="huruf">D.</span> $240 \text{ m}^2$</div>
+                <div><span class="huruf">E.</span> $600 \text{ m}^2$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Luas denah $= \frac{1}{2} \times 5 \times 12 = 30$ cm². Skala 1:200 artinya luas sebenarnya = $30 \times (200)^2 = 30 \times 40.000 = 1.200.000$ cm² = $120$ m².</div>
+        </div>
+
+        <!-- ===================== SOAL 5 (Kekongruenan) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 5</div>
+            <div class="soal-teks">
+                <p>Perhatikan pernyataan berikut tentang dua segitiga: (i) Sisi-sisi yang bersesuaian sama panjang. (ii) Sudut-sudut yang bersesuaian sama besar. (iii) Perbandingan sisi yang bersesuaian sama. Syarat cukup agar dua segitiga dikatakan kongruen adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> (i) saja</div>
+                <div><span class="huruf">B.</span> (ii) saja</div>
+                <div><span class="huruf">C.</span> (i) dan (ii)</div>
+                <div><span class="huruf">D.</span> (ii) dan (iii)</div>
+                <div><span class="huruf">E.</span> (i), (ii), dan (iii)</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Dua segitiga kongruen jika memiliki sisi-sisi yang bersesuaian sama panjang (S-S-S) atau dua sisi dan satu sudut apit yang sama (S-Sd-S) atau satu sisi dan dua sudut yang bersesuaian sama besar (Sd-S-Sd). Secara konsep, kekongruenan mensyaratkan ukuran yang sama persis. Maka (i) dan (ii) adalah syarat kongruen. Pernyataan (iii) adalah syarat kesebangunan, bukan kekongruenan.</div>
+        </div>
+
+        <!-- ===================== SOAL 6 (Keliling Lingkaran) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 6</div>
+            <div class="soal-teks">
+                <p>Sebuah sepeda memiliki roda dengan diameter 70 cm. Jika $\pi = \frac{22}{7}$, maka keliling roda sepeda tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 110 cm</div>
+                <div><span class="huruf">B.</span> 220 cm</div>
+                <div><span class="huruf">C.</span> 330 cm</div>
+                <div><span class="huruf">D.</span> 440 cm</div>
+                <div><span class="huruf">E.</span> 550 cm</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Keliling = $\pi \times d = \frac{22}{7} \times 70 = 220$ cm.</div>
+        </div>
+
+        <!-- ===================== SOAL 7 (Garis Singgung Lingkaran) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 7</div>
+            <div class="soal-teks">
+                <p>Dua lingkaran masing-masing berjari-jari 5 cm dan 2 cm. Jarak antara kedua pusat lingkaran adalah 13 cm. Panjang garis singgung persekutuan luar kedua lingkaran tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $2\sqrt{10}$ cm</div>
+                <div><span class="huruf">B.</span> $4\sqrt{10}$ cm</div>
+                <div><span class="huruf">C.</span> $6\sqrt{10}$ cm</div>
+                <div><span class="huruf">D.</span> $10\sqrt{2}$ cm</div>
+                <div><span class="huruf">E.</span> $12$ cm</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Rumus garis singgung luar: $l = \sqrt{p^2 - (R - r)^2} = \sqrt{13^2 - (5 - 2)^2} = \sqrt{169 - 9} = \sqrt{160} = 4\sqrt{10}$ cm.</div>
+        </div>
+
+        <!-- ===================== SOAL 8 (Luas Permukaan Balok tanpa tutup) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 8</div>
+            <div class="soal-teks">
+                <p>Sebuah akuarium berbentuk balok dengan ukuran panjang 80 cm, lebar 40 cm, dan tinggi 50 cm. Jika akuarium tersebut tidak memiliki tutup, luas permukaan kaca yang dibutuhkan adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 10.000 cm²</div>
+                <div><span class="huruf">B.</span> 12.400 cm²</div>
+                <div><span class="huruf">C.</span> 15.200 cm²</div>
+                <div><span class="huruf">D.</span> 18.400 cm²</div>
+                <div><span class="huruf">E.</span> 20.000 cm²</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Luas permukaan balok tanpa tutup = $pl + 2(pt) + 2(lt)$. <br>
+                $= (80 \times 40) + 2(80 \times 50) + 2(40 \times 50) = 3.200 + 8.000 + 4.000 = 15.200$ cm².</div>
+        </div>
+
+        <!-- ===================== SOAL 9 (Volume Prisma - Tenda) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 9</div>
+            <div class="soal-teks">
+                <p>Sebuah tenda berbentuk prisma segitiga dengan alas segitiga berukuran 3 m dan tinggi segitiga 2 m. Panjang tenda (tinggi prisma) adalah 5 m. Volume tenda tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $10 \text{ m}^3$</div>
+                <div><span class="huruf">B.</span> $15 \text{ m}^3$</div>
+                <div><span class="huruf">C.</span> $20 \text{ m}^3$</div>
+                <div><span class="huruf">D.</span> $25 \text{ m}^3$</div>
+                <div><span class="huruf">E.</span> $30 \text{ m}^3$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Volume prisma = Luas alas $\times$ tinggi prisma. <br>
+                $V = \left(\frac{1}{2} \times 3 \times 2\right) \times 5 = 3 \times 5 = 15 \text{ m}^3$.</div>
+        </div>
+
+        <!-- ===================== SOAL 10 (Volume Tabung) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 10</div>
+            <div class="soal-teks">
+                <p>Sebuah kaleng susu berbentuk tabung memiliki diameter 14 cm dan tinggi 20 cm. Jika $\pi = \frac{22}{7}$, volume kaleng tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 1.540 cm³</div>
+                <div><span class="huruf">B.</span> 2.310 cm³</div>
+                <div><span class="huruf">C.</span> 3.080 cm³</div>
+                <div><span class="huruf">D.</span> 4.620 cm³</div>
+                <div><span class="huruf">E.</span> 6.160 cm³</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Jari-jari $r = 7$ cm. Volume = $\pi r^2 t = \frac{22}{7} \times 7^2 \times 20 = 22 \times 7 \times 20 = 3.080$ cm³.</div>
+        </div>
+
+        <!-- ===================== SOAL 11 (Luas Selimut Kerucut) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 11</div>
+            <div class="soal-teks">
+                <p>Sebuah topi ulang tahun berbentuk kerucut memiliki jari-jari 7 cm dan panjang garis pelukis 25 cm. Luas selimut topi tersebut adalah ... $(\pi = \frac{22}{7})$</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 350 cm²</div>
+                <div><span class="huruf">B.</span> 450 cm²</div>
+                <div><span class="huruf">C.</span> 500 cm²</div>
+                <div><span class="huruf">D.</span> 550 cm²</div>
+                <div><span class="huruf">E.</span> 650 cm²</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Luas selimut kerucut = $\pi r s = \frac{22}{7} \times 7 \times 25 = 22 \times 25 = 550$ cm².</div>
+        </div>
+
+        <!-- ===================== SOAL 12 (Volume Bola) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 12</div>
+            <div class="soal-teks">
+                <p>Sebuah bola plastik memiliki diameter 42 cm. Volume bola tersebut adalah ... $(\pi = \frac{22}{7})$</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 19.404 cm³</div>
+                <div><span class="huruf">B.</span> 29.106 cm³</div>
+                <div><span class="huruf">C.</span> 38.808 cm³</div>
+                <div><span class="huruf">D.</span> 48.510 cm³</div>
+                <div><span class="huruf">E.</span> 58.212 cm³</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Jari-jari $r = 21$ cm. <br>
+                Volume = $\frac{4}{3} \pi r^3 = \frac{4}{3} \times \frac{22}{7} \times 21^3 = \frac{4}{3} \times \frac{22}{7} \times 9261 = 38.808$ cm³.</div>
+        </div>
+
+        <!-- ===================== SOAL 13 (Jarak Titik ke Garis pada Kubus) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 13</div>
+            <div class="soal-teks">
+                <p>Diketahui kubus $ABCD.EFGH$ dengan panjang rusuk 6 cm. Jarak titik $A$ ke garis $BD$ (diagonal bidang alas) adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $3$ cm</div>
+                <div><span class="huruf">B.</span> $3\sqrt{2}$ cm</div>
+                <div><span class="huruf">C.</span> $3\sqrt{3}$ cm</div>
+                <div><span class="huruf">D.</span> $6$ cm</div>
+                <div><span class="huruf">E.</span> $6\sqrt{2}$ cm</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Garis $BD$ adalah diagonal bidang alas. Jarak titik $A$ ke garis $BD$ adalah setengah dari diagonal bidang $AC$ (karena diagonal-diagonal persegi saling berpotongan tegak lurus di tengah). <br>
+                Diagonal bidang = $6\sqrt{2}$ cm, maka jaraknya = $\frac{1}{2} \times 6\sqrt{2} = 3\sqrt{2}$ cm.</div>
+        </div>
+
+        <!-- ===================== SOAL 14 (Jarak Titik ke Bidang pada Limas) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 14</div>
+            <div class="soal-teks">
+                <p>Sebuah limas segi empat beraturan $T.ABCD$ memiliki panjang rusuk alas 10 cm dan tinggi limas 12 cm. Jarak titik puncak $T$ ke bidang alas $ABCD$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 5 cm</div>
+                <div><span class="huruf">B.</span> 8 cm</div>
+                <div><span class="huruf">C.</span> 10 cm</div>
+                <div><span class="huruf">D.</span> 12 cm</div>
+                <div><span class="huruf">E.</span> 13 cm</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Jarak titik ke bidang adalah panjang ruas garis tegak lurus dari titik ke bidang. Dalam limas, tinggi limas adalah jarak dari puncak ke bidang alas. Diketahui tinggi limas = 12 cm, maka jaraknya adalah 12 cm.</div>
+        </div>
+
+        <!-- ===================== SOAL 15 (Translasi) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 15</div>
+            <div class="soal-teks">
+                <p>Sebuah titik $P(2, 3)$ ditranslasikan oleh $T = \begin{pmatrix} 4 \\ -1 \end{pmatrix}$. Koordinat bayangan titik $P$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $(6, 2)$</div>
+                <div><span class="huruf">B.</span> $(6, 4)$</div>
+                <div><span class="huruf">C.</span> $(-2, 4)$</div>
+                <div><span class="huruf">D.</span> $(2, 6)$</div>
+                <div><span class="huruf">E.</span> $(-6, 2)$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Translasi titik $(x, y)$ dengan $T(a, b)$ menghasilkan $(x+a, y+b)$. <br>
+                $P' = (2+4, 3+(-1)) = (6, 2)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 16 (Refleksi terhadap sumbu X) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 16</div>
+            <div class="soal-teks">
+                <p>Bayangan titik $A(-3, 5)$ jika dicerminkan terhadap sumbu $X$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $(-3, -5)$</div>
+                <div><span class="huruf">B.</span> $(3, 5)$</div>
+                <div><span class="huruf">C.</span> $(3, -5)$</div>
+                <div><span class="huruf">D.</span> $(-3, 5)$</div>
+                <div><span class="huruf">E.</span> $(5, -3)$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Pencerminan terhadap sumbu $X$ mengubah $(x, y)$ menjadi $(x, -y)$. <br>
+                Maka $A' = (-3, -5)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 17 (Rotasi) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 17</div>
+            <div class="soal-teks">
+                <p>Titik $B(4, 2)$ dirotasikan sebesar $90^\circ$ searah jarum jam dengan pusat $O(0,0)$. Bayangan titik $B$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $(-2, 4)$</div>
+                <div><span class="huruf">B.</span> $(2, -4)$</div>
+                <div><span class="huruf">C.</span> $(2, 4)$</div>
+                <div><span class="huruf">D.</span> $(-4, -2)$</div>
+                <div><span class="huruf">E.</span> $(4, -2)$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Rotasi $90^\circ$ searah jarum jam (atau $-90^\circ$) memetakan $(x, y)$ menjadi $(y, -x)$. <br>
+                Maka $B' = (2, -4)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 18 (Dilatasi) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 18</div>
+            <div class="soal-teks">
+                <p>Titik $C(2, 4)$ didilatasi dengan pusat $O(0,0)$ dan faktor skala $3$. Koordinat bayangan titik $C$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $(5, 7)$</div>
+                <div><span class="huruf">B.</span> $(6, 12)$</div>
+                <div><span class="huruf">C.</span> $(9, 12)$</div>
+                <div><span class="huruf">D.</span> $(6, 4)$</div>
+                <div><span class="huruf">E.</span> $(2, 12)$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Dilatasi dengan faktor skala $k$ memetakan $(x, y)$ menjadi $(kx, ky)$. <br>
+                $C' = (3 \times 2, 3 \times 4) = (6, 12)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 19 (Komposisi Transformasi) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 19</div>
+            <div class="soal-teks">
+                <p>Titik $D(-1, 2)$ ditranslasi oleh $T = \begin{pmatrix} 3 \\ -4 \end{pmatrix}$, lalu direfleksikan terhadap sumbu $Y$. Koordinat bayangan akhirnya adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $(2, 2)$</div>
+                <div><span class="huruf">B.</span> $(-2, -2)$</div>
+                <div><span class="huruf">C.</span> $(2, -2)$</div>
+                <div><span class="huruf">D.</span> $(-2, 2)$</div>
+                <div><span class="huruf">E.</span> $(-4, 2)$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Langkah 1: Translasi $D' = (-1+3, 2-4) = (2, -2)$. <br>
+                Langkah 2: Refleksi sumbu Y mengubah $(x, y)$ menjadi $(-x, y)$. <br>
+                $D'' = (-2, -2)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 20 (Gabungan Bangun Datar) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 20</div>
+            <div class="soal-teks">
+                <p>Perhatikan bangun datar gabungan yang terdiri dari persegi dengan sisi 14 cm dan setengah lingkaran dengan diameter sama dengan sisi persegi ($\pi = \frac{22}{7}$). Luas bangun tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 196 cm²</div>
+                <div><span class="huruf">B.</span> 210 cm²</div>
+                <div><span class="huruf">C.</span> 245 cm²</div>
+                <div><span class="huruf">D.</span> 273 cm²</div>
+                <div><span class="huruf">E.</span> 308 cm²</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Luas persegi = $14^2 = 196$ cm². <br>
+                Jari-jari lingkaran = $7$ cm. Luas setengah lingkaran = $\frac{1}{2} \times \pi \times 7^2 = \frac{1}{2} \times \frac{22}{7} \times 49 = 77$ cm². <br>
+                Luas total = $196 + 77 = 273$ cm².</div>
+        </div>
+
+        <!-- ===================== SOAL 21 (Sudut Elevasi) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 21</div>
+            <div class="soal-teks">
+                <p>Seorang pengamat berada pada jarak 30 m dari dasar sebuah gedung. Ia melihat puncak gedung dengan sudut elevasi $60^\circ$. Tinggi gedung tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $10\sqrt{3}$ m</div>
+                <div><span class="huruf">B.</span> $20\sqrt{3}$ m</div>
+                <div><span class="huruf">C.</span> $30\sqrt{3}$ m</div>
+                <div><span class="huruf">D.</span> $40\sqrt{3}$ m</div>
+                <div><span class="huruf">E.</span> $60\sqrt{3}$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 60^\circ = \frac{Tinggi}{Jarak} = \frac{t}{30}$. <br>
+                Karena $\tan 60^\circ = \sqrt{3}$, maka $t = 30\sqrt{3}$ meter.</div>
+        </div>
+
+        <!-- ===================== SOAL 22 (Luas Permukaan Gabungan Tabung & Kerucut) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 22</div>
+            <div class="soal-teks">
+                <p>Sebuah monumen berbentuk gabungan tabung dan kerucut. Jari-jari alasnya 7 cm, tinggi tabung 10 cm, dan tinggi kerucut 12 cm (sehingga garis pelukis kerucut = 13 cm). Luas permukaan monumen (tanpa alas) adalah ... $(\pi = \frac{22}{7})$</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $154\pi$ cm²</div>
+                <div><span class="huruf">B.</span> $231\pi$ cm²</div>
+                <div><span class="huruf">C.</span> $280\pi$ cm²</div>
+                <div><span class="huruf">D.</span> $308\pi$ cm²</div>
+                <div><span class="huruf">E.</span> $350\pi$ cm²</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Luas permukaan = Luas alas tabung (lingkaran) + Luas selimut tabung + Luas selimut kerucut. <br>
+                = $\pi r^2 + 2\pi r t_{tabung} + \pi r s$ <br>
+                = $\pi(7^2) + 2\pi(7)(10) + \pi(7)(13)$ <br>
+                = $49\pi + 140\pi + 91\pi = 280\pi$ cm². <br>
+                *Catatan: Jika monumen memiliki alas (tertutup), tinggal ditambah alas. Soal menyebut tanpa alas.*</div>
+        </div>
+
+        <!-- ===================== SOAL 23 (Volume Gabungan Balok & Tabung) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 23</div>
+            <div class="soal-teks">
+                <p>Sebuah balok kayu berukuran 10 cm x 8 cm x 6 cm. Di bagian tengahnya dibuat lubang berbentuk tabung dengan diameter 4 cm yang menembus balok sepanjang tingginya. Volume sisa kayu adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $480 - 12\pi$ cm³</div>
+                <div><span class="huruf">B.</span> $480 - 24\pi$ cm³</div>
+                <div><span class="huruf">C.</span> $480 - 36\pi$ cm³</div>
+                <div><span class="huruf">D.</span> $480 - 48\pi$ cm³</div>
+                <div><span class="huruf">E.</span> $480 - 96\pi$ cm³</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Volume balok = $10 \times 8 \times 6 = 480$ cm³. <br>
+                Jari-jari tabung = $2$ cm, tinggi tabung = $6$ cm. <br>
+                Volume lubang = $\pi \times 2^2 \times 6 = 24\pi$ cm³. <br>
+                Volume sisa = $480 - 24\pi$ cm³.</div>
+        </div>
+
+        <!-- ===================== SOAL 24 (Panjang Busur Lingkaran) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 24</div>
+            <div class="soal-teks">
+                <p>Sebuah taman berbentuk juring lingkaran dengan sudut pusat $72^\circ$ dan jari-jari 10 m. Panjang busur taman tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $2\pi$ m</div>
+                <div><span class="huruf">B.</span> $4\pi$ m</div>
+                <div><span class="huruf">C.</span> $6\pi$ m</div>
+                <div><span class="huruf">D.</span> $8\pi$ m</div>
+                <div><span class="huruf">E.</span> $10\pi$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Panjang busur = $\frac{\text{sudut}}{360^\circ} \times 2\pi r = \frac{72}{360} \times 2\pi \times 10 = \frac{1}{5} \times 20\pi = 4\pi$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 25 (Diagonal Ruang Balok - Pythagoras 3D) ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 25</div>
+            <div class="soal-teks">
+                <p>Sebuah kotak kado berbentuk balok memiliki panjang 12 cm, lebar 9 cm, dan tinggi 8 cm. Panjang diagonal ruang kotak kado tersebut adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 13 cm</div>
+                <div><span class="huruf">B.</span> 14 cm</div>
+                <div><span class="huruf">C.</span> 15 cm</div>
+                <div><span class="huruf">D.</span> 16 cm</div>
+                <div><span class="huruf">E.</span> 17 cm</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>E</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Diagonal ruang balok $d = \sqrt{p^2 + l^2 + t^2} = \sqrt{12^2 + 9^2 + 8^2} = \sqrt{144 + 81 + 64} = \sqrt{289} = 17$ cm.</div>
+        </div>
+
+        <hr>
+        <div style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 20px;">
+            © 2026 – 25 Soal TKA Matematika (Geometri & Pengukuran) | Responsif & Bebas Overflow
+        </div>
+    </div>
+</body>
+</html>

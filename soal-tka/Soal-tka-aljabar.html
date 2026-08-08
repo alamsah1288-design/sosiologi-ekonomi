@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Soal TKA Matematika – Aljabar (Responsif)</title>
+    <!-- MathJax untuk rendering rumus LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ['\\[', '\\]']
+                ],
+                processEscapes: true,
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async>
+    </script>
+
+    <style>
+        /* === RESET & GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 15px;
+            color: #1e293b;
+            overflow-x: hidden;
+            /* Cegah scroll horizontal global */;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            padding: 30px 30px;
+            overflow-x: hidden;
+            /* Cegah overflow di dalam container */;
+        }
+
+        /* === HEADER === */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b3b5c;
+            border-left: 6px solid #e67e22;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #475569;
+            margin-bottom: 30px;
+            padding-left: 26px;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .subhead span {
+            background: #fdebd0;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #a04000;
+            margin-right: 8px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* === KARTU SOAL === */
+        .soal-item {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 22px 25px;
+            margin-bottom: 28px;
+            border: 1px solid #e6edf5;
+            transition: 0.2s;
+            overflow-x: hidden;
+            /* amankan card */;
+        }
+
+        .soal-item:hover {
+            border-color: #f0b27a;
+            background: #fdfaf7;
+        }
+
+        .soal-nomor {
+            display: inline-block;
+            background: #a04000;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 2px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .soal-teks {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 14px;
+            font-weight: 500;
+            color: #0f2b42;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .soal-teks p {
+            margin: 0;
+        }
+
+        /* === OPSI JAWABAN (GRID RESPONSIF) === */
+        .opsi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* default 2 kolom */
+            gap: 6px 25px;
+            margin: 12px 0 14px 0;
+            font-size: 0.98rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .opsi div {
+            padding: 4px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .opsi .huruf {
+            font-weight: 600;
+            color: #a04000;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        /* === JAWABAN & PEMBAHASAN === */
+        .jawaban {
+            margin-top: 14px;
+            padding: 10px 18px;
+            background: #fef5e7;
+            border-radius: 12px;
+            border-left: 4px solid #e67e22;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .jawaban strong {
+            color: #7e3a00;
+        }
+
+        .pembahasan {
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #fdf2e9;
+            border-radius: 12px;
+            border-left: 4px solid #f0b27a;
+            font-size: 0.95rem;
+            color: #1e3a5f;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            overflow-x: auto;
+            /* scroll horizontal jika ada rumus super panjang */;
+        }
+
+        .pembahasan strong {
+            color: #7e3a00;
+        }
+
+        .kunci-badge {
+            display: inline-block;
+            background: #a04000;
+            color: white;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        hr {
+            margin: 25px 0 10px 0;
+            border: none;
+            border-top: 1px dashed #d4dfe9;
+        }
+
+        /* === PERBAIKAN MATHJAX AGAR TIDAK OVERFLOW === */
+        mjx-container {
+            display: inline-block !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            vertical-align: middle;
+            padding: 2px 0;
+        }
+
+        mjx-container[jax="SVG"] {
+            direction: ltr;
+        }
+
+        .MathJax {
+            font-size: 1em !important;
+        }
+
+        /* === RESPONSIVE BREAKPOINTS === */
+
+        /* Layar sedang (tablet & HP besar) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 18px;
+            }
+
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+                /* tetap 2 kolom, tapi lebih rapat */
+                gap: 4px 15px;
+            }
+
+            .soal-item {
+                padding: 18px 18px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Layar kecil (HP) */
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px 12px;
+                border-radius: 16px;
+            }
+
+            .opsi {
+                grid-template-columns: 1fr;
+                /* 1 KOLOM PENUH agar tidak sempit */;
+            }
+
+            .soal-item {
+                padding: 15px 14px;
+                border-radius: 14px;
+            }
+
+            .soal-teks {
+                font-size: 1rem;
+            }
+
+            .pembahasan,
+            .jawaban {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+
+        /* Layar sangat kecil (HP < 400px) */
+        @media (max-width: 400px) {
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                padding: 10px 8px;
+            }
+
+            .soal-item {
+                padding: 12px 10px;
+                margin-bottom: 20px;
+            }
+
+            .soal-teks {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .opsi {
+                font-size: 0.9rem;
+                gap: 2px;
+            }
+
+            .subhead {
+                font-size: 0.85rem;
+                padding-left: 10px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+                padding-left: 12px;
+            }
+
+            .kunci-badge {
+                font-size: 0.7rem;
+                padding: 1px 10px;
+            }
+        }
+
+        /* Layar lebar (Desktop) biarkan 2 kolom opsi */
+        @media (min-width: 1024px) {
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+                /* opsi tetap rapi 2 kolom */;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Soal TKA – Aljabar</h1>
+        <div class="subhead">
+            <span>25 Soal</span> SPLMV · Program Linear · Fungsi &amp; Invers · Barisan &amp; Deret · Bunga
+        </div>
+
+        <!-- ===================== SOAL 1 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 1</div>
+            <div class="soal-teks">
+                <p>Di sebuah toko, harga 2 buku, 3 pulpen, dan 1 penghapus adalah Rp19.000. Harga 1 buku, 2 pulpen, dan 2 penghapus adalah Rp15.000. Harga 3 buku, 1 pulpen, dan 1 penghapus adalah Rp20.000. Berapakah harga 1 buku?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp4.000</div>
+                <div><span class="huruf">B.</span> Rp4.500</div>
+                <div><span class="huruf">C.</span> Rp5.000</div>
+                <div><span class="huruf">D.</span> Rp5.500</div>
+                <div><span class="huruf">E.</span> Rp6.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Misal $x$=buku, $y$=pulpen, $z$=penghapus (ribuan). <br>
+                $\begin{cases} 2x+3y+z=19 \\ x+2y+2z=15 \\ 3x+y+z=20 \end{cases}$ <br>
+                Eliminasi (1)-(3): $-x+2y=-1 \Rightarrow x=2y+1$. <br>
+                Substitusi ke (3): $3(2y+1)+y+z=20 \Rightarrow 7y+z=17 \Rightarrow z=17-7y$. <br>
+                Substitusi ke (2): $(2y+1)+2y+2(17-7y)=15 \Rightarrow 4y+1+34-14y=15 \Rightarrow -10y=-20 \Rightarrow y=2$. <br>
+                Maka $x=2(2)+1=5$ (ribuan), jadi harga buku = Rp5.000.</div>
+        </div>
+
+        <!-- ===================== SOAL 2 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 2</div>
+            <div class="soal-teks">
+                <p>Jumlah umur Ayah, Ibu, dan Anak adalah 76 tahun. Umur Ayah 6 tahun lebih tua dari Ibu. Jumlah umur Anak dan Ibu adalah 44 tahun. Berapakah umur Ayah?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 28 tahun</div>
+                <div><span class="huruf">B.</span> 30 tahun</div>
+                <div><span class="huruf">C.</span> 32 tahun</div>
+                <div><span class="huruf">D.</span> 34 tahun</div>
+                <div><span class="huruf">E.</span> 36 tahun</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $A+I+N=76$; $A=I+6$; $I+N=44$. <br>
+                Substitusi $I+N$ ke persamaan pertama: $A+44=76 \Rightarrow A=32$ tahun.</div>
+        </div>
+
+        <!-- ===================== SOAL 3 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 3</div>
+            <div class="soal-teks">
+                <p>Harga 2 botol A, 1 botol B, dan 3 botol C adalah Rp20.000. Harga 1 botol A, 2 botol B, dan 1 botol C adalah Rp13.000. Harga 3 botol A, 1 botol B, dan 2 botol C adalah Rp21.000. Berapakah harga 1 botol B?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp3.000</div>
+                <div><span class="huruf">B.</span> Rp4.000</div>
+                <div><span class="huruf">C.</span> Rp5.000</div>
+                <div><span class="huruf">D.</span> Rp6.000</div>
+                <div><span class="huruf">E.</span> Rp7.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $2A+B+3C=20$; $A+2B+C=13$; $3A+B+2C=21$ (ribuan). <br>
+                Eliminasi (3)-(2): $2A-B+C=8$ ...(4). <br>
+                (1)-2*(2): $-3B+C = -6 \Rightarrow C=3B-6$. <br>
+                (4): $2A - B + 3B - 6 = 8 \Rightarrow 2A+2B=14 \Rightarrow A+B=7 \Rightarrow A=7-B$. <br>
+                (2): $(7-B)+2B+3B-6=13 \Rightarrow 4B+1=13 \Rightarrow B=3$. <br>
+                Jadi harga B = Rp3.000.</div>
+        </div>
+
+        <!-- ===================== SOAL 4 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 4</div>
+            <div class="soal-teks">
+                <p>Pengrajin membuat meja ($x$) dan kursi ($y$). Meja butuh 2 kg kayu &amp; 3 jam kerja. Kursi butuh 1 kg kayu &amp; 2 jam kerja. Tersedia 100 kg kayu &amp; 120 jam. Laba meja Rp50.000, kursi Rp40.000. Laba maksimum?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp2.400.000</div>
+                <div><span class="huruf">B.</span> Rp2.500.000</div>
+                <div><span class="huruf">C.</span> Rp2.600.000</div>
+                <div><span class="huruf">D.</span> Rp2.700.000</div>
+                <div><span class="huruf">E.</span> Rp3.000.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Kendala: $2x+y \le 100$; $3x+2y \le 120$; $x,y \ge 0$. <br>
+                $Z=50.000x+40.000y$. <br>
+                Titik pojok: $(0,0)=0$, $(50,0)=2.500.000$, $(0,60)=2.400.000$. <br>
+                Perpotongan $2x+y=100$ &amp; $3x+2y=120$ menghasilkan $x=80, y=-60$ (TM). <br>
+                Maksimum di $(50,0)$ = Rp2.500.000.</div>
+        </div>
+
+        <!-- ===================== SOAL 5 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 5</div>
+            <div class="soal-teks">
+                <p>Perusahaan taksi tipe A (2 L/100km, 4 org) dan B (3 L/100km, 6 org). Kuota 48 orang, budget BBM 30 L/100km. Laba A = Rp200/km, B = Rp300/km. Laba maksimum per 100 km?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp2.000</div>
+                <div><span class="huruf">B.</span> Rp2.400</div>
+                <div><span class="huruf">C.</span> Rp2.800</div>
+                <div><span class="huruf">D.</span> Rp3.000</div>
+                <div><span class="huruf">E.</span> Rp3.600</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $x$=A, $y$=B. <br>
+                Kendala: $4x+6y \ge 48 \Rightarrow 2x+3y \ge 24$; $2x+3y \le 30$. <br>
+                $Z=200x+300y$. Karena koefisien $y$ lebih besar, ambil $2x+3y=30$ dengan $x=0,y=10$ $\Rightarrow Z=3000$.</div>
+        </div>
+
+        <!-- ===================== SOAL 6 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 6</div>
+            <div class="soal-teks">
+                <p>Daerah penyelesaian $2x+y \le 6$, $x+3y \ge 6$, $x\ge0$, $y\ge0$ berbentuk ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Segitiga</div>
+                <div><span class="huruf">B.</span> Segiempat</div>
+                <div><span class="huruf">C.</span> Garis</div>
+                <div><span class="huruf">D.</span> Tak terbatas</div>
+                <div><span class="huruf">E.</span> Titik</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Gambar kedua garis dan batas sumbu. Irisan membentuk segitiga dengan titik $(0,2)$, $(3,0)$, dan perpotongan $(2.4, 1.2)$.</div>
+        </div>
+
+        <!-- ===================== SOAL 7 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 7</div>
+            <div class="soal-teks">
+                <p>Atlet butuh min 24 protein &amp; 36 karbohidrat. Suplemen A (2 protein, 6 karbo) = Rp10.000. B (4 protein, 3 karbo) = Rp15.000. Biaya minimum?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp60.000</div>
+                <div><span class="huruf">B.</span> Rp70.000</div>
+                <div><span class="huruf">C.</span> Rp80.000</div>
+                <div><span class="huruf">D.</span> Rp90.000</div>
+                <div><span class="huruf">E.</span> Rp100.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $x$=A, $y$=B. <br>
+                $x+2y \ge 12$; $2x+y \ge 12$; $Z=10.000x+15.000y$. <br>
+                Titik pojok: $(6,0)=60.000$, $(0,6)=90.000$, $(4,4)=100.000$. Minimum = 60.000.</div>
+        </div>
+
+        <!-- ===================== SOAL 8 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 8</div>
+            <div class="soal-teks">
+                <p>Domain fungsi $f(x) = \frac{3x+2}{x-4}$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $x \neq -4$</div>
+                <div><span class="huruf">B.</span> $x \neq 4$</div>
+                <div><span class="huruf">C.</span> $x \neq 2$</div>
+                <div><span class="huruf">D.</span> $x \neq -2$</div>
+                <div><span class="huruf">E.</span> $x \neq 0$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Penyebut $x-4=0 \Rightarrow x=4$. Maka domain $x \neq 4$.</div>
+        </div>
+
+        <!-- ===================== SOAL 9 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 9</div>
+            <div class="soal-teks">
+                <p>Range dari $f(x) = x^2 - 4x + 7$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $y \ge 7$</div>
+                <div><span class="huruf">B.</span> $y \ge 3$</div>
+                <div><span class="huruf">C.</span> $y \ge 4$</div>
+                <div><span class="huruf">D.</span> $y \le 3$</div>
+                <div><span class="huruf">E.</span> $y \le 7$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $f(x)=(x-2)^2+3$. Nilai minimum 3, maka range $y \ge 3$.</div>
+        </div>
+
+        <!-- ===================== SOAL 10 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 10</div>
+            <div class="soal-teks">
+                <p>Fungsi $f(x)=2x-5$ memetakan $\{1,3,5\}$ ke bilangan bulat. Kodomainnya adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\{-3,1,5\}$</div>
+                <div><span class="huruf">B.</span> Bilangan bulat</div>
+                <div><span class="huruf">C.</span> Bilangan real</div>
+                <div><span class="huruf">D.</span> $\{1,3,5\}$</div>
+                <div><span class="huruf">E.</span> $\{-3,-1,5\}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Kodomain adalah himpunan yang dituju (sesuai definisi), yaitu bilangan bulat.</div>
+        </div>
+
+        <!-- ===================== SOAL 11 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 11</div>
+            <div class="soal-teks">
+                <p>Invers dari $f(x) = \frac{2x+3}{x-1}$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{x+3}{x-2}$</div>
+                <div><span class="huruf">B.</span> $\frac{x-3}{x+2}$</div>
+                <div><span class="huruf">C.</span> $\frac{x-3}{x-2}$</div>
+                <div><span class="huruf">D.</span> $\frac{x+3}{x+2}$</div>
+                <div><span class="huruf">E.</span> $\frac{2x-3}{x+1}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $y(x-1)=2x+3 \Rightarrow yx-y=2x+3 \Rightarrow x(y-2)=y+3 \Rightarrow x=\frac{y+3}{y-2}$. Maka $f^{-1}(x)=\frac{x+3}{x-2}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 12 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 12</div>
+            <div class="soal-teks">
+                <p>Konversi $F = \frac{9}{5}C + 32$. Jika $77^\circ F$, berapa $^\circ C$?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $20^\circ C$</div>
+                <div><span class="huruf">B.</span> $25^\circ C$</div>
+                <div><span class="huruf">C.</span> $30^\circ C$</div>
+                <div><span class="huruf">D.</span> $35^\circ C$</div>
+                <div><span class="huruf">E.</span> $45^\circ C$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $C = \frac{5}{9}(F-32) = \frac{5}{9}(45) = 25^\circ C$.</div>
+        </div>
+
+        <!-- ===================== SOAL 13 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 13</div>
+            <div class="soal-teks">
+                <p>Jika $f(x)=2x-3$ dan $g(x)=x+1$, nilai $(f \circ g)^{-1}(3)$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> -2</div>
+                <div><span class="huruf">B.</span> -1</div>
+                <div><span class="huruf">C.</span> 0</div>
+                <div><span class="huruf">D.</span> 1</div>
+                <div><span class="huruf">E.</span> 2</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>E</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $(f \circ g)(x)=2(x+1)-3=2x-1$. Invers: $x=\frac{y+1}{2}$. Untuk $y=3$, $x=2$.</div>
+        </div>
+
+        <!-- ===================== SOAL 14 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 14</div>
+            <div class="soal-teks">
+                <p>Diberikan $f(x)=x^2-4$ dan $g(x)=2x+1$. Hasil $(f \circ g)(x)$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $2x^2 - 7$</div>
+                <div><span class="huruf">B.</span> $4x^2 + 4x - 3$</div>
+                <div><span class="huruf">C.</span> $4x^2 + 4x + 1$</div>
+                <div><span class="huruf">D.</span> $2x^2 - 4x - 1$</div>
+                <div><span class="huruf">E.</span> $4x^2 - 4x - 3$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $(2x+1)^2 - 4 = 4x^2+4x+1-4 = 4x^2+4x-3$.</div>
+        </div>
+
+        <!-- ===================== SOAL 15 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 15</div>
+            <div class="soal-teks">
+                <p>Toko diskon 20% lalu pajak 10% dari harga diskon. Fungsi komposisi harga akhir dari $x$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $0,72x$</div>
+                <div><span class="huruf">B.</span> $0,88x$</div>
+                <div><span class="huruf">C.</span> $0,90x$</div>
+                <div><span class="huruf">D.</span> $1,10x$</div>
+                <div><span class="huruf">E.</span> $0,80x$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Diskon $f(x)=0.8x$, Pajak $g(x)=1.1x$. Hasil akhir = $g(f(x)) = 1.1(0.8x) = 0.88x$.</div>
+        </div>
+
+        <!-- ===================== SOAL 16 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 16</div>
+            <div class="soal-teks">
+                <p>Jika $f(x)=x+2$ dan $(f \circ g)(x)=2x-1$, maka $g(x)=...$</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $2x - 3$</div>
+                <div><span class="huruf">B.</span> $2x + 1$</div>
+                <div><span class="huruf">C.</span> $x - 3$</div>
+                <div><span class="huruf">D.</span> $x + 3$</div>
+                <div><span class="huruf">E.</span> $2x + 3$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $f(g(x)) = g(x)+2 = 2x-1 \Rightarrow g(x) = 2x-3$.</div>
+        </div>
+
+        <!-- ===================== SOAL 17 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 17</div>
+            <div class="soal-teks">
+                <p>Produksi roti Januari 1.000 kotak, naik 150 setiap bulan. Total produksi 12 bulan?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 15.900</div>
+                <div><span class="huruf">B.</span> 18.900</div>
+                <div><span class="huruf">C.</span> 21.900</div>
+                <div><span class="huruf">D.</span> 24.900</div>
+                <div><span class="huruf">E.</span> 27.900</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $a=1000, b=150, n=12$. $S_{12}=\frac{12}{2}(2(1000)+11(150)) = 6(2000+1650)=21.900$.</div>
+        </div>
+
+        <!-- ===================== SOAL 18 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 18</div>
+            <div class="soal-teks">
+                <p>Gedung teater: baris ke-1 = 20 kursi, ke-2 = 24, ke-3 = 28, tambah 4 setiap baris. Total 15 baris?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 600</div>
+                <div><span class="huruf">B.</span> 620</div>
+                <div><span class="huruf">C.</span> 660</div>
+                <div><span class="huruf">D.</span> 720</div>
+                <div><span class="huruf">E.</span> 780</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $a=20, b=4, n=15$. $S_{15}=\frac{15}{2}(40+14\cdot4)=\frac{15}{2}(96)=720$.</div>
+        </div>
+
+        <!-- ===================== SOAL 19 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 19</div>
+            <div class="soal-teks">
+                <p>Tabungan minggu ke-1 = Rp5.000, ke-2 = Rp7.000, ke-3 = Rp9.000. Total tabungan 10 minggu?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp120.000</div>
+                <div><span class="huruf">B.</span> Rp130.000</div>
+                <div><span class="huruf">C.</span> Rp140.000</div>
+                <div><span class="huruf">D.</span> Rp150.000</div>
+                <div><span class="huruf">E.</span> Rp160.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $a=5000, b=2000, n=10$. $S_{10}=5(10000+9\cdot2000)=5(28000)=140.000$.</div>
+        </div>
+
+        <!-- ===================== SOAL 20 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 20</div>
+            <div class="soal-teks">
+                <p>Amuba membelah jadi 2 setiap 20 menit. Mula 5 amuba. Jumlah setelah 2 jam?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 160</div>
+                <div><span class="huruf">B.</span> 320</div>
+                <div><span class="huruf">C.</span> 640</div>
+                <div><span class="huruf">D.</span> 1.280</div>
+                <div><span class="huruf">E.</span> 2.560</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> 2 jam = 120 menit, pembelahan = 6 kali. $U_6 = 5 \cdot 2^6 = 320$.</div>
+        </div>
+
+        <!-- ===================== SOAL 21 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 21</div>
+            <div class="soal-teks">
+                <p>Bola jatuh dari 10 m, memantul $\frac{3}{4}$ tinggi sebelumnya. Panjang lintasan total sampai berhenti?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 30 m</div>
+                <div><span class="huruf">B.</span> 40 m</div>
+                <div><span class="huruf">C.</span> 50 m</div>
+                <div><span class="huruf">D.</span> 60 m</div>
+                <div><span class="huruf">E.</span> 70 m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>E</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $a=10, r=\frac{3}{4}$. Lintasan = $10 + 2 \cdot \frac{10 \cdot \frac{3}{4}}{1-\frac{3}{4}} = 10 + 2 \cdot 30 = 70$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 22 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 22</div>
+            <div class="soal-teks">
+                <p>Penduduk 100.000 jiwa, tumbuh 5% per tahun. Jumlah setelah 2 tahun?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 105.000</div>
+                <div><span class="huruf">B.</span> 110.000</div>
+                <div><span class="huruf">C.</span> 110.250</div>
+                <div><span class="huruf">D.</span> 115.000</div>
+                <div><span class="huruf">E.</span> 120.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $P = 100.000(1.05)^2 = 100.000 \times 1.1025 = 110.250$.</div>
+        </div>
+
+        <!-- ===================== SOAL 23 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 23</div>
+            <div class="soal-teks">
+                <p>Zat radioaktif 200 gram meluruh 10% per tahun. Sisa setelah 3 tahun (pembulatan)?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> 120 gram</div>
+                <div><span class="huruf">B.</span> 130 gram</div>
+                <div><span class="huruf">C.</span> 140 gram</div>
+                <div><span class="huruf">D.</span> 145 gram</div>
+                <div><span class="huruf">E.</span> 146 gram</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>E</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $200(0.9)^3 = 200 \times 0.729 = 145.8 \approx 146$ gram.</div>
+        </div>
+
+        <!-- ===================== SOAL 24 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 24</div>
+            <div class="soal-teks">
+                <p>Pinjam Rp10.000.000, bunga tunggal 5%/tahun, tenor 2 tahun. Total bayar?</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp10.500.000</div>
+                <div><span class="huruf">B.</span> Rp11.000.000</div>
+                <div><span class="huruf">C.</span> Rp11.500.000</div>
+                <div><span class="huruf">D.</span> Rp12.000.000</div>
+                <div><span class="huruf">E.</span> Rp12.500.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Bunga = $10.000.000 \times 0.05 \times 2 = 1.000.000$. Total = 11.000.000.</div>
+        </div>
+
+        <!-- ===================== SOAL 25 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 25</div>
+            <div class="soal-teks">
+                <p>Tabung Rp10.000.000, bunga majemuk 6%/tahun. Saldo setelah 3 tahun? ($(1.06)^3 = 1.191016$)</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> Rp11.000.000</div>
+                <div><span class="huruf">B.</span> Rp11.500.000</div>
+                <div><span class="huruf">C.</span> Rp11.800.000</div>
+                <div><span class="huruf">D.</span> Rp11.910.160</div>
+                <div><span class="huruf">E.</span> Rp12.000.000</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $M = 10.000.000 \times 1.191016 = 11.910.160$.</div>
+        </div>
+
+        <hr>
+        <div style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 20px;">
+            © 2026 – 25 Soal TKA Matematika (Aljabar) | Responsif &amp; Bebas Overflow
+        </div>
+    </div>
+</body>
+</html>

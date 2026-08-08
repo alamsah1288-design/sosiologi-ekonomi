@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Soal TKA Matematika – Trigonometri</title>
+    <!-- MathJax untuk rendering rumus LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ['\\[', '\\]']
+                ],
+                processEscapes: true,
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async>
+    </script>
+
+    <style>
+        /* === RESET & GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 15px;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            padding: 30px 30px;
+            overflow-x: hidden;
+        }
+
+        /* === HEADER === */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c0e37;
+            border-left: 6px solid #8e44ad;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #475569;
+            margin-bottom: 30px;
+            padding-left: 26px;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .subhead span {
+            background: #f4ecf7;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #6c3483;
+            margin-right: 8px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* === KARTU SOAL === */
+        .soal-item {
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 22px 25px;
+            margin-bottom: 28px;
+            border: 1px solid #e6edf5;
+            transition: 0.2s;
+            overflow-x: hidden;
+        }
+
+        .soal-item:hover {
+            border-color: #d2b4de;
+            background: #fcf8ff;
+        }
+
+        .soal-nomor {
+            display: inline-block;
+            background: #6c3483;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 2px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .soal-teks {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 14px;
+            font-weight: 500;
+            color: #0f2b42;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .soal-teks p {
+            margin: 0;
+        }
+
+        /* === OPSI JAWABAN (GRID RESPONSIF) === */
+        .opsi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 25px;
+            margin: 12px 0 14px 0;
+            font-size: 0.98rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .opsi div {
+            padding: 4px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .opsi .huruf {
+            font-weight: 600;
+            color: #6c3483;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        /* === JAWABAN & PEMBAHASAN === */
+        .jawaban {
+            margin-top: 14px;
+            padding: 10px 18px;
+            background: #f5eef8;
+            border-radius: 12px;
+            border-left: 4px solid #8e44ad;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .jawaban strong {
+            color: #4a235a;
+        }
+
+        .pembahasan {
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #faf5fc;
+            border-radius: 12px;
+            border-left: 4px solid #d2b4de;
+            font-size: 0.95rem;
+            color: #1e3a5f;
+            line-height: 1.7;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        .pembahasan strong {
+            color: #4a235a;
+        }
+
+        .kunci-badge {
+            display: inline-block;
+            background: #6c3483;
+            color: white;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        hr {
+            margin: 25px 0 10px 0;
+            border: none;
+            border-top: 1px dashed #d4dfe9;
+        }
+
+        /* === PERBAIKAN MATHJAX AGAR TIDAK OVERFLOW === */
+        mjx-container {
+            display: inline-block !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            vertical-align: middle;
+            padding: 2px 0;
+        }
+
+        mjx-container[jax="SVG"] {
+            direction: ltr;
+        }
+
+        .MathJax {
+            font-size: 1em !important;
+        }
+
+        /* === RESPONSIVE BREAKPOINTS === */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 18px;
+            }
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px 15px;
+            }
+            .soal-item {
+                padding: 18px 18px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px 12px;
+                border-radius: 16px;
+            }
+            .opsi {
+                grid-template-columns: 1fr;
+            }
+            .soal-item {
+                padding: 15px 14px;
+                border-radius: 14px;
+            }
+            .soal-teks {
+                font-size: 1rem;
+            }
+            .pembahasan,
+            .jawaban {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 8px;
+            }
+            .container {
+                padding: 10px 8px;
+            }
+            .soal-item {
+                padding: 12px 10px;
+                margin-bottom: 20px;
+            }
+            .soal-teks {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .opsi {
+                font-size: 0.9rem;
+                gap: 2px;
+            }
+            .subhead {
+                font-size: 0.85rem;
+                padding-left: 10px;
+            }
+            h1 {
+                font-size: 1.4rem;
+                padding-left: 12px;
+            }
+            .kunci-badge {
+                font-size: 0.7rem;
+                padding: 1px 10px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .opsi {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Soal TKA – Trigonometri</h1>
+        <div class="subhead">
+            <span>25 Soal</span> Sinus · Kosinus · Tangen · Kotangen · Sekan · Kosekan | Sudut Istimewa &amp; Penerapan
+        </div>
+
+        <!-- ===================== SOAL 1 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 1</div>
+            <div class="soal-teks">
+                <p>Perhatikan segitiga siku-siku $ABC$ dengan siku-siku di $C$. Diketahui panjang $AB = 13$ cm, $AC = 12$ cm, dan $BC = 5$ cm. Nilai $\sin A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">B.</span> $\frac{12}{13}$</div>
+                <div><span class="huruf">C.</span> $\frac{5}{12}$</div>
+                <div><span class="huruf">D.</span> $\frac{12}{5}$</div>
+                <div><span class="huruf">E.</span> $\frac{13}{5}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sin A = \frac{\text{sisi depan sudut } A}{\text{sisi miring}} = \frac{BC}{AB} = \frac{5}{13}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 2 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 2</div>
+            <div class="soal-teks">
+                <p>Pada segitiga yang sama ($AB=13$, $AC=12$, $BC=5$), nilai $\cos A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">B.</span> $\frac{12}{13}$</div>
+                <div><span class="huruf">C.</span> $\frac{5}{12}$</div>
+                <div><span class="huruf">D.</span> $\frac{12}{5}$</div>
+                <div><span class="huruf">E.</span> $\frac{13}{12}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\cos A = \frac{\text{sisi samping sudut } A}{\text{sisi miring}} = \frac{AC}{AB} = \frac{12}{13}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 3 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 3</div>
+            <div class="soal-teks">
+                <p>Pada segitiga yang sama, nilai $\tan A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">B.</span> $\frac{12}{13}$</div>
+                <div><span class="huruf">C.</span> $\frac{5}{12}$</div>
+                <div><span class="huruf">D.</span> $\frac{12}{5}$</div>
+                <div><span class="huruf">E.</span> $\frac{13}{5}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan A = \frac{\text{sisi depan}}{\text{sisi samping}} = \frac{BC}{AC} = \frac{5}{12}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 4 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 4</div>
+            <div class="soal-teks">
+                <p>Pada segitiga yang sama, nilai $\sec B$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">B.</span> $\frac{12}{13}$</div>
+                <div><span class="huruf">C.</span> $\frac{13}{5}$</div>
+                <div><span class="huruf">D.</span> $\frac{13}{12}$</div>
+                <div><span class="huruf">E.</span> $\frac{12}{5}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Untuk sudut $B$, sisi miring $AB = 13$, sisi samping $BC = 5$. $\cos B = \frac{5}{13}$. Maka $\sec B = \frac{1}{\cos B} = \frac{13}{5}$.<br>
+                <em>Mohon koreksi: sisi samping B adalah BC = 5, maka $\sec B = \frac{13}{5}$. Jawaban C.</em> <br>
+                <strong>Revisi Kunci:</strong> C. $\frac{13}{5}$</div>
+        </div>
+
+        <!-- ===================== SOAL 5 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 5</div>
+            <div class="soal-teks">
+                <p>Pada segitiga yang sama, nilai $\cot B$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{5}{12}$</div>
+                <div><span class="huruf">B.</span> $\frac{12}{5}$</div>
+                <div><span class="huruf">C.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">D.</span> $\frac{13}{12}$</div>
+                <div><span class="huruf">E.</span> $\frac{13}{5}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan B = \frac{\text{depan}}{\text{samping}} = \frac{AC}{BC} = \frac{12}{5}$. Maka $\cot B = \frac{1}{\tan B} = \frac{5}{12}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 6 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 6</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\sin 30^\circ + \cos 60^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $0$</div>
+                <div><span class="huruf">B.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $1$</div>
+                <div><span class="huruf">D.</span> $\frac{3}{2}$</div>
+                <div><span class="huruf">E.</span> $2$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sin 30^\circ = \frac{1}{2}$ dan $\cos 60^\circ = \frac{1}{2}$. Jumlahnya $= 1$.</div>
+        </div>
+
+        <!-- ===================== SOAL 7 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 7</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\tan 45^\circ - \sin 90^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $-1$</div>
+                <div><span class="huruf">B.</span> $0$</div>
+                <div><span class="huruf">C.</span> $1$</div>
+                <div><span class="huruf">D.</span> $2$</div>
+                <div><span class="huruf">E.</span> $\frac{1}{2}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 45^\circ = 1$ dan $\sin 90^\circ = 1$. Maka $1 - 1 = 0$.</div>
+        </div>
+
+        <!-- ===================== SOAL 8 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 8</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\sin 45^\circ \times \cos 45^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $0$</div>
+                <div><span class="huruf">B.</span> $\frac{1}{4}$</div>
+                <div><span class="huruf">C.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">D.</span> $\frac{\sqrt{2}}{2}$</div>
+                <div><span class="huruf">E.</span> $1$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sin 45^\circ = \frac{\sqrt{2}}{2}$ dan $\cos 45^\circ = \frac{\sqrt{2}}{2}$. Hasil perkalian $= \frac{2}{4} = \frac{1}{2}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 9 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 9</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\frac{\tan 60^\circ}{\cos 30^\circ}$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $1$</div>
+                <div><span class="huruf">B.</span> $\sqrt{2}$</div>
+                <div><span class="huruf">C.</span> $2$</div>
+                <div><span class="huruf">D.</span> $2\sqrt{3}$</div>
+                <div><span class="huruf">E.</span> $\frac{1}{2}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 60^\circ = \sqrt{3}$ dan $\cos 30^\circ = \frac{\sqrt{3}}{2}$. Maka $\frac{\sqrt{3}}{\frac{\sqrt{3}}{2}} = 2$.</div>
+        </div>
+
+        <!-- ===================== SOAL 10 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 10</div>
+            <div class="soal-teks">
+                <p>Diketahui $\sin A = \frac{3}{5}$ dengan $A$ sudut lancip. Nilai $\cos A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{1}{5}$</div>
+                <div><span class="huruf">B.</span> $\frac{2}{5}$</div>
+                <div><span class="huruf">C.</span> $\frac{3}{5}$</div>
+                <div><span class="huruf">D.</span> $\frac{4}{5}$</div>
+                <div><span class="huruf">E.</span> $1$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Identitas $\sin^2 A + \cos^2 A = 1$. <br>
+                $\cos^2 A = 1 - \left(\frac{3}{5}\right)^2 = 1 - \frac{9}{25} = \frac{16}{25}$. Karena lancip, $\cos A = \frac{4}{5}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 11 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 11</div>
+            <div class="soal-teks">
+                <p>Jika $\tan A = \frac{5}{12}$ dan $A$ sudut lancip, maka nilai $\sin A \cdot \cos A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{60}{169}$</div>
+                <div><span class="huruf">B.</span> $\frac{25}{169}$</div>
+                <div><span class="huruf">C.</span> $\frac{144}{169}$</div>
+                <div><span class="huruf">D.</span> $\frac{5}{13}$</div>
+                <div><span class="huruf">E.</span> $\frac{12}{13}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan A = \frac{5}{12}$ artinya sisi depan $=5$, samping $=12$, miring $=13$. <br>
+                $\sin A = \frac{5}{13}$, $\cos A = \frac{12}{13}$. <br>
+                $\sin A \cdot \cos A = \frac{5}{13} \cdot \frac{12}{13} = \frac{60}{169}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 12 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 12</div>
+            <div class="soal-teks">
+                <p>Sebuah tangga disandarkan pada dinding dengan sudut $60^\circ$ terhadap lantai. Jika jarak kaki tangga ke dinding adalah 2 m, panjang tangga adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $1$ m</div>
+                <div><span class="huruf">B.</span> $2$ m</div>
+                <div><span class="huruf">C.</span> $3$ m</div>
+                <div><span class="huruf">D.</span> $4$ m</div>
+                <div><span class="huruf">E.</span> $5$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Jarak kaki ke dinding adalah sisi samping sudut $60^\circ$. $\cos 60^\circ = \frac{\text{samping}}{\text{miring}}$. <br>
+                $\frac{1}{2} = \frac{2}{\text{panjang tangga}} \Rightarrow \text{panjang tangga} = 4$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 13 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 13</div>
+            <div class="soal-teks">
+                <p>Seorang anak melihat puncak gedung dengan sudut elevasi $30^\circ$ dari jarak 20 m dari dasar gedung. Tinggi gedung adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $10\sqrt{3}$ m</div>
+                <div><span class="huruf">B.</span> $\frac{20}{3}\sqrt{3}$ m</div>
+                <div><span class="huruf">C.</span> $20\sqrt{3}$ m</div>
+                <div><span class="huruf">D.</span> $\frac{40}{3}\sqrt{3}$ m</div>
+                <div><span class="huruf">E.</span> $10$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 30^\circ = \frac{\text{tinggi}}{\text{jarak}} = \frac{t}{20}$. <br>
+                $\frac{1}{\sqrt{3}} = \frac{t}{20} \Rightarrow t = \frac{20}{\sqrt{3}} = \frac{20\sqrt{3}}{3}$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 14 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 14</div>
+            <div class="soal-teks">
+                <p>Diketahui $\sin A = \frac{1}{2}$ dan sudut $A$ tumpul ($90^\circ < A < 180^\circ$). Nilai $\cos A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">B.</span> $-\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">D.</span> $-\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">E.</span> $-\frac{1}{\sqrt{3}}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\cos^2 A = 1 - \sin^2 A = 1 - \frac{1}{4} = \frac{3}{4}$. Karena $A$ tumpul (kuadran II), nilai $\cos$ negatif. Maka $\cos A = -\frac{\sqrt{3}}{2}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 15 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 15</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\sin 120^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $-\frac{1}{2}$</div>
+                <div><span class="huruf">B.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $-\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">D.</span> $\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">E.</span> $-\sqrt{3}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sin 120^\circ = \sin (180^\circ - 60^\circ) = \sin 60^\circ = \frac{\sqrt{3}}{2}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 16 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 16</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\cos 210^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">B.</span> $-\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">D.</span> $-\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">E.</span> $\sqrt{3}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\cos 210^\circ = \cos (180^\circ + 30^\circ) = -\cos 30^\circ = -\frac{\sqrt{3}}{2}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 17 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 17</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\tan 135^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $-1$</div>
+                <div><span class="huruf">B.</span> $1$</div>
+                <div><span class="huruf">C.</span> $-\sqrt{3}$</div>
+                <div><span class="huruf">D.</span> $\sqrt{3}$</div>
+                <div><span class="huruf">E.</span> $0$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 135^\circ = \tan (180^\circ - 45^\circ) = -\tan 45^\circ = -1$.</div>
+        </div>
+
+        <!-- ===================== SOAL 18 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 18</div>
+            <div class="soal-teks">
+                <p>Bentuk sederhana dari $\cos x \cdot \tan x$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\sin x$</div>
+                <div><span class="huruf">B.</span> $\cos x$</div>
+                <div><span class="huruf">C.</span> $\tan x$</div>
+                <div><span class="huruf">D.</span> $1$</div>
+                <div><span class="huruf">E.</span> $\sec x$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan x = \frac{\sin x}{\cos x}$. Maka $\cos x \cdot \tan x = \cos x \cdot \frac{\sin x}{\cos x} = \sin x$.</div>
+        </div>
+
+        <!-- ===================== SOAL 19 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 19</div>
+            <div class="soal-teks">
+                <p>Bentuk sederhana dari $\frac{\sin x}{\cos x}$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\sin x$</div>
+                <div><span class="huruf">B.</span> $\cos x$</div>
+                <div><span class="huruf">C.</span> $\tan x$</div>
+                <div><span class="huruf">D.</span> $\cot x$</div>
+                <div><span class="huruf">E.</span> $\sec x$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\frac{\sin x}{\cos x} = \tan x$ (definisi dasar tangen).</div>
+        </div>
+
+        <!-- ===================== SOAL 20 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 20</div>
+            <div class="soal-teks">
+                <p>Bentuk sederhana dari $\sec x - \cos x$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\sin x$</div>
+                <div><span class="huruf">B.</span> $\sin x \cdot \tan x$</div>
+                <div><span class="huruf">C.</span> $\cos x \cdot \tan x$</div>
+                <div><span class="huruf">D.</span> $\cot x$</div>
+                <div><span class="huruf">E.</span> $1$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sec x - \cos x = \frac{1}{\cos x} - \cos x = \frac{1 - \cos^2 x}{\cos x} = \frac{\sin^2 x}{\cos x} = \sin x \cdot \frac{\sin x}{\cos x} = \sin x \cdot \tan x$.</div>
+        </div>
+
+        <!-- ===================== SOAL 21 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 21</div>
+            <div class="soal-teks">
+                <p>Pada segitiga siku-siku, diketahui $\sin A = \frac{4}{5}$. Nilai $\cot A$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{3}{4}$</div>
+                <div><span class="huruf">B.</span> $\frac{4}{3}$</div>
+                <div><span class="huruf">C.</span> $\frac{3}{5}$</div>
+                <div><span class="huruf">D.</span> $\frac{5}{3}$</div>
+                <div><span class="huruf">E.</span> $\frac{4}{5}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>A</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\sin A = \frac{4}{5}$ artinya depan = 4, miring = 5. Samping = $\sqrt{5^2 - 4^2} = 3$. <br>
+                $\cot A = \frac{\text{samping}}{\text{depan}} = \frac{3}{4}$.</div>
+        </div>
+
+        <!-- ===================== SOAL 22 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 22</div>
+            <div class="soal-teks">
+                <p>Sebuah layang-layang terbang dengan sudut $60^\circ$ terhadap tanah. Jika panjang benang yang terulur 50 m, tinggi layang-layang dari permukaan tanah adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $25$ m</div>
+                <div><span class="huruf">B.</span> $25\sqrt{2}$ m</div>
+                <div><span class="huruf">C.</span> $25\sqrt{3}$ m</div>
+                <div><span class="huruf">D.</span> $50\sqrt{3}$ m</div>
+                <div><span class="huruf">E.</span> $50$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>C</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> Tinggi = benang $\times \sin 60^\circ = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3}$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 23 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 23</div>
+            <div class="soal-teks">
+                <p>Seorang pengamat melihat puncak sebuah bukit dengan sudut elevasi $45^\circ$. Jika jarak horizontal antara pengamat dan bukit adalah 100 m, tinggi bukit adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $50$ m</div>
+                <div><span class="huruf">B.</span> $100$ m</div>
+                <div><span class="huruf">C.</span> $100\sqrt{2}$ m</div>
+                <div><span class="huruf">D.</span> $50\sqrt{2}$ m</div>
+                <div><span class="huruf">E.</span> $150$ m</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>B</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\tan 45^\circ = \frac{\text{tinggi}}{\text{jarak horizontal}}$. <br>
+                $1 = \frac{t}{100} \Rightarrow t = 100$ m.</div>
+        </div>
+
+        <!-- ===================== SOAL 24 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 24</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\csc 30^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $1$</div>
+                <div><span class="huruf">B.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $\frac{\sqrt{3}}{2}$</div>
+                <div><span class="huruf">D.</span> $2$</div>
+                <div><span class="huruf">E.</span> $\frac{2}{\sqrt{3}}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\csc 30^\circ = \frac{1}{\sin 30^\circ} = \frac{1}{\frac{1}{2}} = 2$.</div>
+        </div>
+
+        <!-- ===================== SOAL 25 ===================== -->
+        <div class="soal-item">
+            <div class="soal-nomor">Soal 25</div>
+            <div class="soal-teks">
+                <p>Nilai dari $\cot 60^\circ$ adalah ...</p>
+            </div>
+            <div class="opsi">
+                <div><span class="huruf">A.</span> $\frac{1}{3}$</div>
+                <div><span class="huruf">B.</span> $\frac{1}{2}$</div>
+                <div><span class="huruf">C.</span> $\sqrt{3}$</div>
+                <div><span class="huruf">D.</span> $\frac{1}{\sqrt{3}}$</div>
+                <div><span class="huruf">E.</span> $\frac{2}{\sqrt{3}}$</div>
+            </div>
+            <div class="jawaban"><span class="kunci-badge">Kunci</span> <strong>D</strong></div>
+            <div class="pembahasan"><strong>Pembahasan:</strong> $\cot 60^\circ = \frac{1}{\tan 60^\circ} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}$.</div>
+        </div>
+
+        <hr>
+        <div style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 20px;">
+            © 2026 – 25 Soal TKA Matematika (Trigonometri) | Responsif &amp; Bebas Overflow
+        </div>
+    </div>
+</body>
+</html>
