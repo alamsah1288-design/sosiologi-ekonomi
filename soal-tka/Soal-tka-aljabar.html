@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Soal TKA Matematika – Aljabar (Responsif)</title>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
+            crossorigin="anonymous"></script>
     <!-- MathJax untuk rendering rumus LaTeX -->
     <script>
         MathJax = {
@@ -27,7 +30,16 @@
     </script>
 
     <style>
-        /* === RESET & GLOBAL === */
+        /* === ROOT & GLOBAL === */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --dark: #212529;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -37,12 +49,199 @@
         body {
             background: #f4f7fa;
             font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            padding: 15px;
+            padding: 0;
             color: #1e293b;
             overflow-x: hidden;
-            /* Cegah scroll horizontal global */;
         }
 
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            flex-direction: column;
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border-radius: 8px;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        .dropdown-content a:hover {
+            background: var(--primary);
+            color: white;
+            padding-left: 20px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: flex;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1001;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: linear-gradient(120deg, var(--primary), var(--secondary));
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                border-radius: 0;
+                width: 100%;
+            }
+            .dropdown-content {
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                width: 100%;
+                display: none;
+                padding: 0;
+            }
+            .dropdown.active .dropdown-content {
+                display: flex;
+                flex-direction: column;
+            }
+            .dropdown-content a {
+                padding-left: 40px;
+                color: white;
+            }
+        }
+
+        /* ===== ADSENSE CONTAINER ===== */
+        .adsense-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ===== KONTEN SOAL ===== */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -51,10 +250,8 @@
             box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
             padding: 30px 30px;
             overflow-x: hidden;
-            /* Cegah overflow di dalam container */;
         }
 
-        /* === HEADER === */
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -86,7 +283,6 @@
             margin-bottom: 5px;
         }
 
-        /* === KARTU SOAL === */
         .soal-item {
             background: #fafcff;
             border-radius: 18px;
@@ -95,7 +291,6 @@
             border: 1px solid #e6edf5;
             transition: 0.2s;
             overflow-x: hidden;
-            /* amankan card */;
         }
 
         .soal-item:hover {
@@ -129,11 +324,9 @@
             margin: 0;
         }
 
-        /* === OPSI JAWABAN (GRID RESPONSIF) === */
         .opsi {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            /* default 2 kolom */
             gap: 6px 25px;
             margin: 12px 0 14px 0;
             font-size: 0.98rem;
@@ -154,7 +347,6 @@
             flex-shrink: 0;
         }
 
-        /* === JAWABAN & PEMBAHASAN === */
         .jawaban {
             margin-top: 14px;
             padding: 10px 18px;
@@ -182,7 +374,6 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             overflow-x: auto;
-            /* scroll horizontal jika ada rumus super panjang */;
         }
 
         .pembahasan strong {
@@ -206,7 +397,6 @@
             border-top: 1px dashed #d4dfe9;
         }
 
-        /* === PERBAIKAN MATHJAX AGAR TIDAK OVERFLOW === */
         mjx-container {
             display: inline-block !important;
             max-width: 100% !important;
@@ -224,50 +414,37 @@
             font-size: 1em !important;
         }
 
-        /* === RESPONSIVE BREAKPOINTS === */
-
-        /* Layar sedang (tablet & HP besar) */
         @media (max-width: 768px) {
             .container {
                 padding: 20px 18px;
             }
-
             .opsi {
                 grid-template-columns: 1fr 1fr;
-                /* tetap 2 kolom, tapi lebih rapat */
                 gap: 4px 15px;
             }
-
             .soal-item {
                 padding: 18px 18px;
             }
-
             h1 {
                 font-size: 1.7rem;
             }
         }
 
-        /* Layar kecil (HP) */
         @media (max-width: 640px) {
             .container {
                 padding: 15px 12px;
                 border-radius: 16px;
             }
-
             .opsi {
                 grid-template-columns: 1fr;
-                /* 1 KOLOM PENUH agar tidak sempit */;
             }
-
             .soal-item {
                 padding: 15px 14px;
                 border-radius: 14px;
             }
-
             .soal-teks {
                 font-size: 1rem;
             }
-
             .pembahasan,
             .jawaban {
                 font-size: 0.9rem;
@@ -275,57 +452,92 @@
             }
         }
 
-        /* Layar sangat kecil (HP < 400px) */
         @media (max-width: 400px) {
             body {
-                padding: 8px;
+                padding: 0;
             }
-
             .container {
                 padding: 10px 8px;
+                border-radius: 12px;
             }
-
             .soal-item {
                 padding: 12px 10px;
                 margin-bottom: 20px;
             }
-
             .soal-teks {
                 font-size: 0.95rem;
                 line-height: 1.6;
             }
-
             .opsi {
                 font-size: 0.9rem;
                 gap: 2px;
             }
-
             .subhead {
                 font-size: 0.85rem;
                 padding-left: 10px;
             }
-
             h1 {
                 font-size: 1.4rem;
                 padding-left: 12px;
             }
-
             .kunci-badge {
                 font-size: 0.7rem;
                 padding: 1px 10px;
             }
         }
 
-        /* Layar lebar (Desktop) biarkan 2 kolom opsi */
         @media (min-width: 1024px) {
             .opsi {
                 grid-template-columns: 1fr 1fr;
-                /* opsi tetap rapi 2 kolom */;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" />
+            <span>SMAN 1 Cluring</span>
+        </a>
+        <div class="nav-container">
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
+            <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
+            <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
+            <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
+            <li><a href="../soal-tka.html"><i class="fas fa-question-circle"></i> Bank Soal TKA</a></li>
+            <li class="dropdown">
+                <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
+                    <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
+                    <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ===== ADSENSE ===== -->
+    <div class="adsense-container">
+        <!-- tka-sosiologi-03-penelitian-sosial.html -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1234355696976048"
+             data-ad-slot="4860066663"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- ===== KONTEN SOAL ===== -->
     <div class="container">
         <h1>📊 Soal TKA – Aljabar</h1>
         <div class="subhead">
@@ -781,5 +993,46 @@
             © 2026 – 25 Soal TKA Matematika (Aljabar) | Responsif &amp; Bebas Overflow
         </div>
     </div>
+
+    <!-- Font Awesome untuk ikon navbar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        // ===== Navbar interaksi =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && navLinks.classList.contains('active') &&
+                !e.target.closest('.nav-links') && !e.target.closest('.hamburger')) {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // ===== Theme Toggle (opsional) =====
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+    </script>
+
 </body>
 </html>
