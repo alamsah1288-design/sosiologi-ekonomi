@@ -6,7 +6,8 @@
     <title>Bank Soal TKA – SMAN 1 Cluring</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
 
     <style>
         :root {
@@ -30,8 +31,14 @@
             --gray: #a0aec0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
@@ -74,7 +81,11 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             object-fit: cover;
         }
-        .nav-container { display: flex; align-items: center; gap: 15px; }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
         .nav-links {
             display: flex;
             gap: 15px;
@@ -98,7 +109,9 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        .dropdown { position: relative; }
+        .dropdown {
+            position: relative;
+        }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -128,7 +141,9 @@
             color: white;
             padding-left: 20px;
         }
-        .dropdown:hover .dropdown-content { display: flex; }
+        .dropdown:hover .dropdown-content {
+            display: flex;
+        }
         .hamburger {
             display: none;
             cursor: pointer;
@@ -180,8 +195,12 @@
             z-index: 1;
         }
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
         .logo {
             width: 100px;
@@ -196,7 +215,10 @@
             transition: var(--transition);
             object-fit: contain;
         }
-        .logo:hover { transform: scale(1.05) rotate(10deg); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); }
+        .logo:hover {
+            transform: scale(1.05) rotate(10deg);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -235,7 +257,9 @@
             justify-content: center;
             gap: 12px;
         }
-        body.dark-mode .category-title { color: #f8f9fa; }
+        body.dark-mode .category-title {
+            color: #f8f9fa;
+        }
         .category-title::before,
         .category-title::after {
             content: '';
@@ -259,14 +283,51 @@
             margin-left: 8px;
             vertical-align: middle;
         }
-        .category-title.sosiologi { color: #f59e0b; }
-        .category-title.sosiologi i { color: #f59e0b; }
+
+        /* Warna per kategori */
+        .category-title.ekonomi {
+            color: #4361ee;
+        }
+        .category-title.ekonomi i {
+            color: #4361ee;
+        }
+        .category-title.ekonomi::before,
+        .category-title.ekonomi::after {
+            background: linear-gradient(90deg, transparent, #4361ee, transparent);
+        }
+
+        .category-title.sosiologi {
+            color: #f59e0b;
+        }
+        .category-title.sosiologi i {
+            color: #f59e0b;
+        }
         .category-title.sosiologi::before,
-        .category-title.sosiologi::after { background: linear-gradient(90deg, transparent, #f59e0b, transparent); }
-        .category-title.pkk { color: #10b981; }
-        .category-title.pkk i { color: #10b981; }
+        .category-title.sosiologi::after {
+            background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+        }
+
+        .category-title.pkk {
+            color: #10b981;
+        }
+        .category-title.pkk i {
+            color: #10b981;
+        }
         .category-title.pkk::before,
-        .category-title.pkk::after { background: linear-gradient(90deg, transparent, #10b981, transparent); }
+        .category-title.pkk::after {
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+        }
+
+        .category-title.matematika {
+            color: #8b5cf6;
+        }
+        .category-title.matematika i {
+            color: #8b5cf6;
+        }
+        .category-title.matematika::before,
+        .category-title.matematika::after {
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+        }
 
         /* CONTAINER & CARD */
         .container {
@@ -305,7 +366,9 @@
             margin-bottom: 10px;
             color: var(--dark);
         }
-        body.dark-mode .card h2 { color: #f8f9fa; }
+        body.dark-mode .card h2 {
+            color: #f8f9fa;
+        }
         .card p {
             margin-bottom: 20px;
             color: var(--gray);
@@ -351,20 +414,57 @@
         }
 
         /* Color variants */
-        .card.ekonomi { border-top-color: #4361ee; }
-        .card.ekonomi .btn { background: #4361ee; }
-        .card.ekonomi .btn:hover { background: #3f37c9; }
-        .card.ekonomi:hover { border-top-color: #4cc9f0; }
+        .card.ekonomi {
+            border-top-color: #4361ee;
+        }
+        .card.ekonomi .btn {
+            background: #4361ee;
+        }
+        .card.ekonomi .btn:hover {
+            background: #3f37c9;
+        }
+        .card.ekonomi:hover {
+            border-top-color: #4cc9f0;
+        }
 
-        .card.sosiologi { border-top-color: #f59e0b; }
-        .card.sosiologi .btn { background: #f59e0b; }
-        .card.sosiologi .btn:hover { background: #d97706; }
-        .card.sosiologi:hover { border-top-color: #fbbf24; }
+        .card.sosiologi {
+            border-top-color: #f59e0b;
+        }
+        .card.sosiologi .btn {
+            background: #f59e0b;
+        }
+        .card.sosiologi .btn:hover {
+            background: #d97706;
+        }
+        .card.sosiologi:hover {
+            border-top-color: #fbbf24;
+        }
 
-        .card.pkk { border-top-color: #10b981; }
-        .card.pkk .btn { background: #10b981; }
-        .card.pkk .btn:hover { background: #059669; }
-        .card.pkk:hover { border-top-color: #4ade80; }
+        .card.pkk {
+            border-top-color: #10b981;
+        }
+        .card.pkk .btn {
+            background: #10b981;
+        }
+        .card.pkk .btn:hover {
+            background: #059669;
+        }
+        .card.pkk:hover {
+            border-top-color: #4ade80;
+        }
+
+        .card.matematika {
+            border-top-color: #8b5cf6;
+        }
+        .card.matematika .btn {
+            background: #8b5cf6;
+        }
+        .card.matematika .btn:hover {
+            background: #7c3aed;
+        }
+        .card.matematika:hover {
+            border-top-color: #a78bfa;
+        }
 
         /* FOOTER */
         footer {
@@ -374,7 +474,9 @@
             margin-top: 60px;
             font-family: 'Poppins', sans-serif;
         }
-        body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -398,8 +500,13 @@
             background: #4361ee;
             border-radius: 3px;
         }
-        .footer-section ul { list-style: none; padding: 0; }
-        .footer-section li { margin: 10px 0; }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section li {
+            margin: 10px 0;
+        }
         .footer-section a {
             color: #e2e8f0;
             text-decoration: none;
@@ -408,8 +515,15 @@
             align-items: center;
             gap: 8px;
         }
-        .footer-section a:hover { color: #4361ee; transform: translateX(5px); }
-        .footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
+        .footer-section a:hover {
+            color: #4361ee;
+            transform: translateX(5px);
+        }
+        .footer-section p {
+            line-height: 1.6;
+            margin: 8px 0;
+            color: #e2e8f0;
+        }
         .footer-legal-bar {
             display: none;
             text-align: center;
@@ -422,9 +536,18 @@
             justify-content: center;
             font-size: 0.8rem;
         }
-        .footer-legal-bar a { color: #94a3b8; text-decoration: none; padding: 3px 8px; }
-        .footer-legal-bar a:hover { color: #4361ee; }
-        .footer-legal-bar .separator { color: rgba(255, 255, 255, 0.2); margin: 0 3px; }
+        .footer-legal-bar a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 3px 8px;
+        }
+        .footer-legal-bar a:hover {
+            color: #4361ee;
+        }
+        .footer-legal-bar .separator {
+            color: rgba(255, 255, 255, 0.2);
+            margin: 0 3px;
+        }
         .visitor-counter {
             text-align: center;
             padding: 15px;
@@ -432,8 +555,17 @@
             border-radius: 8px;
             margin-top: 10px;
         }
-        .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
-        .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
+        .visitor-counter img {
+            max-width: 100%;
+            height: auto;
+            filter: brightness(1.2);
+        }
+        .visitor-counter p {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: #e2e8f0;
+        }
         .copyright {
             text-align: center;
             grid-column: span 5;
@@ -452,12 +584,22 @@
 
         /* SCROLL & BACK TO TOP */
         .scroll-indicator {
-            position: fixed; top: 0; left: 0; width: 100%;
-            height: 4px; background: rgba(0, 0, 0, 0.1); z-index: 9999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9999;
         }
         .scroll-indicator span {
-            position: absolute; top: 0; left: 0; height: 100%;
-            background: var(--primary); width: 0%; transition: width 0.2s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.2s ease;
         }
         .back-to-top {
             position: fixed;
@@ -479,29 +621,46 @@
             visibility: hidden;
             z-index: 999;
         }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
 
         .loader-wrapper {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 9999;
             transition: opacity 0.5s ease-out;
         }
         .loader {
-            width: 50px; height: 50px;
+            width: 50px;
+            height: 50px;
             border: 5px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         @media (max-width: 768px) {
-            .hamburger { display: block; }
+            .hamburger {
+                display: block;
+            }
             .nav-links {
                 display: none;
                 position: fixed;
@@ -514,13 +673,28 @@
                 padding: 1rem 0;
                 z-index: 1000;
             }
-            .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
             }
-            .nav-links li { width: 100%; }
-            .nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                border-radius: 0;
+                width: 100%;
+            }
             .dropdown-content {
                 position: static;
                 background: rgba(0, 0, 0, 0.1);
@@ -529,23 +703,61 @@
                 display: none;
                 padding: 0;
             }
-            .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
-            .dropdown-content a { padding-left: 40px; color: white; }
-            .category-title { font-size: 1.3rem; }
-            header { padding: 4rem 1rem 2rem; }
-            .logo { width: 80px; height: 80px; }
-            .container { grid-template-columns: 1fr; padding: 15px; gap: 20px; }
-            .card { padding: 25px 20px; }
-            .btn { width: 100%; min-width: auto; }
-            .footer-container { grid-template-columns: 1fr; gap: 30px; }
-            .copyright { grid-column: span 1; }
-            .footer-legal-bar { display: flex; }
-            .footer-section:nth-child(3) { display: none; }
+            .dropdown.active .dropdown-content {
+                display: flex;
+                flex-direction: column;
+            }
+            .dropdown-content a {
+                padding-left: 40px;
+                color: white;
+            }
+            .category-title {
+                font-size: 1.3rem;
+            }
+            header {
+                padding: 4rem 1rem 2rem;
+            }
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            .container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+                gap: 20px;
+            }
+            .card {
+                padding: 25px 20px;
+            }
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .copyright {
+                grid-column: span 1;
+            }
+            .footer-legal-bar {
+                display: flex;
+            }
+            .footer-section:nth-child(3) {
+                display: none;
+            }
         }
         @media (max-width: 576px) {
-            .navbar-brand { font-size: 1rem; }
-            .navbar-brand img { width: 35px; height: 35px; }
-            h1 { font-size: 1.8rem; }
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .navbar-brand img {
+                width: 35px;
+                height: 35px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -594,13 +806,10 @@
     </header>
 
     <div class="adsense-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1234355696976048"
-             data-ad-slot="7545225746"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="7545225746" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <!-- ===== EKONOMI (4 CARD) ===== -->
@@ -655,6 +864,36 @@
             <h2><i class="fas fa-exchange-alt"></i> Perubahan Sosial & Globalisasi</h2>
             <p>Dinamika perubahan sosial, modernisasi, dan dampak globalisasi.</p>
             <a href="soal-tka/tka-sosiologi-05-perubahan-sosial-globalisasi.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+    </div>
+
+    <!-- ===== MATEMATIKA WAJIB (5 CARD) ===== -->
+    <h2 class="category-title matematika"><i class="fas fa-square-root-variable"></i> Matematika Wajib</h2>
+    <div class="container">
+        <div class="card matematika">
+            <h2><i class="fas fa-shapes"></i> Geometri & Pengukuran</h2>
+            <p>Bangun datar, bangun ruang, pengukuran panjang, luas, volume, dan trigonometri dasar.</p>
+            <a href="soal-tka/Soal-tka-Geometri%20%26%20Pengukuran.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card matematika">
+            <h2><i class="fas fa-sine"></i> Trigonometri</h2>
+            <p>Perbandingan trigonometri, identitas, persamaan, aturan sinus-cosinus, dan aplikasi.</p>
+            <a href="soal-tka/Soal-tka-Trigonometri.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card matematika">
+            <h2><i class="fas fa-square-root-variable"></i> Aljabar</h2>
+            <p>Persamaan linear, kuadrat, fungsi, logaritma, eksponen, dan matriks.</p>
+            <a href="soal-tka/Soal-tka-aljabar.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card matematika">
+            <h2><i class="fas fa-sort-numeric-up"></i> Bilangan</h2>
+            <p>Bilangan real, kompleks, pecahan, akar, pangkat, dan operasi bilangan.</p>
+            <a href="soal-tka/Soal-tka-bilangan.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
+        </div>
+        <div class="card matematika">
+            <h2><i class="fas fa-chart-bar"></i> Data & Peluang</h2>
+            <p>Statistika, penyajian data, ukuran pemusatan, peluang, dan kombinatorika.</p>
+            <a href="soal-tka/soal-tka-data-peluang.html" class="btn"><i class="fas fa-arrow-right"></i> Mulai Latihan</a>
         </div>
     </div>
 
