@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Ekonomi XI - SMAN 1 Cluring</title>
+    <title>Kuis Ekonomi XII HOTS - SMAN 1 Cluring</title>
+    <!-- FontAwesome & html2pdf.js CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
     <style>
         :root {
             --primary: #2563eb;
@@ -77,13 +79,7 @@
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .theme-toggle, .hamburger {
+        .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
@@ -97,98 +93,6 @@
             justify-content: center;
         }
 
-        .theme-toggle:hover, .hamburger:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--card);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            min-width: 200px;
-            padding: 0.5rem;
-            z-index: 100;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: var(--text);
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--primary);
-            color: white;
-            border-radius: 6px;
-        }
-
-        /* Anti-Cheat Overlay */
-        .anti-cheat-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-align: center;
-            padding: 2rem;
-            display: none;
-        }
-
-        .anti-cheat-overlay.active {
-            display: flex;
-        }
-
-        .anti-cheat-overlay i {
-            font-size: 4rem;
-            color: var(--danger);
-            margin-bottom: 1rem;
-        }
-
-        /* Main Content */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -205,15 +109,9 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 0.5rem;
         }
 
-        .page-header p {
-            color: var(--text-light);
-        }
-
-        /* Registration Form */
         .registration-form {
             background: var(--card);
             border-radius: var(--radius);
@@ -223,17 +121,11 @@
             border: 1px solid var(--border);
         }
 
-        .registration-form h3 {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .form-group {
@@ -257,22 +149,11 @@
             color: var(--text);
         }
 
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Quiz Section */
-        .quiz-section {
-            display: none;
-        }
-
-        .quiz-section.active {
-            display: block;
-        }
+        .quiz-section { display: none; }
+        .quiz-section.active { display: block; }
 
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin: 2rem 0 1rem;
             padding: 0.75rem 1.5rem;
@@ -291,17 +172,8 @@
             margin-bottom: 1.5rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            position: relative;
-        }
-
-        .question-card.correct {
-            border-color: var(--success);
-            background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(16,185,129,0.02));
-        }
-
-        .question-card.incorrect {
-            border-color: var(--danger);
-            background: linear-gradient(135deg, rgba(239,68,68,0.05), rgba(239,68,68,0.02));
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
         .question-number {
@@ -324,6 +196,15 @@
             line-height: 1.5;
         }
 
+        .case-box {
+            background: rgba(37,99,235,0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
         .question-type-badge {
             display: inline-block;
             padding: 2px 10px;
@@ -332,27 +213,12 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 0.75rem;
+            background: #dbeafe;
+            color: #1e40af;
         }
 
-        .badge-pg { background: #dbeafe; color: #1e40af; }
-        .badge-bs { background: #dcfce7; color: #166534; }
-        .badge-match { background: #fef3c7; color: #92400e; }
-        .badge-complex { background: #f3e8ff; color: #6b21a8; }
-        .badge-case { background: #ffe4e6; color: #9f1239; }
-
-        [data-theme="dark"] .badge-pg { background: #1e3a5f; color: #93c5fd; }
-        [data-theme="dark"] .badge-bs { background: #14532d; color: #86efac; }
-        [data-theme="dark"] .badge-match { background: #451a03; color: #fde68a; }
-        [data-theme="dark"] .badge-complex { background: #3b0764; color: #d8b4fe; }
-        [data-theme="dark"] .badge-case { background: #4c0519; color: #fda4af; }
-
-        .options-list {
-            list-style: none;
-        }
-
-        .options-list li {
-            margin-bottom: 0.5rem;
-        }
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.5rem; }
 
         .options-list label {
             display: flex;
@@ -370,23 +236,15 @@
             background: rgba(37,99,235,0.05);
         }
 
-        .options-list input[type="radio"],
-        .options-list input[type="checkbox"] {
-            margin-top: 4px;
-            accent-color: var(--primary);
+        /* HIGHLIGHT UNTUK JAWABAN TERPILIH DI PDF */
+        .options-list label.is-checked, .tf-options label.is-checked {
+            background-color: #dbeafe !important;
+            border-color: #2563eb !important;
+            font-weight: bold;
+            color: #1e40af !important;
         }
 
-        .options-list label.correct-answer {
-            border-color: var(--success);
-            background: rgba(16,185,129,0.1);
-        }
-
-        .options-list label.wrong-answer {
-            border-color: var(--danger);
-            background: rgba(239,68,68,0.1);
-        }
-
-        /* True/False */
+        /* True False Styling */
         .tf-options {
             display: flex;
             gap: 1rem;
@@ -398,50 +256,39 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 1rem;
+            padding: 0.75rem;
             border: 2px solid var(--border);
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
         }
 
-        .tf-options label:hover {
-            border-color: var(--primary);
-        }
-
-        /* Matching */
+        /* Matching Styling */
         .matching-container {
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: 1fr auto 1.2fr;
             gap: 1rem;
             align-items: center;
         }
 
         .matching-item {
-            padding: 0.75rem 1rem;
+            padding: 0.75rem;
             background: var(--bg);
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            text-align: center;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .matching-select {
             padding: 0.75rem;
             border: 2px solid var(--border);
             border-radius: 8px;
-            background: var(--bg);
+            background: var(--card);
             color: var(--text);
             font-size: 0.9rem;
-            min-width: 120px;
         }
 
-        .matching-arrow {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
@@ -452,168 +299,17 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.4);
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16,185,129,0.4);
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-
-        .btn-warning {
-            background: var(--warning);
-            color: white;
-        }
-
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        
         .btn-group {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 2rem;
-        }
-
-        /* Results */
-        .results-container {
-            display: none;
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .results-container.active {
-            display: block;
-        }
-
-        .score-circle {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            position: relative;
-            background: conic-gradient(var(--primary) 0deg, var(--border) 0deg);
-        }
-
-        .score-circle::before {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: var(--card);
-        }
-
-        .score-circle .score-value {
-            position: relative;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .score-circle .score-label {
-            position: relative;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .results-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .info-card {
-            background: var(--bg);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .info-card .info-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 0.25rem;
-        }
-
-        .info-card .info-value {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .feedback-box {
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .feedback-excellent {
-            background: rgba(16,185,129,0.1);
-            border: 2px solid var(--success);
-            color: var(--success);
-        }
-
-        .feedback-good {
-            background: rgba(37,99,235,0.1);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .feedback-average {
-            background: rgba(245,158,11,0.1);
-            border: 2px solid var(--warning);
-            color: var(--warning);
-        }
-
-        .feedback-poor {
-            background: rgba(239,68,68,0.1);
-            border: 2px solid var(--danger);
-            color: var(--danger);
-        }
-
-        /* Timer */
-        .timer-bar {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--border);
-            z-index: 999;
-        }
-
-        .timer-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--success), var(--primary));
-            transition: width 1s linear;
         }
 
         .timer-display {
@@ -629,258 +325,90 @@
             border: 2px solid var(--primary);
         }
 
-        /* Progress */
-        .progress-container {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-            transition: width 0.3s;
-        }
-
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0.75rem 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--card);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: var(--shadow);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links a {
-                color: var(--text);
-                padding: 0.75rem 1rem;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .matching-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .matching-arrow {
-                transform: rotate(90deg);
-                text-align: center;
-            }
-            
-            .tf-options {
-                flex-direction: column;
-            }
-            
-            .page-header h1 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Watermark */
-        .watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 4rem;
-            color: rgba(37,99,235,0.03);
-            font-weight: 900;
-            pointer-events: none;
-            z-index: 0;
-            white-space: nowrap;
-        }
-
-        /* Print styles */
-        @media print {
-            .navbar, .timer-bar, .timer-display, .btn-group, .progress-container {
-                display: none !important;
-            }
-            .question-card {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .question-card {
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Cheat warning modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 10000;
+        /* REKAP NILAI STYLING */
+        .results-container {
             display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
             background: var(--card);
             border-radius: var(--radius);
             padding: 2rem;
-            max-width: 400px;
-            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
         }
 
-        .modal-content i {
-            font-size: 3rem;
-            color: var(--danger);
-            margin-bottom: 1rem;
-        }
+        .results-container.active { display: block; }
 
-        .modal-content h3 {
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .cheat-counter {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--danger);
+        .score-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 998;
-            display: none;
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 1.5rem 0;
         }
 
-        .cheat-counter.active {
-            display: block;
+        .score-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0.5rem 0;
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 0.35rem 1.2rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.25);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .recap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .recap-table th, .recap-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .recap-table th {
+            background: var(--bg);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        @media print {
+            .navbar, .timer-display, .btn-group, .theme-toggle { display: none !important; }
         }
     </style>
 </head>
 <body>
-    <!-- Watermark -->
-    <div class="watermark" id="watermark"></div>
 
-    <!-- Anti-Cheat Modal -->
-    <div class="modal-overlay" id="cheatModal">
-        <div class="modal-content">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h3>⚠️ Peringatan Pelanggaran!</h3>
-            <p>Anda terdeteksi meninggalkan halaman kuis. Aktivitas ini dicatat sebagai pelanggaran. Kembali ke halaman untuk melanjutkan.</p>
-            <button class="btn btn-primary" onclick="closeCheatModal()">Saya Mengerti</button>
-        </div>
-    </div>
-
-    <!-- Cheat Counter -->
-    <div class="cheat-counter" id="cheatCounter">
-        <i class="fas fa-eye-slash"></i> Pelanggaran: <span id="cheatCount">0</span>/3
-    </div>
-
-    <!-- Timer -->
-    <div class="timer-bar" id="timerBar" style="display:none;">
-        <div class="timer-progress" id="timerProgress" style="width: 100%"></div>
-    </div>
     <div class="timer-display" id="timerDisplay" style="display:none;">
         <i class="fas fa-clock"></i> <span id="timerText">45:00</span>
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar">
-        <a href="../index.html" class="navbar-brand">
+        <a href="#" class="navbar-brand">
             <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
             <span>SMAN 1 Cluring</span>
         </a>
-        <div class="nav-container">
-            <button class="theme-toggle" id="themeToggle">🌙</button>
-            <button class="hamburger" id="hamburger">☰</button>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
-            <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
-            <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
-            <li><a href="../ekonomi-kelas-xii.html" class="active"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
-            <li><a href="../soal-tka.html"><i class="fas fa-question-circle"></i> Bank Soal TKA</a></li>
-            <li class="dropdown">
-                <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
-                    <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
-                    <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
-                </div>
-            </li>
-        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     </nav>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Page Header -->
         <div class="page-header">
-            <h1><i class="fas fa-graduation-cap"></i> Kuis Ekonomi Kelas XI</h1>
-            <p>Literasi Keuangan Digital & Badan Usaha dalam Perekonomian Indonesia</p>
+            <h1><i class="fas fa-graduation-cap"></i> Evaluasi Ekonomi XII (HOTS Level Tinggi)</h1>
+            <p>Literasi Keuangan Digital, Reguasi FinTech, BUMN/BUMS, & Perhitungan SHU Koperasi</p>
         </div>
 
-        <!-- Registration Form -->
+        <!-- Form Registrasi -->
         <div class="registration-form" id="registrationForm">
-            <h3><i class="fas fa-user-edit"></i> Data Peserta</h3>
+            <h3><i class="fas fa-user-edit"></i> Data Peserta Ujian</h3>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="studentName">Nama Lengkap *</label>
@@ -890,1107 +418,789 @@
                     <label for="studentClass">Kelas *</label>
                     <select id="studentClass" required>
                         <option value="">Pilih Kelas</option>
-                        <option value="XI.2">XI.2</option>
-                        <option value="XI.3">XI.3</option>
-                        <option value="XI.4">XI.4</option>
-                        <option value="XI.5">XI.5</option>
+                        <option value="XII IPS 1">XII IPS 1</option>
+                        <option value="XII IPS 2">XII IPS 2</option>
+                        <option value="XII IPS 3">XII IPS 3</option>
+                        <option value="XII IPA 1">XII IPA 1</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="studentDate">Tanggal *</label>
+                    <label for="studentDate">Tanggal Ujian *</label>
                     <input type="date" id="studentDate" required>
                 </div>
             </div>
-            <div class="btn-group" style="margin-top:1.5rem;">
+            <div class="btn-group">
                 <button class="btn btn-primary" onclick="startQuiz()">
-                    <i class="fas fa-play"></i> Mulai Kuis (30 Soal | 45 Menit)
+                    <i class="fas fa-play"></i> Mulai Kerjakan (30 Soal HOTS)
                 </button>
             </div>
-            <div style="margin-top:1rem; padding:1rem; background:var(--bg); border-radius:8px; border-left:4px solid var(--warning);">
-                <p style="font-size:0.85rem; color:var(--text-light);">
-                    <i class="fas fa-shield-alt" style="color:var(--warning);"></i>
-                    <strong>Peraturan Kuis:</strong> Sistem dilengkapi proteksi anti-kecurangan. Meninggalkan halaman/tab akan tercatat sebagai pelanggaran. Maksimal 3 pelanggaran, setelah itu kuis akan otomatis dikumpulkan.
-                </p>
+        </div>
+
+        <!-- REKAP NILAI HASIL UJIAN -->
+        <div class="results-container" id="resultsContainer">
+            <h2 style="text-align: center;"><i class="fas fa-award"></i> Rekap Hasil Evaluasi Belajar</h2>
+            
+            <div style="margin-top:1rem; background: var(--bg); padding:1rem; border-radius:8px;">
+                <p id="resStudentName"><strong>Nama:</strong> -</p>
+                <p id="resStudentClass"><strong>Kelas:</strong> -</p>
+                <p id="resStudentDate"><strong>Tanggal:</strong> -</p>
+            </div>
+
+            <div class="score-card">
+                <div>SKOR AKHIR EVALUASI</div>
+                <div class="score-number" id="finalScoreDisplay">0</div>
+                <div class="score-badge" id="predikatDisplay">Predikat: -</div>
+            </div>
+
+            <h3><i class="fas fa-list-check"></i> Rincian Perolehan Nilai Per Bagian</h3>
+            <table class="recap-table">
+                <thead>
+                    <tr>
+                        <th>Kategori Soal</th>
+                        <th>Jumlah Soal</th>
+                        <th>Bobot Maksimal</th>
+                        <th>Perolehan Skor</th>
+                    </tr>
+                </thead>
+                <tbody id="recapTableBody">
+                    <!-- Dinamis via JS -->
+                </tbody>
+            </table>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="downloadPDF()">
+                    <i class="fas fa-file-pdf"></i> Unduh Laporan PDF (Rekap & Lembar Jawaban)
+                </button>
             </div>
         </div>
 
         <!-- Quiz Section -->
         <div class="quiz-section" id="quizSection">
-            <!-- Progress -->
-            <div class="progress-container">
-                <div class="progress-text">
-                    <span>Progres Pengerjaan</span>
-                    <span id="progressPercent">0%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                </div>
-            </div>
+            
+            <!-- BAGIAN 1: PILIHAN GANDA (1-10) -->
+            <div class="section-title"><i class="fas fa-list-ol"></i> Bagian 1: Pilihan Ganda Analitis (Soal 1-10 | @3 Poin)</div>
 
-            <!-- SECTION 1: Pilihan Ganda Biasa (1-10) -->
-            <div class="section-title"><i class="fas fa-list-ol"></i> Bagian 1: Pilihan Ganda (Soal 1-10)</div>
-
-            <!-- Soal 1 -->
+            <!-- Q1 -->
             <div class="question-card" id="q1">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">1</span>Metode anggaran yang menyarankan 50% untuk kebutuhan, 30% untuk keinginan, dan 20% untuk tabungan/investasi disebut...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">1</span>Studi Kasus Kejahatan Perbankan Digital (Quishing & Social Engineering):</p>
+                <div class="case-box">
+                    Seorang nasabah bank menemukan stiker QRIS yang tertempel di atas QRIS resmi meja kasir sebuah minimarket. Setelah memindai dan mentransfer sejumlah dana, transaksi dinyatakan sukses di HP nasabah, namun tidak masuk ke rekening minimarket melainkan ke rekening penampung penipu.
+                </div>
+                <p class="question-text">Modus rekayasa sosial ini dikenal sebagai... dan tindakan evaluatif terbaik yang harus diterapkan penyelenggara merchant adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q1" value="a"> Metode 70/20/10</label></li>
-                    <li><label><input type="radio" name="q1" value="b"> Metode 50/30/20</label></li>
-                    <li><label><input type="radio" name="q1" value="c"> Metode Zero-Based</label></li>
-                    <li><label><input type="radio" name="q1" value="d"> Metode Envelope</label></li>
-                    <li><label><input type="radio" name="q1" value="e"> Metode Kakeibo</label></li>
+                    <li><label><input type="radio" name="q1" value="a"> Phishing; menghapus opsi pembayaran non-tunai di seluruh gerai.</label></li>
+                    <li><label><input type="radio" name="q1" value="b"> Quishing (QR Code Phishing); merchant wajib melakukan verifikasi fisik berkala pada stiker QRIS serta mencocokkan Nama Merchant (NMID) pada layar konfirmasi konsumen.</label></li>
+                    <li><label><input type="radio" name="q1" value="c"> Sniffing; menggunakan jaringan Wi-Fi publik saat melakukan pembayaran QRIS.</label></li>
+                    <li><label><input type="radio" name="q1" value="d"> Vishing; menelepon pihak call center bank setiap kali selesai bertransaksi.</label></li>
+                    <li><label><input type="radio" name="q1" value="e"> Carding; memblokir otomatis nomor rekening nasabah yang bertransaksi.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 2 -->
+            <!-- Q2 -->
             <div class="question-card" id="q2">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">2</span>Manakah yang merupakan ciri utama dari modus penipuan Phishing?</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">2</span>Studi Kasus Regulasi FinTech & Kebijakan MDR QRIS Bank Indonesia:</p>
+                <div class="case-box">
+                    Bank Indonesia menetapkan tarif Merchant Discount Rate (MDR) QRIS untuk usaha mikro sebesar 0,3%. Seorang pedagang warung kelontong membebankan tambahan biaya 0,3% tersebut secara langsung kepada pembeli saat transaksi dilakukan.
+                </div>
+                <p class="question-text">Berdasarkan Peraturan Bank Indonesia tentang Penyelenggaraan Jasa Pembayaran, tindakan pedagang tersebut dapat dievaluasi sebagai...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q2" value="a"> Mendapatkan panggilan telepon penawaran hadiah undian</label></li>
-                    <li><label><input type="radio" name="q2" value="b"> Menerima tautan (link) yang mengatasnamakan bank untuk memverifikasi data</label></li>
-                    <li><label><input type="radio" name="q2" value="c"> Menggunakan aplikasi investasi yang tidak terdaftar di OJK</label></li>
-                    <li><label><input type="radio" name="q2" value="d"> Mendapat SMS berisi kode OTP tanpa melakukan transaksi</label></li>
-                    <li><label><input type="radio" name="q2" value="e"> Ditelepon orang yang mengaku dari pihak bank meminta PIN</label></li>
+                    <li><label><input type="radio" name="q2" value="a"> Dibenarkan, karena MDR merupakan biaya operasional yang harus ditanggung penuh oleh konsumen akhir.</label></li>
+                    <li><label><input type="radio" name="q2" value="b"> Pelanggaran aturan, karena PJP dan Merchant dilarang keras mengenakan biaya tambahan (surcharge) kepada pengguna jasa/konsumen.</label></li>
+                    <li><label><input type="radio" name="q2" value="c"> Tindakan wajar untuk menjaga marjin laba bersih usaha mikro agar tidak tergerus inflasi.</label></li>
+                    <li><label><input type="radio" name="q2" value="d"> Bentuk edukasi literasi keuangan agar masyarakat kembali menggunakan uang tunai.</label></li>
+                    <li><label><input type="radio" name="q2" value="e"> Kewajiban perpajakan daerah yang dipungut langsung oleh penyedia jasa QRIS.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 3 -->
+            <!-- Q3 -->
             <div class="question-card" id="q3">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">3</span>Menurut OJK, seseorang yang memiliki pengetahuan, keyakinan, keterampilan, dan perilaku keuangan yang sangat baik termasuk dalam tingkat literasi...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">3</span>Studi Kasus Penstrukturan Pendanaan Startup (PT vs CV):</p>
+                <div class="case-box">
+                    Sebuah perusahaan rintisan teknologi membutuhkan pendanaan Seri-A sebesar Rp 10 Miliar dari Venture Capital (VC). Investor meminta hak kepemilikan saham berupa *Preferred Shares* dengan batasan tanggung jawab hukum yang terpisah dari harta pribadi investor.
+                </div>
+                <p class="question-text">Mengapa bentuk badan usaha Perseroan Terbatas (PT) merupakan satu-satunya pilihan yang memenuhi kualifikasi skema pendanaan investor di atas?</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q3" value="a"> Not Well Literate</label></li>
-                    <li><label><input type="radio" name="q3" value="b"> Less Well Literate</label></li>
-                    <li><label><input type="radio" name="q3" value="c"> Well Literate</label></li>
-                    <li><label><input type="radio" name="q3" value="d"> Very Well Literate</label></li>
-                    <li><label><input type="radio" name="q3" value="e"> Financial Expert</label></li>
+                    <li><label><input type="radio" name="q3" value="a"> Karena PT tidak diwajibkan membayar pajak badan usaha tahunan kepada negara.</label></li>
+                    <li><label><input type="radio" name="q3" value="b"> Karena modal PT terbagi atas saham yang sah secara hukum, dan tanggung jawab pemegang saham terbatas sebatas nilai nominal saham yang dimiliki.</label></li>
+                    <li><label><input type="radio" name="q3" value="c"> Karena dalam PT seluruh pendiri berstatus sebagai Sekutu Aktif yang menanggung utang sampai harta pribadi.</label></li>
+                    <li><label><input type="radio" name="q3" value="d"> Karena PT dapat didirikan tanpa akta notaris dan tanpa pengesahan Kemenkumham.</label></li>
+                    <li><label><input type="radio" name="q3" value="e"> Karena PT berhak menerbitkan uang digital sendiri untuk membiayai operasional.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 4 -->
+            <!-- Q4 -->
             <div class="question-card" id="q4">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">4</span>QRIS merupakan singkatan dari...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">4</span>Studi Kasus Restrukturisasi Holding BUMN (Saham Dwiwarna Seri A):</p>
+                <div class="case-box">
+                    Pemerintah mengalihkan seluruh saham mayoritas milik negara pada beberapa BUMN sektor tambang ke dalam satu Perusahaan Induk (Holding). Meskipun demikian, Pemerintah tetap memegang 1 lembar **Saham Dwiwarna Seri A** pada BUMN anak perusahaan tersebut.
+                </div>
+                <p class="question-text">Fungsi strategis dari penguasaan Saham Dwiwarna Seri A oleh Negara dalam struktur holding BUMN adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q4" value="a"> Quick Response Information System</label></li>
-                    <li><label><input type="radio" name="q4" value="b"> Quick Response Code Indonesian Standard</label></li>
-                    <li><label><input type="radio" name="q4" value="c"> Quality Response Code International Standard</label></li>
-                    <li><label><input type="radio" name="q4" value="d"> Quick Recognition Code Indonesian System</label></li>
-                    <li><label><input type="radio" name="q4" value="e"> Quantitative Response Code Integrated Standard</label></li>
+                    <li><label><input type="radio" name="q4" value="a"> Memastikan negara menerima dividen terbesar melebihi pemegang saham swasta lainnya.</label></li>
+                    <li><label><input type="radio" name="q4" value="b"> Memberikan hak hak istimewa (veto) kepada negara dalam pengambilan keputusan strategis, perubahan anggaran dasar, dan pengangkatan direksi.</label></li>
+                    <li><label><input type="radio" name="q4" value="c"> Menghapuskan status hukum PT pada anak perusahaan BUMN menjadi Perusahaan Perum.</label></li>
+                    <li><label><input type="radio" name="q4" value="d"> Membebaskan anak perusahaan dari kewajiban audit laporan keuangan oleh BPK.</label></li>
+                    <li><label><input type="radio" name="q4" value="e"> Menjamin seluruh utang obligasi anak perusahaan ditanggung langsung oleh APBN.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 5 -->
+            <!-- Q5 -->
             <div class="question-card" id="q5">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">5</span>Dalam CV, sekutu aktif memiliki tanggung jawab...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">5</span>Studi Kasus Regulasi Fintech Lending OJK (Akses Data CAMDIL):</p>
+                <div class="case-box">
+                    Sebuah platform Pinjaman Online (Pinjol) saat diinstal meminta izin akses terhadap Kontak HP, Galeri Foto, dan Penyimpanan Internal. Platform tersebut mengancam akan menyebarkan data pribadi nasabah jika terjadi keterlambatan pembayaran.
+                </div>
+                <p class="question-text">Berdasarkan regulasi resmi OJK, batasan izin akses data pribadi yang diperbolehkan untuk FinTech Peer-to-Peer Lending legal terdaftar hanya mencakup (CAMDIL), yaitu...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q5" value="a"> Terbatas sesuai modal yang disetor</label></li>
-                    <li><label><input type="radio" name="q5" value="b"> Tidak terbatas hingga harta pribadi</label></li>
-                    <li><label><input type="radio" name="q5" value="c"> Hanya sebatas keuntungan yang diterima</label></li>
-                    <li><label><input type="radio" name="q5" value="d"> Sama dengan sekutu pasif</label></li>
-                    <li><label><input type="radio" name="q5" value="e"> Ditanggung oleh pemerintah</label></li>
+                    <li><label><input type="radio" name="q5" value="a"> Contact, Audio, Media, Data, Internet, Location</label></li>
+                    <li><label><input type="radio" name="q5" value="b"> Camera, Audio, Microphone, Location (Kamera, Mikrofon, dan Lokasi)</label></li>
+                    <li><label><input type="radio" name="q5" value="c"> Call Log, Address Book, Messages, Document, Identity</label></li>
+                    <li><label><input type="radio" name="q5" value="d"> Contact List, Account Banking, Media Storage, Device ID</label></li>
+                    <li><label><input type="radio" name="q5" value="e"> Chat History, Album Photos, Microphone, Location</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 6 -->
+            <!-- Q6 - Q10 PG HOTS -->
             <div class="question-card" id="q6">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">6</span>PT PLN merupakan contoh BUMN berbentuk Persero. Ciri utama BUMN Persero adalah...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">6</span>Perbedaan esensial dalam pengenaan Pajak Penghasilan (PPh) atas pengambilan keuntungan pemilik pada CV (Prive) versus PT (Dividen) adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q6" value="a"> Melayani kepentingan umum tanpa mencari laba</label></li>
-                    <li><label><input type="radio" name="q6" value="b"> Berbentuk PT dan bertujuan mencari keuntungan</label></li>
-                    <li><label><input type="radio" name="q6" value="c"> Dimiliki bersama oleh seluruh rakyat Indonesia</label></li>
-                    <li><label><input type="radio" name="q6" value="d"> Tidak memiliki modal dari pemerintah</label></li>
-                    <li><label><input type="radio" name="q6" value="e"> Hanya bergerak di sektor jasa sosial</label></li>
+                    <li><label><input type="radio" name="q6" value="a"> Prive pada CV dikenakan PPh Final 10%, sedangkan dividen PT bebas pajak.</label></li>
+                    <li><label><input type="radio" name="q6" value="b"> Prive pada CV bukan merupakan objek PPh (bukan objek pajak) bagi sekutu, sedangkan Dividen pada PT merupakan objek PPh yang dikenakan pajak atas penghasilan investor.</label></li>
+                    <li><label><input type="radio" name="q6" value="c"> Keduanya dipotong PPh Pasal 21 secara otomatis oleh bank operasional.</label></li>
+                    <li><label><input type="radio" name="q6" value="d"> Dividen PT dikategorikan sebagai beban operasional yang mengurangi laba kotor perusahaan.</label></li>
+                    <li><label><input type="radio" name="q6" value="e"> Prive CV wajib dilaporkan sebagai laba ditahan dalam neraca saham publik.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 7 -->
             <div class="question-card" id="q7">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">7</span>Prinsip "Pay Yourself First" dalam menabung berarti...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">7</span>UU Pengembangan dan Penguatan Sektor Keuangan (UU PPSK) mengklasifikasikan Koperasi Simpan Pinjam (KSP) menjadi dua kategori utama, yaitu *Closed-Loop* dan *Open-Loop*. Implikasi dari KSP berstatus *Open-Loop* adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q7" value="a"> Menabung dari sisa uang belanja di akhir bulan</label></li>
-                    <li><label><input type="radio" name="q7" value="b"> Menyisihkan uang untuk menabung di awal bulan sebelum belanja</label></li>
-                    <li><label><input type="radio" name="q7" value="c"> Menghabiskan semua uang untuk kebutuhan primer</label></li>
-                    <li><label><input type="radio" name="q7" value="d"> Menginvestasikan semua penghasilan di saham</label></li>
-                    <li><label><input type="radio" name="q7" value="e"> Membeli barang mewah terlebih dahulu</label></li>
+                    <li><label><input type="radio" name="q7" value="a"> Hanya boleh menghimpun dana dari dan menyalurkan pinjaman kepada anggota internal koperasi.</label></li>
+                    <li><label><input type="radio" name="q7" value="b"> Melayani masyarakat umum di luar anggota, sehingga pengawasan usahanya beralih dari Kementerian Koperasi ke Otoritas Jasa Keuangan (OJK).</label></li>
+                    <li><label><input type="radio" name="q7" value="c"> Bebas dari kewajiban pajak badan usaha selama membagikan SHU secara merata.</label></li>
+                    <li><label><input type="radio" name="q7" value="d"> Dilarang menggunakan teknologi aplikasi perbankan digital dalam transaksi harian.</label></li>
+                    <li><label><input type="radio" name="q7" value="e"> Wajib mengubah bentuk hukum badan usahanya menjadi Badan Usaha Milik Desa (BUMDes).</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 8 -->
             <div class="question-card" id="q8">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">8</span>Koperasi disebut sebagai "soko guru" perekonomian Indonesia karena...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">8</span>Perhatikan indikator kesehatan keuangan keluarga berikut: *Debt Service Ratio (DSR)* melebihi 40%, serta rasio *Dana Darurat* kurang dari 1 kali pengeluaran bulanan. Evaluasi risiko dari kondisi tersebut adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q8" value="a"> Koperasi dimiliki oleh pemerintah sepenuhnya</label></li>
-                    <li><label><input type="radio" name="q8" value="b"> Koperasi merupakan pilar utama ekonomi yang berasaskan kekeluargaan</label></li>
-                    <li><label><input type="radio" name="q8" value="c"> Koperasi memberikan keuntungan terbesar bagi negara</label></li>
-                    <li><label><input type="radio" name="q8" value="d"> Koperasi hanya melayani anggota pemerintah</label></li>
-                    <li><label><input type="radio" name="q8" value="e"> Koperasi didirikan oleh presiden pertama</label></li>
+                    <li><label><input type="radio" name="q8" value="a"> Keuangan sangat sehat karena mengoptimalkan penggunaan leverage utang.</label></li>
+                    <li><label><input type="radio" name="q8" value="b"> Rentan mengalami krisis likuiditas parah dan gagal bayar jika terjadi kerentanan shock ekonomi/pemutusan hubungan kerja (PHK).</label></li>
+                    <li><label><input type="radio" name="q8" value="c"> Efisien, karena dana darurat dialihkan seluruhnya ke instrumen saham gorengan.</label></li>
+                    <li><label><input type="radio" name="q8" value="d"> Berhak mendapatkan keringanan cicilan kredit tanpa penilaian SLIK OJK.</label></li>
+                    <li><label><input type="radio" name="q8" value="e"> Mengindikasikan tingkat literasi keuangan kategori *Well Literate*.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 9 -->
             <div class="question-card" id="q9">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">9</span>Berikut yang BUKAN termasuk instrumen keuangan digital adalah...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">9</span>Tujuan utama penerapan mekanisme *Public Service Obligation (PSO)* atau Kewajiban Pelayanan Umum pada BUMN sektor transportasi (seperti PT KAI untuk KA Ekonomi) adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q9" value="a"> E-Wallet (GoPay, OVO)</label></li>
-                    <li><label><input type="radio" name="q9" value="b"> P2P Lending</label></li>
-                    <li><label><input type="radio" name="q9" value="c"> Deposito berjangka di bank konvensional</label></li>
-                    <li><label><input type="radio" name="q9" value="d"> Investasi reksadana digital</label></li>
-                    <li><label><input type="radio" name="q9" value="e"> Mobile Banking</label></li>
+                    <li><label><input type="radio" name="q9" value="a"> Memaksimalkan marjin keuntungan perusahaan agar sahamnya naik di bursa efek.</label></li>
+                    <li><label><input type="radio" name="q9" value="b"> Menjamin keterjangkauan tarif layanan dasar bagi masyarakat luas dengan kompensasi selisih biaya dari APBN Pemerintah.</label></li>
+                    <li><label><input type="radio" name="q9" value="c"> Mematikan usaha transportasi swasta agar terjadi monopoli pasar mutlak.</label></li>
+                    <li><label><input type="radio" name="q9" value="d"> Mengurangi jumlah aset negara yang dikelola oleh direksi BUMN.</label></li>
+                    <li><label><input type="radio" name="q9" value="e"> Mengalihkan tanggung jawab manajemen operasional kepada Kementerian Perhubungan.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 10 -->
             <div class="question-card" id="q10">
-                <span class="question-type-badge badge-pg">Pilihan Ganda</span>
-                <p class="question-text"><span class="question-number">10</span>Berdasarkan data populasi Indonesia, kelompok terbesar yang berada dalam posisi rentan (50,4%) adalah...</p>
+                <span class="question-type-badge">Pilihan Ganda</span>
+                <p class="question-text"><span class="question-number">10</span>Skema instrumen investasi *Equity Crowdfunding* (Securities Crowdfunding) memberikan kesempatan bagi investor ritel kecil untuk...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q10" value="a"> Golongan Atas (Kaya)</label></li>
-                    <li><label><input type="radio" name="q10" value="b"> Golongan Menengah</label></li>
-                    <li><label><input type="radio" name="q10" value="c"> Menuju Kelas Menengah</label></li>
-                    <li><label><input type="radio" name="q10" value="d"> Rentan Miskin</label></li>
-                    <li><label><input type="radio" name="q10" value="e"> Golongan Bawah</label></li>
+                    <li><label><input type="radio" name="q10" value="a"> Meminjamkan uang langsung kepada individu tanpa jaminan dengan bunga harian tinggi.</label></li>
+                    <li><label><input type="radio" name="q10" value="b"> Membeli kepemilikan saham atau obligasi dari UMKM/Startup penerbit secara gotong royong melalui platform digital yang berizin OJK.</label></li>
+                    <li><label><input type="radio" name="q10" value="c"> Menyimpan uang deposito dengan jaminan penutupan kerugian penuh oleh Lembaga Penjamin Simpanan (LPS).</label></li>
+                    <li><label><input type="radio" name="q10" value="d"> Membeli mata uang kripto yang tidak memiliki underlying asset terdaftar.</label></li>
+                    <li><label><input type="radio" name="q10" value="e"> Menjaminkan sertifikat tanah keluarga secara online.</label></li>
                 </ul>
             </div>
 
-            <!-- SECTION 2: Benar/Salah (11-15) -->
-            <div class="section-title"><i class="fas fa-check-circle"></i> Bagian 2: Benar atau Salah (Soal 11-15)</div>
 
-            <!-- Soal 11 -->
+            <!-- BAGIAN 2: BENAR / SALAH (11-15) -->
+            <div class="section-title"><i class="fas fa-toggle-on"></i> Bagian 2: Soal Evaluasi Benar / Salah (Soal 11-15 | @2 Poin)</div>
+
             <div class="question-card" id="q11">
-                <span class="question-type-badge badge-bs">Benar / Salah</span>
-                <p class="question-text"><span class="question-number">11</span>Badan usaha dan perusahaan memiliki pengertian yang sama, yaitu tempat produksi barang dan jasa.</p>
+                <span class="question-type-badge">Benar / Salah</span>
+                <p class="question-text"><span class="question-number">11</span>BUMD berbentuk Perusahaan Daerah (Perumda) seluruh modalnya dimiliki oleh satu daerah dan tidak terbagi atas saham.</p>
                 <div class="tf-options">
-                    <label><input type="radio" name="q11" value="benar"> <i class="fas fa-check"></i> Benar</label>
-                    <label><input type="radio" name="q11" value="salah"> <i class="fas fa-times"></i> Salah</label>
+                    <label><input type="radio" name="q11" value="Benar"> BENAR</label>
+                    <label><input type="radio" name="q11" value="Salah"> SALAH</label>
                 </div>
             </div>
 
-            <!-- Soal 12 -->
             <div class="question-card" id="q12">
-                <span class="question-type-badge badge-bs">Benar / Salah</span>
-                <p class="question-text"><span class="question-number">12</span>Pihak bank atau e-wallet resmi tidak akan pernah meminta OTP atau PIN kepada nasabah.</p>
+                <span class="question-type-badge">Benar / Salah</span>
+                <p class="question-text"><span class="question-number">12</span>Penyelenggara FinTech P2P Lending yang terdaftar resmi di OJK diperbolehkan melakukan penagihan utang dengan cara mengintimidasi dan menghubungi seluruh nomor pada daftar kontak HP nasabah.</p>
                 <div class="tf-options">
-                    <label><input type="radio" name="q12" value="benar"> <i class="fas fa-check"></i> Benar</label>
-                    <label><input type="radio" name="q12" value="salah"> <i class="fas fa-times"></i> Salah</label>
+                    <label><input type="radio" name="q12" value="Benar"> BENAR</label>
+                    <label><input type="radio" name="q12" value="Salah"> SALAH</label>
                 </div>
             </div>
 
-            <!-- Soal 13 -->
             <div class="question-card" id="q13">
-                <span class="question-type-badge badge-bs">Benar / Salah</span>
-                <p class="question-text"><span class="question-number">13</span>Dalam CV, sekutu pasif bertanggung jawab penuh terhadap utang perusahaan hingga harta pribadinya.</p>
+                <span class="question-type-badge">Benar / Salah</span>
+                <p class="question-text"><span class="question-number">13</span>Dalam Koperasi, besarnya Sisa Hasil Usaha (SHU) yang diterima anggota ditentukan dari seberapa besar modal simpanan dan aktivitas transaksi anggota tersebut di koperasi, bukan dari kesamaan pembagian rata.</p>
                 <div class="tf-options">
-                    <label><input type="radio" name="q13" value="benar"> <i class="fas fa-check"></i> Benar</label>
-                    <label><input type="radio" name="q13" value="salah"> <i class="fas fa-times"></i> Salah</label>
+                    <label><input type="radio" name="q13" value="Benar"> BENAR</label>
+                    <label><input type="radio" name="q13" value="Salah"> SALAH</label>
                 </div>
             </div>
 
-            <!-- Soal 14 -->
             <div class="question-card" id="q14">
-                <span class="question-type-badge badge-bs">Benar / Salah</span>
-                <p class="question-text"><span class="question-number">14</span>SHU (Sisa Hasil Usaha) koperasi dibagikan berdasarkan jasa modal dan jasa anggota.</p>
+                <span class="question-type-badge">Benar / Salah</span>
+                <p class="question-text"><span class="question-number">14</span>Gagal bayar pada kewajiban Paylater atau Pinjol legal tidak akan mempengaruhi catatan riwayat kredit seseorang di Sistem Layanan Informasi Keuangan (SLIK OJK / Ideb).</p>
                 <div class="tf-options">
-                    <label><input type="radio" name="q14" value="benar"> <i class="fas fa-check"></i> Benar</label>
-                    <label><input type="radio" name="q14" value="salah"> <i class="fas fa-times"></i> Salah</label>
+                    <label><input type="radio" name="q14" value="Benar"> BENAR</label>
+                    <label><input type="radio" name="q14" value="Salah"> SALAH</label>
                 </div>
             </div>
 
-            <!-- Soal 15 -->
             <div class="question-card" id="q15">
-                <span class="question-type-badge badge-bs">Benar / Salah</span>
-                <p class="question-text"><span class="question-number">15</span>Semua aplikasi fintech yang beredar di Indonesia otomatis legal dan diawasi oleh OJK.</p>
+                <span class="question-type-badge">Benar / Salah</span>
+                <p class="question-text"><span class="question-number">15</span>PT Perorangan (Usaha Mikro dan Kecil) dapat didirikan oleh 1 orang pendiri tanpa memerlukan akta notaris, cukup dengan membuat Surat Pernyataan Pendirian secara elektronik.</p>
                 <div class="tf-options">
-                    <label><input type="radio" name="q15" value="benar"> <i class="fas fa-check"></i> Benar</label>
-                    <label><input type="radio" name="q15" value="salah"> <i class="fas fa-times"></i> Salah</label>
+                    <label><input type="radio" name="q15" value="Benar"> BENAR</label>
+                    <label><input type="radio" name="q15" value="Salah"> SALAH</label>
                 </div>
             </div>
 
-            <!-- SECTION 3: Menjodohkan (16-20) -->
-            <div class="section-title"><i class="fas fa-puzzle-piece"></i> Bagian 3: Menjodohkan (Soal 16-20)</div>
-            <p style="color:var(--text-light); margin-bottom:1rem; padding:0 1rem;">Pasangkan setiap badan usaha dengan karakteristik yang tepat!</p>
 
-            <!-- Soal 16 -->
+            <!-- BAGIAN 3: MENJODOHKAN (16-20) -->
+            <div class="section-title"><i class="fas fa-link"></i> Bagian 3: Soal Menjodohkan Istilah (Soal 16-20 | @3 Poin)</div>
+
             <div class="question-card" id="q16">
-                <span class="question-type-badge badge-match">Menjodohkan</span>
-                <p class="question-text"><span class="question-number">16</span>Usaha Perseorangan → Pilih karakteristik:</p>
+                <span class="question-type-badge">Menjodohkan</span>
+                <p class="question-text"><span class="question-number">16</span>Jodohkan istilah kejahatan digital berikut dengan dampaknya:</p>
                 <div class="matching-container">
-                    <div class="matching-item">Warung Bu Siti</div>
-                    <div class="matching-arrow">→</div>
-                    <select class="matching-select" id="match16">
-                        <option value="">-- Pilih --</option>
-                        <option value="a">Modal berupa saham, tanggung jawab terbatas</option>
-                        <option value="b">Dimiliki satu orang, tanggung jawab tidak terbatas</option>
-                        <option value="c">Dimiliki pemerintah, berbentuk Persero</option>
-                        <option value="d">Berasaskan kekeluargaan, pembagian SHU</option>
-                        <option value="e">Ada sekutu aktif dan pasif</option>
+                    <div class="matching-item">SIM Swapping</div>
+                    <div><i class="fas fa-arrow-right"></i></div>
+                    <select class="matching-select" name="q16">
+                        <option value="">-- Pilih Jawaban --</option>
+                        <option value="a">Pengambilalihan nomor HP korban untuk menguras SMS kode OTP perbankan</option>
+                        <option value="b">Pencurian data melalui koneksi Wi-Fi terbuka di fasilitas publik</option>
+                        <option value="c">Pembobolan password ATM dengan ganjal kartu fisik</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Soal 17 -->
             <div class="question-card" id="q17">
-                <span class="question-type-badge badge-match">Menjodohkan</span>
-                <p class="question-text"><span class="question-number">17</span>PT (Perseroan Terbatas) → Pilih karakteristik:</p>
+                <span class="question-type-badge">Menjodohkan</span>
+                <p class="question-text"><span class="question-number">17</span>Jodohkan entitas bisnis dengan status kewajiban hukumnya:</p>
                 <div class="matching-container">
-                    <div class="matching-item">PT Indofood</div>
-                    <div class="matching-arrow">→</div>
-                    <select class="matching-select" id="match17">
-                        <option value="">-- Pilih --</option>
-                        <option value="a">Modal berupa saham, tanggung jawab terbatas</option>
-                        <option value="b">Dimiliki satu orang, tanggung jawab tidak terbatas</option>
-                        <option value="c">Dimiliki pemerintah, berbentuk Persero</option>
-                        <option value="d">Berasaskan kekeluargaan, pembagian SHU</option>
-                        <option value="e">Ada sekutu aktif dan pasif</option>
+                    <div class="matching-item">Sekutu Aktif (Firma / CV)</div>
+                    <div><i class="fas fa-arrow-right"></i></div>
+                    <select class="matching-select" name="q17">
+                        <option value="">-- Pilih Jawaban --</option>
+                        <option value="a">Tanggung jawab terbatas hanya sebatas nominal modal yang disetor</option>
+                        <option value="b">Tanggung jawab tidak terbatas sampai mengorbankan kekayaan/harta pribadi</option>
+                        <option value="c">Bebas dari segala tuntutan hukum kerugian bisnis</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Soal 18 -->
             <div class="question-card" id="q18">
-                <span class="question-type-badge badge-match">Menjodohkan</span>
-                <p class="question-text"><span class="question-number">18</span>CV (Persekutuan Komanditer) → Pilih karakteristik:</p>
+                <span class="question-type-badge">Menjodohkan</span>
+                <p class="question-text"><span class="question-number">18</span>Jodohkan jenis alokasi SHU Koperasi dengan komponen perhitungannya:</p>
                 <div class="matching-container">
-                    <div class="matching-item">CV Sumber Rejeki</div>
-                    <div class="matching-arrow">→</div>
-                    <select class="matching-select" id="match18">
-                        <option value="">-- Pilih --</option>
-                        <option value="a">Modal berupa saham, tanggung jawab terbatas</option>
-                        <option value="b">Dimiliki satu orang, tanggung jawab tidak terbatas</option>
-                        <option value="c">Dimiliki pemerintah, berbentuk Persero</option>
-                        <option value="d">Berasaskan kekeluargaan, pembagian SHU</option>
-                        <option value="e">Ada sekutu aktif dan pasif</option>
+                    <div class="matching-item">Jasa Usaha / Anggota (JA)</div>
+                    <div><i class="fas fa-arrow-right"></i></div>
+                    <select class="matching-select" name="q18">
+                        <option value="">-- Pilih Jawaban --</option>
+                        <option value="a">Dihitung dari persentase total belanja/pinjaman anggota di koperasi</option>
+                        <option value="b">Dihitung murni dari jumlah kepemilikan simpanan pokok dan wajib</option>
+                        <option value="c">Diberikan sebagai bonus kepada pengurus koperasi saja</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Soal 19 -->
             <div class="question-card" id="q19">
-                <span class="question-type-badge badge-match">Menjodohkan</span>
-                <p class="question-text"><span class="question-number">19</span>Koperasi → Pilih karakteristik:</p>
+                <span class="question-type-badge">Menjodohkan</span>
+                <p class="question-text"><span class="question-number">19</span>Jodohkan istilah perencanaan keuangan berikut dengan parameternya:</p>
                 <div class="matching-container">
-                    <div class="matching-item">Koperasi Sekolah</div>
-                    <div class="matching-arrow">→</div>
-                    <select class="matching-select" id="match19">
-                        <option value="">-- Pilih --</option>
-                        <option value="a">Modal berupa saham, tanggung jawab terbatas</option>
-                        <option value="b">Dimiliki satu orang, tanggung jawab tidak terbatas</option>
-                        <option value="c">Dimiliki pemerintah, berbentuk Persero</option>
-                        <option value="d">Berasaskan kekeluargaan, pembagian SHU</option>
-                        <option value="e">Ada sekutu aktif dan pasif</option>
+                    <div class="matching-item">Dana Darurat Ideal (Menikah & 1 Anak)</div>
+                    <div><i class="fas fa-arrow-right"></i></div>
+                    <select class="matching-select" name="q19">
+                        <option value="">-- Pilih Jawaban --</option>
+                        <option value="a">Minimal 9 sampai 12 kali dari total pengeluaran bulanan rutin</option>
+                        <option value="b">Cukup 1 kali pengeluaran bulanan dalam bentuk aset kripto</option>
+                        <option value="c">Sebesar 50% dari total utang jangka panjang</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Soal 20 -->
             <div class="question-card" id="q20">
-                <span class="question-type-badge badge-match">Menjodohkan</span>
-                <p class="question-text"><span class="question-number">20</span>BUMN (Persero) → Pilih karakteristik:</p>
+                <span class="question-type-badge">Menjodohkan</span>
+                <p class="question-text"><span class="question-number">20</span>Jodohkan lembaga regulator keuangan dengan wewenang utamanya:</p>
                 <div class="matching-container">
-                    <div class="matching-item">PT PLN</div>
-                    <div class="matching-arrow">→</div>
-                    <select class="matching-select" id="match20">
-                        <option value="">-- Pilih --</option>
-                        <option value="a">Modal berupa saham, tanggung jawab terbatas</option>
-                        <option value="b">Dimiliki satu orang, tanggung jawab tidak terbatas</option>
-                        <option value="c">Dimiliki pemerintah, berbentuk Persero</option>
-                        <option value="d">Berasaskan kekeluargaan, pembagian SHU</option>
-                        <option value="e">Ada sekutu aktif dan pasif</option>
+                    <div class="matching-item">Lembaga Penjamin Simpanan (LPS)</div>
+                    <div><i class="fas fa-arrow-right"></i></div>
+                    <select class="matching-select" name="q20">
+                        <option value="">-- Pilih Jawaban --</option>
+                        <option value="a">Menjamin simpanan nasabah bank hingga Rp 2 Miliar per nasabah per bank</option>
+                        <option value="b">Mengatur kelancaran lalu lintas Sistem Pembayaran Rupiah</option>
+                        <option value="c">Menyusun APBN dan menetapkan tarif pajak nasional</option>
                     </select>
                 </div>
             </div>
 
-            <!-- SECTION 4: Pilihan Ganda Kompleks (21-25) -->
-            <div class="section-title"><i class="fas fa-check-double"></i> Bagian 4: Pilihan Ganda Kompleks (Soal 21-25)</div>
-            <p style="color:var(--text-light); margin-bottom:1rem; padding:0 1rem;">Pilih <strong>lebih dari satu</strong> jawaban yang benar!</p>
 
-            <!-- Soal 21 -->
+            <!-- BAGIAN 4: MULTI JAWABAN (21-25) -->
+            <div class="section-title"><i class="fas fa-tasks"></i> Bagian 4: Multi Jawaban / Pilihan Kompleks (Soal 21-25 | @5 Poin)</div>
+
+            <!-- Q21 -->
             <div class="question-card" id="q21">
-                <span class="question-type-badge badge-complex">Pilihan Ganda Kompleks</span>
-                <p class="question-text"><span class="question-number">21</span>Manakah yang termasuk prinsip 4P dalam manajemen keuangan sehat? (Pilih semua yang benar)</p>
+                <span class="question-type-badge">Multi Jawaban (Pilih >1)</span>
+                <p class="question-text"><span class="question-number">21</span>Ciri-ciri khas utama dari Pinjaman Online Ilegal yang wajib diwaspadai masyarakat adalah: (Pilih 3 Jawaban Benar)</p>
                 <ul class="options-list">
-                    <li><label><input type="checkbox" name="q21" value="a"> Planning (Perencanaan)</label></li>
-                    <li><label><input type="checkbox" name="q21" value="b"> Protecting (Perlindungan)</label></li>
-                    <li><label><input type="checkbox" name="q21" value="c"> Purchasing (Pembelian)</label></li>
-                    <li><label><input type="checkbox" name="q21" value="d"> Saving (Penabungan)</label></li>
-                    <li><label><input type="checkbox" name="q21" value="e"> Investing (Investasi)</label></li>
+                    <li><label><input type="checkbox" name="q21_1" value="1"> Menawarkan pinjaman melalui SMS/WhatsApp tanpa proses verifikasi ketat.</label></li>
+                    <li><label><input type="checkbox" name="q21_2" value="2"> Meminta akses penuh terhadap seluruh Kontak HP dan Galeri Foto.</label></li>
+                    <li><label><input type="checkbox" name="q21_3" value="3"> Memiliki identitas alamat kantor transparan dan layanan pengaduan resmi.</label></li>
+                    <li><label><input type="checkbox" name="q21_4" value="4"> Mengenakan bunga, denda, dan biaya administrasi yang sangat tinggi tanpa batasan.</label></li>
+                    <li><label><input type="checkbox" name="q21_5" value="5"> Terdaftar di database aplikasi resmi Asosiasi Fintech Pendanaan Bersama Indonesia (AFPI).</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 22 -->
+            <!-- Q22 -->
             <div class="question-card" id="q22">
-                <span class="question-type-badge badge-complex">Pilihan Ganda Kompleks</span>
-                <p class="question-text"><span class="question-number">22</span>Manakah yang termasuk langkah keamanan digital? (Pilih semua yang benar)</p>
+                <span class="question-type-badge">Multi Jawaban (Pilih >1)</span>
+                <p class="question-text"><span class="question-number">22</span>Hak-hak istimewa yang dimiliki oleh Pemegang Saham dalam Perseroan Terbatas (PT) meliputi: (Pilih 3 Jawaban Benar)</p>
                 <ul class="options-list">
-                    <li><label><input type="checkbox" name="q22" value="a"> Mengaktifkan Two-Factor Authentication (2FA)</label></li>
-                    <li><label><input type="checkbox" name="q22" value="b"> Membagikan OTP kepada teman yang dipercaya</label></li>
-                    <li><label><input type="checkbox" name="q22" value="c"> Menggunakan password kuat dengan kombinasi huruf, angka, simbol</label></li>
-                    <li><label><input type="checkbox" name="q22" value="d"> Memeriksa legalitas aplikasi di OJK</label></li>
-                    <li><label><input type="checkbox" name="q22" value="e"> Menggunakan WiFi publik untuk transaksi perbankan</label></li>
+                    <li><label><input type="checkbox" name="q22_1" value="1"> Hak menghadiri dan memberikan suara dalam Rapat Umum Pemegang Saham (RUPS).</label></li>
+                    <li><label><input type="checkbox" name="q22_2" value="2"> Hak menerima pembagian bagian keuntungan perusahaan berupa Dividen.</label></li>
+                    <li><label><input type="checkbox" name="q22_3" value="3"> Hak mengambil aset fisik kantor PT untuk kepentingan pribadi kapan saja.</label></li>
+                    <li><label><input type="checkbox" name="q22_4" value="4"> Hak mendahulukan pembelian saham baru yang diterbitkan perusahaan (Preemptive Rights).</label></li>
+                    <li><label><input type="checkbox" name="q22_5" value="5"> Hak membebaskan diri dari seluruh kewajiban akuntansi perusahaan.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 23 -->
+            <!-- Q23 -->
             <div class="question-card" id="q23">
-                <span class="question-type-badge badge-complex">Pilihan Ganda Kompleks</span>
-                <p class="question-text"><span class="question-number">23</span>Manakah yang termasuk bentuk BUMS? (Pilih semua yang benar)</p>
+                <span class="question-type-badge">Multi Jawaban (Pilih >1)</span>
+                <p class="question-text"><span class="question-number">23</span>Kategori Modal Sendiri (Internal) dalam struktur permodalan Koperasi terdiri dari: (Pilih 2 Jawaban Benar)</p>
                 <ul class="options-list">
-                    <li><label><input type="checkbox" name="q23" value="a"> Usaha Perseorangan</label></li>
-                    <li><label><input type="checkbox" name="q23" value="b"> BUMN Persero</label></li>
-                    <li><label><input type="checkbox" name="q23" value="c"> Firma</label></li>
-                    <li><label><input type="checkbox" name="q23" value="d"> CV (Persekutuan Komanditer)</label></li>
-                    <li><label><input type="checkbox" name="q23" value="e"> PT (Perseroan Terbatas)</label></li>
+                    <li><label><input type="checkbox" name="q23_1" value="1"> Simpanan Pokok dan Simpanan Wajib Anggota.</label></li>
+                    <li><label><input type="checkbox" name="q23_2" value="2"> Dana Cadangan Koperasi dan Hibah.</label></li>
+                    <li><label><input type="checkbox" name="q23_3" value="3"> Pinjaman dari Koperasi Lain atau Bank.</label></li>
+                    <li><label><input type="checkbox" name="q23_4" value="4"> Penerbitan Surat Utang Obligasi Koperasi.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 24 -->
+            <!-- Q24 -->
             <div class="question-card" id="q24">
-                <span class="question-type-badge badge-complex">Pilihan Ganda Kompleks</span>
-                <p class="question-text"><span class="question-number">24</span>Ancaman keamanan siber (cyber crime) yang perlu diwaspadai dalam transaksi digital meliputi: (Pilih semua yang benar)</p>
+                <span class="question-type-badge">Multi Jawaban (Pilih >1)</span>
+                <p class="question-text"><span class="question-number">24</span>Strategi penyehatan arus kas pribadi untuk keluar dari jebakan utang konsumtif (*Debt Trap*) adalah: (Pilih 2 Jawaban Benar)</p>
                 <ul class="options-list">
-                    <li><label><input type="checkbox" name="q24" value="a"> Phishing</label></li>
-                    <li><label><input type="checkbox" name="q24" value="b"> Investasi bodong</label></li>
-                    <li><label><input type="checkbox" name="q24" value="c"> Data Breach (kebocoran data)</label></li>
-                    <li><label><input type="checkbox" name="q24" value="d"> Scam/Penipuan berkedok hadiah</label></li>
-                    <li><label><input type="checkbox" name="q24" value="e"> Semua jawaban di atas benar</label></li>
+                    <li><label><input type="checkbox" name="q24_1" value="1"> Menerapkan metode *Debt Snowball* atau *Debt Avalanche* untuk pelunasan utang terstruktur.</label></li>
+                    <li><label><input type="checkbox" name="q24_2" value="2"> Mengambil pinjaman baru dari aplikasi lain untuk menutup pinjaman lama (Gali Lubang Tutup Lubang).</label></li>
+                    <li><label><input type="checkbox" name="q24_3" value="3"> Menjual aset non-produktif/efisiensi gaya hidup untuk konsolidasi pembayaran utang pokok.</label></li>
+                    <li><label><input type="checkbox" name="q24_4" value="4"> Mengabaikan seluruh tagihan sampai pemutihan utang otomatis oleh bank.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 25 -->
+            <!-- Q25 -->
             <div class="question-card" id="q25">
-                <span class="question-type-badge badge-complex">Pilihan Ganda Kompleks</span>
-                <p class="question-text"><span class="question-number">25</span>Peran BUMN dalam perekonomian Indonesia antara lain: (Pilih semua yang benar)</p>
+                <span class="question-type-badge">Multi Jawaban (Pilih >1)</span>
+                <p class="question-text"><span class="question-number">25</span>Faktor-faktor yang dapat memperbesar porsi Sisa Hasil Usaha (SHU) Bagian Jasa Usaha/Anggota yang diterima anggota Koperasi adalah: (Pilih 2 Jawaban Benar)</p>
                 <ul class="options-list">
-                    <li><label><input type="checkbox" name="q25" value="a"> Sebagai agen pembangunan nasional</label></li>
-                    <li><label><input type="checkbox" name="q25" value="b"> Melayani kebutuhan publik (listrik, BBM, dll)</label></li>
-                    <li><label><input type="checkbox" name="q25" value="c"> Menambah pendapatan negara</label></li>
-                    <li><label><input type="checkbox" name="q25" value="d"> Mematikan persaingan dengan swasta</label></li>
-                    <li><label><input type="checkbox" name="q25" value="e"> Menyediakan lapangan kerja</label></li>
+                    <li><label><input type="checkbox" name="q25_1" value="1"> Tingginya frekuensi dan nilai nominal belanja barang konsumsi di unit toko Koperasi.</label></li>
+                    <li><label><input type="checkbox" name="q25_2" value="2"> Tingginya porsi partisipasi peminjaman dan ketepatan pengembalian pinjaman di KSP Koperasi.</label></li>
+                    <li><label><input type="checkbox" name="q25_3" value="3"> Jumlah kerabat/saudara anggota yang terdaftar sebagai pengurus koperasi.</label></li>
+                    <li><label><input type="checkbox" name="q25_4" value="4"> Luasnya ukuran rumah tinggal tempat anggota berdomisili.</label></li>
                 </ul>
             </div>
 
-            <!-- SECTION 5: Studi Kasus & Analisis (26-30) -->
-            <div class="section-title"><i class="fas fa-briefcase"></i> Bagian 5: Studi Kasus & Analisis (Soal 26-30)</div>
 
-            <!-- Soal 26 -->
+            <!-- BAGIAN 5: HITUNGAN SHU & ANALISIS HOTS (26-30) -->
+            <div class="section-title"><i class="fas fa-calculator"></i> Bagian 5: Hitungan SHU Multi-Step & Analisis (Soal 26-30 | @4 Poin)</div>
+
+            <!-- Q26 -->
             <div class="question-card" id="q26">
-                <span class="question-type-badge badge-case">Studi Kasus</span>
-                <p class="question-text"><span class="question-number">26</span>
-                    <strong>Kasus CV Kopi Banyuwangi:</strong> Pak Ahmad dan Bu Siti mendirikan CV ekspor kopi dengan modal Rp500 juta. Pak Ahmad sebagai pengelola aktif, Bu Siti sebagai pemodal pasif.<br><br>
-                    Mengapa mereka memilih bentuk CV dan bukan PT?
-                </p>
+                <span class="question-type-badge">Hitungan SHU Multi-Step</span>
+                <p class="question-text"><span class="question-number">26</span>Perhitungan SHU dengan Pemotongan Dana Cadangan Koperasi:</p>
+                <div class="case-box">
+                    Koperasi "Serba Usaha Cluring" memperoleh Total SHU Kotor sebesar Rp 150.000.000.<br>
+                    Sesuai keputusan RAT, SHU disisihkan terlebih dahulu untuk **Dana Cadangan Koperasi sebesar 20%**. Sisa SHU (80%) dialokasikan untuk:<br>
+                    - Jasa Modal (JM) = 30%<br>
+                    - Jasa Anggota/Usaha (JA) = 40%<br><br>
+                    Data Keuangan Koperasi:<br>
+                    - Total Simpanan Anggota (Pokok + Wajib) = Rp 300.000.000<br>
+                    - Total Penjualan Toko Koperasi = Rp 400.000.000<br><br>
+                    <strong>Data Anggota Pak Budi:</strong><br>
+                    - Total Simpanan Pak Budi = Rp 15.000.000<br>
+                    - Total Belanja Pak Budi di Toko Koperasi = Rp 20.000.000
+                </div>
+                <p class="question-text">Berdasarkan data di atas, berapa Total SHU (JM + JA) yang berhak diterima Pak Budi?</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q26" value="a"> Karena CV lebih prestisius di mata investor asing</label></li>
-                    <li><label><input type="radio" name="q26" value="b"> Karena CV lebih sederhana, biaya pendirian lebih murah, dan cocok untuk usaha skala menengah</label></li>
-                    <li><label><input type="radio" name="q26" value="c"> Karena PT hanya boleh dimiliki oleh pemerintah</label></li>
-                    <li><label><input type="radio" name="q26" value="d"> Karena CV tidak membayar pajak</label></li>
-                    <li><label><input type="radio" name="q26" value="e"> Karena CV menjamin keuntungan lebih besar</label></li>
+                    <li><label><input type="radio" name="q26" value="a"> Rp 3.600.000</label></li>
+                    <li><label><input type="radio" name="q26" value="b"> Rp 4.200.000</label></li>
+                    <li><label><input type="radio" name="q26" value="c"> Rp 2.400.000</label></li>
+                    <li><label><input type="radio" name="q26" value="d"> Rp 1.800.000</label></li>
+                    <li><label><input type="radio" name="q26" value="e"> Rp 3.000.000</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 27 -->
+            <!-- Q27 -->
             <div class="question-card" id="q27">
-                <span class="question-type-badge badge-case">Studi Kasus</span>
-                <p class="question-text"><span class="question-number">27</span>
-                    <strong>Kasus Keuangan Digital:</strong> Budi (25 tahun) menggunakan aplikasi pinjaman online ilegal karena proses cepat tanpa syarat. Ia meminjam Rp5 juta untuk membeli smartphone terbaru. Setelah 2 minggu, tagihan membengkak menjadi Rp15 juta dengan bunga harian.<br><br>
-                    Prinsip keuangan mana yang paling dilanggar oleh Budi?
-                </p>
+                <span class="question-type-badge">Hitungan SHU KSP</span>
+                <p class="question-text"><span class="question-number">27</span>Perhitungan SHU Koperasi Simpan Pinjam (Jasa Pinjaman):</p>
+                <div class="case-box">
+                    KSP "Banyuwangi Mandiri" membagikan SHU Bagian Jasa Pinjaman sebesar Rp 30.000.000.<br>
+                    Total akumulasi Bunga Pinjaman yang dibayarkan seluruh anggota dalam 1 tahun = Rp 150.000.000.<br>
+                    Ibu Endang selama setahun telah membayar bunga atas pinjamannya sebesar Rp 7.500.000.
+                </div>
+                <p class="question-text">Berapakan SHU Jasa Pinjaman yang diterima Ibu Endang?</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q27" value="a"> Planning (Perencanaan) - tidak membuat anggaran</label></li>
-                    <li><label><input type="radio" name="q27" value="b"> Protecting (Perlindungan) - tidak mengecek legalitas OJK dan tidak memiliki dana darurat</label></li>
-                    <li><label><input type="radio" name="q27" value="c"> Saving (Penabungan) - tidak menabung di awal bulan</label></li>
-                    <li><label><input type="radio" name="q27" value="d"> Investing (Investasi) - tidak berinvestasi sejak muda</label></li>
-                    <li><label><input type="radio" name="q27" value="e"> Semua prinsip 4P dilanggar</label></li>
+                    <li><label><input type="radio" name="q27" value="a"> Rp 1.500.000</label></li>
+                    <li><label><input type="radio" name="q27" value="b"> Rp 2.000.000</label></li>
+                    <li><label><input type="radio" name="q27" value="c"> Rp 1.250.000</label></li>
+                    <li><label><input type="radio" name="q27" value="d"> Rp 3.000.000</label></li>
+                    <li><label><input type="radio" name="q27" value="e"> Rp 750.000</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 28 -->
+            <!-- Q28 -->
             <div class="question-card" id="q28">
-                <span class="question-type-badge badge-case">Analisis Data</span>
-                <p class="question-text"><span class="question-number">28</span>
-                    Berdasarkan data realitas ekonomi Indonesia, kelas menengah menyusut dari 21,4% (2019) menjadi 16,6%. Faktor utama penyebabnya adalah...
-                </p>
+                <span class="question-type-badge">Studi Kasus Analisis Keuangan</span>
+                <p class="question-text"><span class="question-number">28</span>Analisis Efisiensi Biaya Operasional (BOPO) BUMD:</p>
+                <div class="case-box">
+                    Laporan Keuangan BUMD Transportasi Bus Daerah menunjukkan Rasio Biaya Operasional terhadap Pendapatan Operasional (BOPO) mencapai 98%. Artinya, dari setiap Rp 100 pendapatan, Rp 98 habis untuk biaya operasional harian.
+                </div>
+                <p class="question-text">Rekomendasi strategis yang paling tepat untuk memperbaiki kondisi efisiensi BUMD tersebut adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q28" value="a"> Masyarakat kelas menengah pindah ke luar negeri</label></li>
-                    <li><label><input type="radio" name="q28" value="b"> Turun kelas ke kelompok rentan miskin akibat tekanan ekonomi (inflasi, PHK, daya beli turun)</label></li>
-                    <li><label><input type="radio" name="q28" value="c"> Pertumbuhan penduduk yang terlalu tinggi</label></li>
-                    <li><label><input type="radio" name="q28" value="d"> Meningkatnya jumlah orang kaya secara signifikan</label></li>
-                    <li><label><input type="radio" name="q28" value="e"> Kebijakan pemerintah yang menghapus kelas menengah</label></li>
+                    <li><label><input type="radio" name="q28" value="a"> Menjual seluruh armada bus dan menghentikan layanan transportasi umum.</label></li>
+                    <li><label><input type="radio" name="q28" value="b"> Melakukan efisiensi berbasis digitalisasi tiket (e-ticketing), optimalisasi rute gemuk, dan menurunkan rasio BOPO ke target ideal ≤ 80%.</label></li>
+                    <li><label><input type="radio" name="q28" value="c"> Meminjam uang dari pinjol ilegal untuk menutup gaji karyawan.</label></li>
+                    <li><label><input type="radio" name="q28" value="d"> Mengubah BUMD menjadi Perusahaan Perseorangan milik direksi.</label></li>
+                    <li><label><input type="radio" name="q28" value="e"> Menaikkan gaji seluruh jajaran direksi untuk memotivasi kinerja.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 29 -->
+            <!-- Q29 -->
             <div class="question-card" id="q29">
-                <span class="question-type-badge badge-case">Analisis</span>
-                <p class="question-text"><span class="question-number">29</span>
-                    Dalam simulasi SHU koperasi: Total SHU Rp750.000.000, Jasa Modal 10%, Jasa Anggota 5%. Seorang anggota dengan simpanan Rp12 juta dan belanja Rp36 juta. Berapa total SHU yang diterima anggota tersebut?
-                </p>
+                <span class="question-type-badge">Studi Kasus Restrukturisasi Usaha</span>
+                <p class="question-text"><span class="question-number">29</span>Evaluasi Risiko Kerugian Firma (Fa):</p>
+                <div class="case-box">
+                    Firma "Bintang Tiga" didirikan oleh A, B, dan C. Karena kelalaian keputusan investasi Sekutu A, Firma mengalami kerugian total dan menanggung utang jatuh tempo sebesar Rp 900 Juta. Kas dan aset Firma yang tersisa hanya sebesar Rp 300 Juta.
+                </div>
+                <p class="question-text">Bagaimana konsekuensi hukum penyelesaian sisa utang Rp 600 Juta tersebut berdasarkan karakteristik pendirian Firma?</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q29" value="a"> Rp 1.500.000</label></li>
-                    <li><label><input type="radio" name="q29" value="b"> Rp 2.000.000</label></li>
-                    <li><label><input type="radio" name="q29" value="c"> Rp 3.000.000</label></li>
-                    <li><label><input type="radio" name="q29" value="d"> Rp 4.500.000</label></li>
-                    <li><label><input type="radio" name="q29" value="e"> Rp 5.000.000</label></li>
+                    <li><label><input type="radio" name="q29" value="a"> Sisa utang Rp 600 Juta ditanggung sepenuhnya oleh Pemerintah melalui APBN.</label></li>
+                    <li><label><input type="radio" name="q29" value="b"> Seluruh sekutu (A, B, dan C) bertanggung jawab secara tanggung renteng (*joint and several liability*) menggunakan harta kekayaan pribadi mereka hingga utang lunas.</label></li>
+                    <li><label><input type="radio" name="q29" value="c"> Sisa utang otomatis dianggap hangus karena Firma tidak berbadan hukum PT.</label></li>
+                    <li><label><input type="radio" name="q29" value="d"> Sekutu B dan C terbebas dari utang karena kesalahan murni ada pada Sekutu A.</label></li>
+                    <li><label><input type="radio" name="q29" value="e"> Pengadilan akan mengubah secara otomatis Firma tersebut menjadi Koperasi.</label></li>
                 </ul>
             </div>
 
-            <!-- Soal 30 -->
+            <!-- Q30 -->
             <div class="question-card" id="q30">
-                <span class="question-type-badge badge-case">Analisis</span>
-                <p class="question-text"><span class="question-number">30</span>
-                    Mengapa 50,4% populasi Indonesia (142 juta jiwa) berada dalam posisi "Menuju Kelas Menengah" yang rentan turun kelas?
-                </p>
+                <span class="question-type-badge">Studi Kasus Penyehatan Koperasi</span>
+                <p class="question-text"><span class="question-number">30</span>Penyehatan Koperasi Mengalami *Capital Loss*:</p>
+                <div class="case-box">
+                    Sebuah Koperasi Kredit mengalami penurunan kepercayaan anggota akibat kredit macet sebesar 25%. Anggota ramai-ramai ingin menarik simpanan sukarelanya secara bersamaan (*rush*).
+                </div>
+                <p class="question-text">Langkah darurat manajerial terbaik yang harus diambil oleh Pengurus Koperasi sesuai UU Koperasi adalah...</p>
                 <ul class="options-list">
-                    <li><label><input type="radio" name="q30" value="a"> Mereka sudah memiliki aset yang cukup besar</label></li>
-                    <li><label><input type="radio" name="q30" value="b"> Mereka memiliki pendidikan tinggi dan pekerjaan mapan</label></li>
-                    <li><label><input type="radio" name="q30" value="c"> Mereka belum memiliki pondasi ekonomi yang kuat, rentan terhadap guncangan (sakit, PHK, inflasi), dan tidak memiliki dana darurat memadai</label></li>
-                    <li><label><input type="radio" name="q30" value="d"> Mereka adalah pekerja asing yang tinggal sementara di Indonesia</label></li>
-                    <li><label><input type="radio" name="q30" value="e"> Mereka memilih untuk tidak bekerja dan mengandalkan bantuan pemerintah</label></li>
+                    <li><label><input type="radio" name="q30" value="a"> Mengunci kantor dan melarikan diri dari pertanggungjawaban anggota.</label></li>
+                    <li><label><input type="radio" name="q30" value="b"> Menggelar Rapat Anggota Tahunan/Luar Biasa (RAT/RALB) secara transparan untuk menyepakati skema restrukturisasi kredit macet, penundaan penarikan dana sementara, dan pemulihan likuiditas.</label></li>
+                    <li><label><input type="radio" name="q30" value="c"> Mengubah nama koperasi secara sepihak untuk mengelabui tagihan anggota.</label></li>
+                    <li><label><input type="radio" name="q30" value="d"> Membagikan seluruh sisa dana modal kepada pengurus terlebih dahulu.</label></li>
+                    <li><label><input type="radio" name="q30" value="e"> Menjual seluruh aset koperasi tanpa persetujuan Rapat Anggota.</label></li>
                 </ul>
             </div>
 
-            <!-- Submit Button -->
             <div class="btn-group">
-                <button class="btn btn-success" onclick="submitQuiz()">
-                    <i class="fas fa-paper-plane"></i> Kumpulkan Jawaban
+                <button class="btn btn-success" onclick="finishQuiz()">
+                    <i class="fas fa-check-circle"></i> Selesai & Hitung Rekap Nilai
                 </button>
-                <button class="btn btn-warning" onclick="resetQuiz()">
-                    <i class="fas fa-redo"></i> Reset Kuis
-                </button>
-            </div>
-        </div>
-
-        <!-- Results Section -->
-        <div class="results-container" id="resultsContainer">
-            <h2 style="text-align:center; margin-bottom:1.5rem;">
-                <i class="fas fa-trophy" style="color:var(--warning);"></i> Hasil Kuis
-            </h2>
-
-            <div class="score-circle" id="scoreCircle">
-                <span class="score-value" id="scoreValue">0</span>
-                <span class="score-label">dari 100</span>
-            </div>
-
-            <div class="results-info">
-                <div class="info-card">
-                    <div class="info-label">Nama</div>
-                    <div class="info-value" id="resultName">-</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Kelas</div>
-                    <div class="info-value" id="resultClass">-</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Tanggal</div>
-                    <div class="info-value" id="resultDate">-</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Benar</div>
-                    <div class="info-value" id="resultCorrect">0/30</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Waktu</div>
-                    <div class="info-value" id="resultTime">-</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Pelanggaran</div>
-                    <div class="info-value" id="resultCheats">0</div>
-                </div>
-            </div>
-
-            <div id="feedbackBox" class="feedback-box">
-                <h3 id="feedbackTitle"></h3>
-                <p id="feedbackMessage"></p>
-            </div>
-
-            <h3 style="margin-bottom:1rem;"><i class="fas fa-list-check"></i> Kunci Jawaban & Pembahasan</h3>
-            <div id="answerReview"></div>
-
-            <div class="btn-group">
                 <button class="btn btn-primary" onclick="downloadPDF()">
-                    <i class="fas fa-file-pdf"></i> Download PDF
-                </button>
-                <button class="btn btn-warning" onclick="retakeQuiz()">
-                    <i class="fas fa-redo"></i> Ulangi Kuis
+                    <i class="fas fa-file-pdf"></i> Download PDF Lembar Jawaban
                 </button>
             </div>
         </div>
+
     </div>
 
+    <!-- SCRIPT LOGIC & AUTOMATIC GRADING SYSTEM -->
     <script>
-        // ============ ANTI-CHEAT SYSTEM ============
-        let cheatCount = 0;
-        let quizStarted = false;
-        let timerInterval;
-        let timeLeft = 45 * 60; // 45 minutes in seconds
-        let startTime;
+        // KUNCI JAWABAN EVALUASI (TOTAL 100 POIN)
+        const ANSWER_KEY = {
+            // Bagian 1: PG (10 x 3 = 30 Poin)
+            q1: 'b', q2: 'b', q3: 'b', q4: 'b', q5: 'b',
+            q6: 'b', q7: 'b', q8: 'b', q9: 'b', q10: 'b',
+            
+            // Bagian 2: Benar/Salah (5 x 2 = 10 Poin)
+            q11: 'Benar', q12: 'Salah', q13: 'Benar', q14: 'Salah', q15: 'Benar',
+            
+            // Bagian 3: Menjodohkan (5 x 3 = 15 Poin)
+            q16: 'a', q17: 'b', q18: 'a', q19: 'a', q20: 'a',
+            
+            // Bagian 4: Multi Jawaban (5 x 5 = 25 Poin)
+            q21: ['1', '2', '4'],
+            q22: ['1', '2', '4'],
+            q23: ['1', '2'],
+            q24: ['1', '3'],
+            q25: ['1', '2'],
+            
+            // Bagian 5: Hitungan & Analisis (5 x 4 = 20 Poin)
+            q26: 'a', q27: 'a', q28: 'b', q29: 'b', q30: 'b'
+        };
 
-        // Detect tab switching / leaving page
-        document.addEventListener('visibilitychange', function() {
-            if (quizStarted && document.hidden) {
-                cheatCount++;
-                document.getElementById('cheatCount').textContent = cheatCount;
-                document.getElementById('cheatCounter').classList.add('active');
-                
-                if (cheatCount >= 3) {
-                    alert('⚠️ Anda telah melakukan 3 pelanggaran. Kuis akan otomatis dikumpulkan!');
-                    submitQuiz();
-                } else {
-                    document.getElementById('cheatModal').classList.add('active');
-                }
-            }
-        });
-
-        // Detect right-click (disable)
-        document.addEventListener('contextmenu', function(e) {
-            if (quizStarted) {
-                e.preventDefault();
-                alert('⚠️ Klik kanan dinonaktifkan selama kuis berlangsung.');
-            }
-        });
-
-        // Detect keyboard shortcuts (Ctrl+C, Ctrl+V, Ctrl+U, F12)
-        document.addEventListener('keydown', function(e) {
-            if (quizStarted) {
-                if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'u' || e.key === 'p')) {
-                    e.preventDefault();
-                    alert('⚠️ Shortcut keyboard dinonaktifkan selama kuis.');
-                }
-                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                    e.preventDefault();
-                    alert('⚠️ Developer tools dinonaktifkan selama kuis.');
-                }
-            }
-        });
-
-        // Detect copy/paste
-        document.addEventListener('copy', function(e) {
-            if (quizStarted) {
-                e.preventDefault();
-                alert('⚠️ Menyalin teks tidak diizinkan selama kuis.');
-            }
-        });
-
-        document.addEventListener('paste', function(e) {
-            if (quizStarted) {
-                e.preventDefault();
-                alert('⚠️ Menempel teks tidak diizinkan selama kuis.');
-            }
-        });
-
-        function closeCheatModal() {
-            document.getElementById('cheatModal').classList.remove('active');
-        }
-
-        // ============ THEME TOGGLE ============
-        const themeToggle = document.getElementById('themeToggle');
-        let isDark = localStorage.getItem('theme') === 'dark';
-
-        if (isDark) {
-            document.body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
-
-        themeToggle.addEventListener('click', function() {
-            isDark = !isDark;
-            if (isDark) {
-                document.body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
             } else {
-                document.body.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Live Highlight Jawaban Terpilih
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'radio' || e.target.type === 'checkbox') {
+                const name = e.target.name;
+                if(e.target.type === 'radio') {
+                    const siblings = document.querySelectorAll(`input[name="${name}"]`);
+                    siblings.forEach(input => {
+                        const label = input.closest('label');
+                        if (label) {
+                            if (input.checked) label.classList.add('is-checked');
+                            else label.classList.remove('is-checked');
+                        }
+                    });
+                } else {
+                    const label = e.target.closest('label');
+                    if (label) {
+                        if (e.target.checked) label.classList.add('is-checked');
+                        else label.classList.remove('is-checked');
+                    }
+                }
             }
         });
 
-        // ============ HAMBURGER MENU ============
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
-
-        // ============ QUIZ FUNCTIONS ============
         function startQuiz() {
-            const name = document.getElementById('studentName').value.trim();
+            const name = document.getElementById('studentName').value;
             const studentClass = document.getElementById('studentClass').value;
             const date = document.getElementById('studentDate').value;
 
             if (!name || !studentClass || !date) {
-                alert('⚠️ Mohon lengkapi semua data peserta!');
+                alert('Silakan lengkapi semua Data Peserta terlebih dahulu!');
                 return;
             }
 
             document.getElementById('registrationForm').style.display = 'none';
             document.getElementById('quizSection').classList.add('active');
-            document.getElementById('timerBar').style.display = 'block';
             document.getElementById('timerDisplay').style.display = 'block';
-            
-            // Set watermark
-            document.getElementById('watermark').textContent = name;
-
-            quizStarted = true;
-            startTime = new Date();
-            startTimer();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            startTimer(45 * 60);
         }
 
-        function startTimer() {
-            timerInterval = setInterval(function() {
-                timeLeft--;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    alert('⏰ Waktu habis! Kuis akan otomatis dikumpulkan.');
-                    submitQuiz();
-                    return;
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('timerText');
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert('Waktu pengerjaan telah habis!');
+                    finishQuiz();
                 }
-
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                document.getElementById('timerText').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                const progress = (timeLeft / (45 * 60)) * 100;
-                document.getElementById('timerProgress').style.width = progress + '%';
-
-                // Update progress
-                updateProgress();
             }, 1000);
         }
 
-        function updateProgress() {
-            let answered = 0;
-            const total = 30;
-            
-            // PG biasa (1-10)
-            for (let i = 1; i <= 10; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-            }
-            // B/S (11-15)
-            for (let i = 11; i <= 15; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-            }
-            // Matching (16-20)
-            for (let i = 16; i <= 20; i++) {
-                if (document.getElementById(`match${i}`).value) answered++;
-            }
-            // PG Kompleks (21-25)
-            for (let i = 21; i <= 25; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-            }
-            // Case (26-30)
-            for (let i = 26; i <= 30; i++) {
-                if (document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-            }
+        // FUNGSIONALITAS UTAMA: REKAP NILAI OTOMATIS
+        function finishQuiz() {
+            let scorePG = 0;        // Max 30
+            let scoreTF = 0;        // Max 10
+            let scoreMatch = 0;     // Max 15
+            let scoreMulti = 0;     // Max 25
+            let scoreHitung = 0;    // Max 20
 
-            const percent = Math.round((answered / total) * 100);
-            document.getElementById('progressPercent').textContent = percent + '%';
-            document.getElementById('progressFill').style.width = percent + '%';
-        }
-
-        // ============ ANSWER KEY ============
-        const answerKey = {
-            q1: 'b',   // Metode 50/30/20
-            q2: 'b',   // Tautan palsu yang mengatasnamakan bank
-            q3: 'd',   // Very Well Literate
-            q4: 'b',   // Quick Response Code Indonesian Standard
-            q5: 'b',   // Tidak terbatas hingga harta pribadi
-            q6: 'b',   // Berbentuk PT dan bertujuan mencari keuntungan
-            q7: 'b',   // Menyisihkan uang untuk menabung di awal bulan
-            q8: 'b',   // Pilar utama ekonomi yang berasaskan kekeluargaan
-            q9: 'c',   // Deposito berjangka di bank konvensional
-            q10: 'c',  // Menuju Kelas Menengah
-            q11: 'salah', // Badan usaha berbeda dengan perusahaan
-            q12: 'benar', // Bank tidak pernah minta OTP/PIN
-            q13: 'salah', // Sekutu pasif tanggung jawab terbatas
-            q14: 'benar', // SHU berdasarkan jasa modal & anggota
-            q15: 'salah', // Tidak semua fintech legal
-            q16: 'b',  // Usaha Perseorangan: dimiliki satu orang
-            q17: 'a',  // PT: modal saham, tanggung jawab terbatas
-            q18: 'e',  // CV: ada sekutu aktif dan pasif
-            q19: 'd',  // Koperasi: asas kekeluargaan, SHU
-            q20: 'c',  // BUMN Persero: dimiliki pemerintah
-            q21: ['a','b','d','e'], // Planning, Protecting, Saving, Investing
-            q22: ['a','c','d'],    // 2FA, Password kuat, Cek OJK
-            q23: ['a','c','d','e'], // Perseorangan, Firma, CV, PT
-            q24: ['a','b','c','d'], // Phishing, Investasi bodong, Data breach, Scam
-            q25: ['a','b','c','e'], // Agen pembangunan, layanan publik, pendapatan, lapangan kerja
-            q26: 'b',  // CV lebih sederhana dan murah
-            q27: 'e',  // Semua prinsip 4P dilanggar
-            q28: 'b',  // Turun kelas akibat tekanan ekonomi
-            q29: 'c',  // Rp 3.000.000
-            q30: 'c'   // Belum punya pondasi ekonomi kuat
-        };
-
-        // Explanations for review
-        const explanations = {
-            q1: 'Metode 50/30/20 mengalokasikan: 50% kebutuhan, 30% keinginan, 20% tabungan/investasi.',
-            q2: 'Phishing adalah modus penipuan menggunakan tautan/link palsu yang mengatasnamakan institusi resmi.',
-            q3: 'Very Well Literate = memiliki pengetahuan, keyakinan, keterampilan, DAN perilaku keuangan yang sangat baik.',
-            q4: 'QRIS = Quick Response Code Indonesian Standard, standar pembayaran QR nasional.',
-            q5: 'Sekutu aktif dalam CV bertanggung jawab tidak terbatas hingga harta pribadinya.',
-            q6: 'BUMN Persero berbentuk PT dan bertujuan mencari keuntungan seperti perusahaan swasta.',
-            q7: 'Pay Yourself First = menyisihkan tabungan di awal bulan sebelum belanja kebutuhan.',
-            q8: 'Koperasi adalah soko guru (pilar utama) perekonomian Indonesia karena berasaskan kekeluargaan.',
-            q9: 'Deposito berjangka di bank konvensional bukan instrumen keuangan digital murni.',
-            q10: 'Menuju Kelas Menengah = 50,4% populasi (142 juta jiwa), kelompok terbesar yang rentan.',
-            q11: 'Badan usaha adalah lembaga/kesatuan yuridis, sedangkan perusahaan adalah tempat produksi.',
-            q12: 'Benar! Pihak resmi tidak akan pernah meminta OTP atau PIN Anda.',
-            q13: 'Sekutu pasif hanya bertanggung jawab sebatas modal yang disetor, tidak sampai harta pribadi.',
-            q14: 'Benar! SHU koperasi dibagikan berdasarkan jasa modal (simpanan) dan jasa anggota (transaksi).',
-            q15: 'Tidak semua fintech legal. Hanya yang terdaftar dan diawasi OJK yang aman.',
-            q16: 'Usaha Perseorangan dimiliki satu orang dengan tanggung jawab tidak terbatas.',
-            q17: 'PT memiliki modal berupa saham dan tanggung jawab terbatas pada modal yang disetor.',
-            q18: 'CV memiliki sekutu aktif (pengurus) dan sekutu pasif (pemodal).',
-            q19: 'Koperasi berasaskan kekeluargaan dan membagikan SHU kepada anggota.',
-            q20: 'BUMN Persero dimiliki pemerintah dan berbentuk PT.',
-            q21: '4P = Planning, Protecting, Saving, Investing. "Purchasing" bukan termasuk prinsip 4P.',
-            q22: 'Langkah keamanan: 2FA, password kuat, cek legalitas OJK. Jangan bagikan OTP dan hindari WiFi publik.',
-            q23: 'BUMS meliputi: Usaha Perseorangan, Firma, CV, dan PT. BUMN bukan BUMS.',
-            q24: 'Semua ancaman tersebut (Phishing, Investasi bodong, Data breach, Scam) termasuk cyber crime.',
-            q25: 'BUMN berperan sebagai agen pembangunan, melayani publik, menambah pendapatan negara, dan membuka lapangan kerja.',
-            q26: 'CV lebih sederhana, biaya lebih murah, cocok untuk usaha skala menengah seperti ekspor kopi.',
-            q27: 'Budi melanggar SEMUA prinsip 4P: tidak planning, tidak protecting (pinjol ilegal), tidak saving, tidak investing.',
-            q28: 'Kelas menengah menyusut karena tekanan ekonomi menyebabkan mereka turun ke kelompok rentan miskin.',
-            q29: 'Perhitungan: Jasa Modal = (12jt/3M) × 10% × 750jt = Rp3.000.000. Jasa Anggota = (36jt/9M) × 5% × 750jt = Rp1.500.000. Total = Rp4.500.000. (Koreksi: jawaban yang benar Rp3.000.000 berdasarkan data simulasi: Rp1.200.000 + Rp1.800.000 = Rp3.000.000)',
-            q30: '50,4% populasi rentan karena belum memiliki pondasi ekonomi kuat, tidak punya dana darurat, rentan guncangan.'
-        };
-
-        // ============ SCORING SYSTEM ============
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            quizStarted = false;
-
-            const name = document.getElementById('studentName').value.trim();
-            const studentClass = document.getElementById('studentClass').value;
-            const date = document.getElementById('studentDate').value;
-
-            let score = 0;
-            let correctCount = 0;
-            const totalQuestions = 30;
-
-            // Scoring weights
-            // PG biasa (1-10): 3 poin each = 30
-            // B/S (11-15): 4 poin each = 20
-            // Matching (16-20): 4 poin each = 20
-            // PG Kompleks (21-25): 4 poin each = 20
-            // Case (26-30): 2 poin each = 10
-            // Total = 100
-
-            const weights = {};
-            for (let i = 1; i <= 10; i++) weights[`q${i}`] = 3;
-            for (let i = 11; i <= 15; i++) weights[`q${i}`] = 4;
-            for (let i = 16; i <= 20; i++) weights[`q${i}`] = 4;
-            for (let i = 21; i <= 25; i++) weights[`q${i}`] = 4;
-            for (let i = 26; i <= 30; i++) weights[`q${i}`] = 2;
-
-            let reviewHTML = '';
-
-            // Check each question
-            for (let i = 1; i <= totalQuestions; i++) {
-                const qName = `q${i}`;
-                let isCorrect = false;
-                let userAnswer = '';
-                const correctAnswer = answerKey[qName];
-                const weight = weights[qName];
-
-                if (i <= 10 || i === 26 || i >= 28) {
-                    // Regular PG or Case
-                    const selected = document.querySelector(`input[name="${qName}"]:checked`);
-                    userAnswer = selected ? selected.value : '-';
-                    isCorrect = userAnswer === correctAnswer;
-                } else if (i <= 15) {
-                    // True/False
-                    const selected = document.querySelector(`input[name="${qName}"]:checked`);
-                    userAnswer = selected ? selected.value : '-';
-                    isCorrect = userAnswer === correctAnswer;
-                } else if (i <= 20) {
-                    // Matching
-                    const selected = document.getElementById(`match${i}`).value;
-                    userAnswer = selected || '-';
-                    isCorrect = userAnswer === correctAnswer;
-                } else if (i <= 25) {
-                    // PG Kompleks (checkboxes)
-                    const checked = document.querySelectorAll(`input[name="${qName}"]:checked`);
-                    const userAnswers = Array.from(checked).map(cb => cb.value).sort();
-                    const correctAnswers = correctAnswer.sort();
-                    isCorrect = JSON.stringify(userAnswers) === JSON.stringify(correctAnswers);
-                    userAnswer = userAnswers.length > 0 ? userAnswers.join(', ') : '-';
+            // 1. Hitung Bagian 1: PG (Soal 1-10)
+            for(let i=1; i<=10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if(selected && selected.value === ANSWER_KEY[`q${i}`]) {
+                    scorePG += 3;
                 }
-
-                if (isCorrect) {
-                    score += weight;
-                    correctCount++;
-                    document.getElementById(`q${i}`).classList.add('correct');
-                } else {
-                    document.getElementById(`q${i}`).classList.add('incorrect');
-                }
-
-                // Build review
-                const correctDisplay = Array.isArray(correctAnswer) ? correctAnswer.join(', ') : correctAnswer;
-                reviewHTML += `
-                    <div style="padding:1rem; margin-bottom:0.75rem; border-radius:8px; background:var(--bg); border-left:4px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'};">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                            <strong>Soal ${i}</strong>
-                            <span style="color:${isCorrect ? 'var(--success)' : 'var(--danger)'}; font-weight:700;">
-                                ${isCorrect ? '✓ Benar (+' + weight + ')' : '✗ Salah (0)'}
-                            </span>
-                        </div>
-                        <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:0.25rem;">
-                            Jawaban Anda: <strong>${userAnswer}</strong> | Kunci: <strong>${correctDisplay}</strong>
-                        </p>
-                        <p style="font-size:0.85rem; font-style:italic; color:var(--primary); margin-top:0.5rem;">
-                            💡 ${explanations[qName]}
-                        </p>
-                    </div>
-                `;
             }
 
-            // Calculate time spent
-            const endTime = new Date();
-            const timeSpent = Math.round((endTime - startTime) / 1000);
-            const minutesSpent = Math.floor(timeSpent / 60);
-            const secondsSpent = timeSpent % 60;
-            const timeString = `${minutesSpent}m ${secondsSpent}s`;
+            // 2. Hitung Bagian 2: Benar/Salah (Soal 11-15)
+            for(let i=11; i<=15; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if(selected && selected.value === ANSWER_KEY[`q${i}`]) {
+                    scoreTF += 2;
+                }
+            }
 
-            // Show results
-            document.getElementById('quizSection').classList.remove('active');
-            document.getElementById('resultsContainer').classList.add('active');
-            document.getElementById('timerBar').style.display = 'none';
+            // 3. Hitung Bagian 3: Menjodohkan (Soal 16-20)
+            for(let i=16; i<=20; i++) {
+                const select = document.querySelector(`select[name="q${i}"]`);
+                if(select && select.value === ANSWER_KEY[`q${i}`]) {
+                    scoreMatch += 3;
+                }
+            }
+
+            // 4. Hitung Bagian 4: Multi Jawaban (Soal 21-25)
+            for(let i=21; i<=25; i++) {
+                const checked = Array.from(document.querySelectorAll(`input[name^="q${i}_"]:checked`)).map(el => el.value);
+                const targetKey = ANSWER_KEY[`q${i}`];
+                
+                // Cek persis sama (Arrays match)
+                const isExactMatch = targetKey.length === checked.length && targetKey.every(val => checked.includes(val));
+                if(isExactMatch) {
+                    scoreMulti += 5;
+                }
+            }
+
+            // 5. Hitung Bagian 5: Hitungan & Analisis (Soal 26-30)
+            for(let i=26; i<=30; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if(selected && selected.value === ANSWER_KEY[`q${i}`]) {
+                    scoreHitung += 4;
+                }
+            }
+
+            const totalScore = scorePG + scoreTF + scoreMatch + scoreMulti + scoreHitung;
+
+            // Tentukan Predikat
+            let predikat = "";
+            if (totalScore >= 90) predikat = "Sangat Baik (A) - LULUS ISTIMEWA";
+            else if (totalScore >= 75) predikat = "Baik (B) - LULUS TUNTAS";
+            else if (totalScore >= 60) predikat = "Cukup (C) - PERLU PENGAYAAN";
+            else predikat = "Kurang (D) - REMEDIAL Wajib";
+
+            // Tampilkan Data ke Tabel Rekap
+            document.getElementById('resStudentName').innerHTML = "<strong>Nama:</strong> " + document.getElementById('studentName').value;
+            document.getElementById('resStudentClass').innerHTML = "<strong>Kelas:</strong> " + document.getElementById('studentClass').value;
+            document.getElementById('resStudentDate').innerHTML = "<strong>Tanggal:</strong> " + document.getElementById('studentDate').value;
+
+            document.getElementById('finalScoreDisplay').textContent = totalScore;
+            document.getElementById('predikatDisplay').textContent = "Predikat: " + predikat;
+
+            const recapHTML = `
+                <tr>
+                    <td>Bagian 1: Pilihan Ganda (1-10)</td>
+                    <td>10 Soal</td>
+                    <td>30 Poin</td>
+                    <td><strong>${scorePG} Poin</strong></td>
+                </tr>
+                <tr>
+                    <td>Bagian 2: Benar / Salah (11-15)</td>
+                    <td>5 Soal</td>
+                    <td>10 Poin</td>
+                    <td><strong>${scoreTF} Poin</strong></td>
+                </tr>
+                <tr>
+                    <td>Bagian 3: Menjodohkan (16-20)</td>
+                    <td>5 Soal</td>
+                    <td>15 Poin</td>
+                    <td><strong>${scoreMatch} Poin</strong></td>
+                </tr>
+                <tr>
+                    <td>Bagian 4: Multi Jawaban (21-25)</td>
+                    <td>5 Soal</td>
+                    <td>25 Poin</td>
+                    <td><strong>${scoreMulti} Poin</strong></td>
+                </tr>
+                <tr>
+                    <td>Bagian 5: Hitungan & Analisis SHU (26-30)</td>
+                    <td>5 Soal</td>
+                    <td>20 Poin</td>
+                    <td><strong>${scoreHitung} Poin</strong></td>
+                </tr>
+                <tr style="background: var(--bg); font-weight: bold;">
+                    <td colspan="2">TOTAL PEROLEHAN SKOR</td>
+                    <td>100 Poin</td>
+                    <td style="color: var(--primary); font-size:1.1rem;">${totalScore} / 100</td>
+                </tr>
+            `;
+
+            document.getElementById('recapTableBody').innerHTML = recapHTML;
+
+            // Pindahkan Tampilan
             document.getElementById('timerDisplay').style.display = 'none';
-
-            // Fill results
-            document.getElementById('resultName').textContent = name;
-            document.getElementById('resultClass').textContent = studentClass;
-            document.getElementById('resultDate').textContent = date;
-            document.getElementById('resultCorrect').textContent = `${correctCount}/${totalQuestions}`;
-            document.getElementById('resultTime').textContent = timeString;
-            document.getElementById('resultCheats').textContent = cheatCount;
-
-            // Animate score circle
-            const scorePercent = (score / 100) * 360;
-            document.getElementById('scoreCircle').style.background = 
-                `conic-gradient(var(--primary) ${scorePercent}deg, var(--border) ${scorePercent}deg)`;
-            document.getElementById('scoreValue').textContent = score;
-
-            // Feedback
-            let feedbackClass, feedbackTitle, feedbackMessage;
-            if (score >= 85) {
-                feedbackClass = 'feedback-excellent';
-                feedbackTitle = '🏆 Luar Biasa!';
-                feedbackMessage = `Skor ${score}/100 - Kamu menguasai materi dengan sangat baik! Pertahankan dan terus tingkatkan pemahamanmu.`;
-            } else if (score >= 70) {
-                feedbackClass = 'feedback-good';
-                feedbackTitle = '👍 Bagus!';
-                feedbackMessage = `Skor ${score}/100 - Pemahamanmu cukup baik. Pelajari kembali materi yang belum dikuasai.`;
-            } else if (score >= 55) {
-                feedbackClass = 'feedback-average';
-                feedbackTitle = '📚 Cukup!';
-                feedbackMessage = `Skor ${score}/100 - Kamu perlu belajar lebih giat. Baca kembali materi literasi keuangan dan badan usaha.`;
-            } else {
-                feedbackClass = 'feedback-poor';
-                feedbackTitle = '💪 Perlu Belajar Lagi!';
-                feedbackMessage = `Skor ${score}/100 - Jangan menyerah! Pelajari kembali semua materi dan coba lagi.`;
-            }
-
-            const feedbackBox = document.getElementById('feedbackBox');
-            feedbackBox.className = 'feedback-box ' + feedbackClass;
-            document.getElementById('feedbackTitle').textContent = feedbackTitle;
-            document.getElementById('feedbackMessage').textContent = feedbackMessage;
-
-            document.getElementById('answerReview').innerHTML = reviewHTML;
-
+            document.getElementById('resultsContainer').classList.add('active');
+            
+            // Scroll ke hasil rekap
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function resetQuiz() {
-            if (!confirm('Apakah Anda yakin ingin mereset kuis? Semua jawaban akan dihapus.')) return;
+        // FUNGSI SINKRONISASI DOM ALL INPUT UNTUK CETAK PDF LENGKAP
+        function downloadPDF() {
+            // Tampilkan sementara seluruh kontainer kuis & rekap agar masuk PDF
+            const quizElement = document.getElementById('quizSection');
+            const resultsElement = document.getElementById('resultsContainer');
             
-            // Reset all inputs
-            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
-            document.querySelectorAll('.matching-select').forEach(el => el.value = '');
-            document.querySelectorAll('.question-card').forEach(el => {
-                el.classList.remove('correct', 'incorrect');
+            quizElement.style.display = 'block';
+            resultsElement.style.display = 'block';
+
+            // 1. SINKRONISASI RADIO & CHECKBOX KE DOM REAL
+            const inputs = quizElement.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+            inputs.forEach(input => {
+                const label = input.closest('label');
+                if (input.checked) {
+                    input.setAttribute('checked', 'checked');
+                    if (label) label.classList.add('is-checked');
+                } else {
+                    input.removeAttribute('checked');
+                    if (label) label.classList.remove('is-checked');
+                }
             });
-            
-            document.getElementById('progressFill').style.width = '0%';
-            document.getElementById('progressPercent').textContent = '0%';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 2. SINKRONISASI SELECT / MENJODOHKAN
+            const selects = quizElement.querySelectorAll('select');
+            selects.forEach(select => {
+                const options = select.querySelectorAll('option');
+                options.forEach(opt => opt.removeAttribute('selected'));
+                if (select.selectedIndex >= 0) {
+                    options[select.selectedIndex].setAttribute('selected', 'selected');
+                }
+            });
+
+            // Bungkus gabungan elemen untuk didownload
+            const printWrapper = document.createElement('div');
+            printWrapper.appendChild(resultsElement.cloneNode(true));
+            printWrapper.appendChild(quizElement.cloneNode(true));
+
+            // Konfigurasi Cetak PDF
+            const opt = {
+                margin:       [8, 8, 8, 8],
+                filename:     'Laporan_Evaluasi_Ekonomi_XII_' + document.getElementById('studentName').value.replace(/\s+/g, '_') + '.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    letterRendering: true
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Generate PDF
+            html2pdf().set(opt).from(printWrapper).save().then(() => {
+                // Sembunyikan kembali kuis jika sudah selesai
+                if(resultsElement.classList.contains('active')) {
+                    quizElement.style.display = 'none';
+                }
+            });
         }
-
-        function retakeQuiz() {
-            document.getElementById('resultsContainer').classList.remove('active');
-            document.getElementById('registrationForm').style.display = 'block';
-            document.getElementById('cheatCounter').classList.remove('active');
-            cheatCount = 0;
-            timeLeft = 45 * 60;
-            resetQuiz();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ============ PDF DOWNLOAD (FIXED VERSION) ============
-function downloadPDF() {
-    const element = document.getElementById('resultsContainer');
-    const name = document.getElementById('studentName').value.trim() || 'Siswa';
-    const studentClass = document.getElementById('studentClass').value || 'Kelas';
-    const date = document.getElementById('studentDate').value || new Date().toISOString().split('T')[0];
-    const score = document.getElementById('scoreValue').textContent;
-    const correct = document.getElementById('resultCorrect').textContent;
-    const timeSpent = document.getElementById('resultTime').textContent;
-    const cheats = document.getElementById('resultCheats').textContent;
-    const feedbackTitle = document.getElementById('feedbackTitle').textContent;
-    const feedbackMessage = document.getElementById('feedbackMessage').textContent;
-
-    // Buat container khusus untuk PDF dengan styling inline yang pasti ter-render
-    const pdfContainer = document.createElement('div');
-    pdfContainer.id = 'pdf-content';
-    pdfContainer.style.cssText = `
-        font-family: Arial, Helvetica, sans-serif;
-        background: #ffffff;
-        color: #1e293b;
-        padding: 25px;
-        width: 780px;
-        line-height: 1.5;
-    `;
-
-    // Header PDF
-    pdfContainer.innerHTML = `
-        <div style="text-align:center; border-bottom:3px solid #2563eb; padding-bottom:15px; margin-bottom:20px;">
-            <h1 style="color:#2563eb; margin:0; font-size:24px;">HASIL KUIS EKONOMI XII</h1>
-            <p style="color:#64748b; margin:5px 0; font-size:14px;">SMAN 1 Cluring - Literasi Keuangan & Badan Usaha</p>
-            <p style="color:#94a3b8; font-size:11px; margin:5px 0;">Dicetak: ${new Date().toLocaleString('id-ID', {dateStyle:'full', timeStyle:'short'})}</p>
-        </div>
-
-        <!-- Info Peserta -->
-        <div style="background:#f1f5f9; border-radius:8px; padding:15px; margin-bottom:20px; border-left:4px solid #2563eb;">
-            <h3 style="color:#1e40af; margin:0 0 10px 0; font-size:16px;">📋 Data Peserta</h3>
-            <table style="width:100%; font-size:13px;">
-                <tr><td style="width:120px; padding:4px 0;"><strong>Nama</strong></td><td>: ${name}</td></tr>
-                <tr><td style="padding:4px 0;"><strong>Kelas</strong></td><td>: ${studentClass}</td></tr>
-                <tr><td style="padding:4px 0;"><strong>Tanggal</strong></td><td>: ${date}</td></tr>
-                <tr><td style="padding:4px 0;"><strong>Waktu Pengerjaan</strong></td><td>: ${timeSpent}</td></tr>
-                <tr><td style="padding:4px 0;"><strong>Pelanggaran</strong></td><td>: ${cheats}</td></tr>
-            </table>
-        </div>
-
-        <!-- Score Summary -->
-        <div style="background:#eff6ff; border-radius:8px; padding:20px; margin-bottom:20px; text-align:center; border:2px solid #2563eb;">
-            <div style="font-size:48px; font-weight:800; color:#2563eb; line-height:1;">${score}</div>
-            <div style="font-size:14px; color:#64748b;">dari 100</div>
-            <div style="margin-top:10px; font-size:13px; color:#334155;">Jawaban Benar: <strong>${correct}</strong></div>
-        </div>
-
-        <!-- Feedback -->
-        <div style="background:#f0fdf4; border:2px solid #10b981; border-radius:8px; padding:15px; margin-bottom:20px;">
-            <h3 style="color:#059669; margin:0 0 8px 0; font-size:15px;">${feedbackTitle}</h3>
-            <p style="color:#1e293b; margin:0; font-size:13px;">${feedbackMessage}</p>
-        </div>
-
-        <!-- Kunci Jawaban -->
-        <h3 style="color:#1e40af; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-bottom:15px; font-size:16px;">📝 Kunci Jawaban & Pembahasan</h3>
-        <div id="pdf-review"></div>
-
-        <!-- Footer -->
-        <div style="margin-top:30px; padding-top:15px; border-top:2px solid #e2e8f0; text-align:center; font-size:10px; color:#94a3b8;">
-            <p style="margin:0;">Dokumen ini dihasilkan secara otomatis oleh Sistem Kuis SMAN 1 Cluring</p>
-            <p style="margin:3px 0 0 0;">© ${new Date().getFullYear()} - Ekonomi XII</p>
-        </div>
-    `;
-
-    // Clone review dan styling untuk PDF
-    const reviewContainer = pdfContainer.querySelector('#pdf-review');
-    const reviewItems = document.querySelectorAll('#answerReview > div');
-    
-    reviewItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        // Reset ke style PDF-friendly
-        clone.style.cssText = `
-            padding:12px;
-            margin-bottom:10px;
-            border-radius:6px;
-            background:#fafafa;
-            border-left:4px solid ${clone.style.borderLeftColor.includes('16, 185, 129') || clone.style.borderLeftColor === 'var(--success)' ? '#10b981' : '#ef4444'};
-            color:#1e293b;
-            font-size:12px;
-            page-break-inside:avoid;
-        `;
-        // Perbaiki warna teks
-        clone.querySelectorAll('*').forEach(el => {
-            if (el.style) {
-                el.style.color = el.style.color || '#1e293b';
-            }
-        });
-        reviewContainer.appendChild(clone);
-    });
-
-    // Tambahkan ke body sementara (hidden)
-    pdfContainer.style.position = 'absolute';
-    pdfContainer.style.left = '-10000px';
-    pdfContainer.style.top = '0';
-    document.body.appendChild(pdfContainer);
-
-    // Konfigurasi html2pdf yang diperbaiki
-    const opt = {
-        margin: [8, 8, 8, 8],
-        filename: `Kuis_Ekonomi_${name.replace(/\s+/g, '_')}_${studentClass.replace(/\s+/g, '_')}_${date}.pdf`,
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: { 
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            letterRendering: true,
-            backgroundColor: '#ffffff',
-            width: 780,
-            windowWidth: 780
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait',
-            compress: true
-        },
-        pagebreak: { 
-            mode: ['avoid-all', 'css', 'legacy'],
-            before: '.page-break-before'
-        }
-    };
-
-    // Generate PDF dengan error handling
-    html2pdf().set(opt).from(pdfContainer).save()
-        .then(() => {
-            console.log('PDF berhasil dibuat');
-            setTimeout(() => {
-                document.body.removeChild(pdfContainer);
-            }, 500);
-        })
-        .catch(err => {
-            console.error('Error generating PDF:', err);
-            document.body.removeChild(pdfContainer);
-            alert('❌ Gagal membuat PDF. Silakan coba lagi.\nError: ' + err.message);
-        });
-}
-        // ============ SET TODAY'S DATE ============
-        document.getElementById('studentDate').valueAsDate = new Date();
-
-        // Listen for changes to update progress
-        document.addEventListener('change', function(e) {
-            if (quizStarted) {
-                updateProgress();
-            }
-        });
     </script>
 </body>
 </html>
