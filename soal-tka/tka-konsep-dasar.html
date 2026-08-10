@@ -10,211 +10,908 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- jsPDF + autoTable (ringan & cepat) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js">
+    </script>
+
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
+    </script>
 
     <style>
         /* ===== CSS DASAR ===== */
         :root {
-            --primary: #4361ee; --secondary: #3f37c9; --accent: #4cc9f0;
-            --light: #f8f9fa; --dark: #212529; --success: #4ade80;
-            --warning: #fbbf24; --danger: #f87171; --gray: #6c757d;
-            --border-radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
         .dark-mode {
-            --light: #1a1a1a; --dark: #f8f9fa; --gray: #a0aec0;
-            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --light: #1a1a1a;
+            --dark: #f8f9fa;
+            --gray: #a0aec0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-            color: var(--dark); line-height: 1.6; padding-bottom: 80px; transition: background 0.4s, color 0.4s;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            transition: background 0.4s, color 0.4s;
         }
-        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); color: var(--dark); }
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: var(--dark);
+        }
 
         /* NAVBAR & HEADER */
-        .navbar { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 0.8rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .navbar-brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px; }
-        .navbar-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
-        .nav-links { display: flex; gap: 15px; list-style: none; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: 50px; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); }
-        .theme-toggle { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
-        .theme-toggle:hover { background: rgba(255,255,255,0.1); }
-        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .navbar {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            flex-wrap: wrap;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-        header { background: linear-gradient(120deg, var(--primary), var(--secondary)); color: white; padding: 3rem 1rem 2rem; text-align: center; }
-        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .subtitle { font-weight: 300; opacity: 0.9; font-size: 1rem; }
-        .breadcrumb { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-size: 0.9rem; color: var(--gray); }
-        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ===== USER INFO & REKAP ===== */
+        .user-rekap-wrapper {
+            max-width: 1000px;
+            margin: 25px auto 10px;
+            padding: 0 20px;
+        }
+        .user-info-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 30px;
+            align-items: flex-end;
+            border-left: 5px solid var(--primary);
+            transition: background 0.3s;
+        }
+        body.dark-mode .user-info-card {
+            background: #2d2d2d;
+            border-left-color: var(--accent);
+        }
+        .user-info-card .field-group {
+            flex: 1 1 150px;
+            min-width: 140px;
+        }
+        .user-info-card label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+        .user-info-card input,
+        .user-info-card select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            background: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        body.dark-mode .user-info-card input,
+        body.dark-mode .user-info-card select {
+            background: #1e1e1e;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+        .user-info-card input:focus,
+        .user-info-card select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+
+        /* REKAP NILAI */
+        .rekap-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px 30px;
+            box-shadow: var(--shadow);
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            transition: background 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        body.dark-mode .rekap-container {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        .rekap-left {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 35px;
+            align-items: center;
+        }
+        .rekap-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .rekap-item .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray);
+            font-weight: 600;
+        }
+        .rekap-item .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .rekap-item .value.green {
+            color: #16a34a;
+        }
+        .rekap-item .value.red {
+            color: #dc2626;
+        }
+        .rekap-item .value.blue {
+            color: var(--primary);
+        }
+        .rekap-item .value.gold {
+            color: #ca8a04;
+        }
+        .rekap-right {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-download-pdf {
+            background: linear-gradient(120deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+        }
+        .btn-download-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+        .btn-download-pdf:active {
+            transform: scale(0.97);
+        }
+        .btn-download-pdf i {
+            font-size: 1rem;
+        }
+        .btn-download-pdf:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         /* ===== LAYOUT KHUSUS TKA ===== */
-        .tka-main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .tka-main {
+            max-width: 1000px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
 
         .tka-info-box {
-            background: white; border-radius: var(--border-radius); padding: 25px;
-            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 5px solid var(--warning);
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--warning);
+            transition: background 0.3s;
         }
-        body.dark-mode .tka-info-box { background: #2d2d2d; }
-        .tka-info-box h3 { color: var(--dark); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        body.dark-mode .tka-info-box h3 { color: #f8f9fa; }
-        .tka-info-box ul { padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
-        .tka-info-box li { margin-bottom: 6px; }
+        body.dark-mode .tka-info-box {
+            background: #2d2d2d;
+        }
+        .tka-info-box h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark-mode .tka-info-box h3 {
+            color: #f8f9fa;
+        }
+        .tka-info-box ul {
+            padding-left: 20px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .tka-info-box li {
+            margin-bottom: 6px;
+        }
 
         /* ===== UNIT IKLAN ===== */
         .tka-ad-container {
-            background: white; border-radius: var(--border-radius); padding: 20px;
-            box-shadow: var(--shadow); margin-bottom: 30px; text-align: center;
-            border: 1px solid rgba(0,0,0,0.05); min-height: 120px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
         }
-        body.dark-mode .tka-ad-container { background: #2d2d2d; border-color: #444; }
+        body.dark-mode .tka-ad-container {
+            background: #2d2d2d;
+            border-color: #444;
+        }
         .tka-ad-label {
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--gray); margin-bottom: 10px; opacity: 0.6;
-        }
-        .tka-ad-container ins.adsbygoogle {
-            display: block; width: 100%; max-width: 100%;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            opacity: 0.6;
         }
 
         /* ACCORDION BAGIAN */
         .tka-bagian-card {
-            background: white; border-radius: var(--border-radius); margin-bottom: 20px;
-            box-shadow: var(--shadow); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+            background: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.3s, border-color 0.3s;
         }
-        body.dark-mode .tka-bagian-card { background: #2d2d2d; border-color: #444; }
+        body.dark-mode .tka-bagian-card {
+            background: #2d2d2d;
+            border-color: #444;
+        }
 
         .tka-bagian-header {
-            padding: 20px 25px; cursor: pointer; display: flex; align-items: center;
-            justify-content: space-between; background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
-            border-left: 5px solid var(--primary); transition: var(--transition);
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), transparent);
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+            user-select: none;
         }
-        .tka-bagian-card.open .tka-bagian-header { background: rgba(67, 97, 238, 0.1); }
-        .tka-bagian-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
-        body.dark-mode .tka-bagian-title { color: #f8f9fa; }
-        .tka-bagian-meta { font-size: 0.85rem; color: var(--gray); margin-top: 5px; display: flex; gap: 10px; align-items: center; }
-        .tka-bagian-toggle { transition: transform 0.3s ease; color: var(--primary); font-size: 1.2rem; }
-        .tka-bagian-card.open .tka-bagian-toggle { transform: rotate(180deg); }
+        .tka-bagian-card.open .tka-bagian-header {
+            background: rgba(67, 97, 238, 0.1);
+        }
+        .tka-bagian-title {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        body.dark-mode .tka-bagian-title {
+            color: #f8f9fa;
+        }
+        .tka-bagian-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tka-bagian-toggle {
+            transition: transform 0.3s ease;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        .tka-bagian-card.open .tka-bagian-toggle {
+            transform: rotate(180deg);
+        }
 
-        .tka-bagian-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-        .tka-bagian-card.open .tka-bagian-content { max-height: 15000px; }
+        .tka-bagian-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .tka-bagian-card.open .tka-bagian-content {
+            max-height: 15000px;
+        }
 
         /* KARTU SOAL INDIVIDU */
         .tka-question {
-            background: rgba(0,0,0,0.02); border-radius: 10px; padding: 25px;
-            margin: 20px 25px; border: 1px solid rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 25px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.3s, border-color 0.3s;
         }
-        body.dark-mode .tka-question { background: rgba(255,255,255,0.03); border-color: #444; }
+        body.dark-mode .tka-question {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: #444;
+        }
 
-        .tka-q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .tka-q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
         .tka-q-number {
-            background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
         .cognitive-badge {
-            background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px;
-            font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px;
+            background: var(--warning);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #e2e8f0;
+            color: #475569;
+        }
+        .status-badge.answered {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        .status-badge.correct {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .status-badge.wrong {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        body.dark-mode .status-badge {
+            background: #334155;
+            color: #cbd5e1;
+        }
+        body.dark-mode .status-badge.answered {
+            background: #1e3a5f;
+            color: #93c5fd;
+        }
+        body.dark-mode .status-badge.correct {
+            background: #14532d;
+            color: #86efac;
+        }
+        body.dark-mode .status-badge.wrong {
+            background: #7f1d1d;
+            color: #fca5a5;
         }
 
         .tka-stimulus {
-            background: white; padding: 15px 20px; border-radius: 8px; border-left: 4px solid var(--accent);
-            margin-bottom: 15px; font-size: 0.95rem; color: var(--dark); line-height: 1.6;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--dark);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
         }
-        body.dark-mode .tka-stimulus { background: #1e1e1e; color: #f8f9fa; }
-        .tka-stimulus table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
-        .tka-stimulus table th, .tka-stimulus table td { border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; text-align: left; }
-        body.dark-mode .tka-stimulus table th, body.dark-mode .tka-stimulus table td { border-color: #444; }
-        .tka-stimulus table th { background: rgba(0,0,0,0.03); font-weight: 600; }
-        body.dark-mode .tka-stimulus table th { background: rgba(255,255,255,0.05); }
+        body.dark-mode .tka-stimulus {
+            background: #1e1e1e;
+            color: #f8f9fa;
+        }
+        .tka-stimulus table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .tka-stimulus table th,
+        .tka-stimulus table td {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 8px 12px;
+            text-align: left;
+        }
+        body.dark-mode .tka-stimulus table th,
+        body.dark-mode .tka-stimulus table td {
+            border-color: #444;
+        }
+        .tka-stimulus table th {
+            background: rgba(0, 0, 0, 0.03);
+            font-weight: 600;
+        }
+        body.dark-mode .tka-stimulus table th {
+            background: rgba(255, 255, 255, 0.05);
+        }
 
-        .tka-q-text { font-weight: 600; margin-bottom: 15px; color: var(--dark); line-height: 1.6; font-size: 1rem; }
-        body.dark-mode .tka-q-text { color: #f8f9fa; }
+        .tka-q-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        body.dark-mode .tka-q-text {
+            color: #f8f9fa;
+        }
 
-        .tka-options { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .tka-options {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
         .tka-option {
-            padding: 12px 15px; margin: 8px 0; background: white; border-radius: 8px;
-            border: 2px solid transparent; cursor: pointer; transition: var(--transition);
-            display: flex; gap: 10px; font-size: 0.95rem; color: var(--dark);
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: var(--dark);
+            align-items: center;
         }
-        body.dark-mode .tka-option { background: #1e1e1e; color: #e2e8f0; }
-        .tka-option:hover { border-color: var(--primary); background: rgba(67, 97, 238, 0.05); }
-        .tka-option-letter { font-weight: 700; color: var(--primary); min-width: 20px; }
+        body.dark-mode .tka-option {
+            background: #1e1e1e;
+            color: #e2e8f0;
+        }
+        .tka-option:hover {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.05);
+        }
+        .tka-option-letter {
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 20px;
+        }
+        .tka-option.selected {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.08);
+        }
+        body.dark-mode .tka-option.selected {
+            background: rgba(67, 97, 238, 0.2);
+        }
+        .tka-question.revealed .tka-option.correct {
+            background: rgba(74, 222, 128, 0.15);
+            border-color: var(--success);
+            font-weight: 600;
+        }
+        .tka-question.revealed .tka-option.selected:not(.correct) {
+            background: rgba(248, 113, 113, 0.15);
+            border-color: var(--danger);
+        }
+        .tka-question.revealed .tka-option:not(.correct):not(.selected) {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .tka-question.revealed .tka-option.correct {
+            pointer-events: none;
+        }
+        .tka-question.revealed .tka-option.selected.correct {
+            background: rgba(74, 222, 128, 0.25);
+            border-color: var(--success);
+        }
 
-        /* TOMBOL & PEMBAHASAN */
+        /* TOMBOL PEMBAHASAN */
         .tka-reveal-btn {
-            background: transparent; border: 2px solid var(--primary); color: var(--primary);
-            padding: 8px 16px; border-radius: 50px; font-weight: 600; cursor: pointer;
-            font-family: 'Poppins', sans-serif; transition: var(--transition);
-            display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
         }
-        .tka-reveal-btn:hover { background: var(--primary); color: white; }
+        .tka-reveal-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .tka-reveal-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
         .tka-pembahasan {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
-            opacity: 0; margin-top: 0; background: rgba(74, 222, 128, 0.1);
-            border-radius: 10px; border: 1px solid var(--success);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--success);
         }
-        .tka-question.revealed .tka-pembahasan { max-height: 500px; opacity: 1; padding: 15px 20px; margin-top: 15px; }
-
-        .tka-correct-answer { font-weight: 700; color: #166534; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-        body.dark-mode .tka-correct-answer { color: #4ade80; }
-        .tka-pembahasan-text { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
-        body.dark-mode .tka-pembahasan-text { color: #e2e8f0; }
-
-        .tka-question.revealed .tka-option.correct {
-            background: rgba(74, 222, 128, 0.15); border-color: var(--success); font-weight: 600;
+        .tka-question.revealed .tka-pembahasan {
+            max-height: 500px;
+            opacity: 1;
+            padding: 15px 20px;
+            margin-top: 15px;
         }
-        .tka-question.revealed .tka-option:not(.correct) { opacity: 0.5; pointer-events: none; }
+
+        .tka-correct-answer {
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        body.dark-mode .tka-correct-answer {
+            color: #4ade80;
+        }
+        .tka-pembahasan-text {
+            font-size: 0.95rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        body.dark-mode .tka-pembahasan-text {
+            color: #e2e8f0;
+        }
 
         /* FOOTER */
-        footer { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
-        .footer-bottom { font-size: 0.9rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; margin-top: 20px; }
+        footer {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .footer-bottom {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
 
-        /* RESPONSIVE */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--primary); flex-direction: column; padding: 20px; z-index: 999; }
-            .nav-links.active { display: flex; }
-            .hamburger { display: block; }
-            .tka-question { padding: 15px; margin: 15px; }
-            .tka-bagian-content { padding: 0; }
-            .tka-stimulus { padding: 12px 15px; font-size: 0.9rem; }
-            .tka-ad-container { padding: 15px; min-height: 90px; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                z-index: 999;
+                gap: 8px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .tka-question {
+                padding: 15px;
+                margin: 15px 10px;
+            }
+            .tka-bagian-content {
+                padding: 0;
+            }
+            .tka-stimulus {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            .tka-ad-container {
+                padding: 15px;
+                min-height: 90px;
+            }
+            .user-info-card {
+                padding: 20px;
+                gap: 15px;
+            }
+            .user-info-card .field-group {
+                flex: 1 1 100%;
+                min-width: 0;
+            }
+            .rekap-container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px;
+            }
+            .rekap-left {
+                justify-content: space-between;
+                gap: 12px;
+            }
+            .rekap-right {
+                justify-content: center;
+                margin-top: 6px;
+            }
+            .btn-download-pdf {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .navbar-brand span {
+                font-size: 0.95rem;
+            }
+            .tka-bagian-header {
+                padding: 16px 18px;
+            }
+            .tka-bagian-title {
+                font-size: 1rem;
+            }
+            .rekap-item .value {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .user-info-card {
+                padding: 16px;
+            }
+            .rekap-container {
+                padding: 16px;
+            }
+            .rekap-left {
+                gap: 8px 16px;
+            }
+            .rekap-item .value {
+                font-size: 1rem;
+            }
+            .btn-download-pdf {
+                font-size: 0.85rem;
+                padding: 10px 16px;
+            }
+            .tka-q-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .tka-option {
+                padding: 10px 12px;
+                font-size: 0.88rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
-        <a href="../index.html" class="navbar-brand">
+        <a href="index.html" class="navbar-brand">
             <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring">
             <span>SMAN 1 Cluring</span>
         </a>
-        <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="nav-container">
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">🌙</button>
             <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">☰</button>
         </div>
-        <ul class="nav-links">
-            <li><a href="../index.html">Beranda</a></li>
-            <li><a href="../ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="ekonomi-kelas-xii.html" class="active">Ekonomi XII</a></li>
         </ul>
     </nav>
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <header>
         <h1>Latihan TKA Ekonomi</h1>
         <p class="subtitle">Materi: Konsep Dasar Ekonomi (Kelangkaan, Biaya Peluang, Kegiatan Ekonomi)</p>
     </header>
 
-    <!-- BREADCRUMB -->
+    <!-- ===== BREADCRUMB ===== -->
     <div class="breadcrumb">
-        <a href="../index.html">Beranda</a> › <a href="../ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Latihan TKA Konsep Dasar</span>
+        <a href="index.html">Beranda</a> › <a href="ekonomi-kelas-xii.html">Ekonomi XII</a> › <span>Latihan TKA Konsep Dasar</span>
     </div>
 
-    <!-- KONTEN UTAMA TKA -->
+    <!-- ===== USER INFO & REKAP NILAI ===== -->
+    <div class="user-rekap-wrapper">
+        <!-- User Info -->
+        <div class="user-info-card" id="userInfoCard">
+            <div class="field-group">
+                <label for="namaSiswa"><i class="fas fa-user"></i> Nama Siswa</label>
+                <input type="text" id="namaSiswa" placeholder="Masukkan nama lengkap" value="">
+            </div>
+            <div class="field-group">
+                <label for="kelasSiswa"><i class="fas fa-users"></i> Kelas</label>
+                <input type="text" id="kelasSiswa" placeholder="Contoh: XII IPS 1" value="">
+            </div>
+            <div class="field-group">
+                <label for="tanggalSiswa"><i class="fas fa-calendar-day"></i> Tanggal</label>
+                <input type="date" id="tanggalSiswa">
+            </div>
+        </div>
+
+        <!-- Rekap Nilai -->
+        <div class="rekap-container" id="rekapContainer">
+            <div class="rekap-left">
+                <div class="rekap-item">
+                    <span class="label">Total Soal</span>
+                    <span class="value blue" id="totalSoal">30</span>
+                </div>
+                <div class="rekap-item">
+                    <span class="label">Terjawab</span>
+                    <span class="value" id="terjawab">0</span>
+                </div>
+                <div class="rekap-item">
+                    <span class="label">Benar</span>
+                    <span class="value green" id="benar">0</span>
+                </div>
+                <div class="rekap-item">
+                    <span class="label">Salah</span>
+                    <span class="value red" id="salah">0</span>
+                </div>
+                <div class="rekap-item">
+                    <span class="label">Nilai</span>
+                    <span class="value gold" id="nilai">0</span>
+                </div>
+            </div>
+            <div class="rekap-right">
+                <button class="btn-download-pdf" id="downloadPdfBtn" onclick="downloadPDF()">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== KONTEN UTAMA TKA ===== -->
     <div class="tka-main">
 
         <div class="tka-info-box">
@@ -222,7 +919,8 @@
             <ul>
                 <li>Soal disusun berdasarkan level kognitif <strong>C4 (Menganalisis)</strong> dan <strong>C5 (Mengevaluasi)</strong>.</li>
                 <li>Baca stimulus (ilustrasi/tabel) dengan saksama sebelum menjawab.</li>
-                <li>Klik tombol <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban dan memahami alasan di balik jawaban yang benar.</li>
+                <li><strong>Klik salah satu pilihan</strong> untuk menjawab, lalu klik <strong>"Lihat Pembahasan"</strong> untuk memeriksa jawaban.</li>
+                <li>Rekap nilai akan diperbarui secara otomatis setiap kali Anda menjawab.</li>
                 <li>Gunakan mode gelap (🌙) di pojok kanan atas jika mata Anda cepat lelah.</li>
             </ul>
         </div>
@@ -230,19 +928,14 @@
         <!-- ===== UNIT IKLAN ===== -->
         <div class="tka-ad-container">
             <div class="tka-ad-label">— Iklan —</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1234355696976048"
-                 data-ad-slot="4839247333"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="4839247333" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
 
         <!-- ================= BAGIAN 1: SOAL 1-10 ================= -->
-        <div class="tka-bagian-card">
+        <div class="tka-bagian-card" id="bagian1">
             <div class="tka-bagian-header" onclick="toggleBagian(this)">
                 <div>
                     <div class="tka-bagian-title">Bagian 1: Konsep Dasar Ekonomi</div>
@@ -255,195 +948,237 @@
             </div>
             <div class="tka-bagian-content">
 
-                <!-- Soal 1 -->
-                <div class="tka-question" id="q1">
-                    <div class="tka-q-header"><div class="tka-q-number">1</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 1 -->
+                <div class="tka-question" id="q1" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">1</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q1">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Kabupaten X mengalami musim kemarau yang berkepanjangan. Debit sungai menurun hingga 70%, sementara kebutuhan air masyarakat untuk rumah tangga, pertanian, dan industri tetap tinggi. Pemerintah daerah menerapkan jadwal distribusi air bersih secara bergilir agar seluruh masyarakat tetap memperoleh pasokan.</div>
                     <div class="tka-q-text">Berdasarkan ilustrasi tersebut, penyebab utama munculnya masalah ekonomi adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan masyarakat semakin sedikit</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> sumber daya yang tersedia terbatas sedangkan kebutuhan tidak terbatas</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga air mengalami kenaikan</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> masyarakat tidak mampu membeli air</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> distribusi air dilakukan pemerintah</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kebutuhan masyarakat semakin sedikit</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> sumber daya yang tersedia terbatas sedangkan kebutuhan tidak terbatas</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> harga air mengalami kenaikan</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> masyarakat tidak mampu membeli air</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> distribusi air dilakukan pemerintah</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q1')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q1')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Masalah ekonomi berakar pada kelangkaan, yaitu kondisi di mana sumber daya (air) terbatas, sedangkan kebutuhan manusia (rumah tangga, pertanian, industri) tidak terbatas. Distribusi bergilir adalah upaya mengatasi masalah ini.</div>
                     </div>
                 </div>
 
-                <!-- Soal 2 -->
-                <div class="tka-question" id="q2">
-                    <div class="tka-q-header"><div class="tka-q-number">2</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 2 -->
+                <div class="tka-question" id="q2" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">2</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q2">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan tabel berikut.</strong><br>
-                        <table><tr><th>Barang</th><th>Kondisi</th></tr>
-                        <tr><td>Beras</td><td>Produksi menurun akibat banjir</td></tr>
-                        <tr><td>Minyak goreng</td><td>Permintaan meningkat menjelang hari raya</td></tr>
-                        <tr><td>Sayuran</td><td>Produksi normal</td></tr>
-                        <tr><td>Air mineral</td><td>Pasokan mencukupi</td></tr></table>
+                        <table>
+                            <tr><th>Barang</th><th>Kondisi</th></tr>
+                            <tr><td>Beras</td><td>Produksi menurun akibat banjir</td></tr>
+                            <tr><td>Minyak goreng</td><td>Permintaan meningkat menjelang hari raya</td></tr>
+                            <tr><td>Sayuran</td><td>Produksi normal</td></tr>
+                            <tr><td>Air mineral</td><td>Pasokan mencukupi</td></tr>
+                        </table>
                     </div>
                     <div class="tka-q-text">Barang yang mengalami kelangkaan karena keterbatasan jumlah dibandingkan kebutuhan ditunjukkan oleh nomor ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Beras saja</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> Minyak goreng saja</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Beras dan minyak goreng</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Sayuran dan air mineral</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Semua barang</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Beras saja</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Minyak goreng saja</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Beras dan minyak goreng</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Sayuran dan air mineral</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Semua barang</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q2')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q2')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Kelangkaan terjadi ketika jumlah barang < ketersediaan. Beras mengalami penurunan produksi (supply turun), dan minyak goreng mengalami lonjakan permintaan (demand naik). Keduanya menciptakan kondisi kelangkaan relatif.</div>
                     </div>
                 </div>
 
-                <!-- Soal 3 -->
-                <div class="tka-question" id="q3">
-                    <div class="tka-q-header"><div class="tka-q-number">3</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 3 -->
+                <div class="tka-question" id="q3" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">3</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q3">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia memiliki sumber daya alam yang melimpah. Namun, beberapa daerah masih mengalami kekurangan listrik karena jaringan distribusi belum menjangkau seluruh wilayah.</div>
                     <div class="tka-q-text">Masalah ekonomi pada ilustrasi tersebut menunjukkan bahwa kelangkaan dapat terjadi akibat ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> sumber daya alam tidak tersedia</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> distribusi sumber daya belum optimal</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> masyarakat tidak membutuhkan listrik</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga listrik terlalu murah</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> pemerintah menghentikan pembangunan</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> sumber daya alam tidak tersedia</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> distribusi sumber daya belum optimal</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> masyarakat tidak membutuhkan listrik</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> harga listrik terlalu murah</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> pemerintah menghentikan pembangunan</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q3')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q3')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Kelangkaan tidak selalu berarti sumber daya tidak ada sama sekali. Dalam kasus ini, SDA melimpah, tetapi <strong>ketidakmerataan distribusi</strong> menyebabkan sebagian daerah mengalami kelangkaan listrik.</div>
                     </div>
                 </div>
 
-                <!-- Soal 4 -->
-                <div class="tka-question" id="q4">
-                    <div class="tka-q-header"><div class="tka-q-number">4</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 4 -->
+                <div class="tka-question" id="q4" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">4</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q4">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Rina memiliki uang Rp500.000. Ia berencana membeli buku ekonomi untuk persiapan TKA seharga Rp450.000. Namun, pada saat yang sama ia mendapat kesempatan mengikuti seminar nasional ekonomi dengan biaya Rp500.000 yang hanya diselenggarakan satu kali dalam setahun. Setelah mempertimbangkan manfaatnya, Rina memilih mengikuti seminar tersebut.</div>
                     <div class="tka-q-text">Biaya peluang (opportunity cost) dari keputusan Rina adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> uang Rp500.000 yang telah dibayarkan</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> buku ekonomi yang tidak jadi dibeli</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> biaya transportasi menuju seminar</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> keuntungan penyelenggara seminar</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> waktu belajar di rumah</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> uang Rp500.000 yang telah dibayarkan</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> buku ekonomi yang tidak jadi dibeli</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> biaya transportasi menuju seminar</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> keuntungan penyelenggara seminar</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> waktu belajar di rumah</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q4')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q4')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Biaya peluang adalah <strong>manfaat terbaik yang dikorbankan</strong> karena memilih alternatif lain. Karena Rina memilih seminar, maka buku ekonomi yang tidak jadi dibeli adalah biaya peluangnya.</div>
                     </div>
                 </div>
 
-                <!-- Soal 5 -->
-                <div class="tka-question" id="q5">
-                    <div class="tka-q-header"><div class="tka-q-number">5</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 5 -->
+                <div class="tka-question" id="q5" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">5</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q5">⏳ Belum</span>
+                    </div>
                     <div class="tka-q-text">Seorang petani memiliki lahan yang dapat ditanami padi atau jagung. Setelah memperkirakan keuntungan, petani memilih menanam padi. Konsep biaya peluang pada kasus tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh biaya produksi padi</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> keuntungan dari hasil panen padi</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> keuntungan yang seharusnya diperoleh jika menanam jagung</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> harga jual padi di pasar</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya pembelian pupuk</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> seluruh biaya produksi padi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> keuntungan dari hasil panen padi</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> keuntungan yang seharusnya diperoleh jika menanam jagung</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> harga jual padi di pasar</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> biaya pembelian pupuk</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q5')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q5')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Alternatif terbaik yang dikorbankan adalah keuntungan yang <em>seharusnya</em> didapat dari pilihan yang tidak diambil (menanam jagung).</div>
                     </div>
                 </div>
 
-                <!-- Soal 6 -->
-                <div class="tka-question" id="q6">
-                    <div class="tka-q-header"><div class="tka-q-number">6</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 6 -->
+                <div class="tka-question" id="q6" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">6</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q6">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut.</strong><br>Setelah lulus SMA, Andi diterima bekerja dengan gaji Rp4.000.000 per bulan. Pada saat yang sama ia diterima di perguruan tinggi negeri tanpa biaya kuliah. Andi memilih melanjutkan kuliah.</div>
                     <div class="tka-q-text">Berdasarkan ilustrasi tersebut, biaya peluang terbesar yang ditanggung Andi adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya membeli buku kuliah</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> uang transportasi ke kampus</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> pendapatan yang seharusnya diperoleh apabila langsung bekerja</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya hidup selama kuliah</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> uang saku dari orang tua</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> biaya membeli buku kuliah</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> uang transportasi ke kampus</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> pendapatan yang seharusnya diperoleh apabila langsung bekerja</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> biaya hidup selama kuliah</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> uang saku dari orang tua</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q6')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q6')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Biaya peluang tidak selalu berupa pengeluaran uang, tetapi bisa berupa <strong>pendapatan yang hilang</strong> (forgone income) karena memilih berkuliah alih-alih bekerja.</div>
                     </div>
                 </div>
 
-                <!-- Soal 7 -->
-                <div class="tka-question" id="q7">
-                    <div class="tka-q-header"><div class="tka-q-number">7</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 7 -->
+                <div class="tka-question" id="q7" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">7</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q7">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Seorang pengusaha membeli biji kopi dari petani, kemudian mengolahnya menjadi kopi bubuk dan menjualnya kepada supermarket. Selanjutnya supermarket menjual kopi tersebut kepada masyarakat.</div>
                     <div class="tka-q-text">Urutan kegiatan ekonomi yang tepat adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> konsumsi–distribusi–produksi</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> distribusi–produksi–konsumsi</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> produksi–distribusi–konsumsi</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> konsumsi–produksi–distribusi</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> produksi–konsumsi–distribusi</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> konsumsi–distribusi–produksi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> distribusi–produksi–konsumsi</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> produksi–distribusi–konsumsi</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> konsumsi–produksi–distribusi</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> produksi–konsumsi–distribusi</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q7')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q7')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Mengolah biji kopi = <strong>Produksi</strong>. Menjual ke supermarket = <strong>Distribusi</strong>. Masyarakat membeli dan memakai = <strong>Konsumsi</strong>.</div>
                     </div>
                 </div>
 
-                <!-- Soal 8 -->
-                <div class="tka-question" id="q8">
-                    <div class="tka-q-header"><div class="tka-q-number">8</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 8 -->
+                <div class="tka-question" id="q8" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">8</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q8">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan aktivitas berikut.</strong><br>1. Perusahaan membuat sepatu.<br>2. Agen menyalurkan sepatu ke toko.<br>3. Masyarakat membeli dan memakai sepatu.<br>4. Supplier menyediakan bahan baku kulit.</div>
                     <div class="tka-q-text">Aktivitas yang termasuk fungsi distribusi ditunjukkan oleh ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> 1 dan 2</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> 2 saja</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> 3 saja</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> 4 saja</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> 2 dan 4</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> 1 dan 2</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> 2 saja</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> 3 saja</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> 4 saja</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> 2 dan 4</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q8')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q8')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Fungsi distribusi adalah kegiatan menyalurkan barang dari produsen ke konsumen. Nomor 2 (agen menyalurkan) adalah murni distribusi. Nomor 1 produksi, 3 konsumsi, 4 juga bagian dari rantai pasok produksi.</div>
                     </div>
                 </div>
 
-                <!-- Soal 9 -->
-                <div class="tka-question" id="q9">
-                    <div class="tka-q-header"><div class="tka-q-number">9</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 9 -->
+                <div class="tka-question" id="q9" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">9</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q9">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut.</strong><br>Sebuah perusahaan makanan memproduksi biskuit dalam jumlah besar, tetapi produk tersebut sulit ditemukan di berbagai daerah karena sistem distribusinya kurang baik.</div>
                     <div class="tka-q-text">Berdasarkan ilustrasi tersebut, dampak ekonomi yang paling mungkin terjadi adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan masyarakat terpenuhi secara merata</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> harga biskuit menjadi sama di semua daerah</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> terjadi ketidakseimbangan antara produksi dan konsumsi akibat distribusi yang tidak efektif</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> jumlah produksi otomatis meningkat</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> perusahaan memperoleh keuntungan lebih besar</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kebutuhan masyarakat terpenuhi secara merata</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> harga biskuit menjadi sama di semua daerah</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> terjadi ketidakseimbangan antara produksi dan konsumsi akibat distribusi yang tidak efektif</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> jumlah produksi otomatis meningkat</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> perusahaan memperoleh keuntungan lebih besar</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q9')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q9')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Distribusi yang buruk memutus mata rantai antara produsen dan konsumen, menyebabkan barang menumpuk di gudang (produksi tinggi) tetapi tidak tersedia di pasar (konsumsi terhambat).</div>
                     </div>
                 </div>
 
-                <!-- Soal 10 -->
-                <div class="tka-question" id="q10">
-                    <div class="tka-q-header"><div class="tka-q-number">10</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 10 -->
+                <div class="tka-question" id="q10" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">10</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q10">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah daerah membangun embung untuk menampung air hujan. Saat musim kemarau, air tersebut dimanfaatkan untuk kebutuhan rumah tangga dan irigasi pertanian sehingga masyarakat tetap dapat melakukan aktivitas ekonomi.</div>
                     <div class="tka-q-text">Analisis yang paling tepat terhadap ilustrasi tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> pembangunan embung bertujuan menghilangkan seluruh kebutuhan manusia</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> pembangunan embung merupakan upaya mengatasi kelangkaan sumber daya sehingga kegiatan ekonomi dapat berlangsung</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> embung dibangun agar harga air meningkat</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> kegiatan ekonomi hanya terjadi pada sektor pertanian</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> kelangkaan tidak akan pernah terjadi lagi setelah embung dibangun</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> pembangunan embung bertujuan menghilangkan seluruh kebutuhan manusia</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> pembangunan embung merupakan upaya mengatasi kelangkaan sumber daya sehingga kegiatan ekonomi dapat berlangsung</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> embung dibangun agar harga air meningkat</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> kegiatan ekonomi hanya terjadi pada sektor pertanian</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> kelangkaan tidak akan pernah terjadi lagi setelah embung dibangun</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q10')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q10')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Embung adalah solusi atas masalah kelangkaan air di musim kemarau. Dengan tersedianya air, aktivitas ekonomi (rumah tangga & pertanian) dapat terus berjalan.</div>
@@ -454,7 +1189,7 @@
         </div>
 
         <!-- ================= BAGIAN 2: SOAL 11-20 ================= -->
-        <div class="tka-bagian-card">
+        <div class="tka-bagian-card" id="bagian2">
             <div class="tka-bagian-header" onclick="toggleBagian(this)">
                 <div>
                     <div class="tka-bagian-title">Bagian 2: Konsep Dasar Ekonomi (Lanjutan)</div>
@@ -467,190 +1202,230 @@
             </div>
             <div class="tka-bagian-content">
 
-                <!-- Soal 11 -->
-                <div class="tka-question" id="q11">
-                    <div class="tka-q-header"><div class="tka-q-number">11</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 11 -->
+                <div class="tka-question" id="q11" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">11</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q11">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Badan Pangan Nasional melaporkan bahwa produksi cabai menurun akibat cuaca ekstrem. Di sisi lain, permintaan cabai dari rumah tangga, restoran, dan industri makanan tetap tinggi sehingga harga cabai meningkat tajam di berbagai daerah.</div>
                     <div class="tka-q-text">Berdasarkan ilustrasi tersebut, kenaikan harga cabai terutama disebabkan oleh ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> meningkatnya daya beli masyarakat</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> ketidakseimbangan antara jumlah barang yang tersedia dan kebutuhan masyarakat</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> pemerintah menaikkan pajak cabai</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya distribusi semakin rendah</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> masyarakat membeli cabai secara berlebihan</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> meningkatnya daya beli masyarakat</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> ketidakseimbangan antara jumlah barang yang tersedia dan kebutuhan masyarakat</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> pemerintah menaikkan pajak cabai</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> biaya distribusi semakin rendah</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> masyarakat membeli cabai secara berlebihan</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q11')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q11')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Kenaikan harga adalah mekanisme pasar merespons kelangkaan. Produksi turun (supply ↓) sementara permintaan tinggi (demand ↑), menciptakan ketidakseimbangan yang mendorong harga naik.</div>
                     </div>
                 </div>
 
-                <!-- Soal 12 -->
-                <div class="tka-question" id="q12">
-                    <div class="tka-q-header"><div class="tka-q-number">12</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 12 -->
+                <div class="tka-question" id="q12" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">12</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q12">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah desa memiliki sumber mata air yang terbatas. Pemerintah desa menetapkan aturan bahwa penggunaan air untuk mencuci kendaraan dibatasi agar kebutuhan air minum dan sanitasi masyarakat tetap terpenuhi.</div>
                     <div class="tka-q-text">Kebijakan tersebut menunjukkan penerapan prinsip ekonomi karena ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> seluruh kebutuhan masyarakat dapat dipenuhi</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> pemerintah menghilangkan kelangkaan air</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> sumber daya yang terbatas dialokasikan untuk kebutuhan yang lebih prioritas</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> masyarakat bebas menggunakan air sesuai keinginan</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> harga air menjadi lebih murah</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> seluruh kebutuhan masyarakat dapat dipenuhi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> pemerintah menghilangkan kelangkaan air</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> sumber daya yang terbatas dialokasikan untuk kebutuhan yang lebih prioritas</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> masyarakat bebas menggunakan air sesuai keinginan</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> harga air menjadi lebih murah</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q12')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q12')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Prinsip ekonomi dalam konteks kelangkaan adalah membuat <strong>skala prioritas</strong>. Air minum dan sanitasi adalah kebutuhan primer yang harus diprioritaskan di atas mencuci kendaraan (kebutuhan sekunder/tersier).</div>
                     </div>
                 </div>
 
-                <!-- Soal 13 -->
-                <div class="tka-question" id="q13">
-                    <div class="tka-q-header"><div class="tka-q-number">13</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 13 -->
+                <div class="tka-question" id="q13" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">13</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q13">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sinta memiliki waktu luang pada hari Sabtu. Ia harus memilih antara mengikuti pelatihan kewirausahaan, bekerja paruh waktu, atau mengikuti kegiatan organisasi sekolah. Sinta memutuskan mengikuti pelatihan kewirausahaan.</div>
                     <div class="tka-q-text">Biaya peluang dari keputusan Sinta adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya transportasi menuju pelatihan</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> uang pendaftaran pelatihan</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> manfaat terbaik yang dikorbankan karena tidak bekerja paruh waktu</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> waktu istirahat setelah pelatihan</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> konsumsi selama mengikuti pelatihan</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> biaya transportasi menuju pelatihan</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> uang pendaftaran pelatihan</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> manfaat terbaik yang dikorbankan karena tidak bekerja paruh waktu</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> waktu istirahat setelah pelatihan</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> konsumsi selama mengikuti pelatihan</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q13')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q13')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Dari alternatif yang ditinggalkan (bekerja paruh waktu atau organisasi), <strong>bekerja paruh waktu</strong> umumnya dianggap sebagai alternatif dengan nilai/manfaat terbaik (berupa pendapatan) yang dikorbankan.</div>
                     </div>
                 </div>
 
-                <!-- Soal 14 -->
-                <div class="tka-question" id="q14">
-                    <div class="tka-q-header"><div class="tka-q-number">14</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 14 -->
+                <div class="tka-question" id="q14" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">14</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q14">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Pemerintah daerah memiliki anggaran Rp50 miliar. Dana tersebut dapat digunakan untuk membangun rumah sakit baru atau memperbaiki jaringan irigasi. Setelah mempertimbangkan kondisi masyarakat, pemerintah memilih membangun rumah sakit.</div>
                     <div class="tka-q-text">Analisis yang tepat mengenai biaya peluang dari keputusan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya pembangunan rumah sakit</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> seluruh anggaran yang digunakan</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> manfaat pembangunan jaringan irigasi yang harus dikorbankan</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> biaya operasional rumah sakit</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> keuntungan kontraktor pembangunan</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> biaya pembangunan rumah sakit</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> seluruh anggaran yang digunakan</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> manfaat pembangunan jaringan irigasi yang harus dikorbankan</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> biaya operasional rumah sakit</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> keuntungan kontraktor pembangunan</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q14')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q14')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Biaya peluang adalah alternatif terbaik yang tidak dipilih. Karena pemerintah memilih rumah sakit, maka <strong>manfaat dari jaringan irigasi</strong> yang tidak dibangun adalah biaya peluangnya.</div>
                     </div>
                 </div>
 
-                <!-- Soal 15 -->
-                <div class="tka-question" id="q15">
-                    <div class="tka-q-header"><div class="tka-q-number">15</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 15 -->
+                <div class="tka-question" id="q15" data-correct="A">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">15</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q15">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan aktivitas berikut!</strong><br>1. Nelayan menangkap ikan di laut.<br>2. Pedagang besar membeli ikan dari nelayan.<br>3. Ikan dijual ke pasar tradisional.<br>4. Konsumen membeli ikan untuk dikonsumsi.</div>
                     <div class="tka-q-text">Tahapan kegiatan ekonomi yang benar adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Produksi → Distribusi → Konsumsi</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> Distribusi → Produksi → Konsumsi</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Produksi → Konsumsi → Distribusi</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Konsumsi → Produksi → Distribusi</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Distribusi → Konsumsi → Produksi</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Produksi → Distribusi → Konsumsi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Distribusi → Produksi → Konsumsi</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Produksi → Konsumsi → Distribusi</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Konsumsi → Produksi → Distribusi</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Distribusi → Konsumsi → Produksi</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q15')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q15')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
                         <div class="tka-pembahasan-text">Menangkap ikan = <strong>Produksi</strong>. Menjual ke pasar = <strong>Distribusi</strong>. Konsumen membeli = <strong>Konsumsi</strong>.</div>
                     </div>
                 </div>
 
-                <!-- Soal 16 -->
-                <div class="tka-question" id="q16">
-                    <div class="tka-q-header"><div class="tka-q-number">16</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 16 -->
+                <div class="tka-question" id="q16" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">16</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q16">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan roti menggunakan mesin modern sehingga mampu meningkatkan jumlah produksi. Namun, perusahaan belum menambah jumlah armada distribusi sehingga banyak roti terlambat sampai ke toko.</div>
                     <div class="tka-q-text">Permasalahan utama pada ilustrasi tersebut terdapat pada kegiatan ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> produksi</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> konsumsi</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> distribusi</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> investasi</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> spesialisasi tenaga kerja</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> produksi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> konsumsi</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> distribusi</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> investasi</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> spesialisasi tenaga kerja</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q16')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q16')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Kata kunci "belum menambah jumlah armada distribusi" dan "terlambat sampai ke toko" secara eksplisit menunjukkan hambatan pada fungsi <strong>distribusi</strong>.</div>
                     </div>
                 </div>
 
-                <!-- Soal 17 -->
-                <div class="tka-question" id="q17">
-                    <div class="tka-q-header"><div class="tka-q-number">17</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 17 -->
+                <div class="tka-question" id="q17" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">17</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q17">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah daerah memiliki lahan kosong yang dapat dimanfaatkan sebagai taman kota atau pusat olahraga. Setelah melakukan kajian kebutuhan masyarakat, pemerintah memilih membangun pusat olahraga.</div>
                     <div class="tka-q-text">Keputusan tersebut menunjukkan bahwa ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kelangkaan tidak terjadi karena lahan masih tersedia</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> setiap pilihan selalu memiliki biaya peluang berupa alternatif terbaik yang tidak dipilih</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> seluruh kebutuhan masyarakat telah terpenuhi</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> pembangunan hanya mempertimbangkan keuntungan ekonomi</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya peluang selalu berupa uang</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kelangkaan tidak terjadi karena lahan masih tersedia</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> setiap pilihan selalu memiliki biaya peluang berupa alternatif terbaik yang tidak dipilih</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> seluruh kebutuhan masyarakat telah terpenuhi</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> pembangunan hanya mempertimbangkan keuntungan ekonomi</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> biaya peluang selalu berupa uang</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q17')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q17')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Karena lahan (sumber daya) terbatas dan hanya bisa dipakai untuk satu fungsi, memilih pusat olahraga berarti mengorbankan manfaat taman kota. Ini adalah definisi murni dari <strong>biaya peluang</strong>.</div>
                     </div>
                 </div>
 
-                <!-- Soal 18 -->
-                <div class="tka-question" id="q18">
-                    <div class="tka-q-header"><div class="tka-q-number">18</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 18 -->
+                <div class="tka-question" id="q18" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">18</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q18">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Seiring meningkatnya penggunaan kendaraan listrik, permintaan nikel sebagai bahan baku baterai meningkat pesat. Pemerintah berupaya mengelola cadangan nikel agar dapat dimanfaatkan secara berkelanjutan dan memberikan nilai tambah bagi perekonomian nasional.</div>
                     <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan bacaan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kelangkaan hanya terjadi pada barang konsumsi</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> sumber daya alam harus dikelola secara efisien karena jumlahnya terbatas dibandingkan kebutuhan</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> permintaan tidak memengaruhi pemanfaatan sumber daya</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> seluruh sumber daya dapat diperbarui dalam waktu singkat</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> kegiatan ekonomi tidak dipengaruhi oleh sumber daya alam</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kelangkaan hanya terjadi pada barang konsumsi</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> sumber daya alam harus dikelola secara efisien karena jumlahnya terbatas dibandingkan kebutuhan</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> permintaan tidak memengaruhi pemanfaatan sumber daya</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> seluruh sumber daya dapat diperbarui dalam waktu singkat</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> kegiatan ekonomi tidak dipengaruhi oleh sumber daya alam</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q18')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q18')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Nikel adalah sumber daya yang tidak dapat diperbarui (terbatas). Peningkatan permintaan mengharuskan pengelolaan yang <strong>efisien dan berkelanjutan</strong> untuk menghindari kelangkaan di masa depan.</div>
                     </div>
                 </div>
 
-                <!-- Soal 19 -->
-                <div class="tka-question" id="q19">
-                    <div class="tka-q-header"><div class="tka-q-number">19</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 19 -->
+                <div class="tka-question" id="q19" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">19</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q19">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan konveksi menerima pesanan seragam sekolah dan seragam kantor pada waktu yang bersamaan. Kapasitas produksi yang dimiliki hanya mampu menyelesaikan salah satu pesanan terlebih dahulu sehingga manajemen harus menentukan prioritas produksi.</div>
                     <div class="tka-q-text">Permasalahan ekonomi pada ilustrasi tersebut terutama disebabkan oleh ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan konsumen menurun</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kapasitas produksi terbatas dibandingkan banyaknya kebutuhan yang harus dipenuhi</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> harga bahan baku terlalu murah</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> distribusi barang terlalu cepat</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> perusahaan memiliki keuntungan yang besar</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kebutuhan konsumen menurun</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> kapasitas produksi terbatas dibandingkan banyaknya kebutuhan yang harus dipenuhi</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> harga bahan baku terlalu murah</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> distribusi barang terlalu cepat</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> perusahaan memiliki keuntungan yang besar</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q19')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q19')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Ini adalah contoh kelangkaan dari sisi produsen. <strong>Kapasitas produksi (sumber daya) terbatas</strong>, sementara pesanan (kebutuhan) melebihi kapasitas tersebut, memaksa adanya pemilihan prioritas.</div>
                     </div>
                 </div>
 
-                <!-- Soal 20 -->
-                <div class="tka-question" id="q20">
-                    <div class="tka-q-header"><div class="tka-q-number">20</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 20 -->
+                <div class="tka-question" id="q20" data-correct="A">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">20</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q20">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah koperasi sekolah memiliki dana terbatas. Pengurus harus memilih antara membeli komputer baru untuk administrasi atau menambah stok alat tulis yang sering habis. Setelah melakukan analisis kebutuhan siswa dan guru, koperasi memutuskan membeli komputer terlebih dahulu.</div>
                     <div class="tka-q-text">Analisis yang paling tepat terhadap keputusan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga diperlukan penentuan skala prioritas dengan mempertimbangkan biaya peluang</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> koperasi dapat memenuhi seluruh kebutuhan tanpa keterbatasan dana</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> biaya peluang selalu berupa biaya administrasi pembelian komputer</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> kegiatan ekonomi tidak memerlukan pengambilan keputusan</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> kelangkaan hanya terjadi pada koperasi sekolah</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga diperlukan penentuan skala prioritas dengan mempertimbangkan biaya peluang</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> koperasi dapat memenuhi seluruh kebutuhan tanpa keterbatasan dana</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> biaya peluang selalu berupa biaya administrasi pembelian komputer</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> kegiatan ekonomi tidak memerlukan pengambilan keputusan</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> kelangkaan hanya terjadi pada koperasi sekolah</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q20')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q20')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
                         <div class="tka-pembahasan-text">Dana terbatas = <strong>kelangkaan</strong>. Memilih komputer = <strong>skala prioritas</strong>. Mengorbankan stok alat tulis = <strong>biaya peluang</strong>. Ini adalah integrasi sempurna dari tiga konsep dasar ekonomi.</div>
@@ -661,7 +1436,7 @@
         </div>
 
         <!-- ================= BAGIAN 3: SOAL 21-30 ================= -->
-        <div class="tka-bagian-card">
+        <div class="tka-bagian-card" id="bagian3">
             <div class="tka-bagian-header" onclick="toggleBagian(this)">
                 <div>
                     <div class="tka-bagian-title">Bagian 3: Integrasi Konsep Dasar Ekonomi</div>
@@ -674,190 +1449,230 @@
             </div>
             <div class="tka-bagian-content">
 
-                <!-- Soal 21 -->
-                <div class="tka-question" id="q21">
-                    <div class="tka-q-header"><div class="tka-q-number">21</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 21 -->
+                <div class="tka-question" id="q21" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">21</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q21">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah Kota A berencana membangun taman kota di lahan kosong yang tersedia. Namun, pada saat yang sama masyarakat mengusulkan agar lahan tersebut dijadikan rumah sakit karena jumlah fasilitas kesehatan masih terbatas. Pemerintah akhirnya memilih membangun rumah sakit.</div>
                     <div class="tka-q-text">Analisis yang tepat terhadap ilustrasi tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kelangkaan terjadi karena masyarakat tidak memiliki lahan.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pemerintah tidak dapat memenuhi seluruh kebutuhan sekaligus karena sumber daya terbatas.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Rumah sakit dibangun agar harga tanah meningkat.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Semua kebutuhan masyarakat telah terpenuhi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada sektor kesehatan.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Kelangkaan terjadi karena masyarakat tidak memiliki lahan.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Pemerintah tidak dapat memenuhi seluruh kebutuhan sekaligus karena sumber daya terbatas.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Rumah sakit dibangun agar harga tanah meningkat.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Semua kebutuhan masyarakat telah terpenuhi.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada sektor kesehatan.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q21')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q21')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Lahan dan anggaran adalah sumber daya yang terbatas. Pemerintah tidak bisa membangun taman dan rumah sakit secara bersamaan di lahan yang sama, sehingga harus memilih kebutuhan yang paling mendesak (prinsip kelangkaan).</div>
                     </div>
                 </div>
 
-                <!-- Soal 22 -->
-                <div class="tka-question" id="q22">
-                    <div class="tka-q-header"><div class="tka-q-number">22</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 22 -->
+                <div class="tka-question" id="q22" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">22</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q22">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah daerah wisata mengalami peningkatan jumlah wisatawan hingga dua kali lipat saat musim liburan. Akibatnya, pasokan air bersih tidak mencukupi sehingga pemerintah daerah menerapkan pembatasan penggunaan air di hotel dan tempat wisata.</div>
                     <div class="tka-q-text">Evaluasi yang paling tepat terhadap kebijakan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Kebijakan tersebut menghilangkan kelangkaan air.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pembatasan dilakukan agar seluruh masyarakat memperoleh akses terhadap sumber daya yang terbatas.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan terjadi karena wisatawan tidak membayar pajak.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Pemerintah dapat menambah sumber air dalam waktu singkat.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Air merupakan barang bebas sehingga tidak perlu diatur.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Kebijakan tersebut menghilangkan kelangkaan air.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Pembatasan dilakukan agar seluruh masyarakat memperoleh akses terhadap sumber daya yang terbatas.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Kelangkaan terjadi karena wisatawan tidak membayar pajak.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Pemerintah dapat menambah sumber air dalam waktu singkat.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Air merupakan barang bebas sehingga tidak perlu diatur.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q22')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q22')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Pembatasan (kuota) adalah alat alokasi sumber daya langka. Tujuannya bukan menghilangkan kelangkaan (karena air tetap terbatas), tetapi memastikan <strong>distribusi yang adil</strong> agar kebutuhan dasar masyarakat tetap terpenuhi.</div>
                     </div>
                 </div>
 
-                <!-- Soal 23 -->
-                <div class="tka-question" id="q23">
-                    <div class="tka-q-header"><div class="tka-q-number">23</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 23 -->
+                <div class="tka-question" id="q23" data-correct="C">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">23</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q23">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Dimas memiliki modal Rp30.000.000. Ia dapat membuka usaha fotokopi atau usaha percetakan digital. Setelah melakukan analisis pasar, Dimas memilih membuka usaha percetakan digital.</div>
                     <div class="tka-q-text">Biaya peluang dari keputusan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Modal usaha percetakan digital.</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> Pendapatan dari usaha percetakan digital.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">C.</span> Keuntungan yang mungkin diperoleh apabila membuka usaha fotokopi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Biaya promosi usaha.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Harga mesin percetakan.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Modal usaha percetakan digital.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Pendapatan dari usaha percetakan digital.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Keuntungan yang mungkin diperoleh apabila membuka usaha fotokopi.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Biaya promosi usaha.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Harga mesin percetakan.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q23')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q23')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: C</div>
                         <div class="tka-pembahasan-text">Alternatif yang dikorbankan adalah usaha fotokopi. Maka, <strong>keuntungan yang seharusnya didapat</strong> dari usaha fotokopi tersebut adalah biaya peluangnya.</div>
                     </div>
                 </div>
 
-                <!-- Soal 24 -->
-                <div class="tka-question" id="q24">
-                    <div class="tka-q-header"><div class="tka-q-number">24</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 24 -->
+                <div class="tka-question" id="q24" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">24</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q24">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Seorang siswa memperoleh beasiswa luar negeri, tetapi harus meninggalkan pekerjaannya yang memberikan penghasilan tetap setiap bulan. Setelah mempertimbangkan manfaat jangka panjang, ia memilih menerima beasiswa.</div>
                     <div class="tka-q-text">Keputusan tersebut menunjukkan bahwa ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> biaya peluang selalu berupa uang tunai.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> biaya peluang merupakan manfaat terbaik yang dikorbankan karena memilih alternatif lain.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> tidak ada biaya peluang jika memperoleh beasiswa.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> setiap keputusan hanya menghasilkan keuntungan.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> biaya peluang tidak berkaitan dengan pengambilan keputusan.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> biaya peluang selalu berupa uang tunai.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> biaya peluang merupakan manfaat terbaik yang dikorbankan karena memilih alternatif lain.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> tidak ada biaya peluang jika memperoleh beasiswa.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> setiap keputusan hanya menghasilkan keuntungan.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> biaya peluang tidak berkaitan dengan pengambilan keputusan.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q24')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q24')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Meskipun mendapat beasiswa (gratis), ia tetap menanggung biaya peluang berupa <strong>penghasilan tetap</strong> yang harus dikorbankan. Ini membuktikan biaya peluang adalah tentang manfaat yang hilang, bukan sekadar pengeluaran uang.</div>
                     </div>
                 </div>
 
-                <!-- Soal 25 -->
-                <div class="tka-question" id="q25">
-                    <div class="tka-q-header"><div class="tka-q-number">25</div><span class="cognitive-badge">C4</span></div>
+                <!-- SOAL 25 -->
+                <div class="tka-question" id="q25" data-correct="A">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">25</div>
+                        <span class="cognitive-badge">C4</span>
+                        <span class="status-badge" id="status-q25">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan kegiatan berikut!</strong><br>1. Petani memanen padi.<br>2. Bulog membeli gabah dari petani.<br>3. Beras dijual di pasar.<br>4. Rumah tangga membeli beras untuk dikonsumsi.</div>
                     <div class="tka-q-text">Hubungan antarkegiatan ekonomi tersebut menunjukkan bahwa ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> produksi → distribusi → konsumsi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> distribusi → konsumsi → produksi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> konsumsi → produksi → distribusi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> produksi → konsumsi → distribusi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> distribusi → produksi → konsumsi.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> produksi → distribusi → konsumsi.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> distribusi → konsumsi → produksi.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> konsumsi → produksi → distribusi.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> produksi → konsumsi → distribusi.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> distribusi → produksi → konsumsi.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q25')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q25')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
                         <div class="tka-pembahasan-text">Memanen (1) = Produksi. Membeli dan menjual ke pasar (2 & 3) = Distribusi. Rumah tangga membeli (4) = Konsumsi.</div>
                     </div>
                 </div>
 
-                <!-- Soal 26 -->
-                <div class="tka-question" id="q26">
-                    <div class="tka-q-header"><div class="tka-q-number">26</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 26 -->
+                <div class="tka-question" id="q26" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">26</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q26">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah UMKM berhasil meningkatkan kualitas produknya sehingga permintaan konsumen meningkat. Namun, produk sering terlambat sampai ke pelanggan karena jasa pengiriman tidak mampu memenuhi jumlah pesanan.</div>
                     <div class="tka-q-text">Masalah utama yang dihadapi UMKM tersebut terdapat pada aspek ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> produksi.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> distribusi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> konsumsi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> investasi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> spesialisasi.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> produksi.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> distribusi.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> konsumsi.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> investasi.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> spesialisasi.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q26')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q26')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Kualitas produk baik (produksi aman), permintaan tinggi (konsumsi aman), tetapi "jasa pengiriman tidak mampu" secara eksplisit menunjuk pada kegagalan atau hambatan di aspek <strong>distribusi</strong>.</div>
                     </div>
                 </div>
 
-                <!-- Soal 27 -->
-                <div class="tka-question" id="q27">
-                    <div class="tka-q-header"><div class="tka-q-number">27</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 27 -->
+                <div class="tka-question" id="q27" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">27</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q27">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Pemerintah memiliki anggaran terbatas untuk membangun jalan baru, sekolah, atau bendungan. Setelah melalui kajian, pemerintah memilih membangun bendungan karena dinilai memberikan manfaat paling besar bagi sektor pertanian dan penyediaan air bersih.</div>
                     <div class="tka-q-text">Analisis yang tepat adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Tidak terjadi biaya peluang karena pemerintah memiliki anggaran.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pemerintah menerapkan skala prioritas akibat adanya kelangkaan sumber daya.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Seluruh kebutuhan masyarakat telah dipenuhi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Bendungan dibangun tanpa mempertimbangkan manfaat ekonomi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada anggaran pemerintah.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Tidak terjadi biaya peluang karena pemerintah memiliki anggaran.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Pemerintah menerapkan skala prioritas akibat adanya kelangkaan sumber daya.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Seluruh kebutuhan masyarakat telah dipenuhi.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Bendungan dibangun tanpa mempertimbangkan manfaat ekonomi.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Kelangkaan hanya terjadi pada anggaran pemerintah.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q27')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q27')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Anggaran terbatas = kelangkaan. Memilih satu dari tiga opsi = <strong>skala prioritas</strong>. Ini adalah respons rasional terhadap kondisi kelangkaan sumber daya.</div>
                     </div>
                 </div>
 
-                <!-- Soal 28 -->
-                <div class="tka-question" id="q28">
-                    <div class="tka-q-header"><div class="tka-q-number">28</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 28 -->
+                <div class="tka-question" id="q28" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">28</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q28">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Indonesia memiliki cadangan hutan yang luas. Namun, eksploitasi yang berlebihan tanpa upaya reboisasi dapat mengurangi ketersediaan kayu pada masa mendatang sehingga mengganggu kegiatan industri dan keseimbangan lingkungan.</div>
                     <div class="tka-q-text">Kesimpulan yang paling tepat berdasarkan bacaan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> Semua sumber daya alam dapat dimanfaatkan tanpa batas.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> Pengelolaan sumber daya harus mempertimbangkan keberlanjutan karena sumber daya bersifat terbatas.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan hanya dipengaruhi oleh jumlah penduduk.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Kegiatan ekonomi tidak memengaruhi lingkungan.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Hutan merupakan barang bebas.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Semua sumber daya alam dapat dimanfaatkan tanpa batas.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Pengelolaan sumber daya harus mempertimbangkan keberlanjutan karena sumber daya bersifat terbatas.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Kelangkaan hanya dipengaruhi oleh jumlah penduduk.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Kegiatan ekonomi tidak memengaruhi lingkungan.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Hutan merupakan barang bebas.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q28')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q28')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Eksploitasi berlebihan akan menguras sumber daya yang sebenarnya terbatas. Oleh karena itu, prinsip <strong>keberlanjutan (sustainability)</strong> adalah kunci agar kegiatan ekonomi tidak terhenti di masa depan.</div>
                     </div>
                 </div>
 
-                <!-- Soal 29 -->
-                <div class="tka-question" id="q29">
-                    <div class="tka-q-header"><div class="tka-q-number">29</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 29 -->
+                <div class="tka-question" id="q29" data-correct="B">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">29</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q29">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan ilustrasi berikut!</strong><br>Sebuah perusahaan tekstil memiliki kapasitas produksi 10.000 potong pakaian per bulan. Pada bulan tertentu perusahaan menerima pesanan sebanyak 15.000 potong dari berbagai pelanggan sehingga harus menentukan pesanan mana yang diprioritaskan.</div>
                     <div class="tka-q-text">Masalah ekonomi yang paling tepat menggambarkan kondisi tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option"><span class="tka-option-letter">A.</span> kebutuhan lebih kecil daripada sumber daya.</li>
-                        <li class="tka-option correct"><span class="tka-option-letter">B.</span> kelangkaan timbul karena keterbatasan kapasitas produksi dibandingkan kebutuhan.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> distribusi menjadi penyebab utama.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> perusahaan tidak melakukan produksi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> konsumen tidak memiliki daya beli.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> kebutuhan lebih kecil daripada sumber daya.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> kelangkaan timbul karena keterbatasan kapasitas produksi dibandingkan kebutuhan.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> distribusi menjadi penyebab utama.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> perusahaan tidak melakukan produksi.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> konsumen tidak memiliki daya beli.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q29')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q29')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: B</div>
                         <div class="tka-pembahasan-text">Ini adalah kelangkaan dari sisi penawaran (supply). Kapasitas (10.000) < Pesanan (15.000). Keterbatasan kapasitas produksi inilah yang menciptakan masalah kelangkaan relatif.</div>
                     </div>
                 </div>
 
-                <!-- Soal 30 -->
-                <div class="tka-question" id="q30">
-                    <div class="tka-q-header"><div class="tka-q-number">30</div><span class="cognitive-badge">C5</span></div>
+                <!-- SOAL 30 -->
+                <div class="tka-question" id="q30" data-correct="A">
+                    <div class="tka-q-header">
+                        <div class="tka-q-number">30</div>
+                        <span class="cognitive-badge">C5</span>
+                        <span class="status-badge" id="status-q30">⏳ Belum</span>
+                    </div>
                     <div class="tka-stimulus"><strong>Perhatikan bacaan berikut!</strong><br>Sebuah koperasi siswa memiliki dana terbatas untuk mengembangkan usahanya. Pengurus harus memilih antara membeli mesin kasir digital atau menambah persediaan makanan ringan. Setelah melakukan survei, diputuskan membeli mesin kasir digital karena dianggap dapat meningkatkan efisiensi pelayanan dan pencatatan transaksi.</div>
                     <div class="tka-q-text">Analisis yang paling tepat terhadap keputusan tersebut adalah ....</div>
                     <ul class="tka-options">
-                        <li class="tka-option correct"><span class="tka-option-letter">A.</span> Keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga koperasi harus menetapkan skala prioritas dengan mempertimbangkan biaya peluang demi mendukung kegiatan ekonomi.</li>
-                        <li class="tka-option"><span class="tka-option-letter">B.</span> Seluruh kebutuhan koperasi dapat dipenuhi sekaligus.</li>
-                        <li class="tka-option"><span class="tka-option-letter">C.</span> Kelangkaan hanya terjadi pada koperasi sekolah.</li>
-                        <li class="tka-option"><span class="tka-option-letter">D.</span> Biaya peluang selalu berupa harga mesin kasir.</li>
-                        <li class="tka-option"><span class="tka-option-letter">E.</span> Kegiatan ekonomi tidak memerlukan pengambilan keputusan.</li>
+                        <li class="tka-option" data-letter="A"><span class="tka-option-letter">A.</span> Keputusan tersebut menunjukkan adanya kelangkaan sumber daya sehingga koperasi harus menetapkan skala prioritas dengan mempertimbangkan biaya peluang demi mendukung kegiatan ekonomi.</li>
+                        <li class="tka-option" data-letter="B"><span class="tka-option-letter">B.</span> Seluruh kebutuhan koperasi dapat dipenuhi sekaligus.</li>
+                        <li class="tka-option" data-letter="C"><span class="tka-option-letter">C.</span> Kelangkaan hanya terjadi pada koperasi sekolah.</li>
+                        <li class="tka-option" data-letter="D"><span class="tka-option-letter">D.</span> Biaya peluang selalu berupa harga mesin kasir.</li>
+                        <li class="tka-option" data-letter="E"><span class="tka-option-letter">E.</span> Kegiatan ekonomi tidak memerlukan pengambilan keputusan.</li>
                     </ul>
-                    <button class="tka-reveal-btn" onclick="togglePembahasan('q30')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
+                    <button class="tka-reveal-btn" onclick="revealQuestion('q30')"><i class="fas fa-eye"></i> Lihat Pembahasan</button>
                     <div class="tka-pembahasan">
                         <div class="tka-correct-answer"><i class="fas fa-check-circle"></i> Kunci Jawaban: A</div>
                         <div class="tka-pembahasan-text">Soal ini mengintegrasikan tiga konsep: <strong>Kelangkaan</strong> (dana terbatas), <strong>Biaya Peluang</strong> (stok makanan ringan dikorbankan), dan <strong>Kegiatan Ekonomi</strong> (mesin kasir untuk efisiensi operasional). Pilihan A merangkum semuanya dengan paling komprehensif.</div>
@@ -869,7 +1684,7 @@
 
     </div>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <p>© 2026 <strong>SMA Negeri 1 Cluring</strong>. Platform pembelajaran digital.</p>
         <div class="footer-bottom">
@@ -880,36 +1695,162 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ============================================================ -->
     <script>
-        // Toggle Accordion Bagian
+        // ===== STATE =====
+        // Set tanggal default: hari ini
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('tanggalSiswa').value = today;
+
+            // Buka semua bagian secara default agar soal terlihat
+            document.querySelectorAll('.tka-bagian-card').forEach(card => {
+                card.classList.add('open');
+            });
+
+            // Inisialisasi rekap
+            updateRekap();
+        });
+
+        // ===== TOGGLE BAGIAN =====
         function toggleBagian(header) {
             const card = header.parentElement;
             card.classList.toggle('open');
         }
 
-        // Toggle Pembahasan Soal
-        function togglePembahasan(questionId) {
-            const questionCard = document.getElementById(questionId);
-            const isRevealed = questionCard.classList.contains('revealed');
+        // ===== PILIH JAWABAN =====
+        document.querySelectorAll('.tka-option').forEach(function(opt) {
+            opt.addEventListener('click', function(e) {
+                const questionDiv = this.closest('.tka-question');
+                if (questionDiv.classList.contains('revealed')) return; // sudah terkunci
 
+                // Hapus seleksi sebelumnya di soal ini
+                const siblings = this.parentElement.querySelectorAll('.tka-option');
+                siblings.forEach(s => s.classList.remove('selected'));
+
+                // Tandai yang dipilih
+                this.classList.add('selected');
+
+                // Update status badge
+                const qId = questionDiv.id;
+                const statusBadge = document.getElementById('status-' + qId);
+                if (statusBadge) {
+                    statusBadge.textContent = '📝 Terjawab';
+                    statusBadge.className = 'status-badge answered';
+                }
+
+                // Update rekap (soal belum di-reveal, tapi sudah terjawab)
+                updateRekap();
+            });
+        });
+
+        // ===== REVEAL SOAL =====
+        function revealQuestion(qId) {
+            const questionDiv = document.getElementById(qId);
+            if (!questionDiv) return;
+
+            const isRevealed = questionDiv.classList.contains('revealed');
+
+            // Jika sudah di-reveal, kita tutup kembali (toggle)
             if (isRevealed) {
-                questionCard.classList.remove('revealed');
-            } else {
-                questionCard.classList.add('revealed');
-                // Opsional: Scroll halus ke pembahasan agar terlihat di layar HP
-                setTimeout(() => {
-                    questionCard.querySelector('.tka-pembahasan').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
+                questionDiv.classList.remove('revealed');
+                updateRekap();
+                return;
             }
+
+            // Cek apakah user sudah memilih jawaban
+            const selected = questionDiv.querySelector('.tka-option.selected');
+            if (!selected) {
+                alert('Silakan pilih jawaban terlebih dahulu!');
+                return;
+            }
+
+            const selectedLetter = selected.getAttribute('data-letter');
+            const correctLetter = questionDiv.getAttribute('data-correct');
+
+            // Tandai option yang benar (sudah ada class correct di HTML)
+            const allOptions = questionDiv.querySelectorAll('.tka-option');
+            allOptions.forEach(opt => {
+                if (opt.getAttribute('data-letter') === correctLetter) {
+                    opt.classList.add('correct');
+                }
+            });
+
+            // Jika jawaban salah, tandai yang dipilih sebagai salah (tapi tetap tampilkan)
+            if (selectedLetter !== correctLetter) {
+                selected.classList.add('wrong');
+            }
+
+            // Reveal
+            questionDiv.classList.add('revealed');
+
+            // Update status badge
+            const statusBadge = document.getElementById('status-' + qId);
+            if (statusBadge) {
+                if (selectedLetter === correctLetter) {
+                    statusBadge.textContent = '✅ Benar';
+                    statusBadge.className = 'status-badge correct';
+                } else {
+                    statusBadge.textContent = '❌ Salah';
+                    statusBadge.className = 'status-badge wrong';
+                }
+            }
+
+            // Scroll ke pembahasan dengan smooth
+            const pembahasan = questionDiv.querySelector('.tka-pembahasan');
+            if (pembahasan) {
+                setTimeout(() => {
+                    pembahasan.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 150);
+            }
+
+            updateRekap();
         }
 
-        // Dark Mode Toggle
+        // ===== UPDATE REKAP =====
+        function updateRekap() {
+            const questions = document.querySelectorAll('.tka-question');
+            let total = questions.length;
+            let terjawab = 0;
+            let benar = 0;
+            let salah = 0;
+
+            questions.forEach(q => {
+                const selected = q.querySelector('.tka-option.selected');
+                const isRevealed = q.classList.contains('revealed');
+
+                if (selected) {
+                    terjawab++;
+                }
+
+                if (isRevealed) {
+                    const correctLetter = q.getAttribute('data-correct');
+                    const selectedLetter = selected ? selected.getAttribute('data-letter') : null;
+                    if (selectedLetter === correctLetter) {
+                        benar++;
+                    } else if (selectedLetter) {
+                        salah++;
+                    }
+                }
+            });
+
+            // Nilai: persentase dari benar terhadap total
+            let nilai = total > 0 ? Math.round((benar / total) * 100) : 0;
+
+            document.getElementById('totalSoal').textContent = total;
+            document.getElementById('terjawab').textContent = terjawab;
+            document.getElementById('benar').textContent = benar;
+            document.getElementById('salah').textContent = salah;
+            document.getElementById('nilai').textContent = nilai;
+        }
+
+        // ===== DARK MODE =====
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('themeToggle');
             body.classList.toggle('dark-mode');
-
             if (body.classList.contains('dark-mode')) {
                 btn.textContent = '☀️';
                 localStorage.setItem('darkMode', 'enabled');
@@ -919,11 +1860,203 @@
             }
         }
 
-        // Cek preferensi dark mode saat load
         if (localStorage.getItem('darkMode') === 'enabled') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeToggle').textContent = '☀️';
         }
+
+        // ===== DOWNLOAD PDF =====
+        function downloadPDF() {
+            const btn = document.getElementById('downloadPdfBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+
+            setTimeout(() => {
+                try {
+                    const nama = document.getElementById('namaSiswa').value.trim() || 'Tidak diisi';
+                    const kelas = document.getElementById('kelasSiswa').value.trim() || 'Tidak diisi';
+                    const tanggal = document.getElementById('tanggalSiswa').value || new Date().toISOString().split('T')[0];
+
+                    // Ambil data rekap terbaru
+                    const total = document.getElementById('totalSoal').textContent;
+                    const terjawab = document.getElementById('terjawab').textContent;
+                    const benar = document.getElementById('benar').textContent;
+                    const salah = document.getElementById('salah').textContent;
+                    const nilai = document.getElementById('nilai').textContent;
+
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF('p', 'mm', 'a4');
+
+                    // --- Header ---
+                    doc.setFillColor(67, 97, 238);
+                    doc.rect(0, 0, 210, 40, 'F');
+                    doc.setTextColor(255, 255, 255);
+                    doc.setFontSize(18);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('LAPORAN HASIL LATIHAN TKA', 105, 20, { align: 'center' });
+                    doc.setFontSize(11);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text('SMAN 1 Cluring - Ekonomi XII', 105, 32, { align: 'center' });
+
+                    // --- Data Siswa ---
+                    doc.setTextColor(33, 33, 33);
+                    doc.setFontSize(11);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('DATA SISWA', 20, 55);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(10);
+                    doc.text('Nama   : ' + nama, 20, 65);
+                    doc.text('Kelas  : ' + kelas, 20, 73);
+                    doc.text('Tanggal: ' + tanggal, 20, 81);
+
+                    // --- Rekap Nilai ---
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(11);
+                    doc.text('REKAP NILAI', 20, 95);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(10);
+
+                    const rekapData = [
+                        ['Total Soal', total],
+                        ['Terjawab', terjawab],
+                        ['Benar', benar],
+                        ['Salah', salah],
+                        ['Nilai', nilai + ' / 100']
+                    ];
+
+                    doc.autoTable({
+                        startY: 100,
+                        head: [['Keterangan', 'Jumlah']],
+                        body: rekapData,
+                        theme: 'striped',
+                        headStyles: { fillColor: [67, 97, 238], textColor: [255, 255, 255], fontSize: 10,
+                            fontStyle: 'bold' },
+                        bodyStyles: { fontSize: 10 },
+                        columnStyles: {
+                            0: { cellWidth: 60 },
+                            1: { cellWidth: 40 }
+                        },
+                        margin: { left: 20 }
+                    });
+
+                    // --- Detail Jawaban per Bagian ---
+                    let finalY = doc.lastAutoTable.finalY + 10;
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(11);
+                    doc.text('RINCIAN JAWABAN', 20, finalY);
+                    finalY += 6;
+
+                    const bagian = [
+                        { label: 'Bagian 1 (Soal 1-10)', start: 1, end: 10 },
+                        { label: 'Bagian 2 (Soal 11-20)', start: 11, end: 20 },
+                        { label: 'Bagian 3 (Soal 21-30)', start: 21, end: 30 }
+                    ];
+
+                    let rowData = [];
+                    bagian.forEach(b => {
+                        let bBenar = 0,
+                            bSalah = 0,
+                            bKosong = 0;
+                        for (let i = b.start; i <= b.end; i++) {
+                            const q = document.getElementById('q' + i);
+                            if (!q) continue;
+                            const isRevealed = q.classList.contains('revealed');
+                            const selected = q.querySelector('.tka-option.selected');
+                            if (!selected) {
+                                bKosong++;
+                            } else if (isRevealed) {
+                                const correctLetter = q.getAttribute('data-correct');
+                                const selLetter = selected.getAttribute('data-letter');
+                                if (selLetter === correctLetter) bBenar++;
+                                else bSalah++;
+                            } else {
+                                // Sudah dipilih tapi belum di-reveal -> dianggap "terjawab" tapi belum dinilai
+                                bKosong++;
+                            }
+                        }
+                        // Perbaiki: yang sudah dipilih tapi belum di-reveal sebenarnya bukan kosong,
+                        // tapi kita hitung sebagai "Belum Dinilai" di kolom keterangan.
+                        // Tapi untuk kesederhanaan, kita tampilkan saja jumlah benar/salah dari yang sudah di-reveal.
+                        // Hitung ulang dengan cara yang lebih akurat:
+                        let bBenar2 = 0,
+                            bSalah2 = 0,
+                            bBlm = 0;
+                        for (let i = b.start; i <= b.end; i++) {
+                            const q = document.getElementById('q' + i);
+                            if (!q) continue;
+                            const isRevealed = q.classList.contains('revealed');
+                            const selected = q.querySelector('.tka-option.selected');
+                            if (!selected) {
+                                bBlm++;
+                            } else if (isRevealed) {
+                                const correctLetter = q.getAttribute('data-correct');
+                                const selLetter = selected.getAttribute('data-letter');
+                                if (selLetter === correctLetter) bBenar2++;
+                                else bSalah2++;
+                            } else {
+                                // Sudah dipilih tapi belum di-reveal
+                                bBlm++;
+                            }
+                        }
+                        rowData.push([
+                            b.label,
+                            bBenar2 + ' B',
+                            bSalah2 + ' S',
+                            bBlm + ' ?'
+                        ]);
+                    });
+
+                    doc.autoTable({
+                        startY: finalY + 2,
+                        head: [['Bagian', 'Benar', 'Salah', 'Belum Dinilai']],
+                        body: rowData,
+                        theme: 'striped',
+                        headStyles: { fillColor: [52, 73, 94], textColor: [255, 255, 255], fontSize: 9,
+                            fontStyle: 'bold' },
+                        bodyStyles: { fontSize: 9 },
+                        columnStyles: {
+                            0: { cellWidth: 60 },
+                            1: { cellWidth: 30 },
+                            2: { cellWidth: 30 },
+                            3: { cellWidth: 40 }
+                        },
+                        margin: { left: 20 }
+                    });
+
+                    // --- Footer ---
+                    const pageCount = doc.internal.getNumberOfPages();
+                    for (let i = 1; i <= pageCount; i++) {
+                        doc.setPage(i);
+                        doc.setFontSize(8);
+                        doc.setTextColor(150, 150, 150);
+                        doc.text('Dicetak pada: ' + new Date().toLocaleString('id-ID'), 20, 285);
+                        doc.text('Halaman ' + i + ' dari ' + pageCount, 190, 285, { align: 'right' });
+                    }
+
+                    // --- Simpan PDF ---
+                    const fileName = 'Laporan_TKA_' + (nama.replace(/\s+/g, '_') || 'Siswa') + '.pdf';
+                    doc.save(fileName);
+
+                } catch (err) {
+                    console.error('Gagal generate PDF:', err);
+                    alert('Terjadi kesalahan saat membuat PDF. Silakan coba lagi.');
+                }
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
+            }, 300);
+        }
+
+        // ===== REAKTIF: update rekap saat input berubah =====
+        document.querySelectorAll('#namaSiswa, #kelasSiswa, #tanggalSiswa').forEach(el => {
+            el.addEventListener('change', updateRekap);
+            el.addEventListener('input', updateRekap);
+        });
+
+        // ===== INISIALISASI: buka semua bagian =====
+        document.querySelectorAll('.tka-bagian-card').forEach(card => {
+            card.classList.add('open');
+        });
     </script>
 </body>
 </html>
