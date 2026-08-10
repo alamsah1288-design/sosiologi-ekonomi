@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Ekonomi XII - SMAN 1 Cluring</title>
+    <title>Kuis Ekonomi XI - SMAN 1 Cluring</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
@@ -874,7 +874,7 @@
     <div class="container">
         <!-- Page Header -->
         <div class="page-header">
-            <h1><i class="fas fa-graduation-cap"></i> Kuis Ekonomi Kelas XII</h1>
+            <h1><i class="fas fa-graduation-cap"></i> Kuis Ekonomi Kelas XI</h1>
             <p>Literasi Keuangan Digital & Badan Usaha dalam Perekonomian Indonesia</p>
         </div>
 
@@ -890,13 +890,10 @@
                     <label for="studentClass">Kelas *</label>
                     <select id="studentClass" required>
                         <option value="">Pilih Kelas</option>
-                        <option value="XII IPS 1">XII IPS 1</option>
-                        <option value="XII IPS 2">XII IPS 2</option>
-                        <option value="XII IPS 3">XII IPS 3</option>
-                        <option value="XII IPA 1">XII IPA 1</option>
-                        <option value="XII IPA 2">XII IPA 2</option>
-                        <option value="XII IPA 3">XII IPA 3</option>
-                        <option value="XII Bahasa">XII Bahasa</option>
+                        <option value="XI.2">XI.2</option>
+                        <option value="XI.3">XI.3</option>
+                        <option value="XI.4">XI.4</option>
+                        <option value="XI.5">XI.5</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -1844,23 +1841,147 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ============ PDF DOWNLOAD ============
-        function downloadPDF() {
-            const element = document.getElementById('resultsContainer');
-            const name = document.getElementById('studentName').value.trim();
-            const studentClass = document.getElementById('studentClass').value;
+        // ============ PDF DOWNLOAD (FIXED VERSION) ============
+function downloadPDF() {
+    const element = document.getElementById('resultsContainer');
+    const name = document.getElementById('studentName').value.trim() || 'Siswa';
+    const studentClass = document.getElementById('studentClass').value || 'Kelas';
+    const date = document.getElementById('studentDate').value || new Date().toISOString().split('T')[0];
+    const score = document.getElementById('scoreValue').textContent;
+    const correct = document.getElementById('resultCorrect').textContent;
+    const timeSpent = document.getElementById('resultTime').textContent;
+    const cheats = document.getElementById('resultCheats').textContent;
+    const feedbackTitle = document.getElementById('feedbackTitle').textContent;
+    const feedbackMessage = document.getElementById('feedbackMessage').textContent;
 
-            const opt = {
-                margin: [10, 10, 10, 10],
-                filename: `Kuis_Ekonomi_${name.replace(/\s+/g, '_')}_${studentClass.replace(/\s+/g, '_')}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+    // Buat container khusus untuk PDF dengan styling inline yang pasti ter-render
+    const pdfContainer = document.createElement('div');
+    pdfContainer.id = 'pdf-content';
+    pdfContainer.style.cssText = `
+        font-family: Arial, Helvetica, sans-serif;
+        background: #ffffff;
+        color: #1e293b;
+        padding: 25px;
+        width: 780px;
+        line-height: 1.5;
+    `;
 
-            html2pdf().set(opt).from(element).save();
+    // Header PDF
+    pdfContainer.innerHTML = `
+        <div style="text-align:center; border-bottom:3px solid #2563eb; padding-bottom:15px; margin-bottom:20px;">
+            <h1 style="color:#2563eb; margin:0; font-size:24px;">HASIL KUIS EKONOMI XII</h1>
+            <p style="color:#64748b; margin:5px 0; font-size:14px;">SMAN 1 Cluring - Literasi Keuangan & Badan Usaha</p>
+            <p style="color:#94a3b8; font-size:11px; margin:5px 0;">Dicetak: ${new Date().toLocaleString('id-ID', {dateStyle:'full', timeStyle:'short'})}</p>
+        </div>
+
+        <!-- Info Peserta -->
+        <div style="background:#f1f5f9; border-radius:8px; padding:15px; margin-bottom:20px; border-left:4px solid #2563eb;">
+            <h3 style="color:#1e40af; margin:0 0 10px 0; font-size:16px;">📋 Data Peserta</h3>
+            <table style="width:100%; font-size:13px;">
+                <tr><td style="width:120px; padding:4px 0;"><strong>Nama</strong></td><td>: ${name}</td></tr>
+                <tr><td style="padding:4px 0;"><strong>Kelas</strong></td><td>: ${studentClass}</td></tr>
+                <tr><td style="padding:4px 0;"><strong>Tanggal</strong></td><td>: ${date}</td></tr>
+                <tr><td style="padding:4px 0;"><strong>Waktu Pengerjaan</strong></td><td>: ${timeSpent}</td></tr>
+                <tr><td style="padding:4px 0;"><strong>Pelanggaran</strong></td><td>: ${cheats}</td></tr>
+            </table>
+        </div>
+
+        <!-- Score Summary -->
+        <div style="background:#eff6ff; border-radius:8px; padding:20px; margin-bottom:20px; text-align:center; border:2px solid #2563eb;">
+            <div style="font-size:48px; font-weight:800; color:#2563eb; line-height:1;">${score}</div>
+            <div style="font-size:14px; color:#64748b;">dari 100</div>
+            <div style="margin-top:10px; font-size:13px; color:#334155;">Jawaban Benar: <strong>${correct}</strong></div>
+        </div>
+
+        <!-- Feedback -->
+        <div style="background:#f0fdf4; border:2px solid #10b981; border-radius:8px; padding:15px; margin-bottom:20px;">
+            <h3 style="color:#059669; margin:0 0 8px 0; font-size:15px;">${feedbackTitle}</h3>
+            <p style="color:#1e293b; margin:0; font-size:13px;">${feedbackMessage}</p>
+        </div>
+
+        <!-- Kunci Jawaban -->
+        <h3 style="color:#1e40af; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-bottom:15px; font-size:16px;">📝 Kunci Jawaban & Pembahasan</h3>
+        <div id="pdf-review"></div>
+
+        <!-- Footer -->
+        <div style="margin-top:30px; padding-top:15px; border-top:2px solid #e2e8f0; text-align:center; font-size:10px; color:#94a3b8;">
+            <p style="margin:0;">Dokumen ini dihasilkan secara otomatis oleh Sistem Kuis SMAN 1 Cluring</p>
+            <p style="margin:3px 0 0 0;">© ${new Date().getFullYear()} - Ekonomi XII</p>
+        </div>
+    `;
+
+    // Clone review dan styling untuk PDF
+    const reviewContainer = pdfContainer.querySelector('#pdf-review');
+    const reviewItems = document.querySelectorAll('#answerReview > div');
+    
+    reviewItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        // Reset ke style PDF-friendly
+        clone.style.cssText = `
+            padding:12px;
+            margin-bottom:10px;
+            border-radius:6px;
+            background:#fafafa;
+            border-left:4px solid ${clone.style.borderLeftColor.includes('16, 185, 129') || clone.style.borderLeftColor === 'var(--success)' ? '#10b981' : '#ef4444'};
+            color:#1e293b;
+            font-size:12px;
+            page-break-inside:avoid;
+        `;
+        // Perbaiki warna teks
+        clone.querySelectorAll('*').forEach(el => {
+            if (el.style) {
+                el.style.color = el.style.color || '#1e293b';
+            }
+        });
+        reviewContainer.appendChild(clone);
+    });
+
+    // Tambahkan ke body sementara (hidden)
+    pdfContainer.style.position = 'absolute';
+    pdfContainer.style.left = '-10000px';
+    pdfContainer.style.top = '0';
+    document.body.appendChild(pdfContainer);
+
+    // Konfigurasi html2pdf yang diperbaiki
+    const opt = {
+        margin: [8, 8, 8, 8],
+        filename: `Kuis_Ekonomi_${name.replace(/\s+/g, '_')}_${studentClass.replace(/\s+/g, '_')}_${date}.pdf`,
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            letterRendering: true,
+            backgroundColor: '#ffffff',
+            width: 780,
+            windowWidth: 780
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait',
+            compress: true
+        },
+        pagebreak: { 
+            mode: ['avoid-all', 'css', 'legacy'],
+            before: '.page-break-before'
         }
+    };
 
+    // Generate PDF dengan error handling
+    html2pdf().set(opt).from(pdfContainer).save()
+        .then(() => {
+            console.log('PDF berhasil dibuat');
+            setTimeout(() => {
+                document.body.removeChild(pdfContainer);
+            }, 500);
+        })
+        .catch(err => {
+            console.error('Error generating PDF:', err);
+            document.body.removeChild(pdfContainer);
+            alert('❌ Gagal membuat PDF. Silakan coba lagi.\nError: ' + err.message);
+        });
+}
         // ============ SET TODAY'S DATE ============
         document.getElementById('studentDate').valueAsDate = new Date();
 
