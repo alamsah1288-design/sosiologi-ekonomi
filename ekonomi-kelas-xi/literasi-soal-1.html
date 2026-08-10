@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evaluasi Literasi Keuangan & Badan Usaha (30 Soal Variatif)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+    <title>Evaluasi Literasi Keuangan & Badan Usaha (Responsif)</title>
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -12,18 +12,23 @@
     </script>
 
     <style>
-        /* ===== STYLE UMUM ===== */
+        /* ===== RESET & GLOBAL ===== */
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f1f5f9;
             color: #1e293b;
-            margin: 0;
-            padding: 20px;
+            padding: 12px;
             transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
         }
+
+        /* ===== DARK MODE ===== */
         body.dark-theme {
             background-color: #0f172a;
             color: #f8fafc;
@@ -85,53 +90,64 @@
             color: #fff;
             border-color: #475569;
         }
+        body.dark-theme .btn-reset {
+            background-color: #475569;
+            color: #fff;
+        }
 
         /* ===== NAVBAR ===== */
         .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #1e293b;
-            padding: 12px 24px;
-            border-radius: 8px;
-            max-width: 850px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
             flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #1e293b;
+            padding: 10px 16px;
+            border-radius: 8px;
+            max-width: 1000px;
+            margin: 0 auto 16px auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            gap: 8px;
         }
         .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             text-decoration: none;
             color: #ffffff;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
         .navbar-brand img {
-            height: 38px;
+            height: 32px;
             width: auto;
         }
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
+            flex-shrink: 0;
         }
         .theme-toggle,
         .hamburger {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            min-height: 40px;
         }
         .theme-toggle:hover,
         .hamburger:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
         }
         .hamburger {
             display: none;
@@ -139,21 +155,27 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 10px;
             margin: 0;
             padding: 0;
             align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+            order: 3;
         }
         .nav-links li a {
             color: #cbd5e1;
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
+            gap: 4px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
         }
         .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.08);
             color: #38bdf8;
         }
         .dropdown {
@@ -165,14 +187,14 @@
             top: 100%;
             right: 0;
             background-color: #0f172a;
-            min-width: 190px;
+            min-width: 170px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             border-radius: 6px;
-            padding: 8px 0;
+            padding: 6px 0;
             z-index: 100;
         }
         .dropdown-content a {
-            padding: 10px 16px;
+            padding: 8px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -187,28 +209,37 @@
         /* ===== ACTION BAR ===== */
         .action-bar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 850px;
-            margin: 0 auto 20px auto;
-            padding: 10px 0;
             flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto 16px auto;
+            padding: 6px 0;
             gap: 10px;
+        }
+        .action-bar h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            flex: 1 1 auto;
         }
         .btn-group {
             display: flex;
-            gap: 10px;
             flex-wrap: wrap;
+            gap: 8px;
         }
         .btn {
             border: none;
-            padding: 12px 20px;
+            padding: 10px 14px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
         }
         .btn-download {
             background-color: #2563eb;
@@ -234,29 +265,29 @@
 
         /* ===== CONTAINER ===== */
         .container {
-            max-width: 850px;
+            max-width: 1000px;
             margin: 0 auto;
             background: #ffffff;
-            padding: 35px;
+            padding: 20px 18px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
         }
 
-        /* ===== FORM IDENTITAS & SKOR ===== */
+        /* ===== IDENTITAS & SKOR ===== */
         .registration-form,
         .score-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 15px 20px;
+            padding: 14px 16px;
             border-radius: 6px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 10px;
+            gap: 10px 16px;
+            margin-top: 8px;
         }
         .form-group {
             display: flex;
@@ -266,75 +297,82 @@
             grid-column: span 2;
         }
         .form-group label {
-            font-size: 0.85rem;
-            font-weight: bold;
+            font-size: 0.8rem;
+            font-weight: 600;
             color: #475569;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .form-group input,
         .form-group select {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border: 1px solid #cbd5e1;
             border-radius: 4px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
             background: #ffffff;
+            width: 100%;
         }
         .form-group input:focus,
         .form-group select:focus {
             border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
         }
 
         /* ===== SECTION TITLE ===== */
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #0f172a;
             border-bottom: 2px solid #2563eb;
-            padding-bottom: 6px;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            padding-bottom: 4px;
+            margin-top: 28px;
+            margin-bottom: 14px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         /* ===== MATERI ===== */
         .material-box {
             background: #f8fafc;
             border-left: 4px solid #2563eb;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
             border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.6;
+            overflow-x: auto;
         }
         .case-box {
             background: #fffbebfb;
             border-left: 4px solid #f59e0b;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
             border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.6;
+            overflow-x: auto;
         }
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            min-width: 320px;
         }
         .data-table th,
         .data-table td {
             border: 1px solid #cbd5e1;
-            padding: 10px;
+            padding: 8px 10px;
             text-align: left;
-            font-size: 0.88rem;
         }
         .data-table th {
             background: #f1f5f9;
             color: #0f172a;
             font-weight: 600;
+        }
+        .data-table td {
+            word-break: break-word;
         }
 
         /* ===== KARTU SOAL ===== */
@@ -342,23 +380,25 @@
             background: #ffffff;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            padding: 16px;
-            margin-bottom: 15px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
             transition: all 0.3s;
+            overflow: hidden;
         }
         .question-title {
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.5;
             color: #0f172a;
+            font-size: 0.95rem;
         }
         .tag-type {
             display: inline-block;
-            padding: 2px 8px;
-            font-size: 0.75rem;
+            padding: 2px 10px;
+            font-size: 0.7rem;
             font-weight: bold;
             border-radius: 4px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             background-color: #e2e8f0;
             color: #475569;
         }
@@ -368,33 +408,68 @@
             margin: 0;
         }
         .options-list li {
-            padding: 8px 12px;
-            margin-bottom: 6px;
+            padding: 6px 10px;
+            margin-bottom: 4px;
             border: 1px solid #e2e8f0;
             border-radius: 4px;
             background: #fafafa;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             line-height: 1.4;
             display: flex;
             align-items: center;
             cursor: pointer;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         .options-list li:hover {
             background: #f1f5f9;
         }
         .options-list input[type="radio"],
         .options-list input[type="checkbox"] {
-            margin-right: 10px;
+            margin-right: 4px;
             cursor: pointer;
             flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+        .options-list label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            flex: 1;
+            word-break: break-word;
+        }
+
+        /* Dropdown menjodohkan */
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 12px;
+            margin-top: 8px;
+        }
+        .match-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            background: #fafafa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        .match-item strong {
+            min-width: 60px;
         }
         .dropdown-select {
-            padding: 4px 8px;
+            padding: 4px 6px;
             border-radius: 4px;
             border: 1px solid #cbd5e1;
             background: #fff;
-            font-size: 0.9rem;
-            margin-left: 8px;
+            font-size: 0.85rem;
+            flex: 1;
+            min-width: 80px;
         }
 
         /* ===== FEEDBACK ===== */
@@ -415,9 +490,9 @@
         .feedback-badge {
             display: none;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             margin-top: 8px;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
         }
         .show-results .feedback-badge {
@@ -432,60 +507,197 @@
             color: #b91c1c;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+        /* Tablet kecil & ponsel besar */
         @media (max-width: 768px) {
             .hamburger {
-                display: block;
+                display: inline-flex;
             }
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                margin-top: 15px;
+                margin-top: 10px;
                 padding-top: 10px;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
-                gap: 10px;
+                gap: 6px;
+                order: 4;
             }
             .nav-links.show {
                 display: flex;
-            }
-            .navbar {
-                flex-wrap: wrap;
             }
             .dropdown-content {
                 position: static;
                 box-shadow: none;
                 background-color: #334155;
-                margin-left: 15px;
+                margin-left: 10px;
+                width: 100%;
             }
+            .dropdown-content a {
+                padding: 6px 12px;
+            }
+            .navbar {
+                padding: 8px 12px;
+            }
+            .navbar-brand {
+                font-size: 0.9rem;
+            }
+            .navbar-brand img {
+                height: 28px;
+            }
+
             .action-bar {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 8px;
+            }
+            .action-bar h2 {
+                font-size: 1rem;
+                text-align: center;
             }
             .btn-group {
                 justify-content: center;
             }
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                flex: 1 1 auto;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 14px 12px;
+            }
+
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .match-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .match-item {
+                flex-wrap: wrap;
+            }
+            .match-item strong {
+                min-width: 50px;
+            }
+
+            .section-title {
+                font-size: 1rem;
+                margin-top: 22px;
+            }
+            .question-title {
+                font-size: 0.9rem;
+            }
+            .options-list li {
+                font-size: 0.84rem;
+                padding: 5px 8px;
+            }
+            .data-table {
+                font-size: 0.78rem;
+                min-width: 0;
+            }
+            .data-table th,
+            .data-table td {
+                padding: 5px 6px;
+            }
+            .material-box,
+            .case-box {
+                padding: 10px 12px;
+                font-size: 0.88rem;
+            }
+            .score-card h3 {
+                font-size: 1rem;
+            }
+            .score-card p {
+                font-size: 1rem !important;
             }
         }
 
-        /* ===== CETAK PDF ===== */
-        .question-card,
-        .score-card,
-        .case-box,
-        .material-box,
-        .data-table tr,
-        .registration-form,
-        .options-list li {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
+        /* Ponsel sangat kecil */
+        @media (max-width: 480px) {
+            body {
+                padding: 6px;
+            }
+            .navbar {
+                padding: 6px 8px;
+                border-radius: 6px;
+            }
+            .navbar-brand span {
+                font-size: 0.8rem;
+            }
+            .navbar-brand img {
+                height: 24px;
+            }
+            .theme-toggle,
+            .hamburger {
+                padding: 4px 8px;
+                min-width: 34px;
+                min-height: 34px;
+                font-size: 0.85rem;
+            }
+            .btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+                white-space: normal;
+            }
+            .container {
+                padding: 10px 8px;
+            }
+            .registration-form,
+            .score-card {
+                padding: 10px 12px;
+            }
+            .question-card {
+                padding: 10px 12px;
+                margin-bottom: 10px;
+            }
+            .options-list li {
+                font-size: 0.8rem;
+                padding: 4px 6px;
+            }
+            .options-list input[type="radio"],
+            .options-list input[type="checkbox"] {
+                width: 14px;
+                height: 14px;
+            }
+            .dropdown-select {
+                font-size: 0.8rem;
+                padding: 2px 4px;
+            }
+            .match-item {
+                font-size: 0.8rem;
+                padding: 3px 6px;
+            }
+            .data-table {
+                font-size: 0.7rem;
+            }
+            .data-table th,
+            .data-table td {
+                padding: 4px 5px;
+            }
+            .section-title {
+                font-size: 0.9rem;
+            }
+            .material-box,
+            .case-box {
+                padding: 8px 10px;
+                font-size: 0.82rem;
+            }
+            .feedback-badge {
+                font-size: 0.75rem;
+                padding: 3px 8px;
+            }
         }
-        .section-title {
-            page-break-before: auto;
-            page-break-after: avoid !important;
-            break-after: avoid !important;
-        }
+
+        /* Desktop besar & cetak */
         @media print {
             body {
                 background: #ffffff !important;
@@ -515,13 +727,40 @@
             .question-card {
                 box-shadow: none !important;
                 border: 1px solid #cbd5e1 !important;
-                margin-bottom: 1rem !important;
+                margin-bottom: 0.6rem !important;
             }
             .dropdown-select {
                 border: none !important;
                 background: transparent !important;
                 color: #000 !important;
             }
+            .match-item {
+                border: none !important;
+                background: transparent !important;
+                padding: 2px 0 !important;
+            }
+            .data-table th,
+            .data-table td {
+                border-color: #aaa !important;
+            }
+            .question-card.correct-answer,
+            .question-card.wrong-answer {
+                background-color: transparent !important;
+                border-color: #000 !important;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-muted {
+            color: #64748b;
+            font-size: 0.82rem;
+            margin-bottom: 10px;
+        }
+        .mt-1 {
+            margin-top: 6px;
+        }
+        .overflow-auto {
+            overflow-x: auto;
         }
     </style>
 </head>
@@ -557,11 +796,11 @@
 
     <!-- ===== ACTION BAR ===== -->
     <div class="action-bar">
-        <h2 style="margin:0;">Evaluasi Online</h2>
+        <h2><i class="fas fa-graduation-cap"></i> Evaluasi Online</h2>
         <div class="btn-group">
-            <button class="btn btn-submit" onclick="gradeTest()">✔ Periksa Jawaban</button>
+            <button class="btn btn-submit" onclick="gradeTest()">✔ Periksa</button>
             <button class="btn btn-reset" onclick="resetForm()">🔄 Reset</button>
-            <button class="btn btn-download" onclick="downloadPDF()">📄 Unduh PDF</button>
+            <button class="btn btn-download" onclick="downloadPDF()">📄 PDF</button>
         </div>
     </div>
 
@@ -570,7 +809,7 @@
 
         <!-- IDENTITAS -->
         <div class="registration-form">
-            <h3 style="margin-top:0; color:#1e3a8a;">LAPORAN HASIL EVALUASI SISWA</h3>
+            <h3 style="margin-top:0; color:#1e3a8a;">LAPORAN HASIL EVALUASI</h3>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="studentName">Nama Siswa:</label>
@@ -578,7 +817,7 @@
                 </div>
                 <div class="form-group">
                     <label for="studentClass">Kelas / No. Absen:</label>
-                    <input type="text" id="studentClass" value="XI.2 / 08" />
+                    <input type="text" id="studentClass" value="XII IPS 1 / 08" />
                 </div>
                 <div class="form-group">
                     <label for="examDate">Tanggal:</label>
@@ -598,13 +837,13 @@
                 Total Skor: <strong id="scoreDisplay" style="color:#64748b;">-- / 150</strong> —
                 <span id="statusDisplay" style="color:#64748b; font-weight:bold;">Belum Diperiksa</span>
             </p>
-            <p style="margin:2px 0 0 0; font-size:0.85rem; color:#64748b;">
-                <i class="fas fa-info-circle"></i> 30 soal × 5 poin = 150 poin maksimal
+            <p class="text-muted" style="margin:2px 0 0 0;">
+                <i class="fas fa-info-circle"></i> 30 soal × 5 poin = 150 maksimal
             </p>
         </div>
 
         <!-- ===== MATERI ===== -->
-        <div class="section-title">Ringkasan Materi &amp; Data</div>
+        <div class="section-title">Ringkasan Materi</div>
         <div class="material-box">
             <h4 style="margin-top:0;">Tujuan Pembelajaran</h4>
             <ul>
@@ -615,7 +854,7 @@
                 <li>Analisis struktur ekonomi masyarakat (tabel komposisi populasi).</li>
             </ul>
         </div>
-        <div class="material-box">
+        <div class="material-box overflow-auto">
             <h4>Komposisi Populasi Ekonomi Indonesia</h4>
             <table class="data-table">
                 <thead><tr><th>Kelompok</th><th>Jumlah</th><th>%</th></tr></thead>
@@ -629,15 +868,15 @@
             </table>
         </div>
         <div class="case-box">
-            <h4>Studi Kasus: CV Kopi Banyuwangi</h4>
+            <h4 style="margin-top:0;">Studi Kasus: CV Kopi Banyuwangi</h4>
             <p>Pak Ahmad (sekutu aktif) dan Bu Siti (sekutu pasif) mendirikan CV dengan modal Rp500 juta. Omzet tahun pertama Rp1,2 miliar, laba bersih Rp180 juta. Pak Ahmad menerima gaji Rp8 juta/bulan, Bu Siti mendapat 40% laba bersih.</p>
         </div>
 
         <!-- ========================================================== -->
         <!-- BAGIAN 1: PILIHAN GANDA BIASA (10 SOAL)                     -->
         <!-- ========================================================== -->
-        <div class="section-title">Bagian I: Pilihan Ganda Biasa (Soal 1–10)</div>
-        <p style="font-size:0.85rem; color:#64748b;">* Satu jawaban benar, 5 poin masing-masing</p>
+        <div class="section-title">I. Pilihan Ganda Biasa (1–10)</div>
+        <p class="text-muted">* Satu jawaban benar, 5 poin masing-masing</p>
 
         <!-- Soal 1 -->
         <div class="question-card" id="q-card-1">
@@ -782,13 +1021,13 @@
         <!-- ========================================================== -->
         <!-- BAGIAN 2: PILIHAN GANDA KOMPLEKS (5 SOAL)                   -->
         <!-- ========================================================== -->
-        <div class="section-title">Bagian II: Pilihan Ganda Kompleks (Soal 11–15)</div>
-        <p style="font-size:0.85rem; color:#64748b;">* Pilih <strong>lebih dari satu</strong> jawaban yang benar. 5 poin jika semua tepat.</p>
+        <div class="section-title">II. Pilihan Ganda Kompleks (11–15)</div>
+        <p class="text-muted">* Pilih <strong>lebih dari satu</strong> jawaban benar. 5 poin jika semua tepat.</p>
 
         <!-- Soal 11 -->
         <div class="question-card" id="q-card-11">
             <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">11. Manakah yang termasuk instrumen keuangan digital? (Pilih semua yang benar)</div>
+            <div class="question-title">11. Manakah yang termasuk instrumen keuangan digital? (Pilih semua)</div>
             <ul class="options-list">
                 <li><label><input type="checkbox" name="q11" value="A" /> A. E-Wallet</label></li>
                 <li><label><input type="checkbox" name="q11" value="B" /> B. QRIS</label></li>
@@ -858,18 +1097,18 @@
         <!-- ========================================================== -->
         <!-- BAGIAN 3: MENJODOHKAN (5 SOAL)                              -->
         <!-- ========================================================== -->
-        <div class="section-title">Bagian III: Menjodohkan (Soal 16–20)</div>
-        <p style="font-size:0.85rem; color:#64748b;">* Cocokkan pernyataan kiri dengan pilihan kanan. Setiap pasangan bernilai 1,25 poin (total 5 per soal).</p>
+        <div class="section-title">III. Menjodohkan (16–20)</div>
+        <p class="text-muted">* Cocokkan pernyataan kiri dengan pilihan kanan. Setiap pasangan bernilai 1,25 poin.</p>
 
         <!-- Soal 16 -->
         <div class="question-card" id="q-card-16">
             <span class="tag-type">Menjodohkan</span>
             <div class="question-title">16. Pasangkan istilah dengan definisi yang tepat.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div><strong>A. Fintech</strong> → <select class="dropdown-select" id="q16_a"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
-                <div><strong>B. P2P Lending</strong> → <select class="dropdown-select" id="q16_b"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
-                <div><strong>C. QRIS</strong> → <select class="dropdown-select" id="q16_c"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
-                <div><strong>D. E-Wallet</strong> → <select class="dropdown-select" id="q16_d"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
+            <div class="match-grid">
+                <div class="match-item"><strong>A. Fintech</strong> <select class="dropdown-select" id="q16_a"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
+                <div class="match-item"><strong>B. P2P Lending</strong> <select class="dropdown-select" id="q16_b"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
+                <div class="match-item"><strong>C. QRIS</strong> <select class="dropdown-select" id="q16_c"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
+                <div class="match-item"><strong>D. E-Wallet</strong> <select class="dropdown-select" id="q16_d"><option value="">--Pilih--</option><option value="1">1. Pinjaman antarindividu</option><option value="2">2. Teknologi keuangan</option><option value="3">3. Kode QR nasional</option><option value="4">4. Uang elektronik</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-16"></div>
         </div>
@@ -878,11 +1117,11 @@
         <div class="question-card" id="q-card-17">
             <span class="tag-type">Menjodohkan</span>
             <div class="question-title">17. Pasangkan bentuk badan usaha dengan karakteristiknya.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div><strong>A. PT</strong> → <select class="dropdown-select" id="q17_a"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
-                <div><strong>B. CV</strong> → <select class="dropdown-select" id="q17_b"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
-                <div><strong>C. Koperasi</strong> → <select class="dropdown-select" id="q17_c"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
-                <div><strong>D. Persero</strong> → <select class="dropdown-select" id="q17_d"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
+            <div class="match-grid">
+                <div class="match-item"><strong>A. PT</strong> <select class="dropdown-select" id="q17_a"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
+                <div class="match-item"><strong>B. CV</strong> <select class="dropdown-select" id="q17_b"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
+                <div class="match-item"><strong>C. Koperasi</strong> <select class="dropdown-select" id="q17_c"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
+                <div class="match-item"><strong>D. Persero</strong> <select class="dropdown-select" id="q17_d"><option value="">--Pilih--</option><option value="1">1. Badan hukum, tanggung jawab terbatas</option><option value="2">2. Sekutu aktif & pasif</option><option value="3">3. Kekeluargaan, SHU</option><option value="4">4. Milik negara, laba</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-17"></div>
         </div>
@@ -891,11 +1130,11 @@
         <div class="question-card" id="q-card-18">
             <span class="tag-type">Menjodohkan</span>
             <div class="question-title">18. Pasangkan istilah literasi keuangan dengan penjelasannya.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div><strong>A. Planning</strong> → <select class="dropdown-select" id="q18_a"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
-                <div><strong>B. Protecting</strong> → <select class="dropdown-select" id="q18_b"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
-                <div><strong>C. Saving</strong> → <select class="dropdown-select" id="q18_c"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
-                <div><strong>D. Investing</strong> → <select class="dropdown-select" id="q18_d"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
+            <div class="match-grid">
+                <div class="match-item"><strong>A. Planning</strong> <select class="dropdown-select" id="q18_a"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
+                <div class="match-item"><strong>B. Protecting</strong> <select class="dropdown-select" id="q18_b"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
+                <div class="match-item"><strong>C. Saving</strong> <select class="dropdown-select" id="q18_c"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
+                <div class="match-item"><strong>D. Investing</strong> <select class="dropdown-select" id="q18_d"><option value="">--Pilih--</option><option value="1">1. Melindungi aset dengan asuransi</option><option value="2">2. Menyusun anggaran dan tujuan</option><option value="3">3. Menabung secara rutin</option><option value="4">4. Menanam modal untuk return</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-18"></div>
         </div>
@@ -904,11 +1143,11 @@
         <div class="question-card" id="q-card-19">
             <span class="tag-type">Menjodohkan</span>
             <div class="question-title">19. Pasangkan kelompok ekonomi dengan persentase populasi.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div><strong>A. Golongan Atas</strong> → <select class="dropdown-select" id="q19_a"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
-                <div><strong>B. Kelas Menengah</strong> → <select class="dropdown-select" id="q19_b"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
-                <div><strong>C. Menuju Kelas Menengah</strong> → <select class="dropdown-select" id="q19_c"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
-                <div><strong>D. Rentan Miskin</strong> → <select class="dropdown-select" id="q19_d"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
+            <div class="match-grid">
+                <div class="match-item"><strong>A. Golongan Atas</strong> <select class="dropdown-select" id="q19_a"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
+                <div class="match-item"><strong>B. Kelas Menengah</strong> <select class="dropdown-select" id="q19_b"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
+                <div class="match-item"><strong>C. Menuju Kelas Menengah</strong> <select class="dropdown-select" id="q19_c"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
+                <div class="match-item"><strong>D. Rentan Miskin</strong> <select class="dropdown-select" id="q19_d"><option value="">--Pilih--</option><option value="1">0,4%</option><option value="2">16,6%</option><option value="3">50,4%</option><option value="4">24,1%</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-19"></div>
         </div>
@@ -917,11 +1156,11 @@
         <div class="question-card" id="q-card-20">
             <span class="tag-type">Menjodohkan</span>
             <div class="question-title">20. Pasangkan jenis kejahatan siber dengan contoh aksinya.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div><strong>A. Phishing</strong> → <select class="dropdown-select" id="q20_a"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
-                <div><strong>B. Shoulder surfing</strong> → <select class="dropdown-select" id="q20_b"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
-                <div><strong>C. Ransomware</strong> → <select class="dropdown-select" id="q20_c"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
-                <div><strong>D. Skimming</strong> → <select class="dropdown-select" id="q20_d"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
+            <div class="match-grid">
+                <div class="match-item"><strong>A. Phishing</strong> <select class="dropdown-select" id="q20_a"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
+                <div class="match-item"><strong>B. Shoulder surfing</strong> <select class="dropdown-select" id="q20_b"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
+                <div class="match-item"><strong>C. Ransomware</strong> <select class="dropdown-select" id="q20_c"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
+                <div class="match-item"><strong>D. Skimming</strong> <select class="dropdown-select" id="q20_d"><option value="">--Pilih--</option><option value="1">Mengirim email palsu minta OTP</option><option value="2">Mengintip PIN saat mengetik</option><option value="3">Membajak data dan minta tebusan</option><option value="4">Mencuri data kartu di mesin ATM</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-20"></div>
         </div>
@@ -929,8 +1168,8 @@
         <!-- ========================================================== -->
         <!-- BAGIAN 4: BENAR/SALAH (10 SOAL)                             -->
         <!-- ========================================================== -->
-        <div class="section-title">Bagian IV: Benar / Salah (Soal 21–30)</div>
-        <p style="font-size:0.85rem; color:#64748b;">* Pilih BENAR atau SALAH, 5 poin masing-masing.</p>
+        <div class="section-title">IV. Benar / Salah (21–30)</div>
+        <p class="text-muted">* Pilih BENAR atau SALAH, 5 poin masing-masing.</p>
 
         <!-- Soal 21 -->
         <div class="question-card" id="q-card-21">
@@ -1081,19 +1320,19 @@
             q8: 'A',
             q9: 'B',
             q10: 'A',
-            // PG Kompleks (11-15) -> array jawaban benar
+            // PG Kompleks (11-15)
             q11: ['A', 'B', 'C'],
             q12: ['A', 'B', 'C', 'D'],
             q13: ['A', 'B', 'C', 'E'],
             q14: ['A', 'B', 'C', 'E'],
             q15: ['A', 'B', 'D', 'E'],
-            // Menjodohkan (16-20) -> object pasangan: { a: value, b: value, c: value, d: value }
+            // Menjodohkan (16-20)
             q16: { a: '2', b: '1', c: '3', d: '4' },
             q17: { a: '1', b: '2', c: '3', d: '4' },
             q18: { a: '2', b: '1', c: '3', d: '4' },
             q19: { a: '1', b: '2', c: '3', d: '4' },
             q20: { a: '1', b: '2', c: '3', d: '4' },
-            // Benar/Salah (21-30) 'B' atau 'S'
+            // Benar/Salah (21-30)
             q21: 'S',
             q22: 'S',
             q23: 'B',
@@ -1109,9 +1348,7 @@
         // ===== FUNGSI PERIKSA JAWABAN =====
         function gradeTest() {
             let score = 0;
-            const total = 30;
             const perSoal = 5;
-            let detail = [];
 
             // ---- 1. PG Biasa (1-10) ----
             for (let i = 1; i <= 10; i++) {
@@ -1150,8 +1387,7 @@
                 card.classList.add('show-results');
 
                 const selectedValues = Array.from(checkboxes).map(cb => cb.value);
-                const correct = key[qName]; // array
-                // bandingkan (urut tidak penting)
+                const correct = key[qName];
                 const sortedSel = [...selectedValues].sort();
                 const sortedCorr = [...correct].sort();
                 const isEqual = JSON.stringify(sortedSel) === JSON.stringify(sortedCorr);
@@ -1175,21 +1411,19 @@
                 card.classList.remove('correct-answer', 'wrong-answer');
                 card.classList.add('show-results');
 
-                const correctPairs = key['q' + i]; // object {a,b,c,d}
+                const correctPairs = key['q' + i];
                 let subScore = 0;
-                let totalPairs = Object.keys(correctPairs).length;
                 let allCorrect = true;
 
                 for (let sub of ['a', 'b', 'c', 'd']) {
                     const select = document.getElementById(`q${i}_${sub}`);
                     const selectedVal = select.value;
                     if (selectedVal === correctPairs[sub]) {
-                        subScore += 1.25; // 5/4 = 1.25
+                        subScore += 1.25;
                     } else {
                         allCorrect = false;
                     }
                 }
-                // bulatkan subScore ke 2 desimal
                 subScore = Math.round(subScore * 100) / 100;
                 score += subScore;
 
@@ -1231,15 +1465,16 @@
                 }
             }
 
-            // Tampilkan skor total
+            // Tampilkan skor
             const scoreDisplay = document.getElementById('scoreDisplay');
             const statusDisplay = document.getElementById('statusDisplay');
-            scoreDisplay.innerText = `${Math.round(score)} / 150`;
+            const finalScore = Math.round(score);
+            scoreDisplay.innerText = `${finalScore} / 150`;
 
-            if (score >= 112.5) {
+            if (finalScore >= 112) {
                 statusDisplay.innerText = 'LULUS (Sangat Baik)';
                 statusDisplay.style.color = '#16a34a';
-            } else if (score >= 75) {
+            } else if (finalScore >= 75) {
                 statusDisplay.innerText = 'LULUS (Cukup)';
                 statusDisplay.style.color = '#f59e0b';
             } else {
@@ -1247,20 +1482,16 @@
                 statusDisplay.style.color = '#dc2626';
             }
 
-            alert(`✅ Evaluasi selesai!\nNilai akhir: ${Math.round(score)} / 150`);
+            alert(`✅ Evaluasi selesai!\nNilai akhir: ${finalScore} / 150`);
         }
 
         // ===== RESET FORM =====
         function resetForm() {
             if (!confirm('Yakin ingin mereset semua jawaban?')) return;
-            // semua radio
             document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
-            // semua checkbox
             document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
-            // semua dropdown
             document.querySelectorAll('.dropdown-select').forEach(el => el.value = '');
 
-            // reset tampilan
             for (let i = 1; i <= 30; i++) {
                 const card = document.getElementById(`q-card-${i}`);
                 const fb = document.getElementById(`fb-${i}`);
@@ -1277,7 +1508,7 @@
             const element = document.getElementById('pdf-content');
             const name = document.getElementById('studentName').value || 'Siswa';
             const opt = {
-                margin: [10, 10, 10, 10],
+                margin: [8, 8, 8, 8],
                 filename: `Evaluasi_${name.replace(/\s+/g, '_')}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
