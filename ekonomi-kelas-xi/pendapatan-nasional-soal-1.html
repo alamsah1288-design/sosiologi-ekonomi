@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
-    <title>Evaluasi Pendapatan Nasional & Ketenagakerjaan</title>
+    <title>Evaluasi HOTS: Analisis Pendapatan Nasional & Ketenagakerjaan</title>
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- html2pdf -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
-        crossorigin="anonymous">
-    </script>
+        crossorigin="anonymous"></script>
 
     <style>
         /* ===== RESET & GLOBAL ===== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f1f5f9;
@@ -34,820 +27,347 @@
             transition: background-color 0.3s, color 0.3s;
             min-height: 100vh;
         }
-        body.dark-theme {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
+        body.dark-theme { background-color: #0f172a; color: #f8fafc; }
         body.dark-theme .container,
-        body.dark-theme .question-card {
-            background-color: #1e293b;
-            color: #f8fafc;
-            border-color: #334155;
-        }
+        body.dark-theme .question-card { background-color: #1e293b; color: #f8fafc; border-color: #334155; }
         body.dark-theme .registration-form,
         body.dark-theme .score-card,
-        body.dark-theme .material-box {
-            background-color: #334155;
-            border-color: #475569;
-            color: #f8fafc;
-        }
+        body.dark-theme .material-box { background-color: #334155; border-color: #475569; color: #f8fafc; }
         body.dark-theme .section-title,
         body.dark-theme .question-title,
         body.dark-theme h3,
-        body.dark-theme h4 {
-            color: #f8fafc;
-        }
-        body.dark-theme .options-list li {
-            background: #334155;
-            border-color: #475569;
-            color: #f8fafc;
-        }
-        body.dark-theme .options-list li:hover {
-            background: #475569;
-        }
+        body.dark-theme h4 { color: #f8fafc; }
+        body.dark-theme .options-list li { background: #334155; border-color: #475569; color: #f8fafc; }
+        body.dark-theme .options-list li:hover { background: #475569; }
         body.dark-theme .data-table th,
-        body.dark-theme .data-table td {
-            border-color: #475569;
-            color: #f8fafc;
-        }
-        body.dark-theme .data-table th {
-            background-color: #334155;
-        }
-        body.dark-theme .case-box {
-            background-color: #451a03;
-            border-left-color: #f59e0b;
-            color: #fef3c7;
-        }
-        body.dark-theme .case-box h4 {
-            color: #fbbf24;
-        }
-        body.dark-theme .form-group label {
-            color: #cbd5e1;
-        }
+        body.dark-theme .data-table td { border-color: #475569; color: #f8fafc; }
+        body.dark-theme .data-table th { background-color: #334155; }
+        body.dark-theme .case-box { background-color: #451a03; border-left-color: #f59e0b; color: #fef3c7; }
+        body.dark-theme .case-box h4 { color: #fbbf24; }
+        body.dark-theme .form-group label { color: #cbd5e1; }
         body.dark-theme .form-group input,
-        body.dark-theme .form-group select {
-            background-color: #1e293b;
-            color: #ffffff;
-            border-color: #475569;
-        }
-        body.dark-theme .dropdown-select {
-            background-color: #1e293b;
-            color: #fff;
-            border-color: #475569;
-        }
-        body.dark-theme .btn-reset {
-            background-color: #475569;
-            color: #fff;
-        }
-        body.dark-theme .ad-container {
-            background: #1e293b;
-            border-color: #334155;
-        }
-        body.dark-theme .chart-container {
-            background: #1e293b;
-            border-color: #334155;
-        }
+        body.dark-theme .form-group select { background-color: #1e293b; color: #ffffff; border-color: #475569; }
+        body.dark-theme .dropdown-select { background-color: #1e293b; color: #fff; border-color: #475569; }
+        body.dark-theme .btn-reset { background-color: #475569; color: #fff; }
+        body.dark-theme .ad-container { background: #1e293b; border-color: #334155; }
+        body.dark-theme .chart-container { background: #1e293b; border-color: #334155; }
+        body.dark-theme .hots-highlight { background-color: #1e3a8a; color: #e0f2fe; }
+        body.dark-theme .kunci-rumus { background: #1e293b; border-color: #475569; color: #f1f5f9; }
 
         /* ===== NAVBAR ===== */
         .navbar {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #1e293b;
-            padding: 10px 16px;
-            border-radius: 8px;
-            max-width: 1000px;
-            margin: 0 auto 16px auto;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            gap: 8px;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+            background-color: #1e293b; padding: 10px 16px; border-radius: 8px;
+            max-width: 1000px; margin: 0 auto 16px auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); gap: 8px;
         }
         .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 1rem;
-            flex-shrink: 0;
+            display: flex; align-items: center; gap: 8px; text-decoration: none;
+            color: #ffffff; font-weight: bold; font-size: 1rem; flex-shrink: 0;
         }
-        .navbar-brand img {
-            height: 32px;
-            width: auto;
+        .navbar-brand img { height: 32px; width: auto; }
+        .nav-container { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .theme-toggle, .hamburger {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff; padding: 6px 10px; border-radius: 6px; cursor: pointer;
+            font-size: 0.95rem; transition: all 0.2s; display: inline-flex;
+            align-items: center; justify-content: center; min-width: 40px; min-height: 40px;
         }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-        .theme-toggle,
-        .hamburger {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            padding: 6px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            min-height: 40px;
-        }
-        .theme-toggle:hover,
-        .hamburger:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-        .hamburger {
-            display: none;
-        }
+        .theme-toggle:hover, .hamburger:hover { background: rgba(255, 255, 255, 0.25); }
+        .hamburger { display: none; }
         .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 10px;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 100%;
-            order: 3;
+            display: flex; list-style: none; gap: 10px; margin: 0; padding: 0;
+            align-items: center; flex-wrap: wrap; width: 100%; order: 3;
         }
         .nav-links li a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 0.82rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            transition: background 0.2s, color 0.2s;
+            color: #cbd5e1; text-decoration: none; font-size: 0.82rem;
+            display: flex; align-items: center; gap: 4px; padding: 6px 8px;
+            border-radius: 4px; transition: background 0.2s, color 0.2s;
         }
-        .nav-links li a:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #38bdf8;
-        }
-        .dropdown {
-            position: relative;
-        }
+        .nav-links li a:hover { background: rgba(255, 255, 255, 0.08); color: #38bdf8; }
+        .dropdown { position: relative; }
         .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: #0f172a;
-            min-width: 170px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            padding: 6px 0;
-            z-index: 100;
+            display: none; position: absolute; top: 100%; right: 0;
+            background-color: #0f172a; min-width: 170px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); border-radius: 6px;
+            padding: 6px 0; z-index: 100;
         }
-        .dropdown-content a {
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .dropdown-content a:hover {
-            background-color: #1e293b;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+        .dropdown-content a { padding: 8px 14px; display: flex; align-items: center; gap: 8px; }
+        .dropdown-content a:hover { background-color: #1e293b; }
+        .dropdown:hover .dropdown-content { display: block; }
 
         /* ===== ACTION BAR ===== */
         .action-bar {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1000px;
-            margin: 0 auto 16px auto;
-            padding: 6px 0;
-            gap: 10px;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+            max-width: 1000px; margin: 0 auto 16px auto; padding: 6px 0; gap: 10px;
         }
-        .action-bar h2 {
-            font-size: 1.1rem;
-            margin: 0;
-            flex: 1 1 auto;
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+        .action-bar h2 { font-size: 1.1rem; margin: 0; flex: 1 1 auto; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
         .btn {
-            border: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: all 0.2s;
+            border: none; padding: 10px 14px; border-radius: 6px; cursor: pointer;
+            font-weight: bold; font-size: 0.85rem; transition: all 0.2s;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
+            display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
         }
-        .btn-download {
-            background-color: #2563eb;
-            color: white;
-        }
-        .btn-download:hover {
-            background-color: #1d4ed8;
-        }
-        .btn-submit {
-            background-color: #16a34a;
-            color: white;
-        }
-        .btn-submit:hover {
-            background-color: #15803d;
-        }
-        .btn-reset {
-            background-color: #64748b;
-            color: white;
-        }
-        .btn-reset:hover {
-            background-color: #475569;
-        }
+        .btn-download { background-color: #2563eb; color: white; }
+        .btn-download:hover { background-color: #1d4ed8; }
+        .btn-submit { background-color: #16a34a; color: white; }
+        .btn-submit:hover { background-color: #15803d; }
+        .btn-reset { background-color: #64748b; color: white; }
+        .btn-reset:hover { background-color: #475569; }
 
         /* ===== CONTAINER ===== */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 20px 18px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            box-sizing: border-box;
+            max-width: 1000px; margin: 0 auto; background: #ffffff;
+            padding: 20px 18px; border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08); box-sizing: border-box;
         }
 
         /* ===== IDENTITAS & SKOR ===== */
-        .registration-form,
-        .score-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 14px 16px;
-            border-radius: 6px;
-            margin-bottom: 18px;
+        .registration-form, .score-card {
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            padding: 14px 16px; border-radius: 6px; margin-bottom: 18px;
         }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 16px;
-            margin-top: 8px;
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-top: 8px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: span 2; }
+        .form-group label { font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 3px; }
+        .form-group input, .form-group select {
+            padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 4px;
+            font-size: 0.9rem; outline: none; background: #ffffff; width: 100%;
         }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        .form-group label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #475569;
-            margin-bottom: 3px;
-        }
-        .form-group input,
-        .form-group select {
-            padding: 6px 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            outline: none;
-            background: #ffffff;
-            width: 100%;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        .form-group input:focus, .form-group select:focus {
+            border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
         }
 
         /* ===== SECTION TITLE ===== */
         .section-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #0f172a;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 4px;
-            margin-top: 28px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
+            font-size: 1.1rem; font-weight: bold; color: #0f172a;
+            border-bottom: 2px solid #2563eb; padding-bottom: 4px;
+            margin-top: 28px; margin-bottom: 14px;
+            text-transform: uppercase; letter-spacing: 0.3px;
         }
 
         /* ===== MATERI ===== */
         .material-box {
-            background: #f8fafc;
-            border-left: 4px solid #2563eb;
-            padding: 14px 16px;
-            margin-bottom: 18px;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.92rem;
-            line-height: 1.6;
-            overflow-x: auto;
+            background: #f8fafc; border-left: 4px solid #2563eb;
+            padding: 14px 16px; margin-bottom: 18px;
+            border-radius: 0 6px 6px 0; font-size: 0.92rem;
+            line-height: 1.6; overflow-x: auto;
         }
         .case-box {
-            background: #fffbebfb;
-            border-left: 4px solid #f59e0b;
-            padding: 14px 16px;
-            margin-bottom: 18px;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.92rem;
-            line-height: 1.6;
-            overflow-x: auto;
+            background: #fffbeb; border-left: 4px solid #f59e0b;
+            padding: 14px 16px; margin-bottom: 18px;
+            border-radius: 0 6px 6px 0; font-size: 0.92rem;
+            line-height: 1.6; overflow-x: auto;
+        }
+        .hots-highlight {
+            background: #dbeafe; padding: 10px 14px;
+            border-left: 4px solid #2563eb; border-radius: 4px;
+            margin: 12px 0; font-size: 0.9rem;
+        }
+        .kunci-rumus {
+            background: #f1f5f9; border: 1px dashed #64748b;
+            padding: 10px 14px; border-radius: 4px; margin: 10px 0;
+            font-family: 'Courier New', monospace; font-size: 0.9rem;
         }
         .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            margin-bottom: 16px;
-            font-size: 0.85rem;
-            min-width: 320px;
+            width: 100%; border-collapse: collapse; margin-top: 10px;
+            margin-bottom: 16px; font-size: 0.85rem; min-width: 320px;
         }
-        .data-table th,
-        .data-table td {
-            border: 1px solid #cbd5e1;
-            padding: 8px 10px;
-            text-align: left;
+        .data-table th, .data-table td {
+            border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left;
         }
-        .data-table th {
-            background: #f1f5f9;
-            color: #0f172a;
-            font-weight: 600;
-        }
-        .data-table td {
-            word-break: break-word;
+        .data-table th { background: #f1f5f9; color: #0f172a; font-weight: 600; }
+        .data-table td { word-break: break-word; }
+        .data-table .highlight-cell {
+            background-color: #fef3c7; font-weight: bold; color: #92400e;
         }
 
         /* ===== CHART ===== */
         .chart-container {
-            background: #fafafa;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 16px;
-            margin: 12px 0 20px 0;
-            position: relative;
-            height: 300px;
-            width: 100%;
+            background: #fafafa; border: 1px solid #e2e8f0;
+            border-radius: 6px; padding: 16px; margin: 12px 0 20px 0;
+            position: relative; height: 300px; width: 100%;
         }
-        .chart-container canvas {
-            max-height: 250px;
-            max-width: 100%;
-        }
-        .chart-title {
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        body.dark-theme .chart-container {
-            background: #1e293b;
-            border-color: #334155;
-        }
+        .chart-container canvas { max-height: 250px; max-width: 100%; }
+        .chart-title { font-weight: 600; text-align: center; margin-bottom: 8px; font-size: 0.95rem; }
+        body.dark-theme .chart-container { background: #1e293b; border-color: #334155; }
 
         /* ===== KARTU SOAL ===== */
         .question-card {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            padding: 14px 16px;
-            margin-bottom: 14px;
-            transition: all 0.3s;
-            overflow: hidden;
+            background: #ffffff; border: 1px solid #cbd5e1;
+            border-radius: 6px; padding: 14px 16px; margin-bottom: 14px;
+            transition: all 0.3s; overflow: hidden;
         }
         .question-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            line-height: 1.5;
-            color: #0f172a;
-            font-size: 0.95rem;
+            font-weight: 600; margin-bottom: 10px; line-height: 1.5;
+            color: #0f172a; font-size: 0.95rem;
         }
         .tag-type {
-            display: inline-block;
-            padding: 2px 10px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-bottom: 6px;
-            background-color: #e2e8f0;
-            color: #475569;
+            display: inline-block; padding: 2px 10px; font-size: 0.7rem;
+            font-weight: bold; border-radius: 4px; margin-bottom: 6px;
+            background-color: #e2e8f0; color: #475569;
         }
-        .options-list {
-            list-style-type: none;
-            padding-left: 0;
-            margin: 0;
+        .tag-hots { background: #fef3c7; color: #92400e; }
+        .stimulus {
+            background: #f1f5f9; padding: 10px 12px; border-radius: 4px;
+            border-left: 3px solid #6366f1; margin-bottom: 12px;
+            font-size: 0.88rem; line-height: 1.55; color: #334155;
         }
+        body.dark-theme .stimulus {
+            background: #334155; border-left-color: #818cf8; color: #e2e8f0;
+        }
+        .options-list { list-style-type: none; padding-left: 0; margin: 0; }
         .options-list li {
-            padding: 6px 10px;
-            margin-bottom: 4px;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            background: #fafafa;
-            font-size: 0.88rem;
-            line-height: 1.4;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            gap: 8px;
-            flex-wrap: wrap;
+            padding: 6px 10px; margin-bottom: 4px; border: 1px solid #e2e8f0;
+            border-radius: 4px; background: #fafafa; font-size: 0.88rem;
+            line-height: 1.4; display: flex; align-items: center;
+            cursor: pointer; gap: 8px; flex-wrap: wrap;
         }
-        .options-list li:hover {
-            background: #f1f5f9;
-        }
-        .options-list input[type="radio"],
-        .options-list input[type="checkbox"] {
-            margin-right: 4px;
-            cursor: pointer;
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
+        .options-list li:hover { background: #f1f5f9; }
+        .options-list input[type="radio"], .options-list input[type="checkbox"] {
+            margin-right: 4px; cursor: pointer; flex-shrink: 0;
+            width: 16px; height: 16px;
         }
         .options-list label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            flex: 1;
-            word-break: break-word;
+            display: flex; align-items: center; gap: 6px;
+            cursor: pointer; flex: 1; word-break: break-word;
         }
 
         /* Dropdown menjodohkan */
-        .match-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 12px;
-            margin-top: 8px;
-        }
+        .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-top: 8px; }
         .match-item {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.88rem;
-            background: #fafafa;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px solid #e2e8f0;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+            font-size: 0.88rem; background: #fafafa; padding: 4px 8px;
+            border-radius: 4px; border: 1px solid #e2e8f0;
         }
-        .match-item strong {
-            min-width: 60px;
-        }
+        .match-item strong { min-width: 60px; }
         .dropdown-select {
-            padding: 4px 6px;
-            border-radius: 4px;
-            border: 1px solid #cbd5e1;
-            background: #fff;
-            font-size: 0.85rem;
-            flex: 1;
-            min-width: 80px;
+            padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e1;
+            background: #fff; font-size: 0.85rem; flex: 1; min-width: 80px;
         }
 
         /* ===== FEEDBACK ===== */
-        .question-card.correct-answer {
-            border-color: #22c55e !important;
-            background-color: #f0fdf4 !important;
-        }
-        .question-card.wrong-answer {
-            border-color: #ef4444 !important;
-            background-color: #fef2f2 !important;
-        }
-        body.dark-theme .question-card.correct-answer {
-            background-color: #064e3b !important;
-        }
-        body.dark-theme .question-card.wrong-answer {
-            background-color: #7f1d1d !important;
-        }
+        .question-card.correct-answer { border-color: #22c55e !important; background-color: #f0fdf4 !important; }
+        .question-card.wrong-answer { border-color: #ef4444 !important; background-color: #fef2f2 !important; }
+        body.dark-theme .question-card.correct-answer { background-color: #064e3b !important; }
+        body.dark-theme .question-card.wrong-answer { background-color: #7f1d1d !important; }
         .feedback-badge {
-            display: none;
-            font-weight: bold;
-            font-size: 0.82rem;
-            margin-top: 8px;
-            padding: 4px 10px;
-            border-radius: 4px;
+            display: none; font-weight: bold; font-size: 0.82rem;
+            margin-top: 8px; padding: 4px 10px; border-radius: 4px;
         }
-        .show-results .feedback-badge {
-            display: inline-block;
+        .show-results .feedback-badge { display: inline-block; }
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .badge-danger { background: #fee2e2; color: #b91c1c; }
+        .penjelasan {
+            display: none; background: #fefce8; border-left: 3px solid #eab308;
+            padding: 8px 12px; border-radius: 4px; margin-top: 8px;
+            font-size: 0.82rem; line-height: 1.5; color: #713f12;
         }
-        .badge-success {
-            background: #dcfce7;
-            color: #15803d;
+        body.dark-theme .penjelasan {
+            background: #422006; border-left-color: #facc15; color: #fef9c3;
         }
-        .badge-danger {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
+        .show-results .penjelasan { display: block; }
 
         /* ===== ADSENSE ===== */
         .ad-container {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 18px;
-            text-align: center;
-            min-height: 90px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;
+            padding: 12px; margin-bottom: 18px; text-align: center;
+            min-height: 90px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; overflow: hidden;
         }
         .ad-container .ad-label {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
+            font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px;
         }
-        .ad-container ins.adsbygoogle {
-            display: block;
-            width: 100%;
-        }
-        body.dark-theme .ad-container {
-            background: #1e293b;
-            border-color: #334155;
-        }
+        .ad-container ins.adsbygoogle { display: block; width: 100%; }
+        body.dark-theme .ad-container { background: #1e293b; border-color: #334155; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hamburger {
-                display: inline-flex;
-            }
+            .hamburger { display: inline-flex; }
             .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 10px;
-                padding-top: 10px;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                gap: 6px;
-                order: 4;
+                display: none; flex-direction: column; width: 100%;
+                margin-top: 10px; padding-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1); gap: 6px; order: 4;
             }
-            .nav-links.show {
-                display: flex;
-            }
+            .nav-links.show { display: flex; }
             .dropdown-content {
-                position: static;
-                box-shadow: none;
-                background-color: #334155;
-                margin-left: 10px;
-                width: 100%;
+                position: static; box-shadow: none;
+                background-color: #334155; margin-left: 10px; width: 100%;
             }
-            .dropdown-content a {
-                padding: 6px 12px;
-            }
-            .navbar {
-                padding: 8px 12px;
-            }
-            .navbar-brand {
-                font-size: 0.9rem;
-            }
-            .navbar-brand img {
-                height: 28px;
-            }
-            .action-bar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-            }
-            .action-bar h2 {
-                font-size: 1rem;
-                text-align: center;
-            }
-            .btn-group {
-                justify-content: center;
-            }
-            .btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-                flex: 1 1 auto;
-                justify-content: center;
-            }
-            .container {
-                padding: 14px 12px;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-            .form-group.full-width {
-                grid-column: span 1;
-            }
-            .match-grid {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
-            .match-item {
-                flex-wrap: wrap;
-            }
-            .match-item strong {
-                min-width: 50px;
-            }
-            .section-title {
-                font-size: 1rem;
-                margin-top: 22px;
-            }
-            .question-title {
-                font-size: 0.9rem;
-            }
-            .options-list li {
-                font-size: 0.84rem;
-                padding: 5px 8px;
-            }
-            .data-table {
-                font-size: 0.78rem;
-                min-width: 0;
-            }
-            .data-table th,
-            .data-table td {
-                padding: 5px 6px;
-            }
-            .material-box,
-            .case-box {
-                padding: 10px 12px;
-                font-size: 0.88rem;
-            }
-            .score-card h3 {
-                font-size: 1rem;
-            }
-            .score-card p {
-                font-size: 1rem !important;
-            }
-            .ad-container {
-                padding: 8px;
-                min-height: 70px;
-            }
-            .chart-container {
-                height: 250px;
-                padding: 10px;
-            }
-            .chart-container canvas {
-                max-height: 200px;
-            }
+            .dropdown-content a { padding: 6px 12px; }
+            .navbar { padding: 8px 12px; }
+            .navbar-brand { font-size: 0.9rem; }
+            .navbar-brand img { height: 28px; }
+            .action-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+            .action-bar h2 { font-size: 1rem; text-align: center; }
+            .btn-group { justify-content: center; }
+            .btn { padding: 8px 12px; font-size: 0.8rem; flex: 1 1 auto; justify-content: center; }
+            .container { padding: 14px 12px; }
+            .form-grid { grid-template-columns: 1fr; gap: 8px; }
+            .form-group.full-width { grid-column: span 1; }
+            .match-grid { grid-template-columns: 1fr; gap: 6px; }
+            .match-item { flex-wrap: wrap; }
+            .match-item strong { min-width: 50px; }
+            .section-title { font-size: 1rem; margin-top: 22px; }
+            .question-title { font-size: 0.9rem; }
+            .options-list li { font-size: 0.84rem; padding: 5px 8px; }
+            .data-table { font-size: 0.78rem; min-width: 0; }
+            .data-table th, .data-table td { padding: 5px 6px; }
+            .material-box, .case-box { padding: 10px 12px; font-size: 0.88rem; }
+            .score-card h3 { font-size: 1rem; }
+            .score-card p { font-size: 1rem !important; }
+            .ad-container { padding: 8px; min-height: 70px; }
+            .chart-container { height: 250px; padding: 10px; }
+            .chart-container canvas { max-height: 200px; }
         }
         @media (max-width: 480px) {
-            body {
-                padding: 6px;
+            body { padding: 6px; }
+            .navbar { padding: 6px 8px; border-radius: 6px; }
+            .navbar-brand span { font-size: 0.8rem; }
+            .navbar-brand img { height: 24px; }
+            .theme-toggle, .hamburger {
+                padding: 4px 8px; min-width: 34px; min-height: 34px; font-size: 0.85rem;
             }
-            .navbar {
-                padding: 6px 8px;
-                border-radius: 6px;
-            }
-            .navbar-brand span {
-                font-size: 0.8rem;
-            }
-            .navbar-brand img {
-                height: 24px;
-            }
-            .theme-toggle,
-            .hamburger {
-                padding: 4px 8px;
-                min-width: 34px;
-                min-height: 34px;
-                font-size: 0.85rem;
-            }
-            .btn {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-                white-space: normal;
-            }
-            .container {
-                padding: 10px 8px;
-            }
-            .registration-form,
-            .score-card {
-                padding: 10px 12px;
-            }
-            .question-card {
-                padding: 10px 12px;
-                margin-bottom: 10px;
-            }
-            .options-list li {
-                font-size: 0.8rem;
-                padding: 4px 6px;
-            }
-            .options-list input[type="radio"],
-            .options-list input[type="checkbox"] {
-                width: 14px;
-                height: 14px;
-            }
-            .dropdown-select {
-                font-size: 0.8rem;
-                padding: 2px 4px;
-            }
-            .match-item {
-                font-size: 0.8rem;
-                padding: 3px 6px;
-            }
-            .data-table {
-                font-size: 0.7rem;
-            }
-            .data-table th,
-            .data-table td {
-                padding: 4px 5px;
-            }
-            .section-title {
-                font-size: 0.9rem;
-            }
-            .material-box,
-            .case-box {
-                padding: 8px 10px;
-                font-size: 0.82rem;
-            }
-            .feedback-badge {
-                font-size: 0.75rem;
-                padding: 3px 8px;
-            }
-            .ad-container {
-                padding: 6px;
-                min-height: 60px;
-            }
-            .ad-container .ad-label {
-                font-size: 0.6rem;
-            }
-            .chart-container {
-                height: 200px;
-                padding: 6px;
-            }
-            .chart-container canvas {
-                max-height: 160px;
-            }
+            .btn { padding: 6px 10px; font-size: 0.75rem; white-space: normal; }
+            .container { padding: 10px 8px; }
+            .registration-form, .score-card { padding: 10px 12px; }
+            .question-card { padding: 10px 12px; margin-bottom: 10px; }
+            .options-list li { font-size: 0.8rem; padding: 4px 6px; }
+            .options-list input[type="radio"], .options-list input[type="checkbox"] { width: 14px; height: 14px; }
+            .dropdown-select { font-size: 0.8rem; padding: 2px 4px; }
+            .match-item { font-size: 0.8rem; padding: 3px 6px; }
+            .data-table { font-size: 0.7rem; }
+            .data-table th, .data-table td { padding: 4px 5px; }
+            .section-title { font-size: 0.9rem; }
+            .material-box, .case-box { padding: 8px 10px; font-size: 0.82rem; }
+            .feedback-badge { font-size: 0.75rem; padding: 3px 8px; }
+            .ad-container { padding: 6px; min-height: 60px; }
+            .ad-container .ad-label { font-size: 0.6rem; }
+            .chart-container { height: 200px; padding: 6px; }
+            .chart-container canvas { max-height: 160px; }
         }
         @media print {
-            body {
-                background: #ffffff !important;
-                color: #000000 !important;
-                padding: 0 !important;
-            }
-            .navbar,
-            .action-bar,
-            button,
-            .ad-container {
-                display: none !important;
-            }
-            .container {
-                max-width: 100% !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                box-shadow: none !important;
-            }
-            .form-group input,
-            .form-group select {
-                border: none !important;
-                padding: 0 !important;
-                background: transparent !important;
-                appearance: none;
-                -webkit-appearance: none;
-            }
-            .question-card {
-                box-shadow: none !important;
-                border: 1px solid #cbd5e1 !important;
-                margin-bottom: 0.6rem !important;
-            }
-            .dropdown-select {
-                border: none !important;
-                background: transparent !important;
-                color: #000 !important;
-            }
-            .match-item {
-                border: none !important;
-                background: transparent !important;
-                padding: 2px 0 !important;
-            }
-            .data-table th,
-            .data-table td {
-                border-color: #aaa !important;
-            }
-            .question-card.correct-answer,
-            .question-card.wrong-answer {
-                background-color: transparent !important;
-                border-color: #000 !important;
-            }
-            .chart-container {
-                border: 1px solid #aaa !important;
-                background: #fff !important;
-            }
+            body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
+            .navbar, .action-bar, button, .ad-container { display: none !important; }
+            .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; }
+            .form-group input, .form-group select { border: none !important; padding: 0 !important; background: transparent !important; appearance: none; -webkit-appearance: none; }
+            .question-card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; margin-bottom: 0.6rem !important; }
+            .dropdown-select { border: none !important; background: transparent !important; color: #000 !important; }
+            .match-item { border: none !important; background: transparent !important; padding: 2px 0 !important; }
+            .data-table th, .data-table td { border-color: #aaa !important; }
+            .question-card.correct-answer, .question-card.wrong-answer { background-color: transparent !important; border-color: #000 !important; }
+            .chart-container { border: 1px solid #aaa !important; background: #fff !important; }
         }
-        .text-muted {
-            color: #64748b;
-            font-size: 0.82rem;
-            margin-bottom: 10px;
-        }
-        .mt-1 {
-            margin-top: 6px;
-        }
-        .overflow-auto {
-            overflow-x: auto;
+        .text-muted { color: #64748b; font-size: 0.82rem; margin-bottom: 10px; }
+        .mt-1 { margin-top: 6px; }
+        .overflow-auto { overflow-x: auto; }
+        .badge-hots {
+            background: #7c3aed; color: #fff; font-size: 0.65rem;
+            padding: 2px 6px; border-radius: 3px; margin-left: 6px;
+            font-weight: bold; vertical-align: middle;
         }
     </style>
 </head>
@@ -883,7 +403,7 @@
 
     <!-- ===== ACTION BAR ===== -->
     <div class="action-bar">
-        <h2><i class="fas fa-graduation-cap"></i> Evaluasi Pendapatan Nasional</h2>
+        <h2><i class="fas fa-brain"></i> Evaluasi HOTS: Analisis Pendapatan Nasional & Ketenagakerjaan</h2>
         <div class="btn-group">
             <button class="btn btn-submit" onclick="gradeTest()">✔ Periksa</button>
             <button class="btn btn-reset" onclick="resetForm()">🔄 Reset</button>
@@ -896,7 +416,7 @@
 
         <!-- IDENTITAS -->
         <div class="registration-form">
-            <h3 style="margin-top:0; color:#1e3a8a;">LAPORAN HASIL EVALUASI</h3>
+            <h3 style="margin-top:0; color:#1e3a8a;">LAPORAN HASIL EVALUASI HOTS</h3>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="studentName">Nama Siswa:</label>
@@ -912,7 +432,7 @@
                 </div>
                 <div class="form-group">
                     <label for="subject">Mata Pelajaran:</label>
-                    <input type="text" id="subject" value="Ekonomi - Pendapatan Nasional" readonly style="background:#f1f5f9;" />
+                    <input type="text" id="subject" value="Ekonomi - Pendapatan Nasional (HOTS)" readonly style="background:#f1f5f9;" />
                 </div>
             </div>
         </div>
@@ -925,7 +445,7 @@
                 <span id="statusDisplay" style="color:#64748b; font-weight:bold;">Belum Diperiksa</span>
             </p>
             <p class="text-muted" style="margin:2px 0 0 0;">
-                <i class="fas fa-info-circle"></i> 30 soal × 5 poin = 150 maksimal
+                <i class="fas fa-info-circle"></i> 30 soal × 5 poin = 150 maksimal | Level HOTS (C4-C6)
             </p>
         </div>
 
@@ -937,476 +457,537 @@
                 data-ad-client="ca-pub-1234355696976048"
                 data-ad-slot="1961815862"
                 data-ad-format="auto"
-                data-full-width-responsive="true">
-            </ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+                data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- ===== MATERI ===== -->
-        <div class="section-title">Ringkasan Materi & Perhitungan</div>
+        <!-- ===== MATERI PENGANTAR HOTS ===== -->
+        <div class="section-title">Pengantar Berpikir Kritis (HOTS)</div>
 
-        <div class="material-box">
-            <h4 style="margin-top:0;">A. Unsur Pendapatan Nasional</h4>
-            <ul>
-                <li><strong>PDB</strong> (Produk Domestik Bruto): Nilai produksi di dalam wilayah negara.</li>
-                <li><strong>GNP</strong> (Produk Nasional Bruto): Nilai produksi oleh warga negara, di dalam dan luar negeri.</li>
-                <li><strong>NNP</strong> (Produk Nasional Neto): GNP dikurangi penyusutan.</li>
-                <li><strong>NNI</strong> (Pendapatan Nasional Neto): NNP dikurangi pajak tidak langsung.</li>
-                <li><strong>PI</strong> (Pendapatan Perseorangan): Pendapatan yang diterima individu/rumah tangga.</li>
-                <li><strong>DI</strong> (Pendapatan Disposabel): Pendapatan siap dibelanjakan/ditabung (PI – pajak langsung).</li>
-            </ul>
-            <p><strong>Rumus Perhitungan:</strong></p>
-            <ul>
-                <li>GNP = PDB + (pendapatan faktor neto dari luar negeri)</li>
-                <li>NNP = GNP – penyusutan</li>
-                <li>NNI = NNP – pajak tidak langsung</li>
-                <li>PI = NNI – (laba ditahan + iuran jaminan sosial + pajak perusahaan) + transfer payment</li>
-                <li>DI = PI – pajak langsung</li>
-            </ul>
+        <div class="hots-highlight">
+            <strong><i class="fas fa-brain"></i> Apa itu HOTS?</strong><br>
+            Soal-soal pada evaluasi ini dirancang pada level <strong>C4 (Menganalisis)</strong>, <strong>C5 (Mengevaluasi)</strong>, dan <strong>C6 (Mencipta)</strong>. 
+            Anda tidak hanya diminta menghafal rumus, tetapi <strong>menginterpretasi data, membandingkan kasus, memprediksi dampak kebijakan, dan mengambil keputusan ekonomi</strong> berdasarkan stimulus berupa tabel, grafik, dan kasus nyata.
         </div>
 
         <div class="material-box">
-            <h4>B. Dampak Pendapatan Nasional pada Ketenagakerjaan & Pengangguran</h4>
-            <ul>
-                <li><strong>Pertumbuhan PDB yang tinggi</strong> biasanya menciptakan lapangan kerja baru, menurunkan pengangguran.</li>
-                <li><strong>PDB per kapita</strong> yang rendah mencerminkan produktivitas rendah dan upah rendah, yang dapat meningkatkan angka pengangguran terdidik.</li>
-                <li><strong>Kesenjangan pendapatan</strong> menyebabkan ketidakseimbangan serapan tenaga kerja antarwilayah (urbanisasi berlebihan).</li>
-                <li><strong>Kebijakan fiskal</strong> (subsidi, BLT) dan investasi infrastruktur dapat menekan pengangguran struktural.</li>
-            </ul>
+            <h4 style="margin-top:0;">A. Alur Berpikir dari PDB ke Pendapatan Disposabel</h4>
+            <p>Pendapatan nasional bukan sekadar angka, melainkan cerminan kesejahteraan riil. Perhatikan alur penyusutannya:</p>
+            <div class="kunci-rumus">
+                PDB → (+Pendapatan Neto LN) = <strong>GNP</strong> → (–Penyusutan) = <strong>NNP</strong> → (–Pajak Tak Langsung) = <strong>NNI</strong> → (–Laba Ditahan, Iuran Sos., Pajak Persh. + Transfer Payment) = <strong>PI</strong> → (–Pajak Langsung) = <strong>DI</strong>
+            </div>
+            <p><strong>Pertanyaan kritis:</strong> Mengapa GNP bisa lebih kecil dari PDB? Jawabannya terletak pada struktur tenaga kerja asing dan investasi luar negeri di negara tersebut.</p>
         </div>
-
-        <div class="material-box">
-            <h4>C. Uang yang Dipegang Masyarakat (Jumlah Uang Beredar)</h4>
-            <ul>
-                <li><strong>Jumlah uang beredar (M1, M2)</strong> berkaitan erat dengan pendapatan disposabel (DI). Semakin tinggi DI, semakin besar daya beli dan transaksi ekonomi.</li>
-                <li><strong>Kebijakan moneter</strong> (suku bunga, giro wajib minimum) mempengaruhi uang yang dipegang masyarakat dan investasi.</li>
-                <li><strong>Inflasi</strong> menggerus nilai riil uang yang dipegang, sehingga pendapatan nominal naik namun daya beli stagnan.</li>
-            </ul>
-        </div>
-
-        <!-- ===== GRAFIK PERBANDINGAN PDB ANTAR NEGARA ===== -->
-        <div class="section-title">Grafik Perbandingan PDB (2023)</div>
-        <div class="chart-container">
-            <div class="chart-title">PDB Nominal (Triliun USD) - Asia Tenggara</div>
-            <canvas id="gdpChart"></canvas>
-        </div>
-        <p class="text-muted" style="text-align:center; margin-top:-10px;">* Data perkiraan IMF 2023. Grafik ini menunjukkan ketimpangan ekonomi antarnegara.</p>
 
         <div class="case-box">
-            <h4 style="margin-top:0;">Studi Kasus: Dampak Pertumbuhan Ekonomi terhadap Pengangguran</h4>
-            <p>Negara A mengalami pertumbuhan PDB 6% per tahun, namun tingkat pengangguran tetap tinggi (8%). Hal ini terjadi karena pertumbuhan didorong oleh sektor padat modal (otomatisasi) yang tidak menyerap banyak tenaga kerja. Sementara itu, sektor informal dan UMKM kurang mendapat dukungan.</p>
-            <p><strong>Solusi:</strong> Pemerintah perlu mendorong investasi di sektor padat karya, memberikan pelatihan vokasi, dan memperluas akses kredit bagi UMKM.</p>
+            <h4 style="margin-top:0;">📊 Studi Kasus Fenomena <em>Jobless Growth</em></h4>
+            <p>Negara X mencatat pertumbuhan PDB rata-rata 6% per tahun (2019-2024), namun tingkat pengangguran tetap di kisaran 7-8%. Data BPS menunjukkan bahwa pertumbuhan didominasi oleh sektor pertambangan dan industri padat modal (otomatisasi), sementara sektor UMKM dan pertanian yang menyerap 60% tenaga kerja justru tumbuh lambat (2-3%).</p>
+            <p><strong>Analisis HOTS:</strong> Pertumbuhan ekonomi tanpa penyerapan tenaga kerja (<em>jobless growth</em>) terjadi ketika struktur produksi tidak inklusif. Kebijakan yang dibutuhkan bukan sekadar stimulus, melainkan <strong>restrukturisasi sektor</strong> dan <strong>pendidikan vokasi berbasis industri</strong>.</p>
         </div>
 
-        <!-- ========================================================== -->
-        <!-- BAGIAN 1: PILIHAN GANDA BIASA (10 SOAL)                     -->
-        <!-- ========================================================== -->
-        <div class="section-title">I. Pilihan Ganda Biasa (1–10)</div>
-        <p class="text-muted">* Satu jawaban benar, 5 poin masing-masing</p>
+        <!-- ===== TABEL DATA STIMULUS 1 ===== -->
+        <div class="section-title">Stimulus Data 1: Indikator Ekonomi Indonesia (2020-2024)</div>
+        <div class="overflow-auto">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Tahun</th>
+                        <th>Pertumbuhan PDB (%)</th>
+                        <th>Tingkat Pengangguran (%)</th>
+                        <th>Inflasi (%)</th>
+                        <th>Koefisien Gini</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2020</td><td class="highlight-cell">–2,07</td><td>7,07</td><td>1,68</td><td>0,385</td></tr>
+                    <tr><td>2021</td><td>3,69</td><td>6,49</td><td>1,87</td><td>0,381</td></tr>
+                    <tr><td>2022</td><td>5,31</td><td>5,86</td><td>5,51</td><td>0,379</td></tr>
+                    <tr><td>2023</td><td>5,05</td><td>5,32</td><td>3,70</td><td>0,388</td></tr>
+                    <tr><td>2024</td><td>5,03</td><td>4,91</td><td>2,52</td><td>0,384</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-muted">Sumber: BPS & Bank Indonesia (data ilustratif untuk keperluan edukasi).</p>
 
-        <!-- Soal 1 -->
+        <!-- ===== GRAFIK PDB ASEAN ===== -->
+        <div class="section-title">Stimulus Data 2: Perbandingan PDB ASEAN 2023</div>
+        <div class="chart-container">
+            <div class="chart-title">PDB Nominal (Triliun USD) & PDB per Kapita (USD)</div>
+            <canvas id="gdpChart"></canvas>
+        </div>
+
+        <!-- ===== GRAFIK KURVA PHILLIPS ===== -->
+        <div class="chart-container">
+            <div class="chart-title">Kurva Phillips: Inflasi vs Pengangguran Indonesia</div>
+            <canvas id="phillipsChart"></canvas>
+        </div>
+        <p class="text-muted" style="text-align:center; margin-top:-10px;">Kurva Phillips menunjukkan trade-off jangka pendek antara inflasi dan pengangguran.</p>
+
+        <!-- ========================================================== -->
+        <!-- BAGIAN 1: PILIHAN GANDA BIASA HOTS (10 SOAL)              -->
+        <!-- ========================================================== -->
+        <div class="section-title">I. Pilihan Ganda HOTS (1–10)</div>
+        <p class="text-muted"><i class="fas fa-brain"></i> Satu jawaban benar, 5 poin masing-masing. Analisis stimulus dengan cermat.</p>
+
+        <!-- Soal 1 - Analisis Kasus 2 Negara -->
         <div class="question-card" id="q-card-1">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">1. Pendapatan nasional didefinisikan sebagai total nilai …</div>
+            <span class="tag-type tag-hots">HOTS - Analisis</span>
+            <div class="stimulus">
+                <strong>Stimulus:</strong> Negara A memiliki PDB sebesar USD 800 miliar, tetapi pendapatan neto warga negaranya di luar negeri adalah negatif USD 50 miliar (karena banyak TKI mengirim remitansi ke luar negeri). Negara B memiliki PDB USD 700 miliar, namun pendapatan neto dari luar negeri positif USD 120 miliar (banyak perusahaan B beroperasi di luar negeri).
+            </div>
+            <div class="question-title">1. Berdasarkan data di atas, kesimpulan yang paling tepat tentang kesejahteraan ekonomi warga negara di kedua negara adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q1" value="A" /> A. Barang dan jasa antara yang diproduksi dalam negeri</label></li>
-                <li><label><input type="radio" name="q1" value="B" /> B. Barang dan jasa akhir yang diproduksi oleh suatu negara dalam satu tahun</label></li>
-                <li><label><input type="radio" name="q1" value="C" /> C. Ekspor neto suatu negara</label></li>
-                <li><label><input type="radio" name="q1" value="D" /> D. Total investasi asing di suatu negara</label></li>
-                <li><label><input type="radio" name="q1" value="E" /> E. Jumlah uang beredar di masyarakat</label></li>
+                <li><label><input type="radio" name="q1" value="A" /> A. Warga negara A lebih sejahtera karena PDB-nya lebih tinggi</label></li>
+                <li><label><input type="radio" name="q1" value="B" /> B. Warga negara B lebih sejahtera karena GNP-nya lebih tinggi dari PDB, menandakan dominasi ekonomi domestik oleh warga negara sendiri</label></li>
+                <li><label><input type="radio" name="q1" value="C" /> C. Kesejahteraan kedua negara sama karena keduanya berkembang</label></li>
+                <li><label><input type="radio" name="q1" value="D" /> D. Negara A lebih unggul dalam investasi luar negeri</label></li>
+                <li><label><input type="radio" name="q1" value="E" /> E. Negara B tidak memiliki tenaga kerja asing</label></li>
             </ul>
             <div class="feedback-badge" id="fb-1"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> GNP Negara A = 800 – 50 = 750 miliar; GNP Negara B = 700 + 120 = 820 miliar. GNP lebih menggambarkan kesejahteraan warga negara karena berbasis kewarganegaraan. Negara B lebih sejahtera secara GNP.</div>
         </div>
 
-        <!-- Soal 2 -->
+        <!-- Soal 2 (BARU) - Interpretasi Visualisasi Data Komposisi PDB -->
         <div class="question-card" id="q-card-2">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">2. Produk Domestik Bruto (PDB) menghitung nilai produksi berdasarkan …</div>
+            <span class="tag-type tag-hots">HOTS - Interpretasi Data</span>
+            <div class="stimulus">
+                <strong>Stimulus Visualisasi:</strong> Perhatikan tren visualisasi komposisi PDB Negara Z (2020-2024):<br>
+                • <strong>Konsumsi Rumah Tangga:</strong> 54% (Dominan dan stabil)<br>
+                • <strong>Pembentukan Modal Tetap Bruto (Investasi):</strong> 31%<br>
+                • <strong>Konsumsi Pemerintah:</strong> 9%<br>
+                • <strong>Ekspor Neto (Ekspor - Impor):</strong> Fluktuatif antara +1% hingga -2%<br>
+                <em>Grafik batang menunjukkan bahwa ketika pandemi terjadi di 2020, Ekspor Neto anjlok drastis, namun PDB tidak runtuh karena ditopang oleh Konsumsi Rumah Tangga yang masif.</em>
+            </div>
+            <div class="question-title">2. Berdasarkan interpretasi visualisasi komposisi PDB di atas, kerentanan sekaligus ketahanan utama struktur ekonomi Negara Z adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q2" value="A" /> A. Lokasi produksi (di dalam wilayah negara)</label></li>
-                <li><label><input type="radio" name="q2" value="B" /> B. Kewarganegaraan produsen (warga negara)</label></li>
-                <li><label><input type="radio" name="q2" value="C" /> C. Sumber daya alam yang digunakan</label></li>
-                <li><label><input type="radio" name="q2" value="D" /> D. Jumlah tenaga kerja yang terlibat</label></li>
-                <li><label><input type="radio" name="q2" value="E" /> E. Besarnya pajak yang dibayarkan</label></li>
+                <li><label><input type="radio" name="q2" value="A" /> A. Ekonomi sangat rapuh terhadap resesi global karena ekspor merupakan motor utama pertumbuhan PDB</label></li>
+                <li><label><input type="radio" name="q2" value="B" /> B. Ekonomi relatif tahan terhadap guncangan permintaan global, namun sangat rentan terhadap inflasi domestik yang dapat menggerus daya beli rumah tangga</label></li>
+                <li><label><input type="radio" name="q2" value="C" /> C. Investasi asing mendominasi PDB sehingga negara ini sangat bergantung pada utang luar negeri</label></li>
+                <li><label><input type="radio" name="q2" value="D" /> D. Belanja pemerintah adalah penyumbang utama PDB yang memicu defisit anggaran permanen</label></li>
+                <li><label><input type="radio" name="q2" value="E" /> E. Defisit neraca perdagangan menandakan industri manufaktur negara ini telah bangkrut sepenuhnya</label></li>
             </ul>
             <div class="feedback-badge" id="fb-2"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Visualisasi menunjukkan Konsumsi Rumah Tangga mendominasi 54%. Ini berarti ekonomi sangat bertumpu pada daya beli domestik (ketahanan terhadap guncangan global/ekspor), namun sangat rentan jika terjadi inflasi tinggi di dalam negeri yang menggerus konsumsi masyarakat.</div>
         </div>
 
-        <!-- Soal 3 -->
+        <!-- Soal 3 - Analisis Data Tabel BPS -->
         <div class="question-card" id="q-card-3">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">3. GNP (Produk Nasional Bruto) adalah PDB ditambah …</div>
+            <span class="tag-type tag-hots">HOTS - Evaluasi Data</span>
+            <div class="stimulus">
+                <strong>Perhatikan Stimulus Data 1</strong> (tabel indikator Indonesia 2020-2024).
+            </div>
+            <div class="question-title">3. Pernyataan yang paling tepat menginterpretasikan pola hubungan pertumbuhan PDB dengan koefisien Gini pada tahun 2022-2023 adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q3" value="A" /> A. Penyusutan barang modal</label></li>
-                <li><label><input type="radio" name="q3" value="B" /> B. Pendapatan neto faktor produksi dari luar negeri</label></li>
-                <li><label><input type="radio" name="q3" value="C" /> C. Pajak tidak langsung</label></li>
-                <li><label><input type="radio" name="q3" value="D" /> D. Transfer payment</label></li>
-                <li><label><input type="radio" name="q3" value="E" /> E. Iuran jaminan sosial</label></li>
+                <li><label><input type="radio" name="q3" value="A" /> A. Pertumbuhan ekonomi otomatis menurunkan ketimpangan</label></li>
+                <li><label><input type="radio" name="q3" value="B" /> B. Pertumbuhan PDB yang tinggi belum tentu diikuti pemerataan pendapatan; Gini justru naik pada 2023 meski PDB tumbuh 5%</label></li>
+                <li><label><input type="radio" name="q3" value="C" /> C. Inflasi tinggi adalah penyebab utama penurunan Gini</label></li>
+                <li><label><input type="radio" name="q3" value="D" /> D. Pengangguran rendah selalu berarti Gini rendah</label></li>
+                <li><label><input type="radio" name="q3" value="E" /> E. Data Gini tidak relevan dengan pertumbuhan PDB</label></li>
             </ul>
             <div class="feedback-badge" id="fb-3"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Tahun 2023 PDB tumbuh 5,05%, tetapi Gini naik dari 0,379 menjadi 0,388. Ini membuktikan pertumbuhan kuantitatif tidak otomatis menjamin pemerataan. Butuh kebijakan redistributif (pajak progresif, BLT, KUR).</div>
         </div>
 
-        <!-- Soal 4 -->
+        <!-- Soal 4 - Analisis Kebijakan Moneter -->
         <div class="question-card" id="q-card-4">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">4. NNP (Produk Nasional Neto) diperoleh dari GNP dikurangi …</div>
+            <span class="tag-type tag-hots">HOTS - Prediksi Kebijakan</span>
+            <div class="stimulus">
+                <strong>Stimulus:</strong> Bank Indonesia menaikkan suku bunga acuan dari 5,75% menjadi 6,25% pada tahun 2024 untuk menekan inflasi yang mencapai 4,5%.
+            </div>
+            <div class="question-title">4. Dampak berantai (multiplier effect) kebijakan tersebut terhadap pendapatan disposabel (DI) dan pengangguran adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q4" value="A" /> A. Pajak langsung</label></li>
-                <li><label><input type="radio" name="q4" value="B" /> B. Pajak tidak langsung</label></li>
-                <li><label><input type="radio" name="q4" value="C" /> C. Penyusutan (depresiasi)</label></li>
-                <li><label><input type="radio" name="q4" value="D" /> D. Laba ditahan</label></li>
-                <li><label><input type="radio" name="q4" value="E" /> E. Transfer payment</label></li>
+                <li><label><input type="radio" name="q4" value="A" /> A. DI naik karena tabungan meningkat, pengangguran turun</label></li>
+                <li><label><input type="radio" name="q4" value="B" /> B. DI naik karena investasi melonjak, pengangguran turun</label></li>
+                <li><label><input type="radio" name="q4" value="C" /> C. DI turun karena kredit mahal → konsumsi & investasi turun → PHK meningkat → pengangguran naik</label></li>
+                <li><label><input type="radio" name="q4" value="D" /> D. DI dan pengangguran tidak terpengaruh karena keduanya independen</label></li>
+                <li><label><input type="radio" name="q4" value="E" /> E. DI tetap karena inflasi turun, pengangguran juga turun</label></li>
             </ul>
             <div class="feedback-badge" id="fb-4"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Kenaikan suku bunga → kredit mahal → konsumsi (C) dan investasi (I) turun → PDB turun → PHK meningkat → pengangguran naik. DI ikut turun karena pendapatan masyarakat menurun. Ini adalah trade-off klasik kebijakan kontraktif.</div>
         </div>
 
-        <!-- Soal 5 -->
+        <!-- Soal 5 (BARU) - Interpretasi Grafik Kesenjangan PDB vs DI -->
         <div class="question-card" id="q-card-5">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">5. Pendapatan yang benar-benar diterima oleh individu/rumah tangga sebelum pajak langsung disebut …</div>
+            <span class="tag-type tag-hots">HOTS - Analisis Grafik</span>
+            <div class="stimulus">
+                <strong>Stimulus Visualisasi:</strong> Grafik garis ganda Negara W (2019-2024) menunjukkan anomali berikut:<br>
+                • Garis Merah (<strong>Pertumbuhan PDB per Kapita</strong>): Tren menanjak tajam, naik 28% dari tahun dasar.<br>
+                • Garis Biru (<strong>Pertumbuhan Pendapatan Disposabel (DI) Riil</strong>): Datar, hanya naik 1,5% pada periode yang sama.<br>
+                • <em>Catatan Visual:</em> Kesenjangan (gap) antara kedua garis terus melebar seiring dengan tingginya retensi laba korporasi dan kenaikan pajak tidak langsung.
+            </div>
+            <div class="question-title">5. Makna paling kritis dari visualisasi kesenjangan (gap) antara PDB per kapita dan Pendapatan Disposabel (DI) tersebut bagi kesejahteraan riil masyarakat Negara W adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q5" value="A" /> A. NNI</label></li>
-                <li><label><input type="radio" name="q5" value="B" /> B. PI (Personal Income)</label></li>
-                <li><label><input type="radio" name="q5" value="C" /> C. DI (Disposable Income)</label></li>
-                <li><label><input type="radio" name="q5" value="D" /> D. PDB</label></li>
-                <li><label><input type="radio" name="q5" value="E" /> E. GNP</label></li>
+                <li><label><input type="radio" name="q5" value="A" /> A. Pembangunan ekonomi sangat sukses karena PDB per kapita meningkat secara konsisten setiap tahun</label></li>
+                <li><label><input type="radio" name="q5" value="B" /> B. Masyarakat tidak menikmati kesejahteraan riil dari pertumbuhan ekonomi karena nilai tambah PDB lebih banyak terserap oleh negara dan korporasi, bukan mengalir ke konsumen</label></li>
+                <li><label><input type="radio" name="q5" value="C" /> C. Negara mengalami hiperinflasi yang menyebabkan nilai tukar mata uang domestik hancur di pasar global</label></li>
+                <li><label><input type="radio" name="q5" value="D" /> D. Transfer payment pemerintah sangat masif sehingga menutupi tingginya pajak perorangan yang dibayar masyarakat</label></li>
+                <li><label><input type="radio" name="q5" value="E" /> E. Pendapatan Neto Luar Negeri bernilai negatif ekstrem sehingga seluruh PDB dilarikan ke investor asing</label></li>
             </ul>
             <div class="feedback-badge" id="fb-5"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Visualisasi menunjukkan anomali "growth without welfare". PDB (output) naik, tetapi DI (daya beli riil masyarakat setelah pajak) stagnan. Ini mengindikasikan pertumbuhan ekonomi tidak menetes ke bawah (<em>trickle-down effect</em> gagal), melainkan tertahan di laba ditahan korporasi atau pajak tidak langsung.</div>
         </div>
 
-        <!-- Soal 6 -->
+        <!-- Soal 6 - Analisis Kurva Phillips -->
         <div class="question-card" id="q-card-6">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">6. Jika PDB suatu negara tumbuh 7% tetapi tingkat pengangguran tetap tinggi, kemungkinan penyebabnya adalah …</div>
+            <span class="tag-type tag-hots">HOTS - Interpretasi Grafik</span>
+            <div class="stimulus">
+                <strong>Perhatikan Grafik Kurva Phillips</strong> di atas (Inflasi vs Pengangguran Indonesia).
+            </div>
+            <div class="question-title">6. Berdasarkan pola kurva Phillips, jika pemerintah ingin menurunkan pengangguran dari 6% ke 4%, konsekuensi ekonomi yang paling mungkin terjadi adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q6" value="A" /> A. Pertumbuhan didorong sektor padat karya</label></li>
-                <li><label><input type="radio" name="q6" value="B" /> B. Pertumbuhan didorong sektor padat modal dan otomatisasi</label></li>
-                <li><label><input type="radio" name="q6" value="C" /> C. Angkatan kerja menurun drastis</label></li>
-                <li><label><input type="radio" name="q6" value="D" /> D. Inflasi yang sangat rendah</label></li>
-                <li><label><input type="radio" name="q6" value="E" /> E. Pajak langsung meningkat</label></li>
+                <li><label><input type="radio" name="q6" value="A" /> A. Inflasi akan turun drastis</label></li>
+                <li><label><input type="radio" name="q6" value="B" /> B. Inflasi akan meningkat sebagai trade-off atas penurunan pengangguran</label></li>
+                <li><label><input type="radio" name="q6" value="C" /> C. Pengangguran dan inflasi keduanya turun bersamaan</label></li>
+                <li><label><input type="radio" name="q6" value="D" /> D. Tidak ada hubungan antara keduanya</label></li>
+                <li><label><input type="radio" name="q6" value="E" /> E. Ekonomi akan mengalami stagflasi</label></li>
             </ul>
             <div class="feedback-badge" id="fb-6"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Kurva Phillips menunjukkan trade-off negatif jangka pendek: menurunkan pengangguran membutuhkan stimulus permintaan yang memicu inflasi. Ini adalah dilema kebijakan makro klasik.</div>
         </div>
 
-        <!-- Soal 7 -->
+        <!-- Soal 7 - Analisis Kasus Otomatisasi -->
         <div class="question-card" id="q-card-7">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">7. Jumlah uang yang dipegang masyarakat (M1) paling erat kaitannya dengan …</div>
+            <span class="tag-type tag-hots">HOTS - Analisis Kasus</span>
+            <div class="stimulus">
+                <strong>Stimulus:</strong> Pabrik tekstil di Jawa Barat mengganti 40% tenaga kerja dengan robot otomatis selama 2022-2024. PDB pabrik naik 25%, tetapi jumlah pekerja turun dari 5.000 menjadi 3.000 orang. Sebagian besar pekerja yang di-PHK adalah lulusan SMA tanpa sertifikasi khusus.
+            </div>
+            <div class="question-title">7. Jenis pengangguran yang muncul dari kasus ini dan kebijakan solutif yang paling tepat adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q7" value="A" /> A. PDB</label></li>
-                <li><label><input type="radio" name="q7" value="B" /> B. GNP</label></li>
-                <li><label><input type="radio" name="q7" value="C" /> C. Pendapatan disposabel (DI)</label></li>
-                <li><label><input type="radio" name="q7" value="D" /> D. NNP</label></li>
-                <li><label><input type="radio" name="q7" value="E" /> E. NNI</label></li>
+                <li><label><input type="radio" name="q7" value="A" /> A. Pengangguran friksional → solusinya menaikkan UMR</label></li>
+                <li><label><input type="radio" name="q7" value="B" /> B. Pengangguran siklis → solusinya stimulus fiskal</label></li>
+                <li><label><input type="radio" name="q7" value="C" /> C. Pengangguran struktural → solusinya pelatihan vokasi berbasis teknologi dan sertifikasi digital</label></li>
+                <li><label><input type="radio" name="q7" value="D" /> D. Pengangguran musiman → solusinya diversifikasi pekerjaan</label></li>
+                <li><label><input type="radio" name="q7" value="E" /> E. Pengangguran sukarela → solusinya subsidi upah</label></li>
             </ul>
             <div class="feedback-badge" id="fb-7"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Perubahan struktur industri (otomatisasi) menciptakan pengangguran struktural karena keterampilan pekerja tidak sesuai kebutuhan pasar. Solusi yang tepat adalah <em>reskilling</em> dan <em>upskilling</em> melalui pelatihan vokasi berbasis teknologi.</div>
         </div>
 
-        <!-- Soal 8 -->
+        <!-- Soal 8 - Evaluasi Kesenjangan -->
         <div class="question-card" id="q-card-8">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">8. Koefisien Gini bernilai 0 menunjukkan …</div>
+            <span class="tag-type tag-hots">HOTS - Evaluasi</span>
+            <div class="stimulus">
+                <strong>Stimulus:</strong> Negara Y memiliki PDB per kapita USD 35.000 (setara negara maju), namun 1% penduduk terkaya menguasai 45% kekayaan nasional. Angka kemiskinan tetap 12%, dan akses pendidikan berkualitas hanya tersedia di kota besar.
+            </div>
+            <div class="question-title">8. Kesimpulan paling kritis tentang keberhasilan pembangunan ekonomi negara Y adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q8" value="A" /> A. Ketimpangan sempurna</label></li>
-                <li><label><input type="radio" name="q8" value="B" /> B. Pemerataan sempurna</label></li>
-                <li><label><input type="radio" name="q8" value="C" /> C. Distribusi pendapatan tidak merata</label></li>
-                <li><label><input type="radio" name="q8" value="D" /> D. Pendapatan per kapita tinggi</label></li>
-                <li><label><input type="radio" name="q8" value="E" /> E. Tingkat kemiskinan nol</label></li>
+                <li><label><input type="radio" name="q8" value="A" /> A. Negara Y sangat sukses karena PDB per kapitanya tinggi</label></li>
+                <li><label><input type="radio" name="q8" value="B" /> B. Pertumbuhan ekonomi negara Y bersifat inklusif</label></li>
+                <li><label><input type="radio" name="q8" value="C" /> C. Negara Y mengalami <em>growth without equity</em> – pertumbuhan tinggi tanpa pemerataan dan tanpa perbaikan kesejahteraan struktural</label></li>
+                <li><label><input type="radio" name="q8" value="D" /> D. Kemiskinan 12% adalah angka wajar untuk negara berkembang</label></li>
+                <li><label><input type="radio" name="q8" value="E" /> E. Koefisien Gini negara Y pasti di bawah 0,3</label></li>
             </ul>
             <div class="feedback-badge" id="fb-8"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> PDB per kapita tinggi bukan jaminan kesejahteraan. Konsentrasi kekayaan 45% pada 1% penduduk menandakan ketimpangan ekstrem. Ini adalah kasus klasik "pertumbuhan tanpa pemerataan".</div>
         </div>
 
-        <!-- Soal 9 -->
+        <!-- Soal 9 - Analisis Transfer Payment -->
         <div class="question-card" id="q-card-9">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">9. Rumus pendapatan disposabel (DI) adalah …</div>
+            <span class="tag-type tag-hots">HOTS - Analisis Kebijakan</span>
+            <div class="stimulus">
+                <strong>Stimulus:</strong> Pemerintah Indonesia menaikkan anggaran Program Keluarga Harapan (PKH) dan Bantuan Langsung Tunai (BLT) sebesar 20% pada tahun 2024 untuk menekan dampak inflasi pangan.
+            </div>
+            <div class="question-title">9. Analisis dampak kenaikan transfer payment terhadap pendapatan nasional dan multiplier effect-nya adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q9" value="A" /> A. PI – pajak langsung</label></li>
-                <li><label><input type="radio" name="q9" value="B" /> B. PI + transfer payment</label></li>
-                <li><label><input type="radio" name="q9" value="C" /> C. NNI – pajak tidak langsung</label></li>
-                <li><label><input type="radio" name="q9" value="D" /> D. GNP – penyusutan</label></li>
-                <li><label><input type="radio" name="q9" value="E" /> E. PDB + pendapatan neto dari luar negeri</label></li>
+                <li><label><input type="radio" name="q9" value="A" /> A. PI dan DI naik, tetapi tidak mempengaruhi konsumsi karena BLT langsung ditabung</label></li>
+                <li><label><input type="radio" name="q9" value="B" /> B. PI naik → DI naik → konsumsi rumah tangga meningkat → PDB naik melalui multiplier konsumsi, menyerap tenaga kerja di sektor riil</label></li>
+                <li><label><input type="radio" name="q9" value="C" /> C. Transfer payment tidak termasuk dalam perhitungan pendapatan nasional</label></li>
+                <li><label><input type="radio" name="q9" value="D" /> D. Kenaikan BLT justru menurunkan PDB karena membebani APBN</label></li>
+                <li><label><input type="radio" name="q9" value="E" /> E. Inflasi akan turun drastis akibat kenaikan BLT</label></li>
             </ul>
             <div class="feedback-badge" id="fb-9"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Transfer payment masuk dalam perhitungan PI dan DI. Kenaikannya meningkatkan daya beli → konsumsi (C) naik → PDB naik → lapangan kerja tercipta. Namun perlu diwaspadai risiko inflasi demand-pull jika pasokan tidak memadai.</div>
         </div>
 
-        <!-- Soal 10 -->
+        <!-- Soal 10 - Analisis Grafik PDB ASEAN -->
         <div class="question-card" id="q-card-10">
-            <span class="tag-type">Pilihan Ganda</span>
-            <div class="question-title">10. Berdasarkan grafik, negara dengan PDB tertinggi di Asia Tenggara adalah …</div>
+            <span class="tag-type tag-hots">HOTS - Interpretasi Grafik</span>
+            <div class="stimulus">
+                <strong>Perhatikan Stimulus Data 2</strong> (grafik PDB ASEAN 2023).
+            </div>
+            <div class="question-title">10. Berdasarkan grafik PDB ASEAN, analisis paling tepat mengenai posisi ekonomi Indonesia adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q10" value="A" /> A. Singapura</label></li>
-                <li><label><input type="radio" name="q10" value="B" /> B. Indonesia</label></li>
-                <li><label><input type="radio" name="q10" value="C" /> C. Thailand</label></li>
-                <li><label><input type="radio" name="q10" value="D" /> D. Vietnam</label></li>
-                <li><label><input type="radio" name="q10" value="E" /> E. Filipina</label></li>
+                <li><label><input type="radio" name="q10" value="A" /> A. Indonesia merupakan negara termaju di ASEAN karena PDB tertinggi dan per kapita tertinggi</label></li>
+                <li><label><input type="radio" name="q10" value="B" /> B. Indonesia memiliki ekonomi terbesar secara agregat, tetapi PDB per kapita masih di bawah Singapura dan Malaysia, mencerminkan tantangan populasi besar</label></li>
+                <li><label><input type="radio" name="q10" value="C" /> C. Singapura lebih miskin dari Indonesia secara agregat</label></li>
+                <li><label><input type="radio" name="q10" value="D" /> D. Thailand memiliki PDB per kapita tertinggi di ASEAN</label></li>
+                <li><label><input type="radio" name="q10" value="E" /> E. Vietnam akan segera menyalip Indonesia dalam PDB agregat</label></li>
             </ul>
             <div class="feedback-badge" id="fb-10"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Indonesia PDB agregat terbesar (USD 1,37T) karena populasi besar, tetapi per kapita (sekitar USD 4.900) jauh di bawah Singapura (USD 65.000+) dan Malaysia. Ini mencerminkan tantangan pemerataan pembangunan.</div>
         </div>
 
         <!-- ========================================================== -->
-        <!-- BAGIAN 2: PILIHAN GANDA KOMPLEKS (5 SOAL)                   -->
+        <!-- BAGIAN 2: PILIHAN GANDA KOMPLEKS HOTS (5 SOAL)             -->
         <!-- ========================================================== -->
-        <div class="section-title">II. Pilihan Ganda Kompleks (11–15)</div>
+        <div class="section-title">II. Pilihan Ganda Kompleks HOTS (11–15)</div>
         <p class="text-muted">* Pilih <strong>lebih dari satu</strong> jawaban benar. 5 poin jika semua tepat.</p>
 
         <!-- Soal 11 -->
         <div class="question-card" id="q-card-11">
-            <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">11. Manakah yang termasuk unsur pendapatan nasional dari yang bruto ke neto? (Pilih urutan yang benar)</div>
+            <span class="tag-type tag-hots">HOTS Kompleks</span>
+            <div class="question-title">11. Faktor-faktor yang dapat menyebabkan terjadinya <em>jobless growth</em> (pertumbuhan tanpa penyerapan tenaga kerja) di Indonesia adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="checkbox" name="q11" value="A" /> A. PDB → GNP → NNP → NNI</label></li>
-                <li><label><input type="checkbox" name="q11" value="B" /> B. GNP → PDB → NNI → NNP</label></li>
-                <li><label><input type="checkbox" name="q11" value="C" /> C. PDB → NNP → GNP → NNI</label></li>
-                <li><label><input type="checkbox" name="q11" value="D" /> D. NNI → PI → DI</label></li>
-                <li><label><input type="checkbox" name="q11" value="E" /> E. PI → DI → NNI</label></li>
+                <li><label><input type="checkbox" name="q11" value="A" /> A. Dominasi sektor padat modal dan otomasi industri</label></li>
+                <li><label><input type="checkbox" name="q11" value="B" /> B. Ketidaksesuaian keterampilan lulusan pendidikan dengan kebutuhan industri (skill mismatch)</label></li>
+                <li><label><input type="checkbox" name="q11" value="C" /> C. Pertumbuhan UMKM yang stagnan akibat kesulitan akses kredit</label></li>
+                <li><label><input type="checkbox" name="q11" value="D" /> D. Peningkatan investasi di sektor jasa dan pertanian</label></li>
+                <li><label><input type="checkbox" name="q11" value="E" /> E. Regulasi ketenagakerjaan yang terlalu longgar</label></li>
             </ul>
             <div class="feedback-badge" id="fb-11"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A, B, dan C adalah penyebab utama jobless growth. D justru menyerap tenaga kerja. E tidak tepat karena regulasi longgar cenderung meningkatkan serapan tenaga kerja.</div>
         </div>
 
         <!-- Soal 12 -->
         <div class="question-card" id="q-card-12">
-            <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">12. Dampak positif pertumbuhan PDB terhadap ketenagakerjaan dapat terjadi jika … (pilih semua)</div>
+            <span class="tag-type tag-hots">HOTS Kompleks</span>
+            <div class="question-title">12. Kebijakan yang dapat menurunkan koefisien Gini sekaligus meningkatkan PDB secara inklusif adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="checkbox" name="q12" value="A" /> A. Pertumbuhan didorong sektor padat karya</label></li>
-                <li><label><input type="checkbox" name="q12" value="B" /> B. Investasi infrastruktur meningkat</label></li>
-                <li><label><input type="checkbox" name="q12" value="C" /> C. Sektor jasa dan UMKM berkembang</label></li>
-                <li><label><input type="checkbox" name="q12" value="D" /> D. Otomatisasi menggantikan tenaga manusia</label></li>
-                <li><label><input type="checkbox" name="q12" value="E" /> E. Pajak progresif ditingkatkan</label></li>
+                <li><label><input type="checkbox" name="q12" value="A" /> A. Peningkatan pajak progresif untuk orang super kaya</label></li>
+                <li><label><input type="checkbox" name="q12" value="B" /> B. Program Kartu Prakerja dan pelatihan vokasi digital</label></li>
+                <li><label><input type="checkbox" name="q12" value="C" /> C. Perluasan KUR (Kredit Usaha Rakyat) untuk UMKM</label></li>
+                <li><label><input type="checkbox" name="q12" value="D" /> D. Penurunan UMR untuk menarik investor asing</label></li>
+                <li><label><input type="checkbox" name="q12" value="E" /> E. Pembangunan infrastruktur di daerah tertinggal</label></li>
             </ul>
             <div class="feedback-badge" id="fb-12"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A, B, C, dan E adalah kebijakan inklusif. D justru memperburuk ketimpangan karena menekan pendapatan pekerja demi keuntungan pemilik modal.</div>
         </div>
 
         <!-- Soal 13 -->
         <div class="question-card" id="q-card-13">
-            <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">13. Faktor yang mempengaruhi jumlah uang yang dipegang masyarakat adalah … (pilih semua)</div>
+            <span class="tag-type tag-hots">HOTS Kompleks</span>
+            <div class="question-title">13. Dampak negatif inflasi tinggi yang persisten terhadap pendapatan nasional dan masyarakat adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="checkbox" name="q13" value="A" /> A. Tingkat suku bunga</label></li>
-                <li><label><input type="checkbox" name="q13" value="B" /> B. Pendapatan disposabel</label></li>
-                <li><label><input type="checkbox" name="q13" value="C" /> C. Inflasi</label></li>
-                <li><label><input type="checkbox" name="q13" value="D" /> D. Jumlah penduduk</label></li>
-                <li><label><input type="checkbox" name="q13" value="E" /> E. Kebijakan fiskal</label></li>
+                <li><label><input type="checkbox" name="q13" value="A" /> A. Menggerus nilai riil pendapatan disposabel</label></li>
+                <li><label><input type="checkbox" name="q13" value="B" /> B. Menurunkan daya beli masyarakat berpenghasilan tetap</label></li>
+                <li><label><input type="checkbox" name="q13" value="C" /> C. Memicu ekspektasi inflasi yang memperburuk spiral harga</label></li>
+                <li><label><input type="checkbox" name="q13" value="D" /> D. Meningkatkan ekspor karena harga domestik murah</label></li>
+                <li><label><input type="checkbox" name="q13" value="E" /> E. Menurunkan minat investasi asing karena ketidakpastian</label></li>
             </ul>
             <div class="feedback-badge" id="fb-13"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A, B, C, dan E adalah dampak negatif inflasi. D tidak tepat karena inflasi justru membuat harga domestik mahal, mengurangi daya saing ekspor.</div>
         </div>
 
         <!-- Soal 14 -->
         <div class="question-card" id="q-card-14">
-            <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">14. Dampak kesenjangan pendapatan terhadap ketenagakerjaan antara lain … (pilih semua)</div>
+            <span class="tag-type tag-hots">HOTS Kompleks</span>
+            <div class="question-title">14. Indikator yang menunjukkan bahwa pertumbuhan ekonomi suatu negara berkualitas (bukan sekadar kuantitas) adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="checkbox" name="q14" value="A" /> A. Urbanisasi berlebihan ke kota besar</label></li>
-                <li><label><input type="checkbox" name="q14" value="B" /> B. Pengangguran terdidik meningkat</label></li>
-                <li><label><input type="checkbox" name="q14" value="C" /> C. Migrasi tenaga kerja antarwilayah tidak seimbang</label></li>
-                <li><label><input type="checkbox" name="q14" value="D" /> D. Produktivitas tenaga kerja meningkat</label></li>
-                <li><label><input type="checkbox" name="q14" value="E" /> E. Upah minimum merata antar daerah</label></li>
+                <li><label><input type="checkbox" name="q14" value="A" /> A. Koefisien Gini menurun bersamaan dengan naiknya PDB</label></li>
+                <li><label><input type="checkbox" name="q14" value="B" /> B. Tingkat pengangguran turun dan Human Development Index (HDI) naik</label></li>
+                <li><label><input type="checkbox" name="q14" value="C" /> C. Angka kemiskinan absolut dan relatif turun</label></li>
+                <li><label><input type="checkbox" name="q14" value="D" /> D. PDB per kapita naik, tetapi hanya dinikmati 10% penduduk terkaya</label></li>
+                <li><label><input type="checkbox" name="q14" value="E" /> E. Emisi karbon dan kerusakan lingkungan terkendali</label></li>
             </ul>
             <div class="feedback-badge" id="fb-14"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A, B, C, dan E mencerminkan pertumbuhan inklusif dan berkelanjutan. D adalah contoh "growth without equity" – pertumbuhan kuantitatif yang tidak berkualitas.</div>
         </div>
 
         <!-- Soal 15 -->
         <div class="question-card" id="q-card-15">
-            <span class="tag-type">PG Kompleks</span>
-            <div class="question-title">15. Upaya mengatasi pengangguran struktural yang tepat adalah … (pilih semua)</div>
+            <span class="tag-type tag-hots">HOTS Kompleks</span>
+            <div class="question-title">15. Strategi jangka panjang untuk meningkatkan PDB Indonesia secara berkelanjutan dan inklusif adalah ...</div>
             <ul class="options-list">
-                <li><label><input type="checkbox" name="q15" value="A" /> A. Pelatihan vokasi berbasis industri</label></li>
-                <li><label><input type="checkbox" name="q15" value="B" /> B. Pembangunan kawasan industri di daerah</label></li>
-                <li><label><input type="checkbox" name="q15" value="C" /> C. Memberikan KUR bagi UMKM</label></li>
-                <li><label><input type="checkbox" name="q15" value="D" /> D. Menaikkan upah minimum serentak</label></li>
-                <li><label><input type="checkbox" name="q15" value="E" /> E. Memperluas program magang</label></li>
+                <li><label><input type="checkbox" name="q15" value="A" /> A. Hilirisasi industri sumber daya alam (CPO, nikel, bauksit)</label></li>
+                <li><label><input type="checkbox" name="q15" value="B" /> B. Investasi masif dalam pendidikan vokasi dan riset teknologi</label></li>
+                <li><label><input type="checkbox" name="q15" value="C" /> C. Transformasi energi menuju ekonomi hijau (green economy)</label></li>
+                <li><label><input type="checkbox" name="q15" value="D" /> D. Eksploitasi besar-besaran SDA untuk ekspor cepat</label></li>
+                <li><label><input type="checkbox" name="q15" value="E" /> E. Penguatan UMKM berbasis digital dan ekonomi kreatif</label></li>
             </ul>
             <div class="feedback-badge" id="fb-15"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A, B, C, dan E adalah strategi berkelanjutan. D bersifat eksploitatif jangka pendek dan tidak berkelanjutan secara lingkungan maupun ekonomi.</div>
         </div>
 
         <!-- ========================================================== -->
-        <!-- BAGIAN 3: MENJODOHKAN (5 SOAL)                              -->
+        <!-- BAGIAN 3: MENJODOHKAN HOTS (5 SOAL)                         -->
         <!-- ========================================================== -->
-        <div class="section-title">III. Menjodohkan (16–20)</div>
-        <p class="text-muted">* Cocokkan pernyataan kiri dengan pilihan kanan. Setiap pasangan bernilai 1,25 poin.</p>
+        <div class="section-title">III. Menjodohkan HOTS (16–20)</div>
+        <p class="text-muted">* Cocokkan kasus/kebijakan dengan analisis ekonomi yang tepat. Setiap pasangan bernilai 1,25 poin.</p>
 
         <!-- Soal 16 -->
         <div class="question-card" id="q-card-16">
-            <span class="tag-type">Menjodohkan</span>
-            <div class="question-title">16. Pasangkan istilah pendapatan nasional dengan definisinya.</div>
+            <span class="tag-type tag-hots">HOTS Menjodohkan</span>
+            <div class="question-title">16. Pasangkan kasus pengangguran nyata dengan jenis penganggurannya.</div>
             <div class="match-grid">
-                <div class="match-item"><strong>A. PDB</strong> <select class="dropdown-select" id="q16_a"><option value="">--Pilih--</option><option value="1">1. Produksi oleh warga negara di dalam & luar negeri</option><option value="2">2. Produksi di dalam wilayah negara</option><option value="3">3. GNP dikurangi penyusutan</option><option value="4">4. Pendapatan siap dibelanjakan</option></select></div>
-                <div class="match-item"><strong>B. GNP</strong> <select class="dropdown-select" id="q16_b"><option value="">--Pilih--</option><option value="1">1. Produksi oleh warga negara di dalam & luar negeri</option><option value="2">2. Produksi di dalam wilayah negara</option><option value="3">3. GNP dikurangi penyusutan</option><option value="4">4. Pendapatan siap dibelanjakan</option></select></div>
-                <div class="match-item"><strong>C. NNP</strong> <select class="dropdown-select" id="q16_c"><option value="">--Pilih--</option><option value="1">1. Produksi oleh warga negara di dalam & luar negeri</option><option value="2">2. Produksi di dalam wilayah negara</option><option value="3">3. GNP dikurangi penyusutan</option><option value="4">4. Pendapatan siap dibelanjakan</option></select></div>
-                <div class="match-item"><strong>D. DI</strong> <select class="dropdown-select" id="q16_d"><option value="">--Pilih--</option><option value="1">1. Produksi oleh warga negara di dalam & luar negeri</option><option value="2">2. Produksi di dalam wilayah negara</option><option value="3">3. GNP dikurangi penyusutan</option><option value="4">4. Pendapatan siap dibelanjakan</option></select></div>
+                <div class="match-item"><strong>A. Petani tebu menganggur saat musim giling selesai</strong> <select class="dropdown-select" id="q16_a"><option value="">--Pilih--</option><option value="1">Pengangguran friksional</option><option value="2">Pengangguran struktural</option><option value="3">Pengangguran siklis</option><option value="4">Pengangguran musiman</option></select></div>
+                <div class="match-item"><strong>B. Buruh pabrik rokok di-PHK karena regulasi cukai naik</strong> <select class="dropdown-select" id="q16_b"><option value="">--Pilih--</option><option value="1">Pengangguran friksional</option><option value="2">Pengangguran struktural</option><option value="3">Pengangguran siklis</option><option value="4">Pengangguran musiman</option></select></div>
+                <div class="match-item"><strong>C. Fresh graduate sedang mencari pekerjaan pertama selama 2 bulan</strong> <select class="dropdown-select" id="q16_c"><option value="">--Pilih--</option><option value="1">Pengangguran friksional</option><option value="2">Pengangguran struktural</option><option value="3">Pengangguran siklis</option><option value="4">Pengangguran musiman</option></select></div>
+                <div class="match-item"><strong>D. Pekerja sektor konstruksi di-PHK saat resesi ekonomi</strong> <select class="dropdown-select" id="q16_d"><option value="">--Pilih--</option><option value="1">Pengangguran friksional</option><option value="2">Pengangguran struktural</option><option value="3">Pengangguran siklis</option><option value="4">Pengangguran musiman</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-16"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A=musiman (terkait musim tanam/giling), B=struktural (perubahan regulasi industri), C=friksional (transisi normal), D=siklis (terkait siklus bisnis/resesi).</div>
         </div>
 
         <!-- Soal 17 -->
         <div class="question-card" id="q-card-17">
-            <span class="tag-type">Menjodohkan</span>
-            <div class="question-title">17. Pasangkan variabel dengan pengaruhnya terhadap uang yang dipegang masyarakat.</div>
+            <span class="tag-type tag-hots">HOTS Menjodohkan</span>
+            <div class="question-title">17. Pasangkan kebijakan makroekonomi dengan dampak utamanya terhadap pendapatan nasional.</div>
             <div class="match-grid">
-                <div class="match-item"><strong>A. Suku bunga naik</strong> <select class="dropdown-select" id="q17_a"><option value="">--Pilih--</option><option value="1">Mendorong orang menabung, uang beredar turun</option><option value="2">Mendorong belanja, uang beredar naik</option><option value="3">Mengurangi daya beli, uang riil turun</option><option value="4">Meningkatkan investasi, uang beredar naik</option></select></div>
-                <div class="match-item"><strong>B. Inflasi tinggi</strong> <select class="dropdown-select" id="q17_b"><option value="">--Pilih--</option><option value="1">Mendorong orang menabung, uang beredar turun</option><option value="2">Mendorong belanja, uang beredar naik</option><option value="3">Mengurangi daya beli, uang riil turun</option><option value="4">Meningkatkan investasi, uang beredar naik</option></select></div>
-                <div class="match-item"><strong>C. DI meningkat</strong> <select class="dropdown-select" id="q17_c"><option value="">--Pilih--</option><option value="1">Mendorong orang menabung, uang beredar turun</option><option value="2">Mendorong belanja, uang beredar naik</option><option value="3">Mengurangi daya beli, uang riil turun</option><option value="4">Meningkatkan investasi, uang beredar naik</option></select></div>
-                <div class="match-item"><strong>D. Pajak langsung turun</strong> <select class="dropdown-select" id="q17_d"><option value="">--Pilih--</option><option value="1">Mendorong orang menabung, uang beredar turun</option><option value="2">Mendorong belanja, uang beredar naik</option><option value="3">Mengurangi daya beli, uang riil turun</option><option value="4">Meningkatkan investasi, uang beredar naik</option></select></div>
+                <div class="match-item"><strong>A. BI menaikkan suku bunga acuan</strong> <select class="dropdown-select" id="q17_a"><option value="">--Pilih--</option><option value="1">PDB turun, inflasi terkendali, pengangguran naik</option><option value="2">PDB naik, lapangan kerja bertambah, inflasi berpotensi naik</option><option value="3">PI naik, kesenjangan turun</option><option value="4">Ekspor naik, impor turun</option></select></div>
+                <div class="match-item"><strong>B. Pemerintah meningkatkan belanja infrastruktur</strong> <select class="dropdown-select" id="q17_b"><option value="">--Pilih--</option><option value="1">PDB turun, inflasi terkendali, pengangguran naik</option><option value="2">PDB naik, lapangan kerja bertambah, inflasi berpotensi naik</option><option value="3">PI naik, kesenjangan turun</option><option value="4">Ekspor naik, impor turun</option></select></div>
+                <div class="match-item"><strong>C. Pemerintah memperluas BLT dan PKH</strong> <select class="dropdown-select" id="q17_c"><option value="">--Pilih--</option><option value="1">PDB turun, inflasi terkendali, pengangguran naik</option><option value="2">PDB naik, lapangan kerja bertambah, inflasi berpotensi naik</option><option value="3">PI naik, kesenjangan turun</option><option value="4">Ekspor naik, impor turun</option></select></div>
+                <div class="match-item"><strong>D. Pemerintah memberikan insentif pajak ekspor</strong> <select class="dropdown-select" id="q17_d"><option value="">--Pilih--</option><option value="1">PDB turun, inflasi terkendali, pengangguran naik</option><option value="2">PDB naik, lapangan kerja bertambah, inflasi berpotensi naik</option><option value="3">PI naik, kesenjangan turun</option><option value="4">Ekspor naik, impor turun</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-17"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> A=kebijakan kontraktif moneter (1), B=kebijakan ekspansif fiskal (2), C=kebijakan redistribusi (3), D=kebijakan perdagangan (4).</div>
         </div>
 
         <!-- Soal 18 -->
         <div class="question-card" id="q-card-18">
-            <span class="tag-type">Menjodohkan</span>
-            <div class="question-title">18. Pasangkan konsep dengan rumus perhitungannya.</div>
+            <span class="tag-type tag-hots">HOTS Menjodohkan</span>
+            <div class="question-title">18. Pasangkan variabel ekonomi dengan indikator kualitas pembangunannya.</div>
             <div class="match-grid">
-                <div class="match-item"><strong>A. NNI</strong> <select class="dropdown-select" id="q18_a"><option value="">--Pilih--</option><option value="1">GNP – penyusutan</option><option value="2">NNP – pajak tidak langsung</option><option value="3">PI – pajak langsung</option><option value="4">PDB + pendapatan neto LN</option></select></div>
-                <div class="match-item"><strong>B. NNP</strong> <select class="dropdown-select" id="q18_b"><option value="">--Pilih--</option><option value="1">GNP – penyusutan</option><option value="2">NNP – pajak tidak langsung</option><option value="3">PI – pajak langsung</option><option value="4">PDB + pendapatan neto LN</option></select></div>
-                <div class="match-item"><strong>C. DI</strong> <select class="dropdown-select" id="q18_c"><option value="">--Pilih--</option><option value="1">GNP – penyusutan</option><option value="2">NNP – pajak tidak langsung</option><option value="3">PI – pajak langsung</option><option value="4">PDB + pendapatan neto LN</option></select></div>
-                <div class="match-item"><strong>D. GNP</strong> <select class="dropdown-select" id="q18_d"><option value="">--Pilih--</option><option value="1">GNP – penyusutan</option><option value="2">NNP – pajak tidak langsung</option><option value="3">PI – pajak langsung</option><option value="4">PDB + pendapatan neto LN</option></select></div>
+                <div class="match-item"><strong>A. Koefisien Gini</strong> <select class="dropdown-select" id="q18_a"><option value="">--Pilih--</option><option value="1">Indikator ketimpangan pendapatan</option><option value="2">Indikator kualitas hidup (kesehatan, pendidikan, standar hidup)</option><option value="3">Indikator kemiskinan multidimensi</option><option value="4">Indikator kesetaraan gender</option></select></div>
+                <div class="match-item"><strong>B. HDI (IPM)</strong> <select class="dropdown-select" id="q18_b"><option value="">--Pilih--</option><option value="1">Indikator ketimpangan pendapatan</option><option value="2">Indikator kualitas hidup (kesehatan, pendidikan, standar hidup)</option><option value="3">Indikator kemiskinan multidimensi</option><option value="4">Indikator kesetaraan gender</option></select></div>
+                <div class="match-item"><strong>C. MPI (Multidimensional Poverty Index)</strong> <select class="dropdown-select" id="q18_c"><option value="">--Pilih--</option><option value="1">Indikator ketimpangan pendapatan</option><option value="2">Indikator kualitas hidup (kesehatan, pendidikan, standar hidup)</option><option value="3">Indikator kemiskinan multidimensi</option><option value="4">Indikator kesetaraan gender</option></select></div>
+                <div class="match-item"><strong>D. GGI (Global Gender Gap Index)</strong> <select class="dropdown-select" id="q18_d"><option value="">--Pilih--</option><option value="1">Indikator ketimpangan pendapatan</option><option value="2">Indikator kualitas hidup (kesehatan, pendidikan, standar hidup)</option><option value="3">Indikator kemiskinan multidimensi</option><option value="4">Indikator kesetaraan gender</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-18"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Gini=ketimpangan pendapatan, HDI=kualitas hidup, MPI=kemiskinan multidimensi, GGI=kesetaraan gender.</div>
         </div>
 
         <!-- Soal 19 -->
         <div class="question-card" id="q-card-19">
-            <span class="tag-type">Menjodohkan</span>
-            <div class="question-title">19. Pasangkan dampak ekonomi dengan indikator yang terdampak.</div>
+            <span class="tag-type tag-hots">HOTS Menjodohkan</span>
+            <div class="question-title">19. Pasangkan fenomena ekonomi dengan interpretasi Kurva Lorenz-nya.</div>
             <div class="match-grid">
-                <div class="match-item"><strong>A. PDB turun</strong> <select class="dropdown-select" id="q19_a"><option value="">--Pilih--</option><option value="1">Pengangguran naik</option><option value="2">Uang beredar turun</option><option value="3">Pendapatan disposabel turun</option><option value="4">Semua benar</option></select></div>
-                <div class="match-item"><strong>B. Inflasi tinggi</strong> <select class="dropdown-select" id="q19_b"><option value="">--Pilih--</option><option value="1">Pengangguran naik</option><option value="2">Uang beredar turun</option><option value="3">Pendapatan disposabel turun</option><option value="4">Semua benar</option></select></div>
-                <div class="match-item"><strong>C. Suku bunga naik</strong> <select class="dropdown-select" id="q19_c"><option value="">--Pilih--</option><option value="1">Pengangguran naik</option><option value="2">Uang beredar turun</option><option value="3">Pendapatan disposabel turun</option><option value="4">Semua benar</option></select></div>
-                <div class="match-item"><strong>D. Transfer payment naik</strong> <select class="dropdown-select" id="q19_d"><option value="">--Pilih--</option><option value="1">Pengangguran naik</option><option value="2">Uang beredar turun</option><option value="3">Pendapatan disposabel turun</option><option value="4">Semua benar</option></select></div>
+                <div class="match-item"><strong>A. Kurva Lorenz mendekati diagonal sempurna</strong> <select class="dropdown-select" id="q19_a"><option value="">--Pilih--</option><option value="1">Pemerataan sempurna (Gini = 0)</option><option value="2">Ketimpangan sempurna (Gini = 1)</option><option value="3">Ketimpangan rendah (Gini < 0,3)</option><option value="4">Ketimpangan tinggi (Gini > 0,5)</option></select></div>
+                <div class="match-item"><strong>B. Kurva Lorenz mendekati sumbu horizontal & vertikal</strong> <select class="dropdown-select" id="q19_b"><option value="">--Pilih--</option><option value="1">Pemerataan sempurna (Gini = 0)</option><option value="2">Ketimpangan sempurna (Gini = 1)</option><option value="3">Ketimpangan rendah (Gini < 0,3)</option><option value="4">Ketimpangan tinggi (Gini > 0,5)</option></select></div>
+                <div class="match-item"><strong>C. Kurva Lorenz sedikit melengkung dari diagonal</strong> <select class="dropdown-select" id="q19_c"><option value="">--Pilih--</option><option value="1">Pemerataan sempurna (Gini = 0)</option><option value="2">Ketimpangan sempurna (Gini = 1)</option><option value="3">Ketimpangan rendah (Gini < 0,3)</option><option value="4">Ketimpangan tinggi (Gini > 0,5)</option></select></div>
+                <div class="match-item"><strong>D. Kurva Lorenz sangat jauh dari diagonal</strong> <select class="dropdown-select" id="q19_d"><option value="">--Pilih--</option><option value="1">Pemerataan sempurna (Gini = 0)</option><option value="2">Ketimpangan sempurna (Gini = 1)</option><option value="3">Ketimpangan rendah (Gini < 0,3)</option><option value="4">Ketimpangan tinggi (Gini > 0,5)</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-19"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> Semakin dekat kurva ke diagonal, semakin merata (A=1). Semakin jauh dari diagonal, semakin timpang (B=2, D=4). C=ketimpangan rendah.</div>
         </div>
 
         <!-- Soal 20 -->
         <div class="question-card" id="q-card-20">
-            <span class="tag-type">Menjodohkan</span>
-            <div class="question-title">20. Pasangkan kebijakan dengan tujuannya dalam mengatasi pengangguran.</div>
+            <span class="tag-type tag-hots">HOTS Menjodohkan</span>
+            <div class="question-title">20. Pasangkan kebijakan pemerintah dengan kategori kebijakan makroekonomi.</div>
             <div class="match-grid">
-                <div class="match-item"><strong>A. Pelatihan vokasi</strong> <select class="dropdown-select" id="q20_a"><option value="">--Pilih--</option><option value="1">Meningkatkan keterampilan tenaga kerja</option><option value="2">Menciptakan lapangan kerja baru</option><option value="3">Memberikan modal usaha</option><option value="4">Menstabilkan harga</option></select></div>
-                <div class="match-item"><strong>B. KUR</strong> <select class="dropdown-select" id="q20_b"><option value="">--Pilih--</option><option value="1">Meningkatkan keterampilan tenaga kerja</option><option value="2">Menciptakan lapangan kerja baru</option><option value="3">Memberikan modal usaha</option><option value="4">Menstabilkan harga</option></select></div>
-                <div class="match-item"><strong>C. Infrastruktur</strong> <select class="dropdown-select" id="q20_c"><option value="">--Pilih--</option><option value="1">Meningkatkan keterampilan tenaga kerja</option><option value="2">Menciptakan lapangan kerja baru</option><option value="3">Memberikan modal usaha</option><option value="4">Menstabilkan harga</option></select></div>
-                <div class="match-item"><strong>D. Subsidi upah</strong> <select class="dropdown-select" id="q20_d"><option value="">--Pilih--</option><option value="1">Meningkatkan keterampilan tenaga kerja</option><option value="2">Menciptakan lapangan kerja baru</option><option value="3">Memberikan modal usaha</option><option value="4">Menstabilkan harga</option></select></div>
+                <div class="match-item"><strong>A. Perubahan tarif PPN dari 10% menjadi 11%</strong> <select class="dropdown-select" id="q20_a"><option value="">--Pilih--</option><option value="1">Kebijakan fiskal</option><option value="2">Kebijakan moneter</option><option value="3">Kebijakan sisi penawaran (supply-side)</option><option value="4">Kebijakan perdagangan internasional</option></select></div>
+                <div class="match-item"><strong>B. Bank Indonesia melakukan operasi pasar terbuka</strong> <select class="dropdown-select" id="q20_b"><option value="">--Pilih--</option><option value="1">Kebijakan fiskal</option><option value="2">Kebijakan moneter</option><option value="3">Kebijakan sisi penawaran (supply-side)</option><option value="4">Kebijakan perdagangan internasional</option></select></div>
+                <div class="match-item"><strong>C. Reformasi struktural untuk mempermudah izin usaha</strong> <select class="dropdown-select" id="q20_c"><option value="">--Pilih--</option><option value="1">Kebijakan fiskal</option><option value="2">Kebijakan moneter</option><option value="3">Kebijakan sisi penawaran (supply-side)</option><option value="4">Kebijakan perdagangan internasional</option></select></div>
+                <div class="match-item"><strong>D. Penerapan bea masuk untuk melindungi industri dalam negeri</strong> <select class="dropdown-select" id="q20_d"><option value="">--Pilih--</option><option value="1">Kebijakan fiskal</option><option value="2">Kebijakan moneter</option><option value="3">Kebijakan sisi penawaran (supply-side)</option><option value="4">Kebijakan perdagangan internasional</option></select></div>
             </div>
             <div class="feedback-badge" id="fb-20"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> PPN=fiskal (anggaran pemerintah), Operasi pasar terbuka=moneter (Bank Indonesia), Reformasi izin=supply-side, Bea masuk=perdagangan internasional.</div>
         </div>
 
         <!-- ========================================================== -->
-        <!-- BAGIAN 4: BENAR/SALAH (10 SOAL)                             -->
+        <!-- BAGIAN 4: BENAR/SALAH HOTS (10 SOAL)                       -->
         <!-- ========================================================== -->
-        <div class="section-title">IV. Benar / Salah (21–30)</div>
-        <p class="text-muted">* Pilih BENAR atau SALAH, 5 poin masing-masing.</p>
+        <div class="section-title">IV. Benar / Salah HOTS (21–30)</div>
+        <p class="text-muted">* Pilih BENAR atau SALAH berdasarkan analisis kritis, 5 poin masing-masing.</p>
 
-        <!-- Soal 21 -->
         <div class="question-card" id="q-card-21">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">21. PDB menghitung produksi berdasarkan kewarganegaraan produsen, bukan lokasi produksi.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">21. Jika suatu negara memiliki banyak perusahaan multinasional asing yang beroperasi di wilayahnya, maka GNP negara tersebut akan lebih kecil daripada PDB-nya.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q21" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q21" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-21"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. Perusahaan asing menyumbang ke PDB (produksi di wilayah), tetapi pendapatannya tidak masuk ke GNP (bukan milik warga negara), sehingga GNP < PDB.</div>
         </div>
 
-        <!-- Soal 22 -->
         <div class="question-card" id="q-card-22">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">22. GNP selalu lebih besar dari PDB untuk negara yang memiliki banyak investasi di luar negeri.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">22. Pertumbuhan PDB 7% per tahun selalu merupakan indikator keberhasilan pembangunan ekonomi suatu negara.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q22" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q22" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-22"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> SALAH. Pertumbuhan kuantitatif saja tidak cukup. Harus dilihat juga pemerataan (Gini), penurunan kemiskinan, kualitas hidup (HDI), dan keberlanjutan lingkungan.</div>
         </div>
 
-        <!-- Soal 23 -->
         <div class="question-card" id="q-card-23">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">23. NNP diperoleh dari GNP dikurangi pajak tidak langsung.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">23. Transfer payment seperti BLT dan pensiun tidak dimasukkan dalam perhitungan NNI karena bukan hasil produksi, tetapi tetap mempengaruhi PI dan DI masyarakat.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q23" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q23" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-23"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. Transfer payment adalah redistribusi, bukan produksi, sehingga tidak dihitung di NNI, tetapi ditambahkan saat menghitung PI.</div>
         </div>
 
-        <!-- Soal 24 -->
         <div class="question-card" id="q-card-24">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">24. Pendapatan disposabel (DI) adalah pendapatan yang siap dibelanjakan atau ditabung setelah pajak langsung.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">24. Negara yang mengalami deflasi otomatis akan mengalami peningkatan kesejahteraan seluruh lapisan masyarakat.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q24" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q24" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-24"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> SALAH. Deflasi yang berkepanjangan justru berbahaya: perusahaan merugi → PHK → pengangguran naik → konsumsi turun → spiral deflasi. Deflasi "baik" hanya jika dari peningkatan produktivitas.</div>
         </div>
 
-        <!-- Soal 25 -->
         <div class="question-card" id="q-card-25">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">25. Pertumbuhan PDB yang tinggi selalu diikuti oleh penurunan pengangguran secara otomatis.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">25. Kenaikan suku bunga acuan BI dapat menurunkan inflasi, tetapi berisiko menaikkan pengangguran melalui efek kontraksi permintaan agregat.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q25" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q25" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-25"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. Ini adalah trade-off klasik Kurva Phillips. Kebijakan moneter kontraktif menekan inflasi dengan mengorbankan output dan lapangan kerja jangka pendek.</div>
         </div>
 
-        <!-- Soal 26 -->
         <div class="question-card" id="q-card-26">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">26. Koefisien Gini = 1 menunjukkan ketimpangan pendapatan yang sangat rendah.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">26. Koefisien Gini 0,4 di suatu negara menunjukkan ketimpangan yang lebih rendah dibandingkan koefisien Gini 0,35 di negara lain.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q26" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q26" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-26"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> SALAH. Semakin tinggi koefisien Gini, semakin tinggi ketimpangan. Jadi 0,4 > 0,35 berarti ketimpangan LEBIH TINGGI, bukan lebih rendah.</div>
         </div>
 
-        <!-- Soal 27 -->
         <div class="question-card" id="q-card-27">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">27. Inflasi yang tinggi dapat menggerus nilai riil uang yang dipegang masyarakat.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">27. Program KUR (Kredit Usaha Rakyat) termasuk kebijakan sisi penawaran (supply-side policy) karena meningkatkan kapasitas produktif UMKM.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q27" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q27" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-27"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. KUR meningkatkan kapasitas produksi UMKM (sisi penawaran), yang berdampak jangka panjang terhadap PDB potensial dan lapangan kerja.</div>
         </div>
 
-        <!-- Soal 28 -->
         <div class="question-card" id="q-card-28">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">28. Pajak progresif dapat membantu mengurangi kesenjangan pendapatan.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">28. PDB riil adalah indikator yang lebih akurat daripada PDB nominal untuk membandingkan pertumbuhan ekonomi antartahun karena memperhitungkan faktor inflasi.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q28" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q28" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-28"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. PDB riil menggunakan harga tahun dasar, sehingga perubahan hanya mencerminkan perubahan volume produksi, bukan perubahan harga.</div>
         </div>
 
-        <!-- Soal 29 -->
         <div class="question-card" id="q-card-29">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">29. Kurva Lorenz yang semakin mendekati garis diagonal menunjukkan ketimpangan yang semakin besar.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">29. Hilirisasi industri nikel di Indonesia akan menurunkan PDB jangka pendek karena mengurangi ekspor bijih mentah, namun meningkatkan PDB jangka panjang melalui nilai tambah produk olahan.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q29" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q29" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-29"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. Hilirisasi adalah investasi jangka panjang. Awalnya ada penyesuaian (penurunan ekspor mentah), tetapi jangka panjang nilai tambah (smelter, baterai EV) jauh lebih tinggi.</div>
         </div>
 
-        <!-- Soal 30 -->
         <div class="question-card" id="q-card-30">
-            <span class="tag-type">Benar/Salah</span>
-            <div class="question-title">30. Program KUR (Kredit Usaha Rakyat) termasuk upaya pemberdayaan UMKM untuk mengatasi kesenjangan dan pengangguran.</div>
+            <span class="tag-type tag-hots">HOTS B/S</span>
+            <div class="question-title">30. Tingkat Partisipasi Angkatan Kerja (TPAK) perempuan yang rendah merupakan faktor struktural yang menurunkan potensi PDB suatu negara karena setengah potensi sumber daya manusia tidak termanfaatkan.</div>
             <ul class="options-list">
                 <li><label><input type="radio" name="q30" value="B" /> BENAR</label></li>
                 <li><label><input type="radio" name="q30" value="S" /> SALAH</label></li>
             </ul>
             <div class="feedback-badge" id="fb-30"></div>
+            <div class="penjelasan"><strong>Pembahasan:</strong> BENAR. Studi Bank Dunia menunjukkan bahwa peningkatan TPAK perempuan dapat menambah PDB secara signifikan. Ini adalah isu gender dan efisiensi ekonomi sekaligus.</div>
         </div>
 
     </div>
@@ -1425,79 +1006,133 @@
             document.body.classList.toggle('dark-theme');
             const icon = themeToggle.querySelector('i');
             icon.className = document.body.classList.contains('dark-theme') ? 'fas fa-sun' : 'fas fa-moon';
-            // Update chart colors if needed
             updateChartColors();
         });
 
         // ===== HAMBURGER MENU =====
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('show'); });
 
         // ===== CHART =====
-        let gdpChart;
+        let gdpChart, phillipsChart;
 
-        function initChart() {
-            const ctx = document.getElementById('gdpChart').getContext('2d');
+        function initCharts() {
             const isDark = document.body.classList.contains('dark-theme');
             const textColor = isDark ? '#f8fafc' : '#1e293b';
             const gridColor = isDark ? '#334155' : '#e2e8f0';
 
-            gdpChart = new Chart(ctx, {
+            // Chart 1: PDB ASEAN
+            const ctx1 = document.getElementById('gdpChart').getContext('2d');
+            gdpChart = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['Indonesia', 'Thailand', 'Vietnam', 'Filipina', 'Singapura', 'Malaysia'],
+                    labels: ['Indonesia', 'Thailand', 'Singapura', 'Vietnam', 'Filipina', 'Malaysia'],
+                    datasets: [
+                        {
+                            label: 'PDB Nominal (Triliun USD)',
+                            data: [1.37, 0.52, 0.50, 0.43, 0.44, 0.40],
+                            backgroundColor: [
+                                'rgba(239, 68, 68, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(16, 185, 129, 0.7)',
+                                'rgba(245, 158, 11, 0.7)',
+                                'rgba(168, 85, 247, 0.7)',
+                                'rgba(236, 72, 153, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(239, 68, 68, 1)',
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(16, 185, 129, 1)',
+                                'rgba(245, 158, 11, 1)',
+                                'rgba(168, 85, 247, 1)',
+                                'rgba(236, 72, 153, 1)'
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'PDB per Kapita (ribu USD)',
+                            data: [4.9, 7.2, 65.2, 4.3, 4.0, 12.5],
+                            type: 'line',
+                            borderColor: 'rgba(34, 197, 94, 1)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                            yAxisID: 'y1',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: textColor } } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { color: gridColor },
+                            title: { display: true, text: 'Triliun USD', color: textColor }
+                        },
+                        y1: {
+                            position: 'right',
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: 'Ribu USD (per kapita)', color: textColor }
+                        },
+                        x: { ticks: { color: textColor }, grid: { color: gridColor } }
+                    }
+                }
+            });
+
+            // Chart 2: Kurva Phillips
+            const ctx2 = document.getElementById('phillipsChart').getContext('2d');
+            phillipsChart = new Chart(ctx2, {
+                type: 'scatter',
+                data: {
                     datasets: [{
-                        label: 'PDB (Triliun USD)',
-                        data: [1.37, 0.52, 0.43, 0.44, 0.50, 0.40],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(255, 159, 64, 0.7)'
+                        label: 'Indonesia (2018-2024)',
+                        data: [
+                            { x: 5.0, y: 3.2 },
+                            { x: 7.1, y: 2.8 },
+                            { x: 6.5, y: 1.9 },
+                            { x: 5.9, y: 1.7 },
+                            { x: 5.3, y: 5.5 },
+                            { x: 4.9, y: 3.7 },
+                            { x: 4.5, y: 2.5 }
                         ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(255, 159, 64, 1)'
+                        backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        pointRadius: 7
+                    }, {
+                        label: 'Kurva Phillips (trendline)',
+                        data: [
+                            { x: 4.0, y: 6.0 },
+                            { x: 5.0, y: 4.5 },
+                            { x: 6.0, y: 3.0 },
+                            { x: 7.0, y: 1.8 },
+                            { x: 8.0, y: 0.8 }
                         ],
-                        borderWidth: 1
+                        type: 'line',
+                        borderColor: 'rgba(59, 130, 246, 0.8)',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: textColor
-                            }
-                        }
-                    },
+                    plugins: { legend: { labels: { color: textColor } } },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: textColor
-                            },
-                            grid: {
-                                color: gridColor
-                            }
-                        },
                         x: {
-                            ticks: {
-                                color: textColor
-                            },
-                            grid: {
-                                color: gridColor
-                            }
+                            title: { display: true, text: 'Pengangguran (%)', color: textColor },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        y: {
+                            title: { display: true, text: 'Inflasi (%)', color: textColor },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
                         }
                     }
                 }
@@ -1505,54 +1140,57 @@
         }
 
         function updateChartColors() {
-            if (!gdpChart) return;
+            if (!gdpChart || !phillipsChart) return;
             const isDark = document.body.classList.contains('dark-theme');
             const textColor = isDark ? '#f8fafc' : '#1e293b';
             const gridColor = isDark ? '#334155' : '#e2e8f0';
 
-            gdpChart.options.plugins.legend.labels.color = textColor;
-            gdpChart.options.scales.y.ticks.color = textColor;
-            gdpChart.options.scales.y.grid.color = gridColor;
-            gdpChart.options.scales.x.ticks.color = textColor;
-            gdpChart.options.scales.x.grid.color = gridColor;
-            gdpChart.update();
+            [gdpChart, phillipsChart].forEach(chart => {
+                chart.options.plugins.legend.labels.color = textColor;
+                Object.values(chart.options.scales).forEach(scale => {
+                    if (scale.ticks) scale.ticks.color = textColor;
+                    if (scale.grid) scale.grid.color = gridColor;
+                    if (scale.title && scale.title.display) scale.title.color = textColor;
+                });
+                chart.update();
+            });
         }
 
-        // ===== KUNCI JAWABAN =====
+        // ===== KUNCI JAWABAN HOTS =====
         const key = {
-            // PG Biasa (1-10)
+            // PG Biasa HOTS (1-10)
             q1: 'B',
-            q2: 'A',
+            q2: 'B', // Diubah: Analisis Visualisasi Komposisi PDB
             q3: 'B',
             q4: 'C',
-            q5: 'B',
+            q5: 'B', // Diubah: Analisis Visualisasi Grafik Kesenjangan PDB vs DI
             q6: 'B',
             q7: 'C',
-            q8: 'B',
-            q9: 'A',
-            q10: 'B', // Indonesia terbesar
-            // PG Kompleks (11-15)
-            q11: ['A', 'D'],
-            q12: ['A', 'B', 'C'],
-            q13: ['A', 'B', 'C', 'D', 'E'],
-            q14: ['A', 'B', 'C'],
+            q8: 'C',
+            q9: 'B',
+            q10: 'B',
+            // PG Kompleks HOTS (11-15)
+            q11: ['A', 'B', 'C'],
+            q12: ['A', 'B', 'C', 'E'],
+            q13: ['A', 'B', 'C', 'E'],
+            q14: ['A', 'B', 'C', 'E'],
             q15: ['A', 'B', 'C', 'E'],
-            // Menjodohkan (16-20)
-            q16: { a: '2', b: '1', c: '3', d: '4' },
-            q17: { a: '1', b: '3', c: '2', d: '4' },
-            q18: { a: '2', b: '1', c: '3', d: '4' },
-            q19: { a: '4', b: '3', c: '2', d: '1' },
-            q20: { a: '1', b: '3', c: '2', d: '1' },
-            // Benar/Salah (21-30)
-            q21: 'S',
-            q22: 'B',
-            q23: 'S',
-            q24: 'B',
-            q25: 'S',
+            // Menjodohkan HOTS (16-20)
+            q16: { a: '4', b: '2', c: '1', d: '3' },
+            q17: { a: '1', b: '2', c: '3', d: '4' },
+            q18: { a: '1', b: '2', c: '3', d: '4' },
+            q19: { a: '1', b: '2', c: '3', d: '4' },
+            q20: { a: '1', b: '2', c: '3', d: '4' },
+            // Benar/Salah HOTS (21-30)
+            q21: 'B',
+            q22: 'S',
+            q23: 'B',
+            q24: 'S',
+            q25: 'B',
             q26: 'S',
             q27: 'B',
             q28: 'B',
-            q29: 'S',
+            q29: 'B',
             q30: 'B'
         };
 
@@ -1682,18 +1320,21 @@
             const finalScore = Math.round(score);
             scoreDisplay.innerText = `${finalScore} / 150`;
 
-            if (finalScore >= 112) {
-                statusDisplay.innerText = 'LULUS (Sangat Baik)';
+            if (finalScore >= 120) {
+                statusDisplay.innerText = 'SANGAT BAIK (HOTS Master)';
                 statusDisplay.style.color = '#16a34a';
+            } else if (finalScore >= 90) {
+                statusDisplay.innerText = 'BAIK (Analitis)';
+                statusDisplay.style.color = '#2563eb';
             } else if (finalScore >= 75) {
-                statusDisplay.innerText = 'LULUS (Cukup)';
+                statusDisplay.innerText = 'CUKUP (Perlu Pendalaman)';
                 statusDisplay.style.color = '#f59e0b';
             } else {
                 statusDisplay.innerText = 'REMIDIAL (Belum Tuntas)';
                 statusDisplay.style.color = '#dc2626';
             }
 
-            alert(`✅ Evaluasi selesai!\nNilai akhir: ${finalScore} / 150`);
+            alert(`✅ Evaluasi HOTS selesai!\nNilai akhir: ${finalScore} / 150\n\nBacalah penjelasan setiap soal untuk memperdalam pemahaman analitis Anda.`);
         }
 
         // ===== RESET FORM =====
@@ -1720,7 +1361,7 @@
             const name = document.getElementById('studentName').value || 'Siswa';
             const opt = {
                 margin: [8, 8, 8, 8],
-                filename: `Evaluasi_Pendapatan_Nasional_${name.replace(/\s+/g, '_')}.pdf`,
+                filename: `Evaluasi_HOTS_Pendapatan_Nasional_${name.replace(/\s+/g, '_')}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -1729,9 +1370,7 @@
         }
 
         // ===== INIT =====
-        window.addEventListener('load', () => {
-            initChart();
-        });
+        window.addEventListener('load', () => { initCharts(); });
     </script>
 </body>
 </html>
