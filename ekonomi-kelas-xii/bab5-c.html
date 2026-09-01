@@ -6,1002 +6,290 @@
     <title>Bab 5C: APBD – SMAN 1 Cluring</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
-    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous"></script>
+
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4ade80;
-            --warning: #fbbf24;
-            --danger: #f87171;
-            --gray: #6c757d;
-            --border-radius: 12px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --header-height: 70px;
+            --primary:#4361ee; --secondary:#3f37c9; --accent:#4cc9f0;
+            --light:#f8f9fa; --dark:#212529; --success:#4ade80;
+            --warning:#fbbf24; --danger:#f87171; --gray:#6c757d;
+            --border-radius:12px; --shadow:0 10px 30px rgba(0,0,0,.08);
+            --transition:all .3s ease; --header-height:70px;
         }
-
         .dark-mode {
-            --light: #1a1a1a;
-            --dark: #f8f9fa;
-            --gray: #a0aec0;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --light:#1a1a1a; --dark:#f8f9fa; --gray:#a0aec0;
+            --shadow:0 10px 30px rgba(0,0,0,.3);
         }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:'Poppins',sans-serif;
+            background:linear-gradient(135deg,#f5f7fa 0%,#e4e9f2 100%);
+            color:var(--dark);line-height:1.6;padding-bottom:80px;
+            transition:background .4s,color .4s;
+        }
+        body.dark-mode{background:linear-gradient(135deg,#121212 0%,#1e1e1e 100%)}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .navbar{
+            background:linear-gradient(120deg,var(--primary),var(--secondary));
+            color:#fff;padding:.8rem 1.5rem;position:sticky;top:0;z-index:1000;
+            box-shadow:var(--shadow);display:flex;justify-content:space-between;
+            align-items:center;height:var(--header-height)
         }
-        html {
-            scroll-behavior: smooth;
+        .navbar-brand{font-weight:700;font-size:1.2rem;text-decoration:none;color:#fff;display:flex;align-items:center;gap:8px}
+        .navbar-brand img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3);object-fit:cover}
+        .nav-container{display:flex;align-items:center;gap:15px}
+        .nav-links{display:flex;gap:15px;list-style:none;margin:0;padding:0;position:relative}
+        .nav-links a{color:#fff;text-decoration:none;font-weight:500;padding:8px 12px;border-radius:50px;transition:var(--transition);display:flex;align-items:center;gap:5px}
+        .nav-links a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+        .dropdown{position:relative}
+        .dropdown-content{
+            display:none;position:absolute;background:rgba(255,255,255,.95);min-width:200px;
+            box-shadow:0 8px 16px rgba(0,0,0,.2);border-radius:8px;top:100%;left:0;z-index:1001;
+            flex-direction:column;padding:10px 0;backdrop-filter:blur(10px)
         }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            padding-bottom: 80px;
-            transition: background 0.4s, color 0.4s;
+        .dropdown-content a{color:var(--dark);padding:10px 16px;text-decoration:none;display:block;text-align:left;border-radius:8px;margin:0 5px;transition:var(--transition)}
+        .dropdown-content a:hover{background:var(--primary);color:#fff;padding-left:20px}
+        .dropdown:hover .dropdown-content{display:flex}
+        .hamburger{display:none;cursor:pointer;background:none;border:none;color:#fff;font-size:1.5rem;z-index:1001}
+        .theme-toggle{
+            background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;
+            transition:transform .3s;display:flex;align-items:center;justify-content:center;
+            width:40px;height:40px;border-radius:50%
         }
-        body.dark-mode {
-            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-        }
+        .theme-toggle:hover{transform:rotate(15deg);background:rgba(255,255,255,.1)}
 
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.8rem 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: var(--header-height);
+        header{
+            background:linear-gradient(120deg,var(--primary),var(--secondary));color:#fff;
+            padding:5rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden;
+            box-shadow:var(--shadow);margin-top:var(--header-height)
         }
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        header::before{
+            content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+            background:radial-gradient(circle,rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 70%);
+            animation:rotate 15s linear infinite;z-index:1
         }
-        .navbar-brand img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            object-fit: cover;
+        @keyframes rotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+        .logo{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,255,255,.3);background:#fff;padding:5px;margin-bottom:1.5rem;z-index:2;position:relative;transition:var(--transition);object-fit:contain}
+        .logo:hover{transform:scale(1.05) rotate(10deg);box-shadow:0 5px 25px rgba(0,0,0,.2)}
+        h1{font-size:2.2rem;font-weight:700;margin-bottom:.5rem;z-index:2;position:relative}
+        .subtitle{font-weight:300;opacity:.9;z-index:2;position:relative;font-size:1.1rem}
+        .adsense-container{max-width:1200px;margin:20px auto;padding:0 20px;display:flex;justify-content:center}
+        .category-title{text-align:center;margin:50px auto 25px;max-width:1200px;padding:0 20px;font-size:1.6rem;font-weight:600;color:var(--dark);position:relative;display:flex;align-items:center;justify-content:center;gap:12px}
+        body.dark-mode .category-title{color:#f8f9fa}
+        .category-title::before,.category-title::after{content:'';flex:1;max-width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--primary),transparent)}
+        .category-title i{color:var(--primary);font-size:1.4rem}
+        .category-title.ekonomi{color:#4361ee}
+        .category-title.ekonomi i{color:#4361ee}
+        .category-title.ekonomi::before,.category-title.ekonomi::after{background:linear-gradient(90deg,transparent,#4361ee,transparent)}
+        .container{max-width:1200px;margin:0 auto 40px;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+        .card{
+            background:#fff;border-radius:var(--border-radius);padding:30px 25px;box-shadow:var(--shadow);
+            transition:var(--transition);border:1px solid rgba(0,0,0,.05);display:flex;
+            flex-direction:column;align-items:center;text-align:center;border-top:4px solid var(--primary);position:relative
         }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 50px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            top: 100%;
-            left: 0;
-            z-index: 1001;
-            flex-direction: column;
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
-        }
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 10px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-radius: 8px;
-            margin: 0 5px;
-            transition: var(--transition);
-        }
-        .dropdown-content a:hover {
-            background: var(--primary);
-            color: white;
-            padding-left: 20px;
-        }
-        .dropdown:hover .dropdown-content {
-            display: flex;
-        }
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            z-index: 1001;
-        }
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            background: rgba(255, 255, 255, 0.1);
-        }
+        body.dark-mode .card{background:#2d2d2d;border-color:#444;color:#f8f9fa}
+        .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+        .card h2{font-size:1.3rem;margin-bottom:15px;color:var(--dark);display:flex;align-items:center;gap:10px;justify-content:center}
+        body.dark-mode .card h2{color:#f8f9fa}
+        .materi-text-left{text-align:left;font-size:.95rem;line-height:1.7;color:var(--gray);width:100%;flex-grow:1}
+        body.dark-mode .materi-text-left{color:#cbd5e1}
+        .materi-text-left ul,.materi-text-left ol{padding-left:20px;margin-bottom:15px}
+        .materi-text-left li{margin-bottom:8px}
+        .materi-text-left strong{color:var(--primary)}
+        body.dark-mode .materi-text-left strong{color:var(--accent)}
+        .card.ekonomi{border-top-color:#4361ee}
+        .card.ekonomi:hover{border-top-color:#4cc9f0}
 
-        /* ===== HEADER ===== */
-        header {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 5rem 1rem 2.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-top: var(--header-height);
+        /* INTERACTIVE APBD 2.0 */
+        .wide{grid-column:1/-1}
+        .hero-learning{
+            background:linear-gradient(135deg,rgba(67,97,238,.12),rgba(76,201,240,.12));
+            border:1px solid rgba(67,97,238,.18);border-radius:14px;padding:22px;margin-top:10px
         }
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            animation: rotate 15s linear infinite;
-            z-index: 1;
+        body.dark-mode .hero-learning{background:rgba(67,97,238,.12)}
+        .flow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
+        .flow span{
+            padding:9px 14px;border-radius:30px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.07);
+            font-weight:600;font-size:.85rem
         }
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+        body.dark-mode .flow span{background:#202020}
+        .section-badge{
+            display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:30px;
+            background:rgba(67,97,238,.1);color:var(--primary);font-size:.8rem;font-weight:600;margin-bottom:12px
         }
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            background: white;
-            padding: 5px;
-            margin-bottom: 1.5rem;
-            z-index: 2;
-            position: relative;
-            transition: var(--transition);
-            object-fit: contain;
+        .concept-box,.feedback,.misconception,.reflection-box{
+            padding:16px;border-radius:12px;margin-top:14px
         }
-        .logo:hover {
-            transform: scale(1.05) rotate(10deg);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        .concept-box{background:rgba(67,97,238,.08);border-left:4px solid var(--primary)}
+        .feedback{display:none;margin-top:15px;border-left:4px solid var(--success);background:rgba(74,222,128,.1)}
+        .feedback.show{display:block}
+        .feedback.wrong{border-left-color:var(--danger);background:rgba(248,113,113,.1)}
+        .mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:15px}
+        .info-tile{
+            border:1px solid rgba(67,97,238,.15);border-radius:12px;padding:15px;
+            background:rgba(255,255,255,.55);transition:.25s
         }
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            z-index: 2;
-            position: relative;
+        body.dark-mode .info-tile{background:#242424}
+        .info-tile:hover{transform:translateY(-3px);border-color:var(--accent)}
+        .info-tile i{font-size:1.4rem;color:var(--primary);margin-bottom:8px}
+        .simulation{
+            background:linear-gradient(135deg,rgba(67,97,238,.08),rgba(76,201,240,.08));
+            border-radius:15px;padding:20px;border:1px solid rgba(67,97,238,.16)
         }
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.9;
-            z-index: 2;
-            position: relative;
-            font-size: 1.1rem;
+        .budget-top{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+        .budget-number{font-size:1.5rem;font-weight:700;color:var(--primary)}
+        .program-list{display:grid;gap:12px}
+        .program{
+            display:grid;grid-template-columns:1fr 110px;gap:12px;align-items:center;
+            background:#fff;padding:13px;border-radius:10px;border:1px solid #e5e7eb
         }
+        body.dark-mode .program{background:#202020;border-color:#444}
+        .program small{display:block;color:var(--gray)}
+        .program input{width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;background:transparent;color:inherit}
+        .btn{
+            border:none;border-radius:10px;padding:11px 16px;cursor:pointer;font-family:inherit;
+            font-weight:600;transition:.25s
+        }
+        .btn-primary{background:var(--primary);color:#fff}
+        .btn-primary:hover{background:var(--secondary);transform:translateY(-2px)}
+        .btn-secondary{background:#e9eefc;color:var(--primary)}
+        .btn-success{background:#16a34a;color:#fff}
+        .btn-danger{background:#dc2626;color:#fff}
+        .simulation-result{
+            margin-top:18px;padding:17px;border-radius:12px;display:none;
+            background:#fff;border:1px solid #e5e7eb
+        }
+        body.dark-mode .simulation-result{background:#202020;border-color:#444}
+        .simulation-result.show{display:block}
+        .score-ring{
+            width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            background:conic-gradient(var(--primary) 0deg,var(--primary) var(--score,0deg),#e5e7eb var(--score,0deg));
+            margin:0 auto 10px
+        }
+        .score-ring::after{
+            content:attr(data-score);width:70px;height:70px;border-radius:50%;background:#fff;
+            display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary)
+        }
+        body.dark-mode .score-ring::after{background:#202020}
+        .choice-group{display:grid;gap:10px;margin-top:15px}
+        .choice{
+            border:1px solid #dbe1ea;border-radius:10px;padding:12px;cursor:pointer;
+            transition:.2s;text-align:left;background:transparent
+        }
+        .choice:hover{border-color:var(--primary);background:rgba(67,97,238,.05)}
+        .choice.selected{border-color:var(--primary);background:rgba(67,97,238,.1)}
+        .choice.correct{border-color:#16a34a;background:rgba(22,163,74,.1)}
+        .choice.wrong{border-color:#dc2626;background:rgba(220,38,38,.1)}
+        .misconception{background:rgba(251,191,36,.10);border-left:4px solid var(--warning)}
+        .misconception button{margin-top:10px}
+        .hidden-explanation{display:none;margin-top:10px}
+        .hidden-explanation.show{display:block}
+        .progress-wrap{
+            position:sticky;top:70px;z-index:900;background:rgba(255,255,255,.93);
+            backdrop-filter:blur(10px);padding:10px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06)
+        }
+        body.dark-mode .progress-wrap{background:rgba(25,25,25,.93)}
+        .progress-inner{max-width:1200px;margin:auto}
+        .progress-label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:5px}
+        .progress-bar{height:9px;border-radius:10px;background:#e5e7eb;overflow:hidden}
+        .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .4s}
+        .reflection-box textarea{
+            width:100%;min-height:150px;padding:13px;border-radius:10px;border:1px solid #d1d5db;
+            resize:vertical;font-family:inherit;background:transparent;color:inherit
+        }
+        .reflection-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+        .saved-note{font-size:.85rem;color:#16a34a;margin-top:8px;display:none}
+        .saved-note.show{display:block}
+        .quiz-question{margin-top:12px;padding:15px;border-radius:10px;background:rgba(67,97,238,.05)}
+        .quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+        .result-summary{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:15px
+        }
+        .summary-box{padding:15px;border-radius:12px;background:rgba(67,97,238,.07);text-align:center}
+        .summary-box strong{font-size:1.3rem;display:block;color:var(--primary)}
+        .checklist{list-style:none!important;padding-left:0!important}
+        .checklist li{padding:9px 0;border-bottom:1px dashed rgba(107,114,128,.25)}
+        .checklist i{color:#16a34a;margin-right:7px}
 
-        /* ===== ADS ===== */
-        .adsense-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
+        footer{
+            background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:60px 20px 30px;
+            margin-top:60px;font-family:'Poppins',sans-serif
         }
+        body.dark-mode footer{background:linear-gradient(135deg,#0f172a,#1e293b)}
+        .footer-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
+        .footer-section h3{font-size:1.2rem;margin-bottom:20px;position:relative;padding-bottom:8px}
+        .footer-section h3::after{content:'';position:absolute;left:0;bottom:0;width:50px;height:3px;background:#4361ee;border-radius:3px}
+        .footer-section ul{list-style:none;padding:0}
+        .footer-section li{margin:10px 0}
+        .footer-section a{color:#e2e8f0;text-decoration:none;transition:all .3s ease;display:flex;align-items:center;gap:8px}
+        .footer-section a:hover{color:#4361ee;transform:translateX(5px)}
+        .footer-section p{line-height:1.6;margin:8px 0;color:#e2e8f0}
+        .footer-legal-bar{display:none;text-align:center;padding:15px 10px;margin:20px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:5px;justify-content:center;font-size:.8rem}
+        .footer-legal-bar a{color:#94a3b8;text-decoration:none;padding:3px 8px}
+        .footer-legal-bar a:hover{color:#4361ee}
+        .footer-legal-bar .separator{color:rgba(255,255,255,.2);margin:0 3px}
+        .visitor-counter{text-align:center;padding:15px;background:rgba(255,255,255,.05);border-radius:8px;margin-top:10px}
+        .visitor-counter img{max-width:100%;height:auto;filter:brightness(1.2)}
+        .visitor-counter p{margin-top:10px;font-size:.85rem;opacity:.8;color:#e2e8f0}
+        .copyright{text-align:center;grid-column:span 5;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);margin-top:20px}
+        .footer-bottom{text-align:center;padding-top:20px;margin-top:30px;border-top:1px solid rgba(255,255,255,.08);font-size:.9rem;color:#94a3b8}
+        .scroll-indicator{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(0,0,0,.1);z-index:9999}
+        .scroll-indicator span{position:absolute;top:0;left:0;height:100%;background:var(--primary);width:0%;transition:width .2s ease}
+        .back-to-top{position:fixed;bottom:25px;right:25px;width:50px;height:50px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 12px rgba(0,0,0,.15);cursor:pointer;transition:var(--transition);opacity:0;visibility:hidden;z-index:999}
+        .back-to-top.visible{opacity:1;visibility:visible}
+        .back-to-top:hover{transform:translateY(-5px);background:var(--secondary)}
+        .loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s ease-out}
+        .loader{width:50px;height:50px;border:5px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin 1s ease-in-out infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
 
-        /* ===== SECTION TITLE ===== */
-        .section-title {
-            text-align: center;
-            margin: 50px auto 25px;
-            max-width: 1200px;
-            padding: 0 20px;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--dark);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        body.dark-mode .section-title {
-            color: #f8f9fa;
-        }
-        .section-title::before,
-        .section-title::after {
-            content: '';
-            flex: 1;
-            max-width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-        .section-title i {
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-        .section-title.ekonomi {
-            color: #4361ee;
-        }
-        .section-title.ekonomi i {
-            color: #4361ee;
-        }
-        .section-title.ekonomi::before,
-        .section-title.ekonomi::after {
-            background: linear-gradient(90deg, transparent, #4361ee, transparent);
-        }
-
-        /* ===== CONTAINER & CARDS ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-        }
-        .container-full {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border-top: 4px solid var(--primary);
-            position: relative;
-        }
-        body.dark-mode .card {
-            background: #2d2d2d;
-            border-color: #444;
-            color: #f8f9fa;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-        }
-        body.dark-mode .card h2 {
-            color: #f8f9fa;
-        }
-        .card.ekonomi {
-            border-top-color: #4361ee;
-        }
-        .card.ekonomi:hover {
-            border-top-color: #4cc9f0;
-        }
-
-        .materi-text-left {
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--gray);
-            width: 100%;
-            flex-grow: 1;
-        }
-        body.dark-mode .materi-text-left {
-            color: #cbd5e1;
-        }
-        .materi-text-left ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        .materi-text-left li {
-            margin-bottom: 8px;
-        }
-        .materi-text-left strong {
-            color: var(--primary);
-        }
-        body.dark-mode .materi-text-left strong {
-            color: var(--accent);
-        }
-
-        /* ===== TAB SYSTEM ===== */
-        .tabs {
-            width: 100%;
-            margin-top: 10px;
-        }
-        .tab-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-            justify-content: center;
-        }
-        .tab-btn {
-            background: transparent;
-            border: 2px solid #e2e8f0;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--gray);
-        }
-        body.dark-mode .tab-btn {
-            border-color: #444;
-            color: #a0aec0;
-        }
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .tab-btn:hover:not(.active) {
-            background: rgba(67, 97, 238, 0.08);
-            border-color: var(--primary);
-        }
-        .tab-content {
-            display: none;
-            text-align: left;
-            animation: fadeTab 0.3s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadeTab {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .tab-content ul {
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-        .tab-content li {
-            margin-bottom: 6px;
-        }
-        .tab-content p {
-            margin-bottom: 10px;
-        }
-        .tab-content strong {
-            color: var(--primary);
-        }
-        body.dark-mode .tab-content strong {
-            color: var(--accent);
-        }
-
-        /* ===== COMPARISON TABLE ===== */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        .comparison-table th,
-        .comparison-table td {
-            border: 1px solid #e2e8f0;
-            padding: 10px 14px;
-            text-align: left;
-        }
-        body.dark-mode .comparison-table th,
-        body.dark-mode .comparison-table td {
-            border-color: #444;
-        }
-        .comparison-table th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-        .comparison-table tr:nth-child(even) {
-            background: rgba(67, 97, 238, 0.05);
-        }
-        body.dark-mode .comparison-table tr:nth-child(even) {
-            background: rgba(67, 97, 238, 0.12);
-        }
-
-        /* ===== QUIZ ===== */
-        .quiz-container {
-            width: 100%;
-            text-align: left;
-        }
-        .quiz-question {
-            background: rgba(67, 97, 238, 0.06);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            border-left: 4px solid var(--primary);
-        }
-        body.dark-mode .quiz-question {
-            background: rgba(67, 97, 238, 0.12);
-        }
-        .quiz-question p {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-        body.dark-mode .quiz-question p {
-            color: #f8f9fa;
-        }
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .quiz-options label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.92rem;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        .quiz-options label:hover {
-            background: rgba(67, 97, 238, 0.06);
-        }
-        .quiz-options input[type="radio"] {
-            accent-color: var(--primary);
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-        .quiz-feedback {
-            margin-top: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 6px;
-            display: none;
-        }
-        .quiz-feedback.correct {
-            display: block;
-            background: rgba(74, 222, 128, 0.15);
-            color: #15803d;
-        }
-        .quiz-feedback.wrong {
-            display: block;
-            background: rgba(248, 113, 113, 0.15);
-            color: #b91c1c;
-        }
-        .quiz-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            margin-top: 6px;
-        }
-        .quiz-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-        .quiz-result {
-            margin-top: 16px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            text-align: center;
-        }
-
-        /* ===== GLOSSARY ===== */
-        .glossary-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 20px;
-            width: 100%;
-            text-align: left;
-        }
-        .glossary-item {
-            display: flex;
-            gap: 8px;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-        }
-        body.dark-mode .glossary-item {
-            border-bottom-color: rgba(255, 255, 255, 0.05);
-        }
-        .glossary-term {
-            font-weight: 600;
-            color: var(--primary);
-            min-width: 100px;
-        }
-        body.dark-mode .glossary-term {
-            color: var(--accent);
-        }
-        .glossary-def {
-            color: var(--gray);
-        }
-        body.dark-mode .glossary-def {
-            color: #cbd5e1;
-        }
-
-        /* ===== CHART / INFOGRAPHIC ===== */
-        .infographic-bar {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            margin: 10px 0;
-        }
-        .bar-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .bar-label {
-            min-width: 110px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            color: var(--dark);
-        }
-        body.dark-mode .bar-label {
-            color: #f8f9fa;
-        }
-        .bar-track {
-            flex: 1;
-            height: 26px;
-            background: #e2e8f0;
-            border-radius: 50px;
-            overflow: hidden;
-            position: relative;
-        }
-        body.dark-mode .bar-track {
-            background: #444;
-        }
-        .bar-fill {
-            height: 100%;
-            border-radius: 50px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-            transition: width 0.8s ease;
-            width: 0%;
-        }
-        .bar-fill.animate {
-            /* width diatur inline via JS */;
-        }
-
-        /* ===== BADGE / TAG ===== */
-        .badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 2px 12px;
-            border-radius: 50px;
-            letter-spacing: 0.3px;
-            margin-right: 6px;
-        }
-        .badge-success {
-            background: var(--success);
-            color: #0a2e1a;
-        }
-        .badge-warning {
-            background: var(--warning);
-            color: #5c3d0a;
-        }
-        .badge-danger {
-            background: var(--danger);
-            color: #5c0a0a;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            color: white;
-            padding: 60px 20px 30px;
-            margin-top: 60px;
-            font-family: 'Poppins', sans-serif;
-        }
-        body.dark-mode footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-        }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 8px;
-        }
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: #4361ee;
-            border-radius: 3px;
-        }
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer-section li {
-            margin: 10px 0;
-        }
-        .footer-section a {
-            color: #e2e8f0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .footer-section a:hover {
-            color: #4361ee;
-            transform: translateX(5px);
-        }
-        .footer-section p {
-            line-height: 1.6;
-            margin: 8px 0;
-            color: #e2e8f0;
-        }
-        .footer-legal-bar {
-            display: none;
-            text-align: center;
-            padding: 15px 10px;
-            margin: 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            flex-wrap: wrap;
-            gap: 5px;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        .footer-legal-bar a {
-            color: #94a3b8;
-            text-decoration: none;
-            padding: 3px 8px;
-        }
-        .footer-legal-bar a:hover {
-            color: #4361ee;
-        }
-        .footer-legal-bar .separator {
-            color: rgba(255, 255, 255, 0.2);
-            margin: 0 3px;
-        }
-        .visitor-counter {
-            text-align: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        .visitor-counter img {
-            max-width: 100%;
-            height: auto;
-            filter: brightness(1.2);
-        }
-        .visitor-counter p {
-            margin-top: 10px;
-            font-size: 0.85rem;
-            opacity: 0.8;
-            color: #e2e8f0;
-        }
-        .copyright {
-            text-align: center;
-            grid-column: span 5;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-
-        /* ===== SCROLL INDICATOR & BACK TO TOP ===== */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 9999;
-        }
-        .scroll-indicator span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.2s ease;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
-        }
-
-        /* ===== LOADER ===== */
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
-        }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                background: linear-gradient(120deg, var(--primary), var(--secondary));
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                z-index: 1000;
-            }
-            .nav-links.active {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
-            @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-10px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .nav-links li {
-                width: 100%;
-            }
-            .nav-links a {
-                padding: 12px 20px;
-                border-radius: 0;
-                width: 100%;
-            }
-            .dropdown-content {
-                position: static;
-                background: rgba(0, 0, 0, 0.1);
-                box-shadow: none;
-                width: 100%;
-                display: none;
-                padding: 0;
-            }
-            .dropdown.active .dropdown-content {
-                display: flex;
-                flex-direction: column;
-            }
-            .dropdown-content a {
-                padding-left: 40px;
-                color: white;
-            }
-            .section-title {
-                font-size: 1.3rem;
-            }
-            header {
-                padding: 4rem 1rem 2rem;
-            }
-            .logo {
-                width: 80px;
-                height: 80px;
-            }
-            .container {
-                grid-template-columns: 1fr;
-                padding: 15px;
-                gap: 20px;
-            }
-            .card {
-                padding: 25px 20px;
-            }
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .copyright {
-                grid-column: span 1;
-            }
-            .footer-legal-bar {
-                display: flex;
-            }
-            .footer-section:nth-child(3) {
-                display: none;
-            }
-            .glossary-grid {
-                grid-template-columns: 1fr;
-            }
-            .comparison-table {
-                font-size: 0.75rem;
-            }
-            .comparison-table th,
-            .comparison-table td {
-                padding: 6px 10px;
-            }
-            .tab-buttons {
-                gap: 4px;
-            }
-            .tab-btn {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-            .bar-label {
-                min-width: 80px;
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 1rem;
-            }
-            .navbar-brand img {
-                width: 35px;
-                height: 35px;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
+        @media(max-width:768px){
+            .hamburger{display:block}
+            .nav-links{display:none;position:fixed;top:var(--header-height);left:0;width:100%;background:linear-gradient(120deg,var(--primary),var(--secondary));flex-direction:column;gap:0;padding:1rem 0;z-index:1000}
+            .nav-links.active{display:flex;animation:slideDown .3s ease}
+            @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+            .nav-links li{width:100%}
+            .nav-links a{padding:12px 20px;border-radius:0;width:100%}
+            .dropdown-content{position:static;background:rgba(0,0,0,.1);box-shadow:none;width:100%;display:none;padding:0}
+            .dropdown.active .dropdown-content{display:flex;flex-direction:column}
+            .dropdown-content a{padding-left:40px;color:#fff}
+            .category-title{font-size:1.3rem}
+            header{padding:4rem 1rem 2rem}
+            .logo{width:80px;height:80px}
+            .container{grid-template-columns:1fr;padding:15px;gap:20px}
+            .card{padding:25px 20px}
+            .footer-container{grid-template-columns:1fr;gap:30px}
+            .copyright{grid-column:span 1}
+            .footer-legal-bar{display:flex}
+            .footer-section:nth-child(3){display:none}
+            .program{grid-template-columns:1fr}
+            .progress-wrap{top:70px}
+        }
+        @media(max-width:576px){
+            .navbar-brand{font-size:1rem}
+            .navbar-brand img{width:35px;height:35px}
+            h1{font-size:1.6rem}
         }
     </style>
 </head>
+
 <body>
-    <!-- LOADER -->
-    <div class="loader-wrapper" id="loader">
-        <div class="loader"></div>
-    </div>
-
-    <!-- SCROLL INDICATOR -->
+    <div class="loader-wrapper" id="loader"><div class="loader"></div></div>
     <div class="scroll-indicator"><span id="scrollProgress"></span></div>
-
-    <!-- BACK TO TOP -->
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- NAV LINK TETAP -->
     <nav class="navbar">
         <a href="../index.html" class="navbar-brand">
             <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" />
             <span>SMAN 1 Cluring</span>
         </a>
+
         <div class="nav-container">
             <button class="theme-toggle" id="themeToggle">🌙</button>
             <button class="hamburger" id="hamburger">☰</button>
         </div>
+
         <ul class="nav-links" id="navLinks">
             <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
@@ -1020,357 +308,632 @@
         </ul>
     </nav>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" class="logo" />
         <h1>Bab 5C: APBD</h1>
         <p class="subtitle">Ekonomi Kelas XII Semester 2 | Disusun oleh: Alamsah, SE.</p>
     </header>
 
-    <!-- ===== ADSENSE ===== -->
     <div class="adsense-container">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="7545225746" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- ===== TUJUAN PEMBELAJARAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h2>
-    <div class="container" style="grid-template-columns:1fr;">
-        <div class="card ekonomi">
-            <div class="materi-text-left">
-                <p>Setelah mempelajari materi ini, peserta didik diharapkan mampu:</p>
-                <ul>
-                    <li><strong>Memahami</strong> definisi, fungsi, dan asas penyusunan APBD sebagai instrumen fiskal daerah.</li>
-                    <li><strong>Menganalisis</strong> struktur pendapatan dan belanja daerah serta mekanisme penyusunan APBD.</li>
-                    <li><strong>Membedakan</strong> peran APBD dan APBN dalam sistem keuangan negara.</li>
-                    <li><strong>Mengaitkan</strong> APBD dengan prioritas pembangunan daerah, khususnya Kabupaten Banyuwangi.</li>
-                    <li><strong>Mengevaluasi</strong> tantangan dan dampak APBD terhadap kesejahteraan masyarakat.</li>
-                </ul>
+    <!-- PROGRESS PEMBELAJARAN -->
+    <div class="progress-wrap">
+        <div class="progress-inner">
+            <div class="progress-label">
+                <span><i class="fas fa-graduation-cap"></i> Progress APBD 2.0</span>
+                <strong id="progressText">0%</strong>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
     </div>
 
-    <!-- ===== MATERI UTAMA dengan TAB ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-map-marked-alt"></i> Materi: Anggaran Pendapatan dan Belanja Daerah</h2>
+    <h2 class="category-title ekonomi">
+        <i class="fas fa-map-marked-alt"></i>
+        Materi Interaktif: Anggaran Pendapatan dan Belanja Daerah
+    </h2>
 
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch; text-align:left;">
-            <div class="tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="tab1"><i class="fas fa-book-open"></i> Definisi &amp; Fungsi</button>
-                    <button class="tab-btn" data-tab="tab2"><i class="fas fa-balance-scale"></i> Asas &amp; Struktur</button>
-                    <button class="tab-btn" data-tab="tab3"><i class="fas fa-cogs"></i> Mekanisme</button>
-                    <button class="tab-btn" data-tab="tab4"><i class="fas fa-arrow-right-arrow-left"></i> APBD vs APBN</button>
-                    <button class="tab-btn" data-tab="tab5"><i class="fas fa-city"></i> Konteks Lokal</button>
-                </div>
+    <div class="container">
 
-                <!-- TAB 1: Definisi & Fungsi -->
-                <div class="tab-content active" id="tab1">
-                    <p><strong>Definisi:</strong> APBD adalah rencana keuangan tahunan pemerintahan daerah yang dibahas dan disetujui bersama oleh Pemerintah Daerah dan Dewan Perwakilan Rakyat Daerah (DPRD), serta ditetapkan dengan Peraturan Daerah (Perda).</p>
-                    <br>
-                    <p><strong>Fungsi APBD:</strong></p>
-                    <ul>
-                        <li><strong>Otorisasi:</strong> Dasar bagi pemda untuk menjalankan pendapatan dan belanja.</li>
-                        <li><strong>Perencanaan:</strong> Pedoman dalam merencanakan kegiatan pada tahun tersebut.</li>
-                        <li><strong>Pengawasan:</strong> Dasar bagi DPRD dan masyarakat untuk mengawasi pelaksanaan.</li>
-                        <li><strong>Alokasi:</strong> Mengarahkan sumber daya untuk mengurangi pengangguran dan pemborosan.</li>
-                        <li><strong>Distribusi:</strong> Menjamin keadilan dan kepatutan dalam pembagian sumber daya.</li>
-                        <li><strong>Stabilisasi:</strong> Alat untuk memelihara keseimbangan fundamental perekonomian daerah.</li>
-                    </ul>
-                    <p style="margin-top:12px; background:rgba(67,97,238,0.06); padding:12px 16px; border-radius:8px;">
-                        <i class="fas fa-lightbulb" style="color:var(--primary);"></i>
-                        <strong>Poin penting:</strong> APBD bukan sekadar catatan keuangan, melainkan <em>alat kebijakan</em> yang mencerminkan prioritas pembangunan daerah.
+        <!-- 1 INTRO -->
+        <div class="card ekonomi wide" data-step="1">
+            <span class="section-badge"><i class="fas fa-play"></i> START BELAJAR</span>
+            <h2><i class="fas fa-route"></i> Selamat Datang di APBD 2.0</h2>
+
+            <div class="materi-text-left">
+                <div class="hero-learning">
+                    <p>
+                        Pada materi ini kamu tidak hanya membaca definisi APBD.
+                        Kamu akan belajar melalui alur:
+                    </p>
+
+                    <div class="flow">
+                        <span>① Konsep</span>
+                        <span>② Contoh</span>
+                        <span>③ Simulasi</span>
+                        <span>④ Kasus</span>
+                        <span>⑤ Analisis</span>
+                        <span>⑥ Quiz</span>
+                        <span>⑦ Refleksi</span>
+                    </div>
+
+                    <p style="margin-top:18px;">
+                        <strong>Misi kamu:</strong> memahami bagaimana uang daerah
+                        diperoleh, dialokasikan, digunakan, dan dipertanggungjawabkan
+                        untuk kepentingan masyarakat.
                     </p>
                 </div>
+            </div>
+        </div>
 
-                <!-- TAB 2: Asas & Struktur -->
-                <div class="tab-content" id="tab2">
-                    <p><strong>Asas Penyusunan APBD:</strong></p>
-                    <ul>
-                        <li><strong>Mandiri:</strong> Peningkatan upaya dan kemandirian daerah dalam menggali sumber pendapatan.</li>
-                        <li><strong>Efisiensi &amp; Efektivitas:</strong> Sesuai kebutuhan dan kemampuan daerah, serta mengutamakan daya guna dan hasil guna.</li>
-                        <li><strong>Transparansi &amp; Akuntabilitas:</strong> Terbuka, dapat dipahami, dan dipertanggungjawabkan kepada publik serta pihak berwenang.</li>
-                        <li><strong>Partisipatif:</strong> Melibatkan peran serta masyarakat dalam proses penganggaran.</li>
-                        <li><strong>Tertib &amp; Disiplin:</strong> Sesuai dengan peraturan perundang-undangan yang berlaku.</li>
-                    </ul>
-                    <br>
-                    <p><strong>Struktur Pendapatan &amp; Belanja:</strong></p>
-                    <ul>
-                        <li><strong>Pendapatan Daerah:</strong> PAD (pajak daerah, retribusi, hasil kekayaan daerah) + Dana Perimbangan (DAU, DAK, DBH).</li>
-                        <li><strong>Belanja Daerah:</strong> Belanja Operasi, Belanja Modal, Belanja Tidak Terduga, Belanja Transfer.</li>
-                        <li><strong>Pembiayaan Daerah:</strong> Penerimaan pembiayaan (SiLPA, pencairan dana cadangan) dan pengeluaran pembiayaan (pembentukan dana cadangan, pembayaran pokok utang).</li>
-                    </ul>
-                    <div style="margin-top:14px; background:rgba(67,97,238,0.06); border-radius:8px; padding:12px 16px;">
-                        <p style="margin:0;"><i class="fas fa-chart-pie" style="color:var(--primary);"></i> <strong>Komposisi PAD di Banyuwangi (ilustrasi):</strong></p>
-                        <div class="infographic-bar">
-                            <div class="bar-row"><span class="bar-label">Pajak Daerah</span><div class="bar-track"><div class="bar-fill" style="width:42%;">42%</div></div></div>
-                            <div class="bar-row"><span class="bar-label">Retribusi</span><div class="bar-track"><div class="bar-fill" style="width:28%;">28%</div></div></div>
-                            <div class="bar-row"><span class="bar-label">Kekayaan Daerah</span><div class="bar-track"><div class="bar-fill" style="width:18%;">18%</div></div></div>
-                            <div class="bar-row"><span class="bar-label">Lain-lain PAD</span><div class="bar-track"><div class="bar-fill" style="width:12%;">12%</div></div></div>
-                        </div>
-                    </div>
-                </div>
+        <!-- 2 KONSEP -->
+        <div class="card ekonomi" data-step="2">
+            <span class="section-badge"><i class="fas fa-book-open"></i> KONSEP</span>
+            <h2><i class="fas fa-landmark"></i> 1. Apa Itu APBD?</h2>
+            <div class="materi-text-left">
+                <p>
+                    <strong>APBD (Anggaran Pendapatan dan Belanja Daerah)</strong>
+                    adalah rencana keuangan tahunan pemerintahan daerah yang
+                    dibahas dan disetujui bersama oleh Pemerintah Daerah dan DPRD
+                    serta ditetapkan dalam bentuk Peraturan Daerah.
+                </p>
 
-                <!-- TAB 3: Mekanisme -->
-                <div class="tab-content" id="tab3">
-                    <p>Proses penyusunan APBD melibatkan tahapan sistematis:</p>
-                    <ol style="padding-left:20px; margin-bottom:12px;">
-                        <li><strong>Tahap 1:</strong> Pemerintah Daerah menyusun Rencana Kerja Pemerintah Daerah (RKPD) sebagai pedoman.</li>
-                        <li><strong>Tahap 2:</strong> Penyusunan Kerangka Ekonomi Makro Daerah dan Pokok-pokok Kebijakan Fiskal Daerah (KEM-PPKFD).</li>
-                        <li><strong>Tahap 3:</strong> Penetapan Kebijakan Umum Anggaran (KUA) dan Prioritas Plafon Anggaran Sementara (PPAS) bersama DPRD.</li>
-                        <li><strong>Tahap 4:</strong> Penyusunan Rencana APBD (RAPBD) oleh Pejabat Pengelola Keuangan Daerah (PPKD).</li>
-                        <li><strong>Tahap 5:</strong> Pembahasan RAPBD antara Pemerintah Daerah dan DPRD, hingga ditetapkan menjadi Perda APBD paling lambat akhir tahun sebelum tahun anggaran dilaksanakan.</li>
-                    </ol>
-                    <div style="background:rgba(67,97,238,0.06); border-radius:8px; padding:12px 16px;">
-                        <p style="margin:0;"><i class="fas fa-clock" style="color:var(--primary);"></i> <strong>Siklus APBD:</strong> Perencanaan → Penganggaran → Pelaksanaan → Penatausahaan → Pelaporan → Pertanggungjawaban → Evaluasi.</p>
-                    </div>
-                </div>
+                <p>
+                    APBD menjadi dasar pemerintah daerah dalam merencanakan dan
+                    melaksanakan pendapatan, belanja, serta pembiayaan selama
+                    satu tahun anggaran.
+                </p>
 
-                <!-- TAB 4: APBD vs APBN -->
-                <div class="tab-content" id="tab4">
-                    <p>APBD dan APBN memiliki peran yang saling melengkapi dalam sistem keuangan negara. Berikut perbandingannya:</p>
-                    <div style="overflow-x:auto; margin-top:10px;">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Aspek</th>
-                                    <th>APBD</th>
-                                    <th>APBN</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Lingkup</strong></td>
-                                    <td>Daerah (provinsi/kabupaten/kota)</td>
-                                    <td>Nasional (negara)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Penyusun</strong></td>
-                                    <td>Pemda + DPRD</td>
-                                    <td>Pemerintah Pusat + DPR</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Sumber Pendapatan</strong></td>
-                                    <td>PAD, Dana Perimbangan, lain-lain</td>
-                                    <td>Pajak, PNBP, Hibah, dll.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Fokus</strong></td>
-                                    <td>Pelayanan publik &amp; pembangunan daerah</td>
-                                    <td>Stabilitas makro, pertahanan, pendidikan, kesehatan nasional</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Dasar Hukum</strong></td>
-                                    <td>UU No. 23/2014 (Pemda) &amp; Peraturan terkait</td>
-                                    <td>UU No. 17/2003 (Keuangan Negara)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p style="margin-top:12px;"><i class="fas fa-link" style="color:var(--primary);"></i> <strong>Keterkaitan:</strong> APBD merupakan bagian dari sistem keuangan negara yang terintegrasi dengan APBN melalui Dana Perimbangan dan transfer daerah.</p>
-                </div>
-
-                <!-- TAB 5: Konteks Lokal -->
-                <div class="tab-content" id="tab5">
-                    <p>Sebagai contoh penerapan nyata, Kabupaten Banyuwangi pada Tahun Anggaran 2025 menetapkan tema: <em>"Penguatan Ekosistem Kualitas SDM yang Mendukung Transformasi Ekonomi Berkelanjutan"</em>.</p>
-                    <br>
-                    <p><strong>Delapan Prioritas Pembangunan:</strong></p>
-                    <ul>
-                        <li>Pengentasan kemiskinan dan perluasan lapangan kerja.</li>
-                        <li>Peningkatan kualitas pendidikan dan kesehatan.</li>
-                        <li>Peningkatan ekosistem produktif bagi pelaku pariwisata, UMKM, dan pertanian.</li>
-                        <li>Penguatan modal sosial dan pengelolaan lingkungan hidup berkelanjutan.</li>
-                        <li>Transformasi digital layanan publik.</li>
-                        <li>Pengembangan infrastruktur penunjang kawasan ekonomi strategis.</li>
-                    </ul>
-                    <div style="background:rgba(67,97,238,0.06); border-radius:8px; padding:12px 16px; margin-top:10px;">
-                        <p style="margin:0;"><i class="fas fa-map-pin" style="color:var(--primary);"></i> <strong>Relevansi:</strong> APBD Banyuwangi diarahkan untuk menjawab kebutuhan dan potensi lokal, seperti pengembangan destinasi wisata Ijen, peningkatan konektivitas, dan pemberdayaan UMKM.</p>
-                    </div>
+                <div class="concept-box">
+                    <strong>Inti konsep</strong>
+                    <p>
+                        APBD = <strong>rencana keuangan pemerintah daerah</strong>
+                        untuk mengelola sumber daya keuangan demi pelayanan,
+                        pembangunan, dan kepentingan masyarakat.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ===== TANTANGAN & DAMPAK APBD ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-exclamation-triangle"></i> Tantangan &amp; Dampak APBD</h2>
-    <div class="container">
-        <div class="card ekonomi">
-            <h2><i class="fas fa-road"></i> Tantangan Implementasi</h2>
+        <!-- 3 ANALOGI -->
+        <div class="card ekonomi" data-step="3">
+            <span class="section-badge"><i class="fas fa-lightbulb"></i> HUBUNGKAN</span>
+            <h2><i class="fas fa-house-user"></i> 2. Bayangkan Sebuah Keluarga</h2>
             <div class="materi-text-left">
-                <ul>
-                    <li><strong>Keterbatasan PAD:</strong> Banyak daerah masih bergantung pada Dana Perimbangan.</li>
-                    <li><strong>Kualitas Belanja:</strong> Belanja modal seringkali rendah dibanding belanja operasi.</li>
-                    <li><strong>Koordinasi:</strong> Sinkronisasi antara pemda dan DPRD terkadang memakan waktu.</li>
-                    <li><strong>Kapasitas SDM:</strong> Pengelola keuangan daerah belum merata kompetensinya.</li>
-                    <li><strong>Partisipasi Masyarakat:</strong> Masih rendahnya keterlibatan publik dalam proses musrenbang.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="card ekonomi">
-            <h2><i class="fas fa-hand-holding-heart"></i> Dampak terhadap Masyarakat</h2>
-            <div class="materi-text-left">
-                <ul>
-                    <li><strong>Pelayanan Publik:</strong> APBD yang baik meningkatkan kualitas pendidikan, kesehatan, dan infrastruktur.</li>
-                    <li><strong>Pertumbuhan Ekonomi:</strong> Belanja modal yang tepat mendorong investasi dan lapangan kerja.</li>
-                    <li><strong>Kesejahteraan:</strong> Program perlindungan sosial dan bantuan langsung dapat mengurangi kemiskinan.</li>
-                    <li><strong>Keadilan:</strong> Distribusi sumber daya yang merata mengurangi kesenjangan antar wilayah.</li>
-                    <li><strong>Kepercayaan Publik:</strong> Pengelolaan yang transparan meningkatkan kepercayaan masyarakat terhadap pemerintah.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+                <p>
+                    Sebuah keluarga memiliki pendapatan. Pendapatan tersebut
+                    harus direncanakan untuk memenuhi berbagai kebutuhan.
+                </p>
 
-    <!-- ===== EVALUASI APBD ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-chart-simple"></i> Evaluasi Kinerja APBD</h2>
-    <div class="container">
-        <div class="card ekonomi" style="grid-column:1/-1;">
-            <div class="materi-text-left">
-                <p>Kinerja APBD dapat diukur melalui beberapa indikator utama:</p>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:12px;">
-                    <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                        <div style="font-size:2rem; color:var(--primary);">📈</div>
-                        <strong>Rasio PAD</strong>
-                        <p style="font-size:0.85rem; margin:4px 0 0;">Semakin tinggi, semakin mandiri daerah.</p>
+                <div class="mini-grid">
+                    <div class="info-tile">
+                        <i class="fas fa-wallet"></i>
+                        <strong>Keluarga</strong>
+                        <p>Pendapatan → Pengeluaran → Kebutuhan keluarga</p>
                     </div>
-                    <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                        <div style="font-size:2rem; color:var(--primary);">🏗️</div>
-                        <strong>Belanja Modal</strong>
-                        <p style="font-size:0.85rem; margin:4px 0 0;">Investasi infrastruktur jangka panjang.</p>
-                    </div>
-                    <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                        <div style="font-size:2rem; color:var(--primary);">🎯</div>
-                        <strong>Efektivitas Program</strong>
-                        <p style="font-size:0.85rem; margin:4px 0 0;">Tercapainya target pembangunan.</p>
-                    </div>
-                    <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                        <div style="font-size:2rem; color:var(--primary);">📊</div>
-                        <strong>SiLPA</strong>
-                        <p style="font-size:0.85rem; margin:4px 0 0;">Sisa anggaran mencerminkan penyerapan.</p>
+                    <div class="info-tile">
+                        <i class="fas fa-city"></i>
+                        <strong>Pemerintah daerah</strong>
+                        <p>Pendapatan → Belanja → Pelayanan & pembangunan</p>
                     </div>
                 </div>
-                <p style="margin-top:14px; background:rgba(67,97,238,0.06); padding:10px 14px; border-radius:8px;">
-                    <i class="fas fa-check-circle" style="color:var(--success);"></i>
-                    <strong>APBD yang berkualitas</strong> adalah APBD yang <em>tepat waktu, tepat sasaran, dan dapat dipertanggungjawabkan</em>.
+
+                <p style="margin-top:15px;">
+                    Perbedaannya adalah APBD memiliki cakupan jauh lebih luas
+                    karena menyangkut kepentingan masyarakat dalam satu daerah.
                 </p>
             </div>
         </div>
-    </div>
 
-    <!-- ===== KUIS INTERAKTIF ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-puzzle-piece"></i> Kuis Pemahaman</h2>
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch;">
-            <div class="quiz-container" id="quizContainer">
-                <!-- Soal 1 -->
-                <div class="quiz-question">
-                    <p>1. Apa fungsi APBD yang berkaitan dengan pengawasan pelaksanaan anggaran oleh DPRD dan masyarakat?</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q1" value="A" /> A. Fungsi Otorisasi</label>
-                        <label><input type="radio" name="q1" value="B" /> B. Fungsi Perencanaan</label>
-                        <label><input type="radio" name="q1" value="C" /> C. Fungsi Pengawasan</label>
-                        <label><input type="radio" name="q1" value="D" /> D. Fungsi Distribusi</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb1"></div>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="quiz-question">
-                    <p>2. Berikut ini yang <strong>bukan</strong> merupakan asas penyusunan APBD adalah …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q2" value="A" /> A. Mandiri</label>
-                        <label><input type="radio" name="q2" value="B" /> B. Sentralistik</label>
-                        <label><input type="radio" name="q2" value="C" /> C. Transparansi</label>
-                        <label><input type="radio" name="q2" value="D" /> D. Partisipatif</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb2"></div>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="quiz-question">
-                    <p>3. Komponen pendapatan daerah yang bersumber dari pajak daerah, retribusi, dan hasil kekayaan daerah disebut …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q3" value="A" /> A. Dana Perimbangan</label>
-                        <label><input type="radio" name="q3" value="B" /> B. Pendapatan Asli Daerah (PAD)</label>
-                        <label><input type="radio" name="q3" value="C" /> C. Dana Alokasi Umum</label>
-                        <label><input type="radio" name="q3" value="D" /> D. Belanja Modal</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb3"></div>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="quiz-question">
-                    <p>4. Tahap penyusunan APBD yang melibatkan penetapan Kebijakan Umum Anggaran (KUA) bersama DPRD adalah tahap ke-…</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q4" value="A" /> A. 1</label>
-                        <label><input type="radio" name="q4" value="B" /> B. 2</label>
-                        <label><input type="radio" name="q4" value="C" /> C. 3</label>
-                        <label><input type="radio" name="q4" value="D" /> D. 4</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb4"></div>
-                </div>
-
-                <!-- Soal 5 -->
-                <div class="quiz-question">
-                    <p>5. Prioritas pembangunan APBD Banyuwangi 2025 mencakup penguatan ekosistem produktif bagi pelaku …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q5" value="A" /> A. Pertambangan dan industri berat</label>
-                        <label><input type="radio" name="q5" value="B" /> B. Pariwisata, UMKM, dan pertanian</label>
-                        <label><input type="radio" name="q5" value="C" /> C. Perbankan dan jasa keuangan</label>
-                        <label><input type="radio" name="q5" value="D" /> D. Teknologi informasi dan komunikasi</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb5"></div>
-                </div>
-
-                <div style="text-align:center; margin-top:16px;">
-                    <button class="quiz-btn" id="submitQuiz"><i class="fas fa-check"></i> Periksa Jawaban</button>
-                    <button class="quiz-btn" id="resetQuiz" style="background:var(--gray); margin-left:10px;"><i class="fas fa-undo"></i> Ulangi</button>
-                </div>
-                <div class="quiz-result" id="quizResult"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== GLOSARIUM ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-book"></i> Glosarium</h2>
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch;">
-            <div class="glossary-grid">
-                <div class="glossary-item"><span class="glossary-term">APBD</span><span class="glossary-def">Anggaran Pendapatan dan Belanja Daerah — rencana keuangan tahunan pemerintah daerah.</span></div>
-                <div class="glossary-item"><span class="glossary-term">APBN</span><span class="glossary-def">Anggaran Pendapatan dan Belanja Negara — rencana keuangan tahunan pemerintah pusat.</span></div>
-                <div class="glossary-item"><span class="glossary-term">PAD</span><span class="glossary-def">Pendapatan Asli Daerah — sumber pendapatan yang berasal dari potensi daerah sendiri.</span></div>
-                <div class="glossary-item"><span class="glossary-term">DAU</span><span class="glossary-def">Dana Alokasi Umum — dana dari pusat untuk kebutuhan dasar daerah.</span></div>
-                <div class="glossary-item"><span class="glossary-term">DAK</span><span class="glossary-def">Dana Alokasi Khusus — dana dari pusat untuk program tertentu di daerah.</span></div>
-                <div class="glossary-item"><span class="glossary-term">DBH</span><span class="glossary-def">Dana Bagi Hasil — dana dari pusat yang dibagikan berdasarkan hasil pajak/SDA.</span></div>
-                <div class="glossary-item"><span class="glossary-term">SiLPA</span><span class="glossary-def">Sisa Lebih Pembiayaan Anggaran — selisih positif antara realisasi pendapatan dan belanja.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Belanja Modal</span><span class="glossary-def">Belanja untuk pembangunan aset tetap seperti infrastruktur.</span></div>
-                <div class="glossary-item"><span class="glossary-term">KUA</span><span class="glossary-def">Kebijakan Umum Anggaran — pedoman arah kebijakan fiskal daerah.</span></div>
-                <div class="glossary-item"><span class="glossary-term">PPAS</span><span class="glossary-def">Prioritas Plafon Anggaran Sementara — batas maksimal anggaran sementara.</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== RANGKUMAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-file-alt"></i> Rangkuman &amp; Kesimpulan</h2>
-    <div class="container" style="grid-template-columns:1fr;">
-        <div class="card ekonomi">
+        <!-- 4 TUJUAN -->
+        <div class="card ekonomi" data-step="4">
+            <span class="section-badge"><i class="fas fa-bullseye"></i> PAHAMI</span>
+            <h2><i class="fas fa-bullseye"></i> 3. Tujuan APBD</h2>
             <div class="materi-text-left">
-                <ul>
-                    <li><strong>APBD</strong> adalah instrumen fiskal daerah yang memiliki fungsi otorisasi, perencanaan, pengawasan, alokasi, distribusi, dan stabilisasi.</li>
-                    <li>Penyusunan APBD berlandaskan asas <strong>mandiri, efisien, efektif, transparan, akuntabel, partisipatif, tertib, dan disiplin</strong>.</li>
-                    <li>Struktur APBD terdiri dari <strong>Pendapatan Daerah</strong> (PAD + Dana Perimbangan), <strong>Belanja Daerah</strong>, dan <strong>Pembiayaan Daerah</strong>.</li>
-                    <li>Mekanisme penyusunan melalui 5 tahap: RKPD → KEM-PPKFD → KUA/PPAS → RAPBD → Perda APBD.</li>
-                    <li>APBD dan APBN saling terkait melalui Dana Perimbangan, namun memiliki lingkup dan fokus yang berbeda.</li>
-                    <li>APBD Banyuwangi 2025 mengusung tema <em>"Penguatan Ekosistem Kualitas SDM"</em> dengan 6 prioritas pembangunan.</li>
-                    <li>Tantangan utama APBD adalah <strong>keterbatasan PAD, kualitas belanja, dan partisipasi masyarakat</strong>.</li>
-                    <li>Evaluasi kinerja APBD dapat dilihat dari rasio PAD, belanja modal, efektivitas program, dan SiLPA.</li>
+                <ul class="checklist">
+                    <li><i class="fas fa-check"></i> Membiayai pelayanan publik.</li>
+                    <li><i class="fas fa-check"></i> Membiayai pembangunan daerah.</li>
+                    <li><i class="fas fa-check"></i> Meningkatkan kesejahteraan masyarakat.</li>
+                    <li><i class="fas fa-check"></i> Mendorong kegiatan ekonomi daerah.</li>
+                    <li><i class="fas fa-check"></i> Menentukan prioritas penggunaan anggaran.</li>
                 </ul>
             </div>
         </div>
+
+        <!-- 5 FUNGSI -->
+        <div class="card ekonomi" data-step="5">
+            <span class="section-badge"><i class="fas fa-cogs"></i> PAHAMI</span>
+            <h2><i class="fas fa-cogs"></i> 4. Fungsi APBD</h2>
+            <div class="materi-text-left">
+                <ul>
+                    <li><strong>Otorisasi</strong> – menjadi dasar pelaksanaan pendapatan dan belanja daerah.</li>
+                    <li><strong>Perencanaan</strong> – menjadi pedoman kegiatan pemerintah daerah.</li>
+                    <li><strong>Pengawasan</strong> – menjadi alat mengawasi pelaksanaan anggaran.</li>
+                    <li><strong>Alokasi</strong> – mengalokasikan sumber daya untuk berbagai kebutuhan.</li>
+                    <li><strong>Distribusi</strong> – mendukung pemerataan pembangunan dan pelayanan.</li>
+                    <li><strong>Stabilisasi</strong> – dapat berperan menjaga kestabilan ekonomi daerah.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6 STRUKTUR -->
+        <div class="card ekonomi wide" data-step="6">
+            <span class="section-badge"><i class="fas fa-sitemap"></i> STRUKTUR</span>
+            <h2><i class="fas fa-sitemap"></i> 5. Tiga Komponen Utama APBD</h2>
+            <div class="materi-text-left">
+                <div class="mini-grid">
+                    <div class="info-tile">
+                        <i class="fas fa-coins"></i>
+                        <strong>1. Pendapatan Daerah</strong>
+                        <p>Penerimaan yang menjadi hak daerah dalam satu tahun anggaran.</p>
+                    </div>
+                    <div class="info-tile">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <strong>2. Belanja Daerah</strong>
+                        <p>Pengeluaran untuk penyelenggaraan pemerintahan dan pelayanan masyarakat.</p>
+                    </div>
+                    <div class="info-tile">
+                        <i class="fas fa-exchange-alt"></i>
+                        <strong>3. Pembiayaan Daerah</strong>
+                        <p>Transaksi keuangan terkait penerimaan dan pengeluaran pembiayaan.</p>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <strong>Ingat pola dasarnya:</strong>
+                    Pendapatan → Belanja → Pembiayaan → Pelayanan & Pembangunan
+                </div>
+            </div>
+        </div>
+
+        <!-- 7 PENDAPATAN -->
+        <div class="card ekonomi" data-step="7">
+            <span class="section-badge"><i class="fas fa-coins"></i> PENDAPATAN</span>
+            <h2><i class="fas fa-coins"></i> 6. Dari Mana Uang Daerah Berasal?</h2>
+            <div class="materi-text-left">
+                <p>Secara umum pendapatan daerah mencakup:</p>
+                <ul>
+                    <li><strong>Pendapatan Asli Daerah (PAD)</strong></li>
+                    <li><strong>Pendapatan Transfer</strong></li>
+                    <li><strong>Pendapatan daerah lainnya yang sah</strong></li>
+                </ul>
+
+                <p>
+                    PAD antara lain berkaitan dengan pajak daerah, retribusi
+                    daerah, hasil pengelolaan kekayaan daerah yang dipisahkan,
+                    dan lain-lain PAD yang sah.
+                </p>
+            </div>
+        </div>
+
+        <!-- 8 BELANJA -->
+        <div class="card ekonomi" data-step="8">
+            <span class="section-badge"><i class="fas fa-wallet"></i> BELANJA</span>
+            <h2><i class="fas fa-wallet"></i> 7. Ke Mana Anggaran Digunakan?</h2>
+            <div class="materi-text-left">
+                <ul>
+                    <li><strong>Belanja Operasi</strong> – kebutuhan operasional pemerintahan.</li>
+                    <li><strong>Belanja Modal</strong> – memperoleh atau membangun aset yang memberikan manfaat lebih dari satu periode.</li>
+                    <li><strong>Belanja Tidak Terduga</strong> – kebutuhan tertentu yang bersifat mendesak atau tidak terduga.</li>
+                    <li><strong>Belanja Transfer</strong> – pengeluaran transfer sesuai ketentuan.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 9 PEMBIAYAAN -->
+        <div class="card ekonomi" data-step="9">
+            <span class="section-badge"><i class="fas fa-exchange-alt"></i> PEMBIAYAAN</span>
+            <h2><i class="fas fa-exchange-alt"></i> 8. Pembiayaan Daerah</h2>
+            <div class="materi-text-left">
+                <p>
+                    Pembiayaan daerah merupakan transaksi keuangan yang berkaitan
+                    dengan penerimaan pembiayaan dan pengeluaran pembiayaan.
+                </p>
+                <ul>
+                    <li><strong>Penerimaan pembiayaan</strong></li>
+                    <li><strong>Pengeluaran pembiayaan</strong></li>
+                </ul>
+                <p>
+                    Salah satu istilah yang perlu dikenal adalah
+                    <strong>SiLPA (Sisa Lebih Perhitungan Anggaran)</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- 10 CONTOH -->
+        <div class="card ekonomi wide" data-step="10">
+            <span class="section-badge"><i class="fas fa-eye"></i> CONTOH</span>
+            <h2><i class="fas fa-city"></i> 9. APBD dalam Kehidupan Sehari-hari</h2>
+            <div class="materi-text-left">
+                <p>Perhatikan lingkungan di sekitar kamu:</p>
+                <div class="mini-grid">
+                    <div class="info-tile"><i class="fas fa-road"></i><strong>Jalan</strong><p>Pembangunan dan pemeliharaan jalan daerah.</p></div>
+                    <div class="info-tile"><i class="fas fa-school"></i><strong>Pendidikan</strong><p>Dukungan terhadap layanan dan fasilitas pendidikan.</p></div>
+                    <div class="info-tile"><i class="fas fa-hospital"></i><strong>Kesehatan</strong><p>Peningkatan pelayanan dan fasilitas kesehatan.</p></div>
+                    <div class="info-tile"><i class="fas fa-store"></i><strong>UMKM</strong><p>Pemberdayaan dan pengembangan ekonomi masyarakat.</p></div>
+                    <div class="info-tile"><i class="fas fa-seedling"></i><strong>Pertanian</strong><p>Program yang mendukung kegiatan ekonomi pertanian.</p></div>
+                    <div class="info-tile"><i class="fas fa-tree"></i><strong>Lingkungan</strong><p>Program perlindungan dan pengelolaan lingkungan.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11 SIMULASI -->
+        <div class="card ekonomi wide" data-step="11">
+            <span class="section-badge"><i class="fas fa-gamepad"></i> SIMULASI</span>
+            <h2><i class="fas fa-calculator"></i> 10. Simulasi Menyusun Prioritas APBD</h2>
+
+            <div class="materi-text-left">
+                <p>
+                    Kamu berperan sebagai pengambil keputusan. Dana pembangunan
+                    yang tersedia adalah <strong>Rp10 miliar</strong>.
+                    Tentukan alokasi untuk setiap program.
+                </p>
+
+                <div class="simulation">
+                    <div class="budget-top">
+                        <div>
+                            <div>Sisa anggaran</div>
+                            <div class="budget-number" id="remainingBudget">Rp10,00 M</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary" id="resetBudget">
+                                <i class="fas fa-rotate-left"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="program-list">
+                        <div class="program">
+                            <div><strong>🛣️ Jalan</strong><small>Maksimal Rp4 M</small></div>
+                            <input class="budget-input" type="number" min="0" max="4" step=".5" value="0" data-name="Jalan" data-max="4">
+                        </div>
+                        <div class="program">
+                            <div><strong>🏥 Kesehatan</strong><small>Maksimal Rp3 M</small></div>
+                            <input class="budget-input" type="number" min="0" max="3" step=".5" value="0" data-name="Kesehatan" data-max="3">
+                        </div>
+                        <div class="program">
+                            <div><strong>🎓 Pendidikan</strong><small>Maksimal Rp3 M</small></div>
+                            <input class="budget-input" type="number" min="0" max="3" step=".5" value="0" data-name="Pendidikan" data-max="3">
+                        </div>
+                        <div class="program">
+                            <div><strong>🌾 Pertanian</strong><small>Maksimal Rp2 M</small></div>
+                            <input class="budget-input" type="number" min="0" max="2" step=".5" value="0" data-name="Pertanian" data-max="2">
+                        </div>
+                        <div class="program">
+                            <div><strong>🏪 UMKM</strong><small>Maksimal Rp1 M</small></div>
+                            <input class="budget-input" type="number" min="0" max="1" step=".5" value="0" data-name="UMKM" data-max="1">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="applyBudget" style="margin-top:16px;">
+                        <i class="fas fa-check"></i> Terapkan Anggaran
+                    </button>
+
+                    <div class="simulation-result" id="simulationResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12 KASUS -->
+        <div class="card ekonomi wide" data-step="12">
+            <span class="section-badge"><i class="fas fa-briefcase"></i> STUDI KASUS</span>
+            <h2><i class="fas fa-scale-balanced"></i> 11. Kasus: Daerah dengan Anggaran Terbatas</h2>
+
+            <div class="materi-text-left">
+                <p>
+                    Sebuah daerah menghadapi lima persoalan sekaligus:
+                    jalan rusak, fasilitas kesehatan perlu ditingkatkan,
+                    kualitas pendidikan perlu diperkuat, UMKM membutuhkan
+                    dukungan, dan sektor pertanian membutuhkan infrastruktur.
+                </p>
+
+                <p>
+                    Anggaran tidak cukup untuk memenuhi semua kebutuhan
+                    sekaligus. Pemerintah harus menentukan prioritas.
+                </p>
+
+                <div class="choice-group" id="caseChoices">
+                    <div class="choice" data-choice="jalan">
+                        <strong>🛣️ Prioritaskan jalan</strong>
+                        <p>Karena akses transportasi memengaruhi kegiatan masyarakat dan ekonomi.</p>
+                    </div>
+                    <div class="choice" data-choice="kesehatan">
+                        <strong>🏥 Prioritaskan kesehatan</strong>
+                        <p>Karena pelayanan kesehatan berkaitan langsung dengan kebutuhan dasar masyarakat.</p>
+                    </div>
+                    <div class="choice" data-choice="pendidikan">
+                        <strong>🎓 Prioritaskan pendidikan</strong>
+                        <p>Karena peningkatan kualitas SDM merupakan investasi jangka panjang.</p>
+                    </div>
+                    <div class="choice" data-choice="ekonomi">
+                        <strong>🌾🏪 Prioritaskan ekonomi lokal</strong>
+                        <p>Karena pertanian dan UMKM dapat mendukung aktivitas ekonomi masyarakat.</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="submitCase" style="margin-top:15px;">
+                    <i class="fas fa-paper-plane"></i> Lihat Umpan Balik
+                </button>
+
+                <div class="feedback" id="caseFeedback"></div>
+            </div>
+        </div>
+
+        <!-- 13 ANALISIS -->
+        <div class="card ekonomi" data-step="13">
+            <span class="section-badge"><i class="fas fa-chart-line"></i> ANALISIS</span>
+            <h2><i class="fas fa-chart-pie"></i> 12. Analisis Anggaran</h2>
+
+            <div class="materi-text-left">
+                <p>
+                    Sebuah daerah secara sederhana memiliki:
+                </p>
+
+                <div class="concept-box">
+                    <strong>Pendapatan = Rp100 M</strong><br>
+                    <strong>Belanja = Rp90 M</strong>
+                </div>
+
+                <p style="margin-top:15px;">
+                    Secara sederhana terdapat selisih Rp10 M antara pendapatan
+                    dan belanja. Namun dalam membaca APBD secara utuh, kita
+                    juga perlu memperhatikan struktur pembiayaan dan komponen
+                    anggaran lainnya.
+                </p>
+
+                <div class="choice-group" id="analysisChoices">
+                    <div class="choice" data-answer="A">A. Tidak ada ruang anggaran sama sekali.</div>
+                    <div class="choice" data-answer="B">B. Ada selisih Rp10 M secara sederhana, tetapi analisis APBD harus melihat pembiayaan juga.</div>
+                    <div class="choice" data-answer="C">C. Pendapatan dan belanja pasti sama.</div>
+                </div>
+
+                <button class="btn btn-primary" id="submitAnalysis" style="margin-top:15px;">
+                    Periksa Jawaban
+                </button>
+
+                <div class="feedback" id="analysisFeedback"></div>
+            </div>
+        </div>
+
+        <!-- 14 MISKONSEPSI -->
+        <div class="card ekonomi" data-step="14">
+            <span class="section-badge"><i class="fas fa-triangle-exclamation"></i> MISKONSEPSI</span>
+            <h2><i class="fas fa-brain"></i> 13. Bongkar Miskonsepsi APBD</h2>
+
+            <div class="materi-text-left">
+                <div class="misconception">
+                    <strong>❌ "Semakin besar APBD pasti semakin sejahtera."</strong>
+                    <button class="btn btn-secondary explain-btn">Lihat penjelasan</button>
+                    <p class="hidden-explanation">
+                        Belum tentu. Besarnya anggaran tidak otomatis menunjukkan
+                        keberhasilan pembangunan. Alokasi, pelaksanaan, efektivitas,
+                        dan manfaat bagi masyarakat juga penting.
+                    </p>
+                </div>
+
+                <div class="misconception">
+                    <strong>❌ "PAD adalah seluruh pendapatan daerah."</strong>
+                    <button class="btn btn-secondary explain-btn">Lihat penjelasan</button>
+                    <p class="hidden-explanation">
+                        Salah. PAD merupakan salah satu komponen pendapatan daerah,
+                        bukan seluruh pendapatan daerah.
+                    </p>
+                </div>
+
+                <div class="misconception">
+                    <strong>❌ "Belanja daerah berarti pemborosan."</strong>
+                    <button class="btn btn-secondary explain-btn">Lihat penjelasan</button>
+                    <p class="hidden-explanation">
+                        Tidak selalu. Belanja daerah digunakan untuk berbagai
+                        kebutuhan pemerintahan, pelayanan publik, pembangunan,
+                        dan kebutuhan lainnya sesuai ketentuan.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15 QUIZ -->
+        <div class="card ekonomi wide" data-step="15">
+            <span class="section-badge"><i class="fas fa-circle-question"></i> QUIZ</span>
+            <h2><i class="fas fa-list-check"></i> 14. Mini Quiz APBD</h2>
+
+            <div class="materi-text-left" id="quizArea">
+
+                <div class="quiz-question">
+                    <strong>1. APBD adalah...</strong>
+                    <div class="choice-group quiz-q" data-correct="B">
+                        <div class="choice" data-answer="A">A. Laporan keuangan perusahaan.</div>
+                        <div class="choice" data-answer="B">B. Rencana keuangan tahunan pemerintah daerah.</div>
+                        <div class="choice" data-answer="C">C. Anggaran rumah tangga masyarakat.</div>
+                        <div class="choice" data-answer="D">D. Daftar kekayaan pribadi kepala daerah.</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <strong>2. Salah satu komponen utama APBD adalah...</strong>
+                    <div class="choice-group quiz-q" data-correct="C">
+                        <div class="choice" data-answer="A">A. Modal pribadi.</div>
+                        <div class="choice" data-answer="B">B. Laba perusahaan.</div>
+                        <div class="choice" data-answer="C">C. Pendapatan daerah.</div>
+                        <div class="choice" data-answer="D">D. Utang rumah tangga.</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <strong>3. PAD merupakan...</strong>
+                    <div class="choice-group quiz-q" data-correct="A">
+                        <div class="choice" data-answer="A">A. Salah satu sumber pendapatan daerah.</div>
+                        <div class="choice" data-answer="B">B. Seluruh pendapatan daerah.</div>
+                        <div class="choice" data-answer="C">C. Seluruh belanja daerah.</div>
+                        <div class="choice" data-answer="D">D. Pembiayaan rumah tangga.</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <strong>4. Mengapa pemerintah daerah harus menentukan prioritas anggaran?</strong>
+                    <div class="choice-group quiz-q" data-correct="D">
+                        <div class="choice" data-answer="A">A. Karena kebutuhan masyarakat selalu sedikit.</div>
+                        <div class="choice" data-answer="B">B. Karena semua program memiliki anggaran tidak terbatas.</div>
+                        <div class="choice" data-answer="C">C. Karena APBD tidak berhubungan dengan masyarakat.</div>
+                        <div class="choice" data-answer="D">D. Karena sumber daya keuangan terbatas dan kebutuhan banyak.</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <strong>5. Sikap yang paling tepat ketika menganalisis APBD adalah...</strong>
+                    <div class="choice-group quiz-q" data-correct="C">
+                        <div class="choice" data-answer="A">A. Hanya melihat jumlah anggaran.</div>
+                        <div class="choice" data-answer="B">B. Menganggap semua belanja sebagai pemborosan.</div>
+                        <div class="choice" data-answer="C">C. Melihat sumber dana, alokasi, penerima manfaat, dan dampaknya.</div>
+                        <div class="choice" data-answer="D">D. Tidak perlu melihat kebutuhan masyarakat.</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="submitQuiz" style="margin-top:18px;">
+                    <i class="fas fa-check-double"></i> Periksa Quiz
+                </button>
+
+                <div class="feedback" id="quizFeedback"></div>
+
+                <div class="result-summary" id="quizSummary" style="display:none;">
+                    <div class="summary-box">
+                        <strong id="quizScore">0/5</strong>
+                        Skor Quiz
+                    </div>
+                    <div class="summary-box">
+                        <strong id="quizPercent">0%</strong>
+                        Persentase
+                    </div>
+                    <div class="summary-box">
+                        <strong id="quizCategory">-</strong>
+                        Kategori
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16 KONTEKS BANYUWANGI -->
+        <div class="card ekonomi wide" data-step="16">
+            <span class="section-badge"><i class="fas fa-map-location-dot"></i> KONTEKS LOKAL</span>
+            <h2><i class="fas fa-map-marked-alt"></i> 15. APBD dan Banyuwangi</h2>
+
+            <div class="materi-text-left">
+                <p>
+                    Dalam konteks Kabupaten Banyuwangi, APBD dapat dikaitkan
+                    dengan berbagai kebutuhan pembangunan daerah.
+                </p>
+
+                <div class="mini-grid">
+                    <div class="info-tile"><i class="fas fa-graduation-cap"></i><strong>Pendidikan</strong><p>Peningkatan kualitas sumber daya manusia.</p></div>
+                    <div class="info-tile"><i class="fas fa-heart-pulse"></i><strong>Kesehatan</strong><p>Peningkatan pelayanan kesehatan.</p></div>
+                    <div class="info-tile"><i class="fas fa-wheat-awn"></i><strong>Pertanian</strong><p>Penguatan sektor pertanian.</p></div>
+                    <div class="info-tile"><i class="fas fa-umbrella-beach"></i><strong>Pariwisata</strong><p>Pengembangan potensi ekonomi daerah.</p></div>
+                    <div class="info-tile"><i class="fas fa-store"></i><strong>UMKM</strong><p>Pemberdayaan ekonomi masyarakat.</p></div>
+                    <div class="info-tile"><i class="fas fa-leaf"></i><strong>Lingkungan</strong><p>Pengelolaan lingkungan hidup berkelanjutan.</p></div>
+                </div>
+
+                <div class="concept-box">
+                    <strong>Pertanyaan kunci:</strong>
+                    Bagaimana prioritas APBD dapat disesuaikan dengan kebutuhan
+                    dan potensi daerah?
+                </div>
+            </div>
+        </div>
+
+        <!-- 17 REFLEKSI -->
+        <div class="card ekonomi wide" data-step="17">
+            <span class="section-badge"><i class="fas fa-pen"></i> REFLEKSI</span>
+            <h2><i class="fas fa-comment-dots"></i> 16. Refleksi Akhir</h2>
+
+            <div class="materi-text-left">
+                <p>
+                    Sekarang bayangkan kamu menjadi bagian dari tim yang
+                    membantu pemerintah daerah menentukan prioritas anggaran.
+                </p>
+
+                <p>
+                    <strong>
+                        Program apa yang akan kamu prioritaskan dan mengapa?
+                    </strong>
+                </p>
+
+                <div class="reflection-box">
+                    <textarea id="reflectionText" placeholder="Tuliskan pendapat dan alasanmu di sini..."></textarea>
+
+                    <div class="reflection-actions">
+                        <button class="btn btn-primary" id="saveReflection">
+                            <i class="fas fa-save"></i> Simpan Refleksi
+                        </button>
+                        <button class="btn btn-secondary" id="clearReflection">
+                            <i class="fas fa-trash"></i> Hapus
+                        </button>
+                    </div>
+
+                    <div class="saved-note" id="savedNote">
+                        <i class="fas fa-check-circle"></i> Refleksi tersimpan di perangkat ini.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 18 RANGKUMAN -->
+        <div class="card ekonomi wide" data-step="18">
+            <span class="section-badge"><i class="fas fa-flag-checkered"></i> SELESAI</span>
+            <h2><i class="fas fa-graduation-cap"></i> Rangkuman Akhir</h2>
+
+            <div class="materi-text-left">
+                <div class="concept-box" style="text-align:center;">
+                    <strong style="font-size:1.05rem;">
+                        Pendapatan Daerah
+                        ↓
+                        APBD
+                        ↓
+                        Belanja & Pembiayaan
+                        ↓
+                        Pelayanan & Pembangunan
+                        ↓
+                        Kesejahteraan Masyarakat
+                    </strong>
+                </div>
+
+                <p style="margin-top:16px;">
+                    APBD merupakan rencana keuangan tahunan pemerintah daerah.
+                    Memahami APBD berarti memahami bagaimana sumber daya
+                    keuangan daerah direncanakan dan digunakan untuk memenuhi
+                    kebutuhan masyarakat.
+                </p>
+
+                <p>
+                    Yang paling penting bukan hanya mengetahui
+                    <strong>berapa besar anggaran</strong>, tetapi memahami
+                    <strong>dari mana sumbernya, untuk apa digunakan, siapa
+                    yang menerima manfaat, dan apa dampaknya</strong>.
+                </p>
+
+                <div class="result-summary">
+                    <div class="summary-box">
+                        <strong id="finalQuizDisplay">-</strong>
+                        Hasil Quiz
+                    </div>
+                    <div class="summary-box">
+                        <strong id="simulationDisplay">-</strong>
+                        Simulasi
+                    </div>
+                    <div class="summary-box">
+                        <strong id="learningProgressDisplay">0%</strong>
+                        Progress
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER TETAP -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -1381,6 +944,7 @@
                     <li><a href="../soal-tka.html"><i class="fas fa-question-circle"></i> Bank Soal TKA</a></li>
                 </ul>
             </div>
+
             <div class="footer-section">
                 <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
                 <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br />0333-713297 (Sekolah)</p>
@@ -1388,134 +952,458 @@
                 <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br />SMAN 1 Cluring, Banyuwangi, Jawa Timur</p>
             </div>
         </div>
+
         <div class="copyright">
             <p>© 2026 <strong>SMA Negeri 1 Cluring</strong></p>
             <p>Semua hak dilindungi undang-undang.</p>
         </div>
+
         <div class="footer-bottom">
-            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+            <p>Dibuat dengan <i class="fas fa-heart" style="color:#e74c3c;"></i> untuk pendidikan Indonesia</p>
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
-        // ===== HAMBURGER =====
+        /* =========================
+           NAV + THEME
+        ========================== */
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const dropdowns = document.querySelectorAll('.dropdown');
+
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
+
         dropdowns.forEach(dropdown => {
             const link = dropdown.querySelector('a');
             link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) { e.preventDefault();
-                    dropdown.classList.toggle('active'); }
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
             });
         });
+
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && navLinks.classList.contains('active') && !e.target.closest(
-                    '.nav-links') && !e.target.closest('.hamburger')) {
+            if (window.innerWidth <= 768 &&
+                navLinks.classList.contains('active') &&
+                !e.target.closest('.nav-links') &&
+                !e.target.closest('.hamburger')) {
                 navLinks.classList.remove('active');
                 hamburger.textContent = '☰';
             }
         });
 
-        // ===== DARK MODE =====
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
-        if (localStorage.getItem('darkMode') === 'enabled') { body.classList.add('dark-mode');
-            themeToggle.textContent = '☀️'; }
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) { themeToggle.textContent = '☀️';
-                localStorage.setItem('darkMode', 'enabled'); } else { themeToggle.textContent = '🌙';
-                localStorage.setItem('darkMode', 'disabled'); }
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
         });
 
-        // ===== SCROLL PROGRESS & BACK TO TOP =====
+        /* =========================
+           SCROLL
+        ========================== */
         window.onscroll = function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scrollProgress").style.width = (winScroll / height) * 100 + "%";
+            const percentage = height > 0 ? (winScroll / height) * 100 : 0;
+
+            document.getElementById("scrollProgress").style.width = percentage + "%";
+
             const backToTop = document.getElementById('backToTop');
             if (winScroll > 300) backToTop.classList.add('visible');
             else backToTop.classList.remove('visible');
+
+            updateLearningProgress();
         };
+
         document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({top:0,behavior:'smooth'});
         });
 
-        // ===== LOADER =====
+        /* =========================
+           PROGRESS BELAJAR
+        ========================== */
+        const totalSteps = document.querySelectorAll('[data-step]').length;
+        const completedSteps = new Set();
+
+        function updateLearningProgress() {
+            const cards = document.querySelectorAll('[data-step]');
+            const viewportBottom = window.scrollY + window.innerHeight * .78;
+
+            cards.forEach(card => {
+                const top = card.getBoundingClientRect().top + window.scrollY;
+                if (top < viewportBottom) {
+                    completedSteps.add(card.dataset.step);
+                }
+            });
+
+            const percent = Math.min(100, Math.round((completedSteps.size / totalSteps) * 100));
+            document.getElementById('progressFill').style.width = percent + "%";
+            document.getElementById('progressText').textContent = percent + "%";
+            document.getElementById('learningProgressDisplay').textContent = percent + "%";
+        }
+
+        /* =========================
+           SIMULASI APBD
+        ========================== */
+        const budgetInputs = document.querySelectorAll('.budget-input');
+        const remainingBudget = document.getElementById('remainingBudget');
+        const simulationResult = document.getElementById('simulationResult');
+        const TOTAL_BUDGET = 10;
+
+        function formatBillion(value) {
+            return 'Rp' + value.toFixed(2).replace('.', ',') + ' M';
+        }
+
+        function calculateBudget() {
+            let total = 0;
+
+            budgetInputs.forEach(input => {
+                let value = parseFloat(input.value) || 0;
+                const max = parseFloat(input.dataset.max);
+
+                if (value < 0) value = 0;
+                if (value > max) value = max;
+
+                input.value = value;
+                total += value;
+            });
+
+            const remaining = TOTAL_BUDGET - total;
+            remainingBudget.textContent = formatBillion(Math.max(0, remaining));
+
+            if (total > TOTAL_BUDGET) {
+                remainingBudget.style.color = 'var(--danger)';
+            } else {
+                remainingBudget.style.color = 'var(--primary)';
+            }
+
+            return total;
+        }
+
+        budgetInputs.forEach(input => {
+            input.addEventListener('input', calculateBudget);
+        });
+
+        document.getElementById('resetBudget').addEventListener('click', () => {
+            budgetInputs.forEach(input => input.value = 0);
+            calculateBudget();
+            simulationResult.classList.remove('show');
+            document.getElementById('simulationDisplay').textContent = '-';
+        });
+
+        document.getElementById('applyBudget').addEventListener('click', () => {
+            const total = calculateBudget();
+
+            if (total > TOTAL_BUDGET) {
+                simulationResult.innerHTML = `
+                    <strong style="color:var(--danger);">❌ Anggaran melebihi batas.</strong>
+                    <p>Kurangi alokasi program sampai totalnya tidak lebih dari Rp10 M.</p>
+                `;
+                simulationResult.classList.add('show');
+                return;
+            }
+
+            if (total === 0) {
+                simulationResult.innerHTML = `
+                    <strong style="color:var(--warning);">⚠️ Belum ada anggaran yang dialokasikan.</strong>
+                    <p>Pilih program yang menurutmu menjadi prioritas.</p>
+                `;
+                simulationResult.classList.add('show');
+                return;
+            }
+
+            const allocations = [];
+            budgetInputs.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                if (value > 0) {
+                    allocations.push(`${input.dataset.name}: Rp${value.toFixed(1).replace('.', ',')} M`);
+                }
+            });
+
+            let message = '';
+            if (total === TOTAL_BUDGET) {
+                message = `
+                    <strong style="color:#16a34a;">✅ Anggaran tepat Rp10 M.</strong>
+                    <p>Kamu berhasil menggunakan seluruh dana yang tersedia.</p>
+                `;
+            } else {
+                message = `
+                    <strong style="color:var(--primary);">ℹ️ Anggaran belum seluruhnya digunakan.</strong>
+                    <p>Masih tersedia ${formatBillion(TOTAL_BUDGET-total)}.
+                    Dalam praktik, sisa anggaran perlu dianalisis sesuai kebutuhan dan ketentuan.</p>
+                `;
+            }
+
+            simulationResult.innerHTML = `
+                ${message}
+                <p><strong>Alokasi pilihanmu:</strong></p>
+                <ul>${allocations.map(x => `<li>${x}</li>`).join('')}</ul>
+                <div class="concept-box">
+                    <strong>Pelajaran penting:</strong>
+                    memilih anggaran berarti menentukan prioritas. Setiap pilihan
+                    memiliki manfaat, tetapi juga berarti ada kebutuhan lain yang
+                    mungkin memperoleh alokasi lebih kecil.
+                </div>
+            `;
+
+            simulationResult.classList.add('show');
+            document.getElementById('simulationDisplay').textContent =
+                total === TOTAL_BUDGET ? 'Sesuai' : 'Belum Penuh';
+            localStorage.setItem('apbdSimulationDone', 'yes');
+        });
+
+        /* =========================
+           KASUS
+        ========================== */
+        let selectedCase = null;
+
+        document.querySelectorAll('#caseChoices .choice').forEach(choice => {
+            choice.addEventListener('click', () => {
+                document.querySelectorAll('#caseChoices .choice').forEach(c => c.classList.remove('selected'));
+                choice.classList.add('selected');
+                selectedCase = choice.dataset.choice;
+            });
+        });
+
+        document.getElementById('submitCase').addEventListener('click', () => {
+            const feedback = document.getElementById('caseFeedback');
+
+            if (!selectedCase) {
+                feedback.className = 'feedback show wrong';
+                feedback.innerHTML = '<strong>Silakan pilih salah satu prioritas.</strong>';
+                return;
+            }
+
+            feedback.className = 'feedback show';
+
+            const explanations = {
+                jalan: 'Pilihan jalan dapat dipertanggungjawabkan jika masalah akses transportasi sangat mendesak dan berdampak luas. Namun, kebutuhan kesehatan, pendidikan, dan ekonomi juga harus dipertimbangkan.',
+                kesehatan: 'Pilihan kesehatan dapat dipertanggungjawabkan karena kesehatan merupakan kebutuhan dasar. Kekuatan jawabanmu terletak pada alasan, urgensi, jumlah penerima manfaat, dan kemampuan anggaran.',
+                pendidikan: 'Pilihan pendidikan dapat dipertanggungjawabkan sebagai investasi jangka panjang dalam kualitas sumber daya manusia. Namun, kebutuhan mendesak lainnya tetap perlu dianalisis.',
+                ekonomi: 'Pilihan ekonomi lokal dapat dipertanggungjawabkan jika pertanian dan UMKM menjadi sektor strategis daerah. Dampak terhadap pendapatan masyarakat dan lapangan kerja perlu diperhitungkan.'
+            };
+
+            feedback.innerHTML = `
+                <strong>💡 Pilihanmu dapat dipertanggungjawabkan jika didukung alasan yang kuat.</strong>
+                <p>${explanations[selectedCase]}</p>
+                <p><strong>Kesimpulan:</strong> pada kasus kebijakan publik tidak selalu hanya ada satu jawaban mutlak.
+                Yang penting adalah kualitas analisis dan alasan berdasarkan kebutuhan, urgensi, manfaat, dampak, serta kemampuan anggaran.</p>
+            `;
+            localStorage.setItem('apbdCaseDone','yes');
+        });
+
+        /* =========================
+           ANALISIS
+        ========================== */
+        let analysisSelected = null;
+
+        document.querySelectorAll('#analysisChoices .choice').forEach(choice => {
+            choice.addEventListener('click', () => {
+                document.querySelectorAll('#analysisChoices .choice').forEach(c => c.classList.remove('selected'));
+                choice.classList.add('selected');
+                analysisSelected = choice.dataset.answer;
+            });
+        });
+
+        document.getElementById('submitAnalysis').addEventListener('click', () => {
+            const feedback = document.getElementById('analysisFeedback');
+
+            if (!analysisSelected) {
+                feedback.className = 'feedback show wrong';
+                feedback.innerHTML = '<strong>Pilih jawaban terlebih dahulu.</strong>';
+                return;
+            }
+
+            if (analysisSelected === 'B') {
+                feedback.className = 'feedback show';
+                feedback.innerHTML = `
+                    <strong>✅ Tepat.</strong>
+                    <p>
+                        Secara sederhana terdapat selisih Rp10 M antara pendapatan
+                        dan belanja. Namun membaca APBD secara lengkap tidak cukup
+                        hanya membandingkan dua angka tersebut karena pembiayaan
+                        juga perlu diperhatikan.
+                    </p>
+                `;
+                localStorage.setItem('apbdAnalysisDone','yes');
+            } else {
+                feedback.className = 'feedback show wrong';
+                feedback.innerHTML = `
+                    <strong>❌ Belum tepat.</strong>
+                    <p>
+                        Pendapatan Rp100 M dan belanja Rp90 M menunjukkan selisih
+                        Rp10 M secara sederhana. Namun, analisis APBD yang lengkap
+                        juga perlu melihat pembiayaan.
+                    </p>
+                `;
+            }
+        });
+
+        /* =========================
+           MISKONSEPSI
+        ========================== */
+        document.querySelectorAll('.explain-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const explanation = button.nextElementSibling;
+                explanation.classList.toggle('show');
+                button.textContent = explanation.classList.contains('show')
+                    ? 'Sembunyikan penjelasan'
+                    : 'Lihat penjelasan';
+            });
+        });
+
+        /* =========================
+           QUIZ
+        ========================== */
+        document.querySelectorAll('.quiz-q').forEach(group => {
+            group.querySelectorAll('.choice').forEach(choice => {
+                choice.addEventListener('click', () => {
+                    group.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+                    choice.classList.add('selected');
+                });
+            });
+        });
+
+        document.getElementById('submitQuiz').addEventListener('click', () => {
+            const questions = document.querySelectorAll('.quiz-q');
+            let answered = 0;
+            let correct = 0;
+
+            questions.forEach(group => {
+                const selected = group.querySelector('.choice.selected');
+                group.querySelectorAll('.choice').forEach(c => {
+                    c.classList.remove('correct','wrong');
+                });
+
+                if (selected) {
+                    answered++;
+                    if (selected.dataset.answer === group.dataset.correct) {
+                        correct++;
+                        selected.classList.add('correct');
+                    } else {
+                        selected.classList.add('wrong');
+                        const correctChoice = group.querySelector(`[data-answer="${group.dataset.correct}"]`);
+                        if (correctChoice) correctChoice.classList.add('correct');
+                    }
+                }
+            });
+
+            const feedback = document.getElementById('quizFeedback');
+
+            if (answered < questions.length) {
+                feedback.className = 'feedback show wrong';
+                feedback.innerHTML = `<strong>⚠️ Jawab semua pertanyaan terlebih dahulu.</strong><p>Baru ${answered} dari ${questions.length} soal yang dijawab.</p>`;
+                document.getElementById('quizSummary').style.display = 'none';
+                return;
+            }
+
+            const percent = Math.round((correct / questions.length) * 100);
+            let category = 'Perlu belajar lagi';
+
+            if (percent >= 90) category = 'Sangat Baik';
+            else if (percent >= 80) category = 'Baik';
+            else if (percent >= 70) category = 'Cukup';
+
+            document.getElementById('quizScore').textContent = `${correct}/${questions.length}`;
+            document.getElementById('quizPercent').textContent = `${percent}%`;
+            document.getElementById('quizCategory').textContent = category;
+            document.getElementById('quizSummary').style.display = 'grid';
+
+            feedback.className = percent >= 70 ? 'feedback show' : 'feedback show wrong';
+            feedback.innerHTML = `
+                <strong>${percent >= 70 ? '🎉 Bagus!' : '💡 Tetap semangat!'}</strong>
+                <p>
+                    Kamu menjawab benar ${correct} dari ${questions.length} soal.
+                    ${percent >= 70
+                        ? 'Konsep utama APBD sudah cukup kamu pahami.'
+                        : 'Coba baca kembali bagian konsep, struktur, dan analisis APBD.'}
+                </p>
+            `;
+
+            document.getElementById('finalQuizDisplay').textContent = `${percent}%`;
+            localStorage.setItem('apbdQuizScore', percent);
+            localStorage.setItem('apbdQuizDone','yes');
+            updateLearningProgress();
+        });
+
+        /* =========================
+           REFLEKSI
+        ========================== */
+        const reflectionText = document.getElementById('reflectionText');
+        const savedNote = document.getElementById('savedNote');
+
+        const savedReflection = localStorage.getItem('apbdReflection');
+        if (savedReflection) {
+            reflectionText.value = savedReflection;
+        }
+
+        document.getElementById('saveReflection').addEventListener('click', () => {
+            const text = reflectionText.value.trim();
+
+            if (!text) {
+                savedNote.className = 'saved-note show';
+                savedNote.style.color = 'var(--danger)';
+                savedNote.innerHTML = '<i class="fas fa-circle-exclamation"></i> Tulis refleksi terlebih dahulu.';
+                return;
+            }
+
+            localStorage.setItem('apbdReflection', text);
+            savedNote.className = 'saved-note show';
+            savedNote.style.color = '#16a34a';
+            savedNote.innerHTML = '<i class="fas fa-check-circle"></i> Refleksi tersimpan di perangkat ini.';
+        });
+
+        document.getElementById('clearReflection').addEventListener('click', () => {
+            reflectionText.value = '';
+            localStorage.removeItem('apbdReflection');
+            savedNote.className = 'saved-note show';
+            savedNote.style.color = 'var(--gray)';
+            savedNote.innerHTML = '<i class="fas fa-info-circle"></i> Refleksi telah dihapus dari perangkat ini.';
+        });
+
+        /* =========================
+           LOAD STATE
+        ========================== */
+        const previousScore = localStorage.getItem('apbdQuizScore');
+        if (previousScore) {
+            document.getElementById('finalQuizDisplay').textContent = previousScore + '%';
+        }
+
+        if (localStorage.getItem('apbdSimulationDone') === 'yes') {
+            document.getElementById('simulationDisplay').textContent = 'Selesai';
+        }
+
+        /* =========================
+           LOADER
+        ========================== */
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 800);
-        });
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 700);
 
-        // ===== TABS =====
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                tabContents.forEach(c => c.classList.remove('active'));
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
-        });
-
-        // ===== QUIZ =====
-        const quizAnswers = {
-            q1: 'C',
-            q2: 'B',
-            q3: 'B',
-            q4: 'C',
-            q5: 'B'
-        };
-
-        document.getElementById('submitQuiz').addEventListener('click', function() {
-            let correct = 0;
-            let total = Object.keys(quizAnswers).length;
-
-            for (const [key, answer] of Object.entries(quizAnswers)) {
-                const selected = document.querySelector(`input[name="${key}"]:checked`);
-                const fb = document.getElementById('fb' + key.slice(1));
-                if (selected) {
-                    if (selected.value === answer) {
-                        fb.className = 'quiz-feedback correct';
-                        fb.textContent = '✅ Jawaban benar!';
-                        correct++;
-                    } else {
-                        fb.className = 'quiz-feedback wrong';
-                        fb.textContent = '❌ Jawaban salah. Jawaban yang benar: ' + answer;
-                    }
-                } else {
-                    fb.className = 'quiz-feedback wrong';
-                    fb.textContent = '⚠️ Belum dipilih. Jawaban: ' + answer;
-                }
-            }
-
-            const resultDiv = document.getElementById('quizResult');
-            const score = (correct / total) * 100;
-            let message = '';
-            if (score === 100) message = '🎉 Sempurna! Anda menguasai materi APBD dengan baik!';
-            else if (score >= 80) message = '👍 Sangat baik! Tingkatkan lagi pemahaman Anda.';
-            else if (score >= 60) message = '📖 Cukup. Pelajari kembali bagian yang kurang dipahami.';
-            else message = '📚 Perlu belajar lebih giat. Baca ulang materi dan coba lagi!';
-            resultDiv.innerHTML = `Nilai: ${correct}/${total} (${Math.round(score)}%) — ${message}`;
-        });
-
-        document.getElementById('resetQuiz').addEventListener('click', function() {
-            document.querySelectorAll('.quiz-options input[type="radio"]').forEach(inp => inp.checked = false);
-            document.querySelectorAll('.quiz-feedback').forEach(fb => {
-                fb.className = 'quiz-feedback';
-                fb.textContent = '';
-            });
-            document.getElementById('quizResult').textContent = '';
+            updateLearningProgress();
         });
     </script>
 </body>
