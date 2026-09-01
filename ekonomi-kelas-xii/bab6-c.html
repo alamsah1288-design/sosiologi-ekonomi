@@ -23,6 +23,9 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
             --header-height: 70px;
+            --footer-bg: #0f0f1a;
+            --footer-text: #c8d0e0;
+            --footer-heading: #ffffff;
         }
 
         .dark-mode {
@@ -30,6 +33,9 @@
             --dark: #f8f9fa;
             --gray: #a0aec0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --footer-bg: #0a0a12;
+            --footer-text: #a0aec0;
+            --footer-heading: #f0f4ff;
         }
 
         * {
@@ -45,7 +51,7 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
             color: var(--dark);
             line-height: 1.6;
-            padding-bottom: 80px;
+            padding-bottom: 0;
             transition: background 0.4s, color 0.4s;
         }
         body.dark-mode {
@@ -658,7 +664,274 @@
             color: var(--gray);
         }
 
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 60px 20px 0;
+            margin-top: 60px;
+            border-top: 3px solid var(--primary);
+            position: relative;
+            transition: background 0.4s, color 0.4s;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary));
+            background-size: 300% 100%;
+            animation: gradientMove 4s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr 1.2fr;
+            gap: 40px 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-brand .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer-brand .brand-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            object-fit: cover;
+        }
+        .footer-brand .brand-logo h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--footer-heading);
+            letter-spacing: 0.5px;
+        }
+        .footer-brand .brand-logo h3 span {
+            color: var(--accent);
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--footer-text);
+            max-width: 320px;
+        }
+        .footer-brand .brand-tagline {
+            font-style: italic;
+            font-weight: 300;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--footer-heading);
+            margin-bottom: 18px;
+            position: relative;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        .footer-section h4 i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-section ul li a {
+            color: var(--footer-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-section ul li a i {
+            font-size: 0.7rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .footer-section ul li a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+        .footer-section ul li a:hover i {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .footer-contact p {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: var(--footer-text);
+        }
+        .footer-contact p i {
+            color: var(--primary);
+            width: 18px;
+            margin-top: 3px;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .footer-contact p strong {
+            color: var(--footer-heading);
+            font-weight: 500;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--footer-text);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(67, 97, 238, 0.3);
+            border-color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--footer-text);
+        }
+        .footer-bottom .copyright {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .footer-bottom .copyright strong {
+            color: var(--footer-heading);
+        }
+        .footer-bottom .copyright .heart {
+            color: #e74c3c;
+            display: inline-block;
+            animation: pulse 1.5s ease infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .footer-bottom .legal-links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+        .footer-bottom .legal-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        .footer-bottom .legal-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .footer-bottom .legal-links a:hover {
+            color: white;
+        }
+        .footer-bottom .legal-links a:hover::after {
+            width: 100%;
+        }
+        .footer-bottom .legal-links .divider {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-version {
+            font-size: 0.75rem;
+            opacity: 0.4;
+            margin-top: 4px;
+        }
+
         /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .footer-container {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -713,6 +986,7 @@
                 padding-left: 40px;
                 color: white;
             }
+
             .section-title {
                 font-size: 1.3rem;
             }
@@ -731,19 +1005,34 @@
             .card {
                 padding: 25px 20px;
             }
+
+            /* Footer */
+            footer {
+                padding: 40px 16px 0;
+            }
             .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+                padding-bottom: 30px;
             }
-            .copyright {
-                grid-column: span 1;
+            .footer-brand {
+                grid-column: span 2;
             }
-            .footer-legal-bar {
-                display: flex;
+            .footer-brand p {
+                max-width: 100%;
             }
-            .footer-section:nth-child(3) {
-                display: none;
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+                padding: 16px 0 20px;
             }
+            .footer-bottom .legal-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 16px;
+            }
+
             .glossary-grid {
                 grid-template-columns: 1fr;
             }
@@ -778,6 +1067,113 @@
             }
             h1 {
                 font-size: 1.6rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .footer-brand {
+                grid-column: span 1;
+            }
+            .footer-section h4::after {
+                width: 30px;
+            }
+            .footer-social {
+                justify-content: flex-start;
+            }
+            .footer-social a {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .footer-bottom .legal-links {
+                gap: 8px 14px;
+            }
+            .footer-bottom .legal-links a {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 999;
+        }
+        .scroll-indicator span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.1s;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.35);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(67, 97, 238, 0.5);
+        }
+
+        /* ===== LOADER ===== */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        body.dark-mode .loader-wrapper {
+            background: #121212;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(67, 97, 238, 0.15);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -1302,27 +1698,77 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-container">
+            <!-- Kolom 1: Brand -->
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" />
+                    <h3>SMA Negeri <span>1 Cluring</span></h3>
+                </div>
+                <p>
+                    Berkomitmen menjadi pusat unggulan dalam pendidikan karakter dan akademik, 
+                    membekali siswa dengan pengetahuan dan keterampilan untuk masa depan yang gemilang.
+                </p>
+                <p class="brand-tagline">
+                    <i class="fas fa-quote-left" style="opacity:0.4;margin-right:4px;"></i>
+                    Berprestasi, Berkarakter, Berbudaya
+                    <i class="fas fa-quote-right" style="opacity:0.4;margin-left:4px;"></i>
+                </p>
+            </div>
+
+            <!-- Kolom 2: Menu Navigasi -->
             <div class="footer-section">
-                <h3><i class="fas fa-compass"></i> Menu Navigasi</h3>
+                <h4><i class="fas fa-compass"></i> Menu Navigasi</h4>
                 <ul>
-                    <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-                    <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
-                    <li><a href="../soal-tka.html"><i class="fas fa-question-circle"></i> Bank Soal TKA</a></li>
+                    <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                    <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chevron-right"></i> Ekonomi XII</a></li>
+                    <li><a href="../soal-tka.html"><i class="fas fa-chevron-right"></i> Bank Soal TKA</a></li>
+                    <li><a href="../galery.html"><i class="fas fa-chevron-right"></i> Galeri Kegiatan</a></li>
+                    <li><a href="../prestasi.html"><i class="fas fa-chevron-right"></i> Prestasi Siswa</a></li>
                 </ul>
             </div>
+
+            <!-- Kolom 3: Kontak -->
+            <div class="footer-section footer-contact">
+                <h4><i class="fas fa-phone"></i> Kontak Kami</h4>
+                <p><i class="fas fa-phone-alt"></i> <span><strong>Telepon</strong><br />0333-713297 (Sekolah)</span></p>
+                <p><i class="fas fa-envelope"></i> <span><strong>Email</strong><br />4l4m79@gmail.com</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span><strong>Alamat</strong><br />SMAN 1 Cluring, Banyuwangi, Jawa Timur</span></p>
+            </div>
+
+            <!-- Kolom 4: Sosial Media -->
             <div class="footer-section">
-                <h3><i class="fas fa-phone"></i> Hubungi Kami</h3>
-                <p><strong><i class="fas fa-phone-alt"></i> Telepon:</strong><br />0333-713297 (Sekolah)</p>
-                <p><strong><i class="fas fa-envelope"></i> Email:</strong><br />4l4m79@gmail.com</p>
-                <p><strong><i class="fas fa-map-marker-alt"></i> Alamat:</strong><br />SMAN 1 Cluring, Banyuwangi, Jawa Timur</p>
+                <h4><i class="fas fa-share-alt"></i> Sosial Media</h4>
+                <p style="font-size:0.85rem; color:var(--footer-text); margin-bottom:14px; line-height:1.6;">
+                    Ikuti kami untuk informasi terbaru seputar kegiatan sekolah.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>© 2026 <strong>SMA Negeri 1 Cluring</strong></p>
-            <p>Semua hak dilindungi undang-undang.</p>
-        </div>
+
+        <!-- ===== FOOTER BOTTOM ===== -->
         <div class="footer-bottom">
-            <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
+            <div class="copyright">
+                <span>© 2026</span>
+                <strong>SMA Negeri 1 Cluring</strong>
+                <span>•</span>
+                <span>Semua hak dilindungi</span>
+                <span class="heart"><i class="fas fa-heart"></i></span>
+            </div>
+            <div class="legal-links">
+                <a href="#"><i class="fas fa-shield-alt"></i> Privasi</a>
+                <span class="divider">|</span>
+                <a href="#"><i class="fas fa-file-contract"></i> Syarat &amp; Ketentuan</a>
+                <span class="divider">|</span>
+                <a href="#"><i class="fas fa-sitemap"></i> Sitemap</a>
+                <span class="divider">|</span>
+                <span style="font-size:0.7rem; opacity:0.3;">v2.0</span>
+            </div>
         </div>
     </footer>
 
