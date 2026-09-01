@@ -1,1840 +1,3898 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bab 6B: Asas Pemungutan & Tarif Pajak – SMAN 1 Cluring</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048" crossorigin="anonymous">
-    </script>
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4ade80;
-            --warning: #fbbf24;
-            --danger: #f87171;
-            --gray: #6c757d;
-            --border-radius: 12px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --header-height: 70px;
-            --footer-bg: #0f0f1a;
-            --footer-text: #c8d0e0;
-            --footer-heading: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .dark-mode {
-            --light: #1a1a1a;
-            --dark: #f8f9fa;
-            --gray: #a0aec0;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --footer-bg: #0a0a12;
-            --footer-text: #a0aec0;
-            --footer-heading: #f0f4ff;
-        }
+<title>Bab 6B: Asas Pemungutan & Tarif Pajak – SMAN 1 Cluring</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            padding-bottom: 0;
-            transition: background 0.4s, color 0.4s;
-        }
-        body.dark-mode {
-            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-        }
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
 
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.8rem 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: var(--header-height);
-        }
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .navbar-brand img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            object-fit: cover;
-        }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 50px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            top: 100%;
-            left: 0;
-            z-index: 1001;
-            flex-direction: column;
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
-        }
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 10px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            border-radius: 8px;
-            margin: 0 5px;
-            transition: var(--transition);
-        }
-        .dropdown-content a:hover {
-            background: var(--primary);
-            color: white;
-            padding-left: 20px;
-        }
-        .dropdown:hover .dropdown-content {
-            display: flex;
-        }
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            z-index: 1001;
-        }
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            background: rgba(255, 255, 255, 0.1);
-        }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* ===== HEADER ===== */
-        header {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 5rem 1rem 2.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-top: var(--header-height);
-        }
-        header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            animation: rotate 15s linear infinite;
-            z-index: 1;
-        }
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            background: white;
-            padding: 5px;
-            margin-bottom: 1.5rem;
-            z-index: 2;
-            position: relative;
-            transition: var(--transition);
-            object-fit: contain;
-        }
-        .logo:hover {
-            transform: scale(1.05) rotate(10deg);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            z-index: 2;
-            position: relative;
-        }
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.9;
-            z-index: 2;
-            position: relative;
-            font-size: 1.1rem;
-        }
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234355696976048"
+crossorigin="anonymous"></script>
 
-        /* ===== ADS ===== */
-        .adsense-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-        }
+<style>
 
-        /* ===== SECTION TITLE ===== */
-        .section-title {
-            text-align: center;
-            margin: 50px auto 25px;
-            max-width: 1200px;
-            padding: 0 20px;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--dark);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        body.dark-mode .section-title {
-            color: #f8f9fa;
-        }
-        .section-title::before,
-        .section-title::after {
-            content: '';
-            flex: 1;
-            max-width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-        .section-title i {
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-        .section-title.ekonomi {
-            color: #4361ee;
-        }
-        .section-title.ekonomi i {
-            color: #4361ee;
-        }
-        .section-title.ekonomi::before,
-        .section-title.ekonomi::after {
-            background: linear-gradient(90deg, transparent, #4361ee, transparent);
-        }
+/* =========================================================
+   ROOT
+========================================================= */
 
-        /* ===== CONTAINER & CARDS ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-        }
-        .container-full {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
-        }
+:root{
+    --primary:#4361ee;
+    --secondary:#3f37c9;
+    --accent:#4cc9f0;
+    --light:#f8f9fa;
+    --dark:#212529;
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+    --purple:#7c3aed;
+    --gray:#64748b;
+    --border:#e2e8f0;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+    --transition:.3s ease;
+    --header-height:70px;
+    --footer-bg:#0f0f1a;
+    --footer-text:#c8d0e0;
+    --footer-heading:#fff;
+}
 
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border-top: 4px solid var(--primary);
-            position: relative;
-        }
-        body.dark-mode .card {
-            background: #2d2d2d;
-            border-color: #444;
-            color: #f8f9fa;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-        }
-        body.dark-mode .card h2 {
-            color: #f8f9fa;
-        }
-        .card.ekonomi {
-            border-top-color: #4361ee;
-        }
-        .card.ekonomi:hover {
-            border-top-color: #4cc9f0;
-        }
+.dark-mode{
+    --light:#171717;
+    --dark:#f8fafc;
+    --gray:#aab4c3;
+    --border:#3f3f46;
+    --shadow:0 10px 30px rgba(0,0,0,.3);
+    --footer-bg:#08080f;
+}
 
-        .materi-text-left {
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--gray);
-            width: 100%;
-            flex-grow: 1;
-        }
-        body.dark-mode .materi-text-left {
-            color: #cbd5e1;
-        }
-        .materi-text-left ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        .materi-text-left li {
-            margin-bottom: 8px;
-        }
-        .materi-text-left strong {
-            color: var(--primary);
-        }
-        body.dark-mode .materi-text-left strong {
-            color: var(--accent);
-        }
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-        /* ===== TAB SYSTEM ===== */
-        .tabs {
-            width: 100%;
-            margin-top: 10px;
-        }
-        .tab-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-            justify-content: center;
-        }
-        .tab-btn {
-            background: transparent;
-            border: 2px solid #e2e8f0;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--gray);
-        }
-        body.dark-mode .tab-btn {
-            border-color: #444;
-            color: #a0aec0;
-        }
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .tab-btn:hover:not(.active) {
-            background: rgba(67, 97, 238, 0.08);
-            border-color: var(--primary);
-        }
-        .tab-content {
-            display: none;
-            text-align: left;
-            animation: fadeTab 0.3s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadeTab {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .tab-content ul {
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-        .tab-content li {
-            margin-bottom: 6px;
-        }
-        .tab-content p {
-            margin-bottom: 10px;
-        }
-        .tab-content strong {
-            color: var(--primary);
-        }
-        body.dark-mode .tab-content strong {
-            color: var(--accent);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* ===== INFO BOX ===== */
-        .info-box {
-            background: rgba(67, 97, 238, 0.06);
-            border-radius: 8px;
-            padding: 12px 16px;
-            margin-top: 12px;
-            border-left: 4px solid var(--primary);
-        }
-        body.dark-mode .info-box {
-            background: rgba(67, 97, 238, 0.12);
-        }
-        .info-box-success {
-            border-left-color: var(--success);
-            background: rgba(74, 222, 128, 0.08);
-        }
-        .info-box-warning {
-            border-left-color: var(--warning);
-            background: rgba(251, 191, 36, 0.08);
-        }
-        .info-box-danger {
-            border-left-color: var(--danger);
-            background: rgba(248, 113, 113, 0.08);
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* ===== COMPARISON TABLE ===== */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        .comparison-table th,
-        .comparison-table td {
-            border: 1px solid #e2e8f0;
-            padding: 10px 14px;
-            text-align: left;
-        }
-        body.dark-mode .comparison-table th,
-        body.dark-mode .comparison-table td {
-            border-color: #444;
-        }
-        .comparison-table th {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
-        .comparison-table tr:nth-child(even) {
-            background: rgba(67, 97, 238, 0.05);
-        }
-        body.dark-mode .comparison-table tr:nth-child(even) {
-            background: rgba(67, 97, 238, 0.12);
-        }
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#f5f7fa,#e4e9f2);
+    color:var(--dark);
+    line-height:1.7;
+    transition:.4s;
+}
 
-        /* ===== QUIZ ===== */
-        .quiz-container {
-            width: 100%;
-            text-align: left;
-        }
-        .quiz-question {
-            background: rgba(67, 97, 238, 0.06);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            border-left: 4px solid var(--primary);
-        }
-        body.dark-mode .quiz-question {
-            background: rgba(67, 97, 238, 0.12);
-        }
-        .quiz-question p {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-        body.dark-mode .quiz-question p {
-            color: #f8f9fa;
-        }
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .quiz-options label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.92rem;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        .quiz-options label:hover {
-            background: rgba(67, 97, 238, 0.06);
-        }
-        .quiz-options input[type="radio"] {
-            accent-color: var(--primary);
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-        .quiz-feedback {
-            margin-top: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 6px;
-            display: none;
-        }
-        .quiz-feedback.correct {
-            display: block;
-            background: rgba(74, 222, 128, 0.15);
-            color: #15803d;
-        }
-        .quiz-feedback.wrong {
-            display: block;
-            background: rgba(248, 113, 113, 0.15);
-            color: #b91c1c;
-        }
-        .quiz-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 50px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            margin-top: 6px;
-        }
-        .quiz-btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-        .quiz-result {
-            margin-top: 16px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            text-align: center;
-        }
+body.dark-mode{
+    background:linear-gradient(135deg,#111,#1c1c1c);
+}
 
-        /* ===== GLOSSARY ===== */
-        .glossary-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 20px;
-            width: 100%;
-            text-align: left;
-        }
-        .glossary-item {
-            display: flex;
-            gap: 8px;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-        }
-        body.dark-mode .glossary-item {
-            border-bottom-color: rgba(255, 255, 255, 0.05);
-        }
-        .glossary-term {
-            font-weight: 600;
-            color: var(--primary);
-            min-width: 100px;
-        }
-        body.dark-mode .glossary-term {
-            color: var(--accent);
-        }
-        .glossary-def {
-            color: var(--gray);
-        }
-        body.dark-mode .glossary-def {
-            color: #cbd5e1;
-        }
+a{
+    text-decoration:none;
+}
 
-        /* ===== CALCULATOR BOX ===== */
-        .calc-box {
-            background: rgba(67, 97, 238, 0.06);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-top: 12px;
-        }
-        body.dark-mode .calc-box {
-            background: rgba(67, 97, 238, 0.12);
-        }
-        .calc-box input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            margin: 8px 0;
-            background: white;
-            color: var(--dark);
-        }
-        body.dark-mode .calc-box input {
-            background: #2d2d2d;
-            border-color: #444;
-            color: #f8f9fa;
-        }
-        .calc-box .calc-result {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 8px;
-            color: var(--primary);
-        }
-        body.dark-mode .calc-box .calc-result {
-            color: var(--accent);
-        }
+button,
+input{
+    font-family:'Poppins',sans-serif;
+}
 
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 60px 20px 0;
-            margin-top: 60px;
-            border-top: 3px solid var(--primary);
-            position: relative;
-            transition: background 0.4s, color 0.4s;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary));
-            background-size: 300% 100%;
-            animation: gradientMove 4s ease infinite;
-        }
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+/* =========================================================
+   NAVBAR
+========================================================= */
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1.5fr 1.5fr 1.2fr;
-            gap: 40px 30px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+.navbar{
+    height:var(--header-height);
+    position:sticky;
+    top:0;
+    z-index:2000;
+    background:linear-gradient(120deg,var(--primary),var(--secondary));
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:.7rem 1.5rem;
+    box-shadow:var(--shadow);
+}
 
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .footer-brand .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .footer-brand .brand-logo img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            object-fit: cover;
-        }
-        .footer-brand .brand-logo h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--footer-heading);
-            letter-spacing: 0.5px;
-        }
-        .footer-brand .brand-logo h3 span {
-            color: var(--accent);
-        }
-        .footer-brand p {
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: var(--footer-text);
-            max-width: 320px;
-        }
-        .footer-brand .brand-tagline {
-            font-style: italic;
-            font-weight: 300;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
+.navbar-brand{
+    color:white;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
 
-        .footer-section h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--footer-heading);
-            margin-bottom: 18px;
-            position: relative;
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-section h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-        .footer-section h4 i {
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
+.navbar-brand img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.4);
+    object-fit:cover;
+}
 
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .footer-section ul li a {
-            color: var(--footer-text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .footer-section ul li a i {
-            font-size: 0.7rem;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        .footer-section ul li a:hover {
-            color: white;
-            transform: translateX(4px);
-        }
-        .footer-section ul li a:hover i {
-            transform: translateX(4px);
-            color: var(--accent);
-        }
+.nav-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        .footer-contact p {
-            font-size: 0.9rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
-            line-height: 1.6;
-            color: var(--footer-text);
-        }
-        .footer-contact p i {
-            color: var(--primary);
-            width: 18px;
-            margin-top: 3px;
-            font-size: 0.95rem;
-            flex-shrink: 0;
-        }
-        .footer-contact p strong {
-            color: var(--footer-heading);
-            font-weight: 500;
-        }
+.nav-links{
+    display:flex;
+    gap:8px;
+    list-style:none;
+    position:absolute;
+    right:70px;
+}
 
-        .footer-social {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 6px;
-        }
-        .footer-social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--footer-text);
-            font-size: 1.1rem;
-            transition: var(--transition);
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .footer-social a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 24px rgba(67, 97, 238, 0.3);
-            border-color: var(--primary);
-        }
+.nav-links a{
+    color:white;
+    padding:8px 10px;
+    border-radius:50px;
+    font-size:.85rem;
+    transition:var(--transition);
+}
 
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 0.85rem;
-            color: var(--footer-text);
-        }
-        .footer-bottom .copyright {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .footer-bottom .copyright strong {
-            color: var(--footer-heading);
-        }
-        .footer-bottom .copyright .heart {
-            color: #e74c3c;
-            display: inline-block;
-            animation: pulse 1.5s ease infinite;
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
+.nav-links a:hover{
+    background:rgba(255,255,255,.18);
+}
 
-        .footer-bottom .legal-links {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-        }
-        .footer-bottom .legal-links a {
-            color: var(--footer-text);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: var(--transition);
-            position: relative;
-        }
-        .footer-bottom .legal-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-        .footer-bottom .legal-links a:hover {
-            color: white;
-        }
-        .footer-bottom .legal-links a:hover::after {
-            width: 100%;
-        }
-        .footer-bottom .legal-links .divider {
-            color: rgba(255, 255, 255, 0.1);
-        }
+.theme-toggle,
+.hamburger{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:50%;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    font-size:1.2rem;
+}
 
-        .footer-version {
-            font-size: 0.75rem;
-            opacity: 0.4;
-            margin-top: 4px;
-        }
+.hamburger{
+    display:none;
+}
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .footer-container {
-                grid-template-columns: 1.5fr 1fr 1fr;
-                gap: 30px;
-            }
-        }
+.dropdown{
+    position:relative;
+}
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                background: linear-gradient(120deg, var(--primary), var(--secondary));
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                z-index: 1000;
-            }
-            .nav-links.active {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
-            @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-10px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .nav-links li {
-                width: 100%;
-            }
-            .nav-links a {
-                padding: 12px 20px;
-                border-radius: 0;
-                width: 100%;
-            }
-            .dropdown-content {
-                position: static;
-                background: rgba(0, 0, 0, 0.1);
-                box-shadow: none;
-                width: 100%;
-                display: none;
-                padding: 0;
-            }
-            .dropdown.active .dropdown-content {
-                display: flex;
-                flex-direction: column;
-            }
-            .dropdown-content a {
-                padding-left: 40px;
-                color: white;
-            }
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    min-width:200px;
+    padding:8px;
+    background:white;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+}
 
-            .section-title {
-                font-size: 1.3rem;
-            }
-            header {
-                padding: 4rem 1rem 2rem;
-            }
-            .logo {
-                width: 80px;
-                height: 80px;
-            }
-            .container {
-                grid-template-columns: 1fr;
-                padding: 15px;
-                gap: 20px;
-            }
-            .card {
-                padding: 25px 20px;
-            }
+.dropdown:hover .dropdown-content{
+    display:block;
+}
 
-            /* Footer */
-            footer {
-                padding: 40px 16px 0;
-            }
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px 20px;
-                padding-bottom: 30px;
-            }
-            .footer-brand {
-                grid-column: span 2;
-            }
-            .footer-brand p {
-                max-width: 100%;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-                padding: 16px 0 20px;
-            }
-            .footer-bottom .legal-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px 16px;
-            }
+.dropdown-content a{
+    display:block;
+    color:#222;
+    border-radius:7px;
+}
 
-            .glossary-grid {
-                grid-template-columns: 1fr;
-            }
-            .comparison-table {
-                font-size: 0.75rem;
-            }
-            .comparison-table th,
-            .comparison-table td {
-                padding: 6px 10px;
-            }
-            .tab-buttons {
-                gap: 4px;
-            }
-            .tab-btn {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-        }
+.dropdown-content a:hover{
+    background:var(--primary);
+    color:white;
+}
 
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 1rem;
-            }
-            .navbar-brand img {
-                width: 35px;
-                height: 35px;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
+/* =========================================================
+   HEADER
+========================================================= */
 
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-            .footer-brand {
-                grid-column: span 1;
-            }
-            .footer-section h4::after {
-                width: 30px;
-            }
-            .footer-social {
-                justify-content: flex-start;
-            }
-            .footer-social a {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .footer-bottom .legal-links {
-                gap: 8px 14px;
-            }
-            .footer-bottom .legal-links a {
-                font-size: 0.75rem;
-            }
-        }
+header{
+    background:linear-gradient(120deg,var(--primary),var(--secondary));
+    color:white;
+    text-align:center;
+    padding:5rem 1rem 3rem;
+    position:relative;
+    overflow:hidden;
+}
 
-        /* ===== SCROLL INDICATOR ===== */
-        .scroll-indicator {
-            position: fixed;
-            top: var(--header-height);
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 999;
-        }
-        .scroll-indicator span {
-            display: block;
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transition: width 0.1s;
-        }
+header:before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    top:-300px;
+    left:-200px;
+    animation:rotate 20s linear infinite;
+}
 
-        /* ===== BACK TO TOP ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.35);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            z-index: 999;
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .back-to-top:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 32px rgba(67, 97, 238, 0.5);
-        }
+@keyframes rotate{
+    to{transform:rotate(360deg);}
+}
 
-        /* ===== LOADER ===== */
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f5f7fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        body.dark-mode .loader-wrapper {
-            background: #121212;
-        }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(67, 97, 238, 0.15);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+.logo{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:5px;
+    position:relative;
+    z-index:2;
+}
+
+header h1{
+    font-size:2.3rem;
+    margin-top:20px;
+    position:relative;
+    z-index:2;
+}
+
+.subtitle{
+    opacity:.9;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   GENERAL LAYOUT
+========================================================= */
+
+.adsense-container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+}
+
+.section-title{
+    max-width:1200px;
+    margin:55px auto 20px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-size:1.55rem;
+    text-align:center;
+}
+
+.section-title:before,
+.section-title:after{
+    content:"";
+    flex:1;
+    max-width:120px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--primary),transparent);
+}
+
+.section-title i{
+    color:var(--primary);
+}
+
+.container{
+    max-width:1200px;
+    margin:0 auto 35px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:25px;
+}
+
+.container-full{
+    max-width:1200px;
+    margin:0 auto 35px;
+    padding:20px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+    background:white;
+    border-radius:var(--radius);
+    padding:28px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,.05);
+    border-top:4px solid var(--primary);
+    transition:var(--transition);
+}
+
+.dark-mode .card{
+    background:#292929;
+    border-color:#404040;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.materi-text-left{
+    text-align:left;
+    width:100%;
+}
+
+.materi-text-left p{
+    margin-bottom:12px;
+}
+
+.materi-text-left ul{
+    padding-left:22px;
+}
+
+.materi-text-left li{
+    margin-bottom:8px;
+}
+
+strong{
+    color:var(--primary);
+}
+
+.dark-mode strong{
+    color:var(--accent);
+}
+
+/* =========================================================
+   HERO CONCEPT
+========================================================= */
+
+.learning-map{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+    margin-top:20px;
+}
+
+.map-item{
+    background:rgba(67,97,238,.07);
+    border:1px solid rgba(67,97,238,.15);
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+}
+
+.map-item i{
+    font-size:1.5rem;
+    color:var(--primary);
+    margin-bottom:7px;
+}
+
+.map-item span{
+    display:block;
+    font-weight:600;
+    font-size:.88rem;
+}
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.tabs{
+    width:100%;
+}
+
+.tab-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.tab-btn{
+    padding:9px 15px;
+    border:2px solid var(--border);
+    background:transparent;
+    color:var(--gray);
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:500;
+    transition:var(--transition);
+}
+
+.tab-btn.active{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:white;
+}
+
+.tab-btn:hover:not(.active){
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+.tab-content{
+    display:none;
+    animation:fade .3s ease;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* =========================================================
+   INFO BOX
+========================================================= */
+
+.info-box{
+    padding:15px 18px;
+    border-radius:10px;
+    margin:15px 0;
+    background:rgba(67,97,238,.07);
+    border-left:4px solid var(--primary);
+}
+
+.info-box.success{
+    border-left-color:var(--success);
+    background:rgba(34,197,94,.08);
+}
+
+.info-box.warning{
+    border-left-color:var(--warning);
+    background:rgba(245,158,11,.09);
+}
+
+.info-box.danger{
+    border-left-color:var(--danger);
+    background:rgba(239,68,68,.08);
+}
+
+.info-box.purple{
+    border-left-color:var(--purple);
+    background:rgba(124,58,237,.08);
+}
+
+/* =========================================================
+   CONCEPT GRID
+========================================================= */
+
+.concept-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:15px;
+    margin:20px 0;
+}
+
+.concept-card{
+    padding:18px;
+    border-radius:12px;
+    background:#f8fafc;
+    border-left:4px solid var(--primary);
+}
+
+.dark-mode .concept-card{
+    background:#202020;
+}
+
+.concept-card h3{
+    font-size:1rem;
+    margin-bottom:6px;
+}
+
+.concept-card p{
+    font-size:.88rem;
+    color:var(--gray);
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper{
+    overflow-x:auto;
+    margin:18px 0;
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+.comparison-table th,
+.comparison-table td{
+    padding:11px 13px;
+    border:1px solid var(--border);
+    text-align:left;
+    font-size:.88rem;
+}
+
+.comparison-table th{
+    background:var(--primary);
+    color:white;
+}
+
+.comparison-table tr:nth-child(even){
+    background:rgba(67,97,238,.05);
+}
+
+/* =========================================================
+   STEP FLOW
+========================================================= */
+
+.step-flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin:20px 0;
+}
+
+.step{
+    flex:1;
+    min-width:150px;
+    padding:15px;
+    text-align:center;
+    background:rgba(67,97,238,.07);
+    border-radius:10px;
+    border:1px solid rgba(67,97,238,.12);
+}
+
+.step-number{
+    display:inline-flex;
+    width:30px;
+    height:30px;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+/* =========================================================
+   CALCULATOR
+========================================================= */
+
+.calc-box{
+    background:rgba(67,97,238,.06);
+    padding:20px;
+    border-radius:12px;
+}
+
+.calc-input{
+    width:100%;
+    padding:11px 14px;
+    border:2px solid var(--border);
+    border-radius:8px;
+    margin:8px 0 15px;
+    font-size:1rem;
+}
+
+.calc-btn,
+.quiz-btn{
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:10px 22px;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.calc-btn:hover,
+.quiz-btn:hover{
+    background:var(--secondary);
+}
+
+.calc-result{
+    margin-top:15px;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.result-detail{
+    margin-top:15px;
+    font-size:.9rem;
+}
+
+/* =========================================================
+   CASE STUDY
+========================================================= */
+
+.case{
+    border-radius:12px;
+    padding:20px;
+    margin:15px 0;
+    background:rgba(67,97,238,.05);
+    border-left:5px solid var(--primary);
+}
+
+.case h3{
+    margin-bottom:8px;
+}
+
+.case-question{
+    margin-top:12px;
+    padding:12px;
+    background:white;
+    border-radius:8px;
+}
+
+.dark-mode .case-question{
+    background:#222;
+}
+
+/* =========================================================
+   MISCONCEPTION
+========================================================= */
+
+.myth-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+}
+
+.myth{
+    padding:17px;
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+.myth .wrong{
+    color:var(--danger);
+    font-weight:700;
+}
+
+.myth .correct{
+    color:var(--success);
+    font-weight:700;
+}
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-question{
+    padding:18px;
+    margin-bottom:15px;
+    border-left:4px solid var(--primary);
+    background:rgba(67,97,238,.06);
+    border-radius:10px;
+}
+
+.quiz-question p{
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.quiz-options{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.quiz-options label{
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.quiz-options label:hover{
+    background:rgba(67,97,238,.08);
+}
+
+.quiz-feedback{
+    display:none;
+    margin-top:8px;
+    padding:8px 12px;
+    border-radius:7px;
+    font-size:.9rem;
+}
+
+.quiz-feedback.correct{
+    display:block;
+    background:rgba(34,197,94,.15);
+    color:#15803d;
+}
+
+.quiz-feedback.wrong{
+    display:block;
+    background:rgba(239,68,68,.15);
+    color:#b91c1c;
+}
+
+.quiz-result{
+    margin-top:18px;
+    font-weight:700;
+    text-align:center;
+}
+
+/* =========================================================
+   GLOSSARY
+========================================================= */
+
+.glossary-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 20px;
+}
+
+.glossary-item{
+    padding:8px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.glossary-term{
+    font-weight:700;
+    color:var(--primary);
+}
+
+.glossary-def{
+    color:var(--gray);
+}
+
+/* =========================================================
+   REFLECTION
+========================================================= */
+
+.reflection{
+    padding:22px;
+    border-radius:14px;
+    background:linear-gradient(135deg,rgba(67,97,238,.08),rgba(76,201,240,.08));
+}
+
+.reflection textarea{
+    width:100%;
+    min-height:120px;
+    padding:14px;
+    border:2px solid var(--border);
+    border-radius:10px;
+    resize:vertical;
+    background:white;
+}
+
+.dark-mode .reflection textarea{
+    background:#202020;
+    color:white;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:var(--footer-bg);
+    color:var(--footer-text);
+    margin-top:60px;
+    padding:55px 20px 0;
+    border-top:3px solid var(--primary);
+}
+
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1.5fr 1.5fr 1.2fr;
+    gap:35px;
+    padding-bottom:40px;
+}
+
+.footer-brand .brand-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.footer-brand img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.footer-brand h3{
+    color:white;
+}
+
+.footer-brand h3 span{
+    color:var(--accent);
+}
+
+.footer-brand p{
+    margin-top:12px;
+    font-size:.88rem;
+    line-height:1.8;
+}
+
+.footer-section h4{
+    color:white;
+    margin-bottom:15px;
+}
+
+.footer-section ul{
+    list-style:none;
+}
+
+.footer-section li{
+    margin-bottom:8px;
+}
+
+.footer-section a{
+    color:var(--footer-text);
+}
+
+.footer-section a:hover{
+    color:white;
+}
+
+.footer-contact p{
+    margin-bottom:10px;
+}
+
+.footer-social{
+    display:flex;
+    gap:10px;
+}
+
+.footer-social a{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+}
+
+.footer-bottom{
+    max-width:1200px;
+    margin:auto;
+    padding:20px 0;
+    border-top:1px solid rgba(255,255,255,.07);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:.8rem;
+}
+
+/* =========================================================
+   SCROLL / BACK TOP / LOADER
+========================================================= */
+
+.scroll-indicator{
+    position:fixed;
+    top:70px;
+    left:0;
+    width:100%;
+    height:3px;
+    z-index:3000;
+}
+
+.scroll-indicator span{
+    display:block;
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+}
+
+.back-to-top{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1500;
+}
+
+.back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+}
+
+.loader-wrapper{
+    position:fixed;
+    inset:0;
+    background:#f5f7fa;
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.5s;
+}
+
+.dark-mode .loader-wrapper{
+    background:#111;
+}
+
+.loader{
+    width:50px;
+    height:50px;
+    border:4px solid rgba(67,97,238,.15);
+    border-top-color:var(--primary);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .nav-links{
+        display:none;
+        position:fixed;
+        top:70px;
+        right:0;
+        left:0;
+        background:linear-gradient(120deg,var(--primary),var(--secondary));
+        flex-direction:column;
+        padding:10px 0;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-links a{
+        display:block;
+        border-radius:0;
+        padding:12px 20px;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .dropdown-content{
+        position:static;
+        background:rgba(0,0,0,.15);
+        box-shadow:none;
+    }
+
+    .dropdown:hover .dropdown-content{
+        display:none;
+    }
+
+    .dropdown.active .dropdown-content{
+        display:block;
+    }
+
+    .footer-container{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    header h1{
+        font-size:1.6rem;
+    }
+
+    .container{
+        grid-template-columns:1fr;
+        padding:15px;
+    }
+
+    .container-full{
+        padding:15px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .section-title{
+        font-size:1.2rem;
+    }
+
+    .glossary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-container{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
 </head>
+
 <body>
-    <!-- LOADER -->
-    <div class="loader-wrapper" id="loader">
-        <div class="loader"></div>
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+</div>
+
+<div class="scroll-indicator">
+    <span id="scrollProgress"></span>
+</div>
+
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="../index.html" class="navbar-brand">
+        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png"
+             alt="Logo SMAN 1 Cluring">
+        <span>SMAN 1 Cluring</span>
+    </a>
+
+    <div class="nav-container">
+
+        <button class="theme-toggle" id="themeToggle">
+            🌙
+        </button>
+
+        <button class="hamburger" id="hamburger">
+            ☰
+        </button>
+
     </div>
 
-    <!-- SCROLL INDICATOR -->
-    <div class="scroll-indicator"><span id="scrollProgress"></span></div>
+    <ul class="nav-links" id="navLinks">
 
-    <!-- BACK TO TOP -->
-    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+        <li>
+            <a href="../index.html">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+        </li>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
-        <a href="../index.html" class="navbar-brand">
-            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring" />
-            <span>SMAN 1 Cluring</span>
-        </a>
-        <div class="nav-container">
-            <button class="theme-toggle" id="themeToggle">🌙</button>
-            <button class="hamburger" id="hamburger">☰</button>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="../sosiologi-kelas-x.html"><i class="fas fa-book"></i> Sosiologi X</a></li>
-            <li><a href="../geografi-kelas-x.html"><i class="fas fa-globe-asia"></i> Geografi X</a></li>
-            <li><a href="../ekonomi-kelas-xi.html"><i class="fas fa-chart-line"></i> Ekonomi XI</a></li>
-            <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chart-line"></i> Ekonomi XII</a></li>
-            <li><a href="../soal-tka.html"><i class="fas fa-question-circle"></i> Bank Soal TKA</a></li>
-            <li class="dropdown">
-                <a href="../galery.html"><i class="fas fa-images"></i> Galeri <i class="fas fa-chevron-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="../galery.html"><i class="fas fa-camera"></i> Foto Kegiatan</a>
-                    <a href="../video.html"><i class="fas fa-video"></i> Video Pembelajaran</a>
-                    <a href="../prestasi.html"><i class="fas fa-trophy"></i> Prestasi Siswa</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+        <li>
+            <a href="../sosiologi-kelas-x.html">
+                <i class="fas fa-book"></i> Sosiologi X
+            </a>
+        </li>
 
-    <!-- ===== HEADER ===== -->
-    <header>
-        <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" class="logo" />
-        <h1>Bab 6B: Asas Pemungutan & Tarif Pajak</h1>
-        <p class="subtitle">Ekonomi Kelas XII Semester 2 | Disusun oleh: Alamsah, SE.</p>
-    </header>
+        <li>
+            <a href="../geografi-kelas-x.html">
+                <i class="fas fa-globe-asia"></i> Geografi X
+            </a>
+        </li>
 
-    <!-- ===== ADSENSE ===== -->
-    <div class="adsense-container">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="7545225746" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+        <li>
+            <a href="../ekonomi-kelas-xi.html">
+                <i class="fas fa-chart-line"></i> Ekonomi XI
+            </a>
+        </li>
 
-    <!-- ===== TUJUAN PEMBELAJARAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h2>
-    <div class="container" style="grid-template-columns:1fr;">
-        <div class="card ekonomi">
-            <div class="materi-text-left">
-                <p>Setelah mempelajari materi ini, peserta didik diharapkan mampu:</p>
-                <ul>
-                    <li><strong>Menjelaskan</strong> asas-asas pemungutan pajak menurut Adam Smith dan asas yuridis (domisili, sumber, kebangsaan).</li>
-                    <li><strong>Membedakan</strong> macam-macam tarif pajak (proporsional, progresif, degresif, dan tetap) dengan contohnya.</li>
-                    <li><strong>Memahami</strong> sistem pemungutan pajak di Indonesia (self-assessment, official assessment, withholding).</li>
-                    <li><strong>Menghitung</strong> pajak terutang dengan tarif progresif PPh Orang Pribadi berdasarkan UU HPP.</li>
-                    <li><strong>Menganalisis</strong> penerapan asas dan tarif pajak dalam konteks kebijakan perpajakan di Indonesia.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+        <li>
+            <a href="../ekonomi-kelas-xii.html">
+                <i class="fas fa-chart-line"></i> Ekonomi XII
+            </a>
+        </li>
 
-    <!-- ===== MATERI UTAMA dengan TAB ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-balance-scale"></i> Materi: Asas dan Tarif Perpajakan</h2>
+        <li>
+            <a href="../soal-tka.html">
+                <i class="fas fa-question-circle"></i> Bank Soal TKA
+            </a>
+        </li>
 
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch; text-align:left;">
-            <div class="tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="tab1"><i class="fas fa-gavel"></i> Asas Pemungutan</button>
-                    <button class="tab-btn" data-tab="tab2"><i class="fas fa-percentage"></i> Macam Tarif</button>
-                    <button class="tab-btn" data-tab="tab3"><i class="fas fa-cogs"></i> Sistem Pemungutan</button>
-                    <button class="tab-btn" data-tab="tab4"><i class="fas fa-calculator"></i> Perhitungan PPh</button>
-                    <button class="tab-btn" data-tab="tab5"><i class="fas fa-flag"></i> Tarif di Indonesia</button>
-                </div>
+        <li class="dropdown">
 
-                <!-- TAB 1: Asas Pemungutan -->
-                <div class="tab-content active" id="tab1">
-                    <p><strong>1. Asas Menurut Adam Smith (The Four Maxims):</strong></p>
-                    <ul>
-                        <li><strong>Equality (Kesamaan/Keadilan):</strong> Pemungutan pajak harus adil dan proporsional dengan kemampuan wajib pajak (ability to pay). Semakin besar kemampuan, semakin besar pula kontribusi pajaknya.</li>
-                        <li><strong>Certainty (Kepastian):</strong> Aturan pajak harus jelas, meliputi subjek, objek, tarif, dan waktu pembayaran. Wajib pajak harus mengetahui dengan pasti kewajibannya.</li>
-                        <li><strong>Convenience of Payment (Kenyamanan):</strong> Pajak dipungut pada saat yang paling nyaman bagi wajib pajak, misalnya saat menerima penghasilan (pemotongan langsung) atau saat melakukan transaksi.</li>
-                        <li><strong>Economy (Efisiensi):</strong> Biaya pemungutan pajak harus lebih kecil daripada hasil yang diterima negara. Pemungutan harus efisien dan tidak membebani secara berlebihan.</li>
-                    </ul>
-                    <br>
-                    <p><strong>2. Asas Yuridis Pemungutan Pajak:</strong></p>
-                    <ul>
-                        <li><strong>Asas Domisili (Residence):</strong> Negara berhak mengenakan pajak atas seluruh penghasilan orang/badan yang berdomisili di wilayahnya, baik penghasilan dari dalam maupun luar negeri (worldwide income).</li>
-                        <li><strong>Asas Sumber (Source):</strong> Negara berhak mengenakan pajak atas penghasilan yang bersumber dari wilayahnya, terlepas dari domisili penerima penghasilan. Contoh: orang asing yang bekerja di Indonesia dikenakan pajak atas penghasilan di Indonesia.</li>
-                        <li><strong>Asas Kebangsaan (Nationality):</strong> Pengenaan pajak didasarkan pada status kewarganegaraan seseorang, terlepas dari domisili atau sumber penghasilan. Contoh: warga negara Indonesia yang tinggal di luar negeri tetap dikenakan pajak atas penghasilan tertentu.</li>
-                    </ul>
-                    <div class="info-box">
-                        <i class="fas fa-lightbulb" style="color:var(--warning);"></i>
-                        <strong>Catatan:</strong> Di Indonesia, sistem perpajakan menerapkan kombinasi asas domisili dan asas sumber, namun lebih dominan menggunakan asas domisili untuk Wajib Pajak Dalam Negeri.
-                    </div>
-                    <div class="info-box info-box-success" style="margin-top:8px;">
-                        <i class="fas fa-check-circle" style="color:var(--success);"></i>
-                        <strong>Penerapan:</strong> Asas-asas ini diimplementasikan dalam UU Pajak Penghasilan (PPh) dan berbagai peraturan pelaksanaannya.
-                    </div>
-                </div>
+            <a href="../galery.html">
+                <i class="fas fa-images"></i>
+                Galeri
+                <i class="fas fa-chevron-down"></i>
+            </a>
 
-                <!-- TAB 2: Macam Tarif -->
-                <div class="tab-content" id="tab2">
-                    <p>Tarif pajak adalah batas persentase atau jumlah nominal yang diterapkan terhadap dasar pengenaan pajak (DPP). Berdasarkan perubahannya terhadap DPP, tarif dibagi menjadi:</p>
-                    <br>
+            <div class="dropdown-content">
 
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:16px;">
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>1. Tarif Proporsional</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Persentase tetap, berapapun DPP. Contoh: PPN 11% (2022) dari harga jual.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--success);">
-                            <strong>2. Tarif Progresif</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Persentase meningkat seiring DPP. Contoh: PPh Orang Pribadi (5%, 15%, 25%, 30%, 35%).</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--warning);">
-                            <strong>3. Tarif Degresif</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Persentase menurun seiring DPP (jarang digunakan). Contoh: beberapa pajak daerah dengan tarif menurun untuk nilai tinggi.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--danger);">
-                            <strong>4. Tarif Tetap</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Jumlah nominal tetap, tidak bergantung pada DPP. Contoh: Bea Meterai Rp10.000,- per dokumen.</p>
-                        </div>
-                    </div>
+                <a href="../galery.html">
+                    <i class="fas fa-camera"></i> Foto Kegiatan
+                </a>
 
-                    <p><strong>Perbandingan Tarif Progresif vs Proporsional:</strong></p>
-                    <div style="overflow-x:auto;">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Aspek</th>
-                                    <th>Proporsional</th>
-                                    <th>Progresif</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Tarif</strong></td>
-                                    <td>Tetap (misal 10%)</td>
-                                    <td>Meningkat (5%, 15%, 25%)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Keadilan</strong></td>
-                                    <td>Kurang adil (beban sama untuk semua)</td>
-                                    <td>Lebih adil (sesuai kemampuan)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Contoh</strong></td>
-                                    <td>PPN</td>
-                                    <td>PPh Orang Pribadi</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Efek pada Distribusi</strong></td>
-                                    <td>Membebani semua lapisan</td>
-                                    <td>Mengurangi kesenjangan</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="info-box" style="margin-top:12px;">
-                        <i class="fas fa-chart-line" style="color:var(--primary);"></i>
-                        <strong>Pilihan tarif:</strong> Pemerintah memilih jenis tarif sesuai tujuan kebijakan. Tarif progresif dipilih untuk mendukung redistribusi pendapatan.
-                    </div>
-                </div>
+                <a href="../video.html">
+                    <i class="fas fa-video"></i> Video Pembelajaran
+                </a>
 
-                <!-- TAB 3: Sistem Pemungutan -->
-                <div class="tab-content" id="tab3">
-                    <p>Di Indonesia, terdapat tiga sistem pemungutan pajak yang utama:</p>
-                    <br>
+                <a href="../prestasi.html">
+                    <i class="fas fa-trophy"></i> Prestasi Siswa
+                </a>
 
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:16px;">
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>Self-Assessment</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Wajib pajak menghitung, membayar, dan melapor sendiri. Contoh: PPh Orang Pribadi, PPh Badan.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--success);">
-                            <strong>Official Assessment</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pemerintah (fiskus) yang menghitung dan menetapkan pajak terutang. Contoh: Pajak Bumi dan Bangunan (PBB).</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--warning);">
-                            <strong>Withholding (Pemotongan/Pemungutan)</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pihak ketiga (pemberi kerja, pembeli) memotong/memungut pajak dan menyetorkan ke negara. Contoh: PPh Pasal 21 (gaji), PPh Pasal 22 (impor), PPN.</p>
-                        </div>
-                    </div>
-
-                    <p><strong>Penjelasan Singkat:</strong></p>
-                    <ul>
-                        <li><strong>Self-Assessment:</strong> Wajib pajak aktif berperan. Sistem ini mengandalkan kejujuran dan kepatuhan wajib pajak. Contoh: melaporkan SPT Tahunan PPh.</li>
-                        <li><strong>Official Assessment:</strong> Fiskus yang menghitung dan menerbitkan Surat Ketetapan Pajak (SKP). Wajib pajak pasif menunggu penetapan.</li>
-                        <li><strong>Withholding:</strong> Pajak dipotong/dipungut saat transaksi atau pembayaran. Ini efektif untuk menjamin penerimaan pajak. Contoh: pemotongan PPh 21 oleh pemberi kerja.</li>
-                    </ul>
-                    <div class="info-box info-box-success">
-                        <i class="fas fa-check-circle" style="color:var(--success);"></i>
-                        <strong>Sistem utama di Indonesia:</strong> Self-Assessment untuk PPh, Withholding untuk PPh Pasal 21/22/23 dan PPN, Official Assessment untuk PBB.
-                    </div>
-                </div>
-
-                <!-- TAB 4: Perhitungan PPh Progresif -->
-                <div class="tab-content" id="tab4">
-                    <p><strong>Tarif PPh Orang Pribadi (berdasarkan UU HPP No. 7 Tahun 2021):</strong></p>
-                    <div style="overflow-x:auto;">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Lapisan Penghasilan Kena Pajak (PKP)</th>
-                                    <th>Tarif</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Rp 0 – Rp 60.000.000</td>
-                                    <td>5%</td>
-                                </tr>
-                                <tr>
-                                    <td>&gt; Rp 60.000.000 – Rp 250.000.000</td>
-                                    <td>15%</td>
-                                </tr>
-                                <tr>
-                                    <td>&gt; Rp 250.000.000 – Rp 500.000.000</td>
-                                    <td>25%</td>
-                                </tr>
-                                <tr>
-                                    <td>&gt; Rp 500.000.000 – Rp 5.000.000.000</td>
-                                    <td>30%</td>
-                                </tr>
-                                <tr>
-                                    <td>&gt; Rp 5.000.000.000</td>
-                                    <td>35%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <p><strong>Kalkulator Sederhana PPh Terutang:</strong></p>
-                    <div class="calc-box">
-                        <label for="pkpInput">Masukkan Penghasilan Kena Pajak (PKP) dalam Rupiah:</label>
-                        <input type="number" id="pkpInput" placeholder="Contoh: 100000000" />
-                        <button class="quiz-btn" id="calcPPh" style="margin-top:8px;"><i class="fas fa-calculator"></i> Hitung PPh</button>
-                        <div class="calc-result" id="pphResult">PPh Terutang: Rp 0</div>
-                    </div>
-                    <div class="info-box" style="margin-top:12px;">
-                        <i class="fas fa-lightbulb" style="color:var(--warning);"></i>
-                        <strong>Catatan:</strong> PKP adalah penghasilan neto setelah dikurangi PTKP (Penghasilan Tidak Kena Pajak). Untuk wajib pajak orang pribadi lajang, PTKP = Rp 54.000.000 (2024).
-                    </div>
-                </div>
-
-                <!-- TAB 5: Tarif di Indonesia -->
-                <div class="tab-content" id="tab5">
-                    <p>Berikut beberapa contoh tarif pajak yang berlaku di Indonesia:</p>
-                    <br>
-                    <ul>
-                        <li><strong>PPh Badan:</strong> Tarif umum 22% (berlaku untuk tahun 2022 dst, sesuai UU HPP). Untuk perusahaan terbuka (go public) dengan kepemilikan saham tertentu, tarif lebih rendah.</li>
-                        <li><strong>PPN:</strong> Tarif 11% (sejak April 2022) dan akan naik menjadi 12% pada tahun 2025 (sesuai UU HPP).</li>
-                        <li><strong>PPnBM:</strong> Tarif bervariasi 10% - 125% tergantung jenis barang mewah (kendaraan, rumah mewah).</li>
-                        <li><strong>Pajak Daerah:</strong> Tarif bervariasi antar daerah. Contoh: Pajak Kendaraan Bermotor (PKB) rata-rata 1,5% - 2,5% dari NJKB, Pajak Hotel 10%, Pajak Restoran 10%.</li>
-                        <li><strong>Bea Meterai:</strong> Tarif tetap Rp 10.000,- untuk dokumen tertentu.</li>
-                    </ul>
-                    <br>
-                    <p><strong>Perbandingan Tarif Pajak di Beberapa Negara (ilustrasi):</strong></p>
-                    <div style="overflow-x:auto;">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Negara</th>
-                                    <th>Tarif PPh Tertinggi</th>
-                                    <th>Tarif PPN (VAT)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Indonesia</td>
-                                    <td>35%</td>
-                                    <td>11% (akan 12%)</td>
-                                </tr>
-                                <tr>
-                                    <td>Singapura</td>
-                                    <td>22%</td>
-                                    <td>9% (GST)</td>
-                                </tr>
-                                <tr>
-                                    <td>Malaysia</td>
-                                    <td>30%</td>
-                                    <td>6% (SST)</td>
-                                </tr>
-                                <tr>
-                                    <td>Jepang</td>
-                                    <td>45%</td>
-                                    <td>10%</td>
-                                </tr>
-                                <tr>
-                                    <td>Australia</td>
-                                    <td>45%</td>
-                                    <td>10% (GST)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="info-box info-box-warning" style="margin-top:12px;">
-                        <i class="fas fa-globe-asia" style="color:var(--warning);"></i>
-                        <strong>Catatan:</strong> Tarif pajak berbeda-beda antar negara sesuai dengan struktur ekonomi dan kebijakan fiskal masing-masing.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== ILUSTRASI PERHITUNGAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-calculator"></i> Ilustrasi Perhitungan PPh</h2>
-    <div class="container">
-        <div class="card ekonomi" style="grid-column:1/-1;">
-            <div class="materi-text-left" style="width:100%;">
-                <p><strong>Contoh Kasus:</strong></p>
-                <p>Seorang wajib pajak orang pribadi memiliki penghasilan neto (PKP) sebesar <strong>Rp 150.000.000</strong> dalam satu tahun. Hitung PPh terutang menggunakan tarif progresif.</p>
-                <br>
-                <p><strong>Perhitungan:</strong></p>
-                <ul>
-                    <li>Lapisan 1: Rp 0 – Rp 60.000.000 → 5% × Rp 60.000.000 = <strong>Rp 3.000.000</strong></li>
-                    <li>Lapisan 2: Rp 60.000.001 – Rp 150.000.000 (selisih Rp 90.000.000) → 15% × Rp 90.000.000 = <strong>Rp 13.500.000</strong></li>
-                    <li><strong>Total PPh Terutang = Rp 3.000.000 + Rp 13.500.000 = Rp 16.500.000</strong></li>
-                </ul>
-                <div class="info-box info-box-success" style="margin-top:12px;">
-                    <i class="fas fa-check-circle" style="color:var(--success);"></i>
-                    <strong>Hasil:</strong> PPh yang harus dibayarkan adalah <strong>Rp 16.500.000</strong> per tahun.
-                </div>
-                <p style="margin-top:8px;"><em>Catatan: Perhitungan ini menggunakan tarif progresif dan mengasumsikan tidak ada PTKP (Penghasilan Tidak Kena Pajak) yang dikurangkan.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== KUIS INTERAKTIF ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-puzzle-piece"></i> Kuis Pemahaman</h2>
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch;">
-            <div class="quiz-container" id="quizContainer">
-                <!-- Soal 1 -->
-                <div class="quiz-question">
-                    <p>1. Asas pemungutan pajak menurut Adam Smith yang menekankan bahwa biaya pemungutan harus lebih kecil dari hasil yang diterima adalah asas …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q1" value="A" /> A. Equality</label>
-                        <label><input type="radio" name="q1" value="B" /> B. Certainty</label>
-                        <label><input type="radio" name="q1" value="C" /> C. Convenience</label>
-                        <label><input type="radio" name="q1" value="D" /> D. Economy</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb1"></div>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="quiz-question">
-                    <p>2. Tarif pajak yang persentasenya meningkat seiring dengan meningkatnya dasar pengenaan pajak disebut …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q2" value="A" /> A. Proporsional</label>
-                        <label><input type="radio" name="q2" value="B" /> B. Progresif</label>
-                        <label><input type="radio" name="q2" value="C" /> C. Degresif</label>
-                        <label><input type="radio" name="q2" value="D" /> D. Tetap</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb2"></div>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="quiz-question">
-                    <p>3. Sistem pemungutan pajak di mana wajib pajak menghitung, membayar, dan melapor sendiri disebut …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q3" value="A" /> A. Self-Assessment</label>
-                        <label><input type="radio" name="q3" value="B" /> B. Official Assessment</label>
-                        <label><input type="radio" name="q3" value="C" /> C. Withholding</label>
-                        <label><input type="radio" name="q3" value="D" /> D. Final</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb3"></div>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="quiz-question">
-                    <p>4. Berdasarkan UU HPP, tarif PPh Orang Pribadi untuk PKP di atas Rp 5.000.000.000 adalah …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q4" value="A" /> A. 25%</label>
-                        <label><input type="radio" name="q4" value="B" /> B. 30%</label>
-                        <label><input type="radio" name="q4" value="C" /> C. 35%</label>
-                        <label><input type="radio" name="q4" value="D" /> D. 40%</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb4"></div>
-                </div>
-
-                <!-- Soal 5 -->
-                <div class="quiz-question">
-                    <p>5. Contoh pajak dengan tarif tetap adalah …</p>
-                    <div class="quiz-options">
-                        <label><input type="radio" name="q5" value="A" /> A. PPN</label>
-                        <label><input type="radio" name="q5" value="B" /> B. PPh Badan</label>
-                        <label><input type="radio" name="q5" value="C" /> C. Bea Materai</label>
-                        <label><input type="radio" name="q5" value="D" /> D. Pajak Restoran</label>
-                    </div>
-                    <div class="quiz-feedback" id="fb5"></div>
-                </div>
-
-                <div style="text-align:center; margin-top:16px;">
-                    <button class="quiz-btn" id="submitQuiz"><i class="fas fa-check"></i> Periksa Jawaban</button>
-                    <button class="quiz-btn" id="resetQuiz" style="background:var(--gray); margin-left:10px;"><i class="fas fa-undo"></i> Ulangi</button>
-                </div>
-                <div class="quiz-result" id="quizResult"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== GLOSARIUM ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-book"></i> Glosarium</h2>
-    <div class="container-full">
-        <div class="card ekonomi" style="align-items:stretch;">
-            <div class="glossary-grid">
-                <div class="glossary-item"><span class="glossary-term">Asas Domisili</span><span class="glossary-def">Negara mengenakan pajak atas seluruh penghasilan penduduknya, termasuk dari luar negeri.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Asas Sumber</span><span class="glossary-def">Negara mengenakan pajak atas penghasilan yang berasal dari wilayahnya.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Tarif Progresif</span><span class="glossary-def">Tarif yang persentasenya meningkat seiring meningkatnya DPP.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Tarif Proporsional</span><span class="glossary-def">Tarif dengan persentase tetap berapapun DPP.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Self-Assessment</span><span class="glossary-def">Sistem pemungutan di mana WP menghitung, membayar, dan melapor sendiri.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Official Assessment</span><span class="glossary-def">Sistem pemungutan di mana fiskus menetapkan pajak terutang.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Withholding</span><span class="glossary-def">Pemotongan/pemungutan pajak oleh pihak ketiga saat transaksi.</span></div>
-                <div class="glossary-item"><span class="glossary-term">PKP</span><span class="glossary-def">Penghasilan Kena Pajak — dasar pengenaan PPh setelah dikurangi PTKP.</span></div>
-                <div class="glossary-item"><span class="glossary-term">PTKP</span><span class="glossary-def">Penghasilan Tidak Kena Pajak — batas penghasilan yang tidak dikenai pajak.</span></div>
-                <div class="glossary-item"><span class="glossary-term">DPP</span><span class="glossary-def">Dasar Pengenaan Pajak — nilai yang menjadi dasar perhitungan pajak.</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== RANGKUMAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-file-alt"></i> Rangkuman &amp; Kesimpulan</h2>
-    <div class="container" style="grid-template-columns:1fr;">
-        <div class="card ekonomi">
-            <div class="materi-text-left">
-                <ul>
-                    <li><strong>Asas pemungutan pajak</strong> menurut Adam Smith: Equality, Certainty, Convenience, Economy. Asas yuridis: domisili, sumber, kebangsaan.</li>
-                    <li><strong>Macam tarif pajak:</strong> proporsional (PPN), progresif (PPh OP), degresif (jarang), dan tetap (Bea Meterai).</li>
-                    <li><strong>Sistem pemungutan:</strong> Self-Assessment (PPh OP/Badan), Official Assessment (PBB), Withholding (PPh Pasal 21/22/23, PPN).</li>
-                    <li><strong>Tarif PPh Orang Pribadi (UU HPP):</strong> 5% (≤60 jt), 15% (60-250 jt), 25% (250-500 jt), 30% (500-5M), 35% (>5M).</li>
-                    <li><strong>PPN:</strong> 11% (2022), akan naik menjadi 12% pada 2025. PPnBM bervariasi 10-125%.</li>
-                    <li><strong>Pajak Daerah:</strong> PKB ~1,5-2,5%, Pajak Hotel/Restoran ~10%.</li>
-                    <li>Pemahaman tentang asas dan tarif pajak penting untuk menjadi wajib pajak yang taat dan cerdas.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="footer-container">
-            <!-- Kolom 1: Brand -->
-            <div class="footer-brand">
-                <div class="brand-logo">
-                    <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" />
-                    <h3>SMA Negeri <span>1 Cluring</span></h3>
-                </div>
-                <p>
-                    Berkomitmen menjadi pusat unggulan dalam pendidikan karakter dan akademik, 
-                    membekali siswa dengan pengetahuan dan keterampilan untuk masa depan yang gemilang.
-                </p>
-                <p class="brand-tagline">
-                    <i class="fas fa-quote-left" style="opacity:0.4;margin-right:4px;"></i>
-                    Berprestasi, Berkarakter, Berbudaya
-                    <i class="fas fa-quote-right" style="opacity:0.4;margin-left:4px;"></i>
-                </p>
             </div>
 
-            <!-- Kolom 2: Menu Navigasi -->
-            <div class="footer-section">
-                <h4><i class="fas fa-compass"></i> Menu Navigasi</h4>
-                <ul>
-                    <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
-                    <li><a href="../ekonomi-kelas-xii.html"><i class="fas fa-chevron-right"></i> Ekonomi XII</a></li>
-                    <li><a href="../soal-tka.html"><i class="fas fa-chevron-right"></i> Bank Soal TKA</a></li>
-                    <li><a href="../galery.html"><i class="fas fa-chevron-right"></i> Galeri Kegiatan</a></li>
-                    <li><a href="../prestasi.html"><i class="fas fa-chevron-right"></i> Prestasi Siswa</a></li>
-                </ul>
-            </div>
+        </li>
 
-            <!-- Kolom 3: Kontak -->
-            <div class="footer-section footer-contact">
-                <h4><i class="fas fa-phone"></i> Kontak Kami</h4>
-                <p><i class="fas fa-phone-alt"></i> <span><strong>Telepon</strong><br />0333-713297 (Sekolah)</span></p>
-                <p><i class="fas fa-envelope"></i> <span><strong>Email</strong><br />4l4m79@gmail.com</span></p>
-                <p><i class="fas fa-map-marker-alt"></i> <span><strong>Alamat</strong><br />SMAN 1 Cluring, Banyuwangi, Jawa Timur</span></p>
-            </div>
+    </ul>
 
-            <!-- Kolom 4: Sosial Media -->
-            <div class="footer-section">
-                <h4><i class="fas fa-share-alt"></i> Sosial Media</h4>
-                <p style="font-size:0.85rem; color:var(--footer-text); margin-bottom:14px; line-height:1.6;">
-                    Ikuti kami untuk informasi terbaru seputar kegiatan sekolah.
-                </p>
-                <div class="footer-social">
-                    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
+</nav>
 
-        <!-- ===== FOOTER BOTTOM ===== -->
-        <div class="footer-bottom">
-            <div class="copyright">
-                <span>© 2026</span>
-                <strong>SMA Negeri 1 Cluring</strong>
-                <span>•</span>
-                <span>Semua hak dilindungi</span>
-                <span class="heart"><i class="fas fa-heart"></i></span>
-            </div>
-            <div class="legal-links">
-                <a href="#"><i class="fas fa-shield-alt"></i> Privasi</a>
-                <span class="divider">|</span>
-                <a href="#"><i class="fas fa-file-contract"></i> Syarat &amp; Ketentuan</a>
-                <span class="divider">|</span>
-                <a href="#"><i class="fas fa-sitemap"></i> Sitemap</a>
-                <span class="divider">|</span>
-                <span style="font-size:0.7rem; opacity:0.3;">v2.0</span>
-            </div>
-        </div>
-    </footer>
 
-    <!-- ===== SCRIPTS ===== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <img
+        src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png"
+        class="logo"
+        alt="SMAN 1 Cluring">
+
+    <h1>
+        Bab 6B: Asas Pemungutan & Tarif Pajak
+    </h1>
+
+    <p class="subtitle">
+        Ekonomi Kelas XII Semester 2 |
+        Disusun oleh: Alamsah, SE.
+    </p>
+
+</header>
+
+
+<!-- =====================================================
+     ADS
+===================================================== -->
+
+<div class="adsense-container">
+
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1234355696976048"
+         data-ad-slot="7545225746"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+
     <script>
-        // ===== HAMBURGER =====
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        const dropdowns = document.querySelectorAll('.dropdown');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        dropdowns.forEach(dropdown => {
-            const link = dropdown.querySelector('a');
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) { e.preventDefault();
-                    dropdown.classList.toggle('active'); }
-            });
-        });
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && navLinks.classList.contains('active') && !e.target.closest(
-                    '.nav-links') && !e.target.closest('.hamburger')) {
-                navLinks.classList.remove('active');
-                hamburger.textContent = '☰';
-            }
-        });
-
-        // ===== DARK MODE =====
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        if (localStorage.getItem('darkMode') === 'enabled') { body.classList.add('dark-mode');
-            themeToggle.textContent = '☀️'; }
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) { themeToggle.textContent = '☀️';
-                localStorage.setItem('darkMode', 'enabled'); } else { themeToggle.textContent = '🌙';
-                localStorage.setItem('darkMode', 'disabled'); }
-        });
-
-        // ===== SCROLL PROGRESS & BACK TO TOP =====
-        window.onscroll = function() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("scrollProgress").style.width = (winScroll / height) * 100 + "%";
-            const backToTop = document.getElementById('backToTop');
-            if (winScroll > 300) backToTop.classList.add('visible');
-            else backToTop.classList.remove('visible');
-        };
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ===== LOADER =====
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 800);
-        });
-
-        // ===== TABS =====
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                tabContents.forEach(c => c.classList.remove('active'));
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
-        });
-
-        // ===== QUIZ =====
-        const quizAnswers = {
-            q1: 'D',
-            q2: 'B',
-            q3: 'A',
-            q4: 'C',
-            q5: 'C'
-        };
-
-        document.getElementById('submitQuiz').addEventListener('click', function() {
-            let correct = 0;
-            let total = Object.keys(quizAnswers).length;
-
-            for (const [key, answer] of Object.entries(quizAnswers)) {
-                const selected = document.querySelector(`input[name="${key}"]:checked`);
-                const fb = document.getElementById('fb' + key.slice(1));
-                if (selected) {
-                    if (selected.value === answer) {
-                        fb.className = 'quiz-feedback correct';
-                        fb.textContent = '✅ Jawaban benar!';
-                        correct++;
-                    } else {
-                        fb.className = 'quiz-feedback wrong';
-                        fb.textContent = '❌ Jawaban salah. Jawaban yang benar: ' + answer;
-                    }
-                } else {
-                    fb.className = 'quiz-feedback wrong';
-                    fb.textContent = '⚠️ Belum dipilih. Jawaban: ' + answer;
-                }
-            }
-
-            const resultDiv = document.getElementById('quizResult');
-            const score = (correct / total) * 100;
-            let message = '';
-            if (score === 100) message = '🎉 Sempurna! Anda menguasai materi Asas dan Tarif Pajak dengan baik!';
-            else if (score >= 80) message = '👍 Sangat baik! Tingkatkan lagi pemahaman Anda.';
-            else if (score >= 60) message = '📖 Cukup. Pelajari kembali bagian yang kurang dipahami.';
-            else message = '📚 Perlu belajar lebih giat. Baca ulang materi dan coba lagi!';
-            resultDiv.innerHTML = `Nilai: ${correct}/${total} (${Math.round(score)}%) — ${message}`;
-        });
-
-        document.getElementById('resetQuiz').addEventListener('click', function() {
-            document.querySelectorAll('.quiz-options input[type="radio"]').forEach(inp => inp.checked = false);
-            document.querySelectorAll('.quiz-feedback').forEach(fb => {
-                fb.className = 'quiz-feedback';
-                fb.textContent = '';
-            });
-            document.getElementById('quizResult').textContent = '';
-        });
-
-        // ===== CALCULATOR PPh =====
-        document.getElementById('calcPPh').addEventListener('click', function() {
-            const pkp = parseFloat(document.getElementById('pkpInput').value);
-            let tax = 0;
-            if (isNaN(pkp) || pkp < 0) {
-                document.getElementById('pphResult').textContent = '⚠️ Masukkan angka yang valid (≥ 0).';
-                return;
-            }
-            if (pkp <= 60000000) {
-                tax = pkp * 0.05;
-            } else if (pkp <= 250000000) {
-                tax = 60000000 * 0.05 + (pkp - 60000000) * 0.15;
-            } else if (pkp <= 500000000) {
-                tax = 60000000 * 0.05 + 190000000 * 0.15 + (pkp - 250000000) * 0.25;
-            } else if (pkp <= 5000000000) {
-                tax = 60000000 * 0.05 + 190000000 * 0.15 + 250000000 * 0.25 + (pkp - 500000000) * 0.30;
-            } else {
-                tax = 60000000 * 0.05 + 190000000 * 0.15 + 250000000 * 0.25 + 4500000000 * 0.30 + (pkp - 5000000000) *
-                    0.35;
-            }
-            document.getElementById('pphResult').textContent = 'PPh Terutang: Rp ' + tax.toLocaleString('id-ID');
-        });
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+
+</div>
+
+
+<!-- =====================================================
+     TUJUAN PEMBELAJARAN
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-bullseye"></i>
+    Tujuan Pembelajaran
+</h2>
+
+<div class="container">
+
+<div class="card">
+
+<div class="materi-text-left">
+
+<p>
+Setelah mempelajari bab ini, peserta didik diharapkan mampu:
+</p>
+
+<ul>
+
+<li>
+<strong>Menjelaskan</strong>
+mengapa negara memungut pajak dan bagaimana pajak berfungsi dalam perekonomian.
+</li>
+
+<li>
+<strong>Menjelaskan</strong>
+asas pemungutan pajak menurut Adam Smith serta asas domisili,
+sumber, dan kebangsaan.
+</li>
+
+<li>
+<strong>Membedakan</strong>
+tarif proporsional, progresif, degresif, dan tetap.
+</li>
+
+<li>
+<strong>Menganalisis</strong>
+perbedaan tarif marginal dan tarif efektif.
+</li>
+
+<li>
+<strong>Menjelaskan</strong>
+self-assessment, official assessment, dan withholding system.
+</li>
+
+<li>
+<strong>Menghitung</strong>
+PPh Orang Pribadi menggunakan tarif progresif.
+</li>
+
+<li>
+<strong>Menganalisis</strong>
+hubungan pajak dengan keadilan, redistribusi pendapatan,
+dan kebijakan pemerintah.
+</li>
+
+<li>
+<strong>Mengevaluasi</strong>
+suatu kebijakan perpajakan berdasarkan prinsip keadilan,
+kepastian, kenyamanan, dan efisiensi.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PETA KONSEP
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-project-diagram"></i>
+    Peta Konsep
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<p>
+Secara sederhana, materi dalam bab ini dapat dipahami melalui hubungan berikut:
+</p>
+
+<div class="learning-map">
+
+<div class="map-item">
+<i class="fas fa-landmark"></i>
+<span>Negara</span>
+<small>membutuhkan penerimaan</small>
+</div>
+
+<div class="map-item">
+<i class="fas fa-coins"></i>
+<span>Pajak</span>
+<small>sumber penerimaan</small>
+</div>
+
+<div class="map-item">
+<i class="fas fa-balance-scale"></i>
+<span>Asas</span>
+<small>prinsip pemungutan</small>
+</div>
+
+<div class="map-item">
+<i class="fas fa-percentage"></i>
+<span>Tarif</span>
+<small>besarnya pajak</small>
+</div>
+
+<div class="map-item">
+<i class="fas fa-cogs"></i>
+<span>Sistem</span>
+<small>cara pemungutan</small>
+</div>
+
+<div class="map-item">
+<i class="fas fa-chart-line"></i>
+<span>Kebijakan</span>
+<small>mempengaruhi ekonomi</small>
+</div>
+
+</div>
+
+<div class="info-box">
+<strong>Inti bab:</strong>
+Pajak bukan hanya persoalan "berapa persen yang harus dibayar",
+tetapi juga menyangkut <strong>siapa yang dikenai pajak,
+atas apa, berdasarkan asas apa, menggunakan tarif apa,
+dan bagaimana pajak tersebut dipungut.</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     MATERI UTAMA
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-balance-scale"></i>
+    Materi Mendalam
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="tabs">
+
+<div class="tab-buttons">
+
+<button class="tab-btn active" data-tab="tab1">
+<i class="fas fa-landmark"></i>
+Mengapa Pajak?
+</button>
+
+<button class="tab-btn" data-tab="tab2">
+<i class="fas fa-gavel"></i>
+Asas Pajak
+</button>
+
+<button class="tab-btn" data-tab="tab3">
+<i class="fas fa-percentage"></i>
+Tarif Pajak
+</button>
+
+<button class="tab-btn" data-tab="tab4">
+<i class="fas fa-cogs"></i>
+Sistem Pemungutan
+</button>
+
+<button class="tab-btn" data-tab="tab5">
+<i class="fas fa-calculator"></i>
+PPh Orang Pribadi
+</button>
+
+<button class="tab-btn" data-tab="tab6">
+<i class="fas fa-chart-line"></i>
+Kebijakan Pajak
+</button>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 1
+===================================================== -->
+
+<div class="tab-content active" id="tab1">
+
+<h3>1. Mengapa Negara Memungut Pajak?</h3>
+
+<p>
+Pajak merupakan kontribusi wajib kepada negara yang digunakan
+untuk membiayai berbagai kebutuhan negara dan penyelenggaraan
+pemerintahan.
+</p>
+
+<div class="concept-grid">
+
+<div class="concept-card">
+
+<h3>
+<i class="fas fa-school"></i>
+Pelayanan Publik
+</h3>
+
+<p>
+Pendidikan, kesehatan, administrasi publik,
+dan pelayanan masyarakat.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>
+<i class="fas fa-road"></i>
+Infrastruktur
+</h3>
+
+<p>
+Jalan, jembatan, transportasi, irigasi,
+dan fasilitas umum.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>
+<i class="fas fa-shield-alt"></i>
+Perlindungan
+</h3>
+
+<p>
+Pertahanan, keamanan, penegakan hukum,
+dan perlindungan masyarakat.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>
+<i class="fas fa-users"></i>
+Redistribusi
+</h3>
+
+<p>
+Membantu pemerintah mengurangi ketimpangan
+dan menyediakan program sosial.
+</p>
+
+</div>
+
+</div>
+
+<h3>Fungsi Pajak</h3>
+
+<table class="comparison-table">
+
+<thead>
+<tr>
+<th>Fungsi</th>
+<th>Makna</th>
+<th>Contoh</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Budgeter</strong></td>
+<td>Pajak menjadi sumber penerimaan negara.</td>
+<td>Membiayai APBN.</td>
+</tr>
+
+<tr>
+<td><strong>Regulerend</strong></td>
+<td>Pajak digunakan untuk mengatur perilaku ekonomi.</td>
+<td>Pajak tinggi pada barang tertentu.</td>
+</tr>
+
+<tr>
+<td><strong>Redistribusi</strong></td>
+<td>Penerimaan pajak digunakan kembali untuk masyarakat.</td>
+<td>Program pendidikan dan bantuan sosial.</td>
+</tr>
+
+<tr>
+<td><strong>Stabilisasi</strong></td>
+<td>Pajak menjadi salah satu instrumen kebijakan fiskal.</td>
+<td>Menyesuaikan kebijakan penerimaan dan belanja.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="info-box warning">
+
+<strong>Pertanyaan berpikir:</strong>
+
+Jika pajak hanya digunakan untuk memperoleh uang bagi negara,
+mengapa pemerintah perlu memperhatikan keadilan dan kenyamanan
+dalam memungut pajak?
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 2
+===================================================== -->
+
+<div class="tab-content" id="tab2">
+
+<h3>2. Asas Pemungutan Pajak</h3>
+
+<p>
+Asas pemungutan pajak adalah prinsip yang menjadi pedoman
+agar pemungutan pajak berlangsung adil, jelas, nyaman,
+dan efisien.
+</p>
+
+<h3>Asas Adam Smith — The Four Maxims</h3>
+
+<div class="concept-grid">
+
+<div class="concept-card">
+
+<h3>1. Equality</h3>
+
+<p>
+Pajak harus dipungut secara adil sesuai kemampuan ekonomi.
+</p>
+
+<div class="info-box">
+<strong>Keadilan horizontal:</strong>
+orang dengan kemampuan ekonomi yang relatif sama
+diperlakukan secara sebanding.
+<br><br>
+<strong>Keadilan vertikal:</strong>
+orang dengan kemampuan ekonomi berbeda dapat dikenai
+beban pajak yang berbeda.
+</div>
+
+</div>
+
+<div class="concept-card">
+
+<h3>2. Certainty</h3>
+
+<p>
+Kewajiban pajak harus jelas dan dapat diketahui wajib pajak.
+</p>
+
+<ul>
+<li>Siapa subjek pajaknya?</li>
+<li>Apa objek pajaknya?</li>
+<li>Berapa tarifnya?</li>
+<li>Kapan terutang?</li>
+<li>Bagaimana cara membayar?</li>
+</ul>
+
+</div>
+
+<div class="concept-card">
+
+<h3>3. Convenience</h3>
+
+<p>
+Pajak sebaiknya dipungut pada waktu dan cara yang
+paling nyaman bagi wajib pajak.
+</p>
+
+<p>
+Contoh:
+pemotongan pajak ketika seseorang menerima penghasilan.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>4. Economy</h3>
+
+<p>
+Biaya administrasi pemungutan pajak harus efisien
+dibandingkan penerimaan yang diperoleh.
+</p>
+
+<p>
+Digitalisasi administrasi pajak merupakan salah satu
+upaya meningkatkan efisiensi.
+</p>
+
+</div>
+
+</div>
+
+
+<h3>Asas Yuridis / Asas Pengenaan</h3>
+
+<table class="comparison-table">
+
+<thead>
+<tr>
+<th>Asas</th>
+<th>Dasar Pengenaan</th>
+<th>Contoh Konseptual</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Domisili</strong></td>
+<td>Status tempat tinggal atau kedudukan wajib pajak.</td>
+<td>Negara tempat wajib pajak berdomisili dapat mengenakan pajak sesuai ketentuan.</td>
+</tr>
+
+<tr>
+<td><strong>Sumber</strong></td>
+<td>Tempat penghasilan berasal.</td>
+<td>Penghasilan yang bersumber dari suatu negara dapat dikenai pajak oleh negara tersebut.</td>
+</tr>
+
+<tr>
+<td><strong>Kebangsaan</strong></td>
+<td>Status kewarganegaraan.</td>
+<td>Dalam konsep tertentu, kewarganegaraan dapat menjadi dasar hubungan perpajakan.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="info-box purple">
+
+<strong>Jangan tertukar:</strong>
+
+Asas domisili menjawab:
+<strong>"Di mana wajib pajak mempunyai hubungan tempat tinggal/kedudukan?"</strong>
+
+<br><br>
+
+Asas sumber menjawab:
+<strong>"Dari negara mana penghasilan tersebut berasal?"</strong>
+
+</div>
+
+
+<h3>Studi Kasus Asas</h3>
+
+<div class="case">
+
+<h3>Kasus: Penghasilan dari Dua Negara</h3>
+
+<p>
+Rina tinggal dan menjadi wajib pajak di Negara A.
+Ia memperoleh penghasilan dari pekerjaannya di Negara A
+dan juga memperoleh penghasilan dari investasi di Negara B.
+</p>
+
+<div class="case-question">
+
+<strong>Pertanyaan:</strong>
+
+<br>
+
+1. Negara mana yang mempunyai hubungan berdasarkan domisili?
+
+<br>
+
+2. Negara mana yang mempunyai hubungan berdasarkan sumber?
+
+<br>
+
+3. Mengapa dalam praktik internasional diperlukan aturan
+untuk menghindari pemajakan berganda?
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 3
+===================================================== -->
+
+<div class="tab-content" id="tab3">
+
+<h3>3. Macam-Macam Tarif Pajak</h3>
+
+<p>
+Tarif pajak menunjukkan besarnya pajak yang dikenakan
+terhadap dasar pengenaan pajak.
+</p>
+
+<table class="comparison-table">
+
+<thead>
+<tr>
+<th>Jenis</th>
+<th>Ciri</th>
+<th>Ilustrasi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Proporsional</strong></td>
+<td>Persentase tetap.</td>
+<td>10% → 10% → 10%</td>
+</tr>
+
+<tr>
+<td><strong>Progresif</strong></td>
+<td>Persentase meningkat.</td>
+<td>5% → 15% → 25% → 30% → 35%</td>
+</tr>
+
+<tr>
+<td><strong>Degresif</strong></td>
+<td>Persentase menurun ketika dasar pengenaan meningkat.</td>
+<td>10% → 8% → 6%</td>
+</tr>
+
+<tr>
+<td><strong>Tetap</strong></td>
+<td>Jumlah nominal tertentu.</td>
+<td>Rp10.000 per dokumen tertentu.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+<h3>Tarif Progresif</h3>
+
+<p>
+Tarif progresif tidak berarti seluruh penghasilan seseorang
+langsung dikenai tarif tertinggi.
+</p>
+
+<div class="info-box danger">
+
+<strong>Miskonsepsi:</strong>
+
+Jika PKP seseorang Rp300 juta, bukan berarti:
+
+<br><br>
+
+Rp300 juta × 25%
+
+<br><br>
+
+Cara tersebut salah.
+
+</div>
+
+<p>
+Pada sistem progresif bertingkat, setiap bagian PKP
+masuk ke lapisan tarif masing-masing.
+</p>
+
+
+<h3>Tarif Marginal dan Tarif Efektif</h3>
+
+<table class="comparison-table">
+
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Makna</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>Tarif Marginal</strong></td>
+<td>
+Tarif yang dikenakan terhadap bagian penghasilan
+yang berada pada lapisan terakhir.
+</td>
+</tr>
+
+<tr>
+<td><strong>Tarif Efektif</strong></td>
+<td>
+Perbandingan antara total pajak terutang dengan
+total PKP.
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="info-box success">
+
+<strong>Contoh:</strong>
+
+Jika PKP = Rp150 juta dan PPh terutang = Rp16,5 juta,
+
+maka tarif efektif:
+
+<br><br>
+
+Rp16.500.000 ÷ Rp150.000.000 × 100%
+
+<br><br>
+
+= <strong>11%</strong>
+
+<br><br>
+
+Jadi meskipun tarif marginalnya 15%,
+tarif efektifnya hanya 11%.
+
+</div>
+
+
+<h3>Mengapa Tarif Progresif?</h3>
+
+<ul>
+
+<li>Mencerminkan kemampuan membayar.</li>
+
+<li>Membantu redistribusi pendapatan.</li>
+
+<li>Memberikan beban relatif lebih besar kepada kelompok
+dengan kemampuan ekonomi lebih tinggi.</li>
+
+<li>Dapat digunakan sebagai instrumen kebijakan fiskal.</li>
+
+</ul>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 4
+===================================================== -->
+
+<div class="tab-content" id="tab4">
+
+<h3>4. Sistem Pemungutan Pajak</h3>
+
+<div class="concept-grid">
+
+<div class="concept-card">
+
+<h3>Self-Assessment</h3>
+
+<p>
+Wajib pajak memiliki tanggung jawab utama untuk
+menghitung, memperhitungkan, membayar, dan melaporkan
+pajak sesuai ketentuan.
+</p>
+
+<strong>Kata kunci:</strong>
+WP aktif.
+
+</div>
+
+<div class="concept-card">
+
+<h3>Official Assessment</h3>
+
+<p>
+Besarnya pajak ditetapkan oleh institusi pemungut pajak.
+</p>
+
+<strong>Kata kunci:</strong>
+fiskus menetapkan.
+
+</div>
+
+<div class="concept-card">
+
+<h3>Withholding</h3>
+
+<p>
+Pihak ketiga melakukan pemotongan atau pemungutan
+pajak ketika terjadi pembayaran atau transaksi tertentu.
+</p>
+
+<strong>Kata kunci:</strong>
+pihak ketiga.
+
+</div>
+
+</div>
+
+
+<table class="comparison-table">
+
+<thead>
+
+<tr>
+<th>Sistem</th>
+<th>Yang Menentukan/Melakukan</th>
+<th>Peran Wajib Pajak</th>
+<th>Kata Kunci</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Self-Assessment</td>
+<td>Wajib pajak</td>
+<td>Aktif</td>
+<td>Hitung – Bayar – Lapor</td>
+</tr>
+
+<tr>
+<td>Official Assessment</td>
+<td>Fiskus</td>
+<td>Lebih pasif dalam penetapan</td>
+<td>Ditetapkan</td>
+</tr>
+
+<tr>
+<td>Withholding</td>
+<td>Pihak ketiga</td>
+<td>Tetap memiliki kewajiban sesuai aturan</td>
+<td>Potong/Pungut</td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+<div class="info-box warning">
+
+<strong>Catatan penting:</strong>
+
+Self-assessment bukan berarti pemerintah tidak melakukan pengawasan.
+
+Dalam sistem self-assessment, wajib pajak diberi kepercayaan
+untuk memenuhi kewajibannya, sementara otoritas pajak tetap
+melakukan pengawasan dan penegakan hukum sesuai ketentuan.
+
+</div>
+
+
+<h3>Analisis</h3>
+
+<div class="case">
+
+<p>
+Sebuah perusahaan membayar gaji pegawainya.
+Sebelum gaji diterima pegawai, perusahaan melakukan
+pemotongan pajak sesuai ketentuan.
+</p>
+
+<strong>Pertanyaan:</strong>
+
+Apakah mekanisme tersebut termasuk self-assessment,
+official assessment, atau withholding?
+
+<br><br>
+
+<strong>Jawaban konsep:</strong>
+
+Withholding, karena terdapat pihak ketiga
+yang melakukan pemotongan pajak.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 5
+===================================================== -->
+
+<div class="tab-content" id="tab5">
+
+<h3>5. PPh Orang Pribadi</h3>
+
+<p>
+Untuk memahami PPh Orang Pribadi, siswa harus memahami
+alur pembentukannya terlebih dahulu.
+</p>
+
+
+<div class="step-flow">
+
+<div class="step">
+<span class="step-number">1</span>
+<br>
+Penghasilan Bruto
+</div>
+
+<div class="step">
+<span class="step-number">2</span>
+<br>
+Pengurang
+</div>
+
+<div class="step">
+<span class="step-number">3</span>
+<br>
+Penghasilan Neto
+</div>
+
+<div class="step">
+<span class="step-number">4</span>
+<br>
+Kurangi PTKP
+</div>
+
+<div class="step">
+<span class="step-number">5</span>
+<br>
+PKP
+</div>
+
+<div class="step">
+<span class="step-number">6</span>
+<br>
+Tarif PPh
+</div>
+
+<div class="step">
+<span class="step-number">7</span>
+<br>
+PPh Terutang
+</div>
+
+</div>
+
+
+<h3>Tarif PPh Orang Pribadi</h3>
+
+<div class="table-wrapper">
+
+<table class="comparison-table">
+
+<thead>
+<tr>
+<th>Lapisan PKP</th>
+<th>Tarif</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Sampai dengan Rp60.000.000</td>
+<td><strong>5%</strong></td>
+</tr>
+
+<tr>
+<td>Di atas Rp60.000.000 – Rp250.000.000</td>
+<td><strong>15%</strong></td>
+</tr>
+
+<tr>
+<td>Di atas Rp250.000.000 – Rp500.000.000</td>
+<td><strong>25%</strong></td>
+</tr>
+
+<tr>
+<td>Di atas Rp500.000.000 – Rp5.000.000.000</td>
+<td><strong>30%</strong></td>
+</tr>
+
+<tr>
+<td>Di atas Rp5.000.000.000</td>
+<td><strong>35%</strong></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>Perhatikan:</strong>
+
+Tarif tersebut diterapkan pada <strong>lapisan PKP</strong>,
+bukan langsung terhadap seluruh penghasilan bruto.
+
+</div>
+
+
+<h3>Contoh 1 — PKP Rp150 Juta</h3>
+
+<ul>
+
+<li>
+Rp60 juta × 5% =
+<strong>Rp3 juta</strong>
+</li>
+
+<li>
+Rp90 juta × 15% =
+<strong>Rp13,5 juta</strong>
+</li>
+
+<li>
+Total =
+<strong>Rp16,5 juta</strong>
+</li>
+
+</ul>
+
+<div class="info-box success">
+
+<strong>Tarif marginal:</strong> 15%
+
+<br>
+
+<strong>Tarif efektif:</strong>
+
+Rp16,5 juta ÷ Rp150 juta × 100%
+= <strong>11%</strong>
+
+</div>
+
+
+<h3>Contoh 2 — PKP Rp300 Juta</h3>
+
+<ul>
+
+<li>
+Rp60 juta × 5% =
+<strong>Rp3 juta</strong>
+</li>
+
+<li>
+Rp190 juta × 15% =
+<strong>Rp28,5 juta</strong>
+</li>
+
+<li>
+Rp50 juta × 25% =
+<strong>Rp12,5 juta</strong>
+</li>
+
+</ul>
+
+<p>
+
+Total PPh:
+
+<strong>Rp44.000.000</strong>
+
+</p>
+
+<p>
+
+Tarif efektif:
+
+Rp44 juta ÷ Rp300 juta × 100%
+
+= <strong>14,67%</strong>
+
+</p>
+
+
+<h3>Catatan PTKP</h3>
+
+<p>
+Dalam contoh pembelajaran, kita dapat langsung diberikan nilai PKP
+sehingga siswa fokus memahami tarif progresif.
+Namun dalam kondisi nyata, PKP diperoleh setelah penghasilan neto
+dikurangi PTKP sesuai status wajib pajak dan ketentuan yang berlaku.
+</p>
+
+</div>
+
+
+<!-- =====================================================
+ TAB 6
+===================================================== -->
+
+<div class="tab-content" id="tab6">
+
+<h3>6. Pajak sebagai Kebijakan Ekonomi</h3>
+
+<p>
+Pajak tidak berdiri sendiri. Pemerintah menggunakan kebijakan
+perpajakan sebagai salah satu instrumen kebijakan fiskal.
+</p>
+
+<div class="concept-grid">
+
+<div class="concept-card">
+
+<h3>Keadilan</h3>
+
+<p>
+Beban pajak perlu mempertimbangkan kemampuan ekonomi.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>Penerimaan Negara</h3>
+
+<p>
+Pajak menyediakan sumber dana bagi pembiayaan negara.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>Distribusi</h3>
+
+<p>
+Pajak dan belanja negara dapat memengaruhi distribusi pendapatan.
+</p>
+
+</div>
+
+<div class="concept-card">
+
+<h3>Perilaku</h3>
+
+<p>
+Tarif pajak dapat memengaruhi keputusan konsumsi,
+produksi, dan investasi.
+</p>
+
+</div>
+
+</div>
+
+
+<h3>Contoh: PPN</h3>
+
+<p>
+Perubahan tarif PPN harus dipahami bersama mekanisme
+Dasar Pengenaan Pajak. Dalam kebijakan sejak 2025,
+tarif PPN secara formal menjadi 12%, tetapi untuk barang
+dan jasa nonmewah digunakan mekanisme DPP tertentu sehingga
+beban efektifnya tetap 11%; barang/jasa mewah dikenai 12%.
+</p>
+
+<div class="info-box">
+
+<strong>Pelajaran ekonomi:</strong>
+
+Siswa tidak cukup melihat angka tarif.
+
+Harus dilihat juga:
+
+<strong>
+tarif × dasar pengenaan pajak
+</strong>
+
+karena perubahan DPP dapat memengaruhi jumlah pajak
+yang benar-benar terutang.
+
+</div>
+
+
+<h3>Pertanyaan Analitis</h3>
+
+<div class="case">
+
+<ol>
+
+<li>
+Mengapa pemerintah tidak selalu menggunakan satu jenis tarif
+untuk seluruh jenis pajak?
+</li>
+
+<li>
+Mengapa pajak penghasilan orang pribadi dapat menggunakan tarif progresif?
+</li>
+
+<li>
+Mengapa pajak konsumsi memiliki karakter berbeda?
+</li>
+
+<li>
+Apakah tarif pajak yang lebih tinggi selalu berarti
+beban pajak efektif lebih tinggi?
+</li>
+
+<li>
+Mengapa kepastian aturan menjadi bagian penting
+dari sistem perpajakan?
+</li>
+
+</ol>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     KALKULATOR
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-calculator"></i>
+    Kalkulator PPh Progresif
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="calc-box">
+
+<label>
+<strong>Masukkan PKP (Penghasilan Kena Pajak):</strong>
+</label>
+
+<input
+    type="number"
+    id="pkpInput"
+    class="calc-input"
+    placeholder="Contoh: 150000000">
+
+<button
+    class="calc-btn"
+    id="calcPPh">
+
+<i class="fas fa-calculator"></i>
+Hitung PPh
+</button>
+
+<div
+    class="calc-result"
+    id="pphResult">
+
+PPh Terutang: Rp 0
+
+</div>
+
+<div
+    class="result-detail"
+    id="pphDetail">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     STUDI KASUS
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-search"></i>
+    Studi Kasus & Analisis
+</h2>
+
+<div class="container">
+
+<div class="card">
+
+<div class="case">
+
+<h3>Kasus A — Kesalahpahaman Tarif</h3>
+
+<p>
+Doni memiliki PKP Rp300 juta.
+Ia mengatakan:
+</p>
+
+<p>
+"Karena PKP saya Rp300 juta, berarti semua penghasilan
+saya dikenai tarif 25%."
+</p>
+
+<strong>
+Apakah pernyataan Doni benar?
+</strong>
+
+<p>
+Tidak. Tarif progresif bekerja secara bertingkat.
+Bagian PKP sampai Rp60 juta dikenai 5%,
+bagian berikutnya 15%, dan hanya bagian yang berada
+pada lapisan Rp250–500 juta yang dikenai 25%.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="case">
+
+<h3>Kasus B — Keadilan Pajak</h3>
+
+<p>
+Andi dan Budi mempunyai kemampuan ekonomi yang berbeda.
+Andi mempunyai PKP Rp60 juta sedangkan Budi Rp300 juta.
+</p>
+
+<strong>
+Mengapa Budi dapat memiliki tarif marginal lebih tinggi?
+</strong>
+
+<p>
+Karena sistem progresif dirancang agar beban pajak
+mempertimbangkan kemampuan ekonomi dan dapat mendukung
+fungsi redistribusi.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="case">
+
+<h3>Kasus C — Sistem Pemungutan</h3>
+
+<p>
+Sebuah perusahaan memotong pajak dari pembayaran
+kepada pegawainya sebelum penghasilan tersebut diterima.
+</p>
+
+<strong>
+Sistem apa yang tampak dalam kasus tersebut?
+</strong>
+
+<p>
+Withholding system, karena terdapat pihak ketiga
+yang melakukan pemotongan/pemungutan sesuai ketentuan.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     MISKONSEPSI
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-exclamation-triangle"></i>
+    Miskonsepsi yang Harus Dihindari
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="myth-grid">
+
+<div class="myth">
+
+<div class="wrong">
+❌ "Masuk tarif 25% berarti semua penghasilan kena 25%."
+</div>
+
+<br>
+
+<div class="correct">
+✅ Yang dikenai 25% hanya bagian PKP yang berada
+pada lapisan tersebut.
+</div>
+
+</div>
+
+
+<div class="myth">
+
+<div class="wrong">
+❌ "Tarif marginal sama dengan tarif efektif."
+</div>
+
+<br>
+
+<div class="correct">
+✅ Tarif marginal adalah tarif pada lapisan terakhir,
+sedangkan tarif efektif membandingkan total pajak dengan total PKP.
+</div>
+
+</div>
+
+
+<div class="myth">
+
+<div class="wrong">
+❌ "Self-assessment berarti pemerintah tidak mengawasi."
+</div>
+
+<br>
+
+<div class="correct">
+✅ Wajib pajak menghitung dan melaporkan sendiri,
+tetapi tetap terdapat fungsi pengawasan dan penegakan hukum.
+</div>
+
+</div>
+
+
+<div class="myth">
+
+<div class="wrong">
+❌ "PTKP adalah jumlah pajak yang harus dibayar."
+</div>
+
+<br>
+
+<div class="correct">
+✅ PTKP adalah batas penghasilan tertentu
+yang digunakan dalam menentukan PKP.
+</div>
+
+</div>
+
+
+<div class="myth">
+
+<div class="wrong">
+❌ "Withholding berarti wajib pajak tidak mempunyai kewajiban."
+</div>
+
+<br>
+
+<div class="correct">
+✅ Pemotongan oleh pihak ketiga tidak otomatis menghapus
+seluruh kewajiban perpajakan lainnya.
+</div>
+
+</div>
+
+
+<div class="myth">
+
+<div class="wrong">
+❌ "Tarif pajak saja menentukan besar kecilnya pajak."
+</div>
+
+<br>
+
+<div class="correct">
+✅ Jumlah pajak juga bergantung pada dasar pengenaan pajak
+dan ketentuan pengurang/fasilitas yang berlaku.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     KUIS
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-brain"></i>
+    Kuis Pemahaman & HOTS
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div id="quizContainer">
+
+
+<!-- Q1 -->
+
+<div class="quiz-question">
+
+<p>
+1. Asas Adam Smith yang menekankan kejelasan
+mengenai subjek, objek, tarif, waktu, dan cara pembayaran
+adalah...
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q1" value="A">
+A. Equality
+</label>
+
+<label>
+<input type="radio" name="q1" value="B">
+B. Certainty
+</label>
+
+<label>
+<input type="radio" name="q1" value="C">
+C. Convenience
+</label>
+
+<label>
+<input type="radio" name="q1" value="D">
+D. Economy
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb1"></div>
+
+</div>
+
+
+<!-- Q2 -->
+
+<div class="quiz-question">
+
+<p>
+2. PKP seseorang Rp300 juta.
+Mengapa tidak tepat menghitung seluruh PKP × 25%?
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q2" value="A">
+A. Karena pajak selalu 5%
+</label>
+
+<label>
+<input type="radio" name="q2" value="B">
+B. Karena tarif progresif diterapkan bertingkat
+</label>
+
+<label>
+<input type="radio" name="q2" value="C">
+C. Karena PKP tidak dikenai pajak
+</label>
+
+<label>
+<input type="radio" name="q2" value="D">
+D. Karena pajak selalu nominal tetap
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb2"></div>
+
+</div>
+
+
+<!-- Q3 -->
+
+<div class="quiz-question">
+
+<p>
+3. Jika PPh terutang Rp16,5 juta atas PKP Rp150 juta,
+maka tarif efektifnya adalah...
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q3" value="A">
+A. 5%
+</label>
+
+<label>
+<input type="radio" name="q3" value="B">
+B. 11%
+</label>
+
+<label>
+<input type="radio" name="q3" value="C">
+C. 15%
+</label>
+
+<label>
+<input type="radio" name="q3" value="D">
+D. 25%
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb3"></div>
+
+</div>
+
+
+<!-- Q4 -->
+
+<div class="quiz-question">
+
+<p>
+4. Sebuah perusahaan memotong pajak dari pembayaran
+kepada pegawai. Mekanisme tersebut menunjukkan...
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q4" value="A">
+A. Self-assessment
+</label>
+
+<label>
+<input type="radio" name="q4" value="B">
+B. Official assessment
+</label>
+
+<label>
+<input type="radio" name="q4" value="C">
+C. Withholding
+</label>
+
+<label>
+<input type="radio" name="q4" value="D">
+D. Tarif progresif
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb4"></div>
+
+</div>
+
+
+<!-- Q5 -->
+
+<div class="quiz-question">
+
+<p>
+5. Mengapa tarif progresif dapat dikaitkan dengan
+fungsi redistribusi pendapatan?
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q5" value="A">
+A. Semua orang membayar jumlah yang sama
+</label>
+
+<label>
+<input type="radio" name="q5" value="B">
+B. Beban pajak dapat meningkat sesuai kemampuan ekonomi
+</label>
+
+<label>
+<input type="radio" name="q5" value="C">
+C. Pajak tidak digunakan negara
+</label>
+
+<label>
+<input type="radio" name="q5" value="D">
+D. Tarif selalu menurun
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb5"></div>
+
+</div>
+
+
+<!-- Q6 -->
+
+<div class="quiz-question">
+
+<p>
+6. Rudi berkata: "Tarif marginal saya 30%, jadi saya pasti
+membayar pajak sebesar 30% dari seluruh PKP."
+Penilaian yang tepat terhadap pernyataan tersebut adalah...
+</p>
+
+<div class="quiz-options">
+
+<label>
+<input type="radio" name="q6" value="A">
+A. Benar
+</label>
+
+<label>
+<input type="radio" name="q6" value="B">
+B. Salah, karena tarif marginal hanya berlaku pada lapisan terakhir
+</label>
+
+<label>
+<input type="radio" name="q6" value="C">
+C. Benar karena semua pajak progresif demikian
+</label>
+
+<label>
+<input type="radio" name="q6" value="D">
+D. Salah karena PPh tidak memiliki tarif progresif
+</label>
+
+</div>
+
+<div class="quiz-feedback" id="fb6"></div>
+
+</div>
+
+
+<div style="text-align:center;margin-top:20px;">
+
+<button class="quiz-btn" id="submitQuiz">
+<i class="fas fa-check"></i>
+Periksa Jawaban
+</button>
+
+<button
+class="quiz-btn"
+id="resetQuiz"
+style="background:#64748b;margin-left:8px;">
+
+<i class="fas fa-undo"></i>
+Ulangi
+
+</button>
+
+</div>
+
+<div
+class="quiz-result"
+id="quizResult">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     REFLEKSI
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-lightbulb"></i>
+    Refleksi Pembelajaran
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="reflection">
+
+<h3>
+Setelah mempelajari bab ini...
+</h3>
+
+<br>
+
+<p>
+1. Konsep pajak yang paling saya pahami adalah...
+</p>
+
+<textarea
+id="reflection1"
+placeholder="Tuliskan pemahaman Anda..."></textarea>
+
+<br><br>
+
+<p>
+2. Konsep yang masih membingungkan adalah...
+</p>
+
+<textarea
+id="reflection2"
+placeholder="Tuliskan bagian yang masih membingungkan..."></textarea>
+
+<br><br>
+
+<p>
+3. Jika saya menjadi pembuat kebijakan pajak,
+hal yang akan saya pertimbangkan adalah...
+</p>
+
+<textarea
+id="reflection3"
+placeholder="Tuliskan pendapat Anda..."></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     GLOSARIUM
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-book"></i>
+    Glosarium
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="glossary-grid">
+
+<div class="glossary-item">
+<span class="glossary-term">Pajak</span><br>
+<span class="glossary-def">
+Kontribusi wajib kepada negara sesuai ketentuan peraturan perundang-undangan.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Wajib Pajak</span><br>
+<span class="glossary-def">
+Orang pribadi atau badan yang mempunyai hak dan kewajiban perpajakan.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Subjek Pajak</span><br>
+<span class="glossary-def">
+Pihak yang menjadi sasaran pengenaan pajak menurut ketentuan.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Objek Pajak</span><br>
+<span class="glossary-def">
+Penghasilan, transaksi, atau keadaan yang menjadi sasaran pengenaan pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">DPP</span><br>
+<span class="glossary-def">
+Dasar Pengenaan Pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">PKP</span><br>
+<span class="glossary-def">
+Penghasilan Kena Pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">PTKP</span><br>
+<span class="glossary-def">
+Penghasilan Tidak Kena Pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Tarif Marginal</span><br>
+<span class="glossary-def">
+Tarif yang dikenakan pada lapisan terakhir penghasilan kena pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Tarif Efektif</span><br>
+<span class="glossary-def">
+Total pajak dibandingkan dengan total dasar pengenaan pajak/PKP.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Progresif</span><br>
+<span class="glossary-def">
+Tarif meningkat ketika dasar pengenaan meningkat.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Proporsional</span><br>
+<span class="glossary-def">
+Persentase tarif tetap.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Self-Assessment</span><br>
+<span class="glossary-def">
+Wajib pajak menghitung, memperhitungkan, membayar, dan melaporkan sendiri.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Official Assessment</span><br>
+<span class="glossary-def">
+Pajak ditetapkan oleh institusi pemungut pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Withholding</span><br>
+<span class="glossary-def">
+Pajak dipotong atau dipungut oleh pihak ketiga.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Equality</span><br>
+<span class="glossary-def">
+Asas keadilan dalam pemungutan pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Certainty</span><br>
+<span class="glossary-def">
+Asas kepastian dalam pemungutan pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Convenience</span><br>
+<span class="glossary-def">
+Asas kenyamanan dalam pembayaran pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Economy</span><br>
+<span class="glossary-def">
+Asas efisiensi dalam pemungutan pajak.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Asas Domisili</span><br>
+<span class="glossary-def">
+Hubungan perpajakan berdasarkan domisili atau tempat tinggal/kedudukan.
+</span>
+</div>
+
+<div class="glossary-item">
+<span class="glossary-term">Asas Sumber</span><br>
+<span class="glossary-def">
+Hubungan perpajakan berdasarkan negara tempat penghasilan bersumber.
+</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     RANGKUMAN
+===================================================== -->
+
+<h2 class="section-title">
+    <i class="fas fa-file-alt"></i>
+    Rangkuman Akhir
+</h2>
+
+<div class="container-full">
+
+<div class="card">
+
+<div class="materi-text-left">
+
+<ul>
+
+<li>
+<strong>Pajak</strong> merupakan instrumen penerimaan negara
+sekaligus instrumen kebijakan ekonomi.
+</li>
+
+<li>
+<strong>Asas Adam Smith</strong> terdiri atas Equality,
+Certainty, Convenience, dan Economy.
+</li>
+
+<li>
+<strong>Asas pengenaan</strong> dapat dilihat dari hubungan
+domisili, sumber, dan dalam konteks tertentu kebangsaan.
+</li>
+
+<li>
+<strong>Tarif pajak</strong> dapat berbentuk proporsional,
+progresif, degresif, dan tetap.
+</li>
+
+<li>
+Dalam tarif progresif,
+<strong>tarif marginal tidak sama dengan tarif efektif</strong>.
+</li>
+
+<li>
+<strong>Self-assessment</strong> memberikan tanggung jawab
+penghitungan dan pelaporan kepada wajib pajak.
+</li>
+
+<li>
+<strong>Withholding</strong> melibatkan pihak ketiga
+dalam pemotongan atau pemungutan pajak.
+</li>
+
+<li>
+PPh Orang Pribadi menggunakan lapisan tarif
+<strong>5%, 15%, 25%, 30%, dan 35%</strong>.
+</li>
+
+<li>
+PPh progresif dihitung secara <strong>berlapis</strong>,
+bukan dengan mengenakan tarif tertinggi kepada seluruh PKP.
+</li>
+
+<li>
+Pajak perlu dipahami bukan hanya dari sisi
+"berapa persen", tetapi juga dari sisi
+<strong>keadilan, kepastian, kenyamanan, efisiensi,
+dan dampaknya terhadap perekonomian.</strong>
+</li>
+
+</ul>
+
+<div class="info-box success">
+
+<strong>Kesimpulan utama:</strong>
+
+Memahami pajak berarti memahami hubungan antara
+<strong>kemampuan ekonomi → dasar pengenaan → tarif →
+sistem pemungutan → pajak terutang → fungsi ekonomi.</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+ FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-brand">
+
+<div class="brand-logo">
+
+<img
+src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png"
+alt="SMAN 1 Cluring">
+
+<h3>
+SMA Negeri <span>1 Cluring</span>
+</h3>
+
+</div>
+
+<p>
+Berkomitmen menjadi pusat unggulan dalam pendidikan
+karakter dan akademik, membekali siswa dengan pengetahuan
+dan keterampilan untuk masa depan yang gemilang.
+</p>
+
+<p>
+<i>
+"Berprestasi, Berkarakter, Berbudaya"
+</i>
+</p>
+
+</div>
+
+
+<div class="footer-section">
+
+<h4>
+<i class="fas fa-compass"></i>
+Menu Navigasi
+</h4>
+
+<ul>
+
+<li>
+<a href="../index.html">
+<i class="fas fa-chevron-right"></i>
+Beranda
+</a>
+</li>
+
+<li>
+<a href="../ekonomi-kelas-xii.html">
+<i class="fas fa-chevron-right"></i>
+Ekonomi XII
+</a>
+</li>
+
+<li>
+<a href="../soal-tka.html">
+<i class="fas fa-chevron-right"></i>
+Bank Soal TKA
+</a>
+</li>
+
+<li>
+<a href="../galery.html">
+<i class="fas fa-chevron-right"></i>
+Galeri
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="footer-section footer-contact">
+
+<h4>
+<i class="fas fa-phone"></i>
+Kontak Kami
+</h4>
+
+<p>
+<i class="fas fa-phone"></i>
+0333-713297
+</p>
+
+<p>
+<i class="fas fa-envelope"></i>
+4l4m79@gmail.com
+</p>
+
+<p>
+<i class="fas fa-map-marker-alt"></i>
+SMAN 1 Cluring, Banyuwangi
+</p>
+
+</div>
+
+
+<div class="footer-section">
+
+<h4>
+<i class="fas fa-share-alt"></i>
+Sosial Media
+</h4>
+
+<div class="footer-social">
+
+<a href="#">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-youtube"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-tiktok"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<div>
+© 2026 <strong>SMA Negeri 1 Cluring</strong>
+•
+Semua hak dilindungi
+</div>
+
+<div>
+Bab 6B • Asas Pemungutan & Tarif Pajak • v3.0
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- =====================================================
+ JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+ HAMBURGER
+===================================================== */
+
+const hamburger=document.getElementById("hamburger");
+const navLinks=document.getElementById("navLinks");
+
+hamburger.addEventListener("click",()=>{
+
+    navLinks.classList.toggle("active");
+
+    hamburger.innerHTML=
+        navLinks.classList.contains("active")
+        ?"✕"
+        :"☰";
+
+});
+
+
+/* =====================================================
+ MOBILE DROPDOWN
+===================================================== */
+
+document.querySelectorAll(".dropdown > a").forEach(link=>{
+
+    link.addEventListener("click",e=>{
+
+        if(window.innerWidth<=1050){
+
+            e.preventDefault();
+
+            link.parentElement.classList.toggle("active");
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+ DARK MODE
+===================================================== */
+
+const themeToggle=document.getElementById("themeToggle");
+
+if(localStorage.getItem("darkMode")==="enabled"){
+
+    document.body.classList.add("dark-mode");
+
+    themeToggle.textContent="☀️";
+
+}
+
+themeToggle.addEventListener("click",()=>{
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+
+        localStorage.setItem("darkMode","enabled");
+
+        themeToggle.textContent="☀️";
+
+    }else{
+
+        localStorage.setItem("darkMode","disabled");
+
+        themeToggle.textContent="🌙";
+
+    }
+
+});
+
+
+/* =====================================================
+ SCROLL
+===================================================== */
+
+window.addEventListener("scroll",()=>{
+
+    const scrollTop=
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+
+    const height=
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    const percentage=
+        height>0
+        ?(scrollTop/height)*100
+        :0;
+
+    document.getElementById("scrollProgress")
+        .style.width=percentage+"%";
+
+    const backTop=
+        document.getElementById("backToTop");
+
+    if(scrollTop>350){
+
+        backTop.classList.add("visible");
+
+    }else{
+
+        backTop.classList.remove("visible");
+
+    }
+
+});
+
+
+/* =====================================================
+ BACK TO TOP
+===================================================== */
+
+document.getElementById("backToTop")
+.addEventListener("click",()=>{
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =====================================================
+ LOADER
+===================================================== */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        const loader=
+            document.getElementById("loader");
+
+        loader.style.opacity="0";
+
+        setTimeout(()=>{
+
+            loader.style.display="none";
+
+        },500);
+
+    },500);
+
+});
+
+
+/* =====================================================
+ TABS
+===================================================== */
+
+const tabButtons=
+    document.querySelectorAll(".tab-btn");
+
+const tabContents=
+    document.querySelectorAll(".tab-content");
+
+tabButtons.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        tabButtons.forEach(btn=>
+            btn.classList.remove("active")
+        );
+
+        tabContents.forEach(content=>
+            content.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        document.getElementById(
+            button.dataset.tab
+        ).classList.add("active");
+
+    });
+
+});
+
+
+/* =====================================================
+ PPH CALCULATOR
+===================================================== */
+
+document.getElementById("calcPPh")
+.addEventListener("click",()=>{
+
+    const pkp=
+        Number(
+            document.getElementById("pkpInput").value
+        );
+
+    const result=
+        document.getElementById("pphResult");
+
+    const detail=
+        document.getElementById("pphDetail");
+
+    if(!Number.isFinite(pkp) || pkp<0){
+
+        result.textContent=
+            "⚠️ Masukkan PKP yang valid.";
+
+        detail.innerHTML="";
+
+        return;
+
+    }
+
+
+    let tax=0;
+
+    let rows=[];
+
+
+    /* LAPIS 1 */
+
+    const layer1=Math.min(pkp,60000000);
+
+    if(layer1>0){
+
+        const amount=layer1*0.05;
+
+        tax+=amount;
+
+        rows.push(
+            `Rp ${layer1.toLocaleString("id-ID")}
+            × 5%
+            = Rp ${amount.toLocaleString("id-ID")}`
+        );
+
+    }
+
+
+    /* LAPIS 2 */
+
+    if(pkp>60000000){
+
+        const layer2=
+            Math.min(
+                pkp-60000000,
+                190000000
+            );
+
+        const amount=layer2*0.15;
+
+        tax+=amount;
+
+        rows.push(
+            `Rp ${layer2.toLocaleString("id-ID")}
+            × 15%
+            = Rp ${amount.toLocaleString("id-ID")}`
+        );
+
+    }
+
+
+    /* LAPIS 3 */
+
+    if(pkp>250000000){
+
+        const layer3=
+            Math.min(
+                pkp-250000000,
+                250000000
+            );
+
+        const amount=layer3*0.25;
+
+        tax+=amount;
+
+        rows.push(
+            `Rp ${layer3.toLocaleString("id-ID")}
+            × 25%
+            = Rp ${amount.toLocaleString("id-ID")}`
+        );
+
+    }
+
+
+    /* LAPIS 4 */
+
+    if(pkp>500000000){
+
+        const layer4=
+            Math.min(
+                pkp-500000000,
+                4500000000
+            );
+
+        const amount=layer4*0.30;
+
+        tax+=amount;
+
+        rows.push(
+            `Rp ${layer4.toLocaleString("id-ID")}
+            × 30%
+            = Rp ${amount.toLocaleString("id-ID")}`
+        );
+
+    }
+
+
+    /* LAPIS 5 */
+
+    if(pkp>5000000000){
+
+        const layer5=
+            pkp-5000000000;
+
+        const amount=layer5*0.35;
+
+        tax+=amount;
+
+        rows.push(
+            `Rp ${layer5.toLocaleString("id-ID")}
+            × 35%
+            = Rp ${amount.toLocaleString("id-ID")}`
+        );
+
+    }
+
+
+    const effective=
+        pkp>0
+        ?(tax/pkp)*100
+        :0;
+
+
+    result.innerHTML=
+        `PPh Terutang:
+        <strong>Rp ${tax.toLocaleString("id-ID")}</strong>`;
+
+
+    detail.innerHTML=
+        `<strong>Rincian:</strong>
+        <ul>
+        ${rows.map(row=>`<li>${row}</li>`).join("")}
+        </ul>
+
+        <div class="info-box success">
+        Tarif marginal:
+        <strong>${getMarginalRate(pkp)}</strong>
+        <br>
+        Tarif efektif:
+        <strong>${effective.toFixed(2)}%</strong>
+        </div>`;
+
+});
+
+
+function getMarginalRate(pkp){
+
+    if(pkp<=60000000) return "5%";
+
+    if(pkp<=250000000) return "15%";
+
+    if(pkp<=500000000) return "25%";
+
+    if(pkp<=5000000000) return "30%";
+
+    return "35%";
+
+}
+
+
+/* =====================================================
+ QUIZ
+===================================================== */
+
+const quizAnswers={
+
+    q1:"B",
+    q2:"B",
+    q3:"B",
+    q4:"C",
+    q5:"B",
+    q6:"B"
+
+};
+
+const quizExplanation={
+
+    q1:
+    "Certainty menekankan kepastian mengenai kewajiban pajak.",
+
+    q2:
+    "Tarif progresif diterapkan bertingkat sesuai lapisan PKP.",
+
+    q3:
+    "Rp16,5 juta ÷ Rp150 juta = 11%.",
+
+    q4:
+    "Withholding melibatkan pihak ketiga yang melakukan pemotongan/pemungutan.",
+
+    q5:
+    "Tarif progresif dapat membuat beban relatif lebih besar bagi kemampuan ekonomi yang lebih tinggi.",
+
+    q6:
+    "Tarif marginal hanya berlaku pada lapisan terakhir PKP, bukan seluruh PKP."
+
+};
+
+
+document.getElementById("submitQuiz")
+.addEventListener("click",()=>{
+
+    let correct=0;
+
+    const total=
+        Object.keys(quizAnswers).length;
+
+
+    Object.entries(quizAnswers)
+    .forEach(([key,answer])=>{
+
+        const selected=
+            document.querySelector(
+                `input[name="${key}"]:checked`
+            );
+
+        const feedback=
+            document.getElementById(
+                "fb"+key.slice(1)
+            );
+
+
+        if(selected && selected.value===answer){
+
+            correct++;
+
+            feedback.className=
+                "quiz-feedback correct";
+
+            feedback.innerHTML=
+                "✅ Benar. "+
+                quizExplanation[key];
+
+        }else{
+
+            feedback.className=
+                "quiz-feedback wrong";
+
+            feedback.innerHTML=
+                "❌ Belum tepat. "+
+                "Jawaban benar: <strong>"+
+                answer+
+                "</strong>. "+
+                quizExplanation[key];
+
+        }
+
+    });
+
+
+    const score=
+        Math.round(
+            correct/total*100
+        );
+
+
+    let message="";
+
+
+    if(score===100){
+
+        message=
+        "🎉 Sempurna! Konsep inti sudah dikuasai.";
+
+    }else if(score>=80){
+
+        message=
+        "👍 Sangat baik. Tinggal memperkuat analisis.";
+
+    }else if(score>=60){
+
+        message=
+        "📖 Cukup baik. Pelajari kembali bagian yang masih keliru.";
+
+    }else{
+
+        message=
+        "📚 Mari pelajari kembali materi sebelum mencoba lagi.";
+
+    }
+
+
+    document.getElementById("quizResult")
+    .innerHTML=
+        `Nilai: ${correct}/${total}
+        (${score}%) — ${message}`;
+
+});
+
+
+/* =====================================================
+ RESET QUIZ
+===================================================== */
+
+document.getElementById("resetQuiz")
+.addEventListener("click",()=>{
+
+    document.querySelectorAll(
+        ".quiz-options input"
+    ).forEach(input=>{
+
+        input.checked=false;
+
+    });
+
+
+    document.querySelectorAll(
+        ".quiz-feedback"
+    ).forEach(feedback=>{
+
+        feedback.className=
+            "quiz-feedback";
+
+        feedback.innerHTML="";
+
+    });
+
+
+    document.getElementById("quizResult")
+        .innerHTML="";
+
+});
+
+
+/* =====================================================
+ REFLECTION AUTOSAVE
+===================================================== */
+
+const reflectionFields=[
+    "reflection1",
+    "reflection2",
+    "reflection3"
+];
+
+reflectionFields.forEach(id=>{
+
+    const field=
+        document.getElementById(id);
+
+    const saved=
+        localStorage.getItem(
+            "pajak_"+id
+        );
+
+    if(saved){
+
+        field.value=saved;
+
+    }
+
+
+    field.addEventListener("input",()=>{
+
+        localStorage.setItem(
+            "pajak_"+id,
+            field.value
+        );
+
+    });
+
+});
+
+</script>
+
 </body>
 </html>
