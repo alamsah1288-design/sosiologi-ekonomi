@@ -720,6 +720,42 @@
             color: #5c0a0a;
         }
 
+
+        /* ===== INTERNAL CONTENT NAVIGATION ===== */
+        .content-nav {
+            max-width: 1200px;
+            margin: 20px auto 10px;
+            padding: 0 20px;
+        }
+        .content-nav-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255,255,255,0.88);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+        body.dark-mode .content-nav-inner {
+            background: rgba(45,45,45,0.92);
+        }
+        .content-nav a {
+            text-decoration: none;
+            color: var(--primary);
+            border: 1px solid rgba(67,97,238,0.25);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .content-nav a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
@@ -1096,6 +1132,18 @@
         </script>
     </div>
 
+
+    <!-- ===== NAVIGASI MATERI ===== -->
+    <div class="content-nav" aria-label="Navigasi cepat materi">
+        <div class="content-nav-inner">
+            <a href="#materi-pajak"><i class="fas fa-book-open"></i> Materi</a>
+            <a href="#studi-kasus"><i class="fas fa-case-study"></i> Studi Kasus</a>
+            <a href="#kuis"><i class="fas fa-puzzle-piece"></i> Kuis</a>
+            <a href="#glosarium"><i class="fas fa-book"></i> Glosarium</a>
+            <a href="#rangkuman"><i class="fas fa-file-alt"></i> Rangkuman</a>
+        </div>
+    </div>
+
     <!-- ===== TUJUAN PEMBELAJARAN ===== -->
     <h2 class="section-title ekonomi"><i class="fas fa-bullseye"></i> Tujuan Pembelajaran</h2>
     <div class="container" style="grid-template-columns:1fr;">
@@ -1113,233 +1161,535 @@
         </div>
     </div>
 
-    <!-- ===== MATERI UTAMA dengan TAB ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-receipt"></i> Materi: Dasar-Dasar Perpajakan</h2>
+    <!-- ===== MATERI UTAMA DIPERDALAM ===== -->
+    <h2 class="section-title ekonomi" id="materi-pajak">
+        <i class="fas fa-receipt"></i> Materi Mendalam: Dasar-Dasar Perpajakan
+    </h2>
 
     <div class="container-full">
         <div class="card ekonomi" style="align-items:stretch; text-align:left;">
             <div class="tabs">
+
                 <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="tab1"><i class="fas fa-book-open"></i> Definisi &amp; Ciri</button>
-                    <button class="tab-btn" data-tab="tab2"><i class="fas fa-cogs"></i> Fungsi Pajak</button>
-                    <button class="tab-btn" data-tab="tab3"><i class="fas fa-hands-helping"></i> Manfaat</button>
-                    <button class="tab-btn" data-tab="tab4"><i class="fas fa-tags"></i> Jenis-Jenis</button>
-                    <button class="tab-btn" data-tab="tab5"><i class="fas fa-gavel"></i> Teori Pemungutan</button>
+                    <button class="tab-btn active" data-tab="tab1"><i class="fas fa-book-open"></i> Konsep Dasar</button>
+                    <button class="tab-btn" data-tab="tab2"><i class="fas fa-sitemap"></i> Unsur Pajak</button>
+                    <button class="tab-btn" data-tab="tab3"><i class="fas fa-cogs"></i> Fungsi Pajak</button>
+                    <button class="tab-btn" data-tab="tab4"><i class="fas fa-hands-helping"></i> Manfaat</button>
+                    <button class="tab-btn" data-tab="tab5"><i class="fas fa-tags"></i> Jenis Pajak</button>
+                    <button class="tab-btn" data-tab="tab6"><i class="fas fa-user-check"></i> Sistem Pemungutan</button>
+                    <button class="tab-btn" data-tab="tab7"><i class="fas fa-balance-scale"></i> Asas & Teori</button>
+                    <button class="tab-btn" data-tab="tab8"><i class="fas fa-search"></i> Analisis Kasus</button>
                 </div>
 
-                <!-- TAB 1: Definisi & Ciri -->
+                <!-- TAB 1 -->
                 <div class="tab-content active" id="tab1">
-                    <p><strong>Definisi:</strong> Menurut <strong>UU Nomor 6 Tahun 1983 tentang Ketentuan Umum dan Tata Cara Perpajakan (KUP)</strong> sebagaimana telah beberapa kali diubah terakhir dengan UU Nomor 7 Tahun 2021 tentang Harmonisasi Peraturan Perpajakan (HPP), Pajak adalah kontribusi wajib kepada negara yang terutang oleh orang pribadi atau badan yang bersifat memaksa berdasarkan Undang-Undang, dengan tidak mendapatkan imbalan secara langsung dan digunakan untuk keperluan negara bagi sebesar-besarnya kemakmuran rakyat.</p>
-                    <br>
-                    <p><strong>Lima Ciri-Ciri Utama Pajak:</strong></p>
-                    <ul>
-                        <li><strong>Iuran Wajib:</strong> Dipungut berdasarkan peraturan perundang-undangan yang sah (UU), bukan bersifat sukarela.</li>
-                        <li><strong>Tanpa Kontraprestasi Langsung:</strong> Wajib pajak tidak menerima imbalan barang/jasa secara langsung sebagai balasan atas pembayaran pajak.</li>
-                        <li><strong>Dipungut oleh Negara:</strong> Wewenang pemungutan ada pada pemerintah (pusat maupun daerah) melalui aparat yang berwenang.</li>
-                        <li><strong>Untuk Membiayai Rumah Tangga Negara:</strong> Hasil pajak digunakan untuk belanja publik, pembangunan, dan kesejahteraan rakyat.</li>
-                        <li><strong>Digunakan untuk Kepentingan Bersama:</strong> Pajak adalah manifestasi gotong royong warga negara dalam membiayai fasilitas dan layanan publik.</li>
-                    </ul>
+                    <h3>1. Apa yang Dimaksud dengan Pajak?</h3>
+                    <p>
+                        Pajak merupakan kontribusi wajib kepada negara yang bersifat memaksa berdasarkan
+                        undang-undang, tidak memberikan imbalan langsung kepada pembayar, dan digunakan
+                        untuk membiayai keperluan negara serta kemakmuran rakyat.
+                    </p>
+
                     <div class="info-box">
                         <i class="fas fa-lightbulb" style="color:var(--warning);"></i>
-                        <strong>Poin penting:</strong> Pajak berbeda dengan retribusi. Retribusi memberikan imbalan langsung (misal: bayar parkir dapat jasa parkir), sedangkan pajak tidak.
+                        <strong>Kunci memahami pajak:</strong>
+                        jangan hanya menghafal bahwa pajak adalah "uang yang dibayar kepada negara".
+                        Perhatikan <strong>dasar hukum, sifat wajib, tidak adanya imbalan langsung,
+                        tujuan penggunaan, dan kepentingan masyarakat luas</strong>.
                     </div>
-                    <div class="info-box info-box-success" style="margin-top:8px;">
-                        <i class="fas fa-check-circle" style="color:var(--success);"></i>
-                        <strong>Landasan Konstitusi:</strong> Pasal 23A UUD 1945 menyatakan: <em>"Pajak dan pungutan lain yang bersifat memaksa untuk keperluan negara diatur dengan undang-undang."</em>
+
+                    <h3 style="margin-top:20px;">2. Lima Ciri Utama Pajak</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">01</div>
+                            <div class="stat-label"><strong>Wajib</strong><br>berdasarkan ketentuan hukum</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">02</div>
+                            <div class="stat-label"><strong>Memaksa</strong><br>memiliki dasar undang-undang</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">03</div>
+                            <div class="stat-label"><strong>Tanpa imbalan langsung</strong><br>manfaat tidak diterima satu per satu</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">04</div>
+                            <div class="stat-label"><strong>Dipungut negara</strong><br>oleh pemerintah yang berwenang</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">05</div>
+                            <div class="stat-label"><strong>Kepentingan umum</strong><br>untuk pembiayaan negara</div>
+                        </div>
                     </div>
+
+                    <h3 style="margin-top:20px;">3. Pajak Berbeda dengan Retribusi</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspek</th>
+                                <th>Pajak</th>
+                                <th>Retribusi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dasar</td>
+                                <td>Ketentuan perpajakan</td>
+                                <td>Ketentuan retribusi</td>
+                            </tr>
+                            <tr>
+                                <td>Imbalan</td>
+                                <td>Tidak diterima secara langsung</td>
+                                <td>Ada kaitan dengan jasa/layanan tertentu</td>
+                            </tr>
+                            <tr>
+                                <td>Tujuan</td>
+                                <td>Pembiayaan kepentingan negara/daerah</td>
+                                <td>Pembiayaan layanan tertentu</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- TAB 2: Fungsi Pajak -->
+                <!-- TAB 2 -->
                 <div class="tab-content" id="tab2">
-                    <p>Pajak memiliki empat fungsi strategis dalam perekonomian dan pembangunan nasional:</p>
-                    <br>
+                    <h3>Unsur-Unsur yang Membentuk Pajak</h3>
+                    <p>
+                        Agar sebuah pungutan dapat dipahami sebagai pajak, peserta didik perlu mengenali
+                        unsur-unsur yang melekat di dalamnya.
+                    </p>
 
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:16px;">
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                            <div style="font-size:2rem; color:var(--primary);">💰</div>
-                            <strong>Fungsi Budgetair</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Sumber utama pendapatan negara untuk membiayai pengeluaran pemerintah.</p>
+                    <div class="container" style="padding:0; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+                        <div class="card ekonomi">
+                            <h2><i class="fas fa-user"></i> Subjek Pajak</h2>
+                            <div class="materi-text-left">
+                                <p>Pihak yang menjadi sasaran atau memiliki hubungan dengan kewajiban pajak,
+                                misalnya orang pribadi atau badan.</p>
+                            </div>
                         </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                            <div style="font-size:2rem; color:var(--primary);">📏</div>
-                            <strong>Fungsi Regulerend</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Alat untuk mengatur kebijakan ekonomi, sosial, dan investasi.</p>
+
+                        <div class="card ekonomi">
+                            <h2><i class="fas fa-bullseye"></i> Objek Pajak</h2>
+                            <div class="materi-text-left">
+                                <p>Sesuatu yang dikenai pajak, misalnya penghasilan, konsumsi barang/jasa,
+                                kepemilikan atau penguasaan objek tertentu.</p>
+                            </div>
                         </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                            <div style="font-size:2rem; color:var(--primary);">⚖️</div>
-                            <strong>Fungsi Stabilisasi</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Menjaga stabilitas ekonomi, mengendalikan inflasi dan defisit.</p>
+
+                        <div class="card ekonomi">
+                            <h2><i class="fas fa-calculator"></i> Tarif Pajak</h2>
+                            <div class="materi-text-left">
+                                <p>Besaran yang digunakan untuk menentukan jumlah pajak yang harus dibayar
+                                sesuai dengan ketentuan yang berlaku.</p>
+                            </div>
                         </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; text-align:center;">
-                            <div style="font-size:2rem; color:var(--primary);">🤝</div>
-                            <strong>Fungsi Redistribusi</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Mewujudkan keadilan sosial dengan mengurangi kesenjangan pendapatan.</p>
+
+                        <div class="card ekonomi">
+                            <h2><i class="fas fa-landmark"></i> Wajib Pajak</h2>
+                            <div class="materi-text-left">
+                                <p>Orang pribadi atau badan yang mempunyai hak dan kewajiban perpajakan
+                                sesuai peraturan perundang-undangan.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <p><strong>Penjelasan Lebih Lanjut:</strong></p>
-                    <ul>
-                        <li><strong>Fungsi Budgetair (Anggaran):</strong> Pajak adalah tulang punggung pendapatan negara. Sekitar 70-80% penerimaan APBN berasal dari pajak. Tanpa pajak, negara tidak bisa membiayai pembangunan dan operasional pemerintahan.</li>
-                        <li><strong>Fungsi Regulerend (Mengatur):</strong> Pajak digunakan sebagai instrumen kebijakan. Contoh: tarif pajak rokok dan minuman beralkohol yang tinggi untuk mengurangi konsumsi; insentif pajak untuk investasi di daerah tertinggal.</li>
-                        <li><strong>Fungsi Stabilisasi:</strong> Pajak dapat menyerap daya beli masyarakat (melalui pajak) saat inflasi tinggi, atau menurunkan pajak saat resesi untuk mendorong konsumsi.</li>
-                        <li><strong>Fungsi Redistribusi Pendapatan:</strong> Pajak dari masyarakat mampu digunakan untuk membiayai program perlindungan sosial (PKH, Kartu Sembako), subsidi, dan pembangunan di daerah tertinggal.</li>
-                    </ul>
+                    <div class="info-box info-box-success">
+                        <i class="fas fa-project-diagram" style="color:var(--success);"></i>
+                        <strong>Hubungan konsep:</strong>
+                        <br>
+                        <strong>Subjek</strong> = siapa yang terkait →
+                        <strong>Objek</strong> = apa yang dikenai →
+                        <strong>Tarif</strong> = berapa besarnya →
+                        <strong>Kewajiban</strong> = menghitung, membayar, dan/atau melaporkan sesuai sistem yang berlaku.
+                    </div>
+
+                    <h3 style="margin-top:20px;">Contoh Sederhana</h3>
+                    <p>
+                        Seorang pekerja memperoleh penghasilan. Penghasilan tersebut dapat menjadi objek
+                        perpajakan sesuai ketentuan. Orang yang memperoleh penghasilan merupakan pihak yang
+                        terkait sebagai subjek/wajib pajak, sedangkan ketentuan tarif digunakan untuk menentukan
+                        besarnya kewajiban pajak.
+                    </p>
+                </div>
+
+                <!-- TAB 3 -->
+                <div class="tab-content" id="tab3">
+                    <h3>Empat Fungsi Strategis Pajak</h3>
+                    <p>
+                        Pajak tidak hanya berfungsi sebagai sumber uang bagi negara. Pajak juga merupakan
+                        instrumen kebijakan ekonomi dan sosial.
+                    </p>
+
+                    <div class="container" style="padding:0; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+                        <div class="card ekonomi">
+                            <h2>💰 Budgetair</h2>
+                            <div class="materi-text-left">
+                                <p><strong>Pertanyaan kunci:</strong> dari mana negara memperoleh dana?</p>
+                                <p>Pajak menjadi sumber penerimaan untuk membiayai pengeluaran pemerintah,
+                                pelayanan publik, dan pembangunan.</p>
+                                <div class="info-box"><strong>Contoh:</strong> penerimaan pajak mendukung pembiayaan belanja negara.</div>
+                            </div>
+                        </div>
+
+                        <div class="card ekonomi">
+                            <h2>📏 Regulerend</h2>
+                            <div class="materi-text-left">
+                                <p><strong>Pertanyaan kunci:</strong> bagaimana pajak digunakan untuk mengatur perilaku?</p>
+                                <p>Pemerintah dapat menggunakan kebijakan pajak untuk mendorong atau membatasi
+                                kegiatan ekonomi tertentu.</p>
+                                <div class="info-box"><strong>Contoh:</strong> insentif pajak dapat digunakan untuk mendorong investasi.</div>
+                            </div>
+                        </div>
+
+                        <div class="card ekonomi">
+                            <h2>⚖️ Stabilisasi</h2>
+                            <div class="materi-text-left">
+                                <p><strong>Pertanyaan kunci:</strong> bagaimana kebijakan pajak membantu menjaga ekonomi?</p>
+                                <p>Pajak dapat menjadi bagian dari kebijakan untuk menjaga keseimbangan
+                                aktivitas ekonomi, daya beli, inflasi, dan penerimaan negara.</p>
+                            </div>
+                        </div>
+
+                        <div class="card ekonomi">
+                            <h2>🤝 Redistribusi</h2>
+                            <div class="materi-text-left">
+                                <p><strong>Pertanyaan kunci:</strong> bagaimana penerimaan negara mendukung pemerataan?</p>
+                                <p>Penerimaan negara digunakan kembali melalui berbagai program publik sehingga
+                                manfaat pembangunan dapat dirasakan oleh masyarakat secara lebih luas.</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="info-box info-box-warning">
                         <i class="fas fa-exclamation-triangle" style="color:var(--warning);"></i>
-                        <strong>Catatan:</strong> Keempat fungsi ini saling terkait dan tidak dapat dipisahkan dalam praktik perpajakan.
+                        <strong>Jangan tertukar:</strong>
+                        budgetair menjawab fungsi <em>menghimpun penerimaan</em>,
+                        sedangkan regulerend menjawab fungsi <em>mengatur</em>.
+                        Stabilisasi berhubungan dengan <em>keseimbangan ekonomi</em>,
+                        sedangkan redistribusi berhubungan dengan <em>pemerataan manfaat pembangunan</em>.
                     </div>
                 </div>
 
-                <!-- TAB 3: Manfaat Pajak -->
-                <div class="tab-content" id="tab3">
-                    <p>Pajak yang terkumpul memberikan manfaat nyata bagi kehidupan berbangsa dan bernegara. Berikut beberapa manfaat utama yang dapat dirasakan oleh masyarakat:</p>
-                    <br>
-
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:16px;">
-                        <div style="background:rgba(74,222,128,0.08); border-radius:10px; padding:14px 16px; text-align:center; border-left:4px solid var(--success);">
-                            <div style="font-size:2rem;">🏗️</div>
-                            <strong>Infrastruktur</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Jalan, jembatan, pelabuhan, bandara, dan jaringan listrik.</p>
-                        </div>
-                        <div style="background:rgba(74,222,128,0.08); border-radius:10px; padding:14px 16px; text-align:center; border-left:4px solid var(--success);">
-                            <div style="font-size:2rem;">🏫</div>
-                            <strong>Pendidikan</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Sekolah negeri, beasiswa, dan program pendidikan gratis.</p>
-                        </div>
-                        <div style="background:rgba(74,222,128,0.08); border-radius:10px; padding:14px 16px; text-align:center; border-left:4px solid var(--success);">
-                            <div style="font-size:2rem;">🏥</div>
-                            <strong>Kesehatan</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Puskesmas, rumah sakit, JKN-KIS, dan vaksinasi gratis.</p>
-                        </div>
-                        <div style="background:rgba(74,222,128,0.08); border-radius:10px; padding:14px 16px; text-align:center; border-left:4px solid var(--success);">
-                            <div style="font-size:2rem;">🛡️</div>
-                            <strong>Keamanan</strong>
-                            <p style="font-size:0.8rem; margin:4px 0 0;">Gaji TNI/Polri, Alutsista, dan penegakan hukum.</p>
-                        </div>
-                    </div>
-
-                    <p><strong>Manfaat Lainnya:</strong></p>
-                    <ul>
-                        <li><strong>Subsidi:</strong> Subsidi energi (BBM, listrik, LPG), subsidi pangan, dan bantuan sosial (PKH, Kartu Sembako).</li>
-                        <li><strong>Pelayanan Publik:</strong> Administrasi kependudukan, layanan perizinan, dan fasilitas umum lainnya.</li>
-                        <li><strong>Pembangunan Daerah:</strong> Dana desa dan transfer ke daerah untuk pembangunan infrastruktur lokal.</li>
-                        <li><strong>Penelitian &amp; Inovasi:</strong> Pendanaan riset dan pengembangan teknologi melalui LPDP dan lembaga riset.</li>
-                    </ul>
-                    <div class="info-box info-box-success">
-                        <i class="fas fa-quote-left" style="color:var(--success);"></i>
-                        <em>"Pajak adalah manifestasi nyata dari gotong royong warga negara dalam membangun bangsa."</em>
-                    </div>
-                </div>
-
-                <!-- TAB 4: Jenis-Jenis Pajak -->
+                <!-- TAB 4 -->
                 <div class="tab-content" id="tab4">
-                    <p>Berdasarkan berbagai kriteria, pajak dapat diklasifikasikan sebagai berikut:</p>
-                    <br>
+                    <h3>Manfaat Pajak dalam Kehidupan Sehari-hari</h3>
+                    <p>
+                        Manfaat pajak tidak selalu terlihat sebagai "uang kembali kepada pembayar pajak".
+                        Pajak membiayai berbagai layanan dan program yang manfaatnya dapat diterima masyarakat
+                        secara langsung maupun tidak langsung.
+                    </p>
 
-                    <p><strong>1. Berdasarkan Lembaga Pemungut:</strong></p>
-                    <ul>
-                        <li><strong>Pajak Pusat:</strong> Dipungut oleh pemerintah pusat melalui Ditjen Pajak. Contoh: PPh, PPN, PPnBM, Bea Materai.</li>
-                        <li><strong>Pajak Daerah:</strong> Dipungut oleh pemerintah daerah (provinsi/kabupaten/kota). Contoh: Pajak Kendaraan Bermotor, Pajak Hotel, Pajak Restoran, Pajak Hiburan.</li>
-                    </ul>
-                    <br>
-                    <p><strong>2. Berdasarkan Sifat:</strong></p>
-                    <ul>
-                        <li><strong>Pajak Langsung:</strong> Dikenakan kepada subjek pajak secara langsung dan tidak dapat dialihkan ke pihak lain. Contoh: Pajak Penghasilan (PPh).</li>
-                        <li><strong>Pajak Tidak Langsung:</strong> Dikenakan pada objek pajak dan dapat dialihkan ke pihak lain. Contoh: Pajak Pertambahan Nilai (PPN) yang ditanggung konsumen akhir.</li>
-                    </ul>
-                    <br>
-                    <p><strong>3. Berdasarkan Objek:</strong></p>
-                    <ul>
-                        <li><strong>Pajak Subjektif:</strong> Dikenakan berdasarkan kondisi subjek pajak (orang pribadi/badan). Contoh: PPh.</li>
-                        <li><strong>Pajak Objektif:</strong> Dikenakan berdasarkan objek pajak tanpa melihat kondisi subjek. Contoh: PPN, Pajak Bumi dan Bangunan (PBB).</li>
-                    </ul>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Bidang</th>
+                                <th>Contoh Manfaat</th>
+                                <th>Dampak bagi Masyarakat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🏗️ Infrastruktur</td>
+                                <td>Jalan, jembatan, fasilitas transportasi</td>
+                                <td>Mobilitas dan kegiatan ekonomi meningkat</td>
+                            </tr>
+                            <tr>
+                                <td>🏫 Pendidikan</td>
+                                <td>Sekolah, beasiswa, program pendidikan</td>
+                                <td>Akses pendidikan menjadi lebih luas</td>
+                            </tr>
+                            <tr>
+                                <td>🏥 Kesehatan</td>
+                                <td>Fasilitas kesehatan dan program kesehatan</td>
+                                <td>Kualitas layanan kesehatan masyarakat</td>
+                            </tr>
+                            <tr>
+                                <td>🛡️ Keamanan</td>
+                                <td>Pembiayaan pertahanan dan keamanan</td>
+                                <td>Ketertiban dan perlindungan masyarakat</td>
+                            </tr>
+                            <tr>
+                                <td>🌾 Perlindungan sosial</td>
+                                <td>Bantuan dan program sosial</td>
+                                <td>Membantu kelompok masyarakat yang membutuhkan</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                    <div style="overflow-x:auto; margin-top:14px;">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Kriteria</th>
-                                    <th>Jenis</th>
-                                    <th>Contoh</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td rowspan="2">Lembaga Pemungut</td>
-                                    <td>Pajak Pusat</td>
-                                    <td>PPh, PPN, PPnBM</td>
-                                </tr>
-                                <tr>
-                                    <td>Pajak Daerah</td>
-                                    <td>PKB, Pajak Hotel, Pajak Restoran</td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">Sifat</td>
-                                    <td>Pajak Langsung</td>
-                                    <td>PPh, PBB</td>
-                                </tr>
-                                <tr>
-                                    <td>Pajak Tidak Langsung</td>
-                                    <td>PPN, Bea Materai</td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">Objek</td>
-                                    <td>Pajak Subjektif</td>
-                                    <td>PPh</td>
-                                </tr>
-                                <tr>
-                                    <td>Pajak Objektif</td>
-                                    <td>PPN, PBB</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="info-box info-box-success" style="margin-top:15px;">
+                        <i class="fas fa-users" style="color:var(--success);"></i>
+                        <strong>Inti manfaat pajak:</strong>
+                        hubungan pajak dengan kesejahteraan masyarakat terjadi melalui proses
+                        <strong>penerimaan negara → APBN/APBD → program pemerintah → layanan publik → manfaat masyarakat</strong>.
                     </div>
-                    <div class="info-box" style="margin-top:12px;">
-                        <i class="fas fa-arrow-right" style="color:var(--primary);"></i>
-                        <strong>Catatan:</strong> Di Indonesia, sistem pemungutan pajak menganut <em>self-assessment</em> (wajib pajak menghitung, membayar, dan melapor sendiri).
-                    </div>
+
+                    <h3 style="margin-top:20px;">Mengapa Pembayar Pajak Tidak Mendapat "Uang Kembali" Secara Langsung?</h3>
+                    <p>
+                        Karena pajak merupakan kontribusi untuk kepentingan bersama. Seseorang dapat membayar
+                        pajak hari ini, tetapi manfaat yang diterimanya dapat berbentuk jalan yang digunakan,
+                        sekolah, keamanan, layanan administrasi, fasilitas kesehatan, atau program publik lainnya.
+                    </p>
                 </div>
 
-                <!-- TAB 5: Teori Pemungutan -->
+                <!-- TAB 5 -->
                 <div class="tab-content" id="tab5">
-                    <p>Ada beberapa teori yang menjadi landasan pemungutan pajak:</p>
-                    <br>
+                    <h3>Klasifikasi Pajak</h3>
 
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:16px;">
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>1. Teori Asuransi</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pajak dianggap sebagai premi asuransi yang dibayarkan rakyat kepada negara untuk perlindungan dan keamanan.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>2. Teori Gaya Pikul</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pajak harus dibebankan sesuai dengan kemampuan ekonomi masing-masing wajib pajak (daya pikul).</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>3. Teori Kepentingan</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pajak dibayar berdasarkan kepentingan seseorang terhadap layanan publik yang disediakan negara.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>4. Teori Daya Beli</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pajak berfungsi mengatur daya beli masyarakat untuk menjaga stabilitas ekonomi.</p>
-                        </div>
-                        <div style="background:rgba(67,97,238,0.06); border-radius:10px; padding:14px 16px; border-left:4px solid var(--primary);">
-                            <strong>5. Teori Pengorbanan</strong>
-                            <p style="font-size:0.85rem; margin:4px 0 0;">Pajak dikenakan dengan mempertimbangkan pengorbanan yang ditanggung masyarakat (asas keadilan).</p>
-                        </div>
-                    </div>
+                    <p><strong>A. Berdasarkan Lembaga Pemungut</strong></p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th>Jenis</th><th>Pemungut</th><th>Contoh dalam materi</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pajak Pusat</strong></td>
+                                <td>Pemerintah pusat</td>
+                                <td>PPh, PPN, PPnBM, Bea Meterai</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pajak Daerah</strong></td>
+                                <td>Pemerintah daerah</td>
+                                <td>PKB dan pajak daerah lainnya</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                    <p><strong>Asas Pemungutan Pajak yang Dikenal (Adam Smith):</strong></p>
-                    <ul>
-                        <li><strong>Asas Keadilan:</strong> Pemungutan pajak harus adil dan merata sesuai kemampuan wajib pajak.</li>
-                        <li><strong>Asas Kepastian Hukum:</strong> Aturan pajak harus jelas, pasti, dan tidak berubah-ubah.</li>
-                        <li><strong>Asas Kemudahan:</strong> Prosedur pemungutan pajak harus sederhana dan mudah dilaksanakan.</li>
-                        <li><strong>Asas Efisiensi:</strong> Biaya pemungutan pajak harus lebih kecil dari penerimaan pajak itu sendiri.</li>
-                    </ul>
-                    <div class="info-box info-box-warning" style="margin-top:12px;">
+                    <p style="margin-top:18px;"><strong>B. Berdasarkan Sifat</strong></p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th>Jenis</th><th>Karakteristik</th><th>Contoh</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pajak Langsung</strong></td>
+                                <td>Beban pajak pada pihak yang dikenai dan tidak dialihkan seperti pajak tidak langsung</td>
+                                <td>PPh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pajak Tidak Langsung</strong></td>
+                                <td>Beban pajak dapat dialihkan melalui transaksi/harga kepada pihak lain</td>
+                                <td>PPN</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="margin-top:18px;"><strong>C. Berdasarkan Objek</strong></p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th>Jenis</th><th>Fokus</th><th>Contoh</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pajak Subjektif</strong></td>
+                                <td>Memperhatikan kondisi subjek pajak</td>
+                                <td>PPh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pajak Objektif</strong></td>
+                                <td>Menekankan objek yang dikenai pajak</td>
+                                <td>PPN, PBB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
                         <i class="fas fa-lightbulb" style="color:var(--warning);"></i>
-                        <strong>Implementasi di Indonesia:</strong> Teori-teori ini diimplementasikan melalui kebijakan perpajakan yang progresif (tarif pajak semakin tinggi untuk penghasilan semakin besar) dan berbagai insentif pajak untuk mendorong investasi.
+                        <strong>Cara cepat mengingat:</strong>
+                        <br>
+                        <strong>Pemungut</strong> → siapa yang memungut?
+                        <br>
+                        <strong>Sifat</strong> → bagaimana beban pajaknya?
+                        <br>
+                        <strong>Objek</strong> → apa yang menjadi dasar pengenaan?
                     </div>
                 </div>
+
+                <!-- TAB 6 -->
+                <div class="tab-content" id="tab6">
+                    <h3>Sistem Pemungutan Pajak</h3>
+                    <p>
+                        Salah satu konsep penting dalam perpajakan adalah siapa yang menentukan besarnya pajak
+                        dan siapa yang bertanggung jawab dalam proses penghitungannya.
+                    </p>
+
+                    <div class="container" style="padding:0; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+                        <div class="card ekonomi">
+                            <h2>👤 Self-Assessment</h2>
+                            <div class="materi-text-left">
+                                <p>Wajib pajak diberi kepercayaan untuk menghitung, membayar, dan melaporkan
+                                kewajiban pajaknya sesuai ketentuan.</p>
+                                <div class="info-box"><strong>Kata kunci:</strong> mandiri + bertanggung jawab.</div>
+                            </div>
+                        </div>
+
+                        <div class="card ekonomi">
+                            <h2>🏛️ Official Assessment</h2>
+                            <div class="materi-text-left">
+                                <p>Besarnya pajak ditetapkan oleh pihak yang berwenang berdasarkan ketentuan
+                                yang berlaku.</p>
+                                <div class="info-box"><strong>Kata kunci:</strong> penetapan oleh otoritas.</div>
+                            </div>
+                        </div>
+
+                        <div class="card ekonomi">
+                            <h2>🏢 Withholding</h2>
+                            <div class="materi-text-left">
+                                <p>Pihak ketiga diberi kewenangan untuk memotong atau memungut pajak dalam
+                                transaksi tertentu.</p>
+                                <div class="info-box"><strong>Kata kunci:</strong> dipotong/dipungut pihak ketiga.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-box-warning">
+                        <i class="fas fa-exclamation-circle" style="color:var(--warning);"></i>
+                        <strong>Pembelajaran penting:</strong>
+                        self-assessment bukan berarti pemerintah tidak mengawasi. Kepercayaan kepada wajib pajak
+                        berjalan bersama kewajiban administrasi dan kepatuhan terhadap aturan.
+                    </div>
+
+                    <h3 style="margin-top:20px;">Alur Sederhana Self-Assessment</h3>
+                    <div class="info-box">
+                        <strong>Menentukan kewajiban → Menghitung → Membayar → Melaporkan → Menyimpan bukti/dokumen</strong>
+                    </div>
+                </div>
+
+                <!-- TAB 7 -->
+                <div class="tab-content" id="tab7">
+                    <h3>Asas dan Teori Pemungutan Pajak</h3>
+
+                    <p><strong>Teori Pemungutan:</strong></p>
+                    <div class="container" style="padding:0; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+                        <div class="card ekonomi">
+                            <h2>1. Asuransi</h2>
+                            <div class="materi-text-left">
+                                <p>Pajak dianalogikan sebagai kontribusi untuk memperoleh perlindungan dan keamanan dari negara.</p>
+                            </div>
+                        </div>
+                        <div class="card ekonomi">
+                            <h2>2. Gaya Pikul</h2>
+                            <div class="materi-text-left">
+                                <p>Beban pajak dikaitkan dengan kemampuan ekonomi atau kemampuan membayar wajib pajak.</p>
+                            </div>
+                        </div>
+                        <div class="card ekonomi">
+                            <h2>3. Kepentingan</h2>
+                            <div class="materi-text-left">
+                                <p>Pembebanan pajak dikaitkan dengan kepentingan masyarakat terhadap layanan dan perlindungan negara.</p>
+                            </div>
+                        </div>
+                        <div class="card ekonomi">
+                            <h2>4. Daya Beli</h2>
+                            <div class="materi-text-left">
+                                <p>Pajak dapat digunakan sebagai instrumen untuk memengaruhi daya beli dan aktivitas ekonomi.</p>
+                            </div>
+                        </div>
+                        <div class="card ekonomi">
+                            <h2>5. Pengorbanan</h2>
+                            <div class="materi-text-left">
+                                <p>Pemungutan pajak harus mempertimbangkan pengorbanan masyarakat dan prinsip keadilan.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top:18px;"><strong>Asas yang dikenal dalam materi:</strong></p>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr><th>Asas</th><th>Makna</th><th>Pertanyaan Kritis</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Keadilan</strong></td>
+                                <td>Pemungutan dilakukan secara adil sesuai prinsip kemampuan dan ketentuan.</td>
+                                <td>Apakah beban pajak sudah adil?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kepastian hukum</strong></td>
+                                <td>Aturan, objek, kewajiban, dan prosedur harus jelas.</td>
+                                <td>Apakah masyarakat mengetahui aturan yang harus dipenuhi?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kemudahan</strong></td>
+                                <td>Pelaksanaan administrasi sebaiknya mudah dipahami dan dilakukan.</td>
+                                <td>Apakah prosedurnya mudah?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Efisiensi</strong></td>
+                                <td>Biaya dan proses pemungutan harus mempertimbangkan efisiensi.</td>
+                                <td>Apakah biaya pemungutan sebanding dengan penerimaan?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TAB 8 -->
+                <div class="tab-content" id="tab8">
+                    <h3>Analisis Kasus: Pajak di Sekitar Kita</h3>
+
+                    <div class="info-box">
+                        <strong>Kasus A — Belanja Konsumen</strong>
+                        <p style="margin-top:6px;">
+                            Seorang siswa membeli sepatu seharga Rp500.000. Dalam transaksi tertentu,
+                            terdapat unsur PPN yang menjadi bagian dari harga yang dibayar konsumen.
+                        </p>
+                        <p>
+                            <strong>Pertanyaan:</strong> Apakah siswa tersebut dapat mengatakan bahwa ia
+                            "tidak pernah membayar pajak" hanya karena tidak menyetor pajak langsung ke negara?
+                        </p>
+                    </div>
+
+                    <div class="info-box info-box-success">
+                        <strong>Analisis:</strong>
+                        <p style="margin-top:6px;">
+                            Tidak tepat menyimpulkan demikian. Dalam pajak tidak langsung, beban pajak dapat
+                            masuk dalam transaksi dan harga yang dibayar konsumen, sementara mekanisme
+                            pemungutan/penyetorannya dilakukan sesuai ketentuan.
+                        </p>
+                    </div>
+
+                    <div class="info-box" style="margin-top:16px;">
+                        <strong>Kasus B — Pajak Kendaraan</strong>
+                        <p style="margin-top:6px;">
+                            Sebuah keluarga memiliki kendaraan bermotor dan membayar kewajiban pajak kendaraan
+                            sesuai ketentuan daerah.
+                        </p>
+                        <p>
+                            <strong>Pertanyaan:</strong> Fungsi pajak apa yang paling mudah terlihat dari
+                            penggunaan penerimaan daerah untuk layanan publik dan infrastruktur?
+                        </p>
+                    </div>
+
+                    <h3 style="margin-top:20px;">Latihan Berpikir Tingkat Tinggi</h3>
+                    <ol>
+                        <li>
+                            Jika pajak merupakan sumber penerimaan negara, mengapa pemerintah tidak cukup
+                            hanya menaikkan tarif pajak untuk memperoleh penerimaan lebih besar?
+                        </li>
+                        <li>
+                            Mengapa kebijakan pajak dapat memengaruhi perilaku masyarakat dan dunia usaha?
+                        </li>
+                        <li>
+                            Bagaimana hubungan antara kepatuhan pajak dan kualitas pelayanan publik?
+                        </li>
+                        <li>
+                            Apakah pajak selalu dirasakan manfaatnya secara langsung oleh orang yang membayar?
+                            Jelaskan dengan contoh.
+                        </li>
+                        <li>
+                            Bandingkan fungsi <strong>budgetair</strong> dan <strong>regulerend</strong>
+                            menggunakan satu contoh kebijakan pajak.
+                        </li>
+                    </ol>
+
+                    <div class="info-box info-box-warning" style="margin-top:15px;">
+                        <i class="fas fa-brain" style="color:var(--warning);"></i>
+                        <strong>Kesimpulan analitis:</strong>
+                        memahami pajak bukan sekadar mengetahui jenis dan definisinya.
+                        Peserta didik perlu mampu menghubungkan <strong>pajak → penerimaan negara →
+                        kebijakan → pembangunan → kesejahteraan → kepatuhan masyarakat</strong>.
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1363,7 +1713,7 @@
     </div>
 
     <!-- ===== STUDI KASUS / ILUSTRASI ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-case-study"></i> Studi Kasus: Pajak di Sekitar Kita</h2>
+    <h2 class="section-title ekonomi" id="studi-kasus"><i class="fas fa-case-study"></i> Studi Kasus: Pajak di Sekitar Kita</h2>
     <div class="container">
         <div class="card ekonomi">
             <h2><i class="fas fa-shopping-cart"></i> Pajak dalam Belanja</h2>
@@ -1402,7 +1752,7 @@
     </div>
 
     <!-- ===== KUIS INTERAKTIF ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-puzzle-piece"></i> Kuis Pemahaman</h2>
+    <h2 class="section-title ekonomi" id="kuis"><i class="fas fa-puzzle-piece"></i> Kuis Pemahaman</h2>
     <div class="container-full">
         <div class="card ekonomi" style="align-items:stretch;">
             <div class="quiz-container" id="quizContainer">
@@ -1476,7 +1826,7 @@
     </div>
 
     <!-- ===== GLOSARIUM ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-book"></i> Glosarium</h2>
+    <h2 class="section-title ekonomi" id="glosarium"><i class="fas fa-book"></i> Glosarium</h2>
     <div class="container-full">
         <div class="card ekonomi" style="align-items:stretch;">
             <div class="glossary-grid">
@@ -1489,13 +1839,19 @@
                 <div class="glossary-item"><span class="glossary-term">WP</span><span class="glossary-def">Wajib Pajak — orang pribadi atau badan yang memiliki kewajiban pajak.</span></div>
                 <div class="glossary-item"><span class="glossary-term">NPWP</span><span class="glossary-def">Nomor Pokok Wajib Pajak — identitas wajib pajak dalam administrasi perpajakan.</span></div>
                 <div class="glossary-item"><span class="glossary-term">Self-Assessment</span><span class="glossary-def">Sistem pemungutan pajak di mana WP menghitung, membayar, dan melapor sendiri.</span></div>
-                <div class="glossary-item"><span class="glossary-term">Redistribusi</span><span class="glossary-def">Proses pemerataan pendapatan melalui pajak dan program sosial.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Redistribusi</span><span class="glossary-def">Proses pemerataan manfaat pembangunan melalui kebijakan penerimaan dan belanja pemerintah.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Subjek Pajak</span><span class="glossary-def">Pihak yang memiliki hubungan dengan kewajiban perpajakan sesuai ketentuan.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Objek Pajak</span><span class="glossary-def">Hal atau sesuatu yang menjadi dasar pengenaan pajak.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Tarif Pajak</span><span class="glossary-def">Besaran yang digunakan dalam menentukan jumlah pajak terutang.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Withholding</span><span class="glossary-def">Pemotongan atau pemungutan pajak oleh pihak ketiga sesuai ketentuan.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Budgetair</span><span class="glossary-def">Fungsi pajak sebagai sumber penerimaan untuk membiayai pengeluaran negara.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Regulerend</span><span class="glossary-def">Fungsi pajak sebagai instrumen untuk mengatur kebijakan ekonomi dan sosial.</span></div>
             </div>
         </div>
     </div>
 
     <!-- ===== RANGKUMAN ===== -->
-    <h2 class="section-title ekonomi"><i class="fas fa-file-alt"></i> Rangkuman &amp; Kesimpulan</h2>
+    <h2 class="section-title ekonomi" id="rangkuman"><i class="fas fa-file-alt"></i> Rangkuman &amp; Kesimpulan</h2>
     <div class="container" style="grid-template-columns:1fr;">
         <div class="card ekonomi">
             <div class="materi-text-left">
