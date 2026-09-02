@@ -52,7 +52,7 @@
         .navbar {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -61,19 +61,21 @@
             justify-content: space-between;
             align-items: center;
             height: var(--header-height);
+            gap: 10px;
         }
         .navbar-brand {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-decoration: none;
             color: white;
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
         .navbar-brand img {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.3);
             object-fit: cover;
@@ -81,11 +83,12 @@
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            flex-shrink: 0;
         }
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -95,12 +98,14 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 12px;
+            padding: 6px 12px;
             border-radius: 50px;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 5px;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -147,8 +152,10 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             z-index: 1001;
+            padding: 4px 8px;
+            line-height: 1;
         }
         .theme-toggle {
             background: none;
@@ -163,6 +170,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
         .theme-toggle:hover {
             transform: rotate(15deg);
@@ -171,7 +179,7 @@
         header {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
-            padding: 5rem 1rem 2.5rem;
+            padding: 4rem 1rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -198,13 +206,13 @@
             }
         }
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.3);
             background: white;
             padding: 5px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             z-index: 2;
             position: relative;
             transition: var(--transition);
@@ -215,39 +223,41 @@
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            font-size: 2.2rem;
+            font-size: 1.9rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             z-index: 2;
             position: relative;
+            word-break: break-word;
         }
         .subtitle {
             font-weight: 300;
             opacity: 0.9;
             z-index: 2;
             position: relative;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         .adsense-container {
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
+            margin: 16px auto;
+            padding: 0 16px;
             display: flex;
             justify-content: center;
         }
         .category-title {
             text-align: center;
-            margin: 50px auto 25px;
+            margin: 36px auto 20px;
             max-width: 1200px;
-            padding: 0 20px;
-            font-size: 1.6rem;
+            padding: 0 16px;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--dark);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         body.dark-mode .category-title {
             color: #f8f9fa;
@@ -256,13 +266,13 @@
         .category-title::after {
             content: '';
             flex: 1;
-            max-width: 120px;
+            max-width: 80px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
         .category-title i {
             color: var(--primary);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
         .category-title.ekonomi {
             color: #4361ee;
@@ -276,16 +286,16 @@
         }
         .container {
             max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
+            margin: 0 auto 30px;
+            padding: 12px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
         .card {
             background: white;
             border-radius: var(--border-radius);
-            padding: 30px 25px;
+            padding: 24px 18px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -302,12 +312,12 @@
             color: #f8f9fa;
         }
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
         }
         .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
             color: var(--dark);
             display: flex;
             align-items: center;
@@ -320,13 +330,13 @@
         }
         .card h2 i {
             color: var(--primary);
-            font-size: 1.2rem;
-            width: 28px;
+            font-size: 1.1rem;
+            width: 26px;
             text-align: center;
         }
         .materi-text-left {
             text-align: left;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.7;
             color: var(--gray);
             width: 100%;
@@ -336,11 +346,11 @@
             color: #cbd5e1;
         }
         .materi-text-left ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
+            padding-left: 18px;
+            margin-bottom: 12px;
         }
         .materi-text-left li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .materi-text-left strong {
             color: var(--primary);
@@ -350,10 +360,10 @@
         }
         .materi-text-left .highlight-box {
             background: rgba(67, 97, 238, 0.07);
-            padding: 14px 18px;
+            padding: 12px 14px;
             border-radius: 8px;
             border-left: 4px solid var(--primary);
-            margin: 12px 0;
+            margin: 10px 0;
         }
         body.dark-mode .materi-text-left .highlight-box {
             background: rgba(67, 97, 238, 0.15);
@@ -363,13 +373,13 @@
         }
         .materi-text-left .badge {
             display: inline-block;
-            padding: 2px 12px;
+            padding: 2px 10px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-right: 6px;
+            margin-right: 4px;
         }
         .badge.primary {
             background: var(--primary);
@@ -397,7 +407,7 @@
         /* Comparison table card - full width */
         .card-full {
             grid-column: 1 / -1;
-            padding: 35px 30px;
+            padding: 28px 20px;
         }
         .card-full .materi-text-left {
             overflow-x: auto;
@@ -405,12 +415,13 @@
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 10px;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-width: 600px;
         }
         .comparison-table th,
         .comparison-table td {
-            padding: 12px 14px;
+            padding: 10px 12px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             text-align: left;
             vertical-align: top;
@@ -447,11 +458,45 @@
             color: #f8f9fa;
         }
 
+        /* implementasi grid 2 kolom */
+        .impl-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .impl-box {
+            padding: 14px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            background: rgba(67, 97, 238, 0.06);
+        }
+        .impl-box h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+        .impl-box ul {
+            font-size: 0.85rem;
+            padding-left: 16px;
+            margin: 0;
+        }
+        .impl-box ul li {
+            margin-bottom: 4px;
+        }
+        .impl-box.danger {
+            border-left-color: var(--danger);
+            background: rgba(248, 113, 113, 0.06);
+        }
+        .impl-box.danger h4 {
+            color: var(--danger);
+        }
+
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
             color: white;
-            padding: 60px 20px 30px;
-            margin-top: 60px;
+            padding: 40px 16px 24px;
+            margin-top: 40px;
             font-family: 'Poppins', sans-serif;
         }
         body.dark-mode footer {
@@ -461,21 +506,21 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
         }
         .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.05rem;
+            margin-bottom: 16px;
             position: relative;
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
         .footer-section h3::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background: #4361ee;
             border-radius: 3px;
@@ -485,7 +530,7 @@
             padding: 0;
         }
         .footer-section li {
-            margin: 10px 0;
+            margin: 8px 0;
         }
         .footer-section a {
             color: #e2e8f0;
@@ -494,6 +539,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
         .footer-section a:hover {
             color: #4361ee;
@@ -501,39 +547,40 @@
         }
         .footer-section p {
             line-height: 1.6;
-            margin: 8px 0;
+            margin: 6px 0;
             color: #e2e8f0;
+            font-size: 0.9rem;
         }
         .footer-legal-bar {
             display: none;
             text-align: center;
-            padding: 15px 10px;
-            margin: 20px 0;
+            padding: 12px 8px;
+            margin: 16px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 4px;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .footer-legal-bar a {
             color: #94a3b8;
             text-decoration: none;
-            padding: 3px 8px;
+            padding: 2px 6px;
         }
         .footer-legal-bar a:hover {
             color: #4361ee;
         }
         .footer-legal-bar .separator {
             color: rgba(255, 255, 255, 0.2);
-            margin: 0 3px;
+            margin: 0 2px;
         }
         .visitor-counter {
             text-align: center;
-            padding: 15px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .visitor-counter img {
             max-width: 100%;
@@ -541,24 +588,25 @@
             filter: brightness(1.2);
         }
         .visitor-counter p {
-            margin-top: 10px;
-            font-size: 0.85rem;
+            margin-top: 8px;
+            font-size: 0.8rem;
             opacity: 0.8;
             color: #e2e8f0;
         }
         .copyright {
             text-align: center;
             grid-column: span 5;
-            padding-top: 30px;
+            padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
+            margin-top: 16px;
+            font-size: 0.85rem;
         }
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
+            padding-top: 16px;
+            margin-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #94a3b8;
         }
         .scroll-indicator {
@@ -581,30 +629,31 @@
         }
         .back-to-top {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             cursor: pointer;
             transition: var(--transition);
             opacity: 0;
             visibility: hidden;
             z-index: 999;
+            border: none;
         }
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
         .back-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: var(--secondary);
         }
         .loader-wrapper {
@@ -621,9 +670,9 @@
             transition: opacity 0.5s ease-out;
         }
         .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
+            width: 44px;
+            height: 44px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
@@ -634,7 +683,31 @@
             }
         }
 
-        /* Responsive */
+        /* ===================== */
+        /* RESPONSIVE BREAKPOINTS */
+        /* ===================== */
+
+        /* Tablet & small laptops */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 18px;
+                padding: 12px;
+            }
+            .card-full {
+                grid-column: 1 / -1;
+            }
+            .comparison-table {
+                font-size: 0.8rem;
+                min-width: 500px;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px 10px;
+            }
+        }
+
+        /* Mobile landscape & tablets */
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -648,8 +721,9 @@
                 background: linear-gradient(120deg, var(--primary), var(--secondary));
                 flex-direction: column;
                 gap: 0;
-                padding: 1rem 0;
+                padding: 0.6rem 0;
                 z-index: 1000;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             }
             .nav-links.active {
                 display: flex;
@@ -672,6 +746,8 @@
                 padding: 12px 20px;
                 border-radius: 0;
                 width: 100%;
+                font-size: 0.95rem;
+                white-space: normal;
             }
             .dropdown-content {
                 position: static;
@@ -680,6 +756,7 @@
                 width: 100%;
                 display: none;
                 padding: 0;
+                backdrop-filter: none;
             }
             .dropdown.active .dropdown-content {
                 display: flex;
@@ -688,38 +765,61 @@
             .dropdown-content a {
                 padding-left: 40px;
                 color: white;
+                font-size: 0.9rem;
+                margin: 0;
+                border-radius: 0;
             }
+            .dropdown-content a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                padding-left: 50px;
+                color: white;
+            }
+
             .category-title {
-                font-size: 1.3rem;
+                font-size: 1.15rem;
+                margin: 28px auto 16px;
+            }
+            .category-title::before,
+            .category-title::after {
+                max-width: 50px;
             }
             header {
-                padding: 4rem 1rem 2rem;
+                padding: 3rem 1rem 1.6rem;
             }
             .logo {
-                width: 80px;
-                height: 80px;
+                width: 72px;
+                height: 72px;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
             }
             .container {
                 grid-template-columns: 1fr;
-                padding: 15px;
-                gap: 20px;
+                padding: 10px;
+                gap: 16px;
             }
             .card {
-                padding: 25px 20px;
+                padding: 20px 16px;
             }
             .card-full {
                 grid-column: 1;
+                padding: 20px 16px;
             }
             .comparison-table {
-                font-size: 0.78rem;
+                font-size: 0.72rem;
+                min-width: 420px;
             }
             .comparison-table th,
             .comparison-table td {
-                padding: 8px 10px;
+                padding: 6px 8px;
             }
             .footer-container {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 24px;
             }
             .copyright {
                 grid-column: span 1;
@@ -730,17 +830,238 @@
             .footer-section:nth-child(3) {
                 display: none;
             }
-        }
-        @media (max-width: 576px) {
-            .navbar-brand {
+            .impl-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .impl-box {
+                padding: 12px 14px;
+            }
+            .impl-box h4 {
+                font-size: 0.9rem;
+            }
+            .impl-box ul {
+                font-size: 0.82rem;
+            }
+            .materi-text-left {
+                font-size: 0.88rem;
+            }
+            .materi-text-left .highlight-box {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            .card h2 {
+                font-size: 1.05rem;
+            }
+            .back-to-top {
+                width: 42px;
+                height: 42px;
                 font-size: 1rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        /* Small mobile phones */
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 0.95rem;
             }
             .navbar-brand img {
-                width: 35px;
-                height: 35px;
+                width: 30px;
+                height: 30px;
+            }
+            .navbar {
+                padding: 0.4rem 0.8rem;
+                height: 60px;
+            }
+            :root {
+                --header-height: 60px;
+            }
+            .theme-toggle {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+            .hamburger {
+                font-size: 1.4rem;
+                padding: 2px 6px;
+            }
+            header {
+                padding: 2.5rem 0.8rem 1.4rem;
+            }
+            .logo {
+                width: 60px;
+                height: 60px;
+                padding: 4px;
+                margin-bottom: 0.8rem;
             }
             h1 {
-                font-size: 1.6rem;
+                font-size: 1.25rem;
+            }
+            .subtitle {
+                font-size: 0.8rem;
+            }
+            .category-title {
+                font-size: 1rem;
+                margin: 20px auto 12px;
+                padding: 0 10px;
+                gap: 6px;
+            }
+            .category-title::before,
+            .category-title::after {
+                max-width: 30px;
+            }
+            .category-title i {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 6px;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .card {
+                padding: 16px 12px;
+                border-radius: 10px;
+            }
+            .card-full {
+                padding: 16px 12px;
+            }
+            .card h2 {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+                gap: 6px;
+            }
+            .card h2 i {
+                font-size: 0.95rem;
+                width: 22px;
+            }
+            .materi-text-left {
+                font-size: 0.82rem;
+                line-height: 1.6;
+            }
+            .materi-text-left ul {
+                padding-left: 14px;
+                margin-bottom: 8px;
+            }
+            .materi-text-left li {
+                margin-bottom: 4px;
+            }
+            .materi-text-left .highlight-box {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                margin: 8px 0;
+                border-left-width: 3px;
+            }
+            .materi-text-left .badge {
+                font-size: 0.55rem;
+                padding: 1px 8px;
+            }
+            .comparison-table {
+                font-size: 0.65rem;
+                min-width: 340px;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 5px 6px;
+            }
+            .impl-grid {
+                gap: 8px;
+            }
+            .impl-box {
+                padding: 10px 12px;
+            }
+            .impl-box h4 {
+                font-size: 0.82rem;
+                margin-bottom: 4px;
+            }
+            .impl-box ul {
+                font-size: 0.75rem;
+                padding-left: 14px;
+            }
+            .impl-box ul li {
+                margin-bottom: 2px;
+            }
+            .adsense-container {
+                margin: 10px auto;
+                padding: 0 8px;
+            }
+            footer {
+                padding: 28px 12px 18px;
+                margin-top: 28px;
+            }
+            .footer-container {
+                gap: 20px;
+            }
+            .footer-section h3 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+            }
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.8rem;
+            }
+            .footer-section li {
+                margin: 5px 0;
+            }
+            .copyright {
+                font-size: 0.75rem;
+                padding-top: 16px;
+            }
+            .footer-bottom {
+                font-size: 0.75rem;
+                margin-top: 14px;
+                padding-top: 12px;
+            }
+            .back-to-top {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+                bottom: 12px;
+                right: 12px;
+            }
+            .loader {
+                width: 36px;
+                height: 36px;
+                border-width: 3px;
+            }
+            .footer-legal-bar {
+                font-size: 0.65rem;
+                padding: 8px 4px;
+                margin: 10px 0;
+            }
+            .footer-legal-bar a {
+                padding: 2px 4px;
+            }
+            /* hide extra nav items on very small */
+            .nav-links a i {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar-brand span {
+                display: none;
+            }
+            .navbar-brand img {
+                margin-right: 0;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
+            .comparison-table {
+                min-width: 280px;
+                font-size: 0.58rem;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 4px 5px;
+            }
+            .card {
+                padding: 12px 10px;
+            }
+            .materi-text-left {
+                font-size: 0.78rem;
             }
         }
     </style>
@@ -887,7 +1208,7 @@
             <div class="materi-text-left">
                 <p>Berikut tabel perbandingan mendalam antara <strong>Self Assessment</strong>, <strong>Official Assessment</strong>, dan <strong>Withholding System</strong>:</p>
                 <br />
-                <div style="overflow-x:auto;">
+                <div style="overflow-x:auto; -webkit-overflow-scrolling: touch;">
                     <table class="comparison-table">
                         <thead>
                             <tr>
@@ -962,18 +1283,18 @@
             <div class="materi-text-left">
                 <p>Indonesia menerapkan <strong>kombinasi</strong> dari ketiga sistem dengan penekanan pada <strong>Self Assessment</strong> sebagai fondasi utama.</p>
                 <br />
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin: 15px 0;">
-                    <div style="background: rgba(67,97,238,0.06); padding:16px 18px; border-radius:8px; border-left:4px solid var(--primary);">
-                        <h4 style="font-size:1rem; margin-bottom:6px; color:var(--primary);"><i class="fas fa-check-circle"></i> Self Assessment</h4>
-                        <ul style="font-size:0.9rem; padding-left:18px; margin:0;">
+                <div class="impl-grid">
+                    <div class="impl-box">
+                        <h4><i class="fas fa-check-circle"></i> Self Assessment</h4>
+                        <ul>
                             <li>SPT Tahunan PPh (WP Orang Pribadi &amp; Badan)</li>
                             <li>PBB (Pajak Bumi dan Bangunan)</li>
                             <li>PPN (pelaporan oleh PKP)</li>
                         </ul>
                     </div>
-                    <div style="background: rgba(76,201,240,0.06); padding:16px 18px; border-radius:8px; border-left:4px solid var(--accent);">
-                        <h4 style="font-size:1rem; margin-bottom:6px; color:var(--accent);"><i class="fas fa-hand-holding-usd"></i> Withholding</h4>
-                        <ul style="font-size:0.9rem; padding-left:18px; margin:0;">
+                    <div class="impl-box" style="border-left-color: var(--accent); background: rgba(76,201,240,0.06);">
+                        <h4 style="color:var(--accent);"><i class="fas fa-hand-holding-usd"></i> Withholding</h4>
+                        <ul>
                             <li>PPh Pasal 21 (gaji karyawan)</li>
                             <li>PPh Pasal 22 (bendahara &amp; impor)</li>
                             <li>PPh Pasal 23 (jasa &amp; sewa)</li>
@@ -981,9 +1302,9 @@
                         </ul>
                     </div>
                 </div>
-                <div style="background: rgba(248,113,113,0.06); padding:16px 18px; border-radius:8px; border-left:4px solid var(--danger); margin-bottom:10px;">
-                    <h4 style="font-size:1rem; margin-bottom:6px; color:var(--danger);"><i class="fas fa-exclamation-circle"></i> Official Assessment (Terbatas)</h4>
-                    <ul style="font-size:0.9rem; padding-left:18px; margin:0;">
+                <div class="impl-box danger" style="margin-bottom: 10px;">
+                    <h4><i class="fas fa-exclamation-circle"></i> Official Assessment (Terbatas)</h4>
+                    <ul>
                         <li>Surat Ketetapan Pajak Kurang Bayar (SKPKB)</li>
                         <li>Surat Ketetapan Pajak Kurang Bayar Tambahan (SKPKBT)</li>
                         <li>Surat Ketetapan Pajak Nihil (SKPN)</li>
@@ -1001,7 +1322,7 @@
             <div class="materi-text-left">
                 <p>Jawablah pertanyaan-pertanyaan berikut untuk menguji pemahaman Anda tentang sistem pemungutan pajak.</p>
                 <br />
-                <ol style="padding-left:20px; line-height:2;">
+                <ol style="padding-left:18px; line-height:2; font-size:0.9rem;">
                     <li><strong>Jelaskan perbedaan utama antara Self Assessment System dan Official Assessment System!</strong></li>
                     <li><strong>Sebutkan 3 contoh penerapan Withholding System di Indonesia beserta jenis pajaknya!</strong></li>
                     <li><strong>Mengapa Indonesia lebih memilih Self Assessment System sebagai sistem utama?</strong></li>
@@ -1089,7 +1410,7 @@
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => { loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500); }, 1000);
+                setTimeout(() => { loader.style.display = 'none'; }, 500); }, 800);
         });
     </script>
 </body>
