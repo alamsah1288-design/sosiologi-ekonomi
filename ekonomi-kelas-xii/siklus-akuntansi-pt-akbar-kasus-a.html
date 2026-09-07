@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Latihan Siklus Akuntansi Dasar PT AKBAR Periode Juli 2026 - Kasus A Tanpa Penyesuaian">
+<title>Siklus Akuntansi PT AKBAR - Kasus A (Tanpa Penyesuaian)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --primary: #1e40af;
+    --primary-light: #3b82f6;
+    --secondary: #059669;
+    --accent: #dc2626;
+    --warning: #f59e0b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+    padding-bottom: 80px;
+  }
+  
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 24px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  header h1 { font-size: 1.3rem; margin-bottom: 4px; }
+  header p { font-size: 0.85rem; opacity: 0.9; }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  /* CATATAN KONVENSI */
+  .convention-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid var(--warning);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  
+  .convention-box h3 {
+    color: #92400e;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .convention-box p {
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    color: #78350f;
+  }
+  
+  .convention-box table {
+    width: 100%;
+    font-size: 0.82rem;
+    margin-top: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .convention-box th {
+    background: #92400e;
+    color: white;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .convention-box td {
+    padding: 6px 8px;
+    background: white;
+    border-bottom: 1px solid #fde68a;
+  }
+  
+  .convention-box code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  
+  /* Navigasi Daftar Isi */
+  .nav-toc {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  
+  .nav-toc h2 {
+    font-size: 1rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+  }
+  
+  .toc-grid a {
+    display: block;
+    padding: 8px 10px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    border-left: 3px solid var(--primary-light);
+  }
+  
+  .toc-grid a:hover {
+    background: var(--primary-light);
+    color: white;
+    transform: translateX(2px);
+  }
+  
+  /* Kartu Tahap */
+  .stage {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary);
+  }
+  
+  .stage.misconception { border-top-color: var(--accent); }
+  .stage.warning-stage { border-top-color: var(--warning); }
+  
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  
+  .stage-num {
+    background: var(--primary);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .stage-num.warn { background: var(--accent); }
+  .stage-num.opt { background: var(--warning); }
+  
+  .stage-header h2 {
+    font-size: 1.05rem;
+    color: var(--primary);
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .stage-header .badge {
+    background: var(--secondary);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  .badge.skip { background: #94a3b8; }
+  .badge.opt { background: var(--warning); }
+  
+  .stage p, .stage li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .stage h3 {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 14px 0 8px 0;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary-light);
+  }
+  
+  /* Tabel */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    min-width: 500px;
+  }
+  
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  
+  tr:nth-child(even) td { background: #f8fafc; }
+  tr:hover td { background: #eff6ff; }
+  
+  td.num, th.num { text-align: right; font-family: 'Courier New', monospace; }
+  td.center, th.center { text-align: center; }
+  
+  .total-row td {
+    background: #dbeafe !important;
+    font-weight: bold;
+    border-top: 2px solid var(--primary);
+  }
+  
+  /* Info Box */
+  .info-box {
+    background: #eff6ff;
+    border-left: 4px solid var(--primary-light);
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  
+  .warn-box {
+    background: #fef3c7;
+    border-left: 4px solid var(--warning);
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  
+  .danger-box {
+    background: #fee2e2;
+    border-left: 4px solid var(--accent);
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  
+  .success-box {
+    background: #d1fae5;
+    border-left: 4px solid var(--secondary);
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  
+  .flow-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px dashed var(--primary-light);
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.85rem;
+    margin: 12px 0;
+  }
+  
+  .flow-box .arrow {
+    color: var(--primary);
+    font-weight: bold;
+    display: block;
+    margin: 4px 0;
+  }
+  
+  /* Jurnal Entry */
+  .journal-entry {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    overflow-x: auto;
+  }
+  
+  .journal-entry .date {
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .journal-entry .credit {
+    padding-left: 20px;
+    color: #475569;
+  }
+  
+  /* FAQ */
+  details {
+    background: #f1f5f9;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin: 8px 0;
+    border-left: 3px solid var(--primary-light);
+  }
+  
+  details summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 0.9rem;
+    padding: 4px 0;
+    list-style: none;
+  }
+  
+  details summary::-webkit-details-marker { display: none; }
+  
+  details summary::before {
+    content: "▶ ";
+    display: inline-block;
+    transition: transform 0.2s;
+    margin-right: 6px;
+  }
+  
+  details[open] summary::before { transform: rotate(90deg); }
+  
+  details p {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  
+  /* Analogi */
+  .analogy-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid var(--warning);
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+  }
+  
+  .analogy-box strong { color: #92400e; }
+  
+  /* Cek Silang */
+  .crosscheck-box {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left: 4px solid var(--secondary);
+    padding: 14px;
+    border-radius: 8px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+  }
+  
+  .crosscheck-box h4 {
+    color: var(--secondary);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .crosscheck-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .crosscheck-box li {
+    padding: 4px 0 4px 24px;
+    position: relative;
+  }
+  
+  .crosscheck-box li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-weight: bold;
+  }
+  
+  /* Summary Table */
+  .summary-table {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--primary);
+  }
+  
+  .summary-table h2 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+  }
+  
+  .summary-table table { min-width: 300px; }
+  .summary-table th { background: var(--secondary); }
+  
+  /* Tombol Kembali ke Atas */
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    z-index: 99;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .back-to-top:hover {
+    background: var(--primary-light);
+    transform: translateY(-3px);
+  }
+  
+  .back-to-top:active { transform: translateY(0); }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    margin-top: 30px;
+  }
+  
+  /* RESPONSIVE - Mobile First */
+  @media (max-width: 640px) {
+    body { font-size: 14px; padding-bottom: 90px; }
+    header { padding: 18px 12px; }
+    header h1 { font-size: 1.1rem; }
+    header p { font-size: 0.75rem; }
+    .container { padding: 10px; }
+    .stage { padding: 14px; }
+    .stage-header h2 { font-size: 0.95rem; }
+    .toc-grid { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 0.75rem; min-width: 400px; }
+    th, td { padding: 6px 5px; }
+    .info-box, .warn-box, .success-box, .danger-box, .analogy-box, .crosscheck-box, .convention-box {
+      font-size: 0.8rem;
+      padding: 10px;
+    }
+    .back-to-top { width: 44px; height: 44px; font-size: 1.3rem; bottom: 15px; right: 15px; }
+    .stage-num { width: 32px; height: 32px; font-size: 0.85rem; }
+    .journal-entry { font-size: 0.75rem; }
+    .convention-box h3 { font-size: 0.95rem; }
+  }
+  
+  @media (max-width: 380px) {
+    .toc-grid { grid-template-columns: 1fr; }
+    .stage-header { gap: 8px; }
+    .stage-header h2 { font-size: 0.9rem; min-width: 120px; }
+    .badge { font-size: 0.65rem; padding: 2px 8px; }
+  }
+  
+  @media (min-width: 768px) {
+    body { font-size: 16px; }
+    header h1 { font-size: 1.6rem; }
+    .stage { padding: 24px; }
+    .toc-grid { grid-template-columns: repeat(4, 1fr); }
+    .stage-header h2 { font-size: 1.15rem; }
+  }
+  
+  @media (min-width: 1024px) {
+    .container { padding: 24px; }
+    .toc-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  }
+  
+  /* PRINT STYLES */
+  @media print {
+    header {
+      position: static;
+      background: white !important;
+      color: black !important;
+      box-shadow: none;
+      border-bottom: 2px solid black;
+    }
+    .stage {
+      page-break-inside: avoid;
+      box-shadow: none;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+    .nav-toc, .back-to-top, details { display: none; }
+    body { font-size: 11pt; background: white; }
+    .container { max-width: 100%; padding: 0; }
+    .table-wrap { overflow: visible; }
+    table { font-size: 10pt; min-width: auto; }
+    .info-box, .warn-box, .success-box, .danger-box, .convention-box {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Siklus Akuntansi PT AKBAR</h1>
+  <p>Periode Juli 2026 — Kasus A (Tanpa Penyesuaian)</p>
+</header>
+
+<div class="container">
+
+  <!-- CATATAN KONVENSI PENULISAN ANGKA -->
+  <div class="convention-box">
+    <h3>📝 Catatan Konvensi Penulisan Angka</h3>
+    <p>Dokumen ini menggunakan <strong>konvensi penulisan angka yang konsisten</strong> untuk menghindari kebingungan antara <em>juta</em> dan <em>miliar</em>:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Lokasi</th>
+            <th>Format yang Digunakan</th>
+            <th>Contoh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tabel formal (Jurnal, Buku Besar, Neraca, Persamaan Dasar)</td>
+            <td>Angka lengkap dengan titik ribuan</td>
+            <td><code>Rp64.000.000</code></td>
+          </tr>
+          <tr>
+            <td>Teks penjelasan, narasi, miskonsepsi, FAQ</td>
+            <td>Ditulis lengkap "juta"</td>
+            <td><code>Rp64 juta</code> atau <code>64 juta</code></td>
+          </tr>
+          <tr>
+            <td style="color:var(--accent)"><strong>❌ TIDAK DIGUNAKAN</strong></td>
+            <td style="color:var(--accent)">Notasi "M" (rawan dibaca miliar)</td>
+            <td style="color:var(--accent)"><code>64M</code>, <code>55M</code>, <code>14M</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:0.82rem;"><strong>Mengapa?</strong> Di Indonesia, notasi <code>64M</code> sering dibaca sebagai <strong>"64 miliar"</strong> (bukan 64 juta), sehingga berpotensi menimbulkan kesalahan pemahaman hingga 1.000 kali lipat.</p>
+  </div>
+
+  <!-- DAFTAR ISI -->
+  <div class="nav-toc">
+    <h2>📑 Daftar 16 Tahap</h2>
+    <div class="toc-grid">
+      <a href="#tahap1">1. Bukti Transaksi</a>
+      <a href="#tahap2">2. Analisis Transaksi</a>
+      <a href="#tahap3">3. Persamaan Dasar</a>
+      <a href="#tahap4">4. Jurnal Umum</a>
+      <a href="#tahap5">5. Buku Besar</a>
+      <a href="#tahap6">6. Neraca Saldo</a>
+      <a href="#tahap7">7. Data Penyesuaian</a>
+      <a href="#tahap8">8. N.S. Setelah Penyesuaian</a>
+      <a href="#tahap9">9. Worksheet</a>
+      <a href="#tahap10">10. Laba Rugi</a>
+      <a href="#tahap11">11. Perubahan Modal</a>
+      <a href="#tahap12">12. Posisi Keuangan</a>
+      <a href="#tahap13">13. Jurnal Penutup</a>
+      <a href="#tahap14">14. Posting Penutup</a>
+      <a href="#tahap15">15. N.S. Setelah Penutupan</a>
+      <a href="#tahap16">16. Jurnal Pembalik</a>
+      <a href="#miskonsepsi">⚠️ Miskonsepsi</a>
+      <a href="#faq">❓ FAQ</a>
+    </div>
+  </div>
+
+  <!-- RANGKUMAN TAHAPAN -->
+  <div class="summary-table">
+    <h2>📋 Rangkuman Tahapan Kasus A</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">No.</th>
+            <th>Tahap</th>
+            <th class="center">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1</td><td>Bukti Transaksi</td><td class="center">✅</td></tr>
+          <tr><td class="center">2</td><td>Analisis Transaksi</td><td class="center">✅</td></tr>
+          <tr><td class="center">3</td><td>Persamaan Dasar Akuntansi</td><td class="center">✅</td></tr>
+          <tr><td class="center">4</td><td>Jurnal Umum</td><td class="center">✅</td></tr>
+          <tr><td class="center">5</td><td>Buku Besar</td><td class="center">✅</td></tr>
+          <tr><td class="center">6</td><td>Neraca Saldo</td><td class="center">✅</td></tr>
+          <tr><td class="center">7</td><td>Data Penyesuaian & Jurnal Penyesuaian</td><td class="center">—</td></tr>
+          <tr><td class="center">8</td><td>Neraca Saldo Setelah Penyesuaian</td><td class="center">—</td></tr>
+          <tr><td class="center">9</td><td>Worksheet 10 Kolom</td><td class="center">— / langsung laporan</td></tr>
+          <tr><td class="center">10</td><td>Laporan Laba Rugi</td><td class="center">✅</td></tr>
+          <tr><td class="center">11</td><td>Laporan Perubahan Modal</td><td class="center">✅</td></tr>
+          <tr><td class="center">12</td><td>Laporan Posisi Keuangan</td><td class="center">✅</td></tr>
+          <tr><td class="center">13</td><td>Jurnal Penutup</td><td class="center">✅</td></tr>
+          <tr><td class="center">14</td><td>Posting Jurnal Penutup</td><td class="center">✅</td></tr>
+          <tr><td class="center">15</td><td>Neraca Saldo Setelah Penutupan</td><td class="center">✅</td></tr>
+          <tr><td class="center">16</td><td>Jurnal Pembalik</td><td class="center">⚪ Opsional</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAHAP 1 -->
+  <section class="stage" id="tahap1">
+    <div class="stage-header">
+      <div class="stage-num">1</div>
+      <h2>Bukti Transaksi</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Bukti transaksi merupakan dasar awal pencatatan. Setiap transaksi yang terjadi harus memiliki bukti yang menunjukkan bahwa transaksi tersebut benar-benar terjadi.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Bukti transaksi ibarat <strong>struk belanja</strong> saat Anda berbelanja. Tanpa struk, tidak ada bukti bahwa pembelian benar-benar terjadi.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Bukti transaksi adalah fondasi akuntansi. Tanpa bukti yang valid, seluruh pencatatan berikutnya tidak dapat dipertanggungjawabkan (prinsip <em>objective evidence</em>).
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">No.</th>
+            <th>Tanggal</th>
+            <th>No. Bukti</th>
+            <th>Jenis Bukti</th>
+            <th>Uraian Transaksi</th>
+            <th class="num">Nilai (Rp)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1</td><td>1 Juli</td><td>BM-001</td><td>Bukti Kas Masuk</td><td>Setoran modal pemilik berupa kas</td><td class="num">50.000.000</td></tr>
+          <tr><td class="center">2</td><td>2 Juli</td><td>BK-001</td><td>Bukti Kas Keluar</td><td>Pembelian peralatan kantor secara tunai</td><td class="num">10.000.000</td></tr>
+          <tr><td class="center">3</td><td>3 Juli</td><td>FB-001</td><td>Faktur Pembelian</td><td>Pembelian perlengkapan kantor secara kredit</td><td class="num">3.000.000</td></tr>
+          <tr><td class="center">4</td><td>5 Juli</td><td>BM-002</td><td>Bukti Kas Masuk</td><td>Penerimaan pendapatan jasa secara tunai</td><td class="num">8.000.000</td></tr>
+          <tr><td class="center">5</td><td>7 Juli</td><td>BK-002</td><td>Bukti Kas Keluar</td><td>Pembayaran beban gaji karyawan</td><td class="num">4.000.000</td></tr>
+          <tr><td class="center">6</td><td>10 Juli</td><td>FI-001</td><td>Faktur Penjualan</td><td>Pendapatan jasa secara kredit</td><td class="num">6.000.000</td></tr>
+          <tr><td class="center">7</td><td>12 Juli</td><td>BK-003</td><td>Bukti Kas Keluar</td><td>Pembayaran beban sewa kantor</td><td class="num">2.000.000</td></tr>
+          <tr><td class="center">8</td><td>15 Juli</td><td>BK-004</td><td>Bukti Kas Keluar</td><td>Pelunasan utang usaha</td><td class="num">3.000.000</td></tr>
+          <tr><td class="center">9</td><td>20 Juli</td><td>BK-005</td><td>Bukti Kas Keluar</td><td>Pembayaran beban listrik dan air</td><td class="num">1.000.000</td></tr>
+          <tr><td class="center">10</td><td>28 Juli</td><td>BK-006</td><td>Bukti Kas Keluar</td><td>Pengambilan kas oleh pemilik (prive)</td><td class="num">2.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="flow-box">
+      <strong>Alur Tahap 1:</strong><br>
+      Transaksi terjadi <span class="arrow">↓</span>
+      Dibuat/diperoleh bukti transaksi <span class="arrow">↓</span>
+      Bukti menjadi dasar analisis
+    </div>
+  </section>
+
+  <!-- TAHAP 2 -->
+  <section class="stage" id="tahap2">
+    <div class="stage-header">
+      <div class="stage-num">2</div>
+      <h2>Analisis Transaksi</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Setiap transaksi dianalisis untuk menentukan: akun yang terpengaruh, akun yang bertambah, akun yang berkurang, serta pengaruhnya terhadap aset, kewajiban, modal, pendapatan, beban, atau prive.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Analisis transaksi ibarat <strong>menerjemahkan bahasa bisnis</strong> ke dalam bahasa akuntansi. Setiap transaksi "diterjemahkan" menjadi: akun apa yang terpengaruh dan bagaimana.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Analisis yang benar menentukan kebenaran seluruh pencatatan berikutnya. Kesalahan analisis = kesalahan berantai di jurnal, buku besar, hingga laporan keuangan.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">No.</th>
+            <th>Tanggal</th>
+            <th>Transaksi</th>
+            <th>Akun Bertambah</th>
+            <th>Akun Berkurang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1</td><td>1 Juli</td><td>Setoran modal Rp50.000.000</td><td>Kas, Modal</td><td>—</td></tr>
+          <tr><td class="center">2</td><td>2 Juli</td><td>Beli peralatan tunai Rp10.000.000</td><td>Peralatan</td><td>Kas</td></tr>
+          <tr><td class="center">3</td><td>3 Juli</td><td>Beli perlengkapan kredit Rp3.000.000</td><td>Perlengkapan, Utang Usaha</td><td>—</td></tr>
+          <tr><td class="center">4</td><td>5 Juli</td><td>Pendapatan jasa tunai Rp8.000.000</td><td>Kas, Pendapatan Jasa</td><td>—</td></tr>
+          <tr><td class="center">5</td><td>7 Juli</td><td>Bayar gaji Rp4.000.000</td><td>Beban Gaji</td><td>Kas</td></tr>
+          <tr><td class="center">6</td><td>10 Juli</td><td>Pendapatan jasa kredit Rp6.000.000</td><td>Piutang Usaha, Pendapatan Jasa</td><td>—</td></tr>
+          <tr><td class="center">7</td><td>12 Juli</td><td>Bayar sewa Rp2.000.000</td><td>Beban Sewa</td><td>Kas</td></tr>
+          <tr><td class="center">8</td><td>15 Juli</td><td>Lunasi utang Rp3.000.000</td><td>—</td><td>Kas, Utang Usaha</td></tr>
+          <tr><td class="center">9</td><td>20 Juli</td><td>Bayar listrik & air Rp1.000.000</td><td>Beban Listrik & Air</td><td>Kas</td></tr>
+          <tr><td class="center">10</td><td>28 Juli</td><td>Prive Rp2.000.000</td><td>Prive</td><td>Kas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contoh Analisis</h3>
+    <div class="info-box">
+      <strong>1 Juli:</strong> Pemilik menyetor kas Rp50.000.000 → Kas bertambah, Modal bertambah.<br>
+      <strong>2 Juli:</strong> Beli peralatan tunai Rp10.000.000 → Peralatan bertambah, Kas berkurang.<br>
+      <strong>3 Juli:</strong> Beli perlengkapan kredit Rp3.000.000 → Perlengkapan bertambah, Utang Usaha bertambah.<br>
+      <strong>10 Juli:</strong> Pendapatan jasa kredit Rp6.000.000 → Piutang bertambah, Pendapatan bertambah.<br>
+      <strong>15 Juli:</strong> Lunasi utang Rp3.000.000 → Utang berkurang, Kas berkurang.
+    </div>
+    
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi umum:</strong> "Pendapatan = Kas Masuk"<br>
+      Perhatikan transaksi 10 Juli: Pendapatan jasa kredit Rp6.000.000 <strong>tidak menambah kas</strong>, tetapi menambah <strong>Piutang Usaha</strong>. Ini prinsip <em>accrual basis</em> — pendapatan diakui saat terjadi, bukan saat kas diterima.
+    </div>
+  </section>
+
+  <!-- TAHAP 3 -->
+  <section class="stage" id="tahap3">
+    <div class="stage-header">
+      <div class="stage-num">3</div>
+      <h2>Persamaan Dasar Akuntansi</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p><strong>ASET = KEWAJIBAN + EKUITAS</strong></p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Persamaan dasar akuntansi ibarat <strong>timbangan</strong> yang harus selalu seimbang. Sisi kiri (Aset) harus selalu sama dengan sisi kanan (Kewajiban + Ekuitas).
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Persamaan dasar akuntansi memvisualisasikan pengaruh transaksi terhadap Aset = Kewajiban + Ekuitas secara real-time. Ini fondasi sebelum masuk ke jurnal.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">No.</th>
+            <th>Tanggal</th>
+            <th>Keterangan</th>
+            <th class="num">Kas</th>
+            <th class="num">Perlengkapan</th>
+            <th class="num">Peralatan</th>
+            <th class="num">Piutang</th>
+            <th class="num">Utang</th>
+            <th class="num">Modal</th>
+            <th class="num">Pendapatan</th>
+            <th class="num">Beban</th>
+            <th class="num">Prive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">0</td><td>—</td><td>Saldo Awal</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td class="center">1</td><td>1 Juli</td><td>Setoran Modal</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td class="center">2</td><td>2 Juli</td><td>Beli Peralatan</td><td class="num">40.000.000</td><td class="num">0</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td class="center">3</td><td>3 Juli</td><td>Beli Perlengkapan Kredit</td><td class="num">40.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td class="center">4</td><td>5 Juli</td><td>Pendapatan Jasa Tunai</td><td class="num">48.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">8.000.000</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td class="center">5</td><td>7 Juli</td><td>Beban Gaji</td><td class="num">44.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">8.000.000</td><td class="num">4.000.000</td><td class="num">0</td></tr>
+          <tr><td class="center">6</td><td>10 Juli</td><td>Pendapatan Jasa Kredit</td><td class="num">44.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">4.000.000</td><td class="num">0</td></tr>
+          <tr><td class="center">7</td><td>12 Juli</td><td>Beban Sewa</td><td class="num">42.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">6.000.000</td><td class="num">0</td></tr>
+          <tr><td class="center">8</td><td>15 Juli</td><td>Pelunasan Utang</td><td class="num">39.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">6.000.000</td><td class="num">0</td></tr>
+          <tr><td class="center">9</td><td>20 Juli</td><td>Beban Listrik & Air</td><td class="num">38.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">7.000.000</td><td class="num">0</td></tr>
+          <tr class="total-row"><td class="center">10</td><td>28 Juli</td><td>Prive</td><td class="num">36.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">7.000.000</td><td class="num">2.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="success-box">
+      <strong>Verifikasi Akhir:</strong><br>
+      Total Aset = Kas 36.000.000 + Piutang 6.000.000 + Perlengkapan 3.000.000 + Peralatan 10.000.000 = <strong>Rp55.000.000 (55 juta)</strong><br>
+      Total Kewajiban + Ekuitas = 0 + (50.000.000 + 14.000.000 − 7.000.000 − 2.000.000) = <strong>Rp55.000.000 (55 juta)</strong><br>
+      ✅ <strong>Aset = Kewajiban + Ekuitas → SEIMBANG</strong>
+    </div>
+    
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi umum:</strong> "Perlengkapan = Peralatan"<br>
+      • <strong>Perlengkapan (supplies)</strong>: habis pakai (kertas, tinta, pulpen) — dicatat sebagai aset, kemudian menjadi beban saat terpakai.<br>
+      • <strong>Peralatan (equipment)</strong>: tahan lama (komputer, meja, mesin) — dicatat sebagai aset dan disusutkan selama masa manfaat.
+    </div>
+  </section>
+
+  <!-- TAHAP 4 -->
+  <section class="stage" id="tahap4">
+    <div class="stage-header">
+      <div class="stage-num">4</div>
+      <h2>Jurnal Umum</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Transaksi dicatat secara kronologis. Akun yang bertambah di sisi debit dicatat di Debit, akun yang berkurang di Kredit.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Jurnal umum ibarat <strong>buku harian transaksi</strong>. Setiap hari, semua transaksi dicatat secara berurutan dengan format debit-kredit.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Jurnal umum adalah catatan pertama transaksi dalam format akuntansi formal. Dari sinilah data akan diposting ke buku besar.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Keterangan</th>
+            <th class="num">Debit (Rp)</th>
+            <th class="num">Kredit (Rp)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1 Juli</td><td>Kas<br><span style="padding-left:15px;color:#64748b">Modal</span></td><td class="num">50.000.000<br>—</td><td class="num">—<br>50.000.000</td></tr>
+          <tr><td>2 Juli</td><td>Peralatan<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">10.000.000<br>—</td><td class="num">—<br>10.000.000</td></tr>
+          <tr><td>3 Juli</td><td>Perlengkapan<br><span style="padding-left:15px;color:#64748b">Utang Usaha</span></td><td class="num">3.000.000<br>—</td><td class="num">—<br>3.000.000</td></tr>
+          <tr><td>5 Juli</td><td>Kas<br><span style="padding-left:15px;color:#64748b">Pendapatan Jasa</span></td><td class="num">8.000.000<br>—</td><td class="num">—<br>8.000.000</td></tr>
+          <tr><td>7 Juli</td><td>Beban Gaji<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">4.000.000<br>—</td><td class="num">—<br>4.000.000</td></tr>
+          <tr><td>10 Juli</td><td>Piutang Usaha<br><span style="padding-left:15px;color:#64748b">Pendapatan Jasa</span></td><td class="num">6.000.000<br>—</td><td class="num">—<br>6.000.000</td></tr>
+          <tr><td>12 Juli</td><td>Beban Sewa<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">2.000.000<br>—</td><td class="num">—<br>2.000.000</td></tr>
+          <tr><td>15 Juli</td><td>Utang Usaha<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">3.000.000<br>—</td><td class="num">—<br>3.000.000</td></tr>
+          <tr><td>20 Juli</td><td>Beban Listrik & Air<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">1.000.000<br>—</td><td class="num">—<br>1.000.000</td></tr>
+          <tr><td>28 Juli</td><td>Prive<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">2.000.000<br>—</td><td class="num">—<br>2.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="info-box">
+      <strong>Hubungan Tahap 2 → Tahap 4:</strong> Analisis transaksi langsung diterjemahkan ke debit/kredit. Contoh: 2 Juli Peralatan bertambah → Debit Peralatan Rp10.000.000; Kas berkurang → Kredit Kas Rp10.000.000.
+    </div>
+  </section>
+
+  <!-- TAHAP 5 -->
+  <section class="stage" id="tahap5">
+    <div class="stage-header">
+      <div class="stage-num">5</div>
+      <h2>Buku Besar</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Jurnal umum diposting ke akun masing-masing dalam buku besar untuk mengetahui saldo akhir tiap akun.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Buku besar ibarat <strong>laci-laci terpisah</strong> di lemari arsip. Setiap akun memiliki lacinya sendiri. Semua transaksi yang berkaitan dengan "Kas" masuk ke laci Kas, "Piutang" ke laci Piutang, dst.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Buku besar mengelompokkan transaksi per akun sehingga kita dapat mengetahui saldo akhir setiap akun. Tanpa buku besar, mustahil menyusun laporan keuangan.
+    </div>
+    
+    <h3>A. Buku Besar Kas</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody>
+          <tr><td>1 Juli</td><td>Setoran Modal</td><td class="num">50.000.000</td><td class="num">—</td><td class="num">50.000.000</td></tr>
+          <tr><td>2 Juli</td><td>Beli Peralatan</td><td class="num">—</td><td class="num">10.000.000</td><td class="num">40.000.000</td></tr>
+          <tr><td>5 Juli</td><td>Pendapatan Jasa Tunai</td><td class="num">8.000.000</td><td class="num">—</td><td class="num">48.000.000</td></tr>
+          <tr><td>7 Juli</td><td>Beban Gaji</td><td class="num">—</td><td class="num">4.000.000</td><td class="num">44.000.000</td></tr>
+          <tr><td>12 Juli</td><td>Beban Sewa</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">42.000.000</td></tr>
+          <tr><td>15 Juli</td><td>Pelunasan Utang</td><td class="num">—</td><td class="num">3.000.000</td><td class="num">39.000.000</td></tr>
+          <tr><td>20 Juli</td><td>Beban Listrik & Air</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">38.000.000</td></tr>
+          <tr class="total-row"><td>28 Juli</td><td>Prive</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">36.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>B. Buku Besar Piutang Usaha</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody><tr><td>10 Juli</td><td>Pendapatan Jasa Kredit</td><td class="num">6.000.000</td><td class="num">—</td><td class="num">6.000.000</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3>C. Buku Besar Perlengkapan</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody><tr><td>3 Juli</td><td>Beli Perlengkapan Kredit</td><td class="num">3.000.000</td><td class="num">—</td><td class="num">3.000.000</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3>D. Buku Besar Peralatan</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody><tr><td>2 Juli</td><td>Beli Peralatan Tunai</td><td class="num">10.000.000</td><td class="num">—</td><td class="num">10.000.000</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3>E. Buku Besar Utang Usaha</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody>
+          <tr><td>3 Juli</td><td>Beli Perlengkapan Kredit</td><td class="num">—</td><td class="num">3.000.000</td><td class="num">3.000.000</td></tr>
+          <tr><td>15 Juli</td><td>Pelunasan Utang</td><td class="num">3.000.000</td><td class="num">—</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="info-box">
+      💡 <strong>Perhatikan:</strong> Utang Usaha pernah bersaldo Rp3.000.000 (3 Juli), tetapi setelah pelunasan (15 Juli) menjadi Rp0. Artinya perusahaan pernah berutang tetapi sudah melunasinya.
+    </div>
+
+    <h3>F. Buku Besar Modal</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody><tr><td>1 Juli</td><td>Setoran Modal</td><td class="num">—</td><td class="num">50.000.000</td><td class="num">50.000.000</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3>G. Buku Besar Pendapatan Jasa</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th><th class="num">Saldo</th></tr></thead>
+        <tbody>
+          <tr><td>5 Juli</td><td>Pendapatan Jasa Tunai</td><td class="num">—</td><td class="num">8.000.000</td><td class="num">8.000.000</td></tr>
+          <tr><td>10 Juli</td><td>Pendapatan Jasa Kredit</td><td class="num">—</td><td class="num">6.000.000</td><td class="num">14.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>H–K. Buku Besar Beban & Prive</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Akun</th><th>Tanggal</th><th class="num">Debit</th><th class="num">Saldo</th></tr></thead>
+        <tbody>
+          <tr><td>Beban Gaji</td><td>7 Juli</td><td class="num">4.000.000</td><td class="num">4.000.000</td></tr>
+          <tr><td>Beban Sewa</td><td>12 Juli</td><td class="num">2.000.000</td><td class="num">2.000.000</td></tr>
+          <tr><td>Beban Listrik & Air</td><td>20 Juli</td><td class="num">1.000.000</td><td class="num">1.000.000</td></tr>
+          <tr><td>Prive</td><td>28 Juli</td><td class="num">2.000.000</td><td class="num">2.000.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TAHAP 6 -->
+  <section class="stage" id="tahap6">
+    <div class="stage-header">
+      <div class="stage-num">6</div>
+      <h2>Neraca Saldo</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Neraca Saldo disusun dari saldo akhir akun-akun di buku besar untuk memeriksa keseimbangan debit dan kredit.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Neraca Saldo ibarat <strong>cek daftar isi</strong> sebelum menulis laporan akhir. Tujuannya memastikan semua data sudah lengkap dan seimbang.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Neraca Saldo adalah alat verifikasi. Jika Debit ≠ Kredit, berarti ada kesalahan di tahap sebelumnya yang harus diperbaiki sebelum menyusun laporan keuangan.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th class="center">No.</th><th>Nama Akun</th><th class="num">Debit (Rp)</th><th class="num">Kredit (Rp)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1</td><td>Kas</td><td class="num">36.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">2</td><td>Piutang Usaha</td><td class="num">6.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">3</td><td>Perlengkapan</td><td class="num">3.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">4</td><td>Peralatan</td><td class="num">10.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">5</td><td>Utang Usaha</td><td class="num">—</td><td class="num">0</td></tr>
+          <tr><td class="center">6</td><td>Modal</td><td class="num">—</td><td class="num">50.000.000</td></tr>
+          <tr><td class="center">7</td><td>Pendapatan Jasa</td><td class="num">—</td><td class="num">14.000.000</td></tr>
+          <tr><td class="center">8</td><td>Beban Gaji</td><td class="num">4.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">9</td><td>Beban Sewa</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">10</td><td>Beban Listrik & Air</td><td class="num">1.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">11</td><td>Prive</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+          <tr class="total-row"><td></td><td><strong>TOTAL</strong></td><td class="num"><strong>64.000.000</strong></td><td class="num"><strong>64.000.000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="success-box">
+      ✅ <strong>Total Debit = Total Kredit = Rp64.000.000 (64 juta) → SEIMBANG</strong>
+    </div>
+    
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi umum:</strong> "Neraca Saldo = Neraca"<br>
+      • <strong>Neraca Saldo (Trial Balance)</strong>: daftar saldo akun untuk mengecek keseimbangan D=K. Bukan laporan keuangan.<br>
+      • <strong>Neraca (Balance Sheet)</strong>: laporan posisi keuangan yang menunjukkan Aset, Kewajiban, dan Ekuitas pada tanggal tertentu.
+    </div>
+  </section>
+
+  <!-- TAHAP 7, 8, 9 - SKIP -->
+  <section class="stage" id="tahap7">
+    <div class="stage-header">
+      <div class="stage-num">7</div>
+      <h2>Data Penyesuaian & Jurnal Penyesuaian</h2>
+      <span class="badge skip">— Tidak Ada</span>
+    </div>
+    <p>Pada <strong>Kasus A</strong>, tidak terdapat data penyesuaian. Maka tahap ini dilewati.</p>
+  </section>
+
+  <section class="stage" id="tahap8">
+    <div class="stage-header">
+      <div class="stage-num">8</div>
+      <h2>Neraca Saldo Setelah Penyesuaian</h2>
+      <span class="badge skip">— Tidak Ada</span>
+    </div>
+    <p>Karena tidak ada jurnal penyesuaian, tahap ini juga dilewati. Langsung menuju penyusunan laporan keuangan dari Neraca Saldo Tahap 6.</p>
+  </section>
+
+  <section class="stage" id="tahap9">
+    <div class="stage-header">
+      <div class="stage-num">9</div>
+      <h2>Worksheet 10 Kolom</h2>
+      <span class="badge skip">— / Langsung Laporan</span>
+    </div>
+    <p>Pada Kasus A, worksheet tidak wajib dibuat. Laporan keuangan dapat langsung disusun dari <strong>Neraca Saldo Tahap 6</strong>.</p>
+  </section>
+
+  <!-- TAHAP 10 -->
+  <section class="stage" id="tahap10">
+    <div class="stage-header">
+      <div class="stage-num">10</div>
+      <h2>Laporan Laba Rugi</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Laporan laba rugi menunjukkan hasil usaha selama periode Juli 2026.</p>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Laporan Laba Rugi menjawab pertanyaan: "Apakah perusahaan untung atau rugi bulan ini?" Ini adalah indikator kinerja utama.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th colspan="2" style="text-align:center;background:var(--primary)">PT AKBAR — Laporan Laba Rugi<br><strong>Untuk Periode yang Berakhir 31 Juli 2026</strong></th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pendapatan Jasa</strong></td><td class="num"><strong>14.000.000</strong></td></tr>
+          <tr><td colspan="2"><em>Beban-Beban:</em></td></tr>
+          <tr><td style="padding-left:20px">Beban Gaji</td><td class="num">4.000.000</td></tr>
+          <tr><td style="padding-left:20px">Beban Sewa</td><td class="num">2.000.000</td></tr>
+          <tr><td style="padding-left:20px">Beban Listrik & Air</td><td class="num">1.000.000</td></tr>
+          <tr><td><strong>Total Beban</strong></td><td class="num"><strong>7.000.000</strong></td></tr>
+          <tr class="total-row"><td><strong>LABA BERSIH</strong></td><td class="num"><strong>7.000.000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi KRITIS:</strong> "Laba bersih = uang kas yang bisa diambil"<br>
+      ✅ <strong>Laba Rp7.000.000 (7 juta) ≠ Kas Rp36.000.000 (36 juta)</strong><br>
+      Laba adalah konsep <em>akrual</em> (pendapatan − beban), sedangkan kas adalah konsep <em>riil</em> (uang yang benar-benar ada). Perusahaan bisa saja laba besar tetapi kas sedikit (karena banyak piutang), atau sebaliknya.
+    </div>
+    
+    <div class="warn-box">
+      📝 <strong>Perhatikan judul periode:</strong> "Untuk Periode yang Berakhir 31 Juli 2026" — ini menunjukkan laporan mencakup <strong>seluruh bulan Juli</strong>, bukan hanya tanggal 31 Juli.
+    </div>
+  </section>
+
+  <!-- TAHAP 11 -->
+  <section class="stage" id="tahap11">
+    <div class="stage-header">
+      <div class="stage-num">11</div>
+      <h2>Laporan Perubahan Modal</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Laporan Perubahan Modal menjembatani Laba Rugi dan Neraca. Modal akhir di sini akan muncul di Neraca.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th colspan="2" style="text-align:center;background:var(--primary)">PT AKBAR — Laporan Perubahan Modal<br><strong>Untuk Periode yang Berakhir 31 Juli 2026</strong></th></tr></thead>
+        <tbody>
+          <tr><td>Modal Awal</td><td class="num">50.000.000</td></tr>
+          <tr><td>Ditambah: Laba Bersih</td><td class="num">7.000.000</td></tr>
+          <tr><td><em>Jumlah</em></td><td class="num"><em>57.000.000</em></td></tr>
+          <tr><td>Dikurangi: Prive</td><td class="num">(2.000.000)</td></tr>
+          <tr class="total-row"><td><strong>MODAL AKHIR</strong></td><td class="num"><strong>55.000.000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi KRITIS:</strong> "Prive adalah beban"<br>
+      ✅ <strong>Prive BUKAN beban.</strong> Prive adalah pengambilan pemilik untuk keperluan pribadi, sehingga <strong>langsung mengurangi modal</strong>, tidak masuk Laporan Laba Rugi.<br>
+      Jika Prive dianggap beban, maka laba akan salah hitung.
+    </div>
+  </section>
+
+  <!-- TAHAP 12 -->
+  <section class="stage" id="tahap12">
+    <div class="stage-header">
+      <div class="stage-num">12</div>
+      <h2>Laporan Posisi Keuangan (Neraca)</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Neraca menunjukkan "potret" kesehatan keuangan perusahaan pada satu tanggal tertentu. Investor dan kreditur paling sering melihat laporan ini.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th colspan="2" style="text-align:center;background:var(--primary)">PT AKBAR — Laporan Posisi Keuangan<br><strong>Per 31 Juli 2026</strong></th></tr></thead>
+        <tbody>
+          <tr style="background:#dbeafe"><td colspan="2"><strong>A. ASET</strong></td></tr>
+          <tr><td style="padding-left:20px">Kas</td><td class="num">36.000.000</td></tr>
+          <tr><td style="padding-left:20px">Piutang Usaha</td><td class="num">6.000.000</td></tr>
+          <tr><td style="padding-left:20px">Perlengkapan</td><td class="num">3.000.000</td></tr>
+          <tr><td style="padding-left:20px">Peralatan</td><td class="num">10.000.000</td></tr>
+          <tr><td><strong>Total Aset</strong></td><td class="num"><strong>55.000.000</strong></td></tr>
+          
+          <tr style="background:#dbeafe"><td colspan="2"><strong>B. KEWAJIBAN & EKUITAS</strong></td></tr>
+          <tr><td><em>Kewajiban:</em></td><td></td></tr>
+          <tr><td style="padding-left:20px">Utang Usaha</td><td class="num">0</td></tr>
+          <tr><td><strong>Total Kewajiban</strong></td><td class="num"><strong>0</strong></td></tr>
+          <tr><td><em>Ekuitas:</em></td><td></td></tr>
+          <tr><td style="padding-left:20px">Modal Akhir</td><td class="num">55.000.000</td></tr>
+          <tr><td><strong>Total Ekuitas</strong></td><td class="num"><strong>55.000.000</strong></td></tr>
+          <tr class="total-row"><td><strong>Total Kewajiban + Ekuitas</strong></td><td class="num"><strong>55.000.000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="success-box">
+      ✅ <strong>Aset (55 juta) = Kewajiban (0) + Ekuitas (55 juta) → SEIMBANG</strong>
+    </div>
+
+    <div class="warn-box">
+      📝 <strong>Perhatikan judul:</strong> "Per 31 Juli 2026" — Neraca adalah <em>foto sesaat</em> pada satu tanggal, bukan periode. Berbeda dengan Laba Rugi yang mencakup satu periode.
+    </div>
+    
+    <!-- CEK SILANG ANTAR LAPORAN -->
+    <div class="crosscheck-box">
+      <h4>🔗 Cek Silang Antar Laporan Keuangan</h4>
+      <ul>
+        <li>Laba Bersih di Laba Rugi (<strong>Rp7.000.000 / 7 juta</strong>) = angka yang ditambah di Perubahan Modal ✓</li>
+        <li>Modal Akhir di Perubahan Modal (<strong>Rp55.000.000 / 55 juta</strong>) = Modal di Neraca ✓</li>
+        <li>Total Aset di Neraca (<strong>Rp55.000.000 / 55 juta</strong>) = Total Aset di Persamaan Dasar ✓</li>
+        <li>Modal Akhir (<strong>Rp55.000.000 / 55 juta</strong>) = Modal di Neraca Saldo Setelah Penutupan ✓</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TAHAP 13 -->
+  <section class="stage" id="tahap13">
+    <div class="stage-header">
+      <div class="stage-num">13</div>
+      <h2>Jurnal Penutup</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Akun nominal (pendapatan, beban) dan prive ditutup ke Ikhtisar Laba/Rugi dan Modal agar siap digunakan pada periode berikutnya.</p>
+    
+    <div class="analogy-box">
+      💡 <strong>Analogi:</strong> Jurnal penutup ibarat <strong>menutup buku lama dan menyiapkan buku baru</strong>. Akun nominal (pendapatan, beban) di-reset ke nol agar periode berikutnya bisa mencatat dari awal.
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Tanpa jurnal penutup, saldo pendapatan/beban periode lalu akan tercampur dengan periode baru, sehingga laporan keuangan menjadi tidak valid.
+    </div>
+
+    <h3>Tahap 1 — Menutup Pendapatan</h3>
+    <div class="journal-entry">
+      <div class="date">31 Juli 2026</div>
+      Pendapatan Jasa <span style="float:right">D 14.000.000</span><br>
+      <span class="credit">Ikhtisar Laba/Rugi <span style="float:right">K 14.000.000</span></span>
+    </div>
+
+    <h3>Tahap 2 — Menutup Beban</h3>
+    <div class="journal-entry">
+      <div class="date">31 Juli 2026</div>
+      Ikhtisar Laba/Rugi <span style="float:right">D 7.000.000</span><br>
+      <span class="credit">Beban Gaji <span style="float:right">K 4.000.000</span></span><br>
+      <span class="credit">Beban Sewa <span style="float:right">K 2.000.000</span></span><br>
+      <span class="credit">Beban Listrik & Air <span style="float:right">K 1.000.000</span></span>
+    </div>
+    <div class="info-box">Saldo Ikhtisar Laba/Rugi = 14.000.000 − 7.000.000 = <strong>Rp7.000.000 (7 juta, kredit/laba)</strong></div>
+
+    <h3>Tahap 3 — Menutup Laba ke Modal</h3>
+    <div class="journal-entry">
+      <div class="date">31 Juli 2026</div>
+      Ikhtisar Laba/Rugi <span style="float:right">D 7.000.000</span><br>
+      <span class="credit">Modal <span style="float:right">K 7.000.000</span></span>
+    </div>
+
+    <h3>Tahap 4 — Menutup Prive</h3>
+    <div class="journal-entry">
+      <div class="date">31 Juli 2026</div>
+      Modal <span style="float:right">D 2.000.000</span><br>
+      <span class="credit">Prive <span style="float:right">K 2.000.000</span></span>
+    </div>
+
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi umum:</strong> "Jurnal penutup menghapus transaksi"<br>
+      ✅ Jurnal penutup <strong>tidak menghapus transaksi Juli</strong>. Fungsinya hanya menolkan saldo akun nominal dan prive agar siap digunakan pada periode berikutnya. Transaksi asli tetap tersimpan di buku besar.
+    </div>
+    
+    <div class="info-box">
+      💡 <strong>Ikhtisar Laba/Rugi</strong> adalah akun <strong>sementara</strong> yang hanya muncul saat proses penutupan. Setelah ditutup ke Modal, akun ini bersaldo nol dan tidak muncul di periode berikutnya.
+    </div>
+  </section>
+
+  <!-- TAHAP 14 -->
+  <section class="stage" id="tahap14">
+    <div class="stage-header">
+      <div class="stage-num">14</div>
+      <h2>Posting Jurnal Penutup ke Buku Besar</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Posting jurnal penutup memastikan akun-akun buku besar sudah diperbarui dengan saldo akhir yang benar, siap untuk periode berikutnya.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Akun</th><th class="num">Sebelum Penutupan</th><th class="num">Setelah Penutupan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pendapatan Jasa</td><td class="num">14.000.000 K</td><td class="num">0</td></tr>
+          <tr><td>Beban Gaji</td><td class="num">4.000.000 D</td><td class="num">0</td></tr>
+          <tr><td>Beban Sewa</td><td class="num">2.000.000 D</td><td class="num">0</td></tr>
+          <tr><td>Beban Listrik & Air</td><td class="num">1.000.000 D</td><td class="num">0</td></tr>
+          <tr><td>Prive</td><td class="num">2.000.000 D</td><td class="num">0</td></tr>
+          <tr class="total-row"><td>Modal</td><td class="num">50.000.000 K</td><td class="num">55.000.000 K</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      Modal akhir: 50.000.000 + 7.000.000 − 2.000.000 = <strong>Rp55.000.000 (55 juta)</strong>
+    </div>
+
+    <div class="warn-box">
+      ⚠️ <strong>Catatan kritis:</strong> Posting jurnal penutup <em>bukan</em> membuat transaksi baru. Posting hanya memindahkan pengaruh jurnal penutup ke akun buku besar.
+    </div>
+  </section>
+
+  <!-- TAHAP 15 -->
+  <section class="stage" id="tahap15">
+    <div class="stage-header">
+      <div class="stage-num">15</div>
+      <h2>Neraca Saldo Setelah Penutupan</h2>
+      <span class="badge">✓ Selesai</span>
+    </div>
+    <p>Neraca saldo setelah penutupan memastikan akun nominal sudah bersaldo nol, akun permanen tetap bersaldo, dan total debit = kredit.</p>
+    
+    <div class="info-box">
+      🤔 <strong>Kenapa tahap ini penting?</strong><br>
+      Neraca Saldo Setelah Penutupan adalah "garis start" untuk periode berikutnya. Hanya akun permanen (Aset, Kewajiban, Modal) yang tersisa.
+    </div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th class="center">No.</th><th>Nama Akun</th><th class="num">Debit (Rp)</th><th class="num">Kredit (Rp)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1</td><td>Kas</td><td class="num">36.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">2</td><td>Piutang Usaha</td><td class="num">6.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">3</td><td>Perlengkapan</td><td class="num">3.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">4</td><td>Peralatan</td><td class="num">10.000.000</td><td class="num">—</td></tr>
+          <tr><td class="center">5</td><td>Utang Usaha</td><td class="num">—</td><td class="num">0</td></tr>
+          <tr><td class="center">6</td><td>Modal</td><td class="num">—</td><td class="num">55.000.000</td></tr>
+          <tr class="total-row"><td></td><td><strong>TOTAL</strong></td><td class="num"><strong>55.000.000</strong></td><td class="num"><strong>55.000.000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="success-box">
+      ✅ <strong>Total Debit = Total Kredit = Rp55.000.000 (55 juta) → SEIMBANG</strong>
+    </div>
+
+    <div class="danger-box">
+      ⚠️ <strong>Miskonsepsi KRITIS:</strong> "Penurunan Neraca Saldo dari Rp64 juta ke Rp55 juta = perusahaan rugi"<br><br>
+      ✅ <strong>TIDAK BENAR!</strong> Aset perusahaan <strong>tetap Rp55.000.000 (55 juta)</strong>, tidak berkurang.<br><br>
+      <strong>Penjelasan:</strong><br>
+      • Neraca Saldo Tahap 6: D=K = <strong>Rp64.000.000 (64 juta)</strong><br>
+      • Neraca Saldo Setelah Penutupan Tahap 15: D=K = <strong>Rp55.000.000 (55 juta)</strong><br><br>
+      <strong>Mengapa turun 9 juta?</strong><br>
+      Penurunan terjadi karena akun-akun sementara sudah ditutup:<br>
+      📌 <strong>Dari sisi DEBIT</strong> — yang hilang: Beban (7 juta) + Prive (2 juta) = <strong>9 juta</strong><br>
+      📌 <strong>Dari sisi KREDIT</strong> — yang berubah: Pendapatan ditutup (−14 juta) + Modal naik karena laba (+7 juta) + Modal turun karena prive (−2 juta) = <strong>−9 juta</strong><br><br>
+      Kedua sisi turun 9 juta secara seimbang. Yang tersisa hanyalah akun permanen: Aset + Kewajiban + Modal.
+    </div>
+  </section>
+
+  <!-- TAHAP 16 -->
+  <section class="stage" id="tahap16">
+    <div class="stage-header">
+      <div class="stage-num opt">16</div>
+      <h2>Jurnal Pembalik</h2>
+      <span class="badge opt">⚪ Opsional</span>
+    </div>
+    <p>Jurnal pembalik dibuat pada awal periode berikutnya untuk membalik jurnal penyesuaian tertentu.</p>
+    
+    <div class="danger-box">
+      ⚠️ <strong>Pada Kasus A:</strong> Karena <strong>tidak ada jurnal penyesuaian</strong>, maka <strong>tidak ada jurnal pembalik</strong> yang perlu dibuat.<br><br>
+      <strong>Jangan memahami:</strong> ❌ "Setiap perusahaan wajib membuat jurnal pembalik."<br>
+      <strong>Yang benar:</strong> ✅ Jurnal pembalik bersifat opsional dan berkaitan dengan jurnal penyesuaian tertentu pada periode sebelumnya.
+    </div>
+  </section>
+
+  <!-- SECTION MISKONSEPSI UMUM -->
+  <section class="stage misconception" id="miskonsepsi">
+    <div class="stage-header">
+      <div class="stage-num warn">⚠</div>
+      <h2>Miskonsepsi Umum yang Perlu Dihindari</h2>
+    </div>
+    <p>Berikut adalah kesalahan konsep yang sering terjadi pada siswa saat mempelajari siklus akuntansi. Pahami dengan baik agar tidak terjebak!</p>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 1: "Laba bersih = uang kas yang bisa diambil"</strong><br>
+      ✅ <strong>FAKTA:</strong> Laba Rp7.000.000 (7 juta) ≠ Kas Rp36.000.000 (36 juta). Laba adalah konsep akrual (pendapatan − beban), kas adalah konsep riil (uang yang benar-benar ada).
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 2: "Neraca Saldo = Neraca"</strong><br>
+      ✅ <strong>FAKTA:</strong> Neraca Saldo (Trial Balance) = alat verifikasi D=K. Neraca (Balance Sheet) = laporan posisi keuangan.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 3: "Penurunan 64 juta → 55 juta = perusahaan rugi"</strong><br>
+      ✅ <strong>FAKTA:</strong> Penurunan terjadi karena akun nominal & prive sudah ditutup, bukan karena rugi. Aset tetap Rp55.000.000 (55 juta).
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 4: "Prive adalah beban"</strong><br>
+      ✅ <strong>FAKTA:</strong> Prive bukan beban, melainkan pengambilan pemilik yang langsung mengurangi modal, tidak masuk Laba Rugi.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 5: "Perlengkapan = Peralatan"</strong><br>
+      ✅ <strong>FAKTA:</strong> Perlengkapan (supplies) = habis pakai. Peralatan (equipment) = tahan lama dan disusutkan.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 6: "Pendapatan = Kas Masuk"</strong><br>
+      ✅ <strong>FAKTA:</strong> Pendapatan bisa berupa kas (tunai) atau piutang (kredit). Prinsip accrual: diakui saat terjadi, bukan saat kas diterima.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 7: "Utang 0 = Perusahaan tidak pernah berutang"</strong><br>
+      ✅ <strong>FAKTA:</strong> Perusahaan pernah berutang Rp3.000.000 (3 juta) pada 3 Juli tetapi sudah dilunasi pada 15 Juli. Saldo akhir = 0.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 8: "Jurnal penutup = menghapus transaksi"</strong><br>
+      ✅ <strong>FAKTA:</strong> Jurnal penutup hanya menolkan saldo akun nominal. Transaksi asli tetap tersimpan di buku besar.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 9: "Ikhtisar Laba/Rugi = akun permanen"</strong><br>
+      ✅ <strong>FAKTA:</strong> Ikhtisar Laba/Rugi adalah akun <em>sementara</em>, hanya muncul saat proses penutupan, tidak dibawa ke periode berikutnya.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 10: "Modal awal selalu = modal akhir"</strong><br>
+      ✅ <strong>FAKTA:</strong> Modal berubah karena: Laba (+), Rugi (−), Prive (−), Setoran tambahan (+). Modal Awal Rp50.000.000 (50 juta) ≠ Modal Akhir Rp55.000.000 (55 juta).
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 11: "Semua perusahaan wajib buat jurnal pembalik"</strong><br>
+      ✅ <strong>FAKTA:</strong> Jurnal pembalik bersifat opsional, hanya untuk jurnal penyesuaian tertentu. Kasus A tidak memilikinya.
+    </div>
+
+    <div class="danger-box">
+      <strong>❌ MISKONSEPSI 12: "Periode 31 Juli 2026 = satu hari"</strong><br>
+      ✅ <strong>FAKTA:</strong> Laba Rugi & Perubahan Modal = "Untuk Periode yang Berakhir 31 Juli 2026" (seluruh bulan Juli). Neraca = "Per 31 Juli 2026" (foto sesaat).
+    </div>
+  </section>
+
+  <!-- FAQ INTERAKTIF -->
+  <section class="stage warning-stage" id="faq">
+    <div class="stage-header">
+      <div class="stage-num" style="background: var(--warning);">?</div>
+      <h2>FAQ — Pertanyaan yang Sering Muncul</h2>
+    </div>
+    
+    <details>
+      <summary>❓ Kenapa Neraca Saldo turun dari 64 juta ke 55 juta?</summary>
+      <p>Karena akun Pendapatan (14 juta), Beban (7 juta), dan Prive (2 juta) sudah ditutup melalui jurnal penutup. Penurunan 9 juta berasal dari Beban (7 juta) + Prive (2 juta) yang hilang dari sisi Debit. Aset perusahaan tetap Rp55.000.000 (55 juta).</p>
+    </details>
+
+    <details>
+      <summary>❓ Apa bedanya Perlengkapan dan Peralatan?</summary>
+      <p><strong>Perlengkapan (supplies)</strong>: barang habis pakai seperti kertas, tinta, pulpen. Dicatat sebagai aset, kemudian menjadi beban saat terpakai.<br>
+      <strong>Peralatan (equipment)</strong>: barang tahan lama seperti komputer, meja, mesin. Dicatat sebagai aset dan disusutkan selama masa manfaatnya.</p>
+    </details>
+
+    <details>
+      <summary>❓ Kenapa Prive tidak masuk Laporan Laba Rugi?</summary>
+      <p>Karena Prive bukan beban usaha. Prive adalah pengambilan pemilik untuk keperluan pribadi, sehingga langsung mengurangi modal. Jika Prive dimasukkan sebagai beban, maka laba akan salah hitung.</p>
+    </details>
+
+    <details>
+      <summary>❓ Apa bedanya Neraca Saldo dan Neraca?</summary>
+      <p><strong>Neraca Saldo (Trial Balance)</strong>: daftar saldo semua akun untuk mengecek keseimbangan Debit = Kredit. Bukan laporan keuangan.<br>
+      <strong>Neraca (Balance Sheet)</strong>: laporan posisi keuangan yang menunjukkan Aset, Kewajiban, dan Ekuitas pada tanggal tertentu. Merupakan laporan keuangan formal.</p>
+    </details>
+
+    <details>
+      <summary>❓ Kenapa judul laporan berbeda-beda?</summary>
+      <p>• <strong>Laba Rugi & Perubahan Modal</strong>: "Untuk Periode yang Berakhir 31 Juli 2026" — karena mencakup <em>seluruh periode</em> (bulan Juli).<br>
+      • <strong>Neraca</strong>: "Per 31 Juli 2026" — karena merupakan <em>foto sesaat</em> pada satu tanggal tertentu.</p>
+    </details>
+
+    <details>
+      <summary>❓ Apakah perusahaan selalu harus membuat jurnal pembalik?</summary>
+      <p>Tidak. Jurnal pembalik bersifat <strong>opsional</strong> dan hanya dibuat untuk membalik jurnal penyesuaian tertentu (biasanya yang berkaitan dengan akrual/beban dibayar di muka). Pada Kasus A, karena tidak ada jurnal penyesuaian, maka tidak ada jurnal pembalik.</p>
+    </details>
+
+    <details>
+      <summary>❓ Apa itu Ikhtisar Laba/Rugi?</summary>
+      <p>Ikhtisar Laba/Rugi adalah akun <strong>sementara</strong> yang hanya muncul saat proses penutupan buku. Fungsinya menampung saldo pendapatan dan beban sebelum dipindahkan ke Modal. Setelah penutupan selesai, akun ini bersaldo nol dan tidak muncul di periode berikutnya.</p>
+    </details>
+
+    <details>
+      <summary>❓ Kenapa transaksi 10 Juli (pendapatan kredit) tidak menambah kas?</summary>
+      <p>Karena perusahaan menggunakan prinsip <strong>accrual basis</strong> (basis akrual), bukan cash basis. Pendapatan diakui <strong>saat terjadi</strong>, bukan saat kas diterima. Karena jasa diberikan secara kredit, maka yang bertambah adalah Piutang Usaha, bukan Kas. Kas baru akan bertambah saat piutang dilunasi di masa depan.</p>
+    </details>
+
+    <details>
+      <summary>❓ Bagaimana cara mengecek kebenaran laporan keuangan?</summary>
+      <p>Lakukan <strong>cek silang antar laporan</strong>:<br>
+      1. Laba Bersih di Laba Rugi = angka yang ditambah di Perubahan Modal<br>
+      2. Modal Akhir di Perubahan Modal = Modal di Neraca<br>
+      3. Total Aset di Neraca = Total Aset di Persamaan Dasar<br>
+      4. Modal Akhir = Modal di Neraca Saldo Setelah Penutupan<br>
+      Jika semua cocok, berarti laporan keuangan valid.</p>
+    </details>
+
+    <details>
+      <summary>❓ Apa bedanya akun permanen dan akun nominal?</summary>
+      <p><strong>Akun permanen (real account)</strong>: Aset, Kewajiban, Modal — saldonya <em>dibawa ke periode berikutnya</em>.<br>
+      <strong>Akun nominal (nominal account)</strong>: Pendapatan, Beban — saldonya <em>ditutup ke nol</em> setiap akhir periode melalui jurnal penutup.</p>
+    </details>
+
+    <details>
+      <summary>❓ Kenapa notasi "64M" tidak digunakan di dokumen ini?</summary>
+      <p>Di Indonesia, notasi <strong>"64M"</strong> sering dibaca sebagai <strong>"64 miliar"</strong> (bukan 64 juta) karena konvensi internasional (M = Million). Untuk menghindari kesalahan pemahaman hingga 1.000 kali lipat, dokumen ini menggunakan <strong>angka lengkap (Rp64.000.000)</strong> di tabel dan <strong>"64 juta"</strong> di narasi.</p>
+    </details>
+  </section>
+
+  <!-- RANGKUMAN ALUR -->
+  <div class="summary-table">
+    <h2>🔄 Rangkuman Alur Siklus Akuntansi PT AKBAR</h2>
+    <div class="flow-box" style="text-align:left">
+      <strong>TRANSAKSI</strong>
+      <span class="arrow">↓</span>
+      <strong>1. Bukti Transaksi</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>2. Analisis Transaksi</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>3. Persamaan Dasar Akuntansi</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>4. Jurnal Umum</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>5. Buku Besar</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>6. Neraca Saldo</strong> ✅ (D=K = Rp64.000.000 / 64 juta)
+      <span class="arrow">↓</span>
+      <strong>7–9. Penyesuaian</strong> — (dilewati pada Kasus A)
+      <span class="arrow">↓</span>
+      <strong>10. Laporan Laba Rugi</strong> ✅ (Laba Rp7.000.000 / 7 juta)
+      <span class="arrow">↓</span>
+      <strong>11. Laporan Perubahan Modal</strong> ✅ (Modal Akhir Rp55.000.000 / 55 juta)
+      <span class="arrow">↓</span>
+      <strong>12. Laporan Posisi Keuangan</strong> ✅ (Aset = K + E = Rp55.000.000 / 55 juta)
+      <span class="arrow">↓</span>
+      <strong>13. Jurnal Penutup</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>14. Posting Jurnal Penutup</strong> ✅
+      <span class="arrow">↓</span>
+      <strong>15. Neraca Saldo Setelah Penutupan</strong> ✅ (D=K = Rp55.000.000 / 55 juta)
+      <span class="arrow">↓</span>
+      <strong>16. Jurnal Pembalik</strong> ⚪ (Opsional — tidak dibuat pada Kasus A)
+    </div>
+  </div>
+
+  <!-- CEK SILANG FINAL -->
+  <div class="crosscheck-box">
+    <h4>🔗 Verifikasi Akhir — Semua Angka Saling Terkait</h4>
+    <ul>
+      <li><strong>Persamaan Dasar:</strong> Aset 55 juta = Kewajiban 0 + Ekuitas 55 juta ✓</li>
+      <li><strong>Neraca Saldo (Tahap 6):</strong> D=K = Rp64.000.000 (64 juta) ✓</li>
+      <li><strong>Laba Rugi:</strong> Pendapatan 14 juta − Beban 7 juta = Laba 7 juta ✓</li>
+      <li><strong>Perubahan Modal:</strong> 50 juta + 7 juta − 2 juta = Modal Akhir 55 juta ✓</li>
+      <li><strong>Neraca:</strong> Aset 55 juta = Kewajiban 0 + Ekuitas 55 juta ✓</li>
+      <li><strong>Neraca Saldo Setelah Penutupan:</strong> D=K = Rp55.000.000 (55 juta) ✓</li>
+      <li><strong>Semua laporan saling terkait dan konsisten</strong> ✓</li>
+    </ul>
+  </div>
+
+  <footer>
+    📘 Latihan Proses Pencatatan Akuntansi Dasar — PT AKBAR — Juli 2026<br>
+    <small>Dokumen HTML responsif untuk semua perangkat • File: <code>siklus-akuntansi-pt-akbar-kasus-a.html</code></small>
+  </footer>
+
+</div>
+
+<!-- TOMBOL KEMBALI KE ATAS -->
+<button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Kembali ke atas" aria-label="Kembali ke atas">
+  ↑
+</button>
+
+<script>
+  // Smooth scroll untuk anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Tampilkan/sembunyikan tombol back-to-top berdasarkan scroll
+  const backToTopBtn = document.querySelector('.back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 400) {
+      backToTopBtn.style.opacity = '1';
+      backToTopBtn.style.pointerEvents = 'auto';
+    } else {
+      backToTopBtn.style.opacity = '0.3';
+    }
+  });
+</script>
+
+</body>
+</html>

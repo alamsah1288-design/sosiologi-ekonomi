@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Siklus Akuntansi Dasar PT AKBAR Periode Juli 2026 - Kasus B Dengan Penyesuaian">
+<title>Siklus Akuntansi PT AKBAR - Kasus B (Dengan Penyesuaian)</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--primary:#1e40af;--primary-light:#3b82f6;--secondary:#059669;--accent:#dc2626;--warning:#f59e0b;--bg:#f8fafc;--card:#fff;--text:#1e293b;--text-light:#64748b;--border:#e2e8f0;--shadow:0 2px 8px rgba(0,0,0,.06);--shadow-lg:0 4px 16px rgba(0,0,0,.1)}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;padding-bottom:80px}
+  header{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;padding:24px 16px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-lg)}
+  header h1{font-size:1.3rem;margin-bottom:4px}
+  header p{font-size:.85rem;opacity:.9}
+  .container{max-width:1100px;margin:0 auto;padding:16px}
+  .convention-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid var(--warning);border-radius:12px;padding:16px;margin-bottom:20px;box-shadow:var(--shadow)}
+  .convention-box h3{color:#92400e;font-size:1rem;margin-bottom:10px}
+  .convention-box p{font-size:.88rem;margin-bottom:8px;color:#78350f}
+  .convention-box table{width:100%;font-size:.82rem;margin-top:8px;border-radius:6px;overflow:hidden}
+  .convention-box th{background:#92400e;color:#fff;padding:8px;text-align:left}
+  .convention-box td{padding:6px 8px;background:#fff;border-bottom:1px solid #fde68a}
+  .convention-box code{background:#fff;padding:2px 6px;border-radius:4px;font-family:'Courier New',monospace;color:var(--accent);font-weight:700}
+  .nav-toc{background:var(--card);border-radius:12px;padding:16px;margin-bottom:20px;box-shadow:var(--shadow)}
+  .nav-toc h2{font-size:1rem;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+  .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
+  .toc-grid a{display:block;padding:8px 10px;background:#f1f5f9;border-radius:6px;text-decoration:none;color:var(--text);font-size:.78rem;transition:all .2s;border-left:3px solid #a855f7}
+  .toc-grid a:hover{background:#a855f7;color:#fff;transform:translateX(2px)}
+  .stage{background:var(--card);border-radius:12px;padding:18px;margin-bottom:20px;box-shadow:var(--shadow);border-top:4px solid #7c3aed}
+  .stage.misconception{border-top-color:var(--accent)}
+  .stage.warning-stage{border-top-color:var(--warning)}
+  .stage.resume-stage{border-top-color:#0891b2}
+  .stage-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .stage-num{background:#7c3aed;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:.9rem}
+  .stage-num.warn{background:var(--accent)}
+  .stage-num.opt{background:var(--warning)}
+  .stage-num.info{background:#0891b2}
+  .stage-header h2{font-size:1.05rem;color:#7c3aed;flex:1;min-width:150px}
+  .badge{background:var(--secondary);color:#fff;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:600;white-space:nowrap}
+  .badge.skip{background:#94a3b8}
+  .badge.opt{background:var(--warning)}
+  .stage p,.stage li{margin-bottom:8px;font-size:.9rem}
+  .stage h3{font-size:.95rem;color:var(--text);margin:14px 0 8px;padding-left:10px;border-left:3px solid #a855f7}
+  .table-wrap{overflow-x:auto;margin:12px 0;border-radius:8px;border:1px solid var(--border);-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;min-width:500px}
+  th{background:#7c3aed;color:#fff;padding:10px 8px;text-align:left;font-weight:600;white-space:nowrap}
+  td{padding:8px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:nth-child(even) td{background:#f8fafc}
+  tr:hover td{background:#f5f3ff}
+  td.num,th.num{text-align:right;font-family:'Courier New',monospace}
+  td.center,th.center{text-align:center}
+  .total-row td{background:#ede9fe!important;font-weight:700;border-top:2px solid #7c3aed}
+  .info-box{background:#eff6ff;border-left:4px solid var(--primary-light);padding:12px;border-radius:6px;margin:12px 0;font-size:.85rem}
+  .warn-box{background:#fef3c7;border-left:4px solid var(--warning);padding:12px;border-radius:6px;margin:12px 0;font-size:.85rem}
+  .danger-box{background:#fee2e2;border-left:4px solid var(--accent);padding:12px;border-radius:6px;margin:12px 0;font-size:.85rem}
+  .success-box{background:#d1fae5;border-left:4px solid var(--secondary);padding:12px;border-radius:6px;margin:12px 0;font-size:.85rem}
+  .flow-box{background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:2px dashed #a855f7;padding:14px;border-radius:10px;text-align:center;font-size:.85rem;margin:12px 0}
+  .flow-box .arrow{color:#7c3aed;font-weight:700;display:block;margin:4px 0}
+  .journal-entry{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px;margin:10px 0;font-family:'Courier New',monospace;font-size:.82rem;overflow-x:auto}
+  .journal-entry .date{color:#7c3aed;font-weight:700;margin-bottom:4px}
+  .journal-entry .credit{padding-left:20px;color:#475569}
+  details{background:#f1f5f9;padding:10px 14px;border-radius:8px;margin:8px 0;border-left:3px solid #a855f7}
+  details summary{cursor:pointer;font-weight:700;color:#7c3aed;font-size:.9rem;padding:4px 0;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▶ ";display:inline-block;transition:transform .2s;margin-right:6px}
+  details[open] summary::before{transform:rotate(90deg)}
+  details p{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-size:.85rem}
+  .analogy-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:4px solid var(--warning);padding:12px;border-radius:6px;margin:12px 0;font-size:.85rem}
+  .analogy-box strong{color:#92400e}
+  .crosscheck-box{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-left:4px solid var(--secondary);padding:14px;border-radius:8px;margin:14px 0;font-size:.85rem}
+  .crosscheck-box h4{color:var(--secondary);margin-bottom:8px;font-size:.95rem}
+  .crosscheck-box ul{list-style:none;padding:0}
+  .crosscheck-box li{padding:4px 0 4px 24px;position:relative}
+  .crosscheck-box li::before{content:"✓";position:absolute;left:0;color:var(--secondary);font-weight:700}
+  .summary-table{background:var(--card);border-radius:12px;padding:18px;margin:20px 0;box-shadow:var(--shadow-lg);border:2px solid #7c3aed}
+  .summary-table h2{text-align:center;color:#7c3aed;margin-bottom:14px;font-size:1.1rem}
+  .summary-table table{min-width:300px}
+  .summary-table th{background:var(--secondary)}
+  .compare-table td:first-child{font-weight:700;white-space:nowrap}
+  .back-to-top{position:fixed;bottom:20px;right:20px;background:#7c3aed;color:#fff;border:none;border-radius:50%;width:50px;height:50px;font-size:1.5rem;box-shadow:var(--shadow-lg);cursor:pointer;z-index:99;transition:all .3s;display:flex;align-items:center;justify-content:center}
+  .back-to-top:hover{background:#a855f7;transform:translateY(-3px)}
+  footer{text-align:center;padding:20px;color:var(--text-light);font-size:.8rem;margin-top:30px}
+  @media(max-width:640px){body{font-size:14px;padding-bottom:90px}header{padding:18px 12px}header h1{font-size:1.1rem}header p{font-size:.75rem}.container{padding:10px}.stage{padding:14px}.stage-header h2{font-size:.95rem}.toc-grid{grid-template-columns:repeat(2,1fr)}table{font-size:.75rem;min-width:400px}th,td{padding:6px 5px}.info-box,.warn-box,.success-box,.danger-box,.analogy-box,.crosscheck-box,.convention-box{font-size:.8rem;padding:10px}.back-to-top{width:44px;height:44px;font-size:1.3rem;bottom:15px;right:15px}.stage-num{width:32px;height:32px;font-size:.85rem}.journal-entry{font-size:.75rem}}
+  @media(max-width:380px){.toc-grid{grid-template-columns:1fr}.stage-header{gap:8px}.stage-header h2{font-size:.9rem;min-width:120px}.badge{font-size:.65rem;padding:2px 8px}}
+  @media(min-width:768px){body{font-size:16px}header h1{font-size:1.6rem}.stage{padding:24px}.toc-grid{grid-template-columns:repeat(4,1fr)}.stage-header h2{font-size:1.15rem}}
+  @media(min-width:1024px){.container{padding:24px}.toc-grid{gap:8px}}
+  @media print{header{position:static;background:#fff!important;color:#000!important;box-shadow:none;border-bottom:2px solid #000}.stage{page-break-inside:avoid;box-shadow:none;border:1px solid #ccc;margin-bottom:15px}.nav-toc,.back-to-top,details{display:none}body{font-size:11pt;background:#fff}.container{max-width:100%;padding:0}.table-wrap{overflow:visible}table{font-size:10pt;min-width:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 Siklus Akuntansi PT AKBAR — Kasus B</h1>
+  <p>Periode Juli 2026 — Dengan Penyesuaian</p>
+</header>
+<div class="container">
+
+<div class="convention-box">
+  <h3>📝 Catatan Konvensi Penulisan Angka</h3>
+  <p>Dokumen ini menggunakan konvensi konsisten untuk menghindari kebingungan antara <em>juta</em> dan <em>miliar</em>:</p>
+  <div class="table-wrap"><table><thead><tr><th>Lokasi</th><th>Format</th><th>Contoh</th></tr></thead><tbody>
+    <tr><td>Tabel formal</td><td>Angka lengkap</td><td><code>Rp64.000.000</code></td></tr>
+    <tr><td>Narasi & penjelasan</td><td>Kata "juta"</td><td><code>64 juta</code></td></tr>
+    <tr><td style="color:var(--accent)"><strong>❌ TIDAK DIGUNAKAN</strong></td><td style="color:var(--accent)">Notasi "M"</td><td style="color:var(--accent)"><code>64M</code></td></tr>
+  </tbody></table></div>
+  <p style="margin-top:10px;font-size:.82rem"><strong>Mengapa?</strong> Di Indonesia, <code>64M</code> sering dibaca <strong>"64 miliar"</strong> (bukan 64 juta) — potensi kesalahan 1.000× lipat.</p>
+</div>
+
+<div class="nav-toc">
+  <h2>📑 Daftar Isi</h2>
+  <div class="toc-grid">
+    <a href="#tahap1">1. Bukti Transaksi</a><a href="#tahap2">2. Analisis</a><a href="#tahap3">3. Persamaan Dasar</a><a href="#tahap4">4. Jurnal Umum</a>
+    <a href="#tahap5">5. Buku Besar</a><a href="#tahap6">6. Neraca Saldo</a><a href="#tahap7">7. Penyesuaian</a><a href="#tahap8">8. NS Setelah Penyesuaian</a>
+    <a href="#tahap9">9. Worksheet</a><a href="#tahap10">10. Laba Rugi</a><a href="#tahap11">11. Perubahan Modal</a><a href="#tahap12">12. Posisi Keuangan</a>
+    <a href="#tahap13">13. Jurnal Penutup</a><a href="#tahap14">14. Posting Penutup</a><a href="#tahap15">15. NS Setelah Penutupan</a><a href="#tahap16">16. Jurnal Pembalik</a>
+    <a href="#resume">📋 Resume A–P</a><a href="#miskonsepsi">⚠️ Miskonsepsi</a><a href="#faq">❓ FAQ</a>
+  </div>
+</div>
+
+<div class="summary-table">
+  <h2>📋 Rangkuman Tahapan Kasus B</h2>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Tahap</th><th class="center">Status</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>Bukti Transaksi</td><td class="center">✅</td></tr>
+    <tr><td class="center">2</td><td>Analisis Transaksi</td><td class="center">✅</td></tr>
+    <tr><td class="center">3</td><td>Persamaan Dasar Akuntansi</td><td class="center">✅</td></tr>
+    <tr><td class="center">4</td><td>Jurnal Umum</td><td class="center">✅</td></tr>
+    <tr><td class="center">5</td><td>Buku Besar</td><td class="center">✅</td></tr>
+    <tr><td class="center">6</td><td>Neraca Saldo</td><td class="center">✅</td></tr>
+    <tr><td class="center">7</td><td>Data Penyesuaian & Jurnal Penyesuaian</td><td class="center">✅</td></tr>
+    <tr><td class="center">8</td><td>Neraca Saldo Setelah Penyesuaian</td><td class="center">✅</td></tr>
+    <tr><td class="center">9</td><td>Worksheet 10 Kolom</td><td class="center">✅</td></tr>
+    <tr><td class="center">10</td><td>Laporan Laba Rugi</td><td class="center">✅</td></tr>
+    <tr><td class="center">11</td><td>Laporan Perubahan Modal</td><td class="center">✅</td></tr>
+    <tr><td class="center">12</td><td>Laporan Posisi Keuangan</td><td class="center">✅</td></tr>
+    <tr><td class="center">13</td><td>Jurnal Penutup</td><td class="center">✅</td></tr>
+    <tr><td class="center">14</td><td>Posting Jurnal Penutup</td><td class="center">✅</td></tr>
+    <tr><td class="center">15</td><td>Neraca Saldo Setelah Penutupan</td><td class="center">✅</td></tr>
+    <tr><td class="center">16</td><td>Jurnal Pembalik</td><td class="center">✅</td></tr>
+  </tbody></table></div>
+</div>
+
+<!-- TAHAP 1-6: SAMA DENGAN KASUS A (ringkas) -->
+<section class="stage" id="tahap1">
+  <div class="stage-header"><div class="stage-num">1</div><h2>Bukti Transaksi</h2><span class="badge">✓</span></div>
+  <div class="analogy-box">💡 <strong>Analogi:</strong> Bukti transaksi ibarat <strong>struk belanja</strong>. Tanpa struk, tidak ada bukti pembelian.</div>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Tanggal</th><th>No. Bukti</th><th>Jenis</th><th>Uraian</th><th class="num">Nilai (Rp)</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>1 Juli</td><td>BM-001</td><td>Kas Masuk</td><td>Setoran modal pemilik</td><td class="num">50.000.000</td></tr>
+    <tr><td class="center">2</td><td>2 Juli</td><td>BK-001</td><td>Kas Keluar</td><td>Beli peralatan tunai</td><td class="num">10.000.000</td></tr>
+    <tr><td class="center">3</td><td>3 Juli</td><td>FB-001</td><td>Faktur Beli</td><td>Beli perlengkapan kredit</td><td class="num">3.000.000</td></tr>
+    <tr><td class="center">4</td><td>5 Juli</td><td>BM-002</td><td>Kas Masuk</td><td>Pendapatan jasa tunai</td><td class="num">8.000.000</td></tr>
+    <tr><td class="center">5</td><td>7 Juli</td><td>BK-002</td><td>Kas Keluar</td><td>Bayar gaji</td><td class="num">4.000.000</td></tr>
+    <tr><td class="center">6</td><td>10 Juli</td><td>FI-001</td><td>Faktur Jual</td><td>Pendapatan jasa kredit</td><td class="num">6.000.000</td></tr>
+    <tr><td class="center">7</td><td>12 Juli</td><td>BK-003</td><td>Kas Keluar</td><td>Bayar sewa</td><td class="num">2.000.000</td></tr>
+    <tr><td class="center">8</td><td>15 Juli</td><td>BK-004</td><td>Kas Keluar</td><td>Lunasi utang usaha</td><td class="num">3.000.000</td></tr>
+    <tr><td class="center">9</td><td>20 Juli</td><td>BK-005</td><td>Kas Keluar</td><td>Bayar listrik & air</td><td class="num">1.000.000</td></tr>
+    <tr><td class="center">10</td><td>28 Juli</td><td>BK-006</td><td>Kas Keluar</td><td>Prive pemilik</td><td class="num">2.000.000</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="stage" id="tahap2">
+  <div class="stage-header"><div class="stage-num">2</div><h2>Analisis Transaksi</h2><span class="badge">✓</span></div>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Tgl</th><th>Transaksi</th><th>Bertambah</th><th>Berkurang</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>1/7</td><td>Setoran modal 50 juta</td><td>Kas, Modal</td><td>—</td></tr>
+    <tr><td class="center">2</td><td>2/7</td><td>Beli peralatan tunai 10 juta</td><td>Peralatan</td><td>Kas</td></tr>
+    <tr><td class="center">3</td><td>3/7</td><td>Beli perlengkapan kredit 3 juta</td><td>Perlengkapan, Utang Usaha</td><td>—</td></tr>
+    <tr><td class="center">4</td><td>5/7</td><td>Pendapatan jasa tunai 8 juta</td><td>Kas, Pendapatan Jasa</td><td>—</td></tr>
+    <tr><td class="center">5</td><td>7/7</td><td>Bayar gaji 4 juta</td><td>Beban Gaji</td><td>Kas</td></tr>
+    <tr><td class="center">6</td><td>10/7</td><td>Pendapatan jasa kredit 6 juta</td><td>Piutang, Pendapatan Jasa</td><td>—</td></tr>
+    <tr><td class="center">7</td><td>12/7</td><td>Bayar sewa 2 juta</td><td>Beban Sewa</td><td>Kas</td></tr>
+    <tr><td class="center">8</td><td>15/7</td><td>Lunasi utang 3 juta</td><td>—</td><td>Kas, Utang Usaha</td></tr>
+    <tr><td class="center">9</td><td>20/7</td><td>Bayar listrik & air 1 juta</td><td>Beban Listrik & Air</td><td>Kas</td></tr>
+    <tr><td class="center">10</td><td>28/7</td><td>Prive 2 juta</td><td>Prive</td><td>Kas</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="stage" id="tahap3">
+  <div class="stage-header"><div class="stage-num">3</div><h2>Persamaan Dasar Akuntansi</h2><span class="badge">✓</span></div>
+  <p><strong>ASET = KEWAJIBAN + EKUITAS</strong></p>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Tgl</th><th>Ket</th><th class="num">Kas</th><th class="num">Prlkp</th><th class="num">Prltn</th><th class="num">Piut</th><th class="num">Utang</th><th class="num">Modal</th><th class="num">Pend</th><th class="num">Beban</th><th class="num">Prive</th></tr></thead><tbody>
+    <tr><td class="center">0</td><td>—</td><td>Awal</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td class="center">1</td><td>1/7</td><td>Modal</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td class="center">2</td><td>2/7</td><td>Peralatan</td><td class="num">40.000.000</td><td class="num">0</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td class="center">3</td><td>3/7</td><td>Perlengkapan</td><td class="num">40.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td class="center">4</td><td>5/7</td><td>Pend Tunai</td><td class="num">48.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">8.000.000</td><td class="num">0</td><td class="num">0</td></tr>
+    <tr><td class="center">5</td><td>7/7</td><td>Gaji</td><td class="num">44.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">0</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">8.000.000</td><td class="num">4.000.000</td><td class="num">0</td></tr>
+    <tr><td class="center">6</td><td>10/7</td><td>Pend Kredit</td><td class="num">44.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">4.000.000</td><td class="num">0</td></tr>
+    <tr><td class="center">7</td><td>12/7</td><td>Sewa</td><td class="num">42.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">3.000.000</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">6.000.000</td><td class="num">0</td></tr>
+    <tr><td class="center">8</td><td>15/7</td><td>Lunasi Utg</td><td class="num">39.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">6.000.000</td><td class="num">0</td></tr>
+    <tr><td class="center">9</td><td>20/7</td><td>Listrik</td><td class="num">38.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">7.000.000</td><td class="num">0</td></tr>
+    <tr class="total-row"><td class="center">10</td><td>28/7</td><td>Prive</td><td class="num">36.000.000</td><td class="num">3.000.000</td><td class="num">10.000.000</td><td class="num">6.000.000</td><td class="num">0</td><td class="num">50.000.000</td><td class="num">14.000.000</td><td class="num">7.000.000</td><td class="num">2.000.000</td></tr>
+  </tbody></table></div>
+  <div class="success-box">✅ Aset (55 juta) = Kewajiban (0) + Ekuitas (55 juta) → <strong>SEIMBANG</strong></div>
+</section>
+
+<section class="stage" id="tahap4">
+  <div class="stage-header"><div class="stage-num">4</div><h2>Jurnal Umum</h2><span class="badge">✓</span></div>
+  <div class="analogy-box">💡 <strong>Analogi:</strong> Jurnal umum ibarat <strong>buku harian transaksi</strong>.</div>
+  <div class="table-wrap"><table><thead><tr><th>Tgl</th><th>Keterangan</th><th class="num">Debit</th><th class="num">Kredit</th></tr></thead><tbody>
+    <tr><td>1/7</td><td>Kas<br><span style="padding-left:15px;color:#64748b">Modal</span></td><td class="num">50.000.000<br>—</td><td class="num">—<br>50.000.000</td></tr>
+    <tr><td>2/7</td><td>Peralatan<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">10.000.000<br>—</td><td class="num">—<br>10.000.000</td></tr>
+    <tr><td>3/7</td><td>Perlengkapan<br><span style="padding-left:15px;color:#64748b">Utang Usaha</span></td><td class="num">3.000.000<br>—</td><td class="num">—<br>3.000.000</td></tr>
+    <tr><td>5/7</td><td>Kas<br><span style="padding-left:15px;color:#64748b">Pendapatan Jasa</span></td><td class="num">8.000.000<br>—</td><td class="num">—<br>8.000.000</td></tr>
+    <tr><td>7/7</td><td>Beban Gaji<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">4.000.000<br>—</td><td class="num">—<br>4.000.000</td></tr>
+    <tr><td>10/7</td><td>Piutang Usaha<br><span style="padding-left:15px;color:#64748b">Pendapatan Jasa</span></td><td class="num">6.000.000<br>—</td><td class="num">—<br>6.000.000</td></tr>
+    <tr><td>12/7</td><td>Beban Sewa<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">2.000.000<br>—</td><td class="num">—<br>2.000.000</td></tr>
+    <tr><td>15/7</td><td>Utang Usaha<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">3.000.000<br>—</td><td class="num">—<br>3.000.000</td></tr>
+    <tr><td>20/7</td><td>Beban Listrik & Air<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">1.000.000<br>—</td><td class="num">—<br>1.000.000</td></tr>
+    <tr><td>28/7</td><td>Prive<br><span style="padding-left:15px;color:#64748b">Kas</span></td><td class="num">2.000.000<br>—</td><td class="num">—<br>2.000.000</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="stage" id="tahap5">
+  <div class="stage-header"><div class="stage-num">5</div><h2>Buku Besar</h2><span class="badge">✓</span></div>
+  <div class="analogy-box">💡 <strong>Analogi:</strong> Buku besar ibarat <strong>laci-laci terpisah</strong>. Setiap akun punya lacinya sendiri.</div>
+  <h3>A. Kas</h3><div class="table-wrap"><table><thead><tr><th>Tgl</th><th>Ket</th><th class="num">D</th><th class="num">K</th><th class="num">Saldo</th></tr></thead><tbody>
+    <tr><td>1/7</td><td>Modal</td><td class="num">50.000.000</td><td class="num">—</td><td class="num">50.000.000</td></tr><tr><td>2/7</td><td>Peralatan</td><td class="num">—</td><td class="num">10.000.000</td><td class="num">40.000.000</td></tr><tr><td>5/7</td><td>Pend Tunai</td><td class="num">8.000.000</td><td class="num">—</td><td class="num">48.000.000</td></tr><tr><td>7/7</td><td>Gaji</td><td class="num">—</td><td class="num">4.000.000</td><td class="num">44.000.000</td></tr><tr><td>12/7</td><td>Sewa</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">42.000.000</td></tr><tr><td>15/7</td><td>Utang</td><td class="num">—</td><td class="num">3.000.000</td><td class="num">39.000.000</td></tr><tr><td>20/7</td><td>Listrik</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">38.000.000</td></tr><tr class="total-row"><td>28/7</td><td>Prive</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">36.000.000</td></tr>
+  </tbody></table></div>
+  <h3>B–K. Akun Lainnya (saldo akhir)</h3><div class="table-wrap"><table><thead><tr><th>Akun</th><th class="num">Saldo</th><th>Posisi</th></tr></thead><tbody>
+    <tr><td>Piutang Usaha</td><td class="num">6.000.000</td><td>D</td></tr><tr><td>Perlengkapan</td><td class="num">3.000.000</td><td>D</td></tr><tr><td>Peralatan</td><td class="num">10.000.000</td><td>D</td></tr><tr><td>Utang Usaha</td><td class="num">0</td><td>K</td></tr><tr><td>Modal</td><td class="num">50.000.000</td><td>K</td></tr><tr><td>Pendapatan Jasa</td><td class="num">14.000.000</td><td>K</td></tr><tr><td>Beban Gaji</td><td class="num">4.000.000</td><td>D</td></tr><tr><td>Beban Sewa</td><td class="num">2.000.000</td><td>D</td></tr><tr><td>Beban Listrik & Air</td><td class="num">1.000.000</td><td>D</td></tr><tr><td>Prive</td><td class="num">2.000.000</td><td>D</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="stage" id="tahap6">
+  <div class="stage-header"><div class="stage-num">6</div><h2>Neraca Saldo</h2><span class="badge">✓</span></div>
+  <div class="analogy-box">💡 <strong>Analogi:</strong> Neraca Saldo ibarat <strong>cek daftar isi</strong> sebelum laporan akhir.</div>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Akun</th><th class="num">Debit</th><th class="num">Kredit</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>Kas</td><td class="num">36.000.000</td><td class="num">—</td></tr><tr><td class="center">2</td><td>Piutang Usaha</td><td class="num">6.000.000</td><td class="num">—</td></tr><tr><td class="center">3</td><td>Perlengkapan</td><td class="num">3.000.000</td><td class="num">—</td></tr><tr><td class="center">4</td><td>Peralatan</td><td class="num">10.000.000</td><td class="num">—</td></tr><tr><td class="center">5</td><td>Utang Usaha</td><td class="num">—</td><td class="num">0</td></tr><tr><td class="center">6</td><td>Modal</td><td class="num">—</td><td class="num">50.000.000</td></tr><tr><td class="center">7</td><td>Pendapatan Jasa</td><td class="num">—</td><td class="num">14.000.000</td></tr><tr><td class="center">8</td><td>Beban Gaji</td><td class="num">4.000.000</td><td class="num">—</td></tr><tr><td class="center">9</td><td>Beban Sewa</td><td class="num">2.000.000</td><td class="num">—</td></tr><tr><td class="center">10</td><td>Beban Listrik & Air</td><td class="num">1.000.000</td><td class="num">—</td></tr><tr><td class="center">11</td><td>Prive</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+    <tr class="total-row"><td></td><td><strong>TOTAL</strong></td><td class="num"><strong>64.000.000</strong></td><td class="num"><strong>64.000.000</strong></td></tr>
+  </tbody></table></div>
+  <div class="success-box">✅ D = K = Rp64.000.000 (64 juta) → SEIMBANG</div>
+</section>
+
+<!-- ===== TAHAP 7: PENYESUAIAN (BARU DI KASUS B) ===== -->
+<section class="stage" id="tahap7">
+  <div class="stage-header"><div class="stage-num">7</div><h2>Data Penyesuaian & Jurnal Penyesuaian</h2><span class="badge">✓ Baru</span></div>
+  <div class="info-box">🤔 <strong>Kenapa tahap ini penting?</strong><br>Jurnal penyesuaian memastikan pendapatan dan beban dicatat pada periode yang tepat (prinsip <em>matching</em> dan <em>accrual</em>). Tanpa penyesuaian, laporan keuangan tidak mencerminkan kondisi sebenarnya.</div>
+
+  <h3>A. Data Penyesuaian per 31 Juli 2026</h3>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Data Penyesuaian</th><th class="num">Nilai</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>Perlengkapan yang masih tersisa</td><td class="num">2.000.000</td></tr>
+    <tr><td class="center">2</td><td>Penyusutan peralatan bulan Juli</td><td class="num">500.000</td></tr>
+    <tr><td class="center">3</td><td>Gaji yang masih harus dibayar</td><td class="num">1.000.000</td></tr>
+  </tbody></table></div>
+
+  <h3>B. Analisis Penyesuaian</h3>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Data</th><th>Analisis</th><th>Debit</th><th>Kredit</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>Perlengkapan tersisa 2 juta</td><td>3 juta − 2 juta = 1 juta terpakai</td><td>Beban Perlengkapan 1 juta</td><td>Perlengkapan 1 juta</td></tr>
+    <tr><td class="center">2</td><td>Penyusutan peralatan</td><td>Beban penyusutan Juli</td><td>Beban Penyusutan 500 ribu</td><td>Akum. Penyusutan 500 ribu</td></tr>
+    <tr><td class="center">3</td><td>Gaji belum dibayar</td><td>Sudah jadi beban, belum bayar</td><td>Beban Gaji 1 juta</td><td>Utang Gaji 1 juta</td></tr>
+  </tbody></table></div>
+
+  <h3>C. Jurnal Penyesuaian</h3>
+  <div class="journal-entry"><div class="date">31 Juli 2026</div>Beban Perlengkapan <span style="float:right">D 1.000.000</span><br><span class="credit">Perlengkapan <span style="float:right">K 1.000.000</span></span></div>
+  <div class="journal-entry"><div class="date">31 Juli 2026</div>Beban Penyusutan Peralatan <span style="float:right">D 500.000</span><br><span class="credit">Akumulasi Penyusutan Peralatan <span style="float:right">K 500.000</span></span></div>
+  <div class="journal-entry"><div class="date">31 Juli 2026</div>Beban Gaji <span style="float:right">D 1.000.000</span><br><span class="credit">Utang Gaji <span style="float:right">K 1.000.000</span></span></div>
+  <div class="success-box">✅ Total Penyesuaian: D = K = Rp2.500.000 → SEIMBANG</div>
+
+  <div class="danger-box">⚠️ <strong>Miskonsepsi:</strong> "Langsung buat jurnal penyesuaian tanpa analisis"<br>✅ <strong>FAKTA:</strong> Urutannya selalu: <strong>Data → Analisis → Jurnal</strong>. Jangan melompati analisis!</div>
+</section>
+
+<!-- TAHAP 8 -->
+<section class="stage" id="tahap8">
+  <div class="stage-header"><div class="stage-num">8</div><h2>Neraca Saldo Setelah Penyesuaian</h2><span class="badge">✓ Baru</span></div>
+  <div class="info-box">🤔 <strong>Kenapa penting?</strong> Ini <strong>bukan</strong> neraca saldo baru dari awal. Ini berasal dari: Neraca Saldo Tahap 6 + Pengaruh Jurnal Penyesuaian.</div>
+  <div class="table-wrap"><table><thead><tr><th class="center">No.</th><th>Akun</th><th class="num">Debit</th><th class="num">Kredit</th></tr></thead><tbody>
+    <tr><td class="center">1</td><td>Kas</td><td class="num">36.000.000</td><td class="num">—</td></tr><tr><td class="center">2</td><td>Piutang Usaha</td><td class="num">6.000.000</td><td class="num">—</td></tr><tr><td class="center">3</td><td>Perlengkapan</td><td class="num">2.000.000</td><td class="num">—</td></tr><tr><td class="center">4</td><td>Peralatan</td><td class="num">10.000.000</td><td class="num">—</td></tr><tr><td class="center">5</td><td>Akumulasi Penyusutan Peralatan</td><td class="num">—</td><td class="num">500.000</td></tr><tr><td class="center">6</td><td>Utang Usaha</td><td class="num">—</td><td class="num">0</td></tr><tr><td class="center">7</td><td>Utang Gaji</td><td class="num">—</td><td class="num">1.000.000</td></tr><tr><td class="center">8</td><td>Modal</td><td class="num">—</td><td class="num">50.000.000</td></tr><tr><td class="center">9</td><td>Pendapatan Jasa</td><td class="num">—</td><td class="num">14.000.000</td></tr><tr><td class="center">10</td><td>Beban Gaji</td><td class="num">5.000.000</td><td class="num">—</td></tr><tr><td class="center">11</td><td>Beban Sewa</td><td class="num">2.000.000</td><td class="num">—</td></tr><tr><td class="center">12</td><td>Beban Listrik & Air</td><td class="num">1.000.000</td><td class="num">—</td></tr><tr><td class="center">13</td><td>Beban Perlengkapan</td><td class="num">1.000.000</td><td class="num">—</td></tr><tr><td class="center">14</td><td>Beban Penyusutan Peralatan</td><td class="num">500.000</td><td class="num">—</td></tr><tr><td class="center">15</td><td>Prive</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+    <tr class="total-row"><td></td><td><strong>TOTAL</strong></td><td class="num"><strong>65.500.000</strong></td><td class="num"><strong>65.500.000</strong></td></tr>
+  </tbody></table></div>
+  <div class="success-box">✅ D = K = Rp65.500.000 (65,5 juta) → SEIMBANG</div>
+  <div class="info-box">📌 <strong>Perubahan dari Tahap 6:</strong> Perlengkapan turun 3→2 juta, Beban Gaji naik 4→5 juta, muncul Utang Gaji (1 juta), Akumulasi Penyusutan (500 ribu), Beban Perlengkapan (1 juta), Beban Penyusutan (500 ribu).</div>
+</section>
+
+<!-- TAHAP 9 -->
+<section class="stage" id="tahap9">
+  <div class="stage-header"><div class="stage-num">9</div><h2>Worksheet 10 Kolom</h2><span class="badge">✓ Baru</span></div>
+  <div class="analogy-box">💡 <strong>Analogi:</strong> Worksheet ibarat <strong>kertas kerja/scratchpad</strong>. Bukan laporan keuangan, hanya alat bantu menyusun laporan.</div>
+  <div class="danger-box">⚠️ <strong>Miskonsepsi:</strong> "Worksheet = laporan keuangan" atau "Worksheet menggantikan jurnal"<br>✅ <strong>FAKTA:</strong> Worksheet <strong>bukan</strong> laporan keuangan, <strong>bukan</strong> jurnal, <strong>bukan</strong> buku besar. Hanya alat bantu.</div>
+  <div class="table-wrap"><table style="min-width:800px"><thead><tr><th>Akun</th><th class="num">NS D</th><th class="num">NS K</th><th class="num">Peny D</th><th class="num">Peny K</th><th class="num">NSD D</th><th class="num">NSD K</th><th class="num">LR D</th><th class="num">LR K</th><th class="num">Ner D</th><th class="num">Ner K</th></tr></thead><tbody>
+    <tr><td>Kas</td><td class="num">36.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">36.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">36.000.000</td><td class="num">—</td></tr>
+    <tr><td>Piutang</td><td class="num">6.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">6.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">6.000.000</td><td class="num">—</td></tr>
+    <tr><td>Perlengkapan</td><td class="num">3.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+    <tr><td>Peralatan</td><td class="num">10.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">10.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">10.000.000</td><td class="num">—</td></tr>
+    <tr><td>Akum. Penyusutan</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">500.000</td><td class="num">—</td><td class="num">500.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">500.000</td></tr>
+    <tr><td>Utang Usaha</td><td class="num">—</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Utang Gaji</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1.000.000</td></tr>
+    <tr><td>Modal</td><td class="num">—</td><td class="num">50.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">50.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">50.000.000</td></tr>
+    <tr><td>Pendapatan Jasa</td><td class="num">—</td><td class="num">14.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">14.000.000</td><td class="num">—</td><td class="num">14.000.000</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Beban Gaji</td><td class="num">4.000.000</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">5.000.000</td><td class="num">—</td><td class="num">5.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Beban Sewa</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Beban Listrik</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Beban Perlengkapan</td><td class="num">—</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">1.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Beban Penyusutan</td><td class="num">—</td><td class="num">—</td><td class="num">500.000</td><td class="num">—</td><td class="num">500.000</td><td class="num">—</td><td class="num">500.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>Prive</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">2.000.000</td><td class="num">—</td></tr>
+    <tr class="total-row"><td><strong>Jumlah</strong></td><td class="num">64.000.000</td><td class="num">64.000.000</td><td class="num">2.500.000</td><td class="num">2.500.000</td><td class="num">65.500.000</td><td class="num">65.500.000</td><td class="num">9.500.000</td><td class="num">14.000.000</td><td class="num">56.000.000</td><td class="num">51.500.000</td></tr>
+    <tr style="background:#d1fae5"><td><strong>Laba Bersih</strong></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">4.500.000</td><td class="num">—</td><td class="num">—</td><td class="num">4.500.000</td></tr>
+    <tr class="total-row"><td><strong>Jumlah Akhir</strong></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">14.000.000</td><td class="num">14.000.000</td><td class="num">56.000.000</td><td class="num">56.000.000</td></tr>
+  </tbody></table></div>
+</section>
+
+<!-- TAHAP 10 -->
+<section class="stage" id="tahap10">
+  <div class="stage-header"><div class="stage-num">10</div><h2>Laporan Laba Rugi</h2><span class="badge">✓</span></div>
+  <div class="table-wrap"><table><thead><tr><th colspan="2" style="text-align:center">PT AKBAR — Laporan Laba Rugi<br><strong>Untuk Periode yang Berakhir 31 Juli 2026</strong></th></tr></thead><tbody>
+    <tr><td><strong>Pendapatan Jasa</strong></td><td class="num"><strong>14.000.000</strong></td></tr>
+    <tr><td colspan="2"><em>Beban-Beban:</em></td></tr>
+    <tr><td style="padding-left:20px">Beban Gaji</td><td class="num">5.000.000</td></tr><tr><td style="padding-left:20px">Beban Sewa</td><td class="num">2.000.000</td></tr><tr><td style="padding-left:20px">Beban Listrik & Air</td><td class="num">1.000.000</td></tr><tr><td style="padding-left:20px">Beban Perlengkapan</td><td class="num">1.000.000</td></tr><tr><td style="padding-left:20px">Beban Penyusutan Peralatan</td><td class="num">500.000</td></tr>
+    <tr><td><strong>Total Beban</strong></td><td class="num"><strong>9.500.000</strong></td></tr>
+    <tr class="total-row"><td><strong>LABA BERSIH</strong></td><td class="num"><strong>4.500.000</strong></td></tr>
+  </tbody></table></div>
+  <div class="danger-box">⚠️ <strong>KRITIS:</strong> Laba Rp4.500.000 (4,5 juta) ≠ Kas Rp36.000.000 (36 juta). Laba = konsep akrual, Kas = konsep riil.</div>
+  <div class="warn-box">📝 <strong>Perhatikan:</strong> Beban Gaji sekarang 5 juta (bukan 4 juta seperti Kasus A) karena ada penyesuaian gaji belum dibayar 1 juta. Inilah dampak penyesuaian!</div>
+</section>
+
+<!-- TAHAP 11 -->
+<section class="stage" id="tahap11">
+  <div class="stage-header"><div class="stage-num">11</div><h2>Laporan Perubahan Modal</h2><span class="badge">✓</span></div>
+  <div class="table-wrap"><table><thead><tr><th colspan="2" style="text-align:center">PT AKBAR — Laporan Perubahan Modal<br><strong>Untuk Periode yang Berakhir 31 Juli 2026</strong></th></tr></thead><tbody>
+    <tr><td>Modal Awal</td><td class="num">50.000.000</td></tr><tr><td>Ditambah: Laba Bersih</td><td class="num">4.500.000</td></tr><tr><td><em>Subtotal</em></td><td class="num"><em>54.500.000</em></td></tr><tr><td>Dikurangi: Prive</td><td class="num">(2.000.000)</td></tr>
+    <tr class="total-row"><td><strong>MODAL AKHIR</strong></td><td class="num"><strong>52.500.000</strong></td></tr>
+  </tbody></table></div>
+  <div class="danger-box">⚠️ <strong>Ingat:</strong> Prive BUKAN beban. Langsung mengurangi modal.</div>
+</section>
+
+<!-- TAHAP 12 -->
+<section class="stage" id="tahap12">
+  <div class="stage-header"><div class="stage-num">12</div><h2>Laporan Posisi Keuangan (Neraca)</h2><span class="badge">✓</span></div>
+  <div class="table-wrap"><table><thead><tr><th colspan="2" style="text-align:center">PT AKBAR — Laporan Posisi Keuangan<br><strong>Per 31 Juli 2026</strong></th></tr></thead><tbody>
+    <tr style="background:#ede9fe"><td colspan="2"><strong>A. ASET</strong></td></tr>
+    <tr><td style="padding-left:20px">Kas</td><td class="num">36.000.000</td></tr><tr><td style="padding-left:20px">Piutang Usaha</td><td class="num">6.000.000</td></tr><tr><td style="padding-left:20px">Perlengkapan</td><td class="num">2.000.000</td></tr><tr><td style="padding-left:20px">Peralatan</td><td class="num">10.000.000</td></tr><tr><td style="padding-left:20px">Dikurangi: Akum. Penyusutan</td><td class="num">(500.000)</td></tr>
+    <tr><td><strong>Total Aset</strong></td><td class="num"><strong>53.500.000</strong></td></tr>
+    <tr style="background:#ede9fe"><td colspan="2"><strong>B. LIABILITAS & EKUITAS</strong></td></tr>
+    <tr><td><em>Liabilitas:</em></td><td></td></tr><tr><td style="padding-left:20px">Utang Usaha</td><td class="num">0</td></tr><tr><td style="padding-left:20px">Utang Gaji</td><td class="num">1.000.000</td></tr><tr><td><strong>Total Liabilitas</strong></td><td class="num"><strong>1.000.000</strong></td></tr>
+    <tr><td><em>Ekuitas:</em></td><td></td></tr><tr><td style="padding-left:20px">Modal Akhir</td><td class="num">52.500.000</td></tr><tr><td><strong>Total Ekuitas</strong></td><td class="num"><strong>52.500.000</strong></td></tr>
+    <tr class="total-row"><td><strong>Total Liabilitas + Ekuitas</strong></td><td class="num"><strong>53.500.000</strong></td></tr>
+  </tbody></table></div>
+  <div class="success-box">✅ Aset (53,5 juta) = Liabilitas (1 juta) + Ekuitas (52,5 juta) → SEIMBANG</div>
+  <div class="crosscheck-box"><h4>🔗 Cek Silang Antar Laporan</h4><ul>
+    <li>Laba Rugi: Laba 4,5 juta = ditambah di Perubahan Modal ✓</li>
+    <li>Perubahan Modal: Akhir 52,5 juta = Modal di Neraca ✓</li>
+    <li>Neraca: Aset 53,5 juta = L + E 53,5 juta ✓</li>
+  </ul></div>
+</section>
