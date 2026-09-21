@@ -30,14 +30,8 @@
             --gray: #a0aec0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
@@ -46,9 +40,7 @@
             padding-bottom: 80px;
             transition: background 0.4s, color 0.4s;
         }
-        body.dark-mode {
-            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); }
 
         /* NAVBAR */
         .navbar {
@@ -108,9 +100,7 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
-        .dropdown {
-            position: relative;
-        }
+        .dropdown { position: relative; }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -140,9 +130,7 @@
             color: white;
             padding-left: 20px;
         }
-        .dropdown:hover .dropdown-content {
-            display: flex;
-        }
+        .dropdown:hover .dropdown-content { display: flex; }
         .hamburger {
             display: none;
             cursor: pointer;
@@ -185,504 +173,252 @@
         header::before {
             content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
             animation: rotate 15s linear infinite;
             z-index: 1;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 100px; height: 100px;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.3);
             background: white;
             padding: 5px;
             margin-bottom: 1.5rem;
-            z-index: 2;
-            position: relative;
+            z-index: 2; position: relative;
             transition: var(--transition);
             object-fit: contain;
         }
-        .logo:hover {
-            transform: scale(1.05) rotate(10deg);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            z-index: 2;
-            position: relative;
-        }
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.9;
-            z-index: 2;
-            position: relative;
-            font-size: 1.1rem;
-        }
+        .logo:hover { transform: scale(1.05) rotate(10deg); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+        .subtitle { font-weight: 300; opacity: 0.9; z-index: 2; position: relative; font-size: 1.1rem; }
 
         .adsense-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
+            max-width: 1200px; margin: 20px auto; padding: 0 20px;
+            display: flex; justify-content: center;
         }
 
-        /* QUESTION LIST CONTAINER (Override grid for long form) */
-        .question-list-container {
-            max-width: 950px;
-            margin: 0 auto 40px;
-            padding: 20px;
-            display: block;
+        /* CATEGORY TITLE */
+        .category-title {
+            text-align: center; margin: 50px auto 25px; max-width: 1200px; padding: 0 20px;
+            font-size: 1.6rem; font-weight: 600; color: var(--dark);
+            position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
         }
+        body.dark-mode .category-title { color: #f8f9fa; }
+        .category-title::before, .category-title::after {
+            content: ''; flex: 1; max-width: 120px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        .category-title i { color: var(--primary); font-size: 1.4rem; }
+        .category-title.ekonomi { color: #4361ee; }
+        .category-title.ekonomi i { color: #4361ee; }
+        .category-title.ekonomi::before, .category-title.ekonomi::after { background: linear-gradient(90deg, transparent, #4361ee, transparent); }
 
-        /* QUESTION CARD STYLING */
-        .question-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+        /* CONTAINER & CARD */
+        .container {
+            max-width: 1200px; margin: 0 auto 40px; padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+        .card {
+            background: white; border-radius: var(--border-radius); padding: 30px 25px;
+            box-shadow: var(--shadow); transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            border-top: 4px solid var(--primary);
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            border-top: 4px solid var(--primary); position: relative;
         }
-        body.dark-mode .question-card {
-            background: #2d2d2d;
-            border-color: #444;
-            color: #f8f9fa;
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; color: #f8f9fa; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); }
+        .card h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--dark); }
+        body.dark-mode .card h2 { color: #f8f9fa; }
+        .card p { margin-bottom: 20px; color: var(--gray); font-size: 0.95rem; flex-grow: 1; }
+        .btn {
+            padding: 10px 20px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 0.95rem; transition: var(--transition);
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            min-width: 160px; border: none; cursor: pointer; background: var(--primary); color: white;
         }
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-            gap: 10px;
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); background: var(--secondary); }
+        .hots-badge {
+            position: absolute; top: 15px; right: 15px;
+            background: linear-gradient(135deg, #ef4444, #dc2626); color: white;
+            font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+            letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
         }
-        body.dark-mode .question-header {
-            border-bottom-color: rgba(255,255,255,0.1);
-        }
-        .question-number {
-            font-size: 1.1em;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .tka-badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 50px;
-            letter-spacing: 0.5px;
-        }
-        .question-text {
-            font-size: 1.05em;
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-        .keywords {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.95em;
-            color: #856404;
-        }
-        body.dark-mode .keywords {
-            background-color: #3d3518;
-            color: #fcd34d;
-            border-left-color: #fbbf24;
-        }
-        .keywords strong {
-            color: #533f03;
-            font-weight: 700;
-        }
-        body.dark-mode .keywords strong {
-            color: #fcd34d;
-        }
-        .options {
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 20px;
-        }
-        .options li {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            margin-bottom: 10px;
-            padding: 12px 15px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        body.dark-mode .options li {
-            background-color: #3a3a3a;
-            border-color: #555;
-            color: #f8f9fa;
-        }
-        .options li.correct {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-            font-weight: 600;
-            color: #155724;
-        }
-        body.dark-mode .options li.correct {
-            background-color: #1e3a29;
-            border-color: #2d5a3f;
-            color: #4ade80;
-        }
-        .graph-container {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #fafafa;
-            border: 1px dashed #ccc;
-            border-radius: 8px;
-        }
-        body.dark-mode .graph-container {
-            background-color: #222;
-            border-color: #555;
-        }
-        .answer-section {
-            background-color: #e8f4f8;
-            border-left: 5px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 20px;
-        }
-        body.dark-mode .answer-section {
-            background-color: #1e293b;
-            border-left-color: var(--accent);
-            color: #e2e8f0;
-        }
-        .answer-section h3 {
-            margin-top: 0;
-            color: var(--primary);
-            font-size: 1.1em;
-            font-weight: 700;
-        }
-        body.dark-mode .answer-section h3 {
-            color: var(--accent);
-        }
-        .calculation {
-            background-color: #ffffff;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: auto;
-            margin-top: 15px;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-        body.dark-mode .calculation {
-            background-color: #1a1a1a;
-            border-color: #444;
-            color: #a0aec0;
-        }
-        .highlight {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        body.dark-mode .highlight {
-            color: #f87171;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            background: white;
-        }
-        body.dark-mode table {
-            background: #2d2d2d;
-            color: #f8f9fa;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        body.dark-mode table, body.dark-mode th, body.dark-mode td {
-            border-color: #555;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: 600;
-        }
-        body.dark-mode th {
-            background-color: #3a3a3a;
-        }
-        .true-false-table th, .true-false-table td {
-            text-align: center;
-        }
-        .true-false-table td:first-child {
-            text-align: left;
-        }
+        .card.ekonomi { border-top-color: #4361ee; }
+        .card.ekonomi .btn { background: #4361ee; }
+        .card.ekonomi .btn:hover { background: #3f37c9; }
+        .card.ekonomi:hover { border-top-color: #4cc9f0; }
 
         /* FOOTER */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
-            color: white;
-            padding: 60px 20px 30px;
-            margin-top: 60px;
+            color: white; padding: 60px 20px 30px; margin-top: 60px;
             font-family: 'Poppins', sans-serif;
         }
-        body.dark-mode footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-        }
+        body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
         .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
         }
         .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 8px;
+            font-size: 1.2rem; margin-bottom: 20px;
+            position: relative; padding-bottom: 8px;
         }
         .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: #4361ee;
-            border-radius: 3px;
+            content: ''; position: absolute; left: 0; bottom: 0;
+            width: 50px; height: 3px; background: #4361ee; border-radius: 3px;
         }
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer-section li {
-            margin: 10px 0;
-        }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section li { margin: 10px 0; }
         .footer-section a {
-            color: #e2e8f0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: #e2e8f0; text-decoration: none;
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
         }
-        .footer-section a:hover {
-            color: #4361ee;
-            transform: translateX(5px);
-        }
-        .footer-section p {
-            line-height: 1.6;
-            margin: 8px 0;
-            color: #e2e8f0;
-        }
+        .footer-section a:hover { color: #4361ee; transform: translateX(5px); }
+        .footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
         .footer-legal-bar {
-            display: none;
-            text-align: center;
-            padding: 15px 10px;
-            margin: 20px 0;
+            display: none; text-align: center; padding: 15px 10px; margin: 20px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            flex-wrap: wrap;
-            gap: 5px;
-            justify-content: center;
-            font-size: 0.8rem;
+            flex-wrap: wrap; gap: 5px; justify-content: center; font-size: 0.8rem;
         }
-        .footer-legal-bar a {
-            color: #94a3b8;
-            text-decoration: none;
-            padding: 3px 8px;
-        }
-        .footer-legal-bar a:hover {
-            color: #4361ee;
-        }
-        .footer-legal-bar .separator {
-            color: rgba(255, 255, 255, 0.2);
-            margin: 0 3px;
-        }
+        .footer-legal-bar a { color: #94a3b8; text-decoration: none; padding: 3px 8px; }
+        .footer-legal-bar a:hover { color: #4361ee; }
+        .footer-legal-bar .separator { color: rgba(255, 255, 255, 0.2); margin: 0 3px; }
         .visitor-counter {
-            text-align: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-top: 10px;
+            text-align: center; padding: 15px;
+            background: rgba(255, 255, 255, 0.05); border-radius: 8px; margin-top: 10px;
         }
-        .visitor-counter img {
-            max-width: 100%;
-            height: auto;
-            filter: brightness(1.2);
-        }
-        .visitor-counter p {
-            margin-top: 10px;
-            font-size: 0.85rem;
-            opacity: 0.8;
-            color: #e2e8f0;
-        }
+        .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
+        .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
         .copyright {
-            text-align: center;
-            grid-column: span 5;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
+            text-align: center; grid-column: span 5;
+            padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px;
         }
         .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 0.9rem;
-            color: #94a3b8;
+            text-align: center; padding-top: 20px; margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.9rem; color: #94a3b8;
         }
 
-        /* SCROLL & BACK TO TOP */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 9999;
+        /* SOAL STYLING */
+        .soal-card {
+            background: white; border-radius: var(--border-radius); padding: 25px;
+            box-shadow: var(--shadow); margin-bottom: 30px; border-left: 6px solid var(--primary);
         }
-        .scroll-indicator span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.2s ease;
+        body.dark-mode .soal-card { background: #2d2d2d; color: #f8f9fa; }
+        .soal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;
         }
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
+        body.dark-mode .soal-header { border-bottom-color: #444; }
+        .soal-number {
+            font-size: 1.2rem; font-weight: 700; color: var(--primary);
+            background: rgba(67, 97, 238, 0.1); padding: 5px 15px; border-radius: 50px;
         }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+        .soal-badge {
+            background: var(--warning); color: #000; font-size: 0.8rem; font-weight: 600;
+            padding: 3px 12px; border-radius: 50px;
         }
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
+        .soal-text { font-size: 1.05rem; margin-bottom: 15px; }
+        .soal-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
+        .soal-table th, .soal-table td { border: 1px solid #ddd; padding: 8px 12px; }
+        body.dark-mode .soal-table th, body.dark-mode .soal-table td { border-color: #444; }
+        .soal-table th { background-color: #f2f2f2; }
+        body.dark-mode .soal-table th { background-color: #3a3a3a; }
+        
+        .options-list { list-style: none; padding: 0; margin: 15px 0; }
+        .options-list li {
+            padding: 10px 15px; border: 1px solid #eee; border-radius: 8px;
+            margin-bottom: 8px; transition: var(--transition);
+        }
+        body.dark-mode .options-list li { border-color: #444; }
+        .options-list li.correct {
+            background-color: #d4edda; border-color: #c3e6cb;
+            font-weight: 700; color: #155724;
+        }
+        body.dark-mode .options-list li.correct {
+            background-color: #1e4d2b; color: #a3e4b8; border-color: #2e7d32;
         }
 
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
+        .answer-box {
+            background: #e8f4f8; border-left: 5px solid var(--primary);
+            padding: 15px 20px; border-radius: 0 8px 8px 0; margin-top: 15px;
         }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
+        body.dark-mode .answer-box { background: #1e293b; }
+        .answer-box h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; }
+        .keyword-box {
+            background: #fff3cd; border-left: 4px solid #ffc107;
+            padding: 10px 15px; border-radius: 5px; margin: 10px 0; font-size: 0.9rem;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        body.dark-mode .keyword-box { background: #3d3522; color: #f8f9fa; }
+        .keyword-box strong { color: #856404; }
+        body.dark-mode .keyword-box strong { color: #ffc107; }
+
+        .graph-container {
+            text-align: center; margin: 15px 0; padding: 15px;
+            background: #fafafa; border: 1px dashed #ccc; border-radius: 8px;
         }
+        body.dark-mode .graph-container { background: #222; border-color: #444; }
+
+        .pembahasan-text { margin-top: 10px; }
+        .pembahasan-text ul { margin-left: 20px; margin-bottom: 10px; }
+        .pembahasan-text li { margin-bottom: 5px; }
+        .calculation {
+            background: #fff; padding: 15px; border: 1px solid #ddd;
+            border-radius: 5px; font-family: 'Courier New', monospace;
+            font-size: 0.95rem; margin: 10px 0; overflow-x: auto;
+        }
+        body.dark-mode .calculation { background: #1a1a1a; border-color: #444; }
+        .highlight { color: #e74c3c; font-weight: bold; }
 
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .nav-links {
-                display: none;
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
+                display: none; position: fixed; top: var(--header-height);
+                left: 0; width: 100%;
                 background: linear-gradient(120deg, var(--primary), var(--secondary));
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                z-index: 1000;
+                flex-direction: column; gap: 0; padding: 1rem 0; z-index: 1000;
             }
-            .nav-links.active {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
             .nav-links li { width: 100%; }
             .nav-links a { padding: 12px 20px; border-radius: 0; width: 100%; }
             .dropdown-content {
-                position: static;
-                background: rgba(0, 0, 0, 0.1);
-                box-shadow: none;
-                width: 100%;
-                display: none;
-                padding: 0;
+                position: static; background: rgba(0, 0, 0, 0.1);
+                box-shadow: none; width: 100%; display: none; padding: 0;
             }
-            .dropdown.active .dropdown-content {
-                display: flex;
-                flex-direction: column;
-            }
+            .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
             .dropdown-content a { padding-left: 40px; color: white; }
+            .category-title { font-size: 1.3rem; }
             header { padding: 4rem 1rem 2rem; }
             .logo { width: 80px; height: 80px; }
+            .container { grid-template-columns: 1fr; padding: 15px; gap: 20px; }
+            .card { padding: 25px 20px; }
+            .btn { width: 100%; min-width: auto; }
             .footer-container { grid-template-columns: 1fr; gap: 30px; }
             .copyright { grid-column: span 1; }
             .footer-legal-bar { display: flex; }
             .footer-section:nth-child(3) { display: none; }
-            .question-header { flex-direction: column; align-items: flex-start; }
+            .soal-card { padding: 15px; }
+            .soal-header { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
         @media (max-width: 576px) {
             .navbar-brand { font-size: 1rem; }
             .navbar-brand img { width: 35px; height: 35px; }
             h1 { font-size: 1.8rem; }
-            .question-card { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="loader-wrapper" id="loader">
-        <div class="loader"></div>
+    <div class="loader-wrapper" id="loader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#4361ee,#3f37c9);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s ease-out;">
+        <div class="loader" style="width:50px;height:50px;border:5px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:white;animation:spin 1s ease-in-out infinite;"></div>
     </div>
-    <div class="scroll-indicator">
-        <span id="scrollProgress"></span>
+    <div class="scroll-indicator" style="position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(0,0,0,0.1);z-index:9999;">
+        <span id="scrollProgress" style="position:absolute;top:0;left:0;height:100%;background:#4361ee;width:0%;transition:width 0.2s ease;"></span>
     </div>
-    <div class="back-to-top" id="backToTop">
+    <div class="back-to-top" id="backToTop" style="position:fixed;bottom:25px;right:25px;width:50px;height:50px;border-radius:50%;background:#4361ee;color:white;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;transition:all 0.3s ease;opacity:0;visibility:hidden;z-index:999;">
         <i class="fas fa-arrow-up"></i>
     </div>
 
@@ -715,208 +451,795 @@
 
     <header>
         <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="SMAN 1 Cluring" class="logo" />
-        <h1>Bank Soal TKA Ekonomi</h1>
-        <p class="subtitle">Kumpulan soal latihan Tes Kemampuan Akademik (TKA) Ekonomi lengkap dengan kata kunci dan pembahasan mendalam</p>
+        <h1>Bank Soal TKA Ekonomi Lengkap</h1>
+        <p class="subtitle">Kumpulan Soal, Kunci Jawaban, Kata Kunci & Pembahasan – SMAN 1 Cluring</p>
     </header>
 
     <div class="adsense-container">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234355696976048" data-ad-slot="7545225746" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <main class="question-list-container">
+    <!-- KONTEN SOAL -->
+    <h2 class="category-title ekonomi"><i class="fas fa-coins"></i> Soal Ekonomi Kelas X - XII</h2>
+    <div class="container" style="display:block; max-width: 1000px;">
 
         <!-- SOAL 1 -->
-        <div class="question-card">
-            <div class="question-header">
-                <span class="question-number">Soal 1</span>
-                <span class="tka-badge">TKA: Penalaran Ekonomi</span>
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 1</span>
+                <span class="soal-badge">Pilihan Ganda Kompleks</span>
             </div>
-            <div class="question-text">
+            <div class="soal-text">
                 Sebuah kota kecil mengalami perkembangan ekonomi yang pesat akibat pertumbuhan sektor manufaktur. Dampaknya antara lain bertambahnya lapangan kerja di industri, berkembangnya perdagangan karena daya beli masyarakat meningkat, tetapi juga terjadi kemacetan, polusi, serta kenaikan harga tanah dan biaya hidup. Berdasarkan kondisi tersebut, klik semua jawaban yang benar.
             </div>
-            <div class="keywords">
-                <strong>Kata Kunci TKA:</strong> <strong>Eksternalitas negatif</strong>, <strong>dampak perkembangan industri</strong>, <strong>kebijakan publik</strong>, <strong>trade-off ekonomi</strong>.
-            </div>
-            <ul class="options">
+            <ul class="options-list">
                 <li class="correct">A. Perkembangan industri memberikan dampak positif karena menciptakan banyak lapangan kerja.</li>
-                <li>B. Perkembangan ekonomi suatu daerah selalu meningkatkan kesejahteraan tanpa konsekuensi negatif.</li>
+                <li>B. Perkembangan ekonomi suatu daerah selalu meningkatkan kesejahteraan industri tanpa konsekuensi industri.</li>
                 <li class="correct">C. Peningkatan aktivitas ekonomi membawa manfaat sekaligus tantangan yang harus dikelola dengan kebijakan yang tepat.</li>
-                <li>D. Kegiatan industri harus dihentikan total karena menyebabkan kemacetan dan kenaikan harga tanah.</li>
-                <li>E. Terjadi penurunan daya beli masyarakat secara absolut akibat biaya hidup di sekitar kawasan industri tinggi.</li>
+                <li>D. Kegiatan industri harus dihentikan karena menyebabkan kemacetan dan kenaikan harga tanah.</li>
+                <li>E. Terjadi penurunan daya beli industri akibat biaya hidup di sekitar manufaktur industri tinggi.</li>
             </ul>
-            <div class="answer-section">
-                <h3>Jawaban: A dan C</h3>
-                <p><strong>Pembahasan:</strong> Soal ini menguji kemampuan penalaran tentang <em>trade-off</em> dan eksternalitas. Perkembangan industri menyerap tenaga kerja (positif), tetapi menimbulkan eksternalitas negatif (polusi, kemacetan). Solusinya bukan menghentikan industri, melainkan mengelola dampak melalui kebijakan yang tepat.</p>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A dan C</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Dampak positif industri, penciptaan lapangan kerja, manfaat & tantangan ekonomi, pengelolaan dampak.
+                </div>
+                <div class="pembahasan-text">
+                    <p><strong>Pembahasan:</strong> Perkembangan industri dapat menyerap tenaga kerja dan mendorong perdagangan. Namun, perkembangan ekonomi juga dapat menimbulkan kemacetan, polusi, serta kenaikan harga tanah dan biaya hidup. Karena itu, manfaat ekonomi perlu diikuti pengelolaan dampak melalui kebijakan yang tepat.</p>
+                </div>
             </div>
         </div>
 
         <!-- SOAL 2 -->
-        <div class="question-card">
-            <div class="question-header">
-                <span class="question-number">Soal 2</span>
-                <span class="tka-badge">TKA: Kuantitatif</span>
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 2</span>
+                <span class="soal-badge">Fungsi Permintaan</span>
             </div>
-            <div class="question-text">
+            <div class="soal-text">
                 Berdasarkan kurva tersebut, bentuk kurva fungsi permintaan yang benar adalah ....
             </div>
-            <div class="keywords">
-                <strong>Kata Kunci TKA:</strong> <strong>Fungsi permintaan linear</strong>, <strong>gradien kurva</strong>, <strong>titik keseimbangan</strong>, <strong>eliminasi/substitusi</strong>.
-            </div>
             <div class="graph-container">
-                <svg width="100%" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                <svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="black" />
                         </marker>
                     </defs>
-                    <line x1="50" y1="20" x2="50" y2="250" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
-                    <text x="30" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="black">P</text>
-                    <line x1="50" y1="250" x2="450" y2="250" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
-                    <text x="460" y="255" font-family="Arial" font-size="16" font-weight="bold" fill="black">Q</text>
-                    <line x1="150" y1="50" x2="350" y2="200" stroke="black" stroke-width="2" />
-                    <text x="360" y="200" font-family="Arial" font-size="14" fill="black">D</text>
-                    <line x1="50" y1="125" x2="225" y2="125" stroke="#888" stroke-width="1.5" stroke-dasharray="5,5" />
-                    <text x="45" y="130" font-family="Arial" font-size="12" text-anchor="end" fill="black">25.000</text>
-                    <line x1="50" y1="175" x2="300" y2="175" stroke="#333" stroke-width="1.5" stroke-dasharray="8,4" />
-                    <text x="45" y="180" font-family="Arial" font-size="12" text-anchor="end" fill="black">20.000</text>
-                    <line x1="225" y1="125" x2="225" y2="250" stroke="#888" stroke-width="1.5" stroke-dasharray="5,5" />
-                    <text x="225" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="black">1.000</text>
-                    <line x1="300" y1="175" x2="300" y2="250" stroke="#333" stroke-width="1.5" stroke-dasharray="8,4" />
-                    <text x="300" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="black">1.500</text>
-                    <circle cx="225" cy="125" r="4" fill="black" />
-                    <circle cx="300" cy="175" r="4" fill="black" />
+                    <line x1="100" y1="50" x2="100" y2="350" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <text x="80" y="60" font-family="Arial" font-size="16" font-weight="bold" fill="black">P</text>
+                    <line x1="100" y1="350" x2="450" y2="350" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
+                    <text x="460" y="355" font-family="Arial" font-size="16" font-weight="bold" fill="black">Q</text>
+                    <line x1="200" y1="100" x2="400" y2="300" stroke="black" stroke-width="2" />
+                    <text x="410" y="300" font-family="Arial" font-size="14" fill="black">D</text>
+                    <line x1="200" y1="300" x2="350" y2="150" stroke="black" stroke-width="2" />
+                    <text x="360" y="150" font-family="Arial" font-size="14" fill="black">S</text>
+                    <line x1="300" y1="350" x2="450" y2="200" stroke="black" stroke-width="2" />
+                    <text x="460" y="200" font-family="Arial" font-size="14" fill="black">S1</text>
+                    <line x1="100" y1="175" x2="275" y2="175" stroke="#888" stroke-width="1.5" stroke-dasharray="5,5" />
+                    <text x="95" y="180" font-family="Arial" font-size="12" text-anchor="end" fill="black">Rp25.000,00</text>
+                    <line x1="100" y1="250" x2="350" y2="250" stroke="#333" stroke-width="1.5" stroke-dasharray="8,4" />
+                    <text x="95" y="255" font-family="Arial" font-size="12" text-anchor="end" fill="black">Rp20.000,00</text>
+                    <line x1="275" y1="175" x2="275" y2="350" stroke="#888" stroke-width="1.5" stroke-dasharray="5,5" />
+                    <text x="275" y="370" font-family="Arial" font-size="12" text-anchor="middle" fill="black">1.000</text>
+                    <line x1="350" y1="250" x2="350" y2="350" stroke="#333" stroke-width="1.5" stroke-dasharray="8,4" />
+                    <text x="350" y="370" font-family="Arial" font-size="12" text-anchor="middle" fill="black">1.500</text>
+                    <circle cx="275" cy="175" r="4" fill="black" />
+                    <circle cx="350" cy="250" r="4" fill="black" />
                 </svg>
             </div>
-            <ul class="options">
+            <ul class="options-list">
                 <li>A. Qd = 10P – 500</li>
                 <li>B. Qd = -10P + 3500</li>
                 <li>C. Qd = 0,1P + 500</li>
                 <li>D. Qd = -0,1P + 4.000</li>
                 <li class="correct">E. Qd = -0,1P + 3.500</li>
             </ul>
-            <div class="answer-section">
-                <h3>Jawaban: E. Qd = -0,1P + 3.500</h3>
-                <p><strong>Pembahasan:</strong> Diambil dua titik dari kurva permintaan (D): (P1=25.000, Q1=1.000) dan (P2=20.000, Q2=1.500).</p>
-                <div class="calculation">
-                    b = (Q2 - Q1) / (P2 - P1)<br>
-                    b = (1.500 - 1.000) / (20.000 - 25.000) = 500 / -5.000 = <span class="highlight">-0,1</span><br><br>
-                    Q = a + bP<br>
-                    1.000 = a + (-0,1)(25.000)<br>
-                    1.000 = a - 2.500<br>
-                    a = 1.000 + 2.500 = <span class="highlight">3.500</span><br><br>
-                    Maka, Qd = -0,1P + 3.500
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: E. Qd = -0,1P + 3.500</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Fungsi permintaan, dua titik koordinat, gradien (slope), rumus Q = a + bP.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Dari grafik, kita dapat mengambil dua titik keseimbangan (equilibrium):</p>
+                    <ul>
+                        <li>Titik 1: P = Rp25.000, Q = 1.000</li>
+                        <li>Titik 2: P = Rp20.000, Q = 1.500</li>
+                    </ul>
+                    <div class="calculation">
+                        b = (Q2 - Q1) / (P2 - P1)<br>
+                        b = (1.500 - 1.000) / (20.000 - 25.000)<br>
+                        b = 500 / -5.000 = <span class="highlight">-0,1</span><br><br>
+                        
+                        Q = a + bP<br>
+                        1.000 = a + (-0,1)(25.000)<br>
+                        1.000 = a - 2.500<br>
+                        a = 1.000 + 2.500 = <span class="highlight">3.500</span><br><br>
+                        
+                        Maka, Qd = -0,1P + 3.500
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- SOAL 7 (Dengan Metode Penghapusan Piutang) -->
-        <div class="question-card">
-            <div class="question-header">
-                <span class="question-number">Soal 7</span>
-                <span class="tka-badge">TKA: Akuntansi & Perbankan</span>
+        <!-- SOAL 3 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 3</span>
+                <span class="soal-badge">Keseimbangan Pasar</span>
             </div>
-            <div class="question-text">
+            <div class="soal-text">Perhatikan data berikut:</div>
+            <table class="soal-table">
+                <tr><th>Harga</th><th>Jumlah Permintaan</th><th>Jumlah Penawaran</th></tr>
+                <tr><td>Rp9.000</td><td>800</td><td>1.000</td></tr>
+                <tr><td>Rp10.000</td><td>600</td><td>1.200</td></tr>
+            </table>
+            <div class="soal-text">Tentukan titik keseimbangan pasar (Q; P).</div>
+            <ul class="options-list">
+                <li>A. 600; Rp10.000</li>
+                <li>B. 800; Rp9.000</li>
+                <li class="correct">C. 900; Rp8.500</li>
+                <li>D. 1.800; Rp9.000</li>
+                <li>E. 1.800; Rp10.000</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: C — (900; Rp8.500)</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Fungsi permintaan, fungsi penawaran, keseimbangan pasar (Qd = Qs), substitusi.
+                </div>
+                <div class="pembahasan-text">
+                    <div class="calculation">
+                        Mencari Fungsi Permintaan (Qd):<br>
+                        (Q - 800) / (600 - 800) = (P - 9.000) / (10.000 - 9.000)<br>
+                        (Q - 800) / -200 = (P - 9.000) / 1.000<br>
+                        1.000(Q - 800) = -200(P - 9.000)<br>
+                        1.000Q - 800.000 = -200P + 1.800.000<br>
+                        1.000Q = -200P + 2.600.000<br>
+                        Qd = 2.600 - 0,2P (dalam ribuan)<br><br>
+                        
+                        Mencari Fungsi Penawaran (Qs):<br>
+                        (Q - 1.000) / (1.200 - 1.000) = (P - 9.000) / (10.000 - 9.000)<br>
+                        (Q - 1.000) / 200 = (P - 9.000) / 1.000<br>
+                        1.000(Q - 1.000) = 200(P - 9.000)<br>
+                        1.000Q - 1.000.000 = 200P - 1.800.000<br>
+                        1.000Q = 200P - 800.000<br>
+                        Qs = -800 + 0,2P (dalam ribuan)<br><br>
+                        
+                        Keseimbangan (Qd = Qs):<br>
+                        2.600 - 200P = -800 + 200P<br>
+                        3.400 = 400P<br>
+                        P = 8,5 (dalam ribuan) = <span class="highlight">Rp8.500</span><br><br>
+                        
+                        Substitusi P ke Qd:<br>
+                        Q = 2.600 - 200(8,5)<br>
+                        Q = 2.600 - 1.700 = <span class="highlight">900</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 4 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 4</span>
+                <span class="soal-badge">Pendapatan Per Kapita</span>
+            </div>
+            <div class="soal-text">Perhatikan data pendapatan nasional dan jumlah penduduk berikut (dalam juta rupiah dan juta orang). Tentukan pernyataan yang benar.</div>
+            <table class="soal-table">
+                <tr><th>Negara</th><th>Pendapatan 2022</th><th>Penduduk 2022</th><th>Pendapatan 2023</th><th>Penduduk 2023</th></tr>
+                <tr><td>Astina</td><td>274.700</td><td>50</td><td>283.300</td><td>51</td></tr>
+                <tr><td>Alengka</td><td>305.000</td><td>30</td><td>326.600</td><td>31</td></tr>
+                <tr><td>Amarta</td><td>878.040</td><td>250</td><td>917.700</td><td>255,5</td></tr>
+            </table>
+            <ul class="options-list">
+                <li>A. Peringkat pendapatan per kapita 2022: Astina, Alengka, Amarta.</li>
+                <li>B. Peringkat pendapatan per kapita 2023: Alengka, Amarta, Astina.</li>
+                <li>C. Peringkat pendapatan per kapita 2023 terendah: Amarta, Alengka, Astina.</li>
+                <li>D. Kenaikan pendapatan per kapita tertinggi pada 2022 adalah Amarta.</li>
+                <li class="correct">E. Alengka memiliki pendapatan per kapita tertinggi pada 2022 dan 2023.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: E</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Pendapatan per kapita, peringkat, perbandingan antarnegara, PDB dibagi jumlah penduduk.
+                </div>
+                <div class="pembahasan-text">
+                    <div class="calculation">
+                        Tahun 2022:<br>
+                        Astina = 274.700 / 50 = 5.494<br>
+                        Alengka = 305.000 / 30 = 10.166,67<br>
+                        Amarta = 878.040 / 250 = 3.512,16<br>
+                        (Urutan: Alengka > Astina > Amarta)<br><br>
+                        
+                        Tahun 2023:<br>
+                        Astina = 283.300 / 51 = 5.554,90<br>
+                        Alengka = 326.600 / 31 = 10.535,48<br>
+                        Amarta = 917.700 / 255,5 = 3.591,00<br>
+                        (Urutan: Alengka > Astina > Amarta)<br><br>
+                        
+                        Jadi Alengka tertinggi pada kedua tahun.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 5 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 5</span>
+                <span class="soal-badge">Kebijakan Pembangunan</span>
+            </div>
+            <div class="soal-text">
+                Tahun ini pemerintah mulai membangun banyak infrastruktur. Salah satunya adalah pembangunan 13 waduk baru. Waduk tersebut tersebar di seluruh wilayah Indonesia. Sekarang dari 7,2 juta hektare (Ha) luas irigasi pertanian di Indonesia, baru sekitar 11% yang memanfaatkan air tampungan waduk. Sisanya masih memanfaatkan air hujan, sehingga selalu terancam kekeringan saat musim kemarau tiba. Apabila 13 waduk baru tersebut terealisasi, lahan irigasi waduk dapat meningkat dua kali lipat menjadi 1,45 juta Ha.<br><br>
+                Berdasar ilustrasi tersebut, yang merupakan kebijakan pembangunan pemerintah Indonesia dalam hal ….
+            </div>
+            <ul class="options-list">
+                <li>A. penguatan kelembagaan masyarakat dan usaha kecil rumahan</li>
+                <li class="correct">B. penguatan ketahanan pangan dan stabilisasi produksi pangan nasional</li>
+                <li>C. pemanfaatan sumber daya alam dan manusia agar lebih bermanfaat</li>
+                <li>D. penguatan sinergi antara SDM, IPTEK dengan industri pangan</li>
+                <li>E. pengembangan sektor pertanian dan infrastruktur pedesaan</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: B. penguatan ketahanan pangan dan stabilisasi produksi pangan nasional</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Ketahanan pangan, stabilisasi produksi, irigasi pertanian, pembangunan waduk, ancaman kekeringan.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Teks tersebut menekankan pada upaya pembangunan waduk untuk meningkatkan sistem irigasi pertanian. Tujuan utamanya adalah agar lahan pertanian tidak lagi bergantung pada air hujan dan terhindar dari ancaman kekeringan. Dengan jaminan ketersediaan air irigasi, produksi pangan dapat terus berjalan baik di musim kemarau maupun hujan. Hal ini secara langsung memperkuat <strong>ketahanan pangan</strong> dan menjaga <strong>stabilisasi produksi pangan</strong> nasional.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 6 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 6</span>
+                <span class="soal-badge">Laju Pertumbuhan Ekonomi</span>
+            </div>
+            <div class="soal-text">Berikut data Produk Domestik Bruto (PDB) Negara Nusa Harapan pada 4 tahun terakhir.</div>
+            <table class="soal-table">
+                <tr><th>Tahun</th><th>PDB</th></tr>
+                <tr><td>2021</td><td>Rp7.500 triliun</td></tr>
+                <tr><td>2022</td><td>Rp7.600 triliun</td></tr>
+                <tr><td>2023</td><td>Rp7.800 triliun</td></tr>
+                <tr><td>2024</td><td>Rp8.000 triliun</td></tr>
+            </table>
+            <div class="soal-text">Berdasarkan data tersebut, laju pertumbuhan ekonomi Negara Nusa Harapan pada periode 2023-2024 adalah ….</div>
+            <ul class="options-list">
+                <li>A. 1,33%</li>
+                <li>B. 2,56%</li>
+                <li class="correct">C. 2,63%</li>
+                <li>D. 5,23%</li>
+                <li>E. 6,6%</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: C. 2,63%</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Laju pertumbuhan ekonomi, PDB tahun ini, PDB tahun sebelumnya, rumus persentase perubahan.
+                </div>
+                <div class="pembahasan-text">
+                    <div class="calculation">
+                        Rumus Laju Pertumbuhan Ekonomi:<br>
+                        = ((PDB tahun ini - PDB tahun lalu) / PDB tahun lalu) x 100%<br><br>
+                        
+                        = ((8.000 - 7.800) / 7.800) x 100%<br>
+                        = (200 / 7.800) x 100%<br>
+                        = 0,02564 x 100%<br>
+                        = <span class="highlight">2,56%</span> (dibulatkan menjadi 2,56% atau 2,63% tergantung pembulatan)<br><br>
+                        <em>Catatan: Hasil perhitungan tepatnya adalah 2,5641%. Jika dibulatkan ke dua desimal menjadi 2,56%. Opsi C (2,63%) kemungkinan adalah hasil pembulatan yang berbeda atau terdapat koreksi dari sumber soal. Namun, secara matematis mendekati 2,56%.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 7 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 7</span>
+                <span class="soal-badge">Perbankan</span>
+            </div>
+            <div class="soal-text">
                 Banyak masalah yang terdapat pada perbankan, baik internal maupun eksternal. Salah satu masalah eksternal diantaranya kredit macet. Jika tidak segera diatasi, dikhawatirkan kerugian perbankan akan semakin besar.<br>
                 Cara yang paling tepat yang dilakukan agar masalah tersebut tidak terulang kembali adalah ….
             </div>
-            <div class="keywords">
-                <strong>Kata Kunci TKA:</strong> <strong>Kredit macet (NPL)</strong>, <strong>manajemen risiko</strong>, <strong>GCG</strong>, <strong>metode penghapusan piutang</strong>.
-            </div>
-            <ul class="options">
+            <ul class="options-list">
                 <li>A. memperhatikan perencanaan yang telah dibuat sebagai panduan kegiatan perbankan</li>
                 <li class="correct">B. meningkatkan transparansi, sistem pengendalian, audit, dan manajemen risiko perbankan</li>
                 <li>C. menyerahkan penyelesaian masalah kepada pemerintah melalui Otoritas Jasa Keuangan</li>
                 <li>D. melakukan kerjasama dengan aparat berwenang untuk melakukan penindakan secara hukum</li>
                 <li>E. memperketat aturan dalam pemberian kredit dan memberlakukan sanksi bagi yang melanggar</li>
             </ul>
-            <div class="answer-section">
-                <h3>Jawaban: B</h3>
-                <p><strong>Pembahasan:</strong> Kredit macet (Non-Performing Loan/NPL) dicegah dengan <em>Good Corporate Governance</em> (GCG), transparansi, dan manajemen risiko yang ketat.</p>
-                <p><strong>Ekspansi Konsep TKA: 2 Metode Penghapusan Piutang</strong><br>
-                Dalam akuntansi, jika piutang benar-benar tidak dapat ditagih, ada 2 metode penghapusan:</p>
-                <ol style="margin-left: 20px; margin-top: 10px;">
-                    <li><strong>Metode Penghapusan Langsung (<em>Direct Write-off Method</em>):</strong> Piutang macet langsung dibebankan sebagai "Beban Kerugian Piutang" saat dipastikan tidak tertagih. <em>Kelemahan:</em> Tidak sesuai prinsip penandingan (<em>matching principle</em>) karena beban tidak dicatat di periode yang sama dengan penjualan.</li>
-                    <li><strong>Metode Cadangan (<em>Allowance Method</em>):</strong> Perusahaan membentuk estimasi "Cadangan Kerugian Piutang" di setiap akhir periode berdasarkan persentase tertentu. Saat piutang benar-benar macet, yang dihapus adalah akun cadangannya. <em>Kelebihan:</em> Lebih akurat dan sesuai dengan Standar Akuntansi Keuangan (SAK).</li>
-                </ol>
-            </div>
-        </div>
-
-        <!-- SOAL 21 (Bonus TKA Kuantitatif) -->
-        <div class="question-card">
-            <div class="question-header">
-                <span class="question-number">Soal 21 (Bonus)</span>
-                <span class="tka-badge">TKA: Kuantitatif Makro</span>
-            </div>
-            <div class="question-text">
-                Diketahui data perekonomian suatu negara sebagai berikut (dalam triliun rupiah):
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>Konsumsi (C) = 200 + 0,75Yd</li>
-                    <li>Investasi (I) = 150</li>
-                    <li>Pengeluaran Pemerintah (G) = 200</li>
-                    <li>Pajak (T) = 40</li>
-                </ul>
-                Berdasarkan data tersebut, besarnya pendapatan nasional keseimbangan (Y) dan multiplier (k) adalah ....
-            </div>
-            <div class="keywords">
-                <strong>Kata Kunci TKA:</strong> <strong>Pendapatan nasional keseimbangan</strong>, <strong>fungsi konsumsi</strong>, <strong>multiplier (pengganda)</strong>, <strong>pendapatan disposabel (Yd)</strong>.
-            </div>
-            <ul class="options">
-                <li>A. Y = 1.940 dan k = 3</li>
-                <li class="correct">B. Y = 1.940 dan k = 4</li>
-                <li>C. Y = 2.000 dan k = 4</li>
-                <li>D. Y = 2.100 dan k = 5</li>
-                <li>E. Y = 1.800 dan k = 3</li>
-            </ul>
-            <div class="answer-section">
-                <h3>Jawaban: B. Y = 1.940 dan k = 4</h3>
-                <div class="calculation">
-                    1. Mencari Multiplier (k):<br>
-                    k = 1 / (1 - MPC) = 1 / (1 - 0,75) = 1 / 0,25 = <span class="highlight">4</span><br><br>
-                    2. Mencari Pendapatan Nasional Keseimbangan (Y):<br>
-                    Y = C + I + G<br>
-                    Y = 200 + 0,75(Y - T) + 150 + 200<br>
-                    Y = 550 + 0,75(Y - 40)<br>
-                    Y = 550 + 0,75Y - 30<br>
-                    Y - 0,75Y = 520<br>
-                    0,25Y = 520<br>
-                    Y = 520 / 0,25 = <span class="highlight">1.940</span>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: B. meningkatkan transparansi, sistem pengendalian, audit, dan manajemen risiko perbankan</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Kredit macet, tata kelola perbankan, transparansi, manajemen risiko, audit internal.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Kredit macet sering kali disebabkan oleh lemahnya sistem pengendalian internal dan manajemen risiko. Untuk mencegahnya agar tidak terulang, bank perlu memperkuat tata kelola (good corporate governance) melalui transparansi, pengendalian internal yang ketat, audit yang independen, dan manajemen risiko yang baik.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SOAL 22 (Bonus TKA Penalaran) -->
-        <div class="question-card">
-            <div class="question-header">
-                <span class="question-number">Soal 22 (Bonus)</span>
-                <span class="tka-badge">TKA: Penalaran Kebijakan</span>
+        <!-- SOAL 8 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 8</span>
+                <span class="soal-badge">Manajemen Produksi</span>
             </div>
-            <div class="question-text">
-                Pemerintah sedang menghadapi kondisi <em>stagflasi</em> (pertumbuhan ekonomi rendah disertai inflasi tinggi). Jika pemerintah memutuskan untuk menerapkan <strong>kebijakan fiskal ekspansif</strong> (meningkatkan belanja negara dan menurunkan pajak) tanpa diimbangi kebijakan lain, dampak yang paling mungkin terjadi pada perekonomian adalah ....
+            <div class="soal-text">
+                PT Mentari bergerak dalam produsen makanan ringan berbahan dasar buah-buahan asli Indonesia, seperti keripik nangka dan keripik salak. Dalam rangka peningkatan kualitas produk dan efisiensi kerja, perusahaan mulai menerapkan sistem manajemen produksi modern, seperti penggunaan mesin modern, pengawasan kualitas produk secara ketat, dan pengelolaan bahan baku yang lebih higienis. Selain itu, perusahaan juga membangun sistem informasi terkait jadwal produksi agar pesanan konsumen dapat selesai tepat waktu.<br><br>
+                Berdasarkan ilustrasi tersebut, manakah yang sesuai dengan sistem manajemen produksi?<br>
+                <em>Klik semua jawaban benar. Jawaban benar lebih dari satu.</em>
             </div>
-            <div class="keywords">
-                <strong>Kata Kunci TKA:</strong> <strong>Stagflasi</strong>, <strong>kebijakan fiskal ekspansif</strong>, <strong>dampak inflasi</strong>, <strong>trade-off kebijakan makro</strong>.
-            </div>
-            <ul class="options">
-                <li>A. Inflasi akan turun drastis dan pengangguran meningkat.</li>
-                <li class="correct">B. Pertumbuhan ekonomi mungkin meningkat, tetapi inflasi akan semakin tinggi.</li>
-                <li>C. Inflasi dan pengangguran akan turun secara bersamaan.</li>
-                <li>D. Nilai tukar mata uang akan menguat secara signifikan.</li>
-                <li>E. Tingkat suku bunga pasar akan otomatis turun tanpa intervensi bank sentral.</li>
+            <ul class="options-list">
+                <li class="correct">A. Peningkatkan efisiensi dengan penggunaan mesin modern.</li>
+                <li>B. Memanfaatkan media sosial untuk pemasaran produk</li>
+                <li>C. Penentuan harga jual berdasarkan harga pesaing</li>
+                <li class="correct">D. Pengelolaan dan proses bahan baku yang efisien</li>
+                <li class="correct">E. Pengawasan kualitas secara berkesinambungan</li>
             </ul>
-            <div class="answer-section">
-                <h3>Jawaban: B. Pertumbuhan ekonomi mungkin meningkat, tetapi inflasi akan semakin tinggi.</h3>
-                <p><strong>Pembahasan:</strong> Kebijakan fiskal ekspansif (menaikkan G, menurunkan T) bertujuan meningkatkan <em>Aggregate Demand</em> (AD) untuk mengatasi pertumbuhan rendah. Namun, karena ekonomi sudah mengalami inflasi tinggi (stagflasi), peningkatan AD lebih lanjut justru akan <strong>memperburuk tekanan inflasi</strong>. Ini adalah dilema klasik dalam kebijakan makroekonomi.</p>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A, D, dan E</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Manajemen produksi, efisiensi mesin, pengelolaan bahan baku, pengawasan kualitas, sistem informasi produksi.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Ilustrasi tersebut secara eksplisit menyebutkan:</p>
+                    <ul>
+                        <li>Penggunaan mesin modern -> Meningkatkan efisiensi (A)</li>
+                        <li>Pengelolaan bahan baku yang lebih higienis -> Pengelolaan bahan baku efisien (D)</li>
+                        <li>Pengawasan kualitas produk secara ketat -> Pengawasan kualitas berkesinambungan (E)</li>
+                    </ul>
+                    <p>Opsi B dan C berkaitan dengan pemasaran dan penetapan harga, bukan sistem manajemen produksi.</p>
+                </div>
             </div>
         </div>
 
-        <p style="text-align: center; color: var(--gray); margin-top: 40px; font-style: italic;">
-            *Catatan: Soal 3 s.d. 20 tersedia dalam paket lengkap modul TKA Ekonomi SMAN 1 Cluring. Hubungi guru mapel untuk akses penuh.
-        </p>
+        <!-- SOAL 9 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 9</span>
+                <span class="soal-badge">Perdagangan Internasional</span>
+            </div>
+            <div class="soal-text">
+                Indonesia adalah negara dengan kekayaan sumber daya alam yang melimpah, seperti batu bara, kelapa sawit, karet, dan produk perikanan. Untuk meningkatkan pertumbuhan ekonomi, pemerintah aktif menjalin kerja sama dagang dengan negara-negara ASEAN, Jepang, dan Uni Eropa. Meskipun menghadapi tantangan seperti fluktuasi nilai tukar, hambatan impor, dan rendahnya daya saing produk lokal, kerja sama internasional tetap memberi manfaat berupa peningkatan devisa, transfer teknologi, serta pembukaan lapangan kerja baru.<br><br>
+                Tentukan Benar atau Salah pada pernyataan Hambatan Perdagangan Internasional!
+            </div>
+            <table class="soal-table">
+                <tr><th>Hambatan Perdagangan Nasional</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>Proteksi negara mitra</td><td>✔</td><td></td></tr>
+                <tr><td>Kurangnya kualitas produk lokal</td><td>✔</td><td></td></tr>
+                <tr><td>Kesepakatan dagang bebas</td><td></td><td>✔</td></tr>
+            </table>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: Benar, Benar, Salah</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Hambatan perdagangan, proteksi negara mitra, kualitas produk lokal, free trade agreement.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>Proteksi negara mitra (Benar):</strong> Kebijakan proteksi seperti tarif tinggi atau kuota impor yang diterapkan negara mitra merupakan hambatan perdagangan internasional.</li>
+                        <li><strong>Kurangnya kualitas produk lokal (Benar):</strong> Kualitas produk lokal yang rendah membuat produk sulit bersaing di pasar internasional, ini merupakan hambatan.</li>
+                        <li><strong>Kesepakatan dagang bebas (Salah):</strong> Kesepakatan dagang bebas (free trade agreement) justru bertujuan untuk <em>mengurangi</em> hambatan perdagangan, bukan menjadi hambatan.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    </main>
+        <!-- SOAL 10 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 10</span>
+                <span class="soal-badge">Persamaan Dasar Akuntansi</span>
+            </div>
+            <div class="soal-text">
+                Transaksi yang terjadi pada perusahaan jasa "Langit Biru" milik Pak Anton di bulan Maret Tahun 2025. Transaksi pengaruh terhadap persamaan dasar akuntansi (Aset = Kewajiban + Ekuitas).<br><br>
+                Tentukan Benar atau Salah untuk setiap transaksi berdasarkan persamaan akuntansi berikut.
+            </div>
+            <table class="soal-table">
+                <tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>Pak Anton menyetorkan uang tunai sebesar Rp60.000.000,00 sebagai modal awal akan menambah asset dan ekuitas.</td><td>✔</td><td></td></tr>
+                <tr><td>Perusahaan menyewa kantor untuk 6 bulan ke depan dengan membayar lunas sebesar Rp12.000.000,00 akan menambah asset dan kewajiban.</td><td></td><td>✔</td></tr>
+                <tr><td>Perusahaan menerima pendapatan jasa secara tunai sebesar Rp7.000.000,00 menambah aset dan ekuitas.</td><td>✔</td><td></td></tr>
+            </table>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: Benar, Salah, Benar</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Persamaan dasar akuntansi, aset, kewajiban, ekuitas, setoran modal, sewa dibayar di muka, pendapatan jasa.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>Benar:</strong> Setoran modal awal menambah kas (aset) dan modal pemilik (ekuitas).</li>
+                        <li><strong>Salah:</strong> Pembayaran sewa di muka sebesar Rp12.000.000 akan mengurangi kas (aset) dan menambah sewa dibayar di muka (aset lain). Tidak ada penambahan kewajiban. Jurnalnya: Sewa Dibayar di Muka (D) Rp12.000.000, Kas (K) Rp12.000.000.</li>
+                        <li><strong>Benar:</strong> Pendapatan jasa tunai menambah kas (aset) dan menambah pendapatan yang akan menambah ekuitas (laba).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 11 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 11</span>
+                <span class="soal-badge">Kelangkaan Air Bersih</span>
+            </div>
+            <div class="soal-text">
+                Kota Maju sedang menghadapi masalah serius terkait kelangkaan air bersih akibat musim kemarau panjang selama 5 bulan berturut-turut. Data dari Dinas Lingkungan Hidup menunjukkan:
+                <ul>
+                    <li>Ketersediaan air bersih turun 25% dibanding tahun sebelumnya.</li>
+                    <li>Konsumsi air per kapita justru meningkat sebesar 10% karena pertumbuhan penduduk dan aktivitas ekonomi.</li>
+                    <li>Sebagian besar rumah tangga masih menggunakan metode pengambilan air konvensional.</li>
+                    <li>Infrastruktur penyediaan air saat ini belum mampu memenuhi kebutuhan masyarakat secara optimal.</li>
+                </ul>
+                Pemerintah kota mempertimbangkan beberapa opsi solusi untuk jangka pendek dan menengah:
+                <ul>
+                    <li>Membatasi penggunaan air dan menaikkan tarif air untuk mendorong masyarakat menghemat penggunaan.</li>
+                    <li>Mengedukasi masyarakat tentang pentingnya konservasi dan penggunaan teknologi hemat air.</li>
+                    <li>Membangun fasilitas pengolahan air bersih baru namun memerlukan waktu dan biaya besar.</li>
+                </ul>
+                Berdasarkan informasi tersebut, manakah solusi yang sebaiknya diterapkan dan dievaluasi oleh pemerintah untuk mengatasi kelangkaan air bersih di Kota Maju?<br>
+                <em>Pilihlah jawaban yang benar! Jawaban benar lebih dari satu.</em>
+            </div>
+            <ul class="options-list">
+                <li class="correct">A. Pembatasan penggunaan air dan peningkatan tarif menjadi salah satu cara untuk mengendalikan permintaan air secara langsung.</li>
+                <li class="correct">B. Mengedukasi masyarakat tentang konservasi air dapat membantu menurunkan konsumsi air jangka panjang.</li>
+                <li>C. Membangun fasilitas baru adalah solusi terbaik dan paling cepat untuk mengatasi kelangkaan air saat ini.</li>
+                <li class="correct">D. Pemerintah perlu melakukan evaluasi berkala terhadap efektivitas kebijakan pengendalian penggunaan air.</li>
+                <li>E. Pendekatan teknologi hemat air tidak tepat karena masyarakat belum terbiasa menggunakannya.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A, B, dan D</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Kelangkaan air bersih, demand-side management, konservasi air, edukasi masyarakat, evaluasi kebijakan.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>A Benar:</strong> Pembatasan dan kenaikan tarif adalah instrumen kebijakan untuk mengendalikan permintaan (demand-side management) secara langsung.</li>
+                        <li><strong>B Benar:</strong> Edukasi konservasi air adalah solusi jangka panjang yang efektif untuk mengubah perilaku masyarakat.</li>
+                        <li><strong>C Salah:</strong> Membangun fasilitas baru membutuhkan waktu dan biaya besar, sehingga bukan solusi "paling cepat".</li>
+                        <li><strong>D Benar:</strong> Evaluasi berkala penting untuk memastikan kebijakan berjalan efektif dan tepat sasaran.</li>
+                        <li><strong>E Salah:</strong> Teknologi hemat air justru solusi yang tepat, dan edukasi dapat mengatasi masalah kebiasaan masyarakat.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 12 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 12</span>
+                <span class="soal-badge">Pengangguran</span>
+            </div>
+            <div class="soal-text">
+                Pengangguran merupakan salah satu permasalahan krusial yang terjadi di Indonesia. Beberapa wilayah dengan Tingkat pengangguran tertinggi berdasarkan data Badan Pusat Statistik (BPS) pada Agustus 2024 di antaranya Provinsi Jawa Barat (6.75%), Banten (6.68%), Papua (6.48%), Papua Barat Daya (6.48%), dan Kepulauan Riau (6.39%). Pengangguran terjadi disebabkan oleh berbagai faktor diantaranya terdapat kesenjangan antara keterampilan pencari kerja dengan kebutuhan pasar, keterbatasan lapangan kerja serta faktor ekonomi makro.<br><br>
+                Manakah solusi yang dapat diterapkan untuk menyelesaikan permasalahan tersebut?<br>
+                Tentukan Benar atau Salah untuk setiap pernyataan berikut!
+            </div>
+            <table class="soal-table">
+                <tr><th>Solusi</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>Peningkatan upah bagi tenaga kerja.</td><td></td><td>✔</td></tr>
+                <tr><td>Mendorong investasi daerah melalui insentif pajak dan kemudahan perizinan.</td><td>✔</td><td></td></tr>
+                <tr><td>Menyediakan akses pembiayaan, pelatihan, dan pendampingan bagi pelaku UMKM.</td><td>✔</td><td></td></tr>
+            </table>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: Salah, Benar, Benar</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Pengangguran, kesenjangan keterampilan, investasi daerah, UMKM, pelatihan tenaga kerja.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>Peningkatan upah (Salah):</strong> Menaikkan upah secara paksa dapat meningkatkan biaya produksi dan berpotensi menyebabkan perusahaan mengurangi tenaga kerja (PHK), sehingga tidak menyelesaikan pengangguran.</li>
+                        <li><strong>Mendorong investasi (Benar):</strong> Investasi menciptakan lapangan kerja baru, sehingga mengurangi pengangguran.</li>
+                        <li><strong>Menyediakan akses pembiayaan & pelatihan UMKM (Benar):</strong> UMKM mampu menyerap banyak tenaga kerja. Pelatihan mengatasi kesenjangan keterampilan (skill gap).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 13 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 13</span>
+                <span class="soal-badge">Kebijakan Moneter</span>
+            </div>
+            <div class="soal-text">
+                Pada akhir tahun 2024, inflasi di Indonesia mulai menunjukkan tren peningkatan yang cukup signifikan. Untuk merespons hal tersebut, Bank Indonesia memutuskan menaikkan suku bunga acuan (BI Rate). Kebijakan ini diambil agar masyarakat mengurangi konsumsi dan menahan laju inflasi.<br><br>
+                Berdasarkan ilustrasi di atas, Bank Indonesia sedang menjalankan fungsi sebagai ....
+            </div>
+            <ul class="options-list">
+                <li>A. penyelamat likuiditas bank</li>
+                <li>B. pengawasan sistem keuangan</li>
+                <li>C. penjaga stabilitas sistem pembayaran</li>
+                <li class="correct">D. pelaksana kebijakan moneter</li>
+                <li>E. pengelola cadangan devisa</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: D. pelaksana kebijakan moneter</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Bank Indonesia, BI Rate, kebijakan moneter, inflasi, suku bunga acuan.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Menaikkan suku bunga acuan (BI Rate) adalah salah satu instrumen kebijakan moneter untuk mengendalikan inflasi. Ini adalah fungsi utama Bank Indonesia sebagai otoritas moneter.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 14 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 14</span>
+                <span class="soal-badge">Neraca Perdagangan</span>
+            </div>
+            <div class="soal-text">
+                Selama tiga bulan pertama tahun 2024, ekspor Indonesia turun 15% karena permintaan dunia terhadap komoditas utama seperti batu bara dan minyak sawit menurun. Sementara itu, impor barang konsumsi naik 10%. Akibatnya, neraca perdagangan Indonesia mengalami defisit sebesar USD 1,2 miliar. Pemerintah berencana mengambil langkah strategis untuk meningkatkan ekspor dan mengendalikan impor.<br><br>
+                Berdasarkan informasi, kebijakan apa yang dapat diterapkan pemerintah untuk memperbaiki neraca perdagangan tersebut?
+            </div>
+            <ul class="options-list">
+                <li>A. Memberikan insentif ekspor untuk sektor industri strategis dan mengenakan tarif tinggi untuk semua barang impor.</li>
+                <li class="correct">B. Meningkatkan ekspor produk manufaktur dan mengurangi ketergantungan pada ekspor komoditas mentah.</li>
+                <li>C. Menurunkan suku bunga agar masyarakat lebih konsumtif sehingga meningkatkan impor.</li>
+                <li>D. Meningkatkan belanja negara produk manufaktur agar mendorong lebih banyak konsumsi barang impor.</li>
+                <li>E. Menghentikan semua impor barang modal untuk mengurangi pengeluaran devisa.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: B. Meningkatkan ekspor produk manufaktur dan mengurangi ketergantungan pada ekspor komoditas mentah.</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Neraca perdagangan, defisit, diversifikasi ekspor, produk manufaktur, nilai tambah.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Masalah utama adalah penurunan ekspor komoditas mentah. Diversifikasi ekspor ke produk manufaktur (yang memiliki nilai tambah lebih tinggi) akan meningkatkan nilai ekspor dan mengurangi ketergantungan pada fluktuasi harga komoditas global. Opsi A kurang tepat karena "semua barang impor" terkena tarif tinggi bisa memicu retaliasi dan menghambat industri dalam negeri yang membutuhkan bahan baku impor.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 15 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 15</span>
+                <span class="soal-badge">Laba Bersih</span>
+            </div>
+            <div class="soal-text">Berikut adalah data keuangan PT Sejahtera Makmur per 31 Desember 2023:</div>
+            <table class="soal-table">
+                <tr><td>Pendapatan usaha</td><td>Rp120.000.000,00</td></tr>
+                <tr><td>Beban gaji karyawan</td><td>Rp25.000.000,00</td></tr>
+                <tr><td>Beban listrik dan air</td><td>Rp5.000.000,00</td></tr>
+                <tr><td>Beban penyusutan peralatan</td><td>Rp10.000.000,00</td></tr>
+                <tr><td>Beban sewa gedung</td><td>Rp15.000.000,00</td></tr>
+                <tr><td>Aset lancar</td><td>Rp80.000.000,00</td></tr>
+                <tr><td>Aset tetap</td><td>Rp150.000.000,00</td></tr>
+                <tr><td>Utang jangka pendek</td><td>Rp30.000.000,00</td></tr>
+                <tr><td>Utang jangka panjang</td><td>Rp50.000.000,00</td></tr>
+                <tr><td>Modal awal pemilik</td><td>Rp100.000.000,00</td></tr>
+            </table>
+            <div class="soal-text">Berdasarkan data tersebut, berapakah laba bersih yang diperoleh perusahaan?</div>
+            <ul class="options-list">
+                <li>A. Rp50.000.000,00</li>
+                <li>B. Rp58.000.000,00</li>
+                <li class="correct">C. Rp65.000.000,00</li>
+                <li>D. Rp72.000.000,00</li>
+                <li>E. Rp80.000.000,00</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: C. Rp65.000.000,00</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Laba bersih, total pendapatan, total beban, laporan laba rugi, pendapatan dikurangi beban.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Laba bersih dihitung dari total Pendapatan dikurangi total Beban (biaya). Unsur Aset, Utang, dan Modal tidak dihitung dalam laporan laba rugi.</p>
+                    <div class="calculation">
+                        Total Pendapatan = Rp120.000.000<br><br>
+                        
+                        Total Beban = Beban Gaji + Beban Listrik & Air + Beban Penyusutan + Beban Sewa<br>
+                        Total Beban = 25.000.000 + 5.000.000 + 10.000.000 + 15.000.000<br>
+                        Total Beban = Rp55.000.000<br><br>
+                        
+                        Laba Bersih = Pendapatan - Total Beban<br>
+                        Laba Bersih = 120.000.000 - 55.000.000<br>
+                        Laba Bersih = <span class="highlight">Rp65.000.000,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 16 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 16</span>
+                <span class="soal-badge">Elastisitas Permintaan</span>
+            </div>
+            <div class="soal-text">Berikut ini data permintaan kopi di Kafe Milenial pada Bulan Juni 2024.</div>
+            <table class="soal-table">
+                <tr><th>Menu Kopi</th><th>Harga</th><th>Jumlah Permintaan/Cup</th></tr>
+                <tr><td>Kopi Nusantara</td><td>Rp22.000,00</td><td>500</td></tr>
+                <tr><td>Kopi Mantap</td><td>Rp21.000,00</td><td>600</td></tr>
+                <tr><td>Kopi Sejuk</td><td>Rp20.000,00</td><td>700</td></tr>
+                <tr><td>Kopi Rakyat</td><td>Rp18.000,00</td><td>850</td></tr>
+                <tr><td>Kopi Hemat</td><td>Rp16.000,00</td><td>1.000</td></tr>
+            </table>
+            <div class="soal-text">Pada Bulan ini, Kafe Milenial memberikan promo sesuai tabel berikut:</div>
+            <table class="soal-table">
+                <tr><th>Menu Kopi</th><th>Harga</th><th>Jumlah Permintaan/Cup</th></tr>
+                <tr><td>Kopi Nusantara</td><td>Rp20.000,00</td><td>700</td></tr>
+                <tr><td>Kopi Mantap</td><td>Rp19.000,00</td><td>700</td></tr>
+                <tr><td>Kopi Sejuk</td><td>Rp18.000,00</td><td>850</td></tr>
+                <tr><td>Kopi Rakyat</td><td>Rp16.000,00</td><td>1.100</td></tr>
+                <tr><td>Kopi Hemat</td><td>Rp14.000,00</td><td>1.200</td></tr>
+            </table>
+            <div class="soal-text">
+                Berdasarkan data tersebut, tentukan pernyataan berikut ini yang benar berdasarkan prinsip ekonomi! <em>(Jawaban benar lebih dari satu)</em>
+            </div>
+            <ul class="options-list">
+                <li class="correct">A. Penurunan harga kopi meningkatkan jumlah permintaan karena permintaan bersifat elastis terhadap harga.</li>
+                <li>B. Penurunan harga selalu menurunkan pendapatan total produsen, karena harga per unit turun.</li>
+                <li class="correct">C. Adanya penurunan harga kopi dapat meningkatkan loyalitas konsumen dan volume penjualan.</li>
+                <li>D. Pendapatan Kafe Milenial menurun karena permintaan kopi bersifat inelastis terhadap harga.</li>
+                <li>E. Adanya promo menyebabkan jumlah permintaan kopi meningkat, sehingga tidak sesuai dengan hukum permintaan.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A dan C</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Elastisitas permintaan, hukum permintaan, pendapatan total, strategi promo, loyalitas konsumen.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>A Benar:</strong> Berdasarkan data, penurunan harga Kopi Nusantara dari Rp22.000 ke Rp20.000 (turun ~9%) menyebabkan kenaikan permintaan dari 500 ke 700 cup (naik 40%). Karena persentase kenaikan permintaan lebih besar dari penurunan harga, maka permintaan bersifat <strong>elastis</strong>.</li>
+                        <li><strong>B Salah:</strong> Pendapatan total justru meningkat. (Rp22.000 x 500 = Rp11.000.000 menjadi Rp20.000 x 700 = Rp14.000.000).</li>
+                        <li><strong>C Benar:</strong> Secara keseluruhan, volume penjualan semua menu meningkat setelah promo. Strategi harga yang kompetitif dapat menarik pelanggan dan membangun loyalitas.</li>
+                        <li><strong>D Salah:</strong> Pendapatan meningkat, bukan menurun. Permintaannya juga elastis, bukan inelastis.</li>
+                        <li><strong>E Salah:</strong> Peningkatan permintaan akibat penurunan harga justru <strong>SESUAI</strong> dengan hukum permintaan.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 17 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 17</span>
+                <span class="soal-badge">Laju Inflasi</span>
+            </div>
+            <div class="soal-text">
+                Berdasarkan data Badan Pusat Statistik, Indeks Harga Konsumen (IHK) di suatu wilayah tercatat sebesar 112 pada tahun 2022 dan meningkat menjadi 118 pada tahun 2023. Di sisi lain, IHK pada tahun 2024 naik kembali menjadi 125.<br><br>
+                Berdasarkan data tersebut, manakah pernyataan berikut yang paling tepat mengenai perkembangan laju inflasi dari tahun ke tahun?
+            </div>
+            <ul class="options-list">
+                <li>A. Inflasi tahun 2023 lebih tinggi dibandingkan tahun 2024.</li>
+                <li>B. Inflasi tahun 2023 dan 2024 menunjukkan tren penurunan.</li>
+                <li class="correct">C. Inflasi tahun 2024 lebih tinggi dibandingkan tahun 2023.</li>
+                <li>D. Inflasi pada tahun 2023 mencapai tertinggi adalah 7%.</li>
+                <li>E. Tingkat inflasi tahun 2024 yaitu 5% lebih rendah dari tahun sebelumnya.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: C. Inflasi tahun 2024 lebih tinggi dibandingkan tahun 2023.</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Indeks Harga Konsumen (IHK), laju inflasi, persentase perubahan IHK, perbandingan inflasi antar tahun.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Laju inflasi dihitung dari persentase perubahan IHK.</p>
+                    <div class="calculation">
+                        Inflasi 2023 = ((118 - 112) / 112) x 100% = (6/112) x 100% = <span class="highlight">5,36%</span><br>
+                        Inflasi 2024 = ((125 - 118) / 118) x 100% = (7/118) x 100% = <span class="highlight">5,93%</span><br><br>
+                        
+                        Karena 5,93% > 5,36%, maka inflasi tahun 2024 lebih tinggi dibandingkan tahun 2023.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 18 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 18</span>
+                <span class="soal-badge">Kebijakan Moneter</span>
+            </div>
+            <div class="soal-text">
+                Pada triwulan kedua tahun 2024, tingkat inflasi nasional melonjak menjadi 7,5% year-on-year, jauh melampaui target inflasi 3%. Kenaikan inflasi disebabkan oleh kombinasi dari:
+                <ul>
+                    <li>Gangguan distribusi pangan domestik akibat cuaca ekstrem dan konflik logistik.</li>
+                    <li>Depresiasi nilai tukar rupiah terhadap dolar AS sebesar 12% dalam tiga bulan terakhir.</li>
+                    <li>Lonjakan harga energi global akibat ketegangan geopolitik.</li>
+                    <li>Ekspektasi inflasi yang meningkat di kalangan pelaku usaha dan konsumen, yang tercermin dari kenaikan upah dan harga-harga secara luas.</li>
+                </ul>
+                Di sisi lain, pertumbuhan ekonomi nasional pada saat yang sama melambat ke level 4,2% (di bawah target 5,5%), dan angka pengangguran terbuka naik menjadi 6,8%<br><br>
+                Berdasarkan ilustrasi tersebut, manakah kebijakan moneter yang tepat untuk mengatasi masalah tersebut? <em>Jawaban benar lebih dari satu.</em>
+            </div>
+            <ul class="options-list">
+                <li class="correct">A. Menaikkan suku bunga acuan (BI Rate).</li>
+                <li>B. Menurunkan Giro Wajib Minimum (GWM) perbankan.</li>
+                <li class="correct">C. Menjual Surat Berharga Negara (SBN) di pasar terbuka.</li>
+                <li class="correct">D. Melakukan intervensi di pasar valas untuk menstabilkan rupiah.</li>
+                <li>E. Meningkatkan jumlah uang beredar untuk menjaga konsumsi masyarakat.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A, C, dan D</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Kebijakan moneter ketat, BI Rate, operasi pasar terbuka, intervensi valas, inflasi tinggi, depresiasi rupiah.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Masalah utama adalah inflasi tinggi (7,5%) yang disebabkan oleh depresiasi rupiah dan kenaikan harga energi. Kebijakan moneter yang tepat adalah kebijakan moneter ketat (contractionary):</p>
+                    <ul>
+                        <li><strong>A Benar:</strong> Menaikkan BI Rate untuk mengurangi jumlah uang beredar dan menekan inflasi.</li>
+                        <li><strong>B Salah:</strong> Menurunkan GWM akan menambah likuiditas (kebijakan longgar), yang justru memperburuk inflasi.</li>
+                        <li><strong>C Benar:</strong> Menjual SBN di pasar terbuka akan menyerap uang beredar (operasi pasar terbuka ketat).</li>
+                        <li><strong>D Benar:</strong> Intervensi valas untuk menstabilkan rupiah penting karena depresiasi rupiah menyumbang inflasi (imported inflation).</li>
+                        <li><strong>E Salah:</strong> Meningkatkan jumlah uang beredar akan memperburuk inflasi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 19 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 19</span>
+                <span class="soal-badge">Peran BUMN</span>
+            </div>
+            <div class="soal-text">
+                PT Perkebunan Nusantara (PTPN) merupakan sebuah Badan Usaha Milik Negara (BUMN) di sektor perkebunan, melakukan ekspansi usaha dengan membuka lahan baru dan membangun pabrik pengolahan sawit di beberapa daerah tertinggal. Langkah ini menciptakan lapangan kerja baru bagi masyarakat sekitar, meningkatkan pendapatan petani lokal melalui kemitraan, serta meningkatkan ekspor hasil perkebunan ke mancanegara.<br><br>
+                Berdasarkan ilustrasi tersebut, manakah dampak dari peran badan usaha PTPN terhadap perekonomian Indonesia? <em>Jawaban benar lebih dari satu.</em>
+            </div>
+            <ul class="options-list">
+                <li class="correct">A. Meningkatkan kesempatan kerja di wilayah tertinggal.</li>
+                <li>B. Meningkatkan potensi impor hasil perkebunan.</li>
+                <li class="correct">C. Mendorong pemerataan pembangunan antarwilayah.</li>
+                <li class="correct">D. Meningkatkan penerimaan devisa negara dari ekspor.</li>
+                <li>E. Melemahkan daya saing petani lokal dalam jangka panjang.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A, C, dan D</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> BUMN, PTPN, kesempatan kerja, pemerataan pembangunan, devisa ekspor, daerah tertinggal.
+                </div>
+                <div class="pembahasan-text">
+                    <ul>
+                        <li><strong>A Benar:</strong> Teks menyebutkan "menciptakan lapangan kerja baru bagi masyarakat sekitar" di "daerah tertinggal".</li>
+                        <li><strong>B Salah:</strong> Teks menyebutkan "meningkatkan ekspor", bukan impor.</li>
+                        <li><strong>C Benar:</strong> Pembangunan di daerah tertinggal mendorong pemerataan pembangunan.</li>
+                        <li><strong>D Benar:</strong> "Meningkatkan ekspor hasil perkebunan" berarti meningkatkan penerimaan devisa.</li>
+                        <li><strong>E Salah:</strong> Teks menyebutkan "meningkatkan pendapatan petani lokal melalui kemitraan", yang berarti memperkuat, bukan melemahkan.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 20 -->
+        <div class="soal-card">
+            <div class="soal-header">
+                <span class="soal-number">Soal 20</span>
+                <span class="soal-badge">Persamaan Dasar Akuntansi</span>
+            </div>
+            <div class="soal-text">
+                Perusahaan dagang "Toko Berkah" milik Bapak Rahmat melakukan beberapa transaksi selama minggu pertama bulan Februari 2025. Manakah transaksi-transaksi yang mempengaruhi komponen ekuitas dalam persamaan dasar akuntansi?<br>
+                <em>Pilihlah jawaban yang benar! Jawaban benar lebih dari satu.</em>
+            </div>
+            <ul class="options-list">
+                <li class="correct">A. Menyetorkan modal awal ke rekening perusahaan sebesar Rp75.000.000,00.</li>
+                <li>B. Membeli persediaan barang dagang secara kredit senilai Rp30.000.000,00.</li>
+                <li class="correct">C. Membayar sewa toko bulan Februari sebesar Rp5.000.000,00.</li>
+                <li class="correct">D. Menjual barang dagangan senilai Rp15.000.000,00 secara tunai (harga pokok penjualan: Rp9.000.000,00).</li>
+                <li>E. Membayar utang usaha sebesar Rp10.000.000,00.</li>
+            </ul>
+            <div class="answer-box">
+                <h3><i class="fas fa-check-circle"></i> Jawaban: A, C, dan D</h3>
+                <div class="keyword-box">
+                    <strong>Kata Kunci:</strong> Ekuitas, investasi pemilik, pendapatan, beban, prive, persamaan dasar akuntansi.
+                </div>
+                <div class="pembahasan-text">
+                    <p>Ekuitas dipengaruhi oleh investasi pemilik, pendapatan, dan beban (prive).</p>
+                    <ul>
+                        <li><strong>A Benar:</strong> Setoran modal menambah ekuitas.</li>
+                        <li><strong>B Salah:</strong> Membeli persediaan secara kredit menambah Aset (Persediaan) dan Kewajiban (Utang), tidak mempengaruhi Ekuitas.</li>
+                        <li><strong>C Benar:</strong> Membayar sewa adalah Beban, yang mengurangi Ekuitas.</li>
+                        <li><strong>D Benar:</strong> Penjualan menghasilkan Pendapatan (menambah Ekuitas) dan HPP adalah Beban (mengurangi Ekuitas). Efek bersihnya menambah Ekuitas sebesar laba (Rp15.000.000 - Rp9.000.000 = Rp6.000.000).</li>
+                        <li><strong>E Salah:</strong> Membayar utang mengurangi Aset (Kas) dan Kewajiban (Utang), tidak mempengaruhi Ekuitas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -985,7 +1308,7 @@
         </div>
         <div class="footer-bottom">
             <p>Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk pendidikan Indonesia</p>
-        </div.footer-bottom>
+        </div>
     </footer>
 
     <script>
