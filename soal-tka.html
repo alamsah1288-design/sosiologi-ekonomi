@@ -370,15 +370,58 @@
         .footer-legal-bar a { color: #94a3b8; text-decoration: none; padding: 3px 8px; }
         .footer-legal-bar a:hover { color: #4361ee; }
         .footer-legal-bar .separator { color: rgba(255, 255, 255, 0.2); margin: 0 3px; }
+
+        /* ===== VISITOR COUNTER (CountAPI) ===== */
         .visitor-counter {
             text-align: center;
-            padding: 15px;
+            padding: 20px 15px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 12px;
             margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
         }
-        .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
-        .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
+        .visitor-counter:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+        .visitor-counter .counter-icon {
+            font-size: 2rem;
+            color: #4cc9f0;
+            margin-bottom: 8px;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .visitor-counter .counter-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 5px 0;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .visitor-counter .counter-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: #e2e8f0;
+            margin-top: 5px;
+        }
+        .visitor-counter .counter-loading {
+            font-size: 1.2rem;
+            color: #4cc9f0;
+        }
+        .visitor-counter .counter-error {
+            font-size: 1.2rem;
+            color: #f87171;
+        }
+
         .copyright {
             text-align: center;
             grid-column: span 5;
@@ -500,6 +543,7 @@
             .copyright { grid-column: span 1; }
             .footer-legal-bar { display: flex; }
             .footer-section:nth-child(3) { display: none; }
+            .visitor-counter .counter-number { font-size: 1.6rem; }
         }
         @media (max-width: 576px) {
             .navbar-brand { font-size: 1rem; }
@@ -562,7 +606,6 @@
     <!-- ===== EKONOMI ===== -->
     <h2 class="category-title ekonomi"><i class="fas fa-coins"></i> Ekonomi</h2>
     <div class="container">
-        <!-- KARTU BARU: Mengarah ke file lengkap -->
         <div class="card ekonomi" style="border-top: 4px solid #e74c3c; transform: scale(1.02); box-shadow: 0 15px 35px rgba(231, 76, 60, 0.15);">
             <span class="hots-badge" style="background: linear-gradient(135deg, #e74c3c, #c0392b); font-size: 0.75rem; padding: 5px 12px;">BARU & LENGKAP</span>
             <h2><i class="fas fa-book-open"></i> Bank Soal TKA Ekonomi Lengkap</h2>
@@ -570,7 +613,6 @@
             <a href="soal-tka/bank-soal-tka-ekonomi-lengkap-dengan-kata-kunci.html" class="btn" style="background: #e74c3c;"><i class="fas fa-file-alt"></i> Buka File Lengkap</a>
         </div>
 
-        <!-- KARTU BARU: Rekap Soal Ekonomi -->
         <div class="card ekonomi" style="border-top: 4px solid #16a34a; box-shadow: 0 10px 25px rgba(22, 163, 74, 0.1);">
             <span class="hots-badge" style="background: linear-gradient(135deg, #16a34a, #15803d); font-size: 0.7rem; padding: 4px 10px;">REKAP LENGKAP</span>
             <h2><i class="fas fa-clipboard-list"></i> Rekap Soal Ekonomi</h2>
@@ -707,10 +749,10 @@
             <div class="footer-section">
                 <h3><i class="fas fa-link"></i> Link Penting</h3>
                 <ul>
-                    <li><a href="https://data.aseanstats.org/" target="_blank"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
-                    <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank"><i class="fas fa-globe"></i> World Bank</a></li>
-                    <li><a href="https://www.bps.go.id/id" target="_blank"><i class="fas fa-database"></i> BPS Indonesia</a></li>
-                    <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-open"></i> Al-Qur'an NU</a></li>
+                    <li><a href="https://data.aseanstats.org/" target="_blank" rel="noopener"><i class="fas fa-chart-bar"></i> ASEAN Statistics</a></li>
+                    <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=ID" target="_blank" rel="noopener"><i class="fas fa-globe"></i> World Bank</a></li>
+                    <li><a href="https://www.bps.go.id/id" target="_blank" rel="noopener"><i class="fas fa-database"></i> BPS Indonesia</a></li>
+                    <li><a href="https://quran.nu.or.id/" target="_blank" rel="noopener"><i class="fas fa-book-open"></i> Al-Qur'an NU</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -731,10 +773,11 @@
             <div class="footer-section">
                 <h3><i class="fas fa-eye"></i> Statistik Kunjungan</h3>
                 <div class="visitor-counter">
-                    <a href="https://www.freecounterstat.com" title="page counter" target="_blank">
-                        <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=s91lf4yugk1a948dm9uz1ej5hzz7xj9q" border="0" title="page counter" alt="page counter" />
-                    </a>
-                    <p>Jumlah pengunjung halaman ini</p>
+                    <i class="fas fa-users counter-icon"></i>
+                    <div id="visitorCount" class="counter-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat...
+                    </div>
+                    <p class="counter-label">Jumlah pengunjung halaman ini</p>
                 </div>
             </div>
         </div>
@@ -760,6 +803,67 @@
     </footer>
 
     <script>
+        /* ============================================
+           VISITOR COUNTER — CountAPI (Gratis & Reliable)
+           ============================================ */
+        (function initVisitorCounter() {
+            // GANTI namespace dengan nama unik milik sekolah Anda
+            // agar tidak bertabrakan dengan pengguna CountAPI lain
+            const NAMESPACE = 'sman1cluring-tka';
+            const KEY = 'page-views';
+
+            const counterEl = document.getElementById('visitorCount');
+            if (!counterEl) return;
+
+            // Format angka Indonesia (1.234.567)
+            function formatNumber(num) {
+                return new Intl.NumberFormat('id-ID').format(num);
+            }
+
+            // Tampilkan angka
+            function displayCount(value) {
+                counterEl.className = 'counter-number';
+                counterEl.innerHTML = `<i class="fas fa-users"></i> ${formatNumber(value)}`;
+            }
+
+            // Tampilkan error
+            function displayError() {
+                counterEl.className = 'counter-error';
+                counterEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Tidak tersedia';
+            }
+
+            // Increment (hit) + tampilkan
+            // Gunakan sessionStorage agar refresh tidak double-count
+            const alreadyCounted = sessionStorage.getItem('visitor-counted');
+
+            const url = alreadyCounted
+                ? `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`   // hanya baca
+                : `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;  // tambah 1
+
+            fetch(url)
+                .then(res => {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(data => {
+                    if (data && typeof data.value === 'number') {
+                        displayCount(data.value);
+                        if (!alreadyCounted) {
+                            sessionStorage.setItem('visitor-counted', 'true');
+                        }
+                    } else {
+                        throw new Error('Invalid response format');
+                    }
+                })
+                .catch(err => {
+                    console.warn('Visitor counter error:', err);
+                    displayError();
+                });
+        })();
+
+        /* ============================================
+           NAVBAR: Hamburger & Dropdown
+           ============================================ */
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -787,12 +891,17 @@
             }
         });
 
+        /* ============================================
+           THEME TOGGLE (Dark/Light Mode)
+           ============================================ */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
+
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
             themeToggle.textContent = '☀️';
         }
+
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
@@ -804,19 +913,27 @@
             }
         });
 
+        /* ============================================
+           SCROLL PROGRESS & BACK TO TOP
+           ============================================ */
         window.onscroll = function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
+
             const backToTop = document.getElementById('backToTop');
             if (winScroll > 300) backToTop.classList.add('visible');
             else backToTop.classList.remove('visible');
         };
+
         document.getElementById('backToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
+        /* ============================================
+           LOADER
+           ============================================ */
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
