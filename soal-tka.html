@@ -30,14 +30,8 @@
             --gray: #a0aec0;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
@@ -46,11 +40,8 @@
             padding-bottom: 80px;
             transition: background 0.4s, color 0.4s;
         }
-        body.dark-mode {
-            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-        }
+        body.dark-mode { background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%); }
 
-        /* NAVBAR */
         .navbar {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -80,11 +71,7 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             object-fit: cover;
         }
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .nav-container { display: flex; align-items: center; gap: 15px; }
         .nav-links {
             display: flex;
             gap: 15px;
@@ -104,13 +91,8 @@
             align-items: center;
             gap: 5px;
         }
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        .dropdown {
-            position: relative;
-        }
+        .nav-links a:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .dropdown { position: relative; }
         .dropdown-content {
             display: none;
             position: absolute;
@@ -135,14 +117,8 @@
             margin: 0 5px;
             transition: var(--transition);
         }
-        .dropdown-content a:hover {
-            background: var(--primary);
-            color: white;
-            padding-left: 20px;
-        }
-        .dropdown:hover .dropdown-content {
-            display: flex;
-        }
+        .dropdown-content a:hover { background: var(--primary); color: white; padding-left: 20px; }
+        .dropdown:hover .dropdown-content { display: flex; }
         .hamburger {
             display: none;
             cursor: pointer;
@@ -166,12 +142,8 @@
             height: 40px;
             border-radius: 50%;
         }
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            background: rgba(255, 255, 255, 0.1);
-        }
+        .theme-toggle:hover { transform: rotate(15deg); background: rgba(255, 255, 255, 0.1); }
 
-        /* HEADER */
         header {
             background: linear-gradient(120deg, var(--primary), var(--secondary));
             color: white;
@@ -193,10 +165,7 @@
             animation: rotate 15s linear infinite;
             z-index: 1;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .logo {
             width: 100px;
             height: 100px;
@@ -210,24 +179,9 @@
             transition: var(--transition);
             object-fit: contain;
         }
-        .logo:hover {
-            transform: scale(1.05) rotate(10deg);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            z-index: 2;
-            position: relative;
-        }
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.9;
-            z-index: 2;
-            position: relative;
-            font-size: 1.1rem;
-        }
+        .logo:hover { transform: scale(1.05) rotate(10deg); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+        .subtitle { font-weight: 300; opacity: 0.9; z-index: 2; position: relative; font-size: 1.1rem; }
 
         .adsense-container {
             max-width: 1200px;
@@ -237,7 +191,6 @@
             justify-content: center;
         }
 
-        /* CATEGORY TITLE */
         .category-title {
             text-align: center;
             margin: 50px auto 25px;
@@ -252,9 +205,7 @@
             justify-content: center;
             gap: 12px;
         }
-        body.dark-mode .category-title {
-            color: #f8f9fa;
-        }
+        body.dark-mode .category-title { color: #f8f9fa; }
         .category-title::before,
         .category-title::after {
             content: '';
@@ -263,12 +214,8 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
-        .category-title i {
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
+        .category-title i { color: var(--primary); font-size: 1.4rem; }
 
-        /* Warna per kategori */
         .category-title.ekonomi { color: #4361ee; }
         .category-title.ekonomi i { color: #4361ee; }
         .category-title.ekonomi::before, .category-title.ekonomi::after { background: linear-gradient(90deg, transparent, #4361ee, transparent); }
@@ -285,7 +232,6 @@
         .category-title.matematika i { color: #8b5cf6; }
         .category-title.matematika::before, .category-title.matematika::after { background: linear-gradient(90deg, transparent, #8b5cf6, transparent); }
 
-        /* CONTAINER & CARD */
         .container {
             max-width: 1200px;
             margin: 0 auto 40px;
@@ -308,27 +254,11 @@
             border-top: 4px solid var(--primary);
             position: relative;
         }
-        body.dark-mode .card {
-            background: #2d2d2d;
-            border-color: #444;
-            color: #f8f9fa;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
+        body.dark-mode .card { background: #2d2d2d; border-color: #444; color: #f8f9fa; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); }
+        .card h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--dark); }
         body.dark-mode .card h2 { color: #f8f9fa; }
-        .card p {
-            margin-bottom: 20px;
-            color: var(--gray);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
+        .card p { margin-bottom: 20px; color: var(--gray); font-size: 0.95rem; flex-grow: 1; }
         .btn {
             padding: 10px 20px;
             border-radius: 50px;
@@ -346,13 +276,8 @@
             background: var(--primary);
             color: white;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            background: var(--secondary);
-        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); background: var(--secondary); }
 
-        /* HOTS / SPECIAL BADGE */
         .hots-badge {
             position: absolute;
             top: 15px;
@@ -367,7 +292,6 @@
             box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
         }
 
-        /* Color variants */
         .card.ekonomi { border-top-color: #4361ee; }
         .card.ekonomi .btn { background: #4361ee; }
         .card.ekonomi .btn:hover { background: #3f37c9; }
@@ -388,7 +312,6 @@
         .card.matematika .btn:hover { background: #7c3aed; }
         .card.matematika:hover { border-top-color: #a78bfa; }
 
-        /* FOOTER */
         footer {
             background: linear-gradient(135deg, #1e293b, #334155);
             color: white;
@@ -396,9 +319,7 @@
             margin-top: 60px;
             font-family: 'Poppins', sans-serif;
         }
-        body.dark-mode footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-        }
+        body.dark-mode footer { background: linear-gradient(135deg, #0f172a, #1e293b); }
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -432,15 +353,8 @@
             align-items: center;
             gap: 8px;
         }
-        .footer-section a:hover {
-            color: #4361ee;
-            transform: translateX(5px);
-        }
-        .footer-section p {
-            line-height: 1.6;
-            margin: 8px 0;
-            color: #e2e8f0;
-        }
+        .footer-section a:hover { color: #4361ee; transform: translateX(5px); }
+        .footer-section p { line-height: 1.6; margin: 8px 0; color: #e2e8f0; }
         .footer-legal-bar {
             display: none;
             text-align: center;
@@ -453,14 +367,9 @@
             justify-content: center;
             font-size: 0.8rem;
         }
-        .footer-legal-bar a {
-            color: #94a3b8;
-            text-decoration: none;
-            padding: 3px 8px;
-        }
+        .footer-legal-bar a { color: #94a3b8; text-decoration: none; padding: 3px 8px; }
         .footer-legal-bar a:hover { color: #4361ee; }
         .footer-legal-bar .separator { color: rgba(255, 255, 255, 0.2); margin: 0 3px; }
-        
         .visitor-counter {
             text-align: center;
             padding: 15px;
@@ -468,17 +377,8 @@
             border-radius: 8px;
             margin-top: 10px;
         }
-        .visitor-counter img {
-            max-width: 100%;
-            height: auto;
-            filter: brightness(1.2);
-        }
-        .visitor-counter p {
-            margin-top: 10px;
-            font-size: 0.85rem;
-            opacity: 0.8;
-            color: #e2e8f0;
-        }
+        .visitor-counter img { max-width: 100%; height: auto; filter: brightness(1.2); }
+        .visitor-counter p { margin-top: 10px; font-size: 0.85rem; opacity: 0.8; color: #e2e8f0; }
         .copyright {
             text-align: center;
             grid-column: span 5;
@@ -495,7 +395,6 @@
             color: #94a3b8;
         }
 
-        /* SCROLL & BACK TO TOP */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -534,14 +433,8 @@
             visibility: hidden;
             z-index: 999;
         }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
-        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background: var(--secondary); }
 
         .loader-wrapper {
             position: fixed;
@@ -564,9 +457,7 @@
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         @media (max-width: 768px) {
             .hamburger { display: block; }
@@ -582,10 +473,7 @@
                 padding: 1rem 0;
                 z-index: 1000;
             }
-            .nav-links.active {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
             @keyframes slideDown {
                 from { opacity: 0; transform: translateY(-10px); }
                 to { opacity: 1; transform: translateY(0); }
@@ -600,10 +488,7 @@
                 display: none;
                 padding: 0;
             }
-            .dropdown.active .dropdown-content {
-                display: flex;
-                flex-direction: column;
-            }
+            .dropdown.active .dropdown-content { display: flex; flex-direction: column; }
             .dropdown-content a { padding-left: 40px; color: white; }
             .category-title { font-size: 1.3rem; }
             header { padding: 4rem 1rem 2rem; }
@@ -683,6 +568,14 @@
             <h2><i class="fas fa-book-open"></i> Bank Soal TKA Ekonomi Lengkap</h2>
             <p>Kumpulan 20+ soal TKA Ekonomi lengkap dengan <strong>kata kunci</strong>, pembahasan mendalam, grafik interaktif, dan materi tambahan (termasuk metode penghapusan piutang).</p>
             <a href="soal-tka/bank-soal-tka-ekonomi-lengkap-dengan-kata-kunci.html" class="btn" style="background: #e74c3c;"><i class="fas fa-file-alt"></i> Buka File Lengkap</a>
+        </div>
+
+        <!-- KARTU BARU: Rekap Soal Ekonomi -->
+        <div class="card ekonomi" style="border-top: 4px solid #16a34a; box-shadow: 0 10px 25px rgba(22, 163, 74, 0.1);">
+            <span class="hots-badge" style="background: linear-gradient(135deg, #16a34a, #15803d); font-size: 0.7rem; padding: 4px 10px;">REKAP LENGKAP</span>
+            <h2><i class="fas fa-clipboard-list"></i> Rekap Soal Ekonomi</h2>
+            <p>Kumpulan rekapitulasi soal-soal Ekonomi dari berbagai paket latihan. Cocok untuk review menyeluruh, evaluasi pemahaman, dan persiapan ujian TKA.</p>
+            <a href="soal-tka/rekap-soal-ekonomi.html" class="btn" style="background: #16a34a;"><i class="fas fa-list-check"></i> Buka Rekap Soal</a>
         </div>
 
         <div class="card ekonomi">
